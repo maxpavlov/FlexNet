@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Resources>
+  <ResourceClass name="EventRegistration">
+    <Languages>
+      <Language cultureName="en">
+        <data name="PortletTitle" xml:space="preserve">
+          <value>Event manager</value>
+        </data>
+        <data name="UserSubscriptionSubject" xml:space="preserve">
+          <value>You have been subscribed to {0}</value>
+        </data>
+        <data name="AdminSubscriptionSubject" xml:space="preserve">
+          <value>A user has been subscribed to {0}</value>
+        </data>
+        <data name="UserApprovingSubject" xml:space="preserve">
+          <value>Your subscription to {0} event has been approved</value>
+        </data>
+        <data name="AdminApprovingSubject" xml:space="preserve">
+          <value>A users subscription to {0} event has been approved</value>
+        </data>
+        <data name="UserApprovingBody" xml:space="preserve">
+          <value>Your registration has been approved.</value>
+        </data>
+        <data name="AdminApprovingBody" xml:space="preserve">
+          <value>Registration has been approved.</value>
+        </data>
+        <data name="UserRejectingSubject" xml:space="preserve">
+          <value>Your subscription to {0} event has been rejected</value>
+        </data>
+        <data name="AdminRejectingSubject" xml:space="preserve">
+          <value>A users subscription to {0} event has been rejected</value>
+        </data>
+        <data name="UserRejectingBody" xml:space="preserve">
+          <value>Your registration has been rejected.</value>
+        </data>
+        <data name="AdminRejectingBody" xml:space="preserve">
+          <value>Registration has been rejected.</value>
+        </data>
+        <data name="UserCancellingSubject" xml:space="preserve">
+          <value>Your subscription to {0} event has been succesfully cancelled</value>
+        </data>
+        <data name="AdminCancellingSubject" xml:space="preserve">
+          <value>A users subscription to {0} event has been succesfully cancelled</value>
+        </data>
+        <data name="ToCancel" xml:space="preserve">
+          <value>To cancel registration visit this link:</value>
+        </data>
+        <data name="ToApprove" xml:space="preserve">
+          <value>To approve or reject this registration visit this link:</value>
+        </data>
+
+        <data name="TooManyGuests" xml:space="preserve">
+          <value>Too many guests. You can bring only {0} additional guests.</value>
+        </data>
+        <data name="TooManyParticipants" xml:space="preserve">
+          <value>Too many participants. Only {0} participants can be approved.</value>
+        </data>
+      </Language>
+    </Languages>
+  </ResourceClass>
+</Resources>

@@ -1,0 +1,36 @@
+/* Reset */
+.sensenetSimpleSkin table, .sensenetSimpleSkin tbody, .sensenetSimpleSkin a, .sensenetSimpleSkin img, .sensenetSimpleSkin tr, .sensenetSimpleSkin div, .sensenetSimpleSkin td, .sensenetSimpleSkin iframe, .sensenetSimpleSkin span, .sensenetSimpleSkin * {border:0; margin:0; padding:0; background:transparent; white-space:nowrap; text-decoration:none; font-weight:normal; cursor:default; color:#000}
+
+/* Containers */
+.sensenetSimpleSkin {position:relative}
+.sensenetSimpleSkin table.mceLayout {background:#E5EFFD; border:1px solid #ABC6DD;}
+.sensenetSimpleSkin iframe {display:block; background:#FFF; border-bottom:1px solid #ABC6DD;}
+.sensenetSimpleSkin .mceToolbar {height:26px;}
+
+/* Layout */
+.sensenetSimpleSkin .mceToolbar .mceToolbarStart span {display:block; background:url(img/button_bg.png) -22px 0; width:1px; height:22px; }
+.sensenetSimpleSkin .mceToolbar .mceToolbarEnd span {display:block; background:url(img/button_bg.png) -22px 0; width:1px; height:22px}
+.sensenetSimpleSkin span.mceIcon, .sensenetSimpleSkin img.mceIcon {display:block; width:20px; height:20px}
+.sensenetSimpleSkin .mceIcon {background:url(../../img/sn_icons.png) no-repeat 20px 20px}
+.sensenetSimpleSkin td.mceToolbar {background:url(img/sn_tmce_logo.png) no-repeat bottom right;}
+
+/* Button */
+.sensenetSimpleSkin .mceButton {display:block; background:url(img/button_bg.png); width:22px; height:22px}
+.sensenetSimpleSkin a.mceButton span, .sensenetSimpleSkin a.mceButton img {margin:1px 0 0 1px}
+.sensenetSimpleSkin a.mceButtonEnabled:hover {background-color:#B2BBD0; background-position:0 -22px}
+.sensenetSimpleSkin a.mceButtonActive {background-position:0 -44px}
+.sensenetSimpleSkin .mceButtonDisabled span {opacity:0.3; -ms-filter:'alpha(opacity=30)'; filter:alpha(opacity=30)}
+
+/* Separator */
+.sensenetSimpleSkin .mceSeparator {display:block; background:url(img/button_bg.png) -22px 0; width:5px; height:22px}
+
+/* Theme */
+.sensenetSimpleSkin span.mce_bold {background-position:0 0}
+.sensenetSimpleSkin span.mce_italic {background-position:-60px 0}
+.sensenetSimpleSkin span.mce_underline {background-position:-140px 0}
+.sensenetSimpleSkin span.mce_strikethrough {background-position:-120px 0}
+.sensenetSimpleSkin span.mce_undo {background-position:-160px 0}
+.sensenetSimpleSkin span.mce_redo {background-position:-100px 0}
+.sensenetSimpleSkin span.mce_cleanup {background-position:-40px 0}
+.sensenetSimpleSkin span.mce_insertunorderedlist {background-position:-20px 0}
+.sensenetSimpleSkin span.mce_insertorderedlist {background-position:-80px 0}

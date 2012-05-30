@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="ForumEntry" parentType="ListItem" handler="SenseNet.Portal.DiscussionForum.ForumEntry" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Forum entry</DisplayName>
+	<Description>A type for forum entries</Description>
+	<Icon>forumentry</Icon>
+	<Fields>
+    <Field name="DisplayName" type="ShortText">
+      <DisplayName>Subject</DisplayName>
+      <Description>The subject of the entry</Description>
+    </Field>
+    <Field name="Description" type="LongText">
+			<DisplayName>Entry text</DisplayName>
+			<Description>The text body of the entry</Description>
+		</Field>
+    <Field name="ReplyTo" type="Reference">
+      <DisplayName>Reply to</DisplayName>
+      <Description>The previous message in the thread</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <AllowMultiple>false</AllowMultiple>
+        <AllowedTypes>
+          <Type>ForumEntry</Type>
+        </AllowedTypes>
+      </Configuration>
+    </Field>
+    <Field name="ReplyToNo" type="Integer">
+      <DisplayName>Reply to number</DisplayName>
+      <Description>The number of the previous message in the thread</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <ReadOnly>true</ReadOnly>
+      </Configuration>
+    </Field>
+    <Field name="SerialNo" type="Integer">
+      <DisplayName>Number</DisplayName>
+      <Description>Entry number</Description>
+      <!--<Indexing>
+        <Mode>No</Mode>
+      </Indexing>-->
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="PostedBy" type="Reference">
+      <DisplayName>Posted by</DisplayName>
+      <Description>The user who posted the message</Description>
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Hidden" type="Boolean">
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Index" type="Integer">
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="TrashDisabled" type="Boolean">
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Version" type="Version">
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+  </Fields>
+</ContentType>

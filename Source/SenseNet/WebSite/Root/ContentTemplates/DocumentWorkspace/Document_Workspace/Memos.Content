@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>MemoList</ContentType>
+  <ContentName>Memos</ContentName>
+  <Fields>
+    <ContentListDefinition><![CDATA[<ContentListDefinition xmlns='http://schemas.sensenet.com/SenseNet/ContentRepository/ContentListDefinition'><Fields /></ContentListDefinition>]]></ContentListDefinition>
+    <DefaultView>Default.ascx</DefaultView>
+    <DisplayName>Memos</DisplayName>
+    <Hidden>false</Hidden>
+    <Index>1</Index>
+  </Fields>
+</ContentMetaData>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="PortalRoot" parentType="Folder" handler="SenseNet.ContentRepository.PortalRoot" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Root</DisplayName>
+	<Description>Sense/Net Content Repository Master node. One installation can have only one Portal Root.</Description>
+	<Icon>PortalRoot</Icon>
+  <AllowedChildTypes>
+    Folder,TrashBin,DocumentLibrary,CustomList,Sites,KPIDatasources,Domains,Profiles,Portlets,Resources,Skins
+  </AllowedChildTypes>
+  <Fields>
+    <Field name="DisplayName" type="ShortText">
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+  </Fields>
+</ContentType>

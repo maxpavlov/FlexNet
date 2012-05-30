@@ -1,0 +1,331 @@
+﻿<Activity mc:Ignorable="sap" x:Class="SenseNet.Workflow.Definitions.ApprovalWorkflow" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mv="clr-namespace:Microsoft.VisualBasic;assembly=System" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:s1="clr-namespace:System;assembly=System" xmlns:s2="clr-namespace:System;assembly=System.Xml" xmlns:s3="clr-namespace:System;assembly=System.Core" xmlns:s4="clr-namespace:System;assembly=System.ServiceModel" xmlns:sa="clr-namespace:System.Activities;assembly=System.Activities" xmlns:sad="clr-namespace:System.Activities.Debugger;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sc="clr-namespace:SenseNet.ContentRepository;assembly=SenseNet.Storage" xmlns:sc1="clr-namespace:SenseNet.ContentRepository;assembly=SenseNet.ContentRepository" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System" xmlns:scg1="clr-namespace:System.Collections.Generic;assembly=System.ServiceModel" xmlns:scg2="clr-namespace:System.Collections.Generic;assembly=System.Core" xmlns:scg3="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:scs="clr-namespace:SenseNet.ContentRepository.Storage;assembly=SenseNet.Storage" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:sl="clr-namespace:System.Linq;assembly=System.Core" xmlns:ssi="clr-namespace:SenseNet.Search.Indexing;assembly=SenseNet.ContentRepository" xmlns:st="clr-namespace:System.Text;assembly=mscorlib" xmlns:sw="clr-namespace:SenseNet.Workflow;assembly=SenseNet.Workflow" xmlns:swa="clr-namespace:SenseNet.Workflow.Activities;assembly=SenseNet.Workflow" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="StateContent" Type="InArgument(sw:WfContent)" />
+  </x:Members>
+  <sap:VirtualizedContainerService.HintSize>304,841</sap:VirtualizedContainerService.HintSize>
+  <mva:VisualBasic.Settings>Assembly references and imported namespaces for internal implementation</mva:VisualBasic.Settings>
+  <sap:WorkflowViewStateService.ViewState>
+    <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+      <x:Boolean x:Key="ShouldCollapseAll">True</x:Boolean>
+    </scg3:Dictionary>
+  </sap:WorkflowViewStateService.ViewState>
+  <Sequence DisplayName="MainSequence" sad:XamlDebuggerXmlReader.FileName="C:\Dev10\SenseNet\Development\Budapest\Source\SenseNet\WF\ApprovalWorkflow.xaml" sap:VirtualizedContainerService.HintSize="264,801">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="sw:WfContent" Name="LeaderTask" />
+      <Variable x:TypeArguments="sw:WfContent" Name="ContentToApprove" />
+      <Variable x:TypeArguments="x:Boolean" Name="AssistantTasksResult" />
+      <Variable x:TypeArguments="scg3:List(sw:WfContent)" Name="AssistantTasks" />
+      <Variable x:TypeArguments="x:String" Name="TasksPath" />
+      <Variable x:TypeArguments="x:Boolean" Name="Result" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg3:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <swa:DebugWrite sap:VirtualizedContainerService.HintSize="242,22" Message="##WF&gt; ## Start" />
+    <Assign sap:VirtualizedContainerService.HintSize="242,58">
+      <Assign.To>
+        <OutArgument x:TypeArguments="sw:WfContent">[ContentToApprove]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="sw:WfContent">[StateContent.Reference("RelatedContent")]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="242,58">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[TasksPath]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[CType(StateContent("Workspace"), SenseNet.ContentRepository.GenericContent).Path &amp; "/Tasks"]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Sequence DisplayName="Creating task for Leader" sap:VirtualizedContainerService.HintSize="264,1049">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="s:DateTime" Name="LeaderDueDate" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg3:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <swa:CreateContent Name="{x:Null}" ContentTypeName="[&quot;ApprovalWorkflowTask&quot;]" DisplayName="CreateContent" sap:VirtualizedContainerService.HintSize="242,177" ParentPath="[TasksPath]" Result="[LeaderTask]">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg3:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </swa:CreateContent>
+      <swa:DebugWrite sap:VirtualizedContainerService.HintSize="242,22" Message="##WF&gt; ## Leader task created" />
+      <Assign DisplayName="Assign DisplayName" sap:VirtualizedContainerService.HintSize="242,58">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:Object">[LeaderTask("DisplayName")]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:Object">["Approve " + CStr(ContentToApprove("Name"))]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign DisplayName="Assign ContentToApprove" sap:VirtualizedContainerService.HintSize="242,58">
+        <Assign.To>
+          <OutArgument x:TypeArguments="sw:WfContent">[LeaderTask.Reference("ContentToApprove")]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="sw:WfContent">[ContentToApprove]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign DisplayName="Assign AssignedTo" sap:VirtualizedContainerService.HintSize="242,58">
+        <Assign.To>
+          <OutArgument x:TypeArguments="sw:WfContent">[LeaderTask.Reference("AssignedTo")]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="sw:WfContent">[StateContent.Reference("FirstLevelApprover")]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="242,58">
+        <Assign.To>
+          <OutArgument x:TypeArguments="s:DateTime">[LeaderDueDate]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="s:DateTime">[DateTime.Now.Add(TimeSpan.Parse(CStr(StateContent("FirstLevelTimeFrame"))))]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign DisplayName="Assign DueDate" sap:VirtualizedContainerService.HintSize="242,58">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:Object">[LeaderTask("DueDate")]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:Object">[LeaderDueDate]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign DisplayName="Assign ValidTill" sap:VirtualizedContainerService.HintSize="242,58">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:Object">[LeaderTask("ValidTill")]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:Object">[LeaderDueDate]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign DisplayName="Assign EnableLifespan" sap:VirtualizedContainerService.HintSize="242,58">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:Object">[LeaderTask("EnableLifespan")]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:Object">[True]</InArgument>
+        </Assign.Value>
+      </Assign>
+    </Sequence>
+    <swa:DebugWrite sap:VirtualizedContainerService.HintSize="242,22" Message="##WF&gt; ## Initialized" />
+    <Pick DisplayName="Wait or timeout and set Result" sap:VirtualizedContainerService.HintSize="242,51">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg3:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <PickBranch DisplayName="Leader" sap:VirtualizedContainerService.HintSize="200,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg3:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <PickBranch.Trigger>
+          <swa:WaitForContentChanged ContentPath="[LeaderTask.Path]" sap:VirtualizedContainerService.HintSize="242,100" />
+        </PickBranch.Trigger>
+        <Assign sap:VirtualizedContainerService.HintSize="242,100">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:Boolean">[Result]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:Boolean">[CStr(LeaderTask("Result")) &lt;&gt; "no"]</InArgument>
+          </Assign.Value>
+        </Assign>
+      </PickBranch>
+      <PickBranch DisplayName="Assistants" sap:VirtualizedContainerService.HintSize="252,608">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          </scg3:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <PickBranch.Trigger>
+          <Delay DisplayName="Delay1" Duration="[TimeSpan.Parse(CStr(StateContent(&quot;FirstLevelTimeFrame&quot;)))]" sap:VirtualizedContainerService.HintSize="222,100" />
+        </PickBranch.Trigger>
+        <Sequence sap:VirtualizedContainerService.HintSize="222,390">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">True</x:Boolean>
+            </scg3:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <swa:DebugWrite sap:VirtualizedContainerService.HintSize="200,22" Message="##WF&gt; ## After delay1" />
+          <Sequence DisplayName="Create tasks for Assistants" sap:VirtualizedContainerService.HintSize="264,371">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="sw:WfContent" Name="Task" />
+              <Variable x:TypeArguments="s:DateTime" Name="AssistantDueDate" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg3:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap:VirtualizedContainerService.HintSize="242,58">
+              <Assign.To>
+                <OutArgument x:TypeArguments="scg3:List(sw:WfContent)">[AssistantTasks]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="scg3:List(sw:WfContent)">[New List(Of WfContent)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="242,58">
+              <Assign.To>
+                <OutArgument x:TypeArguments="s:DateTime">[AssistantDueDate]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="s:DateTime">[DateTime.Now.Add(TimeSpan.Parse(CStr(StateContent("SecondLevelTimeFrame"))))]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <ForEach x:TypeArguments="sw:WfContent" DisplayName="ForEach&lt;WfContent&gt;" sap:VirtualizedContainerService.HintSize="287,206" Values="[StateContent.References(&quot;SecondLevelApprover&quot;)]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg3:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ActivityAction x:TypeArguments="sw:WfContent">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="sw:WfContent" Name="assistant" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Create task" sap:VirtualizedContainerService.HintSize="264,951">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg3:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <swa:CreateContent Name="{x:Null}" ContentTypeName="[&quot;ApprovalWorkflowTask&quot;]" sap:VirtualizedContainerService.HintSize="242,177" ParentPath="[TasksPath]" Result="[Task]" />
+                  <Assign DisplayName="Assign DisplayName" sap:VirtualizedContainerService.HintSize="242,58">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Object">[Task("DisplayName")]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Object">["Approve " + CStr(ContentToApprove("Name"))]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign DisplayName="Assign ContentToApprove" sap:VirtualizedContainerService.HintSize="242,58">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="sw:WfContent">[Task.Reference("ContentToApprove")]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="sw:WfContent">[ContentToApprove]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign DisplayName="Assign AssignedTo" sap:VirtualizedContainerService.HintSize="242,58">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="sw:WfContent">[Task.Reference("AssignedTo")]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="sw:WfContent">[assistant]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign DisplayName="Assign DueDate" sap:VirtualizedContainerService.HintSize="242,58">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Object">[Task("DueDate")]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Object">[AssistantDueDate]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign DisplayName="Assign ValidTill" sap:VirtualizedContainerService.HintSize="242,58">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Object">[Task("ValidTill")]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Object">[AssistantDueDate]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign DisplayName="Assign EnableLifespan" sap:VirtualizedContainerService.HintSize="242,58">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Object">[Task("EnableLifespan")]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Object">[True]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <AddToCollection x:TypeArguments="sw:WfContent" Collection="[AssistantTasks]" DisplayName="Add Task to AssistantTasks" sap:VirtualizedContainerService.HintSize="242,22" Item="[Task]" />
+                </Sequence>
+              </ActivityAction>
+            </ForEach>
+          </Sequence>
+          <swa:DebugWrite sap:VirtualizedContainerService.HintSize="200,22" Message="##WF&gt; ## Assistant task are created" />
+          <Pick DisplayName="Wait for assistants" sap:VirtualizedContainerService.HintSize="200,51">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              </scg3:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <PickBranch DisplayName="Wait and set Result" sap:VirtualizedContainerService.HintSize="200,51">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                </scg3:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <PickBranch.Trigger>
+                <swa:WaitForMultipleTasksCompleted ContentPaths="[(From t In AssistantTasks Select t.Path).ToArray()]" sap:VirtualizedContainerService.HintSize="200,100" Result="[Result]" WaitForAllTrue="[CBool(StateContent(&quot;WaitForAll&quot;))]" />
+              </PickBranch.Trigger>
+              <swa:DebugWrite sap:VirtualizedContainerService.HintSize="200,100" Message="[&quot;##WF&gt; ## After WaitForMultiple. Result: &quot; &amp; Result]" />
+            </PickBranch>
+            <PickBranch DisplayName="Timeout set Result" sap:VirtualizedContainerService.HintSize="294,462">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                </scg3:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <PickBranch.Trigger>
+                <Delay DisplayName="Delay2" Duration="[TimeSpan.Parse(CStr(StateContent(&quot;SecondLevelTimeFrame&quot;)))]" sap:VirtualizedContainerService.HintSize="264,100" />
+              </PickBranch.Trigger>
+              <Sequence sap:VirtualizedContainerService.HintSize="264,244">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                  </scg3:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <swa:DebugWrite sap:VirtualizedContainerService.HintSize="242,22" Message="##WF&gt; ## After Delay2" />
+                <Assign sap:VirtualizedContainerService.HintSize="242,58">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Boolean">[Result]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
+            </PickBranch>
+          </Pick>
+        </Sequence>
+      </PickBranch>
+    </Pick>
+    <swa:DebugWrite sap:VirtualizedContainerService.HintSize="242,22" Message="[&quot;##WF&gt; ## Result: &quot; &amp; Result]" />
+    <If Condition="[Result]" DisplayName="Approve or Reject" sap:VirtualizedContainerService.HintSize="242,51">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+        </scg3:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <swa:ApproveContent ContentPath="[ContentToApprove.Path]" sap:VirtualizedContainerService.HintSize="219,100" />
+      </If.Then>
+      <If.Else>
+        <swa:RejectContent ContentPath="[ContentToApprove.Path]" sap:VirtualizedContainerService.HintSize="220,100" />
+      </If.Else>
+    </If>
+    <swa:DebugWrite sap:VirtualizedContainerService.HintSize="242,22" Message="##WF&gt; ## Finish" />
+  </Sequence>
+</Activity>

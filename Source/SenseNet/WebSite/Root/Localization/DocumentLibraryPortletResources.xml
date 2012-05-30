@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Resources>
+    <ResourceClass name="DocumentLibraryPortlet">
+        <Languages>
+            <Language cultureName="en">
+                <data name="DocumentLibraryPortletCategoryTitle" xml:space="preserve">
+                    <value>Document library</value>
+                </data>
+                <data name="RootPathDisplayName" xml:space="preserve">
+                    <value>Root path</value>
+                </data>
+                <data name="RootPathDescription" xml:space="preserve">
+                    <value>The root path of the document library.</value>
+                </data>
+                <data name="IsUserHomeFolderDisplayName" xml:space="preserve">
+                    <value>Is user home folder</value>
+                </data>
+                <data name="IsUserHomeFolderDescription" xml:space="preserve">
+                    <value>Is user home folder</value>
+                </data>
+                <data name="IsDataSheetClosedDisplayName" xml:space="preserve">
+                    <value>Is data sheet closed</value>
+                </data>
+                <data name="IsDataSheetClosedDescription" xml:space="preserve">
+                    <value>Is data sheet closed</value>
+                </data>
+                <data name="IsWebdavEnabledDisplayName" xml:space="preserve">
+                    <value>Is WebDAV enabled</value>
+                </data>
+                <data name="IsWebdavEnabledDescription" xml:space="preserve">
+                    <value>Is WebDAV enabled</value>
+                </data>                
+            </Language>
+            <Language cultureName="hu">
+  
+            </Language>
+        </Languages>
+    </ResourceClass>
+</Resources>

@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Voting</ContentType>
+  <ContentName>test_voting_yes_no</ContentName>
+  <Fields>
+    <Description><![CDATA[]]></Description>
+        <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <LandingPage>
+      <Path>/Root/System/SystemPlugins/ListView/Voting/aftersubmitcontent</Path>
+    </LandingPage>
+    <LandingPageContentView />
+    <InvalidSurveyPage>
+      <Path>/Root/System/SystemPlugins/ListView/Voting/invalidsurveycontent</Path>
+    </InvalidSurveyPage>
+    <ResultPageContentView>
+      <Path>/Root/System/SystemPlugins/ListView/Voting/VotingResult.ascx</Path>
+    </ResultPageContentView>
+    <VotingPageContentView>
+      <Path>/Root/System/SystemPlugins/ListView/Voting/VotingQuestion.ascx</Path>
+    </VotingPageContentView>
+    <CannotSeeResultContentView>
+      <Path>/Root/System/SystemPlugins/ListView/Voting/cannotseeresultcontent</Path>
+    </CannotSeeResultContentView>
+    <ContentListDefinition><![CDATA[<ContentListDefinition xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentListDefinition"><Fields><ContentListField name="#YesNoFieldSetting" type="YesNo"><DisplayName>Do you work in full time at your workplace?</DisplayName><Description></Description><Configuration><AllowMultiple>false</AllowMultiple><AllowExtraValue>false</AllowExtraValue><Options><Option value="yes">Yes</Option><Option value="no">No</Option></Options></Configuration></ContentListField></Fields></ContentListDefinition>]]></ContentListDefinition>
+    <InheritableVersioningMode>1</InheritableVersioningMode>
+    <InheritableApprovingMode>1</InheritableApprovingMode>
+    <Index>0</Index>
+    <EnableLifespan>false</EnableLifespan>
+    <EnableNotificationMail>false</EnableNotificationMail>
+    <Evaluators />
+    <EnableMoreFilling>true</EnableMoreFilling>
+    <IsResultVisibleBefore>true</IsResultVisibleBefore>
+    <DisplayName>Test Voting - Yes/No</DisplayName>
+    <Hidden>false</Hidden>
+    <VersioningMode>1</VersioningMode>
+    <ApprovingMode>1</ApprovingMode>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

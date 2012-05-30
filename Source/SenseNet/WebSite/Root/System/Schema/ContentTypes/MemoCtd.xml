@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="Memo" parentType="ListItem" handler="SenseNet.ContentRepository.GenericContent" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Memo</DisplayName>
+  <Description>A content type for short memos or posts on a subject</Description>
+  <Icon>Document</Icon>
+  <Fields>
+    <Field name="Description" type="LongText">
+      <DisplayName>Body</DisplayName>
+      <Description>Type your message here</Description>
+    </Field>
+    <Field name="Date" type="DateTime">
+      <DisplayName>Date</DisplayName>
+      <Description>Please set the due date of the memo. Date format: '2010.09.17', time format: '14:30:00'</Description>
+      <Configuration>
+        <DateTimeMode>DateAndTime</DateTimeMode>
+        <DefaultValue>[Script:jScript] DateTime.Now; [/Script]</DefaultValue>
+      </Configuration>
+    </Field>
+    <Field name="MemoType" type="Choice">
+      <DisplayName>Memo type</DisplayName>
+      <Description>Type of the memo</Description>
+      <Configuration>
+        <AllowMultiple>false</AllowMultiple>
+        <AllowExtraValue>true</AllowExtraValue>
+        <Options>
+          <Option value="generic" selected="true">Generic</Option>
+          <Option value="iso">ISO</Option>
+          <Option value="iaudit">Internal audit</Option>
+        </Options>
+      </Configuration>
+    </Field>
+    <Field name="SeeAlso" type="Reference">
+      <DisplayName>See also...</DisplayName>
+      <Description>A list of Contents this memo pertains to</Description>
+      <Configuration>
+        <AllowMultiple>true</AllowMultiple>
+      </Configuration>
+    </Field>
+  </Fields>
+</ContentType>

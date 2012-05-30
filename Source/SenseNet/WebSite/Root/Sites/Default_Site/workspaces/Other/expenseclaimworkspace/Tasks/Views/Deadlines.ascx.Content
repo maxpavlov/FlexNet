@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>ListView</ContentType>
+  <ContentName>Deadlines.ascx</ContentName>
+  <Fields>
+    <Template>
+      <Path>/Root/System/SystemPlugins/ListView/Templates/ListView.xslt</Path>
+    </Template>
+    <Columns><![CDATA[<Columns>
+  <Column title="DisplayName" fullName="GenericContent.DisplayName" bindingName="GenericContent_DisplayName" index="2" modifiers="main" />
+  <Column title="Due date" fullName="Task.DueDate" bindingName="Task_DueDate" index="3" modifiers="" />
+</Columns>]]></Columns>
+    <SortBy>DueDate ASC</SortBy>
+    <Flat>false</Flat>
+    <DisplayName>Deadlines</DisplayName>
+    <FilterXml><![CDATA[<?xml version="1.0" encoding="utf-16"?><Query xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/QueryEditor"><ExpressionItem xsi:type="Predicate" logicalOperator="None" type="StringExpression" operator="Equal"><LeftOperand>Status</LeftOperand><RightOperand>Active</RightOperand></ExpressionItem></Query>]]></FilterXml>
+    <EnableAutofilters>0</EnableAutofilters>
+    <EnableLifespanFilter>0</EnableLifespanFilter>
+    <Hidden>true</Hidden>
+    <Index>0</Index>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

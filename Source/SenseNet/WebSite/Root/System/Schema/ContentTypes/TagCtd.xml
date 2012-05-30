@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="Tag" parentType="GenericContent" handler="SenseNet.ContentRepository.GenericContent" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Tag</DisplayName>
+  <Description>Content type for storing tag entities.</Description>
+  <Icon>Content</Icon>
+  <Fields>
+    <Field name="Description2" type="ShortText">
+      <DisplayName>Description</DisplayName>
+    </Field>
+    <Field name="BlackListPath" type="LongText">
+      <DisplayName>Blacklist path</DisplayName>
+      <Description>List of paths where tag blacklisted is.</Description>
+      <Indexing>
+        <IndexHandler>SenseNet.Search.Indexing.TagIndexHandler</IndexHandler>
+      </Indexing>
+    </Field>
+  </Fields>
+  
+</ContentType>

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SenseNetContentRepository" Class="NotificationsDataContext" AccessModifier="Internal" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="dbo.[Messaging.Events]" Member="Events">
+    <Type Name="Event">
+      <Column Name="EventId" AccessModifier="Internal" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ContentPath" Type="System.String" DbType="NVarChar(450) NOT NULL" CanBeNull="false" />
+      <Column Name="CreatorId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NotificationTypeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[When]" Member="When" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LastModifierId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Who" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[Messaging.LastProcessTime]" Member="LastProcessTimes" AccessModifier="Internal">
+    <Type Name="LastProcessTime" AccessModifier="Internal">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Immediately" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Daily" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Weekly" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Monthly" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[Messaging.Synchronization]" Member="Synchronizations" AccessModifier="Internal">
+    <Type Name="Synchronization" AccessModifier="Internal">
+      <Column Name="LockName" Type="System.String" DbType="NVarChar(200) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Locked" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LockedUntil" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ComputerName" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="LockId" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[Messaging.Messages]" Member="Messages">
+    <Type Name="Message">
+      <Column Name="MessageId" AccessModifier="Internal" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Subject" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Body" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="LockId" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="LockedUntil" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[Messaging.Subscriptions]" Member="Subscriptions">
+    <Type Name="Subscription">
+      <Column Name="SubscriptionId" AccessModifier="Internal" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserEmail" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="UserPath" Type="System.String" DbType="NVarChar(450) NOT NULL" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="ContentPath" Type="System.String" DbType="NVarChar(450) NOT NULL" CanBeNull="false" />
+      <Column Name="FrequencyId" AccessModifier="Internal" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Language" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Active" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="SitePath" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="SiteUrl" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

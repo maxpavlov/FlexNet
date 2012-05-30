@@ -1,0 +1,47 @@
+﻿<Activity mc:Ignorable="sap" 
+          x:Class="SenseNet.ContentRepository.Tests.Workflow.WaitForMultipleTestActivity" 
+          xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" 
+          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+          xmlns:mv="clr-namespace:Microsoft.VisualBasic;assembly=System" 
+          xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" 
+          xmlns:s="clr-namespace:System;assembly=mscorlib" 
+          xmlns:s1="clr-namespace:System;assembly=System" 
+          xmlns:s2="clr-namespace:System;assembly=System.Xml" 
+          xmlns:s3="clr-namespace:System;assembly=System.Core" 
+          xmlns:s4="clr-namespace:System;assembly=System.ServiceModel" 
+          xmlns:sa="clr-namespace:System.Activities;assembly=System.Activities" 
+          xmlns:sad="clr-namespace:System.Activities.Debugger;assembly=System.Activities" 
+          xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" 
+          xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System" 
+          xmlns:scg1="clr-namespace:System.Collections.Generic;assembly=System.ServiceModel" 
+          xmlns:scg2="clr-namespace:System.Collections.Generic;assembly=System.Core" 
+          xmlns:scg3="clr-namespace:System.Collections.Generic;assembly=mscorlib" 
+          xmlns:sctw="clr-namespace:SenseNet.ContentRepository.Tests.Workflow;assembly=SenseNet.Tests" 
+          xmlns:sd="clr-namespace:System.Data;assembly=System.Data" 
+          xmlns:sl="clr-namespace:System.Linq;assembly=System.Core" 
+          xmlns:st="clr-namespace:System.Text;assembly=mscorlib" 
+          xmlns:sw="clr-namespace:SenseNet.Workflow;assembly=SenseNet.Workflow" 
+          xmlns:swa="clr-namespace:SenseNet.Workflow.Activities;assembly=SenseNet.Workflow" 
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="StateContent" Type="InArgument(sw:WfContent)" />
+    <x:Property Name="RelatedContents" Type="InArgument(sw:WfContent[])" />
+    <x:Property Name="WaitForAll" Type="InArgument(x:Boolean)" />
+  </x:Members>
+  <sap:VirtualizedContainerService.HintSize>262,248</sap:VirtualizedContainerService.HintSize>
+  <mva:VisualBasic.Settings>Assembly references and imported namespaces for internal implementation</mva:VisualBasic.Settings>
+  <sap:WorkflowViewStateService.ViewState>
+    <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+      <x:Boolean x:Key="ShouldExpandAll">False</x:Boolean>
+    </scg3:Dictionary>
+  </sap:WorkflowViewStateService.ViewState>
+  <Sequence sad:XamlDebuggerXmlReader.FileName="C:\Development\SenseNet\Dev\Budapest\Source\SenseNet\WorkflowDefinitions\WaitForMultipleTestActivity.xaml" sap:VirtualizedContainerService.HintSize="222,208">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg3:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <swa:WaitForMultipleContentChanged ContentPath="[RelatedContents(0).Path]" ContentPaths="[(From Content In RelatedContents Select Content.Path).ToArray()]" sap:VirtualizedContainerService.HintSize="200,22" WaitForAll="[CBool(WaitForAll)]" />
+    <sctw:SignalActivity sap:VirtualizedContainerService.HintSize="200,22" Message="Finished" />
+  </Sequence>
+</Activity>

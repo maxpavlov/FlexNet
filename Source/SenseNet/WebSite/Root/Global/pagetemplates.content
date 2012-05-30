@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>SystemFolder</ContentType>
+  <ContentName>pagetemplates</ContentName>
+  <Fields>
+    <Hidden>true</Hidden>
+    <AllowedChildTypes>Image PageTemplate</AllowedChildTypes>
+  </Fields>
+</ContentMetaData>

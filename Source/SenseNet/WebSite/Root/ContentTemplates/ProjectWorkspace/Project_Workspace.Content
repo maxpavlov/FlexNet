@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>ProjectWorkspace</ContentType>
+  <ContentName>Project_Workspace</ContentName>
+  <Fields>
+    <IsActive>true</IsActive>
+    <DisplayName>Project Workspace</DisplayName>
+    <Completion>0</Completion>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+    <IsWallContainer>true</IsWallContainer>
+  </Fields>
+  <Permissions>
+    <Clear />
+    <Identity path="/Root/ContentTemplates/ProjectWorkspace/Project_Workspace/Groups/Owners">
+      <See>Allow</See>
+      <Open>Allow</Open>
+      <OpenMinor>Allow</OpenMinor>
+      <Save>Allow</Save>
+      <ManageListsAndWorkspaces>Allow</ManageListsAndWorkspaces>
+      <Publish>Allow</Publish>
+      <ForceCheckin>Allow</ForceCheckin>
+      <AddNew>Allow</AddNew>
+      <Approve>Allow</Approve>
+      <Delete>Allow</Delete>
+      <RecallOldVersion>Allow</RecallOldVersion>
+      <DeleteOldVersion>Allow</DeleteOldVersion>
+      <SeePermissions>Allow</SeePermissions>
+      <SetPermissions>Allow</SetPermissions>
+      <RunApplication>Allow</RunApplication>
+    </Identity>
+    <Identity path="/Root/ContentTemplates/ProjectWorkspace/Project_Workspace/Groups/Members">
+      <See>Allow</See>
+      <Open>Allow</Open>
+      <OpenMinor>Allow</OpenMinor>
+      <Save>Allow</Save>
+      <Publish>Allow</Publish>
+      <AddNew>Allow</AddNew>
+      <Delete>Allow</Delete>
+      <RecallOldVersion>Allow</RecallOldVersion>
+      <RunApplication>Allow</RunApplication>
+    </Identity>
+    <Identity path="/Root/ContentTemplates/ProjectWorkspace/Project_Workspace/Groups/Visitors">
+      <See>Allow</See>
+      <Open>Allow</Open>
+      <RunApplication>Allow</RunApplication>
+    </Identity>
+  </Permissions>
+</ContentMetaData>

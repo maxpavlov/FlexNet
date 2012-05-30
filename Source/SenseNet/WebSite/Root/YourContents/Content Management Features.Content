@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>HTMLContent</ContentType>
+  <ContentName>Content Management Features</ContentName>
+  <Fields>
+    <HTMLFragment>
+  <![CDATA[<div class="sn-feature-content ui-helper-clearfix">
+  <div class="sn-feature">
+    <div class="sn-feature-border">
+      <div class="sn-feature-body">
+          <h2 class="sn-feature-title"><a href="/NewsDemo/" title="Go to dynamic content demo">Dynamic content</a></h2>
+          <div class="sn-feature-img-border">
+            <a href="/NewsDemo/" title="Go to dynamic content demo"><div class="sn-feature-img-overlay"></div><div class="sn-feature-img-overlay"></div><img src="/Root/YourContents/Images/ss_news.jpg" alt="Go to dynamic content demo" /></a>
+          </div>
+          <div class="sn-feature-shadow">&#160;</div>
+          <p>Check out our news section; you can create, edit and delete news, use built-in lifespan support for timed publishing. The smart application model takes the work of presentation off editors' shoulders, while ensuring a consistent style site-wide.<br /><a class="SN_Hover" href="/NewsDemo/" title="Go to dynamic content demo">&#187; Dynamic content demo</a></p>
+      </div>
+    </div>
+    <div class="sn-feature-footer"><div class="sn-feature-footer-bl"></div><div class="sn-feature-footer-br"></div></div>
+  </div>
+
+  <div class="sn-feature">
+    <div class="sn-feature-border">
+      <div class="sn-feature-body">
+          <h2 class="sn-feature-title"><a href="/features/content" title="Go to content demo">Content</a></h2>
+          <div class="sn-feature-img-border">
+            <a href="/features/content" title="Go to content demo"><div class="sn-feature-img-overlay"></div><img src="/Root/YourContents/Images/ss_static.jpg" alt="Go to content demo" /></a>
+          </div>
+          <div class="sn-feature-shadow">&#160;</div>
+          <p>Creating content and displaying it with a simple portlet has never been easier. This simple demo will give you an insight into the powerful content presentation capabilities of Sense/Net.<br /><a class="SN_Hover" href="/features/content" title="Go to content demo">&#187; Content demo</a></p>
+      </div>
+    </div>
+    <div class="sn-feature-footer"><div class="sn-feature-footer-bl"></div><div class="sn-feature-footer-br"></div></div>
+  </div>
+  
+  <div class="sn-feature-last">
+    <div class="sn-feature-border">
+      <div class="sn-feature-body">
+          <h2 class="sn-feature-title"><a href="/workspaces" title="Workspaces">Workspaces</a></h2>
+          <div class="sn-feature-img-border">
+            <a href="/workspaces" title="Go to workspaces demo"><div class="sn-feature-img-overlay"></div><img src="/Root/YourContents/Images/ss_workspaces.jpg" alt="Go to workspaces demo" /></a>
+          </div>
+          <div class="sn-feature-shadow">&#160;</div>
+          <p>Do you have a project with hundreds of documents to manage, memos and tasks to handle, deadlines to keep in mind? Organize your content under workspaces and save hours of work by managing content with just a few clicks!<br /><a class="SN_Hover" href="/workspaces" title="Go to workspaces demo">&#187; Workspaces demo</a></p>
+      </div>
+    </div>
+    <div class="sn-feature-footer"><div class="sn-feature-footer-bl"></div><div class="sn-feature-footer-br"></div></div>
+  </div>
+  
+  <div class="sn-feature">
+    <div class="sn-feature-border">
+      <div class="sn-feature-body">
+          <h2 class="sn-feature-title"><a href="/features/event-calendar" title="Go to event calendar demo">Event calendar</a></h2>
+          <div class="sn-feature-img-border">
+            <a href="/features/event-calendar" title="Go to event calendar demo"><div class="sn-feature-img-overlay"></div><img src="/Root/YourContents/Images/ss_calendar.jpg" alt="Go to event calendar demo" /></a>
+          </div>
+          <div class="sn-feature-shadow">&#160;</div>
+          <p>Create, edit, delete and add events to the calendar with a single click. Search events by time period, or just browse the Event Calendar!<br /><a class="SN_Hover" href="/features/event-calendar" title="Go to event calendar demo">&#187; Calendar demo</a></p>
+      </div>
+    </div>
+    <div class="sn-feature-footer"><div class="sn-feature-footer-bl"></div><div class="sn-feature-footer-br"></div></div>
+  </div>
+  
+    <div class="sn-feature">
+    <div class="sn-feature-border">
+      <div class="sn-feature-body">
+          <h2 class="sn-feature-title"><a href="/features/gallery/" title="Go to gallery demo">Gallery</a></h2>
+          <div class="sn-feature-img-border">
+            <a href="/features/gallery/" title="Go to gallery demo"><div class="sn-feature-img-overlay"></div><img src="/Root/YourContents/Images/ss_gallery.jpg" alt="Go to gallery demo" /></a>
+          </div>
+          <div class="sn-feature-shadow">&#160;</div>
+          <p>Browse your images in the gallery with Lightbox, create albums, give titles and descriptions, adjust thumbnail and view size, while preserving images in their original resolution.<br /><a class="SN_Hover" href="/features/Gallery/" title="Go to gallery demo">&#187; Gallery demo</a></p>
+      </div>
+    </div>
+    <div class="sn-feature-footer"><div class="sn-feature-footer-bl"></div><div class="sn-feature-footer-br"></div></div>
+  </div>
+
+  <div class="sn-feature-last">
+    <div class="sn-feature-border">
+      <div class="sn-feature-body">
+          <h2 class="sn-feature-title"><a href="/features/contentcollection-customization" title="Content Collection Customization">Content collection customization</a></h2>
+          <div class="sn-feature-img-border">
+            <a href="/features/contentcollection-customization" title="Go to content collection customization demo"><div class="sn-feature-img-overlay"></div><img src="/Root/YourContents/Images/ss_contentcollcust.jpg" alt="Go to content collection customization demo" /></a>
+          </div>
+          <div class="sn-feature-shadow">&#160;</div>
+          <p>Customize content collection layout. Do you want a two-column news reader? Or do you want to see your thesaurus in 5 columns? Click here and check it out!<br /><a class="SN_Hover" href="/features/contentcollection-customization" title="Go to content collection customization demo">&#187; Content collection customization demo</a></p>
+      </div>
+    </div>
+    <div class="sn-feature-footer"><div class="sn-feature-footer-bl"></div><div class="sn-feature-footer-br"></div></div>
+  </div>
+
+</div>]]></HTMLFragment>
+    <ReviewDate>0001-01-01T00:00:00</ReviewDate>
+    <ArchiveDate>0001-01-01T00:00:00</ArchiveDate>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <DisplayName>Content Management Features</DisplayName>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate>0|0|0|0|0|0</Rate>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

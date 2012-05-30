@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Page</ContentType>
+  <ContentName>Explore</ContentName>
+  <Fields>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+    <SmartUrl></SmartUrl>
+    <PageTemplateNode>
+      <Path>/Root/Global/pagetemplates/sn-layout-explore.html</Path>
+    </PageTemplateNode>
+    <IsExternal>false</IsExternal>
+    <Binary attachment="Explore.aspx" />
+    <PersonalizationSettings attachment="Explore.PersonalizationSettings" />
+    <DisplayName>Explore</DisplayName>
+    <Disabled>false</Disabled>
+    <Clear>false</Clear>
+    <Icon>explore</Icon>
+    <RequiredPermissions></RequiredPermissions>
+    <DeepPermissionCheck>false</DeepPermissionCheck>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+        <VersioningMode>1</VersioningMode>
+    <InheritableVersioningMode>1</InheritableVersioningMode>
+    <ApprovingMode>1</ApprovingMode>
+    <InheritableApprovingMode>1</InheritableApprovingMode>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate>0.00|0|0|0|0|0</Rate>
+    <PageSkin>
+      <Path>/Root/Skins/sensenet</Path>
+    </PageSkin>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

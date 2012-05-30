@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>ForumTopic</ContentType>
+  <ContentName>NewTopic</ContentName>
+  <Fields>
+    <ContentListDefinition><![CDATA[<ContentListDefinition xmlns='http://schemas.sensenet.com/SenseNet/ContentRepository/ContentListDefinition'><Fields /></ContentListDefinition>]]></ContentListDefinition>
+    <DisplayName>NewTopic</DisplayName>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+  </Fields>
+</ContentMetaData>

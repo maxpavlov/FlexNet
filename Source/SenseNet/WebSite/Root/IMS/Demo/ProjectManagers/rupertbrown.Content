@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>User</ContentType>
+  <ContentName>rupertbrown</ContentName>
+  <Fields>
+    <Enabled>true</Enabled>
+    <FullName>Rupert Brown</FullName>
+    <JobTitle>Project Manager</JobTitle>
+    <Password>
+      <Text>sensenet6</Text>
+    </Password>
+    <Email>rupert.brown@example.com</Email>
+    <ImageRef>
+      <Path>/Root/YourContents/Avatars/pm1.jpg</Path>
+    </ImageRef>
+    <Phone>553245544</Phone>
+  </Fields>
+</ContentMetaData>

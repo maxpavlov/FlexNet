@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="ContentViews" parentType="Folder" handler="SenseNet.ContentRepository.Folder" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>ContentViews</DisplayName>
+  <Description>This is the container type for ContentViews. Instances are only allowed at /Root/Global/contentviews</Description>
+  <Icon>Folder</Icon>
+  <AllowedChildTypes>
+    ContentView ContentViews
+  </AllowedChildTypes>
+  <Fields>
+  </Fields>
+</ContentType>

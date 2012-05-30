@@ -1,0 +1,672 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1C62D342-FCFB-4402-90FE-9BCD24406A82}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SenseNet.Portal</RootNamespace>
+    <AssemblyName>SenseNet.Portal</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.84.0.0, Culture=neutral, PublicKeyToken=1b03e6acf1164f73">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Exchange.WebServices">
+      <HintPath>..\..\..\References\Microsoft.Exchange.WebServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.VisualStudio.TeamSystem.Data.UnitTesting, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.Web.Preview, Version=1.3.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\Microsoft.Web.Preview.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Activities" />
+    <Reference Include="System.Activities.Presentation" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Ajax, Version=3.0.31106.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\System.Web.Ajax.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationModel\AbortWorkflowAction.cs" />
+    <Compile Include="ApplicationModel\AddFieldScenario.cs" />
+    <Compile Include="ApplicationModel\BinarySpecialAction.cs" />
+    <Compile Include="ApplicationModel\ClientAction.cs" />
+    <Compile Include="ApplicationModel\ContentLinkBatchAction.cs" />
+    <Compile Include="ApplicationModel\ContentTypeAction.cs" />
+    <Compile Include="ApplicationModel\CopyAppLocalAction.cs" />
+    <Compile Include="ApplicationModel\CopyBatchAction.cs" />
+    <Compile Include="ApplicationModel\CopyToAction.cs" />
+    <Compile Include="ApplicationModel\CopyViewLocalAction.cs" />
+    <Compile Include="ApplicationModel\DeleteBatchAction.cs" />
+    <Compile Include="ApplicationModel\DeleteLocalAppAction.cs" />
+    <Compile Include="ApplicationModel\ExploreAction.cs" />
+    <Compile Include="ApplicationModel\GenericScenario.cs" />
+    <Compile Include="ApplicationModel\HttpAction.cs" />
+    <Compile Include="ApplicationModel\HttpActionFactory.cs" />
+    <Compile Include="ApplicationModel\HttpActionInterfaces.cs" />
+    <Compile Include="ApplicationModel\HttpActionManager.cs" />
+    <Compile Include="ApplicationModel\HttpStatusApplication.cs" />
+    <Compile Include="ApplicationModel\ImgResizeApplication.cs" />
+    <Compile Include="ApplicationModel\ListActionsScenario.cs" />
+    <Compile Include="ApplicationModel\ListItemScenario.cs" />
+    <Compile Include="ApplicationModel\ManageViewsAction.cs" />
+    <Compile Include="ApplicationModel\MoveBatchAction.cs" />
+    <Compile Include="ApplicationModel\MoveToAction.cs" />
+    <Compile Include="ApplicationModel\NewsApprovingScenario.cs" />
+    <Compile Include="ApplicationModel\NewScenario.cs" />
+    <Compile Include="ApplicationModel\OpenPickerAction.cs" />
+    <Compile Include="ApplicationModel\PortalAction.cs" />
+    <Compile Include="ApplicationModel\PurgeFromProxyAction.cs" />
+    <Compile Include="ApplicationModel\ScenarioManager.cs" />
+    <Compile Include="ApplicationModel\ServiceAction.cs" />
+    <Compile Include="ApplicationModel\SetAsDefaultViewAction.cs" />
+    <Compile Include="ApplicationModel\SettingsScenario.cs" />
+    <Compile Include="ApplicationModel\ShareAction.cs" />
+    <Compile Include="ApplicationModel\SmartAppHelperController.cs" />
+    <Compile Include="ApplicationModel\SurveyScenario.cs" />
+    <Compile Include="ApplicationModel\SurveySettingsScenario.cs" />
+    <Compile Include="ApplicationModel\UploadAction.cs" />
+    <Compile Include="ApplicationModel\UrlAction.cs" />
+    <Compile Include="ApplicationModel\UserProfileAction.cs" />
+    <Compile Include="ApplicationModel\ViewsScenario.cs" />
+    <Compile Include="ApplicationModel\VotingAddFieldScenario.cs" />
+    <Compile Include="ApplicationModel\VotingSettingsScenario.cs" />
+    <Compile Include="ApplicationModel\WebdavBrowseAction.cs" />
+    <Compile Include="ApplicationModel\WebdavOpenAction.cs" />
+    <Compile Include="ApplicationModel\WorkflowsAction.cs" />
+    <Compile Include="ApplicationModel\WorkspaceActionsScenario.cs" />
+    <Compile Include="BlogPost.cs" />
+    <Compile Include="CaseInsensitiveEqualityComparer.cs" />
+    <Compile Include="DiscussionForum\ForumEntry.cs" />
+    <Compile Include="DiscussionForum\ForumView.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DiscussionForum\TopicView.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dws\DwsHandler.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dws\DwsHelper.cs" />
+    <Compile Include="Dws\ListsHandler.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dws\VersionsHandler.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dws\WebsHandler.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dws\FppHandler.cs" />
+    <Compile Include="Exchange\Configuration.cs" />
+    <Compile Include="Exchange\ExchangeSubscriptionService.cs" />
+    <Compile Include="Exchange\Interfaces.cs" />
+    <Compile Include="Exchange\PushNotificationClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormActionRewriterControlAdapter.cs" />
+    <Compile Include="Global.cs" />
+    <Compile Include="Handlers\BackupIndexHandler.cs" />
+    <Compile Include="Handlers\ExportToCSVApplication.cs" />
+    <Compile Include="GoogleSitemapHandler.cs" />
+    <Compile Include="Handlers\BinaryHandler.cs" />
+    <Compile Include="Handlers\PortletPreviewHandler.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Handlers\UploadHelper.cs" />
+    <Compile Include="Helpers\Actions.cs" />
+    <Compile Include="Exchange\ExchangeHelper.cs" />
+    <Compile Include="Helpers\Security.cs" />
+    <Compile Include="Helpers\UserProfiles.cs" />
+    <Compile Include="PortalActionLink.cs" />
+    <Compile Include="ContentManager.cs" />
+    <Compile Include="Handlers\HttpHandlerApplication.cs" />
+    <Compile Include="Handlers\XsltApplication.cs" />
+    <Compile Include="Packaging\CustomInstallStep.cs" />
+    <Compile Include="Packaging\DisableTypeDiscoverAttribute.cs" />
+    <Compile Include="Packaging\EmbeddedResourceAttribute.cs" />
+    <Compile Include="Packaging\Enums.cs" />
+    <Compile Include="Packaging\Exceptions.cs" />
+    <Compile Include="Packaging\InstallerOnlyAssemblyAttribute.cs" />
+    <Compile Include="Packaging\InstallResult.cs" />
+    <Compile Include="Packaging\Internal\AssemblyHandler.cs" />
+    <Compile Include="Packaging\Internal\AssemblyInstallStep.cs" />
+    <Compile Include="Packaging\Internal\AssemblyUnpacker.cs" />
+    <Compile Include="Packaging\Internal\BatchContentTypeInstallStep.cs" />
+    <Compile Include="Packaging\Internal\CommandLogger.cs" />
+    <Compile Include="Packaging\Internal\Content.cs" />
+    <Compile Include="Packaging\Internal\ContentInstallStep.cs" />
+    <Compile Include="Packaging\Internal\ContentManager.cs" />
+    <Compile Include="Packaging\Internal\ContentTypeInstallStep.cs" />
+    <Compile Include="Packaging\Internal\ContentViewInstallStep.cs" />
+    <Compile Include="Packaging\Internal\DbScriptInstallStep.cs" />
+    <Compile Include="Packaging\Internal\DirectoryUnpacker.cs" />
+    <Compile Include="Packaging\Internal\Extensions.cs" />
+    <Compile Include="Packaging\Internal\FileInstallStep.cs" />
+    <Compile Include="Packaging\Internal\FsManifest.cs" />
+    <Compile Include="Packaging\Internal\IManifest.cs" />
+    <Compile Include="Packaging\Internal\InstallerAssemblyInfo.cs" />
+    <Compile Include="Packaging\Internal\InstallStep.cs" />
+    <Compile Include="Packaging\Internal\ItemInstallStep.cs" />
+    <Compile Include="Packaging\Internal\IUnpacker.cs" />
+    <Compile Include="Packaging\Internal\ManifestItem.cs" />
+    <Compile Include="Packaging\Internal\PackageInfo.cs" />
+    <Compile Include="Packaging\Internal\PageTemplateInstallStep.cs" />
+    <Compile Include="Packaging\Internal\PrerequisitStep.cs" />
+    <Compile Include="Packaging\Internal\ResourceInstallStep.cs" />
+    <Compile Include="Packaging\Internal\ZipUnpacker.cs" />
+    <Compile Include="Packaging\Logger.cs" />
+    <Compile Include="Packaging\ManifestAttribute.cs" />
+    <Compile Include="Packaging\PackageDescriptionAttribute.cs" />
+    <Compile Include="Packaging\PackageManager.cs" />
+    <Compile Include="Packaging\PrerequisitAttributes.cs" />
+    <Compile Include="Packaging\StepResult.cs" />
+    <Compile Include="PortalQueryTemplateReplacer.cs" />
+    <Compile Include="PortletTemplateReplacer.cs" />
+    <Compile Include="PortletFramework\CheckBoxEditorPartField.cs" />
+    <Compile Include="PortletFramework\ContentPickerEditorPartField.cs" />
+    <Compile Include="PortletFramework\ContentPickerEditorPartOptions.cs" />
+    <Compile Include="PortletFramework\DropDownPartOptions.cs" />
+    <Compile Include="PortletFramework\EditorCategory.cs" />
+    <Compile Include="PortletFramework\EditorOptions.cs" />
+    <Compile Include="PortletFramework\DropDownPartField.cs" />
+    <Compile Include="PortletFramework\IContentProvider.cs" />
+    <Compile Include="PortletFramework\IEditorPartField.cs" />
+    <Compile Include="PortletFramework\LocalizedEnumConverter.cs" />
+    <Compile Include="PortletFramework\LocalizedStringValueAttribute.cs" />
+    <Compile Include="PortletFramework\LocalizedWebDescriptionAttribute.cs" />
+    <Compile Include="PortletFramework\LocalizedWebDisplayNameAttribute.cs" />
+    <Compile Include="PortletFramework\PortalActionLinkResolver.cs" />
+    <Compile Include="PortletFramework\PortletCategory.cs" />
+    <Compile Include="PortletFramework\PortletInventory.cs" />
+    <Compile Include="PortletFramework\PortletInventoryItem.cs" />
+    <Compile Include="PortletFramework\TextEditorPartOptions.cs" />
+    <Compile Include="PortletFramework\WebCategoryComparer.cs" />
+    <Compile Include="PortletFramework\PropertyEditorPart.cs" />
+    <Compile Include="PortletFramework\PropertyFieldPanel.cs" />
+    <Compile Include="PortletFramework\TextEditorPartField.cs" />
+    <Compile Include="PortletFramework\WebCategoryAttribute.cs" />
+    <Compile Include="PortletFramework\WebOrderAttribute.cs" />
+    <Compile Include="PortletFramework\WebOrderComparer.cs" />
+    <Compile Include="PortletFramework\XsltUtilities.cs" />
+    <Compile Include="Properties\Resources.Designer.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ResourceEditorController.cs" />
+    <Compile Include="Resources\ResourceHandler.cs" />
+    <Compile Include="RssApplication.cs" />
+    <Compile Include="HtmlSanitizer.cs" />
+    <Compile Include="Search\Indexing\WikiReferencedTitlesIndexHandler.cs" />
+    <Compile Include="Search\PortalLucQueryTemplateReplacer.cs" />
+    <Compile Include="Security.cs" />
+    <Compile Include="SkinManager.cs" />
+    <Compile Include="UI\CommandButtonsEventArgs.cs" />
+    <Compile Include="UI\ContentListViews\FieldControls\GroupingEditor.cs" />
+    <Compile Include="UI\ContentListViews\ListHelper.cs" />
+    <Compile Include="UI\ContentListViews\UpcomingEventView.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\ContentListViews\ContentListViewHelperController.cs" />
+    <Compile Include="UI\ContentListViews\FieldControls\ColumnSelector.cs" />
+    <Compile Include="UI\ContentListViews\FieldControls\QueryExpression.cs" />
+    <Compile Include="UI\ContentListViews\FieldControls\QueryFilter.cs" />
+    <Compile Include="UI\ContentListViews\FieldControls\SortingEditor.cs" />
+    <Compile Include="UI\ContentListViews\Handlers\Column.cs" />
+    <Compile Include="UI\ContentListViews\Handlers\ViewBase.cs" />
+    <Compile Include="UI\ContentListViews\Handlers\IView.cs" />
+    <Compile Include="UI\ContentListViews\ListHeaderCell.cs" />
+    <Compile Include="UI\ContentListViews\ListView.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\ContentListViews\Handlers\ListView.cs" />
+    <Compile Include="UI\ContentListViews\SortingInfo.cs" />
+    <Compile Include="UI\ContentListViews\TestView.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\ContentTools.cs" />
+    <Compile Include="UI\ContentView.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\ContentViewMode.cs" />
+    <Compile Include="UI\Controls\ActionButton.cs" />
+    <Compile Include="UI\Controls\ActionLinkButton.cs" />
+    <Compile Include="UI\Controls\ActionList.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\ActionMenu.cs" />
+    <Compile Include="UI\Controls\AdvancedPanelButton.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\BackButton.cs" />
+    <Compile Include="UI\Controls\Captcha\CaptchaControl.cs" />
+    <Compile Include="UI\Controls\Captcha\CaptchaImage.cs" />
+    <Compile Include="UI\Controls\Captcha\CaptchaImageApplication.cs" />
+    <Compile Include="UI\Controls\Captcha\SingleCaptchaContentView.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\Captcha\SR.cs" />
+    <Compile Include="UI\Controls\CommandButtons.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\CommandButtonType.cs" />
+    <Compile Include="UI\Controls\Comment.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\ContentTypeInstallerControl.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\ContextInfo.cs" />
+    <Compile Include="UI\Controls\CssRequest.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\DialogFileUpload.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\DialogUpload.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\DialogUploadController.cs" />
+    <Compile Include="UI\Controls\EmptyControl.cs" />
+    <Compile Include="UI\Controls\FieldControlControlMode.cs" />
+    <Compile Include="UI\Controls\FieldControlFrameMode.cs" />
+    <Compile Include="UI\Controls\FieldControls\AllowedChildTypes.cs" />
+    <Compile Include="UI\Controls\FieldControls\ApprovingModeChoice.cs" />
+    <Compile Include="UI\Controls\FieldControls\Binary.cs" />
+    <Compile Include="UI\Controls\FieldControls\Boolean.cs" />
+    <Compile Include="UI\Controls\FieldControls\CheckBoxGroup.cs" />
+    <Compile Include="UI\Controls\FieldControls\ChoiceControl.cs" />
+    <Compile Include="UI\Controls\FieldControls\ChoiceOptionEditor.cs" />
+    <Compile Include="UI\Controls\FieldControls\Currency.cs" />
+    <Compile Include="UI\Controls\FieldControls\DatePicker.cs" />
+    <Compile Include="UI\Controls\DefaultButtons.cs" />
+    <Compile Include="UI\Controls\DefaultButtonsFactory.cs" />
+    <Compile Include="UI\Controls\DefaultButtonsFactoryBase.cs" />
+    <Compile Include="UI\Controls\FieldControls\DropDown.cs" />
+    <Compile Include="UI\Controls\ErrorControl.cs" />
+    <Compile Include="UI\Controls\ErrorView.cs" />
+    <Compile Include="UI\Controls\FieldBound.cs" />
+    <Compile Include="UI\Controls\FieldControl.cs" />
+    <Compile Include="UI\Controls\FieldControlDataException.cs" />
+    <Compile Include="UI\Controls\FieldControlExtensions.cs" />
+    <Compile Include="UI\Controls\FieldControlRenderMode.cs" />
+    <Compile Include="UI\Controls\FieldControls\EducationEditor.cs" />
+    <Compile Include="UI\Controls\FieldControls\GridEditor.cs" />
+    <Compile Include="UI\Controls\FieldControls\HyperLink.cs" />
+    <Compile Include="UI\Controls\FieldControls\Image.cs" />
+    <Compile Include="UI\Controls\FieldControls\DisplayName.cs" />
+    <Compile Include="UI\Controls\FieldControls\Rating.cs" />
+    <Compile Include="UI\Controls\FieldControls\ReferenceGrid.cs" />
+    <Compile Include="UI\Controls\FieldControls\Name.cs" />
+    <Compile Include="UI\Controls\FieldControls\SurveyRuleEditor.cs" />
+    <Compile Include="UI\Controls\FieldControls\SurveyRuleUserControl.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\FieldControls\VersioningModeChoice.cs" />
+    <Compile Include="UI\Controls\FieldControls\WikiEditor.cs" />
+    <Compile Include="UI\Controls\IActionUiAdapter.cs" />
+    <Compile Include="UI\Controls\ITemplateFieldControl.cs" />
+    <Compile Include="UI\Controls\ListGrid.cs" />
+    <Compile Include="UI\Controls\ListViewUpload.cs" />
+    <Compile Include="UI\Controls\FieldControls\LongText.cs" />
+    <Compile Include="UI\Controls\MessageControl.cs" />
+    <Compile Include="UI\Controls\FieldControls\Number.cs" />
+    <Compile Include="UI\Controls\PagerControl.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\FieldControls\PageTemplateSelector.cs" />
+    <Compile Include="UI\Controls\FieldControls\Password.cs" />
+    <Compile Include="UI\Controls\PermissionEditor.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\FieldControls\Picture.cs" />
+    <Compile Include="UI\Controls\PortalRemoteControl.cs">
+    </Compile>
+    <Compile Include="UI\Controls\PortletMarkup.cs" />
+    <Compile Include="UI\Controls\FieldControls\QueryEditor.cs" />
+    <Compile Include="UI\Controls\PortletSynchronizer.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\QueryView.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\FieldControls\RadioButtonGroup.cs" />
+    <Compile Include="UI\Controls\RateControl.cs" />
+    <Compile Include="UI\Controls\RatingHoverPanel.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\RepeaterView.cs" />
+    <Compile Include="UI\Controls\FieldControls\RichText.cs" />
+    <Compile Include="UI\Controls\ScriptRequest.cs" />
+    <Compile Include="UI\Controls\SearchView.cs" />
+    <Compile Include="UI\Controls\FieldControls\ShortText.cs" />
+    <Compile Include="UI\Controls\SenseNetDataSourceView.cs" />
+    <Compile Include="UI\Controls\SimpleUpload.cs" />
+    <Compile Include="UI\Controls\FieldControls\SiteRelativeUrl.cs" />
+    <Compile Include="UI\Controls\SkinResolver.cs" />
+    <Compile Include="UI\Controls\SmartMenu.cs" />
+    <Compile Include="UI\Controls\SNIcon.cs" />
+    <Compile Include="UI\Controls\StyleManager.cs" />
+    <Compile Include="UI\Controls\SurveyEditTemplatesUserControl.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\TagList.cs" />
+    <Compile Include="UI\Controls\Toolbar.cs" />
+    <Compile Include="UI\Controls\Upload.cs" />
+    <Compile Include="UI\Controls\FieldControls\UploadBinary.cs" />
+    <Compile Include="UI\Controls\FieldControls\UrlList.cs" />
+    <Compile Include="UI\Controls\FieldControls\Version.cs" />
+    <Compile Include="UI\Controls\FieldControls\VersioningMode.cs" />
+    <Compile Include="UI\Controls\ViewControlBase.cs" />
+    <Compile Include="UI\Controls\FieldControls\WhoAndWhen.cs" />
+    <Compile Include="UI\Controls\FieldControls\WholeNumber.cs" />
+    <Compile Include="UI\GenericContentView.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\IconHelper.cs" />
+    <Compile Include="UI\IFieldControl.cs" />
+    <Compile Include="UI\ContentListViews\ViewBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\ContentListViews\ViewFrame.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\ContentListViews\ViewManager.cs" />
+    <Compile Include="UI\OutputCache.cs" />
+    <Compile Include="UI\PathTools.cs" />
+    <Compile Include="UI\Controls\SenseNetDataSource.cs" />
+    <Compile Include="UI\SingleContentView.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\SNScriptDependencyCache.cs" />
+    <Compile Include="UI\SNScriptLoader.cs" />
+    <Compile Include="UI\SurveyContentView.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\SurveyGenericContentView.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\UserActionEventArgs.cs" />
+    <Compile Include="UI\ViewMode.cs" />
+    <Compile Include="Handlers\TinyMCEGzipHandler.cs" />
+    <Compile Include="Handlers\UploadHandler.cs" />
+    <Compile Include="Page.cs" />
+    <Compile Include="PageBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\ContentZone.cs" />
+    <Compile Include="MasterPage.cs" />
+    <Compile Include="UI\PageCatalog.cs" />
+    <Compile Include="UI\PageEdit.cs" />
+    <Compile Include="PageTemplate.cs" />
+    <Compile Include="PageTemplateManager.cs" />
+    <Compile Include="UI\PageZone.cs" />
+    <Compile Include="Personalization\PersonalizationException.cs" />
+    <Compile Include="Personalization\SenseNetPersonalizationProvider.cs" />
+    <Compile Include="PortletFramework\CacheablePortlet.cs" />
+    <Compile Include="PortletFramework\ContextBoundPortlet.cs" />
+    <Compile Include="PortletFramework\Portlet.cs" />
+    <Compile Include="PortletFramework\PortletBase.cs" />
+    <Compile Include="PortletFramework\RenderMode.cs" />
+    <Compile Include="PortletFramework\Xslt.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Site.cs" />
+    <Compile Include="UI\Controls\BaseTag.cs" />
+    <Compile Include="PortletFramework\CollapsibleEditorPartChrome.cs" />
+    <Compile Include="PortletFramework\CollapsibleEditorZone.cs" />
+    <Compile Include="UI\Controls\GenericFieldControl.cs" />
+    <Compile Include="UI\Controls\InlineScript.cs" />
+    <Compile Include="UI\Controls\RichTextEditor.cs" />
+    <Compile Include="UI\Controls\SNDialog.cs" />
+    <Compile Include="PortletFramework\SNScriptManager.cs" />
+    <Compile Include="UI\Controls\SNUpdatePanel.cs" />
+    <Compile Include="PortletFramework\SNWebPartChrome.cs" />
+    <Compile Include="PortletFramework\SNWebPartManager.cs" />
+    <Compile Include="PortletFramework\SNWebPartPersonalization.cs" />
+    <Compile Include="PortletFramework\SNWebPartZone.cs" />
+    <Compile Include="UI\UITools.cs" />
+    <Compile Include="UI\VotingResultContentView.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\WikiTools.cs" />
+    <Compile Include="UI\XmlFormatTools.cs" />
+    <Compile Include="UrlListField.cs" />
+    <Compile Include="UrlNameValidator.cs" />
+    <Compile Include="Virtualization\AuthenticationHelper.cs" />
+    <Compile Include="Virtualization\DiskFSSupportMode.cs" />
+    <Compile Include="Virtualization\EmbeddedFile.cs" />
+    <Compile Include="Virtualization\HashCodeCombiner.cs" />
+    <Compile Include="Virtualization\HttpHeaderTools.cs" />
+    <Compile Include="Virtualization\PurgeUrlCollector.cs" />
+    <Compile Include="Virtualization\RepositoryFile.cs" />
+    <Compile Include="Virtualization\RepositoryPathProvider.cs" />
+    <Compile Include="Virtualization\PortalAuthenticationModule.cs" />
+    <Compile Include="Virtualization\PortalContext.cs" />
+    <Compile Include="Virtualization\PortalContextModule.cs" />
+    <Compile Include="Virtualization\StaticVirtualizedFileHandler.cs" />
+    <Compile Include="Virtualization\StaticVirtualizedFileHandlerFactory.cs" />
+    <Compile Include="Wall\CommentInfo.cs" />
+    <Compile Include="Wall\DataLayer.cs" />
+    <Compile Include="Wall\LikeInfo.cs" />
+    <Compile Include="Wall\PostInfo.cs" />
+    <Compile Include="Wall\WallController.cs" />
+    <Compile Include="Wall\WallHelper.cs" />
+    <Compile Include="WebDAV\Common.cs" />
+    <Compile Include="WebDAV\Config.cs" />
+    <Compile Include="WebDAV\Delete.cs" />
+    <Compile Include="WebDAV\Enums.cs" />
+    <Compile Include="WebDAV\Get.cs" />
+    <Compile Include="WebDAV\Head.cs" />
+    <Compile Include="WebDAV\IHTTPMethod.cs" />
+    <Compile Include="WebDAV\Lock.cs" />
+    <Compile Include="WebDAV\MkCol.cs" />
+    <Compile Include="WebDAV\Move.cs" />
+    <Compile Include="WebDAV\Options.cs" />
+    <Compile Include="WebDAV\Propfind.cs" />
+    <Compile Include="WebDAV\Proppatch.cs" />
+    <Compile Include="WebDAV\Put.cs" />
+    <Compile Include="WebDAV\Trace.cs" />
+    <Compile Include="WebDAV\UnLock.cs" />
+    <Compile Include="WebDAV\WebDavHandler.cs" />
+    <Compile Include="WebDAV\XmlNameSpaces.cs" />
+    <Compile Include="Webform.cs" />
+    <Compile Include="WikiArticle.cs" />
+    <Compile Include="Workspaces\Journal.cs" />
+    <Compile Include="Workspaces\JournalObserver.cs" />
+    <Compile Include="Workspaces\WorkspaceController.cs" />
+    <Compile Include="Workspaces\WorkspaceHelper.cs" />
+    <Compile Include="Workspaces\WorkspaceJournals.cs" />
+    <Compile Include="Workspaces\WsJournal.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WsJournal.dbml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI\Controls\RichTextEditor.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI\Controls\SNDialog.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI\Controls\Upload.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI\Controls\WebParts.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI\Controls\WebParts_Zone_Patch.js" />
+    <None Include="Workspaces\WsJournal.dbml.layout">
+      <DependentUpon>WsJournal.dbml</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Configuration\Configuration.csproj">
+      <Project>{A19F707C-B1C3-45C7-AE38-E7B7F30C1161}</Project>
+      <Name>Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ContentRepository\ContentRepository.csproj">
+      <Project>{786E6165-CA02-45A9-BF58-207A45D7D6DF}</Project>
+      <Name>ContentRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DirectoryServices\DirectoryServices.csproj">
+      <Project>{71BBF82C-84D2-409F-8BC0-A9F401B016FB}</Project>
+      <Name>DirectoryServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services\Services.csproj">
+      <Project>{B72529C8-FEB1-49F5-B08B-56055B58F296}</Project>
+      <Name>Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Storage\Storage.csproj">
+      <Project>{5DB4DDBA-81F6-4D81-943A-18F3178B3355}</Project>
+      <Name>Storage</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{FB9875D5-B765-4DBB-AB6E-C0C7672AE060}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="UI\Controls\Captcha\CaptchaImage.ashx" />
+    <None Include="Workspaces\WsJournal.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>WsJournal.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI\Controls\ActionMenu.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx" />
+    <EmbeddedResource Include="UI\Controls\TagList.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="UI\Controls\Captcha\CaptchaControl.bmp" />
+    <EmbeddedResource Include="UI\Controls\RateControl.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

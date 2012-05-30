@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>WikiArticle</ContentType>
+  <ContentName>Main</ContentName>
+  <Fields>
+    <WikiArticleText><![CDATA[<p>This is the main page of the wiki.</p>]]></WikiArticleText>
+    <Index>0</Index>
+    <DisplayName>Main</DisplayName>
+    <Hidden>false</Hidden>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

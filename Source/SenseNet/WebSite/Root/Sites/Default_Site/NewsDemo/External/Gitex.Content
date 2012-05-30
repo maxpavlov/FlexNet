@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Article</ContentType>
+  <ContentName>Gitex</ContentName>
+  <Fields>
+    <DisplayName>Gitex</DisplayName>
+    <Subtitle></Subtitle>
+    <Lead><![CDATA[
+      <p>We are looking forward to this October as we will participate at Gitex Technology Week located in Dubai (17-22 October 2010).
+      If you plan to attend on the event do not hesitate to discover our stand!</p>
+    ]]></Lead>
+    <Body><![CDATA[
+      <p>GITEX Business Solutions is internationally recognised as the largest and most important business-to-business IT Trade Event
+      for Corporate, Enterprise and Small & Medium Businesses that exists for the Middle Eastern, African and South Asian markets.
+      (resource : www.gitex.com)</p>
+      <p>Our stand will be open during the entire event where our colleagues are pleased to demo our new product. If you are interested
+      about our software or you just want to be informed about our partner program, please visit us in Hall Nr. 2 stand 21 or contact us in advance.</p>
+      <p>If you are affraid of sunburning or you just hate hot weather, come to Gitex where you can get some cold drink and refreshening 17 °C /63F!</p>
+    ]]></Body>
+    <Pinned>false</Pinned>
+    <Keywords><![CDATA[]]></Keywords>
+    <Author></Author>
+    <ImageRef />
+    <ImageData attachment="Gitex.ImageData.jpg" />
+    <ReviewDate>0001-01-01T00:00:00</ReviewDate>
+    <ArchiveDate>0001-01-01T00:00:00</ArchiveDate>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <Description><![CDATA[]]></Description>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateStr>0|1|0|0|0|0|0</RateStr>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>ApplicationOverride</ContentType>
+  <ContentName>Edit</ContentName>
+  <Fields>
+    <DisplayName>Workspace settings</DisplayName>
+    <Description><![CDATA[]]></Description>
+    <Scenario>WorkspaceActions</Scenario>
+    <ActionTypeName></ActionTypeName>
+    <IsModal>false</IsModal>
+    <Disabled>false</Disabled>
+    <Clear>false</Clear>
+    <Icon></Icon>
+    <StyleHint></StyleHint>
+    <RequiredPermissions>1;2;3;4;15</RequiredPermissions>
+    <DeepPermissionCheck>false</DeepPermissionCheck>
+    <IncludeBackUrl>0</IncludeBackUrl>
+    <CacheControl>Nondefined</CacheControl>
+    <MaxAge></MaxAge>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

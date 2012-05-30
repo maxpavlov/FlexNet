@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="TrashBag" parentType="Folder" handler="SenseNet.ContentRepository.TrashBag" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Trash Bag</DisplayName>
+	<Description>An atomic container for deleted items stored for undeletion</Description>
+	<Icon>Folder</Icon>
+  <AllowIncrementalNaming>true</AllowIncrementalNaming>
+  <Fields>
+    <Field name="DisplayName" type="ShortText">
+      <DisplayName>Display Name</DisplayName>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="KeepUntil" type="DateTime">
+      <DisplayName>Keep until</DisplayName>
+      <Description>The bag must be kept until this date</Description>
+      <Configuration>
+        <ReadOnly>true</ReadOnly>
+      </Configuration>
+    </Field>
+    <Field name="OriginalPath" type="ShortText">
+      <DisplayName>Original path</DisplayName>
+      <Description>The path where the bag contents were deleted from</Description>
+      <Configuration>
+        <ReadOnly>true</ReadOnly>
+      </Configuration>
+    </Field>
+  </Fields>
+</ContentType>

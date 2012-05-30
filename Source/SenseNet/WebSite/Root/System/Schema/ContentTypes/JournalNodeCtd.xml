@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="JournalNode" handler="SenseNet.Portal.Workspaces.JournalNode" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Journal</DisplayName>
+  <Description>Journal content type for logging user activities.</Description>
+  <Icon>Document</Icon>
+  <Fields>
+    <Field name="What" type="ShortText">
+      <DisplayName>Action</DisplayName>
+      <Description>What</Description>
+      <Indexing>
+        <Mode>No</Mode>
+        <Store>No</Store>
+      </Indexing>
+    </Field>
+    <Field name="Wherewith" type="ShortText">
+      <DisplayName>Subject of action</DisplayName>
+      <Description>Where with</Description>
+      <Indexing>
+        <Mode>No</Mode>
+        <Store>No</Store>
+      </Indexing>
+    </Field>
+    <Field name="Who" type="ShortText">
+      <DisplayName>User</DisplayName>
+      <Description>Who</Description>
+      <Indexing>
+        <Mode>No</Mode>
+        <Store>No</Store>
+      </Indexing>
+    </Field>
+    <Field name="When" type="DateTime">
+      <DisplayName>Date of action</DisplayName>
+      <Description>When</Description>
+      <Indexing>
+        <Mode>No</Mode>
+        <Store>No</Store>
+      </Indexing>
+      <Configuration>
+        <DateTimeMode>DateAndTime</DateTimeMode>
+      </Configuration>
+    </Field>
+  </Fields>
+</ContentType>

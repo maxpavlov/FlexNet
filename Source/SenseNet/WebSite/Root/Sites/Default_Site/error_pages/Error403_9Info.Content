@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>WebContentDemo</ContentType>
+  <ContentName>Error403_9Info</ContentName>
+  <Fields>
+    <DisplayName>403.9 Too Many Users</DisplayName>
+    <Subtitle>Access Forbidden: Too many users are connected</Subtitle>
+    <RelatedImage />
+    <Header><![CDATA[]]></Header>
+    <Body>
+      <![CDATA[
+      <p>The page cannot be displayed.</p>
+      <p>There are too many people accessing the Web site at this time.</p>
+      ]]>
+    </Body>
+    <Details><a href="" target="" title=""></a></Details>
+    <Language>English</Language>
+    <Keywords><![CDATA[]]></Keywords>
+    <Author></Author>
+    <ReviewDate>0001-01-01T00:00:00</ReviewDate>
+    <ArchiveDate>0001-01-01T00:00:00</ArchiveDate>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <Description><![CDATA[]]></Description>
+    <Hidden>true</Hidden>
+    <Index>0</Index>
+        <VersioningMode>1</VersioningMode>
+    <InheritableVersioningMode>1</InheritableVersioningMode>
+    <ApprovingMode>1</ApprovingMode>
+    <InheritableApprovingMode>1</InheritableApprovingMode>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate>0|0|0|0|0|0</Rate>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

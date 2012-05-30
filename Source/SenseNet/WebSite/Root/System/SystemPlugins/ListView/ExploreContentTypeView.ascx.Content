@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>ListView</ContentType>
+  <ContentName>ExploreContentTypeView.ascx</ContentName>
+  <Fields>
+    <DisplayName>ExploreContentTypeView</DisplayName>
+    <Template>
+      <Path>/Root/System/SystemPlugins/ListView/Templates/ExploreListView.xslt</Path>
+    </Template>
+    <Columns>
+    <![CDATA[<Columns>
+      <Column title="Name" fullName="DisplayName" bindingName="DisplayName" modifiers="main" index="1" />
+      <Column title="Modified by" fullName="ModifiedBy" bindingName="ModifiedBy" index="2" />
+      <Column title="Last modified" fullName="ModificationDate" bindingName="ModificationDate" index="3" />
+    </Columns>]]>
+    </Columns>
+    <SortBy>DisplayName ASC</SortBy>
+    <Flat>false</Flat>
+    <EnableAutofilters>2</EnableAutofilters>
+    <EnableLifespanFilter>2</EnableLifespanFilter>
+  </Fields>
+</ContentMetaData>

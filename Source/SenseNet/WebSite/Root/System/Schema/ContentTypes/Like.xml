@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="Like" parentType="ListItem" handler="SenseNet.ContentRepository.GenericContent" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Like</DisplayName>
+  <Description>Represents wall and content likes</Description>
+  <Icon>File</Icon>
+  <Fields>
+  </Fields>
+</ContentType>

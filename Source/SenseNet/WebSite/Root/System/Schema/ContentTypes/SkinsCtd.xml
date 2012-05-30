@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="Skins" parentType="SystemFolder" handler="SenseNet.ContentRepository.SystemFolder" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Skins</DisplayName>
+  <Description>This is the container type for skins. Only a single instance is allowed at /Root/Skins</Description>
+  <Icon>Folder</Icon>
+  <AllowedChildTypes>
+    Skin
+  </AllowedChildTypes>
+  <Fields>
+  </Fields>
+</ContentType>

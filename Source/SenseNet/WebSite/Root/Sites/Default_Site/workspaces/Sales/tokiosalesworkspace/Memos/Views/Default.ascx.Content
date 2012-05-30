@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>ListView</ContentType>
+  <ContentName>Default.ascx</ContentName>
+  <Fields>
+    <Template>
+      <Path>/Root/System/SystemPlugins/ListView/Templates/ListView.xslt</Path>
+    </Template>
+    <Columns>
+      <![CDATA[<Columns>
+      <Column title="DisplayName" fullName="GenericContent.DisplayName" bindingName="GenericContent_DisplayName" index="2" modifiers="main" />
+      <Column title="Date" fullName="Memo.Date" bindingName="Memo_Date" index="3" />
+      <Column title="Type" fullName="Memo.MemoType" bindingName="Memo_MemoType" index="4" />
+      <Column title="Body" fullName="GenericContent.Description" bindingName="GenericContent_Description" index="5" />
+    </Columns>]]></Columns>
+    <SortBy>Date DESC</SortBy>
+    <Flat>false</Flat>
+    <DisplayName>Default</DisplayName>
+    <EnableAutofilters>0</EnableAutofilters>
+    <EnableLifespanFilter>0</EnableLifespanFilter>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

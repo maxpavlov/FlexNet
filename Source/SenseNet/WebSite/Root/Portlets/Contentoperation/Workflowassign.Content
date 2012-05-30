@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Portlet</ContentType>
+  <ContentName>Workflowassign</ContentName>
+  <Fields>
+    <DisplayName>Workflow assign</DisplayName>
+    <Description><![CDATA[This portlet assignes a workflow to a content list (context bound)]]></Description>
+    <TypeName>SenseNet.Portal.Portlets.AssignWorkflowPortlet, SenseNet.CorePortlets</TypeName>
+    <ImageRef />
+    <ImageData attachment="Workflowassign.ImageData" />
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate></Rate>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

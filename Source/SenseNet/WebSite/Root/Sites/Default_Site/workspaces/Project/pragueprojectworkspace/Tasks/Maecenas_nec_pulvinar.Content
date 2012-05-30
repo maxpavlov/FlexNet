@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Task</ContentType>
+  <ContentName>Maecenas_nec_pulvinar</ContentName>
+  <Fields>
+    <StartDate>0001-01-01T00:00:00</StartDate>
+    <DueDate>2010-03-10T00:00:00</DueDate>
+    <AssignedTo />
+    <Priority>1</Priority>
+    <Status>active</Status>
+    <TaskCompletion>0</TaskCompletion>
+    <DisplayName>Maecenas nec pulvinar</DisplayName>
+    <Description><![CDATA[Maecenas nec pulvinar est. Quisque dapibus vehicula accumsan. Pellentesque convallis dictum varius. Fusce lobortis, velit quis gravida iaculis, urna lacus adipiscing libero, non rutrum arcu nisl a mi.]]></Description>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

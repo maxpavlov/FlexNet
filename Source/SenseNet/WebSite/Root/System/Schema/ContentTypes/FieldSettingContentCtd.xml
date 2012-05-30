@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name='FieldSettingContent' parentType='GenericContent' handler='SenseNet.ContentRepository.Schema.FieldSettingContent' xmlns='http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition'>
+  <DisplayName>Field Setting</DisplayName>
+  <Description>System type to handle field editing in ContentLists</Description>
+  <Icon>fieldsetting</Icon>
+  <Fields>
+    <Field name="DisplayName" type="ShortText">
+      <Configuration>
+        <Compulsory>true</Compulsory>
+      </Configuration>
+    </Field>
+    <Field name="Name" type="ShortText">
+      <Description>Specify a name for the field that you will use in content views and queries.  
+      <![CDATA[<div class='ui-helper-clearfix sn-dialog-editportlet-warning'><img class='sn-icon sn-icon16 sn-floatleft' src='/Root/Global/images/icons/16/warning.png' />
+      <i>Please do not use any special characters, for example comma, dash ('-') or brackets ( '(' )</i></div>]]></Description>
+      <Configuration>
+        <ControlHint>sn:ShortText</ControlHint>
+      </Configuration>
+    </Field>
+    <Field name="Index" type="Integer">
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Version" type="Version">
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+  </Fields>
+</ContentType>

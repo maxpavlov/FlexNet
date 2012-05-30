@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Group</ContentType>
+  <ContentName>Administrators</ContentName>
+  <Fields>
+    <Index>4</Index>
+	<Members>
+		<Path>/Root/IMS/BuiltIn/Portal/Administrator</Path>
+	</Members>
+  </Fields>
+</ContentMetaData>

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="Domains" parentType="Folder" handler="SenseNet.ContentRepository.Folder" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Domains</DisplayName>
+  <Description>This is the container type for Domains. Only a single instance is allowed at /Root/IMS</Description>
+  <Icon>Folder</Icon>
+  <AllowedChildTypes>
+    Domain
+  </AllowedChildTypes>
+  <Fields>
+  </Fields>
+</ContentType>

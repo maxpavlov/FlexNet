@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SenseNetContentRepository" Class="WorkflowDataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=MySenseNetContentRepositoryDataSource;Initial Catalog=SenseNetContentRepository;Integrated Security=True" SettingsObjectName="SenseNet.Workflow.Properties.Settings" SettingsPropertyName="SenseNetContentRepositoryConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.WorkflowNotification" Member="WorkflowNotifications">
+    <Type Name="WorkflowNotification">
+      <Column Name="NotificationId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NodeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="WorkflowInstanceId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="WorkflowNodePath" Type="System.String" DbType="NVarChar(450) NOT NULL" CanBeNull="false" />
+      <Column Name="BookmarkName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

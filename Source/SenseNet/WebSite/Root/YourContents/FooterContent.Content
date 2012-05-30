@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>HTMLContent</ContentType>
+  <ContentName>FooterContent</ContentName>
+  <Fields>
+    <HTMLFragment>
+      <![CDATA[
+          <div class="ui-helper-clearfix">
+            <p>
+              Your Company
+              <br />
+              1234 Neverland
+              <br />
+              Somewhere street #1
+              <br />
+              Over the rainbow
+            </p>
+            <p>
+              Telephone:
+              <br />
+              +00 (1) 123 4567
+              <br />
+              Fax:
+              <br />
+              +00 (1) 123 4568
+            </p>
+            <ul>
+              <li>
+                <a href="/" title="Home page">Home</a>
+              </li>
+              <li>
+                <a href="/NewsDemo">Dynamic content demo</a>
+              </li>
+              <li>
+                <a href="/features/content">Features</a>
+              </li>
+              <li>
+                <a href="http://wiki.sensenet.com/" title="Wiki at Sense/Net">Help</a>
+              </li>
+            </ul>
+          </div>
+        ]]>
+    </HTMLFragment>
+    <ValidFrom>2008-12-05T12:07:39.8370000+01:00</ValidFrom>
+    <ReviewDate>2008-12-05T12:07:39.8370000+01:00</ReviewDate>
+    <ArchiveDate>2008-12-05T12:07:39.8370000+01:00</ArchiveDate>
+    <ValidTill>2008-12-05T12:07:39.8370000+01:00</ValidTill>
+    <Index>0</Index>
+  </Fields>
+</ContentMetaData>

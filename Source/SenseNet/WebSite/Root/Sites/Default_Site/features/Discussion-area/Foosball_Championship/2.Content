@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>ForumEntry</ContentType>
+  <ContentName>2</ContentName>
+  <Fields>
+    <DisplayName></DisplayName>
+    <Description>
+      <![CDATA[
+      <p>Thank you guys for the fair play! After a hard sprint like this it was amazing. Everybody gets full marks!</p>
+      ]]></Description>
+    <ReplyTo />
+    <PostedBy>
+      <Path>/Root/IMS/Demo/Managers/alexschmidt</Path>
+    </PostedBy>
+    <SerialNo>2</SerialNo>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+    <TrashDisabled>false</TrashDisabled>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+        <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate></Rate>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

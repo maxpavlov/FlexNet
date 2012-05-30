@@ -1,0 +1,40 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" Inherits="SenseNet.Portal.HcExplore.HcExploreMaster" %>
+
+<%@ Register Assembly="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
+    Namespace="System.Web.UI" TagPrefix="asp" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <link type="text/css" rel="Stylesheet" href="/Root/!Assembly/HcExplore/SenseNet.Portal.HcExplore.Styles.jquery.treeview.css" />
+    <title>Sense/Net 6.0 Hardcode Explore</title>
+</head>
+<body>
+    <div class="hcexp-maincontainer">
+        <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+            <Scripts>
+                <asp:ScriptReference Assembly="HcExplore" Name="SenseNet.Portal.HcExplore.Scripts.jquery.js" />
+                <asp:ScriptReference Assembly="HcExplore" Name="SenseNet.Portal.HcExplore.Scripts.jquery.treeview.js" />
+                <asp:ScriptReference Assembly="HcExplore" Name="SenseNet.Portal.HcExplore.Scripts.HcExplore.js" />
+            </Scripts>
+        </asp:ScriptManager>
+        </form>
+        <div class="hcexp-header">
+            <h1>Sense/Net 6.0 Hardcode Explore</h1>
+        </div>
+        <div class="hcexp-content hcexp-wide">
+            <asp:ContentPlaceHolder ID="wideContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <div class="hcexp-menu">
+            <asp:ContentPlaceHolder ID="menu" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <div class="hcexp-content">
+            <asp:ContentPlaceHolder ID="content" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </div>
+</body>
+</html>

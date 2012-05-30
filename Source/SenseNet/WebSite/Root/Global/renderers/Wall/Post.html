@@ -1,0 +1,16 @@
+<div class="sn-postdiv sn-post {{postboundaryclass}} ui-helper-clearfix">
+    <input class="sn-postid" type="hidden" value="{{postid}}" />
+    <div class="sn-postdiv-avatardiv">
+        <a href="{{userlink}}">
+            <img src="{{avatar}}" class="sn-postdiv-avatar" />
+        </a>
+    </div>
+    <div class="sn-postdiv-textdiv">
+        <strong><a href="{{userlink}}">{{username}}</a></strong>&nbsp;{{action}}
+        <div class="sn-wrap">{{text}}{{contentcard}}</div>
+        <div class="sn-commentsection">
+            <span title='{{date}}' class="sn-postdiv-info">{{friendlydate}}</span><span style="display:{{interactdisplay}};"> - <a class='sn-like' href='javascript:' onclick="SN.Wall.like($(this));" style="display:{{ilikedisplay}}">Like</a><a class='sn-unlike' href='javascript:' onclick="SN.Wall.unlike($(this));" style="display:{{iunlikedisplay}};">Unlike</a> - <a href='javascript:' class='sn-comment' onclick="SN.Wall.comment($(this));">Comment</a></span>
+        </div>
+        {{commentsection}}
+    </div>
+</div>

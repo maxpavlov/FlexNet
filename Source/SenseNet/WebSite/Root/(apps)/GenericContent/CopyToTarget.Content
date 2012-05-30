@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Page</ContentType>
+  <ContentName>CopyToTarget</ContentName>
+  <Fields>
+    <PageTemplateNode>
+      <Path>/Root/Global/pagetemplates/sn-layout-dialog.html</Path>
+    </PageTemplateNode>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+    <SmartUrl></SmartUrl>
+    <IsExternal>false</IsExternal>
+    <Binary attachment="CopyToTarget.aspx" />
+    <PersonalizationSettings attachment="CopyToTarget.PersonalizationSettings" />
+    <DisplayName>Copy to target</DisplayName>
+    <IsModal>false</IsModal>
+    <Disabled>false</Disabled>
+    <Clear>false</Clear>
+    <Icon>copy</Icon>
+    <RequiredPermissions></RequiredPermissions>
+    <DeepPermissionCheck>false</DeepPermissionCheck>
+    <IncludeBackUrl>0</IncludeBackUrl>
+    <CacheControl></CacheControl>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+        <CreatedBy>
+      <Path>/Root/IMS/BuiltIn/Portal/Administrator</Path>
+    </CreatedBy>
+    <CreationDate>2011-06-28T11:55:56.517</CreationDate>
+    <ModifiedBy>
+      <Path>/Root/IMS/BuiltIn/Portal/Admin</Path>
+    </ModifiedBy>
+    <ModificationDate>2011-06-28T15:21:35.093</ModificationDate>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+    <Identity path="/Root/IMS/BuiltIn/Portal/IdentifiedUsers">
+      <See>Allow</See>
+      <Open>Allow</Open>
+      <RunApplication>Allow</RunApplication>
+    </Identity>
+  </Permissions>
+</ContentMetaData>

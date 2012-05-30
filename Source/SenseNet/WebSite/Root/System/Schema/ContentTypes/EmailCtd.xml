@@ -1,0 +1,27 @@
+﻿<ContentType name="Email" parentType="Folder" handler="SenseNet.ContentRepository.Folder" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Email</DisplayName>
+  <Description>Email content type containing attachments as children content</Description>
+  <Icon>Document</Icon>
+  <AllowIncrementalNaming>true</AllowIncrementalNaming>
+  <AllowedChildTypes>
+    File
+  </AllowedChildTypes>
+  <Fields>
+    <Field name="From" type="ShortText">
+      <DisplayName>From</DisplayName>
+      <Description>Sender name and address</Description>
+    </Field>
+    <Field name="DisplayName" type="ShortText">
+      <DisplayName>Subject</DisplayName>
+      <Description>Subject of email</Description>
+    </Field>
+    <Field name="Body" type="LongText">
+      <DisplayName>Body</DisplayName>
+      <Description>Body of email</Description>
+    </Field>
+    <Field name="Sent" type="DateTime">
+      <DisplayName>Sent</DisplayName>
+      <Description>Date of sending</Description>
+    </Field>
+  </Fields>
+</ContentType>

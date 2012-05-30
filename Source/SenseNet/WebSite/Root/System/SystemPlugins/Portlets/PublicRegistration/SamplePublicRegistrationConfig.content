@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>PublicRegistrationConfig</ContentType>
+  <ContentName>SamplePublicRegistrationConfig</ContentName>
+  <Fields>
+    <SecurityGroups>
+      <Path>/Root/IMS/BuiltIn/Portal/Everyone</Path>
+    </SecurityGroups>
+    <DefaultDomainPath>
+      <Path>/Root/IMS/BuiltIn</Path>
+    </DefaultDomainPath>
+    <UserTypeName>RegisteredUser</UserTypeName>
+    <DuplicateErrorMessage>This username is already in use, please choose another one.</DuplicateErrorMessage>
+    <IsBodyHtml>false</IsBodyHtml>
+    <ActivationEnabled>false</ActivationEnabled>
+    <ActivationEmailTemplate>You have registered to our site. In order to activate your registration, please click on the following link: {0}.</ActivationEmailTemplate>
+    <ActivationSuccessTemplate>Activation completed. Your registration process is successfully finished.</ActivationSuccessTemplate>
+    <AlreadyActivatedMessage>This account has already been activated.</AlreadyActivatedMessage>
+    <MailSubjectTemplate>Activate your registration</MailSubjectTemplate>
+    <MailFrom>do-not-reply@youcompany.com</MailFrom>
+    <AdminEmailAddress>admin@youcompany.com</AdminEmailAddress>
+    <RegistrationSuccessTemplate>Registration has been completed successfully.</RegistrationSuccessTemplate>
+    <ResetPasswordTemplate>To reset your password on please click on the following link: {0}.</ResetPasswordTemplate>
+    <ResetPasswordSubjectTemplate>Reset your password</ResetPasswordSubjectTemplate>
+    <ResetPasswordSuccessfulTemplate>An email has been sent to the given address with further instructions on reseting your password.</ResetPasswordSuccessfulTemplate>
+    <ChangePasswordUserInterfacePath>/Root/System/SystemPlugins/Portlets/PublicRegistration/UserChangePassword.ascx</ChangePasswordUserInterfacePath>
+    <ChangePasswordSuccessfulMessage>Password has been successfully changed.</ChangePasswordSuccessfulMessage>
+    <ForgottenPasswordUserInterfacePath>/Root/System/SystemPlugins/Portlets/PublicRegistration/EmailForgottenPassword.ascx</ForgottenPasswordUserInterfacePath>
+    <NewRegistrationContentView></NewRegistrationContentView>
+    <EditProfileContentView></EditProfileContentView>
+    <AutoGeneratePassword>false</AutoGeneratePassword>
+    <DisableCreatedUser>false</DisableCreatedUser>
+    <IsUniqueEmail>false</IsUniqueEmail>
+    <AutomaticLogon>false</AutomaticLogon>
+    <ChangePasswordRestrictedText>You must be logged in to view this page.</ChangePasswordRestrictedText>
+    <AlreadyRegisteredUserMessage>You are logged in.</AlreadyRegisteredUserMessage>
+    <UpdateProfileSuccessTemplate>Profile has successfully been updated.</UpdateProfileSuccessTemplate>
+    <EmailNotValid>E-mail address is not valid.</EmailNotValid>
+    <NoEmailGiven>No e-mail has been given.</NoEmailGiven>
+    <Index>0</Index>
+  </Fields>
+</ContentMetaData>

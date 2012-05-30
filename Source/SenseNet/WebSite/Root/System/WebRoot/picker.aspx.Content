@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>File</ContentType>
+  <ContentName>picker.aspx</ContentName>
+  <Fields>
+    <Binary attachment="picker.aspx" />
+    <DisplayName>picker.aspx</DisplayName>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+        <CreatedBy>
+      <Path>/Root/IMS/BuiltIn/Portal/Administrator</Path>
+    </CreatedBy>
+    <CreationDate>2011-06-29T11:02:11.423</CreationDate>
+    <ModifiedBy>
+      <Path>/Root/IMS/BuiltIn/Portal/Administrator</Path>
+    </ModifiedBy>
+    <ModificationDate>2011-06-29T11:02:11.433</ModificationDate>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+    <Identity path="/Root/IMS/BuiltIn/Portal/IdentifiedUsers">
+      <See>Allow</See>
+      <Open>Allow</Open>
+      <RunApplication>Allow</RunApplication>
+    </Identity>
+  </Permissions>
+</ContentMetaData>

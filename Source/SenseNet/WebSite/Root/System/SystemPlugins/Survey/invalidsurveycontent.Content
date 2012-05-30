@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>WebContentDemo</ContentType>
+  <ContentName>invalidsurveycontent</ContentName>
+  <Fields>
+    <DisplayName>InvalidSurveyContent</DisplayName>
+    <Subtitle>InvalidSurveyContent</Subtitle>
+    <RelatedImage />
+    <Header><![CDATA[]]></Header>
+    <Body><![CDATA[<p>InvalidSurveyContent</p>]]></Body>
+    <Details><a href="" target="" title=""></a></Details>
+    <Language>English</Language>
+    <Keywords><![CDATA[]]></Keywords>
+    <Author></Author>
+    <ReviewDate>0001-01-01T00:00:00</ReviewDate>
+    <ArchiveDate>0001-01-01T00:00:00</ArchiveDate>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <Description><![CDATA[]]></Description>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+        <VersioningMode>1</VersioningMode>
+    <InheritableVersioningMode>1</InheritableVersioningMode>
+    <ApprovingMode>1</ApprovingMode>
+    <InheritableApprovingMode>1</InheritableApprovingMode>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+    <Identity path="/Root/IMS/BuiltIn/Portal/Everyone">
+      <RunApplication>Allow</RunApplication>
+    </Identity>
+    <Identity path="/Root/IMS/BuiltIn/Portal/Visitor">
+      <RunApplication>Allow</RunApplication>
+    </Identity>
+  </Permissions>
+</ContentMetaData>

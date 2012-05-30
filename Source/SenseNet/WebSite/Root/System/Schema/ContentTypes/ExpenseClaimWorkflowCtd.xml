@@ -1,0 +1,39 @@
+﻿<ContentType name="ExpenseClaimWorkflow" parentType="Workflow" handler="SenseNet.Workflow.WorkflowHandlerBase" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Expense Claim Workflow</DisplayName>
+  <Description>Expense Claim</Description>
+  <Icon>workflow</Icon>
+  <Fields>
+    <Field name="CEO" type="Reference">
+      <DisplayName>CEO</DisplayName>
+      <Description>The CEO of the department</Description>
+      <Configuration>
+        <Compulsory>true</Compulsory>
+        <AllowMultiple>false</AllowMultiple>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+        <AllowedTypes>
+          <Type>User</Type>
+        </AllowedTypes>
+        <SelectionRoot>
+          <Path>/Root/IMS</Path>
+        </SelectionRoot>
+      </Configuration>
+    </Field>
+    <Field name="BudgetLimit" type="Integer">
+      <DisplayName>Budget Limit</DisplayName>
+      <Description>Set a limit for your money that you are able to spend</Description>
+      <Configuration>
+        <Compulsory>true</Compulsory>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+        <DefaultValue>1000</DefaultValue>
+      </Configuration>
+    </Field>
+    <Field name="FinanceEmail" type="ShortText">
+      <DisplayName>Finance e-mail</DisplayName>
+      <Description>The e-mail address of a member of the finance who will receive a message of the approved expense claim</Description>
+    </Field>
+  </Fields>
+</ContentType>

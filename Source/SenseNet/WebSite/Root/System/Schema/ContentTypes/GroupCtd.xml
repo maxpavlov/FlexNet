@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="Group" parentType="GenericContent" handler="SenseNet.ContentRepository.Group" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Group</DisplayName>
+	<Description>You can categorize users and groups into groups according to any criteria.</Description>
+	<Icon>Group</Icon>
+	<Fields>
+		<Field name="Members" type="Reference">
+			<DisplayName>Members</DisplayName>
+			<Description>The members of this group</Description>
+			<Configuration>
+				<!--<ReadOnly>true</ReadOnly>-->
+				<AllowMultiple>true</AllowMultiple>
+				<AllowedTypes>
+					<Type>User</Type>
+					<Type>Group</Type>
+				</AllowedTypes>
+        <SelectionRoot>
+          <Path>/Root/IMS</Path>
+        </SelectionRoot>
+			</Configuration>
+		</Field>
+    <Field name="SyncGuid" type="ShortText">
+      <DisplayName>SyncGuid</DisplayName>
+      <Description>GUID of corresponding AD object.</Description>
+      <Configuration>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="LastSync" type="DateTime">
+      <DisplayName>LastSync</DisplayName>
+      <Description>Date of last synchronization.</Description>
+      <Configuration>
+        <DateTimeMode>DateAndTime</DateTimeMode>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Description" type="LongText">
+      <Configuration>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+  </Fields>
+</ContentType>

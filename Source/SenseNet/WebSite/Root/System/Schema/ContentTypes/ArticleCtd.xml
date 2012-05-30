@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="Article" parentType="WebContent" 
+             handler="SenseNet.ContentRepository.GenericContent" 
+             xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Article</DisplayName>
+  <Description>You can store and display textual information on the site</Description>
+  <Icon>WebContent</Icon>
+  <Fields>
+    <Field name="DisplayName" type="ShortText">
+      <Description>The headline of the article</Description>
+    </Field>
+    <Field name="Subtitle" type="ShortText">
+      <DisplayName>Subtitle</DisplayName>
+      <Description>A secondary headline. Displayed in the article pages</Description>
+    </Field>
+    <Field name="Lead" type="LongText">
+      <DisplayName>Lead</DisplayName>
+      <Description>Short lead of article</Description>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.Standard.StandardAnalyzer</Analyzer>
+      </Indexing>
+      <Configuration>
+        <ControlHint>sn:RichText</ControlHint>
+      </Configuration>      
+    </Field>
+    <Field name="Body" type="LongText">
+      <DisplayName>Body</DisplayName>
+      <Description>Body</Description>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.Standard.StandardAnalyzer</Analyzer>
+      </Indexing>
+      <Configuration>
+        <ControlHint>sn:RichText</ControlHint>
+      </Configuration>
+    </Field>
+    <Field name="Pinned" type="Boolean">
+      <DisplayName>Highlights</DisplayName>
+      <Description>Content is always showing on the main page's [Highlights] collection</Description>
+    </Field>
+    <Field name="Keywords" type="LongText">
+      <DisplayName>Keywords</DisplayName>
+      <Description>Use the portal's builtin search functionality to search for articles with specific keywords ie.: Keywords:mykeyword</Description>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.WhitespaceAnalyzer</Analyzer>
+      </Indexing>
+    </Field>
+    <Field name="Author" type="ShortText">
+      <DisplayName>Author</DisplayName>
+      <Description>The name of the author (format: Firstname Lastname or Lastname, Firstname)</Description>
+    </Field>
+    <Field name="ImageRef" type="Reference">
+      <DisplayName>Cover image (reference)</DisplayName>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <AllowMultiple>false</AllowMultiple>
+      </Configuration>
+    </Field>
+    <Field name="ImageData" type="Binary">
+      <DisplayName>Cover image (binarydata)</DisplayName>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Image" type="Image">
+      <DisplayName>Cover image (composite)</DisplayName>
+      <Bind property='ImageRef' />
+      <Bind property='ImageData' />
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+        <ControlHint>sn:Image</ControlHint>
+      </Configuration>
+    </Field>
+  </Fields>
+</ContentType>

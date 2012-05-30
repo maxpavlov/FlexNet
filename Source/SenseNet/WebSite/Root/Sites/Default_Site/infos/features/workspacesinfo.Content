@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>WebContentDemo</ContentType>
+  <ContentName>workspacesinfo</ContentName>
+  <Fields>
+    <DisplayName>workspacesinfo</DisplayName>
+    <Subtitle></Subtitle>
+    <RelatedImage />
+    <Header><![CDATA[]]></Header>
+    <Body>
+      <![CDATA[<div class="sn-infobox"><h1 class="sn-content-title sn-article-title"><img src="/Root/Global/images/icons/32/info.png" class="sn-icon sn-icon_32" alt="" />Workspaces demo</h1>
+      <p>This demo introduces the Sense/Net Workspaces. Workspaces are containers for different types of content that are related to each other in a given context. A project workspace for example may integrate project related content such as deadlines, memos, documents, project team members - content which are all related to a single project and to each other. These content are presented on the workspace page that may be customized by builders / administrators just like any other pages in Sense/Net. The workspace pages presented here are built for demonstration purposes.</p>
+      <p>The current page is a summary page showing all demo workspaces present in the Content Repository. The left menu shows the containers for different types of workspaces. In the section below are all workspaces listed ordered by their Deadline property.</p>
+      <p>Visitors may browse workspaces and underlying content:</p>
+      <ul>
+      <li>Click on the title of a workspace in the list below or select a workspace category from the left menu bar to view workspaces in a given category.</li>
+      <li>Browse workspace content using the provided menu items and links on the individual workspace pages.</li>
+      </ul>
+      <p>Administrators may edit, delete, and add new content using the actions provided on the content lists for events, documents, memos and tasks.</p>
+      <ul>
+      <li><strong>You need to be logged in as Administrator to modify content.</strong></li>
+      </ul>
+      </div>]]></Body>
+    <Details><a href="" target="" title=""></a></Details>
+    <Language>English</Language>
+    <Keywords><![CDATA[]]></Keywords>
+    <Author></Author>
+    <ReviewDate>0001-01-01T00:00:00</ReviewDate>
+    <ArchiveDate>0001-01-01T00:00:00</ArchiveDate>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <Description><![CDATA[]]></Description>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+        <VersioningMode>1</VersioningMode>
+    <InheritableVersioningMode>1</InheritableVersioningMode>
+    <ApprovingMode>1</ApprovingMode>
+    <InheritableApprovingMode>1</InheritableApprovingMode>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate>0.00|0|0|0|0|0</Rate>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

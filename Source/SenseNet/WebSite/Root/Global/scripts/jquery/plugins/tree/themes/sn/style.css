@@ -1,0 +1,35 @@
+/* LOCKED */
+.tree-sn .locked li a { color:gray; }
+/* DOTS */
+.tree-sn ul { background-position:6px 1px; background-repeat:repeat-y; background-image:url(data:image/gif;base64,R0lGODlhAgACAIAAAB4dGf///yH5BAEAAAEALAAAAAACAAIAAAICRF4AOw==); _background-image:url("dot_for_ie.gif"); *background-image:url("dot_for_ie.gif"); }
+.tree-sn li { background-position:-64px -16px; background-repeat:no-repeat; background-image:url("icons.png"); }
+/* NO DOTS */
+.tree-sn .no_dots, .tree-sn .no_dots ul { background:transparent; }
+.tree-sn .no_dots li.leaf { background-image:none; background-color:transparent; }
+/* OPEN or CLOSED */
+.tree-sn li.open { background:url("icons.png") -32px -48px no-repeat; }
+.tree-sn li.closed, #jstree-dragged.tree-sn li li.open { background:url("icons.png") -48px -32px no-repeat; }
+#jstree-marker { background-image:url("icons.png"); }
+/* DEFAULT, HOVER, CLICKED, LOADING STATES */
+/*
+.tree-sn li a, .tree-sn li span { border-radius:3px; -moz-border-radius:3px; -webkit-border-radius:3px; }
+*/
+.tree-sn li a:hover, .tree-sn li a.hover, .tree-sn li span { background: #e0e0e0; border:1px solid #f0f0f0; padding:0px 3px 0px 3px; }
+.tree-sn li a.clicked, .tree-sn li a.clicked:hover, .tree-sn li span.clicked { background: #FFFCDB; border:1px solid #ccc; padding:0px 3px 0px 3px; }
+/* ICONS */
+.tree-sn .open ins { background-image:url("icons.png"); background-repeat:no-repeat;}
+.tree-sn .closed ins { background-image:url("icons.png"); background-repeat:no-repeat; }
+.tree-sn .leaf ins { background-image:url("icons.png"); background-repeat:no-repeat; }
+.tree-sn ul li a.loading ins { background-image:url("throbber.gif") !important; background-position:0 0 !important; } /* UL is added to make selector stronger */
+.tree-sn li a ins.forbidden { background-position:-16px -16px; }
+.tree-sn .locked li a ins { background-position:0 -48px; }
+.tree-sn li span ins { background-position:-16px 0; }
+#jstree-dragged.tree-sn ins { background:url("icons.png") -16px -32px no-repeat; }
+#jstree-dragged.tree-sn ins.forbidden { background:url("icons.png") -16px -16px no-repeat; }
+
+/* CONTEXT MENU */
+.tree-sn-context a ins { background-image:url("icons.png"); background-repeat:no-repeat; background-position:-64px -64px; }
+.tree-sn-context a ins.create { background-position:0 -16px; }
+.tree-sn-context a ins.rename { background-position:-16px 0px; }
+.tree-sn-context a ins.remove { background-position:0 -32px; }
+

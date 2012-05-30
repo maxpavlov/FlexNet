@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Survey</ContentType>
+  <ContentName>survey</ContentName>
+  <Fields>
+    <Description><![CDATA[<p>Please write the description here.</p>]]></Description>
+    <ValidFrom>2010-10-01T00:00:00</ValidFrom>
+    <ValidTill>2040-10-01T00:00:00</ValidTill>
+    <LandingPage>
+      <Path>/Root/System/SystemPlugins/Survey/aftersubmitcontent</Path>
+    </LandingPage>
+    <PageContentView>
+      <Path>/Root/Global/contentviews/WebContentDemo/SurveyBrowse.ascx</Path>
+    </PageContentView>
+    <InvalidSurveyPage>
+      <Path>/Root/System/SystemPlugins/Survey/invalidsurveycontent</Path>
+    </InvalidSurveyPage>
+    <ContentListDefinition><![CDATA[<ContentListDefinition xmlns='http://schemas.sensenet.com/SenseNet/ContentRepository/ContentListDefinition'><Fields /></ContentListDefinition>]]></ContentListDefinition>
+    <Index>0</Index>
+    <EnableLifespan>false</EnableLifespan>
+    <EnableNotificationMail>false</EnableNotificationMail>
+    <SenderAddress>survey@sensenet.com</SenderAddress>
+    <Evaluators />
+    <MailTemplatePage>
+      <Path>/Root/System/SystemPlugins/Survey/mailtemplatecontent</Path>
+    </MailTemplatePage>
+    <EnableMoreFilling>true</EnableMoreFilling>
+    <DisplayName>Survey</DisplayName>
+    <Hidden>false</Hidden>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

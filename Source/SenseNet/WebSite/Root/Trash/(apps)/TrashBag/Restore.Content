@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Page</ContentType>
+  <ContentName>Restore</ContentName>
+  <Fields>
+    <Hidden>false</Hidden>
+    <Index>200</Index>
+    <SmartUrl></SmartUrl>
+    <PageTemplateNode>
+      <Path>/Root/Global/pagetemplates/sn-layout-dialog.html</Path>
+    </PageTemplateNode>
+    <IsExternal>false</IsExternal>
+    <OuterUrl></OuterUrl>
+    <MetaTitle></MetaTitle>
+    <Keywords><![CDATA[]]></Keywords>
+    <MetaDescription><![CDATA[]]></MetaDescription>
+    <MetaAuthors></MetaAuthors>
+    <CustomMeta><![CDATA[]]></CustomMeta>
+    <Binary attachment="Restore.aspx" />
+    <PersonalizationSettings attachment="Restore.PersonalizationSettings" />
+    <DisplayName>Restore</DisplayName>
+    <Scenario>ListItem;ExploreToolbar</Scenario>
+    <Disabled>false</Disabled>
+    <Icon>restore</Icon>
+    <RequiredPermissions>4</RequiredPermissions>
+        <TrashDisabled>false</TrashDisabled>
+  </Fields>
+</ContentMetaData>

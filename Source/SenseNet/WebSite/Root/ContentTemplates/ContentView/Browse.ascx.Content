@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+	<ContentName>Browse.ascx</ContentName>
+	<ContentType>ContentView</ContentType>
+	<Fields>
+		<Binary attachment="Browse.ascx" />
+    <DisplayName>ContentView (Browse)</DisplayName>
+	</Fields>
+</ContentMetaData>

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Application</ContentType>
+  <ContentName>CopyBatch</ContentName>
+  <Fields>
+    <Index>3800</Index>
+    <DisplayName>Copy selected...</DisplayName>
+    <ActionTypeName>CopyBatchAction</ActionTypeName>
+    <Icon>copy</Icon>
+  </Fields>
+</ContentMetaData>

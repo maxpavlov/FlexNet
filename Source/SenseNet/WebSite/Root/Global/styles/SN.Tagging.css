@@ -1,0 +1,211 @@
+/*********** TagCloud ***********/
+div.sn-tags ul {
+    padding: 5px;
+    text-align:center;
+    margin: 0;
+}
+
+div.sn-tags ul li {
+	margin:0;
+	padding:2px;
+	list-style:none;
+	display:inline;
+}
+
+div.sn-tags ul li a { padding:0 2px; }
+div.sn-tags ul li a:hover { text-decoration: underline; }
+
+div.sn-tags .sn-tag1{font-size:80%;}
+div.sn-tags .sn-tag2{font-size:100%;}
+div.sn-tags .sn-tag3{font-size:120%;}
+div.sn-tags .sn-tag4{font-size:140%;}
+div.sn-tags .sn-tag5{font-size:160%;}
+div.sn-tags .sn-tag6{font-size:180%;}
+div.sn-tags .sn-tag7{font-size:200%;}
+div.sn-tags .sn-tag8{font-size:215%;}
+div.sn-tags .sn-tag9{font-size:235%;}
+div.sn-tags .sn-tag10{font-size:255%;}
+
+/*********** List of Tags ***********/
+div.sn-tags-list {
+    margin: 0 0 0 15px;
+}
+
+div.sn-tags-list ul {
+    text-align: left;
+}
+
+div.sn-tags-list ul li {
+    padding: 3px;
+    list-style-type: none;
+    display: inline-block;
+    float: left;
+}
+
+div.sn-tags-list ul li a {
+    text-decoration: none;
+}
+
+div.sn-tags-list ul li a:hover {
+    text-decoration: underline;
+}
+
+/*********** Tag Search ***********/
+div.sn-tags-search {
+    margin: 10px 0 15px 10px;
+}
+
+div.sn-tags-search input.sn-tags-input {
+    color: #007DC2;
+    height: 20px;
+    font-family: Trebuchet MS, Verdana, Arial;
+    font-size: 12.5px;
+    font-weight: bold;
+    height: 17px;
+    padding: 2px;
+    margin-right: 5px;
+}
+
+div.sn-tags-table table {
+    margin: 0 10px 10px 10px;
+    width: auto;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+}
+
+div.sn-tags-table table a {
+    text-decoration: none;
+}
+
+div.sn-tags-table table a:hover {
+    text-decoration: underline;
+}
+
+div.sn-tags-table th {
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px;
+}
+
+div.sn-tags-table td {
+    vertical-align: middle;
+    padding: 5px 3px;
+    background-color: white;
+    text-align: center;
+    border: 1px solid #ccc;
+}
+
+div.sn-tags-table table p {
+    margin: 0;
+}
+
+div.sn-tags-table table thead tr {
+    background: #eee;
+}
+
+div.sn-tags-table table thead tr th { height: 25px; border: 1px solid #ccc; }
+
+/*********** Autocomplete / TagHint ***********/
+.ac_results {
+	padding: 2px;
+	border: 1px solid gray;
+	background-color: white;
+	overflow: hidden;
+	z-index: 99999;
+}
+
+.ac_results ul {
+	width: 100%;
+	list-style-position: outside;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.ac_results li {
+	margin: 0px;
+	padding: 3px 0 3px 5px;
+	cursor: default;
+	display: block;
+	font: menu;
+	font-family: Verdana;
+	font-size: 12px;
+	line-height: 16px;	/* without this unit scroll will be broken if FF*/
+	overflow: hidden;
+}
+
+/* even rows */
+.ac_odd {
+	background-color: #fbfbfb;
+}
+
+.ac_over {
+	background-color: #007DC2;
+	color: white;
+}
+
+/*********** Tag Admin Control ***********/
+div.sn-tags-admin {
+    margin: 10px;
+}
+
+div.sn-tags-admin h2 {
+    padding: 0 0 10px 0;
+    text-decoration: underline;
+}
+
+div.sn-tags-admin input.sn-tags-input {
+    color: #007DC2;
+    font-family: Trebuchet MS, Verdana, Arial;
+    font-size: 12.5px;
+    font-weight: bold;
+    height: 17px;
+    padding: 2px;
+    margin-right: 5px;
+}
+
+div.sn-tags-admin div.sn-tags-sync {
+    width: 136px;
+    float: left;
+    padding: 5px 10px 0 0;
+}
+
+div.sn-tags-table table thead tr th a {
+    margin: 0 2px 0 2px;
+}
+
+div.sn-tags-table table thead tr th a:hover {
+    text-decoration: none;
+}
+
+div.sn-tags-table h1 {
+    margin: 10px;
+    text-decoration: underline;
+}
+
+/*********** Tag Field as User ***********/
+/* Browse view */
+div.sn-tags-container ul 
+{
+    margin: 5px 0 0 350px;
+    padding: 0;
+	list-style: none;
+	height: 15px;
+}
+
+div.sn-tags-container ul li {
+	float: left;
+	display: inline;
+	padding: 0 5px 10px 0;
+}
+
+div.sn-tags-container ul li a {
+	text-decoration: none;
+}
+
+div.sn-tags-container ul li a:hover{
+	text-decoration: underline;
+}
+
+/* Edit view */
+div.sn-tags-container textarea { width: 85%; padding: 5px; }

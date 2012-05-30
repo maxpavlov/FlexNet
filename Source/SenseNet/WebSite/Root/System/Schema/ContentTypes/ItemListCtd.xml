@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="ItemList" parentType="ContentList" handler="SenseNet.ContentRepository.ContentList" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>ItemList</DisplayName>
+	<Description>Base type for item lists. Choose a type inheriting from this to create list of items.</Description>
+	<Icon>ContentList</Icon>
+  <Fields>
+  </Fields>
+</ContentType>

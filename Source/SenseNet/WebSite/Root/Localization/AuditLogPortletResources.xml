@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Resources>
+  <ResourceClass name="AuditLogPortlet">
+    <Languages>
+      <Language cultureName="en">
+        <data name="StartDateLabel" xml:space="preserve">
+				  <value>Start date:</value>
+				</data>
+        <data name="EndDateLabel" xml:space="preserve">
+				  <value>End date:</value>
+				</data>
+        <data name="UserLabel" xml:space="preserve">
+				  <value>User name:</value>
+				</data>
+        <data name="EventLabel" xml:space="preserve">
+				  <value>Event:</value>
+				</data>
+        <data name="ParamLabel" xml:space="preserve">
+				  <value>Params:</value>
+				</data>
+        <data name="ListButton" xml:space="preserve">
+				  <value>List</value>
+				</data>
+
+        <data name="IdTitle" xml:space="preserve">
+				  <value>Sorszám</value>
+				</data>
+        <data name="DateTitle" xml:space="preserve">
+				  <value>Date</value>
+				</data>
+        <data name="UserTitle" xml:space="preserve">
+				  <value>User</value>
+				</data>
+        <data name="ContentPathTitle" xml:space="preserve">
+				  <value>Content path</value>
+				</data>
+        <data name="EventTitle" xml:space="preserve">
+				  <value>Event type</value>
+				</data>
+        <data name="ParamsTitle" xml:space="preserve">
+				  <value>Params</value>
+				</data>
+
+      </Language>
+      <Language cultureName="hu">
+        <data name="StartDateLabel" xml:space="preserve">
+				  <value>Kezdő dátum:</value>
+				</data>
+        <data name="EndDateLabel" xml:space="preserve">
+				  <value>Utolsó dátum:</value>
+				</data>
+        <data name="UserLabel" xml:space="preserve">
+				  <value>Felhasználó:</value>
+				</data>
+        <data name="EventLabel" xml:space="preserve">
+				  <value>Esemény:</value>
+				</data>
+        <data name="ParamLabel" xml:space="preserve">
+				  <value>Parameter:</value>
+				</data>
+        <data name="ListButton" xml:space="preserve">
+				  <value>Listázás</value>
+				</data>
+        
+        <data name="IdTitle" xml:space="preserve">
+				  <value>Sorszám</value>
+				</data>
+        <data name="DateTitle" xml:space="preserve">
+				  <value>Dátum</value>
+				</data>
+        <data name="UserTitle" xml:space="preserve">
+				  <value>Felhasználó</value>
+				</data>
+        <data name="ContentPathTitle" xml:space="preserve">
+				  <value>Content path</value>
+				</data>
+        <data name="EventTitle" xml:space="preserve">
+				  <value>Esemény</value>
+				</data>
+        <data name="ParamsTitle" xml:space="preserve">
+				  <value>Paraméterek</value>
+				</data>
+      </Language>
+    </Languages>
+  </ResourceClass>
+</Resources>

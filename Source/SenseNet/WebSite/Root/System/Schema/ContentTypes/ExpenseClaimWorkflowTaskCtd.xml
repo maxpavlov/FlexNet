@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="ExpenseClaimWorkflowTask" parentType="ApprovalWorkflowTask" handler="SenseNet.ContentRepository.Task" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Expense Claim Workflow Task</DisplayName>
+  <Description>A content representation for a delayed user interaction in an Expense Claim Workflow</Description>
+  <Icon>FormItem</Icon>
+  <AllowIncrementalNaming>true</AllowIncrementalNaming>
+  <Fields>
+    <Field name="Comment" type="ShortText">
+      <DisplayName>Comment</DisplayName>
+      <Description>Type the reason for your decision here</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <Compulsory>false</Compulsory>
+      </Configuration>
+    </Field>
+    <Field name="Reason" type="LongText">
+      <DisplayName>Reason</DisplayName>
+      <Description>The user gets this information when it's Expense Claims are rejected</Description>
+    </Field>
+    <Field name="ExpenseClaim" type="Reference">
+      <DisplayName>Expense Claim</DisplayName>
+      <Description>The expense claim list</Description>
+      <Configuration>
+        <AllowMultiple>false</AllowMultiple>
+        <ReadOnly>true</ReadOnly>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Version" type="Version">
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Index" type="Integer">
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Locked" type="Boolean">
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Sum" type="Integer">
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+  </Fields>
+</ContentType>

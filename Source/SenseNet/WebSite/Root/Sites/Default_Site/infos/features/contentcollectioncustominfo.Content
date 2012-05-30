@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>WebContentDemo</ContentType>
+  <ContentName>contentcollectioncustominfo</ContentName>
+  <Fields>
+    <DisplayName></DisplayName>
+    <Subtitle></Subtitle>
+    <RelatedImage />
+    <Header><![CDATA[]]></Header>
+    <Body>
+      <![CDATA[<div class="sn-infobox"><h1 class="sn-content-title sn-article-title"><img src="/Root/Global/images/icons/32/info.png" class="sn-icon sn-icon_32" alt="" />Content collection customization</h1>
+      <p>This demo shows the customizability of collections in Sense/Net. The current page shows the top 5 articles.</p>
+      <p>You can use a custom <em>.ascx</em> user control to display this collection by following these steps:</p>
+      <ol>
+      <li>Click the <strong>Portal Remote Control icon</strong> to open the list of available actions.</li>
+      <li>Click <strong>Edit mode</strong> to switch the page to Edit mode.</li>
+      <li>Click the <strong>down arrow</strong> on the right of the 'Top 5 articles' line.</li>
+      <li>Select the <strong>Edit</strong> option. (A dialog will pop up.)</li>
+      <li>Click on the button next to the textbox in the <strong>Renderers</strong> line.</li>
+      <li>The Content Picker will appear. Select <strong>Article_Simple.ascx</strong> and click <strong>OK</strong>.</li>
+      <li>Click <strong>OK</strong> at the bottom of the Content Query Presenter dialog.</li>
+      <li>Click the <strong>Preview mode</strong>icon on the Portal Remote Control dialog to see the changes you made in browse mode.</li>
+      </ol>
+      <p>You have changed the look and feel of the collection (e.g. the blue header text is now rendered in black.)</p>
+      <p>Now, try using an <em>.xslt</em> renderer by going through the above steps again, but this time selecting <strong>ContentList_Simple.xslt</strong> at the 6th step.</p>
+      <ul>
+      <li><strong>You need to be logged in as Administrator to use this feature.</strong></li>
+      <li>This is a custom portlet page: <em><a href="/Explore.html#/Root/Sites/Default_Site/features/contentcollection-customization">/Root/Sites/Default_Site/features/contentcollection-customization</a></em></li>
+      <li>You can examine the code the of the <em>.ascx</em> renderer at <em><a href="/Explore.html#/Root/Global/renderers/ArticleList_Simple.ascx">/Root/Global/renderers/ArticleList_Simple.ascx</a></em></li>
+      <li>The <em>Xslt</em> based renderer is located at <em><a href="/Explore.html#/Root/Global/renderers/ContentList_Simple.xslt">/Root/Global/renderers/ContentList_Simple.xslt</a></em></li>
+      </ul>
+      </div>]]></Body>
+    <Details><a href="" target="" title=""></a></Details>
+    <Language>English</Language>
+    <Keywords><![CDATA[]]></Keywords>
+    <Author></Author>
+    <ReviewDate>0001-01-01T00:00:00</ReviewDate>
+    <ArchiveDate>0001-01-01T00:00:00</ArchiveDate>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <Description><![CDATA[]]></Description>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+        <VersioningMode>1</VersioningMode>
+    <InheritableVersioningMode>1</InheritableVersioningMode>
+    <ApprovingMode>1</ApprovingMode>
+    <InheritableApprovingMode>1</InheritableApprovingMode>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate></Rate>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

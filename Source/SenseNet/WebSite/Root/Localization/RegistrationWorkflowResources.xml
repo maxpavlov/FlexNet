@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Resources>
+  <ResourceClass name="RegistrationWorkflow">
+    <Languages>
+      <Language cultureName="en">
+        <data name="AttentionDefaultSettings" xml:space="preserve">
+          <value>Attention! Default SMTP settings are present.</value>
+        </data>
+        <data name="AttentionDetails" xml:space="default">
+          <value>
+            <p>The value <i><strong>mail.sn.hu</strong></i> for SMTP host name found in the configuration file (Web.config). This is the default address of the SMTP server used by several portlets and controls. You should consider to change it to the address of your SMTP host.</p>
+            <p><strong>More about how to configure SMTP settings: </strong><a href="http://wiki.sensenet.com/index.php?title=How_to_configure_SMTP_settings" title="How to configure SMTP settings - Sense/Net Wiki">http://wiki.sensenet.com/index.php?title=How_to_configure_SMTP_settings</a></p>
+          </value>
+        </data>
+        <data name="CompulsoryField" xml:space="preserve">
+          <value>Compulsory field: {0}</value>
+        </data>
+        <data name="UserNameAlreadyExist" xml:space="preserve">
+          <value>Username already exists: {0}</value>
+        </data>
+      </Language>
+      <Language cultureName="hu">
+        <data name="AttentionDefaultSettings" xml:space="preserve">
+          <value>Figyelem! Az alapértelmezett SMTP beállítások vannak érvényben.</value>
+        </data>
+        <data name="AttentionDetails" xml:space="preserve">
+          <value>
+            <p>A következő érték: <i><strong>mail.sn.hu</strong></i> van beállítva az SMTP kiszolgáló címének a konfigurációs állományban (Web.config). Ez az alapértelmezett cím amelyet néhány Portlet és Control is használ levelek küldéséhez. Amennyiben nem ez az Ön SMTP kiszolgálójának a címe, kérjük változtassa ezt meg.</p>
+            <p><strong>Ennek a beállításáról a következő linken talál bővebb információt: </strong><a href="http://wiki.sensenet.com/index.php?title=How_to_configure_SMTP_settings" title="How to configure SMTP settings - Sense/Net Wiki">http://wiki.sensenet.com/index.php?title=How_to_configure_SMTP_settings</a></p>
+          </value>
+        </data>
+        <data name="CompulsoryField" xml:space="preserve">
+          <value>Kötelező a mezőt kitölteni: {0}</value>
+        </data>
+        <data name="UserNameAlreadyExist" xml:space="preserve">
+          <value>A felhasználónév már létezik: {0}</value>
+        </data>
+      </Language>
+    </Languages>
+  </ResourceClass>
+</Resources>

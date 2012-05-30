@@ -1,0 +1,14 @@
+﻿<ContentType name="WebServiceApplication" parentType="Application" handler="SenseNet.ApplicationModel.Application" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>WebServiceApplication</DisplayName>
+  <Description></Description>
+  <Icon>File</Icon>
+  <Fields>
+    <Field name="Binary" type="Binary">
+      <DisplayName>WebService markup</DisplayName>
+      <Description></Description>
+      <Configuration>
+        <IsText>true</IsText>
+      </Configuration>
+    </Field>
+  </Fields>
+</ContentType>

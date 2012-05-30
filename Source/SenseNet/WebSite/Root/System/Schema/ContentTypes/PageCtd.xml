@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="Page" parentType="Webform" handler="SenseNet.Portal.Page" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Portlet Page</DisplayName>
+	<Description>A web page for presenting content through Portlets</Description>
+	<Icon>Page</Icon>
+	<Fields>
+		<Field name="Name" type="ShortText">
+			<Description>The name by which the Page can be accessed</Description>
+		</Field>
+      <Field name="PageTemplateNode" type="Reference">
+      <DisplayName>Page Template</DisplayName>
+      <Description>The page template defines the layout and design of your page</Description>
+      <Configuration>
+        <AllowMultiple>false</AllowMultiple>
+        <Compulsory>true</Compulsory>
+        <AllowedTypes>
+          <Type>PageTemplate</Type>
+        </AllowedTypes>
+        <SelectionRoot>
+          <Path>/Root/Global/pagetemplates</Path>
+        </SelectionRoot>
+      </Configuration>
+    </Field>
+    <Field name="PageSkin" type="Reference">
+      <DisplayName>Skin</DisplayName>
+      <Configuration>
+        <AllowMultiple>false</AllowMultiple>
+        <AllowedTypes>
+          <Type>Skin</Type>
+        </AllowedTypes>
+        <SelectionRoot>
+          <Path>/Root/Skins</Path>
+        </SelectionRoot>
+      </Configuration>
+    </Field>
+    <Field name="Hidden" type="Boolean">
+      <Configuration>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Index" type="Integer">
+      <Configuration>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name='SmartUrl' type='ShortText'>
+      <DisplayName>Smart URL</DisplayName>
+      <Description>A URL shortcut to this page under the site root URL</Description>
+    </Field>
+		<Field name="SiteRelativeUrl" type="SiteRelativeUrl">
+			<DisplayName>Page urls</DisplayName>
+			<Description>The page can be accessed on these urls</Description>
+      <Configuration>
+        <ReadOnly>true</ReadOnly>
+        <ControlHint>sn:SiteRelativeUrl</ControlHint>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+		</Field>
+		<Field name="IsExternal" type="Boolean">
+			<DisplayName>Redirect page</DisplayName>
+			<Description>Select this to redirect requests to another URL</Description>
+      <Configuration>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+		</Field>
+		<Field name="OuterUrl" type="ShortText">
+			<DisplayName>Redirect URL</DisplayName>
+			<Description>The URL to redirect requests to</Description>
+      <Configuration>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+		</Field>
+    <Field name="MetaTitle" type="ShortText">
+      <DisplayName>Meta Title</DisplayName>
+      <Description>Title to be used in the HTML head of the page</Description>
+      <Configuration>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Keywords" type="LongText">
+      <DisplayName>Keywords</DisplayName>
+      <Description>Enter keywords to help in search engine optimization</Description>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.WhitespaceAnalyzer</Analyzer>
+      </Indexing>
+      <Configuration>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="MetaDescription" type="LongText">
+      <DisplayName>Meta Description</DisplayName>
+      <Description>Description to be included in the HTML head of the page</Description>      
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.Standard.StandardAnalyzer</Analyzer>
+      </Indexing>
+      <Configuration>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name='MetaAuthors' type='ShortText'>
+      <DisplayName>Meta Authors</DisplayName>
+      <Description>Author and copyright info to be included in the HTML head of the page</Description>
+      <Configuration>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name='CustomMeta' type='LongText'>
+      <DisplayName>CustomMeta</DisplayName>
+      <Description>Additional metadata to be included in the HTML head of the page (use well-formed XHTML)</Description>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.Standard.StandardAnalyzer</Analyzer>
+      </Indexing>
+      <Configuration>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+		<Field name="PageId" type="ShortText">
+			<DisplayName>[PageId]</DisplayName>
+			<Description>[PageId]</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+		</Field>
+		<Field name="NodeName" type="ShortText">
+			<DisplayName>[NodeName]</DisplayName>
+			<Description>[NodeName]</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+		</Field>
+		<Field name="TemporaryPortletInfo" type="LongText">
+			<DisplayName>Temporary Portlet Info</DisplayName>
+      <Indexing>
+        <Mode>No</Mode>
+      </Indexing>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+		</Field>
+		<Field name='TextExtract' type='LongText'>
+			<DisplayName>TextExtract</DisplayName>
+			<Description>TextExtract</Description>
+      <Indexing>
+        <Mode>No</Mode>
+      </Indexing>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+		</Field>
+    <Field name="Binary" type="Binary">
+      <Description>ASPX markup (auto-generated)</Description>
+    </Field>
+    <Field name="PersonalizationSettings" type="Binary">
+      <DisplayName>Portlet settings</DisplayName>
+      <Description>The binary settings used by the Portlet framework</Description>
+      <Indexing>
+        <Mode>No</Mode>
+      </Indexing>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+	</Fields>
+</ContentType>

@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="User" parentType="GenericContent" handler="SenseNet.ContentRepository.User" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>User</DisplayName>
+  <Description>The basic user type of Sense/Net 6.0. Use it for intranet and extranet users.</Description>
+  <Icon>User</Icon>
+  <AllowedChildTypes>
+    Image
+  </AllowedChildTypes>
+  <Fields>
+    <Field name="Name" type="ShortText">
+      <DisplayName>Username</DisplayName>
+      <Description>Specify a login name for the user</Description>
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+        <Compulsory>true</Compulsory>
+        <MaxLength>20</MaxLength>
+        <ControlHint>sn:ShortText</ControlHint>
+      </Configuration>
+    </Field>
+    <Field name="DisplayName" type="ShortText">
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="JobTitle" type="ShortText">
+      <DisplayName>Job title</DisplayName>
+      <Description></Description>
+    </Field>
+    <Field name="Enabled" type="Boolean">
+      <DisplayName>Enabled</DisplayName>
+      <Description>User account is enabled</Description>
+    </Field>
+    <Field name="Domain" type="ShortText">
+      <DisplayName>Domain</DisplayName>
+      <Description>The domain of the user</Description>
+      <Configuration>
+        <ReadOnly>true</ReadOnly>
+      </Configuration>
+    </Field>
+    <Field name="Email" type="ShortText">
+      <DisplayName>E-mail</DisplayName>
+      <Description>The e-mail of the user</Description>
+      <Configuration>
+        <Compulsory>true</Compulsory>
+      </Configuration>
+    </Field>
+    <Field name="FullName" type="ShortText">
+      <DisplayName>Full name</DisplayName>
+      <Description>Full name of the user (e.g. John Smith)</Description>
+      <Configuration>
+        <Compulsory>true</Compulsory>
+      </Configuration>
+    </Field>
+    <Field name="ImageRef" type="Reference">
+      <DisplayName>Cover image (reference)</DisplayName>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <AllowMultiple>false</AllowMultiple>
+      </Configuration>
+    </Field>
+    <Field name="ImageData" type="Binary">
+      <DisplayName>Cover image (binarydata)</DisplayName>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Avatar" type="Image">
+      <DisplayName>Avatar</DisplayName>
+      <Description>Avatar image of user.</Description>
+      <Bind property="ImageRef" />
+      <Bind property="ImageData" />
+      <Configuration>
+        <Visible>true</Visible>
+        <ControlHint>sn:Image</ControlHint>
+      </Configuration>
+    </Field>
+    <Field name="Password" type="Password">
+      <DisplayName>Password</DisplayName>
+      <Description>User password</Description>
+      <Bind property="PasswordHash"></Bind>
+      <Configuration>
+        <Compulsory>true</Compulsory>
+        <ReenterTitle>Re-enter password</ReenterTitle>
+        <ReenterDescription>Re-enter password</ReenterDescription>
+      </Configuration>
+    </Field>
+    <Field name="SyncGuid" type="ShortText">
+      <DisplayName>SyncGuid</DisplayName>
+      <Description>GUID of corresponding AD object.</Description>
+      <Configuration>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="LastSync" type="DateTime">
+      <DisplayName>LastSync</DisplayName>
+      <Description>Date of last synchronization.</Description>
+      <Configuration>
+        <DateTimeMode>DateAndTime</DateTimeMode>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Captcha" type="Captcha">
+      <DisplayName>Captcha text</DisplayName>
+      <Description>Captcha text entered by the user.</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Manager" type="Reference">
+      <Configuration>
+        <AllowMultiple>false</AllowMultiple>
+        <AllowedTypes>
+          <Type>User</Type>
+        </AllowedTypes>
+        <SelectionRoot>
+          <Path>/Root/IMS</Path>
+        </SelectionRoot>
+      </Configuration>
+    </Field>
+    <Field name="Description" type="LongText">
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Department" type="ShortText">
+      <DisplayName>Department</DisplayName>
+      <Description>Department of employee.</Description>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.Standard.StandardAnalyzer</Analyzer>
+      </Indexing>
+      <Configuration>
+        <Visible>true</Visible>
+      </Configuration>
+    </Field>
+    <Field name="Languages" type="ShortText">
+      <DisplayName>Languages</DisplayName>
+      <Description>Spoken languages.</Description>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.Standard.StandardAnalyzer</Analyzer>
+      </Indexing>
+      <Configuration>
+        <Visible>true</Visible>
+      </Configuration>
+    </Field>
+    <Field name="Phone" type="ShortText">
+      <DisplayName>Phone</DisplayName>
+      <Description>Phone number. (e.g. +123456789 or 1234)</Description>
+      <Configuration>
+        <Regex>(^\+?\d+)?</Regex>
+        <Visible>true</Visible>
+      </Configuration>
+    </Field>
+    <Field name="TrashDisabled" type="Boolean">
+      <DisplayName>Disable Trash</DisplayName>
+      <Description>You can disable trash for this content and its children. If set, you can not restore deleted content.</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <DefaultValue>false</DefaultValue>
+      </Configuration>
+    </Field>
+    <Field name="VersioningMode" type="VersioningMode">
+      <DisplayName>Versioning Mode For Current Content</DisplayName>
+      <Description>It shows the versioning mode of the current content.</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <AllowMultiple>false</AllowMultiple>
+        <AllowExtraValue>false</AllowExtraValue>
+        <Options>
+          <Option value="0">Inherited</Option>
+          <Option selected="true" value="1">None</Option>
+          <Option value="2">Major only</Option>
+          <Option value="3">Major and minor</Option>
+        </Options>
+      </Configuration>
+    </Field>
+    <Field name='Gender' type='Choice'>
+      <DisplayName>Gender</DisplayName>
+      <Description>Select one</Description>
+      <Configuration>
+        <AllowMultiple>false</AllowMultiple>
+        <AllowExtraValue>false</AllowExtraValue>
+        <Options>
+          <Option value="">...</Option>
+          <Option value="Female">Female</Option>
+          <Option value="Male">Male</Option>
+        </Options>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name='MaritalStatus' type='Choice'>
+      <DisplayName>Marital status</DisplayName>
+      <Description>Select one</Description>
+      <Configuration>
+        <AllowMultiple>false</AllowMultiple>
+        <AllowExtraValue>false</AllowExtraValue>
+        <Options>
+          <Option value="">...</Option>
+          <Option value="Single">Single</Option>
+          <Option value="Married">Married</Option>
+        </Options>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name='BirthDate' type='DateTime'>
+      <DisplayName>Birth date</DisplayName>
+      <Configuration>
+        <DateTimeMode>Date</DateTimeMode>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name='Education' type='LongText'>
+      <DisplayName>Education</DisplayName>
+      <Description>List of educations - e.g. high school, university</Description>
+      <Configuration>
+        <TextType>LongText</TextType>
+        <ControlHint>sn:EducationEditor</ControlHint>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="TwitterAccount" type="ShortText">
+      <DisplayName>Twitter account</DisplayName>
+      <Configuration>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="FacebookURL" type="ShortText">
+      <DisplayName>Facebook URL</DisplayName>
+      <Description>http://www.facebook.com/USERNAME</Description>
+      <Configuration>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="LinkedInURL" type="ShortText">
+      <DisplayName>LinkedIn URL</DisplayName>
+      <Description>http://www.linkedin.com/USERNAME</Description>
+      <Configuration>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+  </Fields>
+</ContentType>

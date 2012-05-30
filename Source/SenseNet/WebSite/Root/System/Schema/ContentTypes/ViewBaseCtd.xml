@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="ViewBase" parentType="UserControl" handler="SenseNet.Portal.UI.ContentListViews.Handlers.ViewBase" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>View base</DisplayName>
+  <Description>An abstract type for ContentList views</Description>
+  <Icon>File</Icon>
+  <Fields>
+    <Field name="DisplayName" type="ShortText">
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="IsDefault" type="Boolean">
+      <DisplayName>Default</DisplayName>
+      <Description>Whether this is the default view on the parent ContentList</Description>
+      <Configuration>
+        <ReadOnly>true</ReadOnly>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Template" type="Reference">
+      <DisplayName>Markup template</DisplayName>
+      <Description>The Xslt template used to generate the view</Description>
+      <Configuration>
+        <Compulsory>false</Compulsory>
+        <AllowMultiple>false</AllowMultiple>
+        <DefaultValue>/Root/System/SystemPlugins/Templates/ListView.xslt</DefaultValue>
+      </Configuration>
+    </Field>
+    <Field name="FilterXml" type="LongText">
+      <DisplayName>Filtering</DisplayName>
+      <Description>Define filtering rules for the view</Description>
+      <Indexing>
+        <Mode>No</Mode>
+      </Indexing>
+      <!--<Configuration>
+        <ControlHint>sn:QueryFilter</ControlHint>
+      </Configuration>-->
+    </Field>
+    <Field name="EnableAutofilters" type="Choice">
+      <DisplayName>Enable autofilters</DisplayName>
+      <Description>If autofilters are enabled system content will be filtered from the query</Description>
+      <Configuration>
+        <AllowMultiple>false</AllowMultiple>
+        <AllowExtraValue>false</AllowExtraValue>
+        <Options>
+          <Enum type="SenseNet.Search.FilterStatus" />
+        </Options>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="EnableLifespanFilter" type="Choice">
+      <DisplayName>Enable lifespan filter</DisplayName>
+      <Description>If lifespan filter is enabled only valid content will be in the result</Description>
+      <Configuration>
+        <AllowMultiple>false</AllowMultiple>
+        <AllowExtraValue>false</AllowExtraValue>
+        <Options>
+          <Enum type="SenseNet.Search.FilterStatus" />
+        </Options>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Hidden" type="Boolean">
+      <Description>The view won't show in the selector menu if checked. (If unsure, leave unchecked)</Description>
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="QueryTop" type="Integer">
+      <DisplayName>Top</DisplayName>
+      <Description>If you do not want to display all content please specify here a value greater than 0.</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="QuerySkip" type="Integer">
+      <DisplayName>Skip</DisplayName>
+      <Description>If you do not want to display the first several content please specify here a value greater than 0.</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+  </Fields>
+</ContentType>

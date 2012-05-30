@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>PortletCategory</ContentType>
+  <ContentName>Navigation</ContentName>
+  <Fields>
+    <DisplayName>Navigation</DisplayName>
+    <Description><![CDATA[Portlets used for navigating in portal]]></Description>
+  </Fields>
+</ContentMetaData>

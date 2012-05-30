@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Page</ContentType>
+  <ContentName>ApplicationList</ContentName>
+  <Fields>
+    <DisplayName>ApplicationList</DisplayName>
+    <PageTemplateNode>
+      <Path>/Root/Global/pagetemplates/sn-layout-dialog.html</Path>
+    </PageTemplateNode>
+    <Index>11000</Index>
+    <Binary attachment="ApplicationList.aspx" />
+    <PersonalizationSettings attachment="ApplicationList.PersonalizationSettings" />
+    <Scenario></Scenario>
+    <Icon>wizard</Icon>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

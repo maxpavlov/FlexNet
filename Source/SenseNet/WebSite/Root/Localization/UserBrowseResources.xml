@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Resources>
+  <ResourceClass name="UserBrowse">
+    <Languages>
+      <Language cultureName="en">
+        <data name="FullNameLabel" xml:space="preserve">
+          <value>Full name</value>
+        </data>
+        <data name="DomainLabel" xml:space="preserve">
+          <value>Domain</value>
+        </data>
+        <data name="NameLabel" xml:space="preserve">
+          <value>Name</value>
+        </data>
+        <data name="EmailLabel" xml:space="preserve">
+          <value>E-mail</value>
+        </data>
+        <data name="ManagerLabel" xml:space="preserve">
+          <value>Manager</value>
+        </data>
+        <data name="TitleLabel" xml:space="preserve">
+          <value>DisplayName</value>
+        </data>
+        <data name="PhoneLabel" xml:space="preserve">
+          <value>Phone</value>
+        </data>
+        <data name="DepartmentLabel" xml:space="preserve">
+          <value>Department</value>
+        </data>
+        <data name="LanguagesLabel" xml:space="preserve">
+          <value>Languages</value>
+        </data>
+        <data name="DescriptionLabel" xml:space="preserve">
+          <value>Description</value>
+        </data>
+      </Language>
+    </Languages>
+  </ResourceClass>
+</Resources>

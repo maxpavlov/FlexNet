@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>WebContentDemo</ContentType>
+  <ContentName>info2</ContentName>
+  <Fields>
+    <DisplayName>info2</DisplayName>
+    <Subtitle></Subtitle>
+    <RelatedImage />
+    <Header><![CDATA[]]></Header>
+    <Body><![CDATA[<p>This second example demonstrates the XSLT rendering to modify the output of the portlet. Just look at the properties of this portlet below, it uses a custom rendering file which create the same menu as above but order the items alphabetically.</p>
+<p>Just try to edit this renderer (<a href="/Explore.html#/Root/Global/renderers/SiteMenu/CustomMenu2.xslt" target="_blank">/Root/Global/renderers/SiteMenu/CustomMenu2.xslt</a>) with our source editor, and when you are done, reload this page to see the result!</p>]]></Body>
+    <Details><a href="" target="" title=""></a></Details>
+    <Language>English</Language>
+    <Keywords><![CDATA[]]></Keywords>
+    <Author></Author>
+    <ReviewDate>0001-01-01T00:00:00</ReviewDate>
+    <ArchiveDate>0001-01-01T00:00:00</ArchiveDate>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <Description><![CDATA[]]></Description>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate></Rate>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>FormItem</ContentType>
+  <ContentName>Contact_2010_08_11___10_18_28_3380000</ContentName>
+  <Fields>
+    <DisplayName>Contact_2010_08_03___06_38_48_8830139</DisplayName>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate></Rate>
+    <Name subType="ContentList">John Smith</Name>
+    <Email subType="ContentList">john@smith.com</Email>
+    <Phone subType="ContentList">+00123456789</Phone>
+    <ContactType subType="ContentList">Support</ContactType>
+    <Message subType="ContentList"><![CDATA[I have some problem...]]></Message>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

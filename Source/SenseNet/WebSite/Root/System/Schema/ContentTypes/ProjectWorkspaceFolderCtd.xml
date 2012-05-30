@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="ProjectWorkspaceFolder" parentType="Folder" handler="SenseNet.ContentRepository.Folder" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Project Workspace Folder</DisplayName>
+  <Description>This is the container type for Project Workspace.</Description>
+  <Icon>Folder</Icon>
+  <AllowedChildTypes>ProjectWorkspace</AllowedChildTypes>
+  <Fields />
+</ContentType>

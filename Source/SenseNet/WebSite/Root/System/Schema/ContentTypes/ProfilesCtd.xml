@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="Profiles" parentType="Folder" handler="SenseNet.ContentRepository.Folder" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Profiles</DisplayName>
+  <Description>This is the container type for profiles. Only a single instance is allowed at /Root/Profiles</Description>
+  <Icon>Folder</Icon>
+  <AllowedChildTypes>
+    ProfileDomain
+  </AllowedChildTypes>
+  <Fields>
+  </Fields>
+</ContentType>

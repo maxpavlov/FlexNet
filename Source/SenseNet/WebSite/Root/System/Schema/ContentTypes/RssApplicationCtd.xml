@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="RssApplication" parentType="Application" handler="SenseNet.Services.RssApplication" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>RSS application</DisplayName>
+	<Description>Generates RSS feed from a content</Description>
+	<Icon>Application</Icon>
+	<Fields />
+</ContentType>

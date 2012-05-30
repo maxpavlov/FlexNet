@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="Task" parentType="ListItem" handler="SenseNet.ContentRepository.Task" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Task</DisplayName>
+  <Description>A content type for defining tasks</Description>
+  <Icon>FormItem</Icon>
+  <Fields>
+    <Field name="Name" type="ShortText">
+      <Configuration>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="StartDate" type="DateTime">
+      <DisplayName>Start date</DisplayName>
+      <Configuration>
+        <DateTimeMode>DateAndTime</DateTimeMode>
+      </Configuration>
+    </Field>
+    <Field name="DueDate" type="DateTime">
+      <DisplayName>Due date</DisplayName>
+      <Configuration>
+        <DateTimeMode>DateAndTime</DateTimeMode>
+        <Compulsory>true</Compulsory>
+      </Configuration>
+    </Field>
+    <Field name="AssignedTo" type="Reference">
+      <DisplayName>Assigned to</DisplayName>
+      <Description>List of internal stakeholders</Description>
+      <Configuration>
+        <AllowMultiple>true</AllowMultiple>
+        <AllowedTypes>
+          <Type>User</Type>
+        </AllowedTypes>
+        <SelectionRoot>
+          <Path>/Root/IMS</Path>
+          <Path>/Root</Path>
+        </SelectionRoot>
+      </Configuration>
+    </Field>
+    <Field name="Priority" type="Choice">
+      <DisplayName>Priority</DisplayName>
+      <Configuration>
+        <AllowMultiple>false</AllowMultiple>
+        <AllowExtraValue>false</AllowExtraValue>
+        <Options>
+          <Option value="1">Urgent</Option>
+          <Option value="2" selected="true">Normal</Option>
+          <Option value="3">Not urgent</Option>
+        </Options>
+      </Configuration>
+    </Field>
+    <Field name="Status" type="Choice">
+      <DisplayName>Status</DisplayName>
+      <Configuration>
+        <AllowMultiple>false</AllowMultiple>
+        <AllowExtraValue>false</AllowExtraValue>
+        <Options>
+          <Option value="pending">Pending</Option>
+          <Option value="active" selected="true">Active</Option>
+          <Option value="completed">Completed</Option>
+          <Option value="deferred">Deferred</Option>
+          <Option value="waiting">Waiting</Option>
+        </Options>
+      </Configuration>
+    </Field>
+    <Field name="TaskCompletion" type="Integer">
+      <DisplayName>Completion</DisplayName>
+      <Description>Completion percentage of the task</Description>
+      <Configuration>
+        <ShowAsPercentage>true</ShowAsPercentage>
+        <MinValue>0</MinValue>
+        <MaxValue>100</MaxValue>
+      </Configuration>
+    </Field>
+    <Field name="RemainingDays" type="Integer">
+      <DisplayName>Remaining days</DisplayName>
+      <Description>Number of remaining days</Description>
+      <Indexing>
+        <Mode>No</Mode>
+      </Indexing>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <ReadOnly>true</ReadOnly>
+      </Configuration>
+    </Field>
+    <Field name="DueText" type="ShortText">
+      <DisplayName>DueText</DisplayName>
+      <Indexing>
+        <Mode>No</Mode>
+      </Indexing>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="DueCssClass" type="ShortText">
+      <DisplayName>DueCssClass</DisplayName>
+      <Indexing>
+        <Mode>No</Mode>
+      </Indexing>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+  </Fields>
+</ContentType>

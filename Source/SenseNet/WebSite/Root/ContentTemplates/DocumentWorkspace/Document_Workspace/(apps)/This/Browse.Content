@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Page</ContentType>
+  <ContentName>Browse</ContentName>
+  <Fields>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+    <SmartUrl></SmartUrl>
+    <PageTemplateNode>
+      <Path>/Root/Global/pagetemplates/sn-layout-intra.html</Path>
+    </PageTemplateNode>
+    <IsExternal>false</IsExternal>
+    <OuterUrl></OuterUrl>
+    <MetaTitle></MetaTitle>
+    <Keywords><![CDATA[]]></Keywords>
+    <MetaDescription><![CDATA[]]></MetaDescription>
+    <MetaAuthors></MetaAuthors>
+    <CustomMeta><![CDATA[]]></CustomMeta>
+    <Binary attachment="Browse.aspx" />
+    <PersonalizationSettings attachment="Browse.PersonalizationSettings" />
+    <DisplayName>Browse</DisplayName>
+        <Icon>browse</Icon>
+    <RequiredPermissions>2</RequiredPermissions>
+  </Fields>
+</ContentMetaData>

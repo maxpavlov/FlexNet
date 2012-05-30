@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="GoogleSitemap" parentType="Application" handler="SenseNet.ApplicationModel.Application" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Google Sitemap</DisplayName>
+  <Description>Google Sitemap Configuration</Description>
+  <Icon>File</Icon>
+  <Fields>
+    <Field name="Query" type="LongText">
+      <DisplayName>Query</DisplayName>
+      <Description>NodeQuery string. Leave empty for default settings.</Description>
+      <Indexing>
+        <Mode>No</Mode>
+      </Indexing>
+    </Field>
+    <Field name="ListHidden" type="Boolean">
+      <DisplayName>ListHidden</DisplayName>
+      <Description>Pages marked as Hidden and pages under hidden pages are listed if set</Description>
+    </Field>
+    <Field name="SiteUrl" type="ShortText">
+      <DisplayName>SiteUrl</DisplayName>
+      <Description>Url of site (i.e. "www.mysite.com", "www.mysite.com/mydir", etc.). Default is portalcontext's siteurl including requested directory.</Description>
+    </Field>
+  </Fields>
+</ContentType>

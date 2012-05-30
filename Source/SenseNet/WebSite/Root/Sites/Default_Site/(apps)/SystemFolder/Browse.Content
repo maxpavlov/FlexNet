@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Page</ContentType>
+  <ContentName>Browse</ContentName>
+  <Fields>
+    <DisplayName>Browse</DisplayName>
+    <Hidden>false</Hidden>
+    <PageTemplateNode>
+      <Path>/Root/Global/pagetemplates/sn-layout-dialog.html</Path>
+    </PageTemplateNode>
+    <Binary attachment="Browse.aspx" />
+    <PersonalizationSettings attachment="Browse.PersonalizationSettings" />
+    <Scenario>ListItem;ExploreActions</Scenario>
+    <Icon>browse</Icon>
+    <RequiredPermissions>2</RequiredPermissions>
+  </Fields>
+</ContentMetaData>

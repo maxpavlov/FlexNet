@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Page</ContentType>
+  <ContentName>Purge</ContentName>
+  <Fields>
+    <Hidden>false</Hidden>
+    <Index>4500</Index>
+    <SmartUrl></SmartUrl>
+    <PageTemplateNode>
+      <Path>/Root/Global/pagetemplates/sn-layout-dialog.html</Path>
+    </PageTemplateNode>
+    <IsExternal>false</IsExternal>
+    <OuterUrl></OuterUrl>
+    <MetaTitle></MetaTitle>
+    <Keywords><![CDATA[]]></Keywords>
+    <MetaDescription><![CDATA[]]></MetaDescription>
+    <MetaAuthors></MetaAuthors>
+    <CustomMeta><![CDATA[]]></CustomMeta>
+    <Binary attachment="Purge.aspx" />
+    <PersonalizationSettings attachment="Purge.PersonalizationSettings" />
+    <DisplayName>Empty Trash Bin</DisplayName>
+    <Disabled>false</Disabled>
+    <RequiredPermissions></RequiredPermissions>
+        <TrashDisabled>false</TrashDisabled>
+    <Icon>purge</Icon>
+  </Fields>
+</ContentMetaData>

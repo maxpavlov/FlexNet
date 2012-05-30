@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>CalendarEvent</ContentType>
+  <ContentName>Pellentesque</ContentName>
+  <Fields>
+    <DisplayName>Pellentesque</DisplayName>
+    <Lead><![CDATA[<p>Pellentesque semper rhoncus ante, nec sollicitudin arcu pretium gravida.  Donec non ligula eu quam posuere elementum ut non nibh. Maecenas  facilisis diam sed libero mattis sodales.</p>]]></Lead>
+    <Description><![CDATA[<p>Etiam tortor dui, venenatis nec dignissim posuere, porta nec nulla. Duis  vel tellus quis ante tempor tempus a sed mauris. Maecenas mollis rutrum  lectus, ac dictum nibh convallis sed. Nullam elementum vestibulum  lacinia. Nulla faucibus nunc vitae lectus porta suscipit congue nunc  aliquam. Nam ac purus eget velit porta dapibus quis at lacus. Nullam  turpis est, vehicula sed consectetur viverra, interdum quis neque.  Quisque placerat, est sit amet porta mattis, nisi leo varius enim, in  iaculis ante mi eu neque. Ut mattis congue nisi in dictum. Nunc  tincidunt arcu sed diam porttitor malesuada. In vitae turpis tortor,  ornare bibendum nunc. Praesent imperdiet, nunc tincidunt facilisis  eleifend, purus turpis porta quam, sed laoreet dolor eros at nisl.  Suspendisse eu massa lectus. Nam lectus nibh, blandit malesuada placerat  pretium, tempus vitae arcu. Sed velit erat, dignissim nec volutpat  porta, mattis id lorem. Ut metus dui, scelerisque eu sodales ut, aliquam  quis mi. Praesent blandit, dolor et lacinia gravida, dolor arcu varius  tortor, a consequat nulla erat ut lorem. Quisque velit dui, fermentum  vitae aliquet scelerisque, faucibus et mi. Lorem ipsum dolor sit amet,  consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur  adipiscing elit.</p>
+<p>Nullam dictum elit nec ligula egestas in iaculis nibh vehicula. Proin  massa nibh, vestibulum ac gravida sed, fringilla id tortor. Nulla  facilisi. Aliquam elementum semper augue nec fermentum. Nunc enim nulla,  placerat nec euismod sed, sollicitudin vel ipsum. Integer eu iaculis  neque. Vivamus semper, est semper tincidunt volutpat, leo sapien  imperdiet ante, eget varius nulla nisl et elit. Praesent venenatis odio  ut purus convallis vitae sodales nisi gravida.</p>]]></Description>
+    <StartDate>2010-08-16T14:15:00</StartDate>
+    <EndDate>2010-08-18T18:00:00</EndDate>
+    <AllDay>false</AllDay>
+    <Location>Maecenas facilisis</Location>
+    <Index>0</Index>
+    <Hidden>false</Hidden>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+        <VersioningMode>1</VersioningMode>
+    <InheritableVersioningMode>1</InheritableVersioningMode>
+    <ApprovingMode>1</ApprovingMode>
+    <InheritableApprovingMode>1</InheritableApprovingMode>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate></Rate>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

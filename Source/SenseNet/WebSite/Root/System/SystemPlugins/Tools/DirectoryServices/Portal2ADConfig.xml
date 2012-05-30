@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectoryServices>
+  <General>
+    <CreatedAdUsersDisabled>false</CreatedAdUsersDisabled>
+    <ADNameMaxLength>20</ADNameMaxLength>
+    <ADsAMAccountNameMaxLength>20</ADsAMAccountNameMaxLength>
+    <SaveClearTextPassword>false</SaveClearTextPassword>
+    <SyncEnabledState>false</SyncEnabledState>
+    <SyncUserName>true</SyncUserName>
+    <AllowRename>false</AllowRename>
+  </General>
+  <SyncTrees>
+    <SyncTree>
+      <AdPath>OU=MyOrg,DC=Nativ,DC=local</AdPath>
+      <PortalPath>/Root/IMS/NATIV/MyOrg</PortalPath>
+      <DomainIp>192.168.0.75</DomainIp>
+      <DeletedADObjectsPath>CN=Deleted,OU=MyOrg,DC=Nativ,DC=local</DeletedADObjectsPath>
+    </SyncTree>
+  </SyncTrees>
+  <PropertyMappings>
+    <PropertyMapping>
+      <AdProperty unique="true">mail</AdProperty>
+      <PortalProperty unique="true">Email</PortalProperty>
+    </PropertyMapping>
+    <PropertyMapping separator=",">
+      <AdProperty>givenName</AdProperty>
+      <AdProperty>sn</AdProperty>
+      <AdProperty maxLength="6">initials</AdProperty>
+      <PortalProperty>FullName</PortalProperty>
+    </PropertyMapping>
+  </PropertyMappings>
+</DirectoryServices>

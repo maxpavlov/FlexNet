@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Voting</ContentType>
+  <ContentName>test_voting__choice__dropdown</ContentName>
+  <Fields>
+    <Description><![CDATA[]]></Description>
+        <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <LandingPage>
+      <Path>/Root/System/SystemPlugins/ListView/Voting/aftersubmitcontent</Path>
+    </LandingPage>
+    <LandingPageContentView />
+    <InvalidSurveyPage>
+      <Path>/Root/System/SystemPlugins/ListView/Voting/invalidsurveycontent</Path>
+    </InvalidSurveyPage>
+    <ResultPageContentView>
+      <Path>/Root/System/SystemPlugins/ListView/Voting/VotingResult.ascx</Path>
+    </ResultPageContentView>
+    <VotingPageContentView>
+      <Path>/Root/System/SystemPlugins/ListView/Voting/VotingQuestion.ascx</Path>
+    </VotingPageContentView>
+    <CannotSeeResultContentView>
+      <Path>/Root/System/SystemPlugins/ListView/Voting/cannotseeresultcontent</Path>
+    </CannotSeeResultContentView>
+    <ContentListDefinition><![CDATA[<ContentListDefinition xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentListDefinition"><Fields><ContentListField name="#ChoiceFieldSetting" type="Choice"><DisplayName>Do you have a nice day?</DisplayName><Description></Description><Configuration><Compulsory>true</Compulsory><VisibleBrowse>Show</VisibleBrowse><VisibleEdit>Show</VisibleEdit><VisibleNew>Show</VisibleNew><FieldIndex>2147483647</FieldIndex><AllowMultiple>false</AllowMultiple><AllowExtraValue>false</AllowExtraValue><Options><Option value="1">Yes</Option><Option value="0">No</Option></Options><DisplayChoices>DropDown</DisplayChoices></Configuration></ContentListField></Fields></ContentListDefinition>]]></ContentListDefinition>
+    <InheritableVersioningMode>1</InheritableVersioningMode>
+    <InheritableApprovingMode>1</InheritableApprovingMode>
+    <Index>0</Index>
+    <EnableLifespan>false</EnableLifespan>
+    <EnableNotificationMail>false</EnableNotificationMail>
+    <Evaluators />
+    <EnableMoreFilling>true</EnableMoreFilling>
+    <IsResultVisibleBefore>true</IsResultVisibleBefore>
+    <DisplayName>Test Voting - Choice - DropDown</DisplayName>
+    <Hidden>false</Hidden>
+    <VersioningMode>1</VersioningMode>
+    <ApprovingMode>1</ApprovingMode>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="WsJournal">
+  <DataContextMoniker Name="/WsJournalDataContext" />
+  <nestedChildShapes>
+    <classShape Id="4bf6d6ba-8b8b-494a-9937-7b709dc23e88" absoluteBounds="0.625, 0.5, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/WsJournalDataContext/JournalItem" />
+      <nestedChildShapes>
+        <elementListCompartment Id="dba3bf39-748f-45c9-a105-648c3e28261a" absoluteBounds="0.64000000000000012, 0.96, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

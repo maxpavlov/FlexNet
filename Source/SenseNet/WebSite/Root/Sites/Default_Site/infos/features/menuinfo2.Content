@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>WebContentDemo</ContentType>
+  <ContentName>menuinfo2</ContentName>
+  <Fields>
+    <DisplayName>info2</DisplayName>
+    <Subtitle></Subtitle>
+    <RelatedImage />
+    <Header><![CDATA[]]></Header>
+    <Body>
+      <![CDATA[<div class="sn-infobox"><p>This second example demonstrates the use of Xslt rendering in the site menu portlet. This second menu uses a custom <em>.xslt</em> renderer
+      to render similar html as the native output, but with the items ordered alphabetically.</p>
+      <ul>
+      <li>The <em>.xslt</em> renderer can be found under <em><a href="/Explore.html#/Root/Global/renderers/SiteMenu/CustomMenu2.xslt">/Root/Global/renderers/SiteMenu/CustomMenu2.xslt</a></em></li>
+      </ul></div>]]></Body>
+    <Details><a href="" target="" title=""></a></Details>
+    <Language>English</Language>
+    <Keywords><![CDATA[]]></Keywords>
+    <Author></Author>
+    <ReviewDate>0001-01-01T00:00:00</ReviewDate>
+    <ArchiveDate>0001-01-01T00:00:00</ArchiveDate>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <Description><![CDATA[]]></Description>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate>0.00|0|0|0|0|0</Rate>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

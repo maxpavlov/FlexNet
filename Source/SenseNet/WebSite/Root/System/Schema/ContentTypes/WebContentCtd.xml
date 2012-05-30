@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="WebContent" parentType="ListItem" handler="SenseNet.ContentRepository.GenericContent" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Web Content (structured web content)</DisplayName>
+	<Description>Web Content is the base type for structured web contents.</Description>
+	<Icon>WebContent</Icon>
+	<Fields>
+		<Field name="ReviewDate" type="DateTime">
+			<DisplayName>Review date</DisplayName>
+			<Description>Review date</Description>
+			<Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <DateTimeMode>DateAndTime</DateTimeMode>
+      </Configuration>
+		</Field>
+		<Field name="ArchiveDate" type="DateTime">
+			<DisplayName>Archive date</DisplayName>
+			<Description>Archive date</Description>
+			<Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <DateTimeMode>DateAndTime</DateTimeMode>
+      </Configuration>
+		</Field>
+    <Field name="EnableLifespan" type="Boolean">
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="ValidFrom" type="DateTime">
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="ValidTill" type="DateTime">
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+	</Fields>
+</ContentType>
+

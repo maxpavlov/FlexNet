@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>ListView</ContentType>
+  <ContentName>Default.ascx</ContentName>
+  <Fields>
+    <Template>
+      <Path>/Root/System/SystemPlugins/ListView/Templates/ListView.xslt</Path>
+    </Template>
+    <Columns>
+      <![CDATA[<Columns>
+      <Column title="DisplayName" fullName="GenericContent.DisplayName" bindingName="GenericContent_DisplayName" index="2" modifiers="main" />
+      <Column title="Due date" fullName="Task.DueDate" bindingName="Task_DueDate" index="3" />
+      <Column title="Priority" fullName="Task.Priority" bindingName="Task_Priority" index="4" />
+      <Column title="Status" fullName="Task.Status" bindingName="Task_Status" index="5" />
+    </Columns>]]>
+    </Columns>
+    <SortBy>DueDate ASC</SortBy>
+    <Flat>false</Flat>
+    <DisplayName>Default</DisplayName>
+  </Fields>
+</ContentMetaData>

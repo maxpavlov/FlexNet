@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="PortletCategory" parentType="Folder" handler="SenseNet.ContentRepository.Folder" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>PortletCategory</DisplayName>
+  <Description>Organize portlets under categories</Description>
+  <Icon>Folder</Icon>
+  <AllowedChildTypes>
+    Portlet,Image
+  </AllowedChildTypes>
+  <Fields>
+    <Field name="Name" type="ShortText">
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="DisplayName" type="ShortText">
+      <DisplayName>Display Name</DisplayName>
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Description" type="LongText">
+      <DisplayName>Description of category</DisplayName>
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Hidden" type="Boolean">
+      <DisplayName>Hidden</DisplayName>
+      <Description>Doesn't show up in Add portlet dialog if checked.</Description>
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+  </Fields>
+</ContentType>

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="FieldControlTemplate" parentType="File" handler="SenseNet.ContentRepository.File" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>FieldControlTemplate</DisplayName>
+  <Description>A type for FieldControl templates.</Description>
+  <Icon>Content</Icon>
+  <Fields>
+  </Fields>
+</ContentType>

@@ -1,0 +1,294 @@
+/**** ICONS ******/
+.sn-icon-small {
+	background-image: url(../images/icons/16/_default.png) !important;
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	background-color:transparent;
+	width:16px;
+	height:16px !important;
+}
+
+.sn-icon-big {
+	background-image: url(../images/icons/32/_default.png) !important;
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	background-color:transparent;
+	width:32px;
+	height:32px !important;
+}
+
+.sn-icon-button  {
+    display: inline-block; overflow: hidden; 
+    font-size:0;
+    vertical-align: middle;
+    margin-top: -3px;
+    cursor:pointer;
+}
+
+.sn-icon-left  {
+    float:left; display: inline;
+    margin: 0 10px 0 0;
+}
+
+.icon {
+    padding-left: 18px;
+    background-repeat: no-repeat;
+    background-position: 1px center;
+}
+
+.snIconBig_Search			{ background-image: url(../images/icons/32/search.png) !important; }
+.snIconSmall_Search			{ background-image: url(../images/icons/16/search.png) !important; }
+.snIconBig_Folders			{ background-image: url(../images/icons/32/folders.png) !important; }
+.snIconSmall_Folders		{ background-image: url(../images/icons/16/folders.png) !important; }
+.snIconSmall_Move			{ background-image: url(../images/icons/16/move.png) !important; }
+.snIconSmall_Copy			{ background-image: url(../images/icons/16/copy.png) !important; }
+.snIconSmall_Delete			{ background-image: url(../images/icons/16/delete.png) !important; }
+.snIconSmall_Edit			{ background-image: url(../images/icons/16/edit.png) !important; }
+.snIconSmall_Actions		{ background-image: url(../images/icons/16/actions.png) !important; }
+.snIconSmall_Views			{ background-image: url(../images/icons/16/views.png) !important; }
+.snIconSmall_ViewsList		{ background-image: url(../images/icons/16/viewslist.png) !important; }
+.snIconSmall_ViewsPreview	{ background-image: url(../images/icons/16/viewspreview.png) !important; }
+.snIconSmall_CheckedOut		{ background-image: url(../images/icons/16/checkedout.png) !important; }
+.snIconSmall_CheckedIn		{ background-image: url(../images/icons/16/checkedin.png) !important; }
+.snIconSmall_Checkbox_Out	{ background-image: url(../images/icons/16/checkbox-out.png) !important; }
+.snIconSmall_Checkbox_In	{ background-image: url(../images/icons/16/checkbox-in.png) !important; }
+.snIconSmall_Add	        { background-image: url(../images/icons/16/addfield.png) !important; }
+
+.snIconBig_Security { background-image: url(../images/icons/32/security.png) !important; }
+.snIconSmall_Security { background-image: url(../images/icons/16/security.png) !important; }
+.snIconBig_Version { background-image: url(../images/icons/32/version.png) !important; }
+.snIconSmall_Version { background-image: url(../images/icons/16/version.png) !important; }
+.snIconBig_Download { background-image: url(../images/icons/32/download.png) !important; }
+.snIconSmall_Download { background-image: url(../images/icons/16/download.png) !important; }
+.snIconBig_Upload { background-image: url(../images/icons/32/upload.png) !important; }
+.snIconSmall_Upload { background-image: url(../images/icons/16/upload.png) !important; }
+.snIconBig_RSS { background-image: url(../images/icons/32/rss.png) !important; }
+.snIconSmall_RSS { background-image: url(../images/icons/16/rss.png) !important; }
+.snIconBig_Document { background-image: url(../images/icons/32/document.png) !important; }
+.snIconSmall_Document { background-image: url(../images/icons/16/document.png) !important; }
+.snIconBig_error { background-image: url(../images/icons/32/error.png) !important; }
+.snIconSmall_error { background-image: url(../images/icons/16/error.png) !important; }
+.snIconBig_warning { background-image: url(../images/icons/32/warning.png) !important; }
+.snIconSmall_warning { background-image: url(../images/icons/16/warning.png) !important; }
+.snIconBig_trashbin { background-image: url(../images/icons/32/trash.png) !important; }
+.snIconSmall_trashbin { background-image: url(../images/icons/16/trash.png) !important; }
+
+.snIconBig_Default { background-image: url(../images/icons/32/_default.png) !important; }
+.snIconBigNew_Default { background-image: url(../images/icons/32/_default.png) !important; }
+.snIconBigEdit_Default { background-image: url(../images/icons/32/_default.png) !important; }
+.snIconSmall_Default { background-image: url(../images/icons/16/_default.png) !important; }
+.snIconSmallNew_Default { background-image: url(../images/icons/16/_default.png) !important; }
+.snIconSmallEdit_Default { background-image: url(../images/icons/16/_default.png) !important; }
+
+.snIconBig_Car { background-image: url(../images/icons/32/car.png) !important; }
+.snIconBigNew_Car { background-image: url(../images/icons/32/newcar.png) !important; }
+.snIconBigEdit_Car { background-image: url(../images/icons/32/editcar.png) !important; }
+.snIconSmall_Car { background-image: url(../images/icons/16/car.png) !important; }
+.snIconSmallNew_Car { background-image: url(../images/icons/16/newcar.png) !important; }
+.snIconSmallEdit_Car { background-image: url(../images/icons/16/editcar.png) !important; }
+
+.snIconBig_ContentType { background-image: url(../images/icons/32/contenttype.png) !important; }
+.snIconBigNew_ContentType { background-image: url(../images/icons/32/newcontenttype.png) !important; }
+.snIconBigEdit_ContentType { background-image: url(../images/icons/32/editcontenttype.png) !important; }
+.snIconSmall_ContentType { background-image: url(../images/icons/16/contenttype.png) !important; }
+.snIconSmallNew_ContentType { background-image: url(../images/icons/16/newcontenttype.png) !important; }
+.snIconSmallEdit_ContentType { background-image: url(../images/icons/16/editcontenttype.png) !important; }
+
+.snIconBig_ContentView { background-image: url(../images/icons/32/contentview.png) !important; }
+.snIconBigNew_ContentView { background-image: url(../images/icons/32/newcontentview.png) !important; }
+.snIconBigEdit_ContentView { background-image: url(../images/icons/32/editcontentview.png) !important; }
+.snIconSmall_ContentView { background-image: url(../images/icons/16/contentview.png) !important; }
+.snIconSmallNew_ContentView { background-image: url(../images/icons/16/newcontentview.png) !important; }
+.snIconSmallEdit_ContentView { background-image: url(../images/icons/16/editcontentview.png) !important; }
+
+.snIconBig_Content { background-image: url(../images/icons/32/content.png) !important; }
+.snIconBigNew_Content { background-image: url(../images/icons/32/newcontent.png) !important; }
+.snIconBigEdit_Content { background-image: url(../images/icons/32/editcontent.png) !important; }
+.snIconSmall_Content { background-image: url(../images/icons/16/content.png) !important; }
+.snIconSmallNew_Content { background-image: url(../images/icons/16/newcontent.png) !important; }
+.snIconSmallEdit_Content { background-image: url(../images/icons/16/editcontent.png) !important; }
+
+.snIconBig_WebContent { background-image: url(../images/icons/32/webcontent.png) !important; }
+.snIconBigNew_WebContent { background-image: url(../images/icons/32/newwebcontent.png) !important; }
+.snIconBigEdit_WebContent { background-image: url(../images/icons/32/editwebcontent.png) !important; }
+.snIconSmall_WebContent { background-image: url(../images/icons/16/webcontent.png) !important; }
+.snIconSmallNew_WebContent { background-image: url(../images/icons/16/newwebcontent.png) !important; }
+.snIconSmallEdit_WebContent { background-image: url(../images/icons/16/editwebcontent.png) !important; }
+
+.snIconBig_Document { background-image: url(../images/icons/32/document.png) !important; }
+.snIconBigNew_Document { background-image: url(../images/icons/32/newdocument.png) !important; }
+.snIconBigEdit_Document { background-image: url(../images/icons/32/editdocument.png) !important; }
+.snIconSmall_Document { background-image: url(../images/icons/16/document.png) !important; }
+.snIconSmallNew_Document { background-image: url(../images/icons/16/newdocument.png) !important; }
+.snIconSmallEdit_Document { background-image: url(../images/icons/16/editdocument.png) !important; }
+
+.snIconBig_Domain { background-image: url(../images/icons/32/domain.png) !important; }
+.snIconBigNew_Domain { background-image: url(../images/icons/32/newdomain.png) !important; }
+.snIconBigEdit_Domain { background-image: url(../images/icons/32/editdomain.png) !important; }
+.snIconSmall_Domain { background-image: url(../images/icons/16/domain.png) !important; }
+.snIconSmallNew_Domain { background-image: url(../images/icons/16/newdomain.png) !important; }
+.snIconSmallEdit_Domain { background-image: url(../images/icons/16/editdomain.png) !important; }
+
+.snIconBig_File { background-image: url(../images/icons/32/file.png) !important; }
+.snIconBigNew_File { background-image: url(../images/icons/32/newfile.png) !important; }
+.snIconBigEdit_File { background-image: url(../images/icons/32/editfile.png) !important; }
+.snIconSmall_File { background-image: url(../images/icons/16/file.png) !important; }
+.snIconSmallNew_File { background-image: url(../images/icons/16/newfile.png) !important; }
+.snIconSmallEdit_File { background-image: url(../images/icons/16/editfile.png) !important; }
+
+.snIconBig_Folder { background-image: url(../images/icons/32/folder.png) !important; }
+.snIconBigNew_Folder { background-image: url(../images/icons/32/newfolder.png) !important; }
+.snIconBigEdit_Folder { background-image: url(../images/icons/32/editfolder.png) !important; }
+.snIconSmall_Folder { background-image: url(../images/icons/16/folder.png) !important; }
+.snIconSmallNew_Folder { background-image: url(../images/icons/16/newfolder.png) !important; }
+.snIconSmallEdit_Folder { background-image: url(../images/icons/16/editfolder.png) !important; }
+
+.snIconBig_Group { background-image: url(../images/icons/32/group.png) !important; }
+.snIconBigNew_Group { background-image: url(../images/icons/32/newgroup.png) !important; }
+.snIconBigEdit_Group { background-image: url(../images/icons/32/editgroup.png) !important; }
+.snIconSmall_Group { background-image: url(../images/icons/16/group.png) !important; }
+.snIconSmallNew_Group { background-image: url(../images/icons/16/newgroup.png) !important; }
+.snIconSmallEdit_Group { background-image: url(../images/icons/16/editgroup.png) !important; }
+
+.snIconBig_MasterPage { background-image: url(../images/icons/32/masterpage.png) !important; }
+.snIconBigNew_MasterPage { background-image: url(../images/icons/32/newmasterpage.png) !important; }
+.snIconBigEdit_MasterPage { background-image: url(../images/icons/32/editmasterpage.png) !important; }
+.snIconSmall_MasterPage { background-image: url(../images/icons/16/masterpage.png) !important; }
+.snIconSmallNew_MasterPage { background-image: url(../images/icons/16/newmasterpage.png) !important; }
+.snIconSmallEdit_MasterPage { background-image: url(../images/icons/16/editmasterpage.png) !important; }
+
+.snIconBig_OrgUnit { background-image: url(../images/icons/32/orgunit.png) !important; }
+.snIconBigNew_OrgUnit { background-image: url(../images/icons/32/neworgunit.png) !important; }
+.snIconBigEdit_OrgUnit { background-image: url(../images/icons/32/editorgunit.png) !important; }
+.snIconSmall_OrgUnit { background-image: url(../images/icons/16/orgunit.png) !important; }
+.snIconSmallNew_OrgUnit { background-image: url(../images/icons/16/neworgunit.png) !important; }
+.snIconSmallEdit_OrgUnit { background-image: url(../images/icons/16/editorgunit.png) !important; }
+
+.snIconBig_Page { background-image: url(../images/icons/32/page.png) !important; }
+.snIconBigNew_Page { background-image: url(../images/icons/32/newpage.png) !important; }
+.snIconBigEdit_Page { background-image: url(../images/icons/32/editpage.png) !important; }
+.snIconSmall_Page { background-image: url(../images/icons/16/page.png) !important; }
+.snIconSmallNew_Page { background-image: url(../images/icons/16/newpage.png) !important; }
+.snIconSmallEdit_Page { background-image: url(../images/icons/16/editpage.png) !important; }
+
+.snIconBig_PageTemplate { background-image: url(../images/icons/32/pagetemplate.png) !important; }
+.snIconBigNew_PageTemplate { background-image: url(../images/icons/32/newpagetemplate.png) !important; }
+.snIconBigEdit_PageTemplate { background-image: url(../images/icons/32/editpagetemplate.png) !important; }
+.snIconSmall_PageTemplate { background-image: url(../images/icons/16/pagetemplate.png) !important; }
+.snIconSmallNew_PageTemplate { background-image: url(../images/icons/16/newpagetemplate.png) !important; }
+.snIconSmallEdit_PageTemplate { background-image: url(../images/icons/16/editpagetemplate.png) !important; }
+
+.snIconBig_Site { background-image: url(../images/icons/32/site.png) !important; }
+.snIconBigNew_Site { background-image: url(../images/icons/32/newsite.png) !important; }
+.snIconBigEdit_Site { background-image: url(../images/icons/32/editsite.png) !important; }
+.snIconSmall_Site { background-image: url(../images/icons/16/site.png) !important; }
+.snIconSmallNew_Site { background-image: url(../images/icons/16/newsite.png) !important; }
+.snIconSmallEdit_Site { background-image: url(../images/icons/16/editsite.png) !important; }
+
+.snIconBig_User { background-image: url(../images/icons/32/user.png) !important; }
+.snIconBigNew_User { background-image: url(../images/icons/32/newuser.png) !important; }
+.snIconBigEdit_User { background-image: url(../images/icons/32/edituser.png) !important; }
+.snIconSmall_User { background-image: url(../images/icons/16/user.png) !important; }
+.snIconSmallNew_User { background-image: url(../images/icons/16/newuser.png) !important; }
+.snIconSmallEdit_User { background-image: url(../images/icons/16/edituser.png) !important; }
+
+.snIconBig_CrawlSet { background-image: url(../images/icons/32/crawlset.png) !important; }
+.snIconBigNew_CrawlSet { background-image: url(../images/icons/32/newcrawlset.png) !important; }
+.snIconBigEdit_CrawlSet { background-image: url(../images/icons/32/editcrawlset.png) !important; }
+.snIconSmall_CrawlSet { background-image: url(../images/icons/16/crawlset.png) !important; }
+.snIconSmallNew_CrawlSet { background-image: url(../images/icons/16/newcrawlset.png) !important; }
+.snIconSmallEdit_CrawlSet { background-image: url(../images/icons/16/editcrawlset.png) !important; }
+
+.snIconBig_Form { background-image: url(../images/icons/32/form.png) !important; }
+.snIconBigNew_Form { background-image: url(../images/icons/32/newform.png) !important; }
+.snIconBigEdit_Form { background-image: url(../images/icons/32/editform.png) !important; }
+.snIconSmall_Form { background-image: url(../images/icons/16/form.png) !important; }
+.snIconSmallNew_Form { background-image: url(../images/icons/16/newform.png) !important; }
+.snIconSmallEdit_Form { background-image: url(../images/icons/16/editform.png) !important; }
+
+.snIconBig_FormItem { background-image: url(../images/icons/32/formitem.png) !important; }
+.snIconBigNew_FormItem { background-image: url(../images/icons/32/newformitem.png) !important; }
+.snIconBigEdit_FormItem { background-image: url(../images/icons/32/editformitem.png) !important; }
+.snIconSmall_FormItem { background-image: url(../images/icons/16/formitem.png) !important; }
+.snIconSmallNew_FormItem { background-image: url(../images/icons/16/newformitem.png) !important; }
+.snIconSmallEdit_FormItem { background-image: url(../images/icons/16/editformitem.png) !important; }
+
+.snIconBig_ImageGallery { background-image: url(../images/icons/32/gallery.png) !important; }
+.snIconBigNew_ImageGallery { background-image: url(../images/icons/32/newgallery.png) !important; }
+.snIconBigEdit_ImageGallery { background-image: url(../images/icons/32/editgallery.png) !important; }
+.snIconSmall_ImageGallery { background-image: url(../images/icons/16/gallery.png) !important; }
+.snIconSmallNew_ImageGallery { background-image: url(../images/icons/16/newgallery.png) !important; }
+.snIconSmallEdit_ImageGallery { background-image: url(../images/icons/16/editgallery.png) !important; }
+
+.snIconBig_Image { background-image: url(../images/icons/32/image.png) !important; }
+.snIconBigNew_Image { background-image: url(../images/icons/32/newimage.png) !important; }
+.snIconBigEdit_Image { background-image: url(../images/icons/32/editimage.png) !important; }
+.snIconSmall_Image { background-image: url(../images/icons/16/image.png) !important; }
+.snIconSmallNew_Image { background-image: url(../images/icons/16/newimage.png) !important; }
+.snIconSmallEdit_Image { background-image: url(../images/icons/16/editimage.png) !important; }
+
+.snIconBig_WordDocument { background-image: url(../images/icons/32/word.png) !important; }
+.snIconBigNew_WordDocument { background-image: url(../images/icons/32/newword.png) !important; }
+.snIconBigEdit_WordDocument { background-image: url(../images/icons/32/editword.png) !important; }
+.snIconSmall_WordDocument { background-image: url(../images/icons/16/word.png) !important; }
+.snIconSmallNew_WordDocument { background-image: url(../images/icons/16/newword.png) !important; }
+.snIconSmallEdit_WordDocument { background-image: url(../images/icons/16/editword.png) !important; }
+
+.snIconBig_ExcelDocument { background-image: url(../images/icons/32/excel.png) !important; }
+.snIconBigNew_ExcelDocument { background-image: url(../images/icons/32/newexcel.png) !important; }
+.snIconBigEdit_ExcelDocument { background-image: url(../images/icons/32/editexcel.png) !important; }
+.snIconSmall_ExcelDocument { background-image: url(../images/icons/16/excel.png) !important; }
+.snIconSmallNew_ExcelDocument { background-image: url(../images/icons/16/newexcel.png) !important; }
+.snIconSmallEdit_ExcelDocument { background-image: url(../images/icons/16/editexcel.png) !important; }
+
+.snIconBig_PowerPointDocument { background-image: url(../images/icons/32/powerpoint.png) !important; }
+.snIconBigNew_PowerPointDocument { background-image: url(../images/icons/32/newpowerpoint.png) !important; }
+.snIconBigEdit_PowerPointDocument { background-image: url(../images/icons/32/editpowerpoint.png) !important; }
+.snIconSmall_PowerPointDocument { background-image: url(../images/icons/16/powerpoint.png) !important; }
+.snIconSmallNew_PowerPointDocument { background-image: url(../images/icons/16/newpowerpoint.png) !important; }
+.snIconSmallEdit_PowerPointDocument { background-image: url(../images/icons/16/editpowerpoint.png) !important; }
+
+.snIconBig_PDFDocument { background-image: url(../images/icons/32/acrobat.png) !important; }
+.snIconBigNew_PDFDocument { background-image: url(../images/icons/32/newacrobat.png) !important; }
+.snIconBigEdit_PDFDocument { background-image: url(../images/icons/32/editacrobat.png) !important; }
+.snIconSmall_PDFDocument { background-image: url(../images/icons/16/acrobat.png) !important; }
+.snIconSmallNew_PDFDocument { background-image: url(../images/icons/16/newacrobat.png) !important; }
+.snIconSmallEdit_PDFDocument { background-image: url(../images/icons/16/editacrobat.png) !important; }
+
+.snIconBig_ContentList { background-image: url(../images/icons/32/contentlist.png) !important; }
+.snIconBigNew_ContentList { background-image: url(../images/icons/32/newcontentlist.png) !important; }
+.snIconBigEdit_ContentList { background-image: url(../images/icons/32/editcontentlist.png) !important; }
+.snIconSmall_ContentList { background-image: url(../images/icons/16/contentlist.png) !important; }
+.snIconSmallNew_ContentList { background-image: url(../images/icons/16/newcontentlist.png) !important; }
+.snIconSmallEdit_ContentList { background-image: url(../images/icons/16/editcontentlist.png) !important; }
+
+.snIconBig_PubReg { background-image: url(../images/icons/32/pubreg.png) !important; }
+.snIconBigNew_PubReg { background-image: url(../images/icons/32/newpubreg.png) !important; }
+.snIconBigEdit_PubReg { background-image: url(../images/icons/32/editpubreg.png) !important; }
+.snIconSmall_PubReg { background-image: url(../images/icons/16/pubreg.png) !important; }
+.snIconSmallNew_PubReg { background-image: url(../images/icons/16/newpubreg.png) !important; }
+.snIconSmallEdit_PubReg { background-image: url(../images/icons/16/editpubreg.png) !important; }
+
+.snIconBig_RegisteredUser { background-image: url(../images/icons/32/registereduser.png) !important; }
+.snIconBigNew_RegisteredUser { background-image: url(../images/icons/32/newregistereduser.png) !important; }
+.snIconBigEdit_RegisteredUser { background-image: url(../images/icons/32/editregistereduser.png) !important; }
+.snIconSmall_RegisteredUser { background-image: url(../images/icons/16/registereduser.png) !important; }
+.snIconSmallNew_RegisteredUser { background-image: url(../images/icons/16/newregistereduser.png) !important; }
+.snIconSmallEdit_RegisteredUser { background-image: url(../images/icons/16/editregistereduser.png) !important; }
+
+.snIconBig_Resources { background-image: url(../images/icons/32/resource.png) !important; }
+.snIconBigNew_Resources { background-image: url(../images/icons/32/newresource.png) !important; }
+.snIconBigEdit_Resources { background-image: url(../images/icons/32/editresource.png) !important; }
+.snIconSmall_Resources { background-image: url(../images/icons/16/resource.png) !important; }
+.snIconSmallNew_Resources { background-image: url(../images/icons/16/newresource.png) !important; }
+.snIconSmallEdit_Resources { background-image: url(../images/icons/16/editresource.png) !important; }
+
+.snIconBig_SmartFolder { background-image: url(../images/icons/32/smartfolder.png) !important; }
+.snIconBigNew_SmartFolder { background-image: url(../images/icons/32/newsmartfolder.png) !important; }
+.snIconBigEdit_SmartFolder { background-image: url(../images/icons/32/editsmartfolder.png) !important; }
+.snIconSmall_SmartFolder { background-image: url(../images/icons/16/smartfolder.png) !important; }
+.snIconSmallNew_SmartFolder { background-image: url(../images/icons/16/newsmartfolder.png) !important; }
+.snIconSmallEdit_SmartFolder { background-image: url(../images/icons/16/editsmartfolder.png) !important; }
+
+.snIconSmall_MoveUp { background-image: url(../images/icons/16/updown.png) !important; }
+.snIconSmall_MoveDown { background: url(../images/icons/16/updown.png) 16px 0px !important; }

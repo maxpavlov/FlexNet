@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" CompilationMode="Never" MasterPageFile="~/Root/Global/pagetemplates/sn-iframedialogupload.Master" %>

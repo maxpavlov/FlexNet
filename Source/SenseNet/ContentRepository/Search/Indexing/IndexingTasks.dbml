@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SenseNetContentRepository" EntityNamespace="SenseNet.ContentRepository.Search.Indexing" ContextNamespace="SenseNet.ContentRepository.Search.Indexing" Class="IndexingTasksDataContext" Modifier="Abstract" Serialization="Unidirectional" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="dbo.IndexingActivity" Member="IndexingActivities">
+    <Type Name="IndexingActivity">
+      <Column Name="IndexingActivityId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IndexingTaskId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ActivityType" Type="IndexingActivityType" DbType="VarChar(50) NOT NULL" CanBeNull="true" />
+      <Column Name="NodeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="VersionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IsPublicValue" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsLastPublicValue" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsLastDraftValue" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Path" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="VersionTimestamp" Type="System.Int64" DbType="bigint" CanBeNull="true" />
+      <Column Name="Hash" Type="System.Data.Linq.Binary" DbType="varbinary(50)" CanBeNull="true" />
+      <Association Name="IndexingTask_IndexingActivity" Member="IndexingTask" ThisKey="IndexingTaskId" OtherKey="IndexingTaskId" Type="IndexingTask" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.IndexingTask" Member="IndexingTasks">
+    <Type Name="IndexingTask">
+      <Column Name="IndexingTaskId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Comment" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="CreationDate" AutoSync="OnInsert" Type="System.DateTime" DbType="DateTime NOT NULL" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Creator" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="IndexingTask_IndexingActivity" Member="IndexingActivities" ThisKey="IndexingTaskId" OtherKey="IndexingTaskId" Type="IndexingActivity" />
+    </Type>
+  </Table>
+</Database>

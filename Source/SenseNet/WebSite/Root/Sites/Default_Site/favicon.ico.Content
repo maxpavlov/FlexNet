@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Image</ContentType>
+  <ContentName>favicon.ico</ContentName>
+  <Fields>
+    <Binary attachment="favicon.ico" />
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

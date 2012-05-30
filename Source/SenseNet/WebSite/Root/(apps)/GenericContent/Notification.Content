@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Page</ContentType>
+  <ContentName>Notification</ContentName>
+  <Fields>
+    <PageTemplateNode>
+      <Path>/Root/Global/pagetemplates/sn-layout-dialog.html</Path>
+    </PageTemplateNode>
+    <Hidden>false</Hidden>
+    <Index>5000</Index>
+    <SmartUrl></SmartUrl>
+    <IsExternal>false</IsExternal>
+    <OuterUrl></OuterUrl>
+    <MetaTitle></MetaTitle>
+    <Keywords><![CDATA[]]></Keywords>
+    <MetaDescription><![CDATA[]]></MetaDescription>
+    <MetaAuthors></MetaAuthors>
+    <CustomMeta><![CDATA[]]></CustomMeta>
+    <Binary attachment="Notification.aspx" />
+    <PersonalizationSettings attachment="Notification.PersonalizationSettings" />
+    <DisplayName>Set Notification</DisplayName>
+    <Description><![CDATA[]]></Description>
+    <Scenario>ListItem;ListActions;WorkspaceActions</Scenario>
+    <ActionTypeName></ActionTypeName>
+    <IsModal>false</IsModal>
+    <Disabled>false</Disabled>
+    <Clear>false</Clear>
+    <Icon>notification</Icon>
+    <StyleHint></StyleHint>
+    <RequiredPermissions></RequiredPermissions>
+    <DeepPermissionCheck>false</DeepPermissionCheck>
+    <IncludeBackUrl>0</IncludeBackUrl>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+    <CheckInComments><![CDATA[]]></CheckInComments>
+  </Fields>
+  <Permissions>
+    <Clear />
+    <Identity path="/Root/IMS/BuiltIn/Portal/IdentifiedUsers">
+      <See>Allow</See>
+      <Open>Allow</Open>
+      <RunApplication>Allow</RunApplication>
+    </Identity>
+  </Permissions>
+</ContentMetaData>

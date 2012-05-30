@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>User</ContentType>
+  <ContentName>Admin</ContentName>
+  <Fields>
+    <Enabled>true</Enabled>
+    <FullName>Admin</FullName>
+    <Password>
+      <Text>admin</Text>
+    </Password>
+    <Index>0</Index>
+    <ImageRef>
+      <Path>/Root/IMS/BuiltIn/Portal/Admin/Admin.png</Path>
+    </ImageRef>
+  </Fields>
+</ContentMetaData>

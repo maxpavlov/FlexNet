@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>DocumentLibrary</ContentType>
+  <ContentName>Document_Library</ContentName>
+  <Fields>
+    <ContentListDefinition><![CDATA[<ContentListDefinition xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentListDefinition"><DisplayName>Document library</DisplayName><Description>Document library</Description><Fields></Fields></ContentListDefinition>]]></ContentListDefinition>
+    <DefaultView>Default.ascx</DefaultView>
+    <DisplayName>Document Library</DisplayName>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+  </Fields>
+</ContentMetaData>

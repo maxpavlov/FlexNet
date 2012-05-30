@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="CaptchaImageApplication" parentType="Application" handler="SenseNet.Portal.UI.Controls.Captcha.CaptchaImageApplication" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Captcha image handler application</DisplayName>
+	<Description>Generates captcha image for captcha control</Description>
+	<Icon>Application</Icon>
+	<Fields />
+</ContentType>

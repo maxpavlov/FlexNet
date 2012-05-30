@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="ExportToCsvApplication" parentType="Application" handler="SenseNet.Services.ExportToCsvApplication" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+	<DisplayName>Export To CSV application</DisplayName>
+	<Description>Generates CSV file from a content list</Description>
+	<Icon>Application</Icon>
+	<Fields />
+</ContentType>

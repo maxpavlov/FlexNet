@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Memo</ContentType>
+  <ContentName>Etiam_dignissim</ContentName>
+  <Fields>
+    <Description><![CDATA[Etiam dignissim tellus eu velit auctor in scelerisque orci sodales. In sagittis pellentesque urna, et adipiscing magna sollicitudin et. Aenean sagittis lacinia nulla in molestie. Aliquam sagittis, orci eu rutrum pretium, justo augue dictum odio, congue condimentum elit nunc sit amet mauris. Aliquam vel sapien in arcu iaculis malesuada. Donec nec ipsum vitae quam vestibulum laoreet sed eu enim. Sed felis metus, varius vel faucibus ut, iaculis ac quam. In a velit vitae tellus hendrerit suscipit nec nec purus. In id libero in ipsum tincidunt iaculis. Morbi id magna a dui ornare sodales. Pellentesque adipiscing bibendum ligula, sed pellentesque lacus.]]></Description>
+    <Date>2010-01-30T09:31:41</Date>
+    <MemoType>iso</MemoType>
+    <SeeAlso />
+    <DisplayName>Etiam dignissim</DisplayName>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

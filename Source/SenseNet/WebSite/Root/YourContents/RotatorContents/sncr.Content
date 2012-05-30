@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>WebContentDemo</ContentType>
+  <ContentName>sncr</ContentName>
+  <Fields>
+    <DisplayName>SenseNet Content Repository</DisplayName>
+    <Subtitle>Content management taken to the next level</Subtitle>
+    <Header></Header>
+    <Body>&lt;p&gt;In the beginning, we think of our storage as a virtual file system. It's something like that, but a little more: an entire content repository solution with versioning, security, caching and more.&lt;/p&gt;</Body>
+    <Details><a href="" target="" title=""></a></Details>
+    <Language>English</Language>
+    <Keywords></Keywords>
+    <Author></Author>
+    <ValidFrom>0001-01-01T00:00:00.0000000+01:00</ValidFrom>
+    <ReviewDate>0001-01-01T00:00:00.0000000+01:00</ReviewDate>
+    <ArchiveDate>0001-01-01T00:00:00.0000000+01:00</ArchiveDate>
+    <ValidTill>0001-01-01T00:00:00.0000000+01:00</ValidTill>
+    <Index>0</Index>
+  </Fields>
+</ContentMetaData>

@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Resources>
+  <ResourceClass name="ContentSearchPortlet">
+    <Languages>
+      <Language cultureName="en">
+        <data name="PortletTitle" xml:space="preserve">
+          <value>Content search</value>
+        </data>
+        <data name="PortletDescription" xml:space="preserve">
+          <value>Search (context bound)</value>
+        </data>
+        <data name="SearchBtnText" xml:space="preserve">
+          <value>Search</value>
+        </data>
+        <data name="SearchFormCtdTitle" xml:space="preserve">
+          <value>Search form content type</value>
+        </data>
+        <data name="SearchFormCtdDescription" xml:space="preserve">
+          <value></value>
+        </data>
+        <data name="SearchFormRendererTitle" xml:space="preserve">
+          <value>Search form renderer</value>
+        </data>
+        <data name="SearchFormRendererDescription" xml:space="preserve">
+          <value>Select an ASCX renderer for rendering search form</value>
+        </data>
+
+        <data name="PluginFullPathTitle" xml:space="preserve">
+          <value>Query builder</value>
+        </data>
+        <data name="PluginFullPathDescription" xml:space="preserve">
+          <value>You can specify custom query builder type</value>
+        </data>
+
+        <data name="EmptyQueryTermHandlerTitle" xml:space="preserve">
+          <value>Empty term handler</value>
+        </data>
+        <data name="EmptyQueryTermHandlerDescription" xml:space="preserve">
+          <value>You can specify what will happen if the term is empty</value>
+        </data>
+        
+      </Language>
+      <Language cultureName="hu">
+        <data name="PortletTitle" xml:space="preserve">
+          <value>Content kereső</value>
+        </data>
+        <data name="PortletDescription" xml:space="preserve">
+          <value>Kereső (context bound)</value>
+        </data>
+        <data name="SearchBtnText" xml:space="preserve">
+          <value>Keresés</value>
+        </data>
+        <data name="SearchFormCtdTitle" xml:space="preserve">
+          <value>Content típus a kereső ürlaphoz</value>
+        </data>
+        <data name="SearchFormCtdDescription" xml:space="preserve">
+          <value></value>
+        </data>
+        <data name="SearchFormRendererTitle" xml:space="preserve">
+          <value>Megjelenítő a kereső űrlaphoz</value>
+        </data>
+        <data name="SearchFormRendererDescription" xml:space="preserve">
+          <value>Válassz egy ASCX megjelenítőt a kereső űrlap megjelenítéséhez</value>
+        </data>
+
+
+        <data name="PluginFullPathTitle" xml:space="preserve">
+          <value>Lekérdezés szerkesztő</value>
+        </data>
+        <data name="PluginFullPathDescription" xml:space="preserve">
+          <value>Használni kívánt szerkesztő típusa</value>
+        </data>
+
+        <data name="EmptyQueryTermHandlerTitle" xml:space="preserve">
+          <value>Üres kifejezés kezelő</value>
+        </data>
+        <data name="EmptyQueryTermHandlerDescription" xml:space="preserve">
+          <value>Megadhatod mi történjen azokkal a kifejezésekkel melyek nem kapnak értéket</value>
+        </data>
+        
+      </Language>
+    </Languages>
+  </ResourceClass>
+</Resources>

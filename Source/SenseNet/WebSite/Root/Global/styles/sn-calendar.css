@@ -1,0 +1,19 @@
+/* Event Calendar */
+div.sn-calendar table th { padding: 3px 4px; background: #e7e7e7; }
+
+div.sn-calendar table td { padding: 5px; text-align: center; vertical-align: middle; }
+
+div.sn-calendar table td.sn-calendar-eventday { background: #e7e7e7; }
+
+div.sn-calendar table td.sn-calendar-eventday a { font-weight: bold; }
+
+div.sn-book-calendar-result div.sn-calendar-eventlist { margin-bottom: 15px; }
+
+div.sn-book-calendar-result div.sn-calendar-eventlist span.sn-calendar-event a.sn-actionlinkbutton { color: #007dc2 !important; font-size: 100%; margin-left: -3px; }
+
+div.sn-book-calendar-result div.sn-calendar-eventlist a:hover { text-decoration: underline !important; }
+
+div.sn-book-calendar-result div.sn-calendar-eventlist span.sn-calendar-apply,
+div.sn-book-calendar-result div.sn-calendar-eventlist span.sn-calendar-participants { color: Green; }
+
+div.sn-book-calendar-result div.sn-calendar-eventlist span.sn-calendar-cannotapply { color: Red; }

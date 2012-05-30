@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>WebServiceApplication</ContentType>
+  <ContentName>WebServiceApplication.asmx</ContentName>
+  <Fields>
+    <Binary attachment="WebServiceApplication.asmx" />
+    <DisplayName>WebServiceApplication.asmx</DisplayName>
+    <Description><![CDATA[]]></Description>
+    <Scenario></Scenario>
+    <ActionTypeName></ActionTypeName>
+    <IsModal>false</IsModal>
+    <Disabled>false</Disabled>
+    <Clear>false</Clear>
+    <Icon>application</Icon>
+    <StyleHint></StyleHint>
+    <RequiredPermissions></RequiredPermissions>
+    <DeepPermissionCheck>false</DeepPermissionCheck>
+    <IncludeBackUrl>0</IncludeBackUrl>
+    <CacheControl>Nondefined</CacheControl>
+    <MaxAge></MaxAge>
+    <CustomUrlParameters></CustomUrlParameters>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+        <CreatedBy>
+      <Path>/Root/IMS/BuiltIn/Portal/Admin</Path>
+    </CreatedBy>
+    <CreationDate>2011-12-22T10:32:49.013</CreationDate>
+    <ModifiedBy>
+      <Path>/Root/IMS/BuiltIn/Portal/Admin</Path>
+    </ModifiedBy>
+    <ModificationDate>2011-12-22T10:32:49.043</ModificationDate>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

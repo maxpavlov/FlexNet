@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Resources</ContentType>
+  <ContentName>Localization</ContentName>
+  <Fields>
+    <Hidden>true</Hidden>
+  </Fields>
+  <Permissions>
+    <Clear />
+    <Identity path="/Root/IMS/BuiltIn/Portal/Everyone">
+      <See>Allow</See>
+      <Open>Allow</Open>
+    </Identity>
+  </Permissions>
+  <Identity path="/Root/IMS/Demo/Developers">
+    <See>Allow</See>
+    <Open>Allow</Open>
+    <OpenMinor>Allow</OpenMinor>
+    <Save>Allow</Save>
+    <Publish>Allow</Publish>
+    <ForceCheckin>Allow</ForceCheckin>
+    <AddNew>Allow</AddNew>
+    <Approve>Allow</Approve>
+    <Delete>Allow</Delete>
+    <RecallOldVersion>Allow</RecallOldVersion>
+    <DeleteOldVersion>Allow</DeleteOldVersion>
+    <SeePermissions>Allow</SeePermissions>
+    <SetPermissions>Allow</SetPermissions>
+    <RunApplication>Allow</RunApplication>
+  </Identity>
+</ContentMetaData>

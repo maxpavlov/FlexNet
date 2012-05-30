@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Resources>
+  <ResourceClass name="MessageTemplate">
+    <Languages>
+      <Language cultureName="en">
+        <data name="ImmediatelySubject" xml:space="preserve">
+				  <value>Immediate report about document changes</value>
+				</data>
+        <data name="DailySubject" xml:space="preserve">
+				  <value>Daily report about document changes</value>
+				</data>
+        <data name="WeeklySubject" xml:space="preserve">
+				  <value>Weekly report about document changes</value>
+				</data>
+        <data name="MonthlySubject" xml:space="preserve">
+				  <value>Monthly report about document changes</value>
+				</data>
+        <!-- -->
+        <data name="ImmediatelyHeader" xml:space="preserve">
+          <value>Dear {Addressee},<br/><br/>Since the last notice, the following changes were made:<br/><br/></value>
+				</data>
+        <data name="DailyHeader" xml:space="preserve">
+          <value>Dear {Addressee},<br/><br/>Since the last notice, the following changes were made:<br/><br/></value>
+				</data>
+        <data name="WeeklyHeader" xml:space="preserve">
+          <value>Dear {Addressee},<br/><br/>Since the last notice, the following changes were made:<br/><br/></value>
+				</data>
+        <data name="MonthlyHeader" xml:space="preserve">
+          <value>Dear {Addressee},<br/><br/>Since the last notice, the following changes were made:<br/><br/></value>
+				</data>
+        <!-- -->
+        <data name="ImmediatelyFooter" xml:space="preserve">
+          <value><br/>Regards:<br/>Sense/Net 6 System</value>
+				</data>
+        <data name="DailyFooter" xml:space="preserve">
+          <value><br/>Regards:<br/>Sense/Net 6 System</value>
+				</data>
+        <data name="WeeklyFooter" xml:space="preserve">
+          <value><br/>Regards:<br/>Sense/Net 6 System</value>
+				</data>
+        <data name="MonthlyFooter" xml:space="preserve">
+          <value><br/>Regards:<br/>Sense/Net 6 System</value>
+				</data>
+        <!-- -->
+        <data name="DocumentCreated" xml:space="preserve">
+          <value>{Who} created the following content at {When}: {ContentUrl}<br/></value>
+				</data>
+        <data name="DocumentMajorVersionModified" xml:space="preserve">
+          <value>{Who} modified a major version of the following content at {When}: {ContentUrl}<br/></value>
+				</data>
+        <data name="DocumentMinorVersionModified" xml:space="preserve">
+          <value>{Who} modified a minor version of the following content at {When}: {ContentUrl}<br/></value>
+				</data>
+        <data name="DocumentCopiedFrom" xml:space="preserve">
+          <value>{Who} copied the following content from another place at {When}: {ContentUrl}<br/></value>
+				</data>
+        <data name="DocumentMovedFrom" xml:space="preserve">
+          <value>{Who} moved the following content from another place {When}: {ContentPath}<br/></value>
+				</data>
+        <data name="DocumentMovedTo" xml:space="preserve">
+          <value>{Who} moved the following content to another place at {When}: {ContentUrl}<br/></value>
+				</data>
+        <data name="DocumentRenamedFrom" xml:space="preserve">
+          <value>{Who} renamed the following content at {When}: {ContentUrl}<br/></value>
+				</data>
+        <data name="DocumentRenamedTo" xml:space="preserve">
+          <value>{Who} renamed the following content to another name at {When}: {ContentPath}<br/></value>
+				</data>
+        <data name="DocumentDeleted" xml:space="preserve">
+          <value>{Who} deleted the following content at {When}: {ContentUrl}<br/></value>
+				</data>
+        <data name="DocumentRestored" xml:space="preserve">
+          <value>{Who} restored the following content at {When}: {ContentUrl}<br/></value>
+				</data>
+      </Language>
+      <Language cultureName="hu">
+        <data name="ImmediatelySubject" xml:space="preserve">
+				  <value>Azonnali jelentés dokumentum változásokról</value>
+				</data>
+        <data name="DailySubject" xml:space="preserve">
+				  <value>Napi jelentés dokumentum változásokról</value>
+				</data>
+        <data name="WeeklySubject" xml:space="preserve">
+				  <value>Heti jelentés dokumentum változásokról</value>
+				</data>
+        <data name="MonthlySubject" xml:space="preserve">
+				  <value>Havi jelentés dokumentum változásokról</value>
+				</data>
+        <!-- -->
+        <data name="ImmediatelyHeader" xml:space="preserve">
+          <value>Kedves {Addressee},<br/><br/>A legutóbbi értesítés óta a következő módosítások történtek:<br/><br/></value>
+				</data>
+        <data name="DailyHeader" xml:space="preserve">
+          <value>Kedves {Addressee},<br/><br/>A legutóbbi értesítés óta a következő módosítások történtek:<br/><br/></value>
+				</data>
+        <data name="WeeklyHeader" xml:space="preserve">
+          <value>Kedves {Addressee},<br/><br/>A legutóbbi értesítés óta a következő módosítások történtek:<br/><br/></value>
+				</data>
+        <data name="MonthlyHeader" xml:space="preserve">
+          <value>Kedves {Addressee},<br/><br/>A legutóbbi értesítés óta a következő módosítások történtek:<br/><br/></value>
+				</data>
+        <!-- -->
+        <data name="ImmediatelyFooter" xml:space="preserve">
+          <value><br/>Üdvözlettel:<br/>Sense/Net 6 Rendszer</value>
+				</data>
+        <data name="DailyFooter" xml:space="preserve">
+          <value><br/>Üdvözlettel:<br/>Sense/Net 6 Rendszer</value>
+				</data>
+        <data name="WeeklyFooter" xml:space="preserve">
+          <value><br/>Üdvözlettel:<br/>Sense/Net 6 Rendszer</value>
+				</data>
+        <data name="MonthlyFooter" xml:space="preserve">
+          <value><br/>Üdvözlettel:<br/>Sense/Net 6 Rendszer</value>
+				</data>
+        <!-- -->
+        <data name="DocumentCreated" xml:space="preserve">
+          <value>{Who} létrehozta az alábbi tartalmat (időpont: {When}): {ContentUrl}<br/></value>
+				</data>
+        <data name="DocumentMajorVersionModified" xml:space="preserve">
+          <value>{Who} módosította az alábbi tartalom egyik elsődleges verzióját (időpont: {When}): {ContentUrl}<br/></value>
+				</data>
+        <data name="DocumentMinorVersionModified" xml:space="preserve">
+          <value>{Who} módosította az alábbi tartalom egyik másodlagos verzióját (időpont: {When}): {ContentUrl}<br/></value>
+				</data>
+        <data name="DocumentCopiedFrom" xml:space="preserve">
+          <value>{Who} lemásolta az alábbi tartalmat egy másik helyről (időpont: {When}): {ContentUrl}<br/></value>
+				</data>
+        <data name="DocumentMovedFrom" xml:space="preserve">
+          <value>{Who} áthelyezte az alábbi tartalmat egy másik helyről (időpont: {When}): {ContentPath}<br/></value>
+				</data>
+        <data name="DocumentMovedTo" xml:space="preserve">
+          <value>{Who} áthelyezte az alábbi tartalmat egy másik helyre (időpont: {When}): {ContentUrl}<br/></value>
+				</data>
+        <data name="DocumentRenamedFrom" xml:space="preserve">
+          <value>{Who} átnevezte az alábbi tartalmat (időpont: {When}): {ContentUrl}<br/></value>
+				</data>
+        <data name="DocumentRenamedTo" xml:space="preserve">
+          <value>{Who} átnevezte az alábbi tartalmat egy másik névre (időpont: {When}): {ContentPath}<br/></value>
+				</data>
+        <data name="DocumentDeleted" xml:space="preserve">
+          <value>{Who} törölte az alábbi tartalmat (időpont: {When}): {ContentUrl}<br/></value>
+				</data>
+        <data name="DocumentRestored" xml:space="preserve">
+          <value>{Who} visszaállította az alábbi tartalmat (időpont: {When}): {ContentUrl}<br/></value>
+				</data>
+      </Language>
+    </Languages>
+  </ResourceClass>
+</Resources>

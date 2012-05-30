@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="Sites" parentType="Folder" handler="SenseNet.ContentRepository.Folder" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Sites</DisplayName>
+  <Description>This is the container type for sites. Only a single instance is allowed at /Root/Sites</Description>
+  <Icon>Site</Icon>
+  <AllowedChildTypes>
+    Site
+  </AllowedChildTypes>
+  <Fields>
+  </Fields>
+</ContentType>

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="Portlets" parentType="SystemFolder" handler="SenseNet.ContentRepository.SystemFolder" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Portlets</DisplayName>
+  <Description>This is the container type for portlets. Only a single instance is allowed at /Root/Portlets</Description>
+  <Icon>Folder</Icon>
+  <AllowedChildTypes>
+    PortletCategory
+  </AllowedChildTypes>
+  <Fields>
+  </Fields>
+</ContentType>

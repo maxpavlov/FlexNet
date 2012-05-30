@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Resources>
+  <ResourceClass name="Notification">
+    <Languages>
+      <Language cultureName="en">
+        <data name="Edit" xml:space="preserve">
+          <value>Edit</value>
+        </data>
+        <data name="Delete" xml:space="preserve">
+          <value>Delete</value>
+        </data>
+        <data name="Activate" xml:space="preserve">
+          <value>Activate</value>
+        </data>
+        <data name="Deactivate" xml:space="preserve">
+          <value>Deactivate</value>
+        </data>
+        <data name="EditPortletTitle" xml:space="preserve">
+          <value>Edit notification for {0}</value>
+        </data>
+        <data name="ListPortletTitle" xml:space="preserve">
+          <value>Notification list</value>
+        </data>
+        <data name="MissingEmailAddressError" xml:space="preserve">
+          <value>Please set your email address in your profile page</value>
+        </data>
+        <data name="NoSubscriptions" xml:space="preserve">
+          <value>There are no subscriptions for you in the system yet.</value>
+        </data>
+        <data name="ContentName" xml:space="preserve">
+          <value>Content Name</value>
+        </data>
+        <data name="ContentPath" xml:space="preserve">
+          <value>Content Path</value>
+        </data>
+        <data name="Frequency" xml:space="preserve">
+          <value>Frequency</value>
+        </data>
+        <data name="Actions" xml:space="preserve">
+          <value>Actions</value>
+        </data>
+        <data name="NotEnoughPermissions" xml:space="preserve">
+          <value>You do not have enough permissions to edit notifications for this user</value>
+        </data>
+      </Language>
+      <Language cultureName="hu">
+        <data name="Edit" xml:space="preserve">
+          <value>Szerkesztés</value>
+        </data>
+        <data name="Delete" xml:space="preserve">
+          <value>Törlés</value>
+        </data>
+        <data name="Activate" xml:space="preserve">
+          <value>Aktiválás</value>
+        </data>
+        <data name="Deactivate" xml:space="preserve">
+          <value>Deaktiválás</value>
+        </data>
+        <data name="EditPortletTitle" xml:space="preserve">
+          <value>{0} értesítésének szerkesztése</value>
+        </data>
+        <data name="ListPortletTitle" xml:space="preserve">
+          <value>Értesítés lista</value>
+        </data>
+        <data name="MissingEmailAddressError" xml:space="preserve">
+          <value>Állítsd be az e-mail címedet a profilodban!</value>
+        </data>
+        <data name="NoSubscriptions" xml:space="preserve">
+          <value>Jelenleg nincs feliratkozásod beállítva.</value>
+        </data>
+        <data name="ContentName" xml:space="preserve">
+          <value>Tartalom neve</value>
+        </data>
+        <data name="ContentPath" xml:space="preserve">
+          <value>Tartalom elérési útja</value>
+        </data>
+        <data name="Frequency" xml:space="preserve">
+          <value>Gyakoriság</value>
+        </data>
+        <data name="Actions" xml:space="preserve">
+          <value>Akciók</value>
+        </data>
+        <data name="NotEnoughPermissions" xml:space="preserve">
+          <value>Nincs megfelelő jogosultsága a felhasználó értesítéseinek szerkesztéséhez</value>
+        </data>
+      </Language>
+    </Languages>
+  </ResourceClass>
+</Resources>

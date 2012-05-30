@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>HTMLContent</ContentType>
+  <ContentName>links</ContentName>
+  <Fields>
+    <HTMLFragment>
+    <![CDATA[<div class="sn-feature-content-sidebar ui-helper-clearfix">
+  <div class="sn-feature">
+  <h2 class="sn-feature-title"><a href="http://wiki.sensenet.com" target="_blank" title="Wikipedia">Sense/Net Wiki</a></h2>
+  <div class="sn-feature-img-border">
+    <a href="http://wiki.sensenet.com" target="_blank" title="Wikipedia"><div class="sn-feature-img-overlay"></div><img src="/Root/YourContents/Images/tn_wiki.jpg" alt="Wikipedia" /></a>
+  </div>
+  <div class="sn-feature-shadow">&#160;</div>
+  <p>Find the official documentation of Sense/Net ECMS in a friendly wiki, which is open for all of you for reading and even editing. No registration needed for reading the wiki.<br /><a href="http://wiki.sensenet.com" target="_blank" title="Wikipedia">&#187; Visit Wiki</a></p>
+  </div>
+  
+  <div class="sn-feature">
+  <h2 class="sn-feature-title"><a href="http://forum.sensenet.com" target="_blank" title="Go to SenseNet Developer Forum">Developer Forum</a></h2>
+  <div class="sn-feature-img-border">
+    <a href="http://forum.sensenet.com" target="_blank" title="Go to SenseNet Developer Forum"><div class="sn-feature-img-overlay"></div><img src="/Root/YourContents/Images/tn_forum.jpg" alt="Developer Forum" /></a>
+  </div>
+  <div class="sn-feature-shadow">&#160;</div>
+  <p>Join the discussion about Sense/Net ECMS in the official forum. Report bugs, discuss problems and find solutions within the open source community. Register and become a member now.<br /><a href="http://forum.sensenet.com" target="_blank" title="Go to SenseNet Developer Forum">&#187; Developer Forum</a></p>
+  </div>
+
+  <div class="sn-feature-last">
+  <h2 class="sn-feature-title"><a href="http://www.sensenet.com/become-a-partner" target="_blank" title="Join to Us">Partner Program</a></h2>
+  <div class="sn-feature-img-border">
+    <a href="http://www.sensenet.com/become-a-partner" target="_blank" title="Join to Us"><div class="sn-feature-img-overlay"></div><img src="/Root/YourContents/Images/tn_partner.jpg" alt="Partner Program" /></a>
+  </div>
+  <div class="sn-feature-shadow">&#160;</div>
+  <p>There are already more than one thousand beta testers from one hundred countries for Sense/Net 6.0. Join this great community now. Companies may also join our partner program. We are looking for implementation, hosting and OEM partners.<br /><a href="http://www.sensenet.com/become-a-partner" target="_blank" title="Join to Us">&#187; Join</a></p>
+  </div>
+
+</div>]]></HTMLFragment>
+    <ReviewDate>0001-01-01T00:00:00</ReviewDate>
+    <ArchiveDate>0001-01-01T00:00:00</ArchiveDate>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <DisplayName>links</DisplayName>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate>0|0|0|0|0|0</Rate>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

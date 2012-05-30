@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>ForumEntry</ContentType>
+  <ContentName>3</ContentName>
+  <Fields>
+    <DisplayName></DisplayName>
+    <Description>
+      <![CDATA[
+      <p>OFC! Thanks Mike! I guess Rob can help me as well…</p>
+      ]]></Description>
+    <ReplyTo />
+    <PostedBy>
+      <Path>/Root/IMS/Demo/Marketing/juanitavargas</Path>
+    </PostedBy>
+    <SerialNo>3</SerialNo>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+    <TrashDisabled>false</TrashDisabled>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+        <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate></Rate>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

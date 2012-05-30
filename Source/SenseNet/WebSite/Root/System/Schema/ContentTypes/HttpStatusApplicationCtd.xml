@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="HttpStatusApplication" parentType="Application" handler="SenseNet.Portal.AppModel.HttpStatusApplication"
+			 xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Http status Application</DisplayName>
+	<Description>This application allows for request denial or redirection through standard Http status codes</Description>
+	<Icon>Application</Icon>
+  <Fields>
+    <Field name="StatusCode" type="Choice">
+      <DisplayName>Http status code</DisplayName>
+      <Description>The Http status code to return upon request</Description>
+      <Configuration>
+        <AllowMultiple>false</AllowMultiple>
+        <Compulsory>true</Compulsory>
+        <Options>
+          <Option value="301">301 Moved permanently</Option>
+          <Option value="303">303 See other</Option>
+          <Option value="307">307 Temporary redirect</Option>
+          <Option value="403">403 Forbidden</Option>
+          <Option value="404">404 Not found</Option>
+          <Option value="410">410 Gone</Option>
+        </Options>
+      </Configuration>
+    </Field>
+    <Field name="RedirectUrl" type="ShortText">
+      <DisplayName>Redirect Url</DisplayName>
+      <Description>Redirect to this Url if a redirection status code is returned.</Description>
+    </Field>
+  </Fields>
+</ContentType>

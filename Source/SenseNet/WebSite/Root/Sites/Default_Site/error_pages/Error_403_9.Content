@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Page</ContentType>
+  <ContentName>Error_403_9</ContentName>
+  <Fields>
+    <DisplayName>Error_403.9</DisplayName>
+    <PageTemplateNode>
+      <Path>/Root/Global/pagetemplates/sn-layout-error.html</Path>
+    </PageTemplateNode>
+    <Hidden>true</Hidden>
+    <Index>1000</Index>
+    <SmartUrl></SmartUrl>
+    <IsExternal>false</IsExternal>
+    <OuterUrl></OuterUrl>
+    <MetaTitle></MetaTitle>
+    <Keywords><![CDATA[]]></Keywords>
+    <MetaDescription><![CDATA[]]></MetaDescription>
+    <MetaAuthors></MetaAuthors>
+    <CustomMeta><![CDATA[]]></CustomMeta>
+    <PageId></PageId>
+    <NodeName></NodeName>
+    <TemporaryPortletInfo><![CDATA[RegisteredUsers/Root/System/SystemPlugins/Portlets/AdvancedLogin/LoginView.ascx]]></TemporaryPortletInfo>
+    <Binary attachment="Error_403_9.aspx" />
+    <PersonalizationSettings attachment="Error_403_9.PersonalizationSettings" />
+    <Description><![CDATA[]]></Description>
+    <Scenario></Scenario>
+    <ActionTypeName></ActionTypeName>
+    <IsModal>false</IsModal>
+    <Disabled>false</Disabled>
+    <Clear>false</Clear>
+    <Icon></Icon>
+    <StyleHint></StyleHint>
+    <RequiredPermissions></RequiredPermissions>
+    <DeepPermissionCheck>false</DeepPermissionCheck>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+        <VersioningMode>1</VersioningMode>
+    <InheritableVersioningMode>1</InheritableVersioningMode>
+    <ApprovingMode>1</ApprovingMode>
+    <InheritableApprovingMode>1</InheritableApprovingMode>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate>0|0|0|0|0|0</Rate>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

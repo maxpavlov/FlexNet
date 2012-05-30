@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B72529C8-FEB1-49F5-B08B-56055B58F296}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SenseNet.Services</RootNamespace>
+    <AssemblyName>SenseNet.Services</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel.Activation" />
+    <Reference Include="System.ServiceModel.Web">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\References\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Cmis\CmisAllowableActions.cs" />
+    <Compile Include="Cmis\CmisFeedBuilder.cs" />
+    <Compile Include="Cmis\CmisObject.cs" />
+    <Compile Include="Cmis\CmisProperty.cs" />
+    <Compile Include="CmisService.cs" />
+    <Compile Include="Cmis\Enums.cs" />
+    <Compile Include="ContentStore\ContentProperty.cs" />
+    <Compile Include="ContentStore\ContentStoreController.cs" />
+    <Compile Include="ContentStore\FieldSetting.cs" />
+    <Compile Include="ContentStore\IContent.cs" />
+    <Compile Include="ContentStore\SearchIdentitiesArgument.cs" />
+    <Compile Include="ContentStore\SecurityController.cs" />
+    <Compile Include="ICmisService.cs" />
+    <Compile Include="Cmis\RepositoryCapabilities.cs" />
+    <Compile Include="Cmis\RepositoryInfo.cs" />
+    <Compile Include="Cmis\Store.cs" />
+    <Compile Include="ContentStore\Content.cs" />
+    <Compile Include="ContentStore\ContentStoreService.cs" />
+    <Compile Include="ContentStore\IContentStoreService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CustomErrorWebHttpBinding.cs" />
+    <Compile Include="EntityReference.cs" />
+    <Compile Include="IdentityManagement\Exceptions.cs" />
+    <Compile Include="IdentityManagement\GetServiceUrlsResult.cs" />
+    <Compile Include="IdentityManagement\Identity.cs" />
+    <Compile Include="IdentityManagement\IdentityManagementService.cs" />
+    <Compile Include="IdentityManagement\IIdentityManagementService.cs" />
+    <Compile Include="IdentityManagement\LookupIdentityParameters.cs" />
+    <Compile Include="IdentityManagement\LookupIdentityResult.cs" />
+    <Compile Include="LogService.cs" />
+    <Compile Include="MultiHostServiceFactory.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimpleModule.cs" />
+    <Compile Include="SupportTypes\JsonFilter.cs" />
+    <Compile Include="SupportTypes\RESTHandler.cs" />
+    <Compile Include="SupportTypes\SettingsInstaller.cs" />
+    <Compile Include="SupportTypes\SvcEmulationModule.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ContentRepository\ContentRepository.csproj">
+      <Project>{786E6165-CA02-45A9-BF58-207A45D7D6DF}</Project>
+      <Name>ContentRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LuceneNet_2_9_2\Lucene.Net.csproj">
+      <Project>{01262AA3-7163-40DA-90F9-BC0B67CEFB34}</Project>
+      <Name>Lucene.Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Storage\Storage.csproj">
+      <Project>{5DB4DDBA-81F6-4D81-943A-18F3178B3355}</Project>
+      <Name>Storage</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

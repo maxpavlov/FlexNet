@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Application</ContentType>
+  <ContentName>ContentLinkBatch</ContentName>
+  <Fields>
+    <Index>4500</Index>
+    <DisplayName>Create content links</DisplayName>
+    <ActionTypeName>ContentLinkBatchAction</ActionTypeName>
+    <Icon>copy</Icon>
+  </Fields>
+</ContentMetaData>

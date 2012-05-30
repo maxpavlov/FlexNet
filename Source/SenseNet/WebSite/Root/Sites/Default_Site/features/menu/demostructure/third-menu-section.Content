@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>ArticleSection</ContentType>
+  <ContentName>third-menu-section</ContentName>
+  <Fields>
+    <DisplayName>Third menu section</DisplayName>
+    <AllowedChildTypes>Article ArticleSection WebContentDemo</AllowedChildTypes>
+  </Fields>
+</ContentMetaData>

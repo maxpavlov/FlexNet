@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>WebContentDemo</ContentType>
+  <ContentName>calendarinfo</ContentName>
+  <Fields>
+    <DisplayName></DisplayName>
+    <Subtitle></Subtitle>
+    <RelatedImage />
+    <Header><![CDATA[]]></Header>
+    <Body>
+      <![CDATA[<div class="sn-infobox"><h1 class="sn-content-title sn-article-title"><img src="/Root/Global/images/icons/32/info.png" class="sn-icon sn-icon_32" alt="" />Event calendar</h1>
+    <p>This page demonstrates an event calendar based on a custom List content type (EventList), and a collection portlet with a custom renderer.</p>
+    <p>Feel free to browse the calendar, create and modify events.</p>
+    <p>To learn more about customized collections, see the <a href="../contentcollection-customization">Content Collection Customization demo</a>.</p>
+    <ul>
+    <li><strong>You need to be logged in as Administrator to manage events or to edit the files below.</strong></li>
+    <li>This is a custom portlet page: <em><a href="/Explore.html#/Root/Sites/Default_Site/features/event-calendar">/Root/Sites/Default_Site/features/event-calendar</a></em></li>
+    <li>The custom renderer used to display the calendar can be found under <em><a href="/Explore.html#/Root/Global/renderers/CalendarView.ascx">/Root/Global/renderers/CalendarView.ascx</a></em></li>
+    </ul></div>
+    ]]></Body>
+    <Details><a href="" target="" title=""></a></Details>
+    <Language>English</Language>
+    <Keywords><![CDATA[]]></Keywords>
+    <Author></Author>
+    <ReviewDate>0001-01-01T00:00:00</ReviewDate>
+    <ArchiveDate>0001-01-01T00:00:00</ArchiveDate>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <Description><![CDATA[]]></Description>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate></Rate>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

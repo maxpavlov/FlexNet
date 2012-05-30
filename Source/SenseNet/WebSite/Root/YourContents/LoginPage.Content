@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>WebContentDemo</ContentType>
+  <ContentName>LoginPage</ContentName>
+  <Fields>
+    <DisplayName>Welcome!</DisplayName>
+    <Subtitle>You are using Sense/Net 6.0</Subtitle>
+    <Header></Header>
+    <Body>&lt;p&gt;You can start testing the system.&lt;/p&gt;
+&lt;p&gt;Administrator login name is: &lt;strong class="snBigText"&gt;admin&lt;/strong&gt;, password is also: &lt;strong class="snBigText"&gt;admin&lt;/strong&gt;.&lt;/p&gt;</Body>
+    <Details><a></a></Details>
+    <Language>English</Language>
+    <Keywords></Keywords>
+    <Author></Author>
+    <ValidFrom>2008-10-01T12:12:23.0000000+02:00</ValidFrom>
+    <ReviewDate>2008-10-01T12:12:23.0000000+02:00</ReviewDate>
+    <ArchiveDate>2008-10-01T12:12:23.0000000+02:00</ArchiveDate>
+    <ValidTill>2008-10-01T12:12:23.0000000+02:00</ValidTill>
+    <Index>0</Index>
+  </Fields>
+</ContentMetaData>

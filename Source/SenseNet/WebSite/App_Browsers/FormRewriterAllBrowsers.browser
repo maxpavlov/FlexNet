@@ -1,0 +1,9 @@
+<browsers>
+	<browser refID="Default">
+		<controlAdapters>
+			<!-- Modifies the standard HtmlTextWriter to render the original raw URL in the the action attribute of the HTML forms. -->
+			<!-- This is the right behaviour when the system rewrites the request URLs (eg. using friendrly URLs). -->
+			<adapter controlType="System.Web.UI.HtmlControls.HtmlForm" adapterType="SenseNet.Portal.FormActionRewriterControlAdapter" />
+		</controlAdapters>
+	</browser>
+</browsers>

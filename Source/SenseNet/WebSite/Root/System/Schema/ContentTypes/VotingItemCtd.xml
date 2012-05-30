@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="VotingItem" parentType="ListItem" handler="SenseNet.ContentRepository.VotingItem" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Voting Item</DisplayName>
+  <Description>Base content type for voting items</Description>
+  <Icon>FormItem</Icon>
+  <Fields>
+    <Field name="Version" type="Version">
+      <DisplayName>Version</DisplayName>
+      <Description>Version number.</Description>
+      <Indexing>
+        <Store>Yes</Store>
+      </Indexing>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <ReadOnly>true</ReadOnly>
+      </Configuration>
+    </Field>
+    <Field name="Index" type="Integer">
+      <DisplayName>Index</DisplayName>
+      <Description>Content order in navigation. Numbers closer to 0 will appear first.</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="ModifiedBy" type="Reference">
+      <DisplayName>Modified By</DisplayName>
+      <Description>Content was last modified by this user.</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <ReadOnly>true</ReadOnly>
+      </Configuration>
+    </Field>
+    <Field name="ModificationDate" type="DateTime">
+      <DisplayName>Modification Date</DisplayName>
+      <Description>Content was last modified on this date.</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <ReadOnly>true</ReadOnly>
+      </Configuration>
+    </Field>
+  </Fields>
+</ContentType>

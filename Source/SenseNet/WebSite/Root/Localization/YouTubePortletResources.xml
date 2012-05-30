@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Resources>
+  <ResourceClass name="YouTubePortlet">
+    <Languages>
+      <Language cultureName="en">
+        <data name="PortletTitle" xml:space="preserve">
+          <value>YouTube</value>
+        </data>
+        <data name="PortletDescription" xml:space="preserve">
+          <value>Embed YouTube video</value>
+        </data>
+        <data name="CategoryTitle" xml:space="preserve">
+          <value>YouTube Object</value>
+        </data>
+        <data name="LayoutStyleTitle" xml:space="preserve">
+          <value>Write here the YouTube embed code</value>
+        </data>
+        <data name="LayoutStyleDescription" xml:space="preserve">
+          <value>You can embed YouTube video.</value>
+        </data>
+        <data name="CodeForHere" xml:space="preserve">
+          <value>You can embed YouTube video here</value>
+        </data>
+        <data name="WrongCode" xml:space="preserve">
+          <value>The embed code is wrong</value>
+        </data>
+        <data name="Error_ReplaceParams" xml:space="preserve">
+          <value>Internal portlet error. Please contact your system administrator</value>
+        </data>
+      </Language>
+      <Language cultureName="hu">
+        <data name="LayoutStyleTitle" xml:space="preserve">
+          <value>Elrendezés</value>
+        </data>
+        <data name="LayoutStyleDescription" xml:space="preserve">
+          <value>Választhatsz a két alap elrendezés közül. Alapértelmezett érték 'standard'.</value>
+        </data>
+      </Language>
+      <Language cultureName="hu">
+        <data name="PortletTitle" xml:space="preserve">
+          <value>YouTube</value>
+        </data>
+        <data name="PortletDescription" xml:space="preserve">
+          <value>YouTube video beágyazása</value>
+        </data>
+        <data name="CategoryTitle" xml:space="preserve">
+          <value>YouTube kód</value>
+        </data>
+        <data name="LayoutStyleTitle" xml:space="preserve">
+          <value>Ide illeszd a YouTube kódod</value>
+        </data>
+        <data name="LayoutStyleDescription" xml:space="preserve">
+          <value>Ide ágyazhatod a YouTube kódod.</value>
+        </data>
+        <data name="CodeForHere" xml:space="preserve">
+          <value>Ide ágyazhatod a YouTube kódod.</value>
+        </data>
+        <data name="WrongCode" xml:space="preserve">
+          <value>A beágyazott kód hibás!</value>
+        </data>
+      </Language>
+    </Languages>
+  </ResourceClass>
+</Resources>

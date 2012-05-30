@@ -1,0 +1,29 @@
+﻿<sap:ActivityDesigner x:Class="SenseNet.Workflow.Activities.Design.CreateContentDesigner"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sap="clr-namespace:System.Activities.Presentation;assembly=System.Activities.Presentation"
+    xmlns:sapv="clr-namespace:System.Activities.Presentation.View;assembly=System.Activities.Presentation"
+    xmlns:sapc="clr-namespace:System.Activities.Presentation.Converters;assembly=System.Activities.Presentation" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" d:DesignHeight="192" d:DesignWidth="358">
+    <sap:ActivityDesigner.Resources>
+        <ResourceDictionary>
+            <sapc:ArgumentToExpressionConverter x:Key="ArgumentToExpressionConverter" />
+        </ResourceDictionary>
+    </sap:ActivityDesigner.Resources>
+    <Grid Height="155" Name="grid1" Width="343">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="130*" />
+            <ColumnDefinition Width="36" />
+            <ColumnDefinition Width="177" />
+        </Grid.ColumnDefinitions>
+        <Label Content="Parent path:" Margin="0,5,0,0" Height="25" VerticalAlignment="Top" />
+        <sapv:ExpressionTextBox Expression="{Binding Path=ModelItem.ParentPath, Mode=TwoWay, Converter={StaticResource ArgumentToExpressionConverter}, ConverterParameter=In }" OwnerActivity="{Binding Path=ModelItem}" Grid.Column="1" Margin="0,5,0,0" Height="25" VerticalAlignment="Top" Grid.ColumnSpan="2" />
+        <Label Content="Content Type:" Margin="0,35,0,0" Height="25" VerticalAlignment="Top" />
+        <sapv:ExpressionTextBox Expression="{Binding Path=ModelItem.ContentTypeName, Mode=TwoWay, Converter={StaticResource ArgumentToExpressionConverter}, ConverterParameter=In }" OwnerActivity="{Binding Path=ModelItem}" Grid.Column="1" Margin="0,35,0,0" Height="25" VerticalAlignment="Top" Grid.ColumnSpan="2" />
+        <Label Content="Name:" Margin="0,65,0,0" Height="25" VerticalAlignment="Top" />
+        <sapv:ExpressionTextBox Expression="{Binding Path=ModelItem.Name, Mode=TwoWay, Converter={StaticResource ArgumentToExpressionConverter}, ConverterParameter=In }" OwnerActivity="{Binding Path=ModelItem}" Grid.Column="1" Margin="0,65,0,0" Height="25" VerticalAlignment="Top" Grid.ColumnSpan="2" />
+        <Label Content="DisplayName:" Margin="0,95,0,0" Height="25" VerticalAlignment="Top" />
+        <sapv:ExpressionTextBox Expression="{Binding Path=ModelItem.ContentDisplayName, Mode=TwoWay, Converter={StaticResource ArgumentToExpressionConverter}, ConverterParameter=In }" OwnerActivity="{Binding Path=ModelItem}" Grid.Column="1" Margin="0,95,0,0" Height="25" VerticalAlignment="Top" Grid.ColumnSpan="2" />
+        <Label Content="FieldValues:" Margin="0,125,0,0" Height="25" VerticalAlignment="Top" />
+        <sapv:ExpressionTextBox Expression="{Binding Path=ModelItem.FieldValues, Mode=TwoWay, Converter={StaticResource ArgumentToExpressionConverter}, ConverterParameter=In }" OwnerActivity="{Binding Path=ModelItem}" Grid.Column="1" Margin="0,125,0,0" Height="25" VerticalAlignment="Top" Grid.ColumnSpan="2" />
+    </Grid>
+</sap:ActivityDesigner>

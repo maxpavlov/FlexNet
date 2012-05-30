@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Article</ContentType>
+  <ContentName>Africa_is_calling</ContentName>
+  <Fields>
+    <DisplayName>Africa is calling!</DisplayName>
+    <Subtitle></Subtitle>
+    <Lead><![CDATA[
+      <p>The yearly incentive journey will be held this year in December, when we choose thirty colleagues based on performance
+      to attend an adventure in Africa! Take the chance and do your best!</p>
+    ]]></Lead>
+    <Body><![CDATA[
+      <p>This year we are going to Africa for one week: Savanna, Victoria Falls, adventure and all the luxury
+      that the continent can offer us! Like every year before, we will list the Top 10 colleagues from all departments, and choose the
+      workers of the year from each department to receive the “Strive for Excellence” medal. Nominations will be made according to our
+      Individual Evaluation System (IES) and personal choice of the management.</p>
+      <p>Everyone has the chance to see the famous “big five”, all you need to do is determine your objectives for this year,
+      and go ahead, do your best!</p>
+      <p>The program is still under preparation, you will receive further, detailed information around October. Until then, keep in mind
+      that maybe this year you will be one of our “big ten”!</p>
+    ]]></Body>
+    <Pinned>false</Pinned>
+    <Keywords><![CDATA[]]></Keywords>
+    <Author></Author>
+    <ImageRef />
+    <ImageData attachment="Africa_is_calling.ImageData.jpg" />
+    <ReviewDate>0001-01-01T00:00:00</ReviewDate>
+    <ArchiveDate>0001-01-01T00:00:00</ArchiveDate>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <Description><![CDATA[]]></Description>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateStr>0|1|0|0|0|0|0</RateStr>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

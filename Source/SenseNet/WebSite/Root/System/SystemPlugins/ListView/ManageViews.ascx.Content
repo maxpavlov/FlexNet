@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>ListView</ContentType>
+  <ContentName>ManageViews.ascx</ContentName>
+  <Fields>
+    <DisplayName>Manage views</DisplayName>
+    <Binary attachment="ManageViews.ascx" />
+    <Columns>
+    <![CDATA[<Columns>
+      <Column title="Locked" fullName="GenericContent.Locked" bindingName="GenericContent_Locked" modifiers="lock" width="62" hAlign="Center" index="1" />
+      <Column title="Name" fullName="GenericContent.DisplayName" bindingName="GenericContent_DisplayName" modifiers="main" index="2" />
+      <Column title="Default" fullName="ViewBase.IsDefault" bindingName="ViewBase_IsDefault" index="3" />
+      <Column title="Modified by" fullName="GenericContent.ModifiedBy" bindingName="GenericContent_ModifiedBy" index="4" />
+      <Column title="Last modified" fullName="GenericContent.ModificationDate" bindingName="GenericContent_ModificationDate" index="5" />
+    </Columns>]]>
+    </Columns>
+    <EnableAutofilters>2</EnableAutofilters>
+    <EnableLifespanFilter>2</EnableLifespanFilter>
+    <Flat>false</Flat>
+    <SortBy>DisplayName ASC</SortBy>
+    <FilterXml>+TypeIs:ViewBase</FilterXml>
+  </Fields>
+</ContentMetaData>

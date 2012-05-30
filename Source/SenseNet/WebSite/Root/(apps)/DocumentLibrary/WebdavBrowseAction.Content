@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Application</ContentType>
+  <ContentName>WebdavBrowseAction</ContentName>
+  <Fields>
+    <Index>150</Index>
+    <DisplayName>Open in Windows Explorer</DisplayName>
+    <Scenario>ListActions</Scenario>
+    <ActionTypeName>WebdavBrowseAction</ActionTypeName>
+    <Icon>folder</Icon>
+    <RequiredPermissions>1;2</RequiredPermissions>
+  </Fields>
+</ContentMetaData>

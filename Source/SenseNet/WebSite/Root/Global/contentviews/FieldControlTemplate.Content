@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>ContentViews</ContentType>
+  <ContentName>FieldControlTemplate</ContentName>
+  <Fields>
+    <DisplayName>FieldControlTemplate</DisplayName>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

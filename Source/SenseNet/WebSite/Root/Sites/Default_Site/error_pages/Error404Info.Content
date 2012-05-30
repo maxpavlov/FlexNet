@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>WebContentDemo</ContentType>
+  <ContentName>Error404Info</ContentName>
+  <Fields>
+    <DisplayName>404 error</DisplayName>
+    <Subtitle>The requested resource could not be found</Subtitle>
+    <RelatedImage />
+    <Header><![CDATA[]]></Header>
+    <Body><![CDATA[
+      <p>Please make sure that the url is spelled correctly.</p>
+      <p>To go to the main page, click <strong class="snBigText"><a href="/">here</a></strong>
+      ]]></Body>
+    <Details><a></a></Details>
+    <Language>English</Language>
+    <ReviewDate>0001-01-01T00:00:00</ReviewDate>
+    <ArchiveDate>0001-01-01T00:00:00</ArchiveDate>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <Hidden>true</Hidden>
+    <Index>0</Index>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate>0|0|0|0|0|0</Rate>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

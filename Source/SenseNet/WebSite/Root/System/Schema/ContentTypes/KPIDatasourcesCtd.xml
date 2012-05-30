@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="KPIDatasources" parentType="Folder" handler="SenseNet.ContentRepository.Folder" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>KPIDatasources</DisplayName>
+  <Description>This is the container type for KPIDatasources. Only a single instance is allowed at /Root/KPI</Description>
+  <Icon>Folder</Icon>
+  <AllowedChildTypes>
+    KPIDatasource
+  </AllowedChildTypes>
+  <Fields>
+  </Fields>
+</ContentType>

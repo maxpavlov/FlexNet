@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>File</ContentType>
+  <ContentName>TagAdminControl.ascx</ContentName>
+  <Fields>
+    <Binary attachment="TagAdminControl.ascx" />
+    <DisplayName>TagAdminControl.ascx</DisplayName>
+    <Description><![CDATA[]]></Description>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <Tags><![CDATA[]]></Tags>
+  </Fields>
+</ContentMetaData>

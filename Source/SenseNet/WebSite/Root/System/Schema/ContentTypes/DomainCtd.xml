@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="Domain" parentType="Folder" handler="SenseNet.ContentRepository.Domain" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Domain</DisplayName>
+  <Description>A centrally-managed group of users and/or computers. Sense/Net 6.0 has a built-in domain (BuiltIn), but you can syncronyze external LDAP directories as well.</Description>
+  <Icon>Domain</Icon>
+  <AllowedChildTypes>
+    User,RegisteredUser,Group,OrganizationalUnit,ADFolder
+  </AllowedChildTypes>
+  <Fields>
+    <Field name="Name" type="ShortText">
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="DisplayName" type="ShortText">
+      <DisplayName>Display Name</DisplayName>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Description" type="LongText">
+      <Configuration>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="SyncGuid" type="ShortText">
+      <DisplayName>SyncGuid</DisplayName>
+      <Description>GUID of corresponding AD object.</Description>
+      <Configuration>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="LastSync" type="DateTime">
+      <DisplayName>LastSync</DisplayName>
+      <Description>Date of last synchronization.</Description>
+      <Configuration>
+        <DateTimeMode>DateAndTime</DateTimeMode>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+  </Fields>
+</ContentType>

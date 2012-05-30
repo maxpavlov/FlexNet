@@ -1,0 +1,578 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="GenericContent" handler="SenseNet.ContentRepository.GenericContent" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Content</DisplayName>
+  <Description>This type is the base content type of the Sense/Net 6.0 ECMS.</Description>
+  <Icon>Content</Icon>
+  <Fields>
+    <Field name="Id" type="Integer">
+      <DisplayName>Id</DisplayName>
+      <Description>Unique Id for the content.</Description>
+      <Indexing>
+        <Store>Yes</Store>
+      </Indexing>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <ReadOnly>true</ReadOnly>
+      </Configuration>
+    </Field>
+    <Field name="ParentId" type="Integer">
+      <DisplayName>Parent Id</DisplayName>
+      <Description>Id of the parent content.</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <ReadOnly>true</ReadOnly>
+      </Configuration>
+    </Field>
+    <Field name="VersionId" type="Integer">
+      <DisplayName>Version Id</DisplayName>
+      <Description>Database row Id of current version.</Description>
+      <Indexing>
+        <Store>Yes</Store>
+      </Indexing>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <ReadOnly>true</ReadOnly>
+      </Configuration>
+    </Field>
+    <Field name="Type" type="NodeType">
+      <DisplayName>Content Type Name</DisplayName>
+      <Description>Content type of the node in the repository.</Description>
+      <Bind property="NodeType"></Bind>
+      <Indexing>
+        <Store>Yes</Store>
+        <IndexHandler>SenseNet.Search.Indexing.ExclusiveTypeIndexHandler</IndexHandler>
+      </Indexing>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <ReadOnly>true</ReadOnly>
+      </Configuration>
+    </Field>
+    <Field name="TypeIs" type="NodeType">
+      <DisplayName>Ancestor Content Type Names</DisplayName>
+      <Description>Ancestor content types of the node in the repository.</Description>
+      <Bind property="NodeType"></Bind>
+      <Indexing>
+        <Store>No</Store>
+        <IndexHandler>SenseNet.Search.Indexing.TypeTreeIndexHandler</IndexHandler>
+      </Indexing>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <ReadOnly>true</ReadOnly>
+      </Configuration>
+    </Field>
+    <Field name="Name" type="ShortText">
+      <DisplayName>Name</DisplayName>
+      <Description>Specify a name that will appear in the address bar of the browser.</Description>
+      <Indexing>
+        <Store>Yes</Store>
+        <Analyzer>Lucene.Net.Analysis.KeywordAnalyzer</Analyzer>
+      </Indexing>
+      <Configuration>
+        <Compulsory>true</Compulsory>
+        <ControlHint>sn:Name</ControlHint>
+      </Configuration>
+    </Field>
+    <Field name="CreatedById" type="Integer">
+      <DisplayName>Created By (Id)</DisplayName>
+      <Description>Id of creator.</Description>
+      <Indexing>
+        <Store>Yes</Store>
+      </Indexing>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <ReadOnly>true</ReadOnly>
+      </Configuration>
+    </Field>
+    <Field name="ModifiedById" type="Integer">
+      <DisplayName>Last Modified By (Id)</DisplayName>
+      <Description>Id of last modifier.</Description>
+      <Indexing>
+        <Store>Yes</Store>
+      </Indexing>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <ReadOnly>true</ReadOnly>
+      </Configuration>
+    </Field>
+    <Field name="Version" type="Version">
+      <DisplayName>Version</DisplayName>
+      <Description>Version number.</Description>
+      <Indexing>
+        <Store>Yes</Store>
+      </Indexing>
+      <Configuration>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+        <ReadOnly>true</ReadOnly>
+      </Configuration>
+    </Field>
+    <Field name="Path" type="ShortText">
+      <DisplayName>Path</DisplayName>
+      <Description>Content path in the repository.</Description>
+      <Indexing>
+        <Store>Yes</Store>
+        <Analyzer>Lucene.Net.Analysis.KeywordAnalyzer</Analyzer>
+      </Indexing>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <ReadOnly>true</ReadOnly>
+      </Configuration>
+    </Field>
+    <Field name="Depth" type="Integer">
+      <DisplayName>Tree Depth</DisplayName>
+      <Description>Content level in the tree. Root level is 0.</Description>
+      <Bind property="Id"></Bind>
+      <Indexing>
+        <Store>Yes</Store>
+        <IndexHandler>SenseNet.Search.Indexing.DepthIndexHandler</IndexHandler>
+      </Indexing>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <ReadOnly>true</ReadOnly>
+      </Configuration>
+    </Field>
+    <Field name="InTree" type="ShortText">
+      <DisplayName>Ancestors</DisplayName>
+      <Description>Ancestor paths.</Description>
+      <Bind property="Path"></Bind>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.KeywordAnalyzer</Analyzer>
+        <IndexHandler>SenseNet.Search.Indexing.InTreeIndexHandler</IndexHandler>
+      </Indexing>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <ReadOnly>true</ReadOnly>
+      </Configuration>
+    </Field>
+    <Field name="InFolder" type="ShortText">
+      <DisplayName>Parent Path</DisplayName>
+      <Description>Parent path of the content.</Description>
+      <Bind property="Path"></Bind>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.KeywordAnalyzer</Analyzer>
+        <IndexHandler>SenseNet.Search.Indexing.InFolderIndexHandler</IndexHandler>
+      </Indexing>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <ReadOnly>true</ReadOnly>
+      </Configuration>
+    </Field>
+    <Field name="IsSystemContent" type="Boolean">
+      <DisplayName>System Content</DisplayName>
+      <Description>This field is true if content is in a system folder/trash or the content is a system folder/file.</Description>
+      <Bind property="Hidden"></Bind>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.KeywordAnalyzer</Analyzer>
+        <IndexHandler>SenseNet.Search.Indexing.SystemContentIndexHandler</IndexHandler>
+      </Indexing>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <ReadOnly>true</ReadOnly>
+      </Configuration>
+    </Field>
+    <Field name="DisplayName" type="ShortText">
+      <DisplayName>Display Name</DisplayName>
+      <Description>Content name. You can set any name you prefer without any restrictions.</Description>
+      <Configuration>
+        <ControlHint>sn:DisplayName</ControlHint>
+      </Configuration>
+    </Field>
+    <Field name="Description" type="LongText">
+      <DisplayName>Description</DisplayName>
+      <Description>Description of the content.</Description>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.Standard.StandardAnalyzer</Analyzer>
+      </Indexing>
+      <Configuration>
+        <ControlHint>sn:RichText</ControlHint>
+      </Configuration>
+    </Field>
+    <Field name="Hidden" type="Boolean">
+      <DisplayName>Hidden</DisplayName>
+      <Description>If checked, content will not show up in navigation.</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Index" type="Integer">
+      <DisplayName>Index</DisplayName>
+      <Description>Content order in navigation. Numbers closer to 0 will appear first.</Description>
+      <Configuration>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="EnableLifespan" type="Boolean">
+      <DisplayName>Enable Lifespan</DisplayName>
+      <Description>Specify whether you want to define starting and end date for the validity of this content.</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="ValidFrom" type="DateTime">
+      <DisplayName>Valid From</DisplayName>
+      <Description>This content will appear on the date you set if lifespan handling is enabled for this content.</Description>
+      <Configuration>
+        <DateTimeMode>DateAndTime</DateTimeMode>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="ValidTill" type="DateTime">
+      <DisplayName>Valid Till</DisplayName>
+      <Description>This content will disappear on the date you set if lifespan handling is enabled for this content.</Description>
+      <Configuration>
+        <DateTimeMode>DateAndTime</DateTimeMode>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="AllowedChildTypes" type="AllowedChildTypes">
+      <DisplayName>Content Types</DisplayName>
+      <Description>You can specify which content types the user can create as children below this content.</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="VersioningMode" type="VersioningMode">
+      <DisplayName>Versioning Mode For Current Content</DisplayName>
+      <Description>It shows the versioning mode of the current content.</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <AllowMultiple>false</AllowMultiple>
+        <AllowExtraValue>false</AllowExtraValue>
+        <Options>
+          <Option selected="true" value="0">Inherited</Option>
+          <Option value="1">None</Option>
+          <Option value="2">Major only</Option>
+          <Option value="3">Major and minor</Option>
+        </Options>
+      </Configuration>
+    </Field>
+    <Field name="InheritableVersioningMode" type="InheritableVersioningMode">
+      <DisplayName>Version History</DisplayName>
+      <Description>Specify whether the system should create a new version whenever you create or modify a content below this content.</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <AllowMultiple>false</AllowMultiple>
+        <AllowExtraValue>false</AllowExtraValue>
+        <ControlHint>sn:VersioningModeChoice</ControlHint>
+        <Options>
+          <Option selected="true" value="0">Inherited</Option>
+          <Option value="1">None</Option>
+          <Option value="2">Major only</Option>
+          <Option value="3">Major and minor</Option>
+        </Options>
+      </Configuration>
+    </Field>
+    <Field name="CreatedBy" type="Reference">
+      <DisplayName>Created by</DisplayName>
+      <Description>Content creator.</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="CreationDate" type="DateTime">
+      <DisplayName>Creation date</DisplayName>
+      <Description>Content creation date.</Description>
+      <Configuration>
+        <DateTimeMode>DateAndTime</DateTimeMode>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="ModifiedBy" type="Reference">
+      <DisplayName>Modified By</DisplayName>
+      <Description>Content was last modified by this user.</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="ModificationDate" type="DateTime">
+      <DisplayName>Modification Date</DisplayName>
+      <Description>Content was last modified on this date.</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <DateTimeMode>DateAndTime</DateTimeMode>
+      </Configuration>
+    </Field>
+    <Field name="ApprovingMode" type="ApprovingMode">
+      <DisplayName>Content Approval For Current Content</DisplayName>
+      <Description>It shows the approval mode of the current content.</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <AllowMultiple>false</AllowMultiple>
+        <AllowExtraValue>false</AllowExtraValue>
+        <Options>
+          <Option selected="true" value="0">Inherited</Option>
+          <Option value="1">False</Option>
+          <Option value="2">True</Option>
+        </Options>
+      </Configuration>
+    </Field>
+    <Field name="InheritableApprovingMode" type="InheritableApprovingMode">
+      <DisplayName>Content Approval</DisplayName>
+      <Description>Specify whether new or changed content below the current one should remain in a draft state until they have been approved.</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <AllowMultiple>false</AllowMultiple>
+        <AllowExtraValue>false</AllowExtraValue>
+        <ControlHint>sn:ApprovingModeChoice</ControlHint>
+        <Options>
+          <Option selected="true" value="0">Inherited</Option>
+          <Option value="1">False</Option>
+          <Option value="2">True</Option>
+        </Options>
+      </Configuration>
+    </Field>
+    <Field name="Locked" type="Boolean">
+      <DisplayName>Locked</DisplayName>
+      <Description>It shows whether the content is checked out or not.</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <ReadOnly>true</ReadOnly>
+      </Configuration>
+    </Field>
+    <Field name="CheckedOutTo" type="Reference">
+      <DisplayName>Checked Out To</DisplayName>
+      <Description>The user currently locking the content.</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <ReadOnly>true</ReadOnly>
+      </Configuration>
+    </Field>
+    <Field name="TrashDisabled" type="Boolean">
+      <DisplayName>Disable Trash</DisplayName>
+      <Description>You can disable trash for this content and its children. If set, you can not restore deleted content.</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <DefaultValue>false</DefaultValue>
+      </Configuration>
+    </Field>
+    <Field name="ExtensionData" type="LongText">
+      <DisplayName>Extension data</DisplayName>
+      <Description>You can set extra data in this field which is useful when extending a content.</Description>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.Standard.StandardAnalyzer</Analyzer>
+      </Indexing>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="BrowseApplication" type="Reference">
+      <DisplayName>Reference To Browse Application</DisplayName>
+      <Description>Set this, if you would like to override the default browse application.</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <AllowMultiple>false</AllowMultiple>
+      </Configuration>
+    </Field>
+    <Field name="Approvable" type="Boolean">
+      <DisplayName>Approvable By Current User</DisplayName>
+      <Description>This fileld is true if the content is in 'pending' state and can be approved by the current user.</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <ReadOnly>true</ReadOnly>
+      </Configuration>
+    </Field>
+    <Field name="IsTaggable" type="Boolean">
+      <DisplayName>Enable Tagging</DisplayName>
+      <Description>Specify whether you would like to enable tagging capability for this content.</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <DefaultValue>false</DefaultValue>
+      </Configuration>
+    </Field>
+    <Field name="Tags" type="LongText">
+      <DisplayName>Tags</DisplayName>
+      <Description>List of tags and creators of them separated by commas.</Description>
+      <Indexing>
+        <IndexHandler>SenseNet.Search.Indexing.TagIndexHandler</IndexHandler>
+      </Indexing>
+      <Configuration>
+        <ReadOnly>false</ReadOnly>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <ControlHint>sn:TagList</ControlHint>
+      </Configuration>
+    </Field>
+    <Field name="IsRateable" type="Boolean">
+      <DisplayName>Enable Rating</DisplayName>
+      <Description>Specify whether you would like to enable rating capability for this content.</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <DefaultValue>false</DefaultValue>
+      </Configuration>
+    </Field>
+    <Field name="RateStr" type="ShortText">
+      <DisplayName>Rate_Str</DisplayName>
+      <Description>Average rate of the content.</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="RateAvg" type="Number">
+      <DisplayName>Rate_Avg</DisplayName>
+      <Description>Average rate of the content.</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="RateCount" type="Integer">
+      <DisplayName>Rate_Count</DisplayName>
+      <Description>Average rate of the content.</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Rate" type="Rating">
+      <DisplayName>Rate</DisplayName>
+      <Description>Average rate of the content.</Description>
+      <Bind property="RateStr" />
+      <Bind property="RateCount" />
+      <Bind property="RateAvg" />
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <Range>5</Range>
+      </Configuration>
+    </Field>
+    <Field name="Publishable" type="Boolean">
+      <DisplayName>Publishable By Current User</DisplayName>
+      <Description>This fileld is true if the content can be published by the current user.</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <ReadOnly>true</ReadOnly>
+      </Configuration>
+    </Field>
+    <Field name="Versions" type="Reference">
+      <DisplayName>Versions</DisplayName>
+      <Description>Content version history.</Description>
+      <Indexing>
+        <Mode>No</Mode>
+        <Store>No</Store>
+      </Indexing>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <AllowMultiple>true</AllowMultiple>
+        <ReadOnly>true</ReadOnly>
+      </Configuration>
+    </Field>
+    <Field name="WorkflowsRunning" type="Boolean">
+      <DisplayName>Workflows Running</DisplayName>
+      <Description>True if one or more workflows are running on this content</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <ReadOnly>true</ReadOnly>
+      </Configuration>
+    </Field>
+    <Field name="CheckInComments" type="LongText">
+      <DisplayName>Checkin comments</DisplayName>
+      <Description>Comments for a new version.</Description>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.Standard.StandardAnalyzer</Analyzer>
+      </Indexing>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Workspace" type="Reference">
+      <DisplayName>Workspace</DisplayName>
+      <Description>The container workspace of the content</Description>
+      <Indexing>
+        <Store>Yes</Store>
+      </Indexing>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <AllowMultiple>false</AllowMultiple>
+        <ReadOnly>true</ReadOnly>
+        <AllowedTypes>
+          <Type>Workspace</Type>
+        </AllowedTypes>
+      </Configuration>
+    </Field>
+  </Fields>
+</ContentType>

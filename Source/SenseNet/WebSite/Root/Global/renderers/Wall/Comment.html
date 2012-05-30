@@ -1,0 +1,17 @@
+<div class="sn-commentdiv ui-helper-clearfix">
+    <input class="sn-commentid" type="hidden" value="{{commentid}}" />
+    <div class="sn-commentdiv-avatar">
+        <a href="{{userlink}}">
+            <img src="{{avatar}}" class="sn-commentbox-avatar" />
+        </a>
+    </div>
+    <div class="sn-commentdiv-text sn-wrap">
+        <strong><a href="{{userlink}}">{{username}}</a></strong>&nbsp;{{text}}
+        <div class="sn-commentdiv-info">
+            <span title='{{date}}'>{{friendlydate}}</span><span style="display:{{interactdisplay}};"> - <a class='sn-commentlike' href='javascript:' onclick="SN.Wall.likecomment($(this));" style="display:{{ilikedisplay}}">Like</a><a class='sn-commentunlike' href='javascript:' onclick="SN.Wall.unlikecomment($(this));" style="display:{{iunlikedisplay}};">Unlike</a></span>
+            <span class='sn-commentlikebox' style="display:{{likeboxdisplay}};">
+                - <span class='sn-commentlikelabel {{interactclass}}'>{{likes}}</span>
+            </span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Page</ContentType>
+  <ContentName>Explore</ContentName>
+  <Fields>
+    <DisplayName>Explore</DisplayName>
+    <PageTemplateNode>
+      <Path>/Root/Global/pagetemplates/sn-layout-inter-blank.html</Path>
+    </PageTemplateNode>
+    <Index>0</Index>
+    <Binary attachment="Explore.aspx" />
+    <PersonalizationSettings attachment="Explore.PersonalizationSettings" />
+    <Icon>explore</Icon>
+    <PageSkin>
+      <Path>/Root/Skins/sensenet</Path>
+    </PageSkin>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>SystemFolder</ContentType>
+  <ContentName>ContentTemplates</ContentName>
+  <Fields>
+    <DisplayName>ContentTemplates</DisplayName>
+    <Hidden>true</Hidden>
+    <Index>0</Index>
+    <AllowedChildTypes>File</AllowedChildTypes>
+    <VersioningMode>1</VersioningMode>
+    <InheritableVersioningMode>1</InheritableVersioningMode>
+    <ApprovingMode>1</ApprovingMode>
+    <InheritableApprovingMode>1</InheritableApprovingMode>
+  </Fields>
+</ContentMetaData>

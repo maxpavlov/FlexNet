@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="CalendarEvent" parentType="ListItem" handler="SenseNet.ContentRepository.CalendarEvent" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Calendar Event</DisplayName>
+  <Description>A content type for defining calendar events</Description>
+  <Icon>CalendarEvent</Icon>
+  <Fields>
+    <Field name="DisplayName" type="ShortText">
+      <DisplayName>Event title</DisplayName>
+    </Field>
+    <Field name="Name" type="ShortText">
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleNew>Hide</VisibleNew>
+        <VisibleEdit>Hide</VisibleEdit>
+      </Configuration>
+    </Field>
+    <Field name="Location" type="ShortText">
+      <DisplayName>Location</DisplayName>
+    </Field>
+    <Field name="StartDate" type="DateTime">
+      <DisplayName>Start date</DisplayName>
+      <Configuration>
+        <DateTimeMode>DateAndTime</DateTimeMode>
+        <Compulsory>true</Compulsory>
+        <DefaultValue>[Script:jScript] DateTime.Now; [/Script]</DefaultValue>
+      </Configuration>
+    </Field>
+    <Field name="EndDate" type="DateTime">
+      <DisplayName>End date</DisplayName>
+      <Configuration>
+        <DateTimeMode>DateAndTime</DateTimeMode>
+        <Compulsory>true</Compulsory>
+        <DefaultValue>[Script:jScript] DateTime.Now; [/Script]</DefaultValue>
+      </Configuration>
+    </Field>
+    <Field name="Lead" type="LongText">
+      <DisplayName>Lead</DisplayName>
+      <Description>Short lead of the event</Description>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.Standard.StandardAnalyzer</Analyzer>
+      </Indexing>
+      <Configuration>
+        <ControlHint>sn:RichText</ControlHint>
+      </Configuration>
+    </Field>
+    <Field name="Description" type="LongText">
+      <Description>Detailed description of the event</Description>
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>    
+    <Field name="AllDay" type="Boolean">
+      <DisplayName>All-day event</DisplayName>
+      <Description>The event encompasses one or more entire days</Description>
+    </Field>    
+    <Field name="EventUrl" type="ShortText">
+      <DisplayName>URL</DisplayName>
+      <Description>Further information on event</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <!-- registration fields-->
+    <Field name="RequiresRegistration" type="Boolean">
+      <DisplayName>Requires registration</DisplayName>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="RegistrationForm" type="Reference">
+      <DisplayName>Registration form</DisplayName>
+      <Configuration>
+        <AllowMultiple>false</AllowMultiple>
+        <AllowedTypes>
+          <Type>EventRegistrationForm</Type>
+        </AllowedTypes>
+        <SelectionRoot>
+          <Path>/Root</Path>
+        </SelectionRoot>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="OwnerEmail" type="ShortText">
+      <DisplayName>Event owner's e-mail</DisplayName>
+      <Description>The list of email addresses to where a notification message containing submitted values are sent after submitting the form. The addresses should be separated by ";", "," or new line.</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="NotificationMode" type="Choice">
+      <DisplayName>Notification mode</DisplayName>
+      <Configuration>
+        <Options>
+          <Option selected="true">E-mail</Option>
+          <Option>E-mail digest</Option>
+          <Option>None</Option>
+        </Options>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="EmailTemplate" type="LongText">
+      <DisplayName>EmailTemplate</DisplayName>
+      <Description>The template of the email message sent to the administrators. By default the template of notification email sent to the submitter is the same as the one sent to the recipients given in the email list above. Form contents can be inserted with the "{0}" string.</Description>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.Standard.StandardAnalyzer</Analyzer>
+      </Indexing>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="EmailTemplateSubmitter" type="LongText">
+      <DisplayName>SubmitterEmailTemplate</DisplayName>
+      <Description>The template of the email message sent to the submitter. By default the template of notification email sent to the submitter is the same as the one sent to the recipients given in the email list above. Form contents can be inserted with the "{0}" string.</Description>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.Standard.StandardAnalyzer</Analyzer>
+      </Indexing>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="EmailFrom" type="ShortText">
+      <DisplayName>EmailFrom</DisplayName>
+      <Description>This address is displayed in the "From" field of the notification email.</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="EmailFromSubmitter" type="ShortText">
+      <DisplayName>Subbmitter EmailFrom</DisplayName>
+      <Description>This address is displayed in the "From" field of the user notification email. Default is "mailerservice@portalengine.org"</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="EmailField" type="ShortText">
+      <DisplayName>EmailField</DisplayName>
+      <Description>The name of the field specified among ContentList fields containing the submitter's email address. Ie.: "#Email" or "#SubmitterEmail"</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="MaxParticipants" type="Integer">
+      <DisplayName>Max Participants</DisplayName>
+      <Description>The maximum number of participants which can apply for the event.</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="NumParticipants" type="Integer">
+      <DisplayName>Current number of participants</DisplayName>
+      <Description>The number of participants applied for the event.</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Version" type="Version">
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Index" type="Integer">
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+  </Fields>
+</ContentType>

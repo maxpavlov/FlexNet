@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Page</ContentType>
+  <ContentName>UpdateBlacklist</ContentName>
+  <Fields>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+    <SmartUrl></SmartUrl>
+    <PageTemplateNode>
+      <Path>/Root/Global/pagetemplates/sn-layout-intra.html</Path>
+    </PageTemplateNode>
+    <IsExternal>false</IsExternal>
+    <OuterUrl></OuterUrl>
+    <MetaTitle></MetaTitle>
+    <Keywords><![CDATA[]]></Keywords>
+    <MetaDescription><![CDATA[]]></MetaDescription>
+    <MetaAuthors></MetaAuthors>
+    <CustomMeta><![CDATA[]]></CustomMeta>
+    <Binary attachment="UpdateBlacklist.aspx" />
+    <PersonalizationSettings attachment="UpdateBlacklist.PersonalizationSettings" />
+    <DisplayName></DisplayName>
+    <Description><![CDATA[]]></Description>
+    <Scenario></Scenario>
+    <ActionTypeName></ActionTypeName>
+    <Disabled>false</Disabled>
+    <Clear>false</Clear>
+    <Icon></Icon>
+    <StyleHint></StyleHint>
+    <RequiredPermissions></RequiredPermissions>
+    <DeepPermissionCheck>false</DeepPermissionCheck>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <Tags><![CDATA[]]></Tags>
+  </Fields>
+</ContentMetaData>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="Device" parentType="Folder" handler="SenseNet.ApplicationModel.Device" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Device</DisplayName>
+  <Description>Device</Description>
+  <Icon>Device</Icon>
+  <Fields>
+    <Field name="UserAgentPattern" type="ShortText">
+      <DisplayName>User agent string</DisplayName>
+      <Description>A regular expression to match the user agent string of the browser</Description>
+    </Field>
+  </Fields>
+</ContentType>

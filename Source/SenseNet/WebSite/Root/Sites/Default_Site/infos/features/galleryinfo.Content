@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>WebContentDemo</ContentType>
+  <ContentName>galleryinfo</ContentName>
+  <Fields>
+    <DisplayName></DisplayName>
+    <Subtitle></Subtitle>
+    <RelatedImage />
+    <Header><![CDATA[]]></Header>
+    <Body>
+      <![CDATA[<div class="sn-infobox"><h1 class="sn-content-title sn-article-title"><img src="/Root/Global/images/icons/32/info.png" class="sn-icon sn-icon_32" alt="" />Gallery</h1>
+      <p>This page is an example of a gallery based on a special content type (<em>ImageGalleryLight</em>), presented with a content collection portlet using a custom renderer.</p>
+      <ul>
+      <li><strong>You need to be logged in as Administrator to see or modify portlet properties, or edit the files below.</strong></li>
+      <li>This is a custom portlet page: <em><a href="/Explore.html#/Root/Sites/Default_Site/features/gallery">/Root/Sites/Default_Site/features/gallery</a></em></li>
+      <li>The custom renderer used to display the calendar can be found under <em><a href="/Explore.html#/Root/Global/renderers/GalleryView.ascx">/Root/Global/renderers/GalleryView.ascx</a></em></li>
+      <ul></div>]]></Body>
+    <Details><a href="" target="" title=""></a></Details>
+    <Language>English</Language>
+    <Keywords><![CDATA[]]></Keywords>
+    <Author></Author>
+    <ReviewDate>0001-01-01T00:00:00</ReviewDate>
+    <ArchiveDate>0001-01-01T00:00:00</ArchiveDate>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <Description><![CDATA[]]></Description>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate></Rate>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

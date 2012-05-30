@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>DocumentWorkspace</ContentType>
+  <ContentName>londondocumentworkspace</ContentName>
+  <Fields>
+    <DisplayName>London Document Workspace</DisplayName>
+    <Description><![CDATA[<p>Document workspace for London.</p>]]></Description>
+    <Manager>
+      <Path>/Root/IMS/Demo/ProjectManagers/albamonday</Path>
+    </Manager>
+    <Deadline>2011-06-01T00:00:00</Deadline>
+    <IsActive>true</IsActive>
+    <Hidden>false</Hidden>
+    <Index>20</Index>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+    <Identity path="/Root/Sites/Default_Site/workspaces/Document/londondocumentworkspace/Groups/Owners">
+      <See>Allow</See>
+      <Open>Allow</Open>
+      <OpenMinor>Allow</OpenMinor>
+      <Save>Allow</Save>
+      <ManageListsAndWorkspaces>Allow</ManageListsAndWorkspaces>
+      <Publish>Allow</Publish>
+      <ForceCheckin>Allow</ForceCheckin>
+      <AddNew>Allow</AddNew>
+      <Approve>Allow</Approve>
+      <Delete>Allow</Delete>
+      <RecallOldVersion>Allow</RecallOldVersion>
+      <DeleteOldVersion>Allow</DeleteOldVersion>
+      <SeePermissions>Allow</SeePermissions>
+      <SetPermissions>Allow</SetPermissions>
+      <RunApplication>Allow</RunApplication>
+    </Identity>
+    <Identity path="/Root/Sites/Default_Site/workspaces/Document/londondocumentworkspace/Groups/Members">
+      <See>Allow</See>
+      <Open>Allow</Open>
+      <OpenMinor>Allow</OpenMinor>
+      <Save>Allow</Save>
+      <Publish>Allow</Publish>
+      <AddNew>Allow</AddNew>
+      <Delete>Allow</Delete>
+      <RecallOldVersion>Allow</RecallOldVersion>
+      <RunApplication>Allow</RunApplication>
+    </Identity>
+    <Identity path="/Root/Sites/Default_Site/workspaces/Document/londondocumentworkspace/Groups/Visitors">
+      <See>Allow</See>
+      <Open>Allow</Open>
+      <RunApplication>Allow</RunApplication>
+    </Identity>
+  </Permissions>
+</ContentMetaData>

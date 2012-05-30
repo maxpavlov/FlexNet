@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="RegistrationWorkflow" parentType="Workflow" handler="SenseNet.Workflow.RegistrationWorkflow" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Registration Workflow</DisplayName>
+	<Description>A Content representation of an Approval Workflow instance</Description>
+	<Icon>workflow</Icon>
+	<Fields>
+    <Field name="FullName" type="ShortText">
+      <DisplayName>Full name</DisplayName>
+      <Description>Please enter your full name here</Description>
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="UserName" type="ShortText">
+      <DisplayName>User name</DisplayName>
+      <Description>Please enter the username you would like</Description>
+      <Configuration>
+        <Compulsory>true</Compulsory>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Email" type="ShortText">
+      <DisplayName>E-mail</DisplayName>
+      <Description>Type your e-mail address here</Description>
+      <Configuration>
+        <Compulsory>true</Compulsory>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="InitialPassword" type="ShortText">
+      <DisplayName>Initial password</DisplayName>
+      <Description>Please enter the password you would like</Description>
+      <Configuration>
+        <Compulsory>true</Compulsory>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="RegistrationType" type="Choice">
+      <DisplayName>Registration type</DisplayName>
+      <Description>Please select which one of the following describes you best</Description>
+      <Configuration>
+        <Options>
+          <Option value="client">Prospective enterprise client</Option>
+          <Option value="media">Technical journalist or media worker</Option>
+          <Option value="community">Open source developer or advocate</Option>
+          <Option value="public">None of the above</Option>
+        </Options>
+      </Configuration>
+    </Field>
+  </Fields>
+</ContentType>

@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="Car" parentType="ListItem" handler="SenseNet.ContentRepository.GenericContent" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Car</DisplayName>
+  <Description>Car is a leaf content type to demonstrate the ECMS features of Sense/Net 6.0.</Description>
+  <Icon>Car</Icon>
+  <Fields>
+    <Field name="Name" type="ShortText">
+      <Configuration>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name='Make' type='ShortText'>
+      <DisplayName>Make</DisplayName>
+      <Description>e.g. Mazda, Ferrari etc.</Description>
+    </Field>
+    <Field name='Model' type='ShortText'>
+      <DisplayName>Model</DisplayName>
+      <Description>e.g. RX-8, F-40 etc.</Description>
+    </Field>
+    <Field name='Style' type='Choice'>
+      <DisplayName>Style</DisplayName>
+      <Description>Select one</Description>
+      <Configuration>
+        <AllowMultiple>false</AllowMultiple>
+        <AllowExtraValue>true</AllowExtraValue>
+        <Options>
+          <Option selected='true'>Sedan</Option>
+          <Option>Coupe</Option>
+          <Option>Cabrio</Option>
+          <Option>Roadster</Option>
+          <Option>SUV</Option>
+          <Option>Van</Option>
+        </Options>
+      </Configuration>
+    </Field>
+    <Field name='StartingDate' type='DateTime'>
+      <DisplayName>Starting Date</DisplayName>
+      <Description>Starting Date</Description>
+      <Configuration>
+        <DateTimeMode>DateAndTime</DateTimeMode>
+      </Configuration>
+    </Field>
+    <Field name='Color' type='Color'>
+      <DisplayName>Colour</DisplayName>
+      <Description>Colour</Description>
+    </Field>
+    <Field name='EngineSize' type='ShortText'>
+      <DisplayName>Engine Size</DisplayName>
+      <Description>Engine Size (litres)</Description>
+    </Field>
+    <Field name='Power' type='ShortText'>
+      <DisplayName>Power in hp</DisplayName>
+      <Description>Power in hp</Description>
+    </Field>
+    <Field name='Price' type='Number'>
+      <DisplayName>Base price</DisplayName>
+      <Description>Base price $</Description>
+    </Field>
+    <Field name='Description' type='LongText'>
+      <DisplayName>Description</DisplayName>
+      <Description>Description</Description>
+    </Field>
+  </Fields>
+</ContentType>

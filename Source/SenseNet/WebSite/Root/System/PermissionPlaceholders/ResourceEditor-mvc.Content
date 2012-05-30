@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Folder</ContentType>
+  <ContentName>ResourceEditor-mvc</ContentName>
+  <Fields>
+    <DisplayName>ResourceEditor-mvc</DisplayName>
+    <TrashDisabled>false</TrashDisabled>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

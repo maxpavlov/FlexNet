@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>CalendarEvent</ContentType>
+  <ContentName>Curabitur_eu_facilisis_eros</ContentName>
+  <Fields>
+    <DisplayName>Curabitur eu facilisis eros</DisplayName>
+    <Description><![CDATA[Curabitur eu facilisis eros. Curabitur tellus urna, sollicitudin ut semper vel, egestas et lorem. Nullam a urna tristique mauris imperdiet suscipit dapibus sed erat. Vivamus a est ac nunc sollicitudin hendrerit. Nullam et orci neque. Sed imperdiet dapibus magna sed condimentum. Suspendisse ultrices nibh non elit fringilla ullamcorper. Etiam auctor.]]></Description>
+    <StartDate>2010-05-10T00:00:00</StartDate>
+    <EndDate>2010-05-12T00:00:00</EndDate>
+    <AllDay>true</AllDay>
+    <Location>Nullam a urna</Location>
+    <RequiresRegistration>false</RequiresRegistration>
+    <NotificationMode></NotificationMode>
+    <MaxParticipants>0</MaxParticipants>
+    <NumParticipants>0</NumParticipants>
+    <Index>0</Index>
+    <Hidden>false</Hidden>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

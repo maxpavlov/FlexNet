@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="Portlet" parentType="ListItem" handler="SenseNet.ContentRepository.GenericContent" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Portlet</DisplayName>
+  <Description>Portlet that can be selected in the 'Add new portlet' dialog</Description>
+  <Icon>FormItem</Icon>
+  <Fields>
+    <Field name="Description" type="LongText">
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="TypeName" type="ShortText">
+      <DisplayName>Fully qualified type name</DisplayName>
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="ImageRef" type="Reference">
+      <DisplayName>Thumbnail image of portlet (reference)</DisplayName>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <AllowMultiple>false</AllowMultiple>
+      </Configuration>
+    </Field>
+    <Field name="ImageData" type="Binary">
+      <DisplayName>Thumbnail image of portlet (binarydata)</DisplayName>
+      <Indexing>
+        <Mode>No</Mode>
+      </Indexing>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="PortletImage" type="Image">
+      <DisplayName>Thumbnail image of portlet</DisplayName>
+      <Bind property='ImageRef' />
+      <Bind property='ImageData' />
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+        <ControlHint>sn:Image</ControlHint>
+      </Configuration>
+    </Field>
+    <Field name="Hidden" type="Boolean">
+      <DisplayName>Hidden</DisplayName>
+      <Description>Doesn't show up in Add portlet dialog if checked.</Description>
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+  </Fields>
+</ContentType>

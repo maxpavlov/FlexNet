@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>CalendarEvent</ContentType>
+  <ContentName>Curabitur_eu_facilisis_eros</ContentName>
+  <Fields>
+    <DisplayName>Curabitur eu facilisis eros</DisplayName>
+    <Lead><![CDATA[<p>Nullam et orci neque. Sed imperdiet dapibus magna sed condimentum.  Suspendisse ultrices nibh non elit fringilla ullamcorper. Etiam auctor. Sed interdum egestas nibh, ac venenatis nunc aliquam facilisis.</p>]]></Lead>
+    <Description><![CDATA[<p>Curabitur eu facilisis eros. Curabitur tellus urna, sollicitudin ut semper vel, egestas et lorem. Nullam a urna tristique mauris imperdiet suscipit dapibus sed erat. Vivamus a est ac nunc sollicitudin hendrerit. Nullam et orci neque. Sed imperdiet dapibus magna sed condimentum. Suspendisse ultrices nibh non elit fringilla ullamcorper. Etiam auctor.</p>
+<p>Duis et libero eu justo bibendum tempus. Suspendisse id erat a velit  ultrices mollis dapibus eu dolor. Pellentesque non metus mi, id  ullamcorper eros. Pellentesque in orci sed eros pharetra sodales id  volutpat nisi. Maecenas et urna enim, a imperdiet augue. Phasellus  eleifend elementum justo luctus imperdiet. Maecenas pellentesque porta  facilisis. Phasellus lacinia elementum erat, et venenatis lectus  accumsan nec. Nulla facilisi. Donec a orci quis nulla tincidunt dictum.  Etiam ornare vehicula mi eget iaculis. Aliquam vel tellus sit amet neque  sodales congue sed id justo. Nullam quis libero ac augue pharetra  semper. Nullam vel augue ut leo porta elementum. Proin in risus nunc.  Duis vitae ipsum ipsum, ac mollis risus. Ut ultrices rutrum  sollicitudin. Nunc sem mauris, imperdiet vitae ornare et, molestie a  odio. Suspendisse at lectus sem, eu egestas augue.</p>]]></Description>
+    <StartDate>2010-08-08T00:00:00</StartDate>
+    <EndDate>2010-08-18T00:00:00</EndDate>
+    <AllDay>true</AllDay>
+    <Location>Nullam a urna</Location>
+    <Index>0</Index>
+    <Hidden>false</Hidden>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+        <VersioningMode>1</VersioningMode>
+    <InheritableVersioningMode>1</InheritableVersioningMode>
+    <ApprovingMode>1</ApprovingMode>
+    <InheritableApprovingMode>1</InheritableApprovingMode>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate></Rate>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="RegisteredUser" parentType="User" handler="SenseNet.ContentRepository.User" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Registered User</DisplayName>
+  <Description>
+    This content type is used to store information for users registered through a form.
+    It has extra fields and functionality compared to a simple User, such as activation through e-mail,
+    security question and answer, etc.
+  </Description>
+  <Icon>RegisteredUser</Icon>
+  <Fields>
+    <Field name="Email" type="ShortText">
+      <Configuration handler="SenseNet.ContentRepository.Fields.ActivationFieldSetting">
+        <Enabled>true</Enabled>
+        <MailFrom></MailFrom>
+        <MailDefinition>
+          Click the following link to activate your account:
+
+          ##ActivationLink##
+        </MailDefinition>
+        <MailSubject>Activation subject</MailSubject>
+        <IsBodyHtml>false</IsBodyHtml>
+        <MailPriority>Low</MailPriority>
+      </Configuration>
+    </Field>
+    <Field name="ResetKey" type="ShortText">
+      <DisplayName>ResetKey</DisplayName>
+      <Description>Reset key guid used by the reset password link.</Description>
+    </Field>
+    <Field name="ActivationId" type="ShortText">
+      <DisplayName>Activation</DisplayName>
+      <Description>Activation guid used by the registered user activation links.</Description>
+    </Field>
+    <Field name="Activated" type="Boolean">
+      <DisplayName>Activated</DisplayName>
+      <Description>User is activated by the activation email. (or you can activate user by enabling this option).</Description>
+    </Field>
+    <Field name="SecurityQuestion" type="ShortText">
+      <DisplayName>Question</DisplayName>
+      <Description>Password recovery information entered by the user.</Description>
+    </Field>
+    <Field name="SecurityAnswer" type="ShortText">
+      <DisplayName>Answer</DisplayName>
+      <Description>Password recovery answer to the end user's question.</Description>
+    </Field>
+  </Fields>
+</ContentType>

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Application</ContentType>
+  <ContentName>MoveBatch</ContentName>
+  <Fields>
+    <Index>3800</Index>
+    <DisplayName>Move selected...</DisplayName>
+    <ActionTypeName>MoveBatchAction</ActionTypeName>
+    <Icon>move</Icon>
+  </Fields>
+</ContentMetaData>

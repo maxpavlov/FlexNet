@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Application</ContentType>
+  <ContentName>DeleteLocal</ContentName>
+  <Fields>
+    <DisplayName>DeleteLocal</DisplayName>
+    <ActionTypeName>DeleteLocalAppAction</ActionTypeName>
+    <Icon>delete</Icon>
+    <RequiredPermissions>9</RequiredPermissions>
+    <Index>4300</Index>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="ADFolder" parentType="Folder" handler="SenseNet.ContentRepository.Security.ADSync.ADFolder" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>AD Folder</DisplayName>
+	<Description>AD Folder is the representative of an AD container object.</Description>
+	<Icon>Folder</Icon>
+  <AllowedChildTypes>
+    User,RegisteredUser,Group,OrganizationalUnit,ADFolder
+  </AllowedChildTypes>
+	<Fields>
+    <Field name="SyncGuid" type="ShortText">
+      <DisplayName>SyncGuid</DisplayName>
+      <Description>GUID of corresponding AD object.</Description>
+      <Configuration>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="LastSync" type="DateTime">
+      <DisplayName>LastSync</DisplayName>
+      <Description>Date of last synchronization.</Description>
+      <Configuration>
+        <DateTimeMode>DateAndTime</DateTimeMode>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+  </Fields>
+</ContentType>

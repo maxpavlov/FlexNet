@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>WebContentDemo</ContentType>
+  <ContentName>images</ContentName>
+  <Fields>
+    <DisplayName>Better support for images: image content type and Content Explorer image preview</DisplayName>
+    <Subtitle></Subtitle>
+    <Header></Header>
+    <Body>&lt;p&gt;A picture is worth a thousand words. What else could we say?&lt;/p&gt;</Body>
+    <Details><a href="" target="" title=""></a></Details>
+    <Language>English</Language>
+    <Keywords></Keywords>
+    <Author></Author>
+    <ValidFrom>0001-01-01T00:00:00.0000000+01:00</ValidFrom>
+    <ReviewDate>0001-01-01T00:00:00.0000000+01:00</ReviewDate>
+    <ArchiveDate>0001-01-01T00:00:00.0000000+01:00</ArchiveDate>
+    <ValidTill>0001-01-01T00:00:00.0000000+01:00</ValidTill>
+    <Index>0</Index>
+  </Fields>
+</ContentMetaData>

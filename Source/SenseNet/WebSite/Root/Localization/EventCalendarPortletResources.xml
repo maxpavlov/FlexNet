@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Resources>
+  <ResourceClass name="EventCalendar">
+    <Languages>
+      <Language cultureName="en">
+        <data name="PortletTitle" xml:space="preserve">
+          <value>Event calendar</value>
+        </data>
+        <data name="PortletDescription" xml:space="preserve">
+          <value>Portlet for handling events in calendar view (context bound)</value>
+        </data>
+        <data name="CalendarPathTitle" xml:space="preserve">
+          <value>Event Calendar path</value>
+        </data>
+        <data name="CalendarPathDescription" xml:space="preserve">
+          <value>Path of CalendarEvent contents to be displayed</value>
+        </data>
+        <data name="ApplyText" xml:space="preserve">
+          <value>Apply</value>
+        </data>
+        <data name="ParticipantsText" xml:space="preserve">
+          <value>({0} free of {1})</value>
+        </data>
+        <data name="FullEventText" xml:space="preserve">
+          <value>(Full)</value>
+        </data>
+        <data name="DontNeedRegistration" xml:space="preserve">
+          <value>(This event doesn't need registration)</value>
+        </data>
+        <data name="AlreadyApplied" xml:space="preserve">
+          <value>You have already registered</value>
+        </data>
+        <data name="StartDate" xml:space="preserve">
+          <value>Start Date:</value>
+        </data>
+        <data name="EndDate" xml:space="preserve">
+          <value>End Date:</value>
+        </data>
+        <data name="Unregister" xml:space="preserve">
+          <value>Unregister</value>
+        </data>
+      </Language>
+      <Language cultureName="hu">
+        <data name="PortletTitle" xml:space="preserve">
+          <value>Eseménynaptár</value>
+        </data>
+        <data name="PortletDescription" xml:space="preserve">
+          <value>Események naptár nézetben való kezelésére alkalmas portlet</value>
+        </data>
+        <data name="CalendarPathTitle" xml:space="preserve">
+          <value>Eseménynaptár elérési útja</value>
+        </data>
+        <data name="CalendarPathDescription" xml:space="preserve">
+          <value>A megjelenítendő eseménynaptár elérési útja</value>
+        </data>
+        <data name="ApplyText" xml:space="preserve">
+          <value>Jelentkezés</value>
+        </data>
+        <data name="ParticipantsText" xml:space="preserve">
+          <value>({0}/{1} szabad)</value>
+        </data>
+        <data name="FullEventText" xml:space="preserve">
+          <value>(Megtelt)</value>
+        </data>
+        <data name="DontNeedRegistration" xml:space="preserve">
+          <value>(Erre az eseményre nem szükséges jelentkezni)</value>
+        </data>
+        <data name="AlreadyApplied" xml:space="preserve">
+          <value>Ön már jelezte részvételi szándékát</value>
+        </data>
+        <data name="StartDate" xml:space="preserve">
+          <value>Kezdő időpont:</value>
+        </data>
+        <data name="EndDate" xml:space="preserve">
+          <value>Záró időpont:</value>
+        </data>
+        <data name="Unregister" xml:space="preserve">
+          <value>Leiratkozás</value>
+        </data>
+      </Language>
+    </Languages>
+  </ResourceClass>
+</Resources>

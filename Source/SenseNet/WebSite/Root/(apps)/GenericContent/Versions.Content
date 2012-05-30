@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Page</ContentType>
+  <ContentName>Versions</ContentName>
+  <Fields>
+    <Hidden>false</Hidden>
+    <Index>4950</Index>
+    <PageTemplateNode>
+      <Path>/Root/Global/pagetemplates/sn-layout-dialog.html</Path>
+    </PageTemplateNode>
+    <IsExternal>false</IsExternal>
+    <Binary attachment="Versions.aspx" />
+    <PersonalizationSettings attachment="Versions.PersonalizationSettings" />
+    <DisplayName>Versions</DisplayName>
+    <Scenario>ListItem;ExploreActions</Scenario>
+    <Disabled>false</Disabled>
+    <Clear>false</Clear>
+    <Icon>versions</Icon>
+    <DeepPermissionCheck>false</DeepPermissionCheck>
+    <RequiredPermissions>2;10</RequiredPermissions>
+    <TrashDisabled>false</TrashDisabled>
+  </Fields>
+  <Permissions>
+    <Clear />
+    <Identity path="/Root/IMS/BuiltIn/Portal/IdentifiedUsers">
+      <See>Allow</See>
+      <Open>Allow</Open>
+      <RunApplication>Allow</RunApplication>
+    </Identity>
+  </Permissions>
+</ContentMetaData>

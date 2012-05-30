@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="UserControl" parentType="File" handler="SenseNet.ContentRepository.File" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>User control</DisplayName>
+  <Description>A type for storing ASP.NET user controls</Description>
+  <Icon>File</Icon>
+  <Extension>.ascx</Extension>
+  <Fields />
+</ContentType>

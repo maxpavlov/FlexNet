@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>HTMLContent</ContentType>
+  <ContentName>Miscellaneous Features</ContentName>
+  <Fields>
+    <HTMLFragment><![CDATA[<div class="sn-feature-content ui-helper-clearfix">
+  <div class="sn-feature">
+    <div class="sn-feature-border">
+      <div class="sn-feature-body">
+          <h2 class="sn-feature-title"><a href="/features/menu/" title="Go to menu demo">Menu</a></h2>
+          <div class="sn-feature-img-border">
+            <a href="/features/menu/" title="Go to menu demo"><div class="sn-feature-img-overlay"></div><img src="/Root/YourContents/Images/ss_menu.jpg" alt="Go to menu demo" /></a>
+          </div>
+          <div class="sn-feature-shadow">&#160;</div>
+          <p>You can restructure your menu with just a few clicks. Don’t believe us? Change the default vertical menu to a horizontal one within 10 sec!<br /><a class="SN_Hover" href="/features/menu/" title="Go to menu demo">&#187; Menu demo</a></p>
+      </div>
+    </div>
+    <div class="sn-feature-footer"><div class="sn-feature-footer-bl"></div><div class="sn-feature-footer-br"></div></div>
+  </div>
+
+  <div class="sn-feature">
+    <div class="sn-feature-border">
+      <div class="sn-feature-body">
+          <h2 class="sn-feature-title"><a href="/features/search?text=About" title="Go to search demo">Search</a></h2>
+          <div class="sn-feature-img-border">
+            <a href="/features/search?text=About" title="Go to search demo"><div class="sn-feature-img-overlay"></div><img src="/Root/YourContents/Images/ss_search.jpg" alt="Go to search demo" /></a>
+          </div>
+          <div class="sn-feature-shadow">&#160;</div>
+          <p>Discover the Sense/Net 6.0 search engine, and put it to the test! We guarantee that you will be amazed by its speed. Try any common word as a search expression, you won’t be disappointed!<br /><a class="SN_Hover" href="/features/search?text=About" title="Go to search demo">&#187; Search demo</a></p>
+      </div>
+    </div>
+    <div class="sn-feature-footer"><div class="sn-feature-footer-bl"></div><div class="sn-feature-footer-br"></div></div>
+  </div>
+
+  <div class="sn-feature-last">
+    <div class="sn-feature-border">
+      <div class="sn-feature-body">
+          <h2 class="sn-feature-title"><a href="/features?action=RSS" title="RSS Support">RSS</a></h2>
+          <div class="sn-feature-img-border">
+            <a href="/features?action=RSS" title="RSS"><div class="sn-feature-img-overlay"></div><img src="/Root/YourContents/Images/tn_rss.jpg" alt="RSS" /></a>
+          </div>
+          <div class="sn-feature-shadow">&#160;</div>
+          <p>Keep yourself updated with the recent changes of different content! Subscribe to an RSS feed of a container and follow the creation and update of new child content just as you got used to with standard web 2.0 RSS feeds.<br /><a href="/features?action=RSS" title="RSS Support">&#187; RSS demo</a></p>
+      </div>
+    </div>
+    <div class="sn-feature-footer"><div class="sn-feature-footer-bl"></div><div class="sn-feature-footer-br"></div></div>
+  </div>
+
+  <div class="sn-feature">
+    <div class="sn-feature-border">
+      <div class="sn-feature-body">
+          <h2 class="sn-feature-title"><a href="/features/discussion-area/" title="Go to discussion area demo">Discussion area</a></h2>
+          <div class="sn-feature-img-border">
+            <a href="/features/discussion-area/" title="Go to discussion area demo"><div class="sn-feature-img-overlay"></div><img src="/Root/YourContents/Images/ss_forum.jpg" alt="Go to discussion area demo" /></a>
+          </div>
+          <div class="sn-feature-shadow">&#160;</div>
+          <p>A discussion area that is easy to use and read, without limitations on topic and forum size, and powerful searchability. Start a topic, post messages, or use the Explore view to moderate posts.<br /><a class="SN_Hover" href="/features/discussion-area/" title="Go to discussion area demo">&#187; Discussion area demo</a></p>
+      </div>
+    </div>
+    <div class="sn-feature-footer"><div class="sn-feature-footer-bl"></div><div class="sn-feature-footer-br"></div></div>
+  </div>
+
+  <div class="sn-feature">
+    <div class="sn-feature-border">
+      <div class="sn-feature-body">
+          <h2 class="sn-feature-title"><a href="/features/form/" title="Go to form demo">Form</a></h2>
+          <div class="sn-feature-img-border">
+            <a href="/features/form/" title="Go to form demo"><div class="sn-feature-img-overlay"></div><img src="/Root/YourContents/Images/ss_form.jpg" alt="Go to form demo" /></a>
+          </div>
+          <div class="sn-feature-shadow">&#160;</div>
+          <p>Create forms or reply email templates, add, edit and remove fields, and set up e-mail notification! All form submissions are stored in the Content Repository: Do you want to collect all e-mail addresses? Just write a query and list them!<br /><a class="SN_Hover" href="/features/form/" title="Go to form demo">&#187; Form demo</a></p>
+      </div>
+    </div>
+    <div class="sn-feature-footer"><div class="sn-feature-footer-bl"></div><div class="sn-feature-footer-br"></div></div>
+  </div>
+
+
+</div>
+]]></HTMLFragment>
+    <ReviewDate>0001-01-01T00:00:00</ReviewDate>
+    <ArchiveDate>0001-01-01T00:00:00</ArchiveDate>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <DisplayName>Miscellaneous Features</DisplayName>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate>0|0|0|0|0|0</Rate>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

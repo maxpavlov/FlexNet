@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>HTMLContent</ContentType>
+  <ContentName>Administrator Features</ContentName>
+  <Fields>
+    <HTMLFragment><![CDATA[<div class="sn-feature-content ui-helper-clearfix">
+  <div class="sn-feature">
+    <div class="sn-feature-border">
+      <div class="sn-feature-body">
+          <h2 class="sn-feature-title"><a href="/Explore.html#/Root/IMS" title="Go to user management explore">User management explore</a></h2>
+          <div class="sn-feature-img-border">
+            <a href="/Explore.html#/Root/IMS" title="Go to user management explore"><div class="sn-admin-feature">Administrator feature,<br />please log in.</div><div class="sn-feature-img-overlay"></div><img src="/Root/YourContents/Images/ss_users.jpg" alt="Go to user management explore" /></a>
+          </div>
+          <div class="sn-feature-shadow">&#160;</div>
+          <p>Manage domains, departments, users in a simple and smart explorer. Create and edit security groups. Creating project teams was never easier.<br /><a class="SN_Hover" href="/Explore.html#/Root/IMS" title="Go to user management explore">&#187; User management explore</a></p>
+      </div>
+    </div>
+    <div class="sn-feature-footer"><div class="sn-feature-footer-bl"></div><div class="sn-feature-footer-br"></div></div>
+  </div>
+
+  <div class="sn-feature">
+    <div class="sn-feature-border">
+      <div class="sn-feature-body">
+          <h2 class="sn-feature-title"><a href="/Explore.html#/Root/System/Schema/ContentTypes" title="Go to content types explore">Content types explore</a></h2>
+          <div class="sn-feature-img-border">
+            <a href="/Explore.html#/Root/System/Schema/ContentTypes" title="Go to content types explore"><div class="sn-admin-feature">Administrator feature,<br />please log in.</div><div class="sn-feature-img-overlay"></div><img src="/Root/YourContents/Images/ss_contenttypes.jpg" alt="Go to content types explore" /></a>
+          </div>
+          <div class="sn-feature-shadow">&#160;</div>
+          <p>Adjust content fields and parameters, and create new content types. Save time by using the OOP-like inheritance between types.<br /><a class="SN_Hover" href="/Explore.html#/Root/System/Schema/ContentTypes" title="Go to content types explore">&#187; Content types explore</a></p>
+      </div>
+    </div>
+    <div class="sn-feature-footer"><div class="sn-feature-footer-bl"></div><div class="sn-feature-footer-br"></div></div>
+  </div>
+
+  <div class="sn-feature-last">
+    <div class="sn-feature-border">
+      <div class="sn-feature-body">
+          <h2 class="sn-feature-title"><a href="/root/trash/" title="Go to trash">Trash</a></h2>
+          <div class="sn-feature-img-border">
+            <a href="/root/trash/" title="Go to trash"><div class="sn-feature-img-overlay"></div><div class="sn-admin-feature">Administrator feature,<br />please log in.</div><img src="/Root/YourContents/Images/ss_trash.jpg" alt="Go to trash" /></a>
+          </div>
+          <div class="sn-feature-shadow">&#160;</div>
+          <p>Don’t panic and don’t call the system engineer! Everything that you have deleted is saved to the trash bin, with permissions and security settings intact.<br /><a class="SN_Hover" href="/root/trash/" title="Go to trash">&#187; Trash</a></p>
+      </div>
+    </div>
+    <div class="sn-feature-footer"><div class="sn-feature-footer-bl"></div><div class="sn-feature-footer-br"></div></div>
+  </div>
+</div>]]></HTMLFragment>
+    <ReviewDate>0001-01-01T00:00:00</ReviewDate>
+    <ArchiveDate>0001-01-01T00:00:00</ArchiveDate>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <DisplayName>Administrator Features</DisplayName>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate>0|0|0|0|0|0</Rate>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

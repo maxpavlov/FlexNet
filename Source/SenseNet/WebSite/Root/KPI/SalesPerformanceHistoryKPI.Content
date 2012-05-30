@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>KPIDatasource</ContentType>
+  <ContentName>SalesPerformanceHistoryKPI</ContentName>
+  <Fields>
+    <DisplayName>Sales Peformance History</DisplayName>
+    <KPIData><![CDATA[<KPI Name="Sales by Time">
+<data Label="2007">
+	<goal>1234566</goal>
+	<actual>1345567</actual>
+</data>
+<data Label="2008">
+	<goal>800000</goal>
+	<actual>640000</actual>
+</data>
+<data Label="2009">
+	<goal>1100000</goal>
+	<actual>1020456</actual>
+</data>
+</KPI>
+]]></KPIData>
+  </Fields>
+</ContentMetaData>

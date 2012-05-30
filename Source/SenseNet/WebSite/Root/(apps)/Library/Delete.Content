@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>ApplicationOverride</ContentType>
+  <ContentName>Delete</ContentName>
+  <Fields>
+    <DisplayName>Delete library</DisplayName>
+    <Scenario>ExploreActions;ListActions</Scenario>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

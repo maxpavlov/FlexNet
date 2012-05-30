@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="IndexingTasks">
+  <DataContextMoniker Name="/IndexingTasksDataContext" />
+  <nestedChildShapes>
+    <classShape Id="61ee3255-f24a-4d26-87d4-321c4cd185b3" absoluteBounds="4.375, 0.5, 2, 2.9247054036458331">
+      <DataClassMoniker Name="/IndexingTasksDataContext/IndexingActivity" />
+      <nestedChildShapes>
+        <elementListCompartment Id="468bd673-c39f-4514-bf1d-81287270b4ca" absoluteBounds="4.3900000000000006, 0.96, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="aed45959-1e6b-4851-8cb9-8edf7e01c077" absoluteBounds="1, 1, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/IndexingTasksDataContext/IndexingTask" />
+      <nestedChildShapes>
+        <elementListCompartment Id="97ede5ee-da17-4abe-b61d-bba669fc51f3" absoluteBounds="1.0150000000000001, 1.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3 : 1.78929768880208); (4.375 : 1.78929768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/IndexingTasksDataContext/IndexingTask/IndexingTask_IndexingActivity" />
+      <nodes>
+        <classShapeMoniker Id="aed45959-1e6b-4851-8cb9-8edf7e01c077" />
+        <classShapeMoniker Id="61ee3255-f24a-4d26-87d4-321c4cd185b3" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

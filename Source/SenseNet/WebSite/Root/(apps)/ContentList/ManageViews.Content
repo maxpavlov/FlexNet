@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Page</ContentType>
+  <ContentName>ManageViews</ContentName>
+  <Fields>
+    <PageTemplateNode>
+      <Path>/Root/Global/pagetemplates/sn-layout-dialog.html</Path>
+    </PageTemplateNode>
+    <Hidden>false</Hidden>
+    <Index>11000</Index>
+    <SmartUrl></SmartUrl>
+    <IsExternal>false</IsExternal>
+    <Binary attachment="ManageViews.aspx" />
+    <PersonalizationSettings attachment="ManageViews.PersonalizationSettings" />
+    <DisplayName>Manage views</DisplayName>
+    <Scenario>Settings</Scenario>
+    <ActionTypeName>ManageViewsAction</ActionTypeName>
+    <IsModal>false</IsModal>
+    <Disabled>false</Disabled>
+    <Clear>false</Clear>
+    <Icon>browse</Icon>
+    <RequiredPermissions>4</RequiredPermissions>
+    <DeepPermissionCheck>false</DeepPermissionCheck>
+    <IncludeBackUrl>0</IncludeBackUrl>
+    <CacheControl></CacheControl>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+        <VersioningMode>1</VersioningMode>
+    <InheritableVersioningMode>1</InheritableVersioningMode>
+    <CreatedBy>
+      <Path>/Root/IMS/BuiltIn/Portal/Administrator</Path>
+    </CreatedBy>
+    <CreationDate>2012-01-03T18:26:38.697</CreationDate>
+    <ModifiedBy>
+      <Path>/Root/IMS/BuiltIn/Portal/Admin</Path>
+    </ModifiedBy>
+    <ModificationDate>2012-01-09T14:49:48.043</ModificationDate>
+    <ApprovingMode>1</ApprovingMode>
+    <InheritableApprovingMode>1</InheritableApprovingMode>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

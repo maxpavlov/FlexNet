@@ -1,0 +1,246 @@
+/*
+ *
+ * SN EMPTY SKIN STYLES:
+ * Use this css whenever you want to create a fully new skin for your SN implementation.
+ * This file contains all of the main css classes/selectors used in the product.
+ * The element properties are defined loosely.
+ *
+ * To be able to use easy skining methods we are using jQuery UI classes
+ * widely in the markup.
+ *
+ */
+
+/*
+ * If you aren't using JQuery UI you have to define proper sn-classes in detail and don't forget the helper classes!:
+
+.ui-helper-hidden { display: none; }
+.ui-helper-hidden-accessible { position: absolute; left: -99999999px; }
+.ui-helper-reset { margin: 0; padding: 0; border: 0; outline: 0; line-height: 1.3; text-decoration: none; font-size: 100%; list-style: none; }
+.ui-helper-clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+.ui-helper-clearfix { display: inline-block; }
+* html .ui-helper-clearfix { height:1%; }
+.ui-helper-clearfix { display:block; }
+.ui-helper-zfix { width: 100%; height: 100%; top: 0; left: 0; position: absolute; opacity: 0; filter:Alpha(Opacity=0); }
+ 
+*/
+
+html, body, form { margin: 0; padding: 0; }
+img { border: 0; }
+a { text-decoration: none; }
+
+/* ** GENERIC ** */
+.sn-floatleft { float: left; }
+.sn-floatright { float: right; }
+.sn-floatnone { float: none; }
+.sn-left { text-align: left; }
+.sn-right { text-align: right; }
+.sn-center { text-align: center; }
+.sn-error {}
+.sn-disabled { cursor: default !important; }
+
+/* ** LAYOUT ** */
+/* Pre-Defined layouts in global/style/layout.css */
+
+.sn-body {
+	background-color: #fff;
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 75%;
+	}
+
+/* ** PORLET BOX ** */
+.sn-portlet { margin-bottom: 1em;}
+.sn-portlet .sn-pt-border { padding: 0.2em; }
+.sn-portlet .sn-pt-header { padding: 3px; margin-bottom: 0.2em; }
+.sn-portlet .sn-pt-body { padding: 5px; border: 0; }
+
+.sn-pt-title, .sn-pt-icon  { vertical-align: middle; }
+.sn-pt-title { line-height: 16px; }
+.sn-pt-icon { margin-right: 3px; }
+
+/* ** NAVIGATION AND BREADCRUMB ** */
+.sn-menu {}
+.sn-menu li {}
+
+.sn-menu-first, .sn-menu-last {}
+.sn-menu-active {}
+.sn-menu-traversal {}
+
+.sn-breadcrumb { padding: 10px 0;  }
+.sn-bc-separator {}
+.sn-bc-item {}
+.sn-bc-current { font-weight: bold; text-decoration: none; }
+
+/* ** ICONS ** */
+.sn-icon { vertical-align: middle; margin-right: 5px; }
+.sn-icon16 { width: 16px; height: 16px; }
+.sn-icon32 { width: 32px; height: 32px; }
+
+/* ** CONTENT ** */
+.sn-content {}
+.sn-content-title {
+	font-size: 1.6em;
+	margin: 1em 0 0.5em 0;
+	}
+.sn-content-subtitle {
+	font-size: 1.4em;
+	font-weight: normal;
+	margin: 1em 0 0.3em 0;
+	}
+.sn-content-sectiontitle {
+	font-size: 1.2em;
+	font-weight: normal;
+	margin: 1em 0 0.5em 0;
+	}
+.sn-content { line-height: 1.5; }
+.sn-content p { margin: 0 0 0.8em 0; }
+
+.sn-pic {}
+.sn-pic-left { float: left; margin: 0 3px 3px 0; }
+.sn-pic-right { float: right; margin: 0 0 3px 3px; }
+.sn-list {}
+.sn-more {}
+.sn-lead { font-weight: bold; }
+.sn-contentlist { margin-top: 1.5em;  }
+.sn-contentlist .sn-content {
+	padding-bottom: 0.9em;
+	margin-bottom: 0.9em;
+	border-bottom: 1px dotted #999;
+	}
+.sn-contentlist .sn-last { border-bottom: 0; }
+.sn-contentlist .sn-content-title {
+	font-size: 1.2em;
+	margin: 0;
+	font-weight: normal;
+	}
+.sn-contentlist .sn-lead { font-weight: normal; }
+.sn-contentlist .sn-content p { margin-bottom: 0; }
+
+/* ** DIALOG ** */
+.sn-dialog {}
+
+/* ** FORM ** */
+.sn-inputunit { margin: 5px 0; }
+.sn-iu-label {
+	float: left;
+	display: inline;
+	margin: 4px 5px 0 0; 
+	width: 140px;
+	}
+.sn-iu-title { font-weight: bold; }
+.sn-iu-desc { font-size: 10px; }
+
+.sn-iu-control { float: left; }
+.sn-iu-error {
+    padding: 0.2em 0.4em; 
+    margin-bottom: 5px; 
+    vertical-align: bottom; 
+    display:inline-block;
+}
+
+.sn-buttonpane {}
+
+.sn-button { overflow: visible; text-align: left; }
+.sn-iu-control .sn-button { margin: 0 0 5px 0; }
+
+.sn-button-text { line-height: 18px; }
+.sn-reset {}
+.sn-submit {}
+
+/* ** CONTROLS ** */
+.sn-panel  { padding: 5px; }
+
+/* Define layouts */
+.sn-layoutgrid { margin: 10px 0; }
+.sn-layoutgrid-head {}
+.sn-layoutgrid-foot {}
+.sn-layoutgrid-columns { clear: both; }
+.sn-layoutgrid-column { float: left; width: 100%; }
+.sn-layoutgrid1 { /* Where 1 is the 1st column, 2 is the 2nd ... */ }
+.sn-layoutgrid-first {}
+.sn-layoutgrid-last {}
+
+.sn-listgrid-container {
+    display: block;
+    margin-bottom: 5px;
+    zoom:1;
+    position: relative;
+}
+.sn-listgrid { /* using jQGrid Styles by default */
+	margin: 10px 0;
+	border-collapse: collapse;
+	}
+
+.sn-listgrid thead tr th {
+	padding: 5px;
+	text-align: left;
+	border: 1px solid;
+	border-color: inherit;
+	}
+
+.sn-listgrid tbody tr td {
+	padding: 3px 5px;
+	border: 1px solid;
+	border-color: inherit;
+	}
+
+.sn-toolbar {}
+.sn-toolbar-btngroup {}
+.sn-toolbar-button {}
+.sn-toolbar-splitbutton {}
+.sn-toolbar-separator {}
+
+.sn-radio {}
+.sn-radiogroup {}
+.sn-checkbox {}
+.sn-checkboxgroup {}
+.sn-tree { /* using jsTree styles by default */ }
+
+/* .sn-layoutN is the Nth predefined SN Layout */
+.sn-ctrl-short { width: 51px; }
+.sn-ctrl-medium { width: 116px; }
+.sn-ctrl-long { width: 245px; }
+select.sn-ctrl-short { width: 51px; }
+select.sn-ctrl-medium { width: 116px; }
+select.sn-ctrl-long { width: 253px; }
+
+.sn-ctrl-compulsory {}
+
+.sn-ctrl-text, .sn-ctrl-textarea,
+.sn-ctrl-select, .sn-ctrl-selectlist {
+	padding: /*0.4em*/ 3px;
+	line-height: 1.3;
+	}
+.sn-iu-control .sn-ctrl-text, .sn-iu-control .sn-ctrl-textarea,
+.sn-iu-control .sn-ctrl-select, .sn-iu-control .sn-ctrl-selectlist {
+	margin: 0 5px 5px 0;	
+	}
+.sn-ctrl-text {}
+.sn-ctrl-textarea { height: 150px; }
+.sn-ctrl-select {}
+.sn-ctrl-selectlist {}
+
+.sn-pager {}
+.sn-pager-prev {}
+.sn-pager-next {}
+.sn-pager-first {}
+.sn-pager-last {}
+.sn-pager-separator {}
+.sn-pager-active { cursor: default !important; }
+.sn-pager-pagesize {}
+
+/* ** Action menu / Action link ** */
+.sn-actionlink { display: inline-block; padding:2px 3px; margin: -2px -3px; }
+
+.sn-actionmenu { display: inline-block; }
+.sn-actionmenu .sn-actionlink, .sn-actionmenu-dd .sn-actionlink { display:block; }
+.sn-listgrid .sn-actionmenu { width: 100%; }
+
+.sn-actionmenu-dd { position:absolute; left:0; top:0; min-width: 200px; }
+.sn-actionmenu-dd div { padding: 0.2em; }
+
+.sn-actionmenu .ui-state-hover,
+.sn-actionmenu-dd .ui-state-hover,
+.sn-actionmenu .ui-state-active,
+.sn-actionmenu-dd .ui-state-active {
+     padding: 1px 2px;
+}

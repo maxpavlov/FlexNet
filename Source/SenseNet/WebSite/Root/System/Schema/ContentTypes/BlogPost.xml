@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="BlogPost" parentType="ListItem" handler="SenseNet.Portal.BlogPost" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Blog post</DisplayName>
+  <Description>A simple post for an existing blog.</Description>
+  <Icon>WikiArticle</Icon>
+  <Fields>
+    <Field name="DisplayName" type="ShortText">
+      <DisplayName>Post title</DisplayName>
+      <Description>Display name of the blog post. You can set any name you prefer without any restrictions.</Description>
+      <Configuration>
+        <Compulsory>true</Compulsory>
+        <ControlHint>sn:DisplayName</ControlHint>
+      </Configuration>
+    </Field>
+    <Field name="LeadingText" type="LongText">
+      <DisplayName>Blog post leading text</DisplayName>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.Standard.StandardAnalyzer</Analyzer>
+      </Indexing>
+      <Configuration>
+        <Compulsory>true</Compulsory>
+        <ControlHint>sn:RichText</ControlHint>
+      </Configuration>
+    </Field>
+    <Field name="BodyText" type="LongText">
+      <DisplayName>Blog post body text</DisplayName>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.Standard.StandardAnalyzer</Analyzer>
+      </Indexing>
+      <Configuration>
+        <ControlHint>sn:RichText</ControlHint>
+      </Configuration>
+    </Field>
+    <Field name="IsPublished" type="Boolean">
+      <DisplayName>Published</DisplayName>
+      <Description>Specifies whether this blog post is published and can be seen in the blog.</Description>
+    </Field>
+    <Field name="PublishedOn" type="DateTime">
+      <DisplayName>Publish date</DisplayName>
+      <Description>The blog post will appear after this date.</Description>
+      <Configuration>
+        <DateTimeMode>DateAndTime</DateTimeMode>
+        <Compulsory>true</Compulsory>
+        <DefaultValue>[Script:jScript] DateTime.Now; [/Script]</DefaultValue>
+      </Configuration>
+    </Field>
+    <Field name="Tags" type="LongText">
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="IsTaggable" type="Boolean">
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <DefaultValue>True</DefaultValue>
+      </Configuration>
+    </Field>
+    <Field name="Description" type="LongText">
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Name" type="ShortText">
+      <Description>Specify a name for the post that will appear in the URL.</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Index" type="Integer">
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="ModifiedBy" type="Reference">
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <ReadOnly>true</ReadOnly>
+      </Configuration>
+    </Field>
+    <Field name="ModificationDate" type="DateTime">
+      <DisplayName>Modification Date</DisplayName>
+      <Description>The post was last modified on this date.</Description>
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <ReadOnly>true</ReadOnly>
+      </Configuration>
+    </Field>
+    <Field name="Version" type="Version">
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Locked" type="Boolean">
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+  </Fields>
+</ContentType>

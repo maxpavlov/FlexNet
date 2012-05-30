@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Workspace</ContentType>
+  <ContentName>Workspace</ContentName>
+  <Fields>
+    <IsActive>true</IsActive>
+    <DisplayName>Workspace</DisplayName>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+  </Fields>
+</ContentMetaData>

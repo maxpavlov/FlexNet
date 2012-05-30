@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Article</ContentType>
+  <ContentName>Join_us</ContentName>
+  <Fields>
+    <DisplayName>Join us!</DisplayName>
+    <Subtitle></Subtitle>
+    <Lead><![CDATA[
+      <p>Come and join us! Thanks for our rapidly growing business we are looking for candidates in Asia and the US. Four new offices in Asia
+      and the new headquarter is waiting for talented and experienced workforce.</p>
+    ]]></Lead>
+    <Body><![CDATA[
+      <p>We are looking for talented people in the fields of finance, marketing, sales and software development. Take a look at the positions
+      listed under carrier page and send us your CV with photo and cover letter. Do not forget to assign the city where you want to work: Boston,
+      Los Angeles, Bangalore or Singapore. Please mention the project management methods that you already  used in practice!</p>
+      <p>Tell us why do you find the position suitable for yourself, what are your carrier plans for the next 5 and 10 years!</p>
+    ]]></Body>
+    <Pinned>false</Pinned>
+    <Keywords><![CDATA[]]></Keywords>
+    <Author></Author>
+    <ImageRef />
+    <ImageData attachment="Join_us.ImageData.jpg" />
+    <ReviewDate>0001-01-01T00:00:00</ReviewDate>
+    <ArchiveDate>0001-01-01T00:00:00</ArchiveDate>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <Description><![CDATA[]]></Description>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateStr>0|1|0|0|0|0|0</RateStr>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

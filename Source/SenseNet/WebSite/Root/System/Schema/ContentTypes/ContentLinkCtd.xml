@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="ContentLink" parentType="GenericContent" handler="SenseNet.ContentRepository.ContentLink" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Content Link</DisplayName>
+	<Description>A content that propagates most of the Fields of another content</Description>
+	<Icon>Folder</Icon>
+	<Fields>
+    <Field name="Link" type="Reference">
+      <DisplayName>Linked content</DisplayName>
+      <Description>Set this reference to the Content to link</Description>
+      <Configuration>
+        <AllowMultiple>false</AllowMultiple>
+      </Configuration>
+    </Field>
+	</Fields>
+</ContentType>

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Memo</ContentType>
+  <ContentName>In_ut_lorem_id_orci_condimentum_laoreet._</ContentName>
+  <Fields>
+    <Description><![CDATA[In ut lorem id orci condimentum laoreet. Ut tortor felis, porttitor et pellentesque at, tristique at quam. Curabitur condimentum, libero sed tincidunt vestibulum, dui nulla tincidunt odio, et aliquam quam nisl at nulla. Integer magna mauris, tincidunt pharetra pellentesque a, pulvinar condimentum nulla. Suspendisse sed molestie elit. Suspendisse a est nisl. Pellentesque eu hendrerit arcu. Vivamus vitae arcu diam, et rutrum magna. Quisque augue nunc, imperdiet ut accumsan non, sollicitudin in augue. Ut eleifend mollis justo a rhoncus. Etiam viverra odio at leo adipiscing ut rhoncus tortor convallis. Cras ante justo, semper vitae hendrerit in, ultrices at metus. Mauris mi.]]></Description>
+    <Date>2010-02-10T17:21:21</Date>
+    <MemoType>iso</MemoType>
+    <SeeAlso />
+    <DisplayName>In ut lorem id orci condimentum laoreet. </DisplayName>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

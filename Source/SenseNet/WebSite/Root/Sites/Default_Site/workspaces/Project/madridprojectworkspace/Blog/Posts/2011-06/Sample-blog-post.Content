@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>BlogPost</ContentType>
+  <ContentName>Sample-blog-post</ContentName>
+  <Fields>
+    <DisplayName>Sample blog post</DisplayName>
+    <LeadingText><![CDATA[<p>Donec convallis cursus commodo. Nunc suscipit mi id massa accumsan  pharetra. In sagittis semper purus, quis interdum nunc lacinia ac. Morbi  ultricies varius tellus in luctus. In facilisis pretium metus id  mollis. Etiam nec magna vel nibh posuere ultricies vel eget ipsum. Proin  vel nunc eu nunc iaculis euismod. Suspendisse accumsan cursus sapien id  sagittis. Maecenas accumsan dui nec risus consequat sodales. Aenean  eget dolor non tellus condimentum tempor et vitae lectus.</p>]]></LeadingText>
+    <BodyText><![CDATA[<p>Donec sagittis, dui et vehicula rhoncus, diam dui vestibulum dui,  vulputate laoreet nulla dui vel mi. Aenean tellus nunc, volutpat vitae  vehicula in, congue sed sapien. Nunc eros nulla, lobortis tristique  lobortis eget, fringilla sit amet mauris. Donec ipsum justo, euismod in  porttitor in, fermentum quis odio. Donec massa turpis, lobortis nec  porta in, fermentum convallis nisi. Nam ultrices feugiat orci, et semper  magna porttitor nec. Proin posuere augue in est commodo eu rhoncus nisl  vehicula. Nunc tempus nisl ut urna tempor imperdiet. Phasellus  dignissim lacus turpis. Aliquam dictum ultricies mi a tempus. Proin mi  sapien, gravida eget dignissim vitae, mattis vel nibh. Nam hendrerit  tortor non orci posuere viverra. Duis eget turpis diam, quis fringilla  ante. Donec eu mi mi, vitae tincidunt libero. Pellentesque non felis  facilisis odio semper vulputate. Pellentesque gravida purus non lacus  condimentum eu pulvinar enim tempus. Sed mauris mi, interdum vitae  ullamcorper vitae, rutrum non turpis. Mauris non lacus in urna semper  ornare sit amet eget leo. Morbi pulvinar, arcu eget blandit eleifend,  justo felis euismod elit, vel adipiscing dui arcu sed ipsum.</p>
+<p><img id="__mce_tmp" class="snContentPicLeft" src="/Root/YourContents/Avatars/dev1.jpg" alt="" width="124" height="133" />Aliquam vulputate velit in diam volutpat sollicitudin. Curabitur  scelerisque neque libero, sit amet tempus nisi. Vestibulum tristique,  leo id lobortis volutpat, enim velit vestibulum arcu, id viverra odio  eros et risus. Mauris id metus in libero faucibus tincidunt. Nam quis  tellus ligula. Maecenas blandit, magna sed suscipit faucibus, lorem est  dictum justo, et vestibulum elit libero ac quam. Aenean rhoncus egestas  enim consectetur egestas. Praesent mollis nunc vel turpis ornare  malesuada. Integer congue quam pulvinar arcu adipiscing aliquet.  Suspendisse non vehicula augue. Cum sociis natoque penatibus et magnis  dis parturient montes, nascetur ridiculus mus. Vestibulum ante ipsum  primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+<p>Donec convallis cursus commodo. Nunc suscipit mi id massa accumsan  pharetra. In sagittis semper purus, quis interdum nunc lacinia ac. Morbi  ultricies varius tellus in luctus. In facilisis pretium metus id  mollis. Etiam nec magna vel nibh posuere ultricies vel eget ipsum. Proin  vel nunc eu nunc iaculis euismod. Suspendisse accumsan cursus sapien id  sagittis. Maecenas accumsan dui nec risus consequat sodales. Aenean  eget dolor non tellus condimentum tempor et vitae lectus. Pellentesque  tellus tellus, convallis eu porta id, scelerisque eu mauris. Curabitur  aliquam lorem a turpis pretium tempor congue ipsum hendrerit. Aliquam  porttitor, justo vel rhoncus dapibus, purus purus gravida dui, a feugiat  dui ligula non nulla. Proin non commodo nulla.</p>
+<p>Morbi euismod bibendum lorem. Suspendisse potenti. Curabitur malesuada,  orci ac tempor sollicitudin, neque velit elementum magna, eget accumsan  diam metus ac enim. Nunc viverra erat quis ligula auctor scelerisque.  Sed nibh enim, tempor semper viverra eget, aliquet vitae dolor. Fusce  eget tellus orci, vitae fermentum orci. Vestibulum eget vehicula mi.  Curabitur eget nisl vel lacus semper vehicula. Donec laoreet pulvinar  dolor, quis iaculis nisl scelerisque non. Ut vehicula leo ut libero  tempus a mattis turpis pellentesque. Suspendisse enim tortor,  scelerisque eu fermentum ut, dignissim vitae velit. Morbi et lacus  felis, a vehicula enim. Aliquam euismod pharetra magna, vitae accumsan  quam imperdiet at.</p>]]></BodyText>
+    <IsPublished>true</IsPublished>
+    <PublishedOn>2011-06-21T15:07:57</PublishedOn>
+    <Tags><![CDATA[blog,sample]]></Tags>
+    <IsTaggable>false</IsTaggable>
+    <Index>0</Index>
+    <Hidden>false</Hidden>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+        <CreatedBy>
+      <Path>/Root/IMS/BuiltIn/Portal/Admin</Path>
+    </CreatedBy>
+    <CreationDate>2011-06-21T15:11:38.737</CreationDate>
+    <TrashDisabled>false</TrashDisabled>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

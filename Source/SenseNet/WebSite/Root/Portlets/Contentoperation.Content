@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>PortletCategory</ContentType>
+  <ContentName>Contentoperation</ContentName>
+  <Fields>
+    <DisplayName>Content operation</DisplayName>
+    <Description><![CDATA[Portlets for basic content operations]]></Description>
+  </Fields>
+</ContentMetaData>

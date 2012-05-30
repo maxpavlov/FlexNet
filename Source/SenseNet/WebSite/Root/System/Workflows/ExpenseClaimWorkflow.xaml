@@ -1,0 +1,259 @@
+﻿<Activity mc:Ignorable="sap" x:Class="SenseNet.Workflow.Definitions.ExpenseClaimWorkflow" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mv="clr-namespace:Microsoft.VisualBasic;assembly=System" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:s1="clr-namespace:System;assembly=System" xmlns:s2="clr-namespace:System;assembly=System.Xml" xmlns:s3="clr-namespace:System;assembly=System.Core" xmlns:s4="clr-namespace:System;assembly=System.ServiceModel" xmlns:sa="clr-namespace:System.Activities;assembly=System.Activities" xmlns:sad="clr-namespace:System.Activities.Debugger;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sc="clr-namespace:SenseNet.ContentRepository;assembly=SenseNet.Storage" xmlns:sc1="clr-namespace:SenseNet.ContentRepository;assembly=SenseNet.ContentRepository" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System" xmlns:scg1="clr-namespace:System.Collections.Generic;assembly=System.ServiceModel" xmlns:scg2="clr-namespace:System.Collections.Generic;assembly=System.Core" xmlns:scg3="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:scs="clr-namespace:SenseNet.ContentRepository.Storage;assembly=SenseNet.Storage" xmlns:scsa="clr-namespace:SenseNet.ContentRepository.Security.ADSync;assembly=SenseNet.ContentRepository" xmlns:scss="clr-namespace:SenseNet.ContentRepository.Storage.Security;assembly=SenseNet.Storage" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:sl="clr-namespace:System.Linq;assembly=System.Core" xmlns:ssi="clr-namespace:SenseNet.Search.Indexing;assembly=SenseNet.ContentRepository" xmlns:st="clr-namespace:System.Text;assembly=mscorlib" xmlns:sw="clr-namespace:SenseNet.Workflow;assembly=SenseNet.Workflow" xmlns:swa="clr-namespace:SenseNet.Workflow.Activities;assembly=SenseNet.Workflow" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="StateContent" Type="InArgument(sw:WfContent)" />
+  </x:Members>
+  <sap:VirtualizedContainerService.HintSize>654,676</sap:VirtualizedContainerService.HintSize>
+  <mva:VisualBasic.Settings>Assembly references and imported namespaces for internal implementation</mva:VisualBasic.Settings>
+  <Flowchart sad:XamlDebuggerXmlReader.FileName="C:\Development NET4\Budapest\Source\SenseNet\WF\ExpenseClaimWorkflow.xaml" sap:VirtualizedContainerService.HintSize="614,636">
+    <Flowchart.Variables>
+      <Variable x:TypeArguments="sw:WfContent" Name="ContentToApprove" />
+      <Variable x:TypeArguments="sw:WfContent" Name="ApprovingTask" />
+      <Variable x:TypeArguments="sw:WfContent" Name="Approver" />
+      <Variable x:TypeArguments="x:String" Name="RequestorMail" />
+      <Variable x:TypeArguments="x:String" Default="tentative" Name="Result" />
+      <Variable x:TypeArguments="x:String" Name="ApproverMail" />
+      <Variable x:TypeArguments="x:String" Name="Host" />
+      <Variable x:TypeArguments="x:String" Name="FinanceEmail" />
+      <Variable x:TypeArguments="x:String" Name="RequestorName" />
+    </Flowchart.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+        <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
+        <av:Size x:Key="ShapeSize">60,75</av:Size>
+        <av:PointCollection x:Key="ConnectorLocation">300,77.5 300,107.5 300,114.5</av:PointCollection>
+      </scg3:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Flowchart.StartNode>
+      <FlowStep x:Name="__ReferenceID0">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">200,114.5</av:Point>
+            <av:Size x:Key="ShapeSize">200,51</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">300,165.5 300,195.5 300,214.5</av:PointCollection>
+          </scg3:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <Sequence DisplayName="Init" sap:VirtualizedContainerService.HintSize="200,51">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg3:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <swa:DebugWrite sap:VirtualizedContainerService.HintSize="242,22" Message="##WF&gt; Init starting..." />
+          <Assign DisplayName="Assign A" sap:VirtualizedContainerService.HintSize="242,58">
+            <Assign.To>
+              <OutArgument x:TypeArguments="sw:WfContent">[ContentToApprove]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="sw:WfContent">[StateContent.Reference("RelatedContent")]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign DisplayName="Assign B" sap:VirtualizedContainerService.HintSize="242,58">
+            <Assign.To>
+              <OutArgument x:TypeArguments="sw:WfContent">[Approver]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="sw:WfContent">[New WfContent((Node.Load(Of ExpenseClaim)(ContentToApprove.Path)).GetApprover(CInt(StateContent("BudgetLimit")), Node.Load(Of User)(StateContent.Reference("CEO").Path)))]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign DisplayName="Assign C" sap:VirtualizedContainerService.HintSize="242,58">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[RequestorMail]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[CStr(CType(ContentToApprove("CreatedBy"), User)("Email"))]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign DisplayName="Assign D" sap:VirtualizedContainerService.HintSize="242,58">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[ApproverMail]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[CStr(Approver("Email"))]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign DisplayName="Assign E" sap:VirtualizedContainerService.HintSize="242,58">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[Host]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[CStr(StateContent("OwnerSiteUrl"))]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign DisplayName="Assign F" sap:VirtualizedContainerService.HintSize="242,58">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[FinanceEmail]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[CStr(StateContent("FinanceEmail"))]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign DisplayName="Assign G" sap:VirtualizedContainerService.HintSize="242,58">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[RequestorName]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[CStr(CType(ContentToApprove("CreatedBy"), User)("DisplayName"))]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <swa:DebugWrite sap:VirtualizedContainerService.HintSize="242,22" Message="##WF&gt; Init finished" />
+        </Sequence>
+        <FlowStep.Next>
+          <FlowStep x:Name="__ReferenceID1">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+                <av:Point x:Key="ShapeLocation">200,214.5</av:Point>
+                <av:Size x:Key="ShapeSize">200,51</av:Size>
+                <av:PointCollection x:Key="ConnectorLocation">300,265.5 300,295.5 300,314.5</av:PointCollection>
+              </scg3:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Sequence DisplayName="Create Producer Task" sap:VirtualizedContainerService.HintSize="200,51">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg3:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <swa:CreateContent Name="{x:Null}" ContentTypeName="[&quot;ExpenseClaimWorkflowTask&quot;]" sap:VirtualizedContainerService.HintSize="541,177" ParentPath="[CType(StateContent(&quot;Workspace&quot;), SenseNet.ContentRepository.GenericContent).Path &amp; &quot;/Tasks&quot;]" Result="[ApprovingTask]" />
+              <Assign DisplayName="Assign 1" sap:VirtualizedContainerService.HintSize="541,58">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Object">[ApprovingTask("DisplayName")]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Object">["Approve " + CStr(ContentToApprove("Name"))]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign DisplayName="Assign 2" sap:VirtualizedContainerService.HintSize="541,58">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="sw:WfContent">[ApprovingTask.Reference("ContentToApprove")]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="sw:WfContent">[ContentToApprove]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign DisplayName="Assign 3" sap:VirtualizedContainerService.HintSize="541,58">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="sw:WfContent">[ApprovingTask.Reference("AssignedTo")]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="sw:WfContent">[Approver]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign DisplayName="Assign 6" sap:VirtualizedContainerService.HintSize="541,58">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Object">[ApprovingTask("DueDate")]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Object">[Date.Now]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign sap:VirtualizedContainerService.HintSize="541,58">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Object">[ApprovingTask("Sum")]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Object">[ContentToApprove("Sum")]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <swa:DebugWrite sap:VirtualizedContainerService.HintSize="541,22" Message="##WF&gt; Sending e-mail..." />
+              <swa:SendMail Address="[ApproverMail]" Body="[String.Format(&quot;There are new expense claims waiting for approving.{0}{0}Your task can be found here:{0}{1}&quot;, vbNewLine, Host + CStr(ApprovingTask.Path))]" sap:VirtualizedContainerService.HintSize="541,22" Subject="Approving request" />
+            </Sequence>
+            <FlowStep.Next>
+              <FlowStep x:Name="__ReferenceID3">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+                    <av:Point x:Key="ShapeLocation">200,314.5</av:Point>
+                    <av:Size x:Key="ShapeSize">200,51</av:Size>
+                    <av:PointCollection x:Key="ConnectorLocation">300,365.5 300,395.5 300,404.5</av:PointCollection>
+                  </scg3:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Pick sap:VirtualizedContainerService.HintSize="200,51">
+                  <PickBranch DisplayName="Branch1" sap:VirtualizedContainerService.HintSize="272,462">
+                    <PickBranch.Trigger>
+                      <swa:WaitForContentChanged ContentPath="[ApprovingTask.Path]" sap:VirtualizedContainerService.HintSize="242,100" />
+                    </PickBranch.Trigger>
+                    <Assign sap:VirtualizedContainerService.HintSize="242,100">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[Result]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[CStr(ApprovingTask("Result"))]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                  </PickBranch>
+                  <PickBranch DisplayName="Branch2" sap:VirtualizedContainerService.HintSize="294,462">
+                    <PickBranch.Trigger>
+                      <Delay Duration="[New TimeSpan(0, 1, 0)]" sap:VirtualizedContainerService.HintSize="264,100" />
+                    </PickBranch.Trigger>
+                    <Sequence sap:VirtualizedContainerService.HintSize="264,244">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg3:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Assign sap:VirtualizedContainerService.HintSize="242,58">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:String">[Result]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:String">["no"]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <swa:SendMail Address="[ApproverMail]" Body="[String.Format(&quot;Your task ({0}) has expired.&quot;, Host + CStr(ApprovingTask.Path))]" sap:VirtualizedContainerService.HintSize="242,22" Subject="Expired task" />
+                    </Sequence>
+                  </PickBranch>
+                </Pick>
+                <FlowStep.Next>
+                  <FlowStep x:Name="__ReferenceID2">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+                        <av:Point x:Key="ShapeLocation">200,404.5</av:Point>
+                        <av:Size x:Key="ShapeSize">200,51</av:Size>
+                        <av:PointCollection x:Key="ConnectorLocation">300,445.5 300,475.5 300,484.5</av:PointCollection>
+                      </scg3:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Sequence DisplayName="Execute" sap:VirtualizedContainerService.HintSize="200,51">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg3:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <If Condition="[Result = &quot;no&quot;]" sap:VirtualizedContainerService.HintSize="469,437">
+                        <If.Then>
+                          <Sequence sap:VirtualizedContainerService.HintSize="222,331">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg3:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <swa:RejectContent ContentPath="[ContentToApprove.Path]" sap:VirtualizedContainerService.HintSize="200,83" />
+                            <swa:SendMail Address="[RequestorMail]" Body="[String.Format(&quot;Your content ({0}) has been rejected.{2}{2}Reason: {1}&quot;, Host + CStr(ContentToApprove.Path), ApprovingTask(&quot;Reason&quot;), vbNewLine)]" DisplayName="Send mail to requestor" sap:VirtualizedContainerService.HintSize="200,22" Subject="Approval process finished: Content rejected" />
+                          </Sequence>
+                        </If.Then>
+                        <If.Else>
+                          <Sequence sap:VirtualizedContainerService.HintSize="222,331">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg3:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <swa:ApproveContent ContentPath="[ContentToApprove.Path]" sap:VirtualizedContainerService.HintSize="200,83" />
+                            <swa:SendMail Address="[RequestorMail]" Body="[String.Format(&quot;Your content ({0}) has been approved.&quot;, Host + CStr(ContentToApprove.Path))]" DisplayName="Send mail to requestor" sap:VirtualizedContainerService.HintSize="200,22" Subject="Approval process finished: Content approved" />
+                            <swa:SendMail Address="[FinanceEmail]" Body="[String.Format(&quot;An expense claim of {0} has been approved by {1}. Sum: {2}&quot;, RequestorName, Approver(&quot;DisplayName&quot;), ContentToApprove(&quot;Sum&quot;))]" DisplayName="Send mail to finance" sap:VirtualizedContainerService.HintSize="200,22" Subject="Approved expense claim" />
+                          </Sequence>
+                        </If.Else>
+                      </If>
+                    </Sequence>
+                  </FlowStep>
+                </FlowStep.Next>
+              </FlowStep>
+            </FlowStep.Next>
+          </FlowStep>
+        </FlowStep.Next>
+      </FlowStep>
+    </Flowchart.StartNode>
+    <x:Reference>__ReferenceID0</x:Reference>
+    <x:Reference>__ReferenceID1</x:Reference>
+    <x:Reference>__ReferenceID2</x:Reference>
+    <x:Reference>__ReferenceID3</x:Reference>
+  </Flowchart>
+</Activity>

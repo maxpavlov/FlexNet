@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="PublicRegistrationConfig" parentType="GenericContent" handler="SenseNet.ContentRepository.GenericContent" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Public registration configuration settings</DisplayName>
+	<Description>Stores all configuration settings of the public registration portlet.</Description>
+	<Icon>PubReg</Icon>
+	<Fields>
+    <Field name="DisplayName" type="ShortText">
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+		<Field name='SecurityGroups' type='Reference'>
+			<DisplayName>Security groups</DisplayName>
+			<Description>Security groups</Description>
+			<Configuration>
+				<AllowMultiple>true</AllowMultiple>
+				<AllowedTypes>
+					<Type>Group</Type>
+				</AllowedTypes>
+			</Configuration>
+		</Field>
+		<Field name='DefaultDomainPath' type='Reference'>
+			<DisplayName>Default domain path</DisplayName>
+			<Description>Default domain path where the registered user is created.</Description>
+			<Icon>DefaultDomainPath</Icon>
+			<Configuration>
+				<AllowMultiple>false</AllowMultiple>
+				<AllowedTypes>
+					<Type>Domain</Type>
+				</AllowedTypes>
+			</Configuration>
+		</Field>
+		<Field name='UserTypeName' type='ShortText'>
+			<DisplayName>Specific contenttype name</DisplayName>
+			<Description>Contentype name of the user type, which is inherited from the User contenttype.</Description>
+			<Icon>UserTypeName</Icon>
+		</Field>
+		<Field name='DuplicateErrorMessage' type='LongText'>
+			<DisplayName>Duplicate error message</DisplayName>
+			<Description>This text is displayed to the end user, when he or she tries to give a username which is in use.</Description>
+			<Icon>DuplicateErrorMessage</Icon>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.Standard.StandardAnalyzer</Analyzer>
+      </Indexing>
+    </Field>
+		<Field name='IsBodyHtml' type='Boolean'>
+			<DisplayName>Use html in mail messages.</DisplayName>
+			<Description>This setting tells that, the email which is sent by the PublicRegistration portlet is configured to use html in the mail body.</Description>
+			<Icon>IsBodyHtml</Icon>
+		</Field>
+		<Field name='ActivationEnabled' type='Boolean'>
+			<DisplayName>Use activation</DisplayName>
+			<Description>Turn on/off activation process. If it is turned off, the PublicRegistration portlet will not send an activation email with activation link.</Description>
+			<Icon>ActivationEnabled</Icon>
+		</Field>
+		<Field name='ActivationEmailTemplate' type='LongText'>
+			<DisplayName>Activation email body template</DisplayName>
+			<Description>The text of the body of the activation email which will be sent to the user. {0} formatting setting will hold the constructed activation link.</Description>
+			<Icon>ActivationEmailTemplate</Icon>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.Standard.StandardAnalyzer</Analyzer>
+      </Indexing>
+    </Field>
+		<Field name='ActivationSuccessTemplate' type='LongText'>
+			<DisplayName>Activation successful text</DisplayName>
+			<Description>This text will be diplayed, after the end user activation process is successfull.</Description>
+			<Icon>ActivationSuccessTemplate</Icon>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.Standard.StandardAnalyzer</Analyzer>
+      </Indexing>
+    </Field>
+
+		<Field name='AlreadyActivatedMessage' type='LongText'>
+			<DisplayName>AlreadyActivatedMessage</DisplayName>
+			<Description>AlreadyActivatedMessage</Description>
+			<Icon>AlreadyActivatedMessage</Icon>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.Standard.StandardAnalyzer</Analyzer>
+      </Indexing>
+    </Field>
+
+		<Field name='MailSubjectTemplate' type='LongText'>
+			<DisplayName>Activation email subject template</DisplayName>
+			<Description>Subject text of the activation email will be sent to the end user.</Description>
+			<Icon>MailSubjectTemplate</Icon>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.Standard.StandardAnalyzer</Analyzer>
+      </Indexing>
+    </Field>
+		<Field name='MailFrom' type='ShortText'>
+			<DisplayName>MailFrom</DisplayName>
+			<Description>MailFrom</Description>
+			<Icon>MailFrom</Icon>
+		</Field>
+		<Field name='AdminEmailAddress' type='ShortText'>
+			<DisplayName>AdminEmailAddress</DisplayName>
+			<Description>AdminEmailAddress</Description>
+			<Icon>AdminEmailAddress</Icon>
+		</Field>
+		<Field name='RegistrationSuccessTemplate' type='LongText'>
+			<DisplayName>Registration successfull text</DisplayName>
+			<Description>This text is displayed to the end user, when the registration process is successful.</Description>
+			<Icon>RegistrationSuccessTemplate</Icon>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.Standard.StandardAnalyzer</Analyzer>
+      </Indexing>
+    </Field>
+		<Field name='ResetPasswordTemplate' type='LongText'>
+			<DisplayName>Reset password mail body</DisplayName>
+			<Description>This text is sent to the end user via email during resetting password.</Description>
+			<Icon>ResetPasswordTemplate</Icon>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.Standard.StandardAnalyzer</Analyzer>
+      </Indexing>
+    </Field>
+		<Field name='ResetPasswordSubjectTemplate' type='ShortText'>
+			<DisplayName>Reset password subject template</DisplayName>
+			<Description>The subject text of the email which is sent to the end user during resetting password.</Description>
+			<Icon>ResetPasswordSubjectTemplate</Icon>
+		</Field>
+		<Field name='ResetPasswordSuccessfulTemplate' type='LongText'>
+			<DisplayName>ResetPasswordSuccessfulTemplate </DisplayName>
+			<Description>ResetPasswordSuccessfulTemplate</Description>
+			<Icon>ResetPasswordSuccessfulTemplate</Icon>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.Standard.StandardAnalyzer</Analyzer>
+      </Indexing>
+    </Field>
+		<Field name='ChangePasswordUserInterfacePath' type='ShortText'>
+			<DisplayName>Change password user interface path</DisplayName>
+			<Description>Repository path of the user interface (user control) which is displayen, when the user wants to change his/her password.</Description>
+			<Icon>ChangePasswordUserInterfacePath</Icon>
+		</Field>
+		<Field name='ChangePasswordSuccessfulMessage' type='ShortText'>
+			<DisplayName>ChangePasswordSuccessfulMessage</DisplayName>
+			<Description>ChangePasswordSuccessfulMessage</Description>
+			<Icon>ChangePasswordSuccessfulMessage</Icon>
+		</Field>
+		<Field name='ForgottenPasswordUserInterfacePath' type='ShortText'>
+			<DisplayName>Reset password user interface path.</DisplayName>
+			<Description>Repository path of the user interface (usercontrol) which will be displayed, when the user forgets his/her password.</Description>
+			<Icon>ForgottenPasswordUserInterfacePath</Icon>
+		</Field>
+		<Field name='NewRegistrationContentView' type='ShortText'>
+			<DisplayName>Create new registration contentview</DisplayName>
+			<Description>Repository path of the new contentview. If it's not set, the default InlineNew is used.</Description>
+			<Icon>NewRegistrationContentView</Icon>
+		</Field>
+		<Field name='EditProfileContentView' type='ShortText'>
+			<DisplayName>Edit profile contentview path</DisplayName>
+			<Description>Repository path of the edit profile contentview (if it is not given, the default InlineEdit is used.)</Description>
+			<Icon>EditProfileContentView</Icon>
+		</Field>
+		<Field name='AutoGeneratePassword' type='Boolean'>
+			<DisplayName>Autot generate password</DisplayName>
+			<Description>NOT WORKING!</Description>
+			<Icon>AutoGeneratePassword</Icon>
+		</Field>
+		<Field name='DisableCreatedUser' type='Boolean'>
+			<DisplayName>Disable created user</DisplayName>
+			<Description>DisableCreatedUser</Description>
+			<Icon>DisableCreatedUser</Icon>
+		</Field>
+		<Field name='IsUniqueEmail' type='Boolean'>
+			<DisplayName>Unique email</DisplayName>
+			<Description>UniqueEmail</Description>
+			<Icon>UniqueEmail</Icon>
+		</Field>
+		<Field name='AutomaticLogon' type='Boolean'>
+			<DisplayName>Automatic logon</DisplayName>
+			<Description>AutomaticLogon</Description>
+			<Icon>AutomaticLogon</Icon>
+		</Field>
+		<Field name='ChangePasswordPagePath' type='Reference'>
+			<DisplayName>Change password page path</DisplayName>
+			<Description>Repository path of the page that contains the public registration protlet with Registration mode.</Description>
+			<Icon>ChangePasswordPagePath</Icon>
+		</Field>
+		<Field name="ChangePasswordRestrictedText" type="LongText">
+			<DisplayName>ChangePasswordRestrictedText</DisplayName>
+			<Description>This text is displayed when a user tries to view the "change password" page and he/she is not logged in, OR the user has changed his/her password but is still trying to reset the password with the link sent by email</Description>
+			<Icon>ChangePasswordRestrictedText</Icon>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.Standard.StandardAnalyzer</Analyzer>
+      </Indexing>
+    </Field>
+		<Field name="AlreadyRegisteredUserMessage" type="LongText">
+			<DisplayName>AlreadyRegisteredUserMessage</DisplayName>
+			<Description>AlreadyRegisteredUserMessage</Description>
+			<Icon>AlreadyRegisteredUserMessage</Icon>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.Standard.StandardAnalyzer</Analyzer>
+      </Indexing>
+    </Field>
+		<Field name="UpdateProfileSuccessTemplate" type="LongText">
+			<DisplayName>UpdateProfileSuccessTemplate</DisplayName>
+			<Description>UpdateProfileSuccessTemplate</Description>
+			<Icon>UpdateProfileSuccessTemplate</Icon>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.Standard.StandardAnalyzer</Analyzer>
+      </Indexing>
+    </Field>
+		<Field name="EmailNotValid" type="LongText">
+			<DisplayName>EmailNotValid</DisplayName>
+			<Description>EmailNotValid</Description>
+			<Icon>EmailNotValid</Icon>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.Standard.StandardAnalyzer</Analyzer>
+      </Indexing>
+    </Field>
+		<Field name="NoEmailGiven" type="LongText">
+			<DisplayName>NoEmailGiven</DisplayName>
+			<Description>NoEmailGiven</Description>
+			<Icon>NoEmailGiven</Icon>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.Standard.StandardAnalyzer</Analyzer>
+      </Indexing>
+    </Field>
+		<Field name='ActivateByAdmin' type='Boolean'>
+			<DisplayName>Activate by admin</DisplayName>
+			<Description>If set, the user registration will be approved by admin.</Description>
+			<Icon>ActivateByAdmin</Icon>
+		</Field>
+		<Field name="ActivateEmailSubject" type="ShortText">
+			<DisplayName>ActivateEmailSubject</DisplayName>
+			<Description>ActivateEmailSubject</Description>
+			<Icon>ActivateEmailSubject</Icon>
+		</Field>
+		<Field name="ActivateEmailTemplate" type="LongText">
+			<DisplayName>ActivateEmailTemplate</DisplayName>
+			<Description>ActivateEmailTemplate</Description>
+			<Icon>ActivateEmailTemplate</Icon>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.Standard.StandardAnalyzer</Analyzer>
+      </Indexing>
+		</Field>
+		<Field name="ActivateAdmins" type="Reference">
+			<DisplayName>Activate admins</DisplayName>
+			<Description>The list of administrators who can approve request of registrations.</Description>
+			<Icon>ActivateAdminList</Icon>
+			<Configuration>
+				<AllowMultiple>true</AllowMultiple>
+				<AllowedTypes>
+					<Type>User</Type>
+				</AllowedTypes>
+			</Configuration>
+		</Field>
+	</Fields>
+</ContentType>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="SalesWorkspace" parentType="Workspace" 
+			 handler="SenseNet.ContentRepository.Workspaces.Workspace" 
+			 xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Sales workspace</DisplayName>
+  <Description>A workspace for sales-oriented cooperation</Description>
+  <Icon>workspace-sales</Icon>
+  <AllowedChildTypes>
+    Page,Folder,Blog,DocumentLibrary,ImageLibrary,EventList,MemoList,LinkList,TaskList,Survey,Voting,DiscussionForum,Form,CustomList,Posts
+  </AllowedChildTypes>
+  <Fields>
+    <Field name="Manager" type="Reference">
+      <DisplayName>Responsible salesperson</DisplayName>
+    </Field>
+    <Field name="Customer" type="LongText">
+      <DisplayName>Customer</DisplayName>
+    </Field>
+    <Field name="Description" type="LongText">
+    </Field>
+    <Field name="ExpectedRevenue" type="Number">
+      <DisplayName>Expected revenue</DisplayName>
+    </Field>
+    <Field name="ChanceOfWinning" type="Number">
+      <DisplayName>Chance of winning</DisplayName>
+      <Configuration>
+        <MinValue>0</MinValue>
+        <MaxValue>100</MaxValue>
+      </Configuration>
+    </Field>
+    <Field name="StartDate" type="DateTime">
+      <DisplayName>Start date</DisplayName>
+      <Configuration>
+        <DateTimeMode>DateAndTime</DateTimeMode>
+      </Configuration>
+    </Field>
+    <Field name="Deadline" type="DateTime">
+      <DisplayName>Deadline for submission</DisplayName>
+    </Field>
+    <Field name="Contacts" type="LongText">
+      <DisplayName>Contacts</DisplayName>
+    </Field>
+    <Field name="Notes" type="LongText">
+      <DisplayName>Notes</DisplayName>
+    </Field>
+    <Field name="Completion" type="Integer">
+      <DisplayName>Progress</DisplayName>
+      <Configuration>
+        <MinValue>0</MinValue>
+        <MaxValue>100</MaxValue>
+      </Configuration>
+    </Field>
+    <Field name="ContractSigned" type="Boolean">
+      <DisplayName>Contract signed</DisplayName>
+    </Field>
+    <Field name="ContractSignedDate" type="DateTime">
+      <DisplayName>Contract signed date</DisplayName>
+      <Configuration>
+        <DateTimeMode>DateAndTime</DateTimeMode>
+      </Configuration>
+    </Field>
+  </Fields>
+</ContentType>

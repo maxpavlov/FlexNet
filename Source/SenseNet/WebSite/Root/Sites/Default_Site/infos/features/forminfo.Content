@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>WebContentDemo</ContentType>
+  <ContentName>forminfo</ContentName>
+  <Fields>
+    <DisplayName></DisplayName>
+    <Subtitle></Subtitle>
+    <RelatedImage />
+    <Header><![CDATA[]]></Header>
+    <Body>
+      <![CDATA[<div class="sn-infobox"><h1 class="sn-content-title sn-article-title"><img src="/Root/Global/images/icons/32/info.png" class="sn-icon sn-icon_32" alt="" />Form</h1>
+    <p>This page demonstrates a simple submittable form, based on the <strong>Form</strong> content type and two portlets - a form portlet for
+    the submittable form, and a list portlet to show the results.</p>
+    <p>The form fields are defined in the <strong>List Definition</strong> advanced field of the form content itself, in <em>xml</em> format as
+    described in our <a href="http://wiki.sensenet.com/">wiki</a>.</p>
+    <ul>
+    <li><strong>You need to be logged in as Administrator to see or modify portlet properties, or edit the files below.</strong></li>
+    <li>The form content can be found under <em><a href="/Explore.html#/Root/Sites/Default_Site/features/form/Contact">/Root/Sites/Default_Site/features/form/Contact</a></em></li>
+    </ul></div>]]></Body>
+    <Details><a href="" target="" title=""></a></Details>
+    <Language>English</Language>
+    <Keywords><![CDATA[]]></Keywords>
+    <Author></Author>
+    <ReviewDate>0001-01-01T00:00:00</ReviewDate>
+    <ArchiveDate>0001-01-01T00:00:00</ArchiveDate>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <Description><![CDATA[]]></Description>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate>0.00|0|0|0|0|0</Rate>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="Post" parentType="ListItem" handler="SenseNet.ContentRepository.GenericContent" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Post</DisplayName>
+  <Description>Represents wall posts</Description>
+  <Icon>File</Icon>
+  <AllowedChildTypes>Post Comment Like Folder</AllowedChildTypes>
+  <Fields>
+    <Field name="JournalId" type="Integer">
+      <DisplayName>Journal Id</DisplayName>
+      <Description>Id of the corresponding journal item. 0 if the post is not derived from a journalitem.</Description>
+      <Configuration>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="PostType" type="Integer">
+      <DisplayName>Post type</DisplayName>
+      <Description>Type of post item ie. Manual, Created, Modified, etc.</Description>
+      <Configuration>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="SharedContent" type="Reference">
+      <DisplayName>Shared Content</DisplayName>
+      <Description>The shared Content if it has been attached to the post.</Description>
+      <Configuration>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+        <AllowMultiple>false</AllowMultiple>
+      </Configuration>
+    </Field>
+    <Field name="PostDetails" type="LongText">
+      <DisplayName>Post details</DisplayName>
+      <Description>Contains details of journal posts</Description>
+    </Field>
+  </Fields>
+</ContentType>

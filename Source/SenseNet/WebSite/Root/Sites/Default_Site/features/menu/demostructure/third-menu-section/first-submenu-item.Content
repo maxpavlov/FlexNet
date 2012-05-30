@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>WebContentDemo</ContentType>
+  <ContentName>first-submenu-item</ContentName>
+  <Fields>
+    <DisplayName>First submenu item</DisplayName>
+    <Subtitle></Subtitle>
+    <RelatedImage />
+    <Header><![CDATA[<p>This is a demo content to create a sample menu structure.</p>]]></Header>
+    <Body><![CDATA[<p>Nunc ante metus, condimentum at egestas vitae, dapibus sit amet enim.  Cras posuere lacus sapien, in facilisis quam. Mauris mattis feugiat  orci, ut semper risus suscipit et. Nam malesuada pellentesque eros in  imperdiet. Phasellus laoreet euismod convallis. Nam sollicitudin  molestie posuere. Lorem ipsum dolor sit amet, consectetur adipiscing  elit. Curabitur tristique venenatis nunc, sit amet eleifend lorem  posuere et. Donec justo metus, lacinia vel tempor in, lobortis ac  mauris. Praesent a diam eget turpis egestas dignissim at vitae nisl.  Quisque eleifend orci eget libero consectetur pellentesque. Donec  condimentum odio ut metus dapibus eget placerat lacus scelerisque.</p>
+<p>Donec in sapien nunc. Suspendisse potenti. Aenean nisl mi, dignissim at  aliquam vitae, dignissim ac diam. Pellentesque elit nibh, tincidunt  rutrum pellentesque id, semper sit amet ligula. Fusce quis leo non nulla  convallis dictum et in turpis. Aliquam vitae iaculis nisl. Nullam lacus  sapien, aliquam eu elementum nec, rhoncus ut justo. Aenean tempus  posuere lacinia. Lorem ipsum dolor sit amet, consectetur adipiscing  elit. Maecenas a lectus libero. Quisque auctor placerat est at lobortis.  Duis pharetra neque sed est accumsan vulputate. Aenean velit neque,  sollicitudin at adipiscing pulvinar, euismod a nibh. Duis auctor, massa  quis varius mollis, eros tellus dignissim sem, nec feugiat sapien risus  quis velit.</p>]]></Body>
+    <Details><a href="" target="" title=""></a></Details>
+    <Language>English</Language>
+    <Keywords><![CDATA[]]></Keywords>
+    <Author></Author>
+    <ReviewDate>0001-01-01T00:00:00</ReviewDate>
+    <ArchiveDate>0001-01-01T00:00:00</ArchiveDate>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <Description><![CDATA[]]></Description>
+    <Hidden>false</Hidden>
+    <Index>10</Index>
+        <VersioningMode>1</VersioningMode>
+    <InheritableVersioningMode>1</InheritableVersioningMode>
+    <ApprovingMode>1</ApprovingMode>
+    <InheritableApprovingMode>1</InheritableApprovingMode>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate></Rate>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

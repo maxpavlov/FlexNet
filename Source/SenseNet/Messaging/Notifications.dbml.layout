@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Notifications">
+  <DataContextMoniker Name="/NotificationsDataContext" />
+  <nestedChildShapes>
+    <classShape Id="a451f57e-059b-46d9-a144-de9d1c617711" absoluteBounds="3.25, 0.5, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/NotificationsDataContext/Event" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6bfcf46e-68df-4356-ba88-dc4be4208fa9" absoluteBounds="3.2650000000000006, 0.96, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d704ff7a-c1e7-4f0f-8671-ab0a328cd51f" absoluteBounds="0.75, 3.875, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/NotificationsDataContext/LastProcessTime" />
+      <nestedChildShapes>
+        <elementListCompartment Id="23c33ba6-4a11-49d3-b4a7-d60ede2151ea" absoluteBounds="0.76499999999999968, 4.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c6b1187f-9f6d-4d92-a2fa-3c10db3ca1b0" absoluteBounds="3.25, 3.875, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/NotificationsDataContext/Synchronization" />
+      <nestedChildShapes>
+        <elementListCompartment Id="22ea6f7b-ae7f-4076-8bcb-56ab9edf688f" absoluteBounds="3.2649999999999997, 4.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="125b7193-c07c-40ee-a6a3-056892c5ab51" absoluteBounds="5.75, 0.5, 2, 1.9631982421875">
+      <DataClassMoniker Name="/NotificationsDataContext/Message" />
+      <nestedChildShapes>
+        <elementListCompartment Id="99e29c66-ffeb-44c2-b3d5-160a0e282360" absoluteBounds="5.765, 0.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9da6a372-7c88-415d-bd4f-c9acba43dbd1" absoluteBounds="0.75, 0.5, 2, 2.9247054036458331">
+      <DataClassMoniker Name="/NotificationsDataContext/Subscription" />
+      <nestedChildShapes>
+        <elementListCompartment Id="51415a53-629b-44e8-92d2-1414f7f8a320" absoluteBounds="0.76499999999999968, 0.96, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

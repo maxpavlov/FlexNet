@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Portlet</ContentType>
+  <ContentName>Checkout</ContentName>
+  <Fields>
+    <DisplayName>Checkout</DisplayName>
+    <Description><![CDATA[This portlet allows a content to be checked out (context bound)]]></Description>
+    <TypeName>SenseNet.Portal.Portlets.ContentCheckOutPortlet, SenseNet.CorePortlets</TypeName>
+    <ImageRef />
+    <ImageData attachment="Checkout.ImageData" />
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate></Rate>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

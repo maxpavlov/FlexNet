@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>PortletCategory</ContentType>
+  <ContentName>Workflow</ContentName>
+  <Fields>
+    <DisplayName>Workflow</DisplayName>
+    <Description><![CDATA[Workflow related portlets]]></Description>
+  </Fields>
+</ContentMetaData>

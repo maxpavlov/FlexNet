@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Portlet</ContentType>
+  <ContentName>Proxypurge</ContentName>
+  <Fields>
+    <Description><![CDATA[This portlet clears items from the proxy cache that are related to a content]]></Description>
+    <TypeName>SenseNet.Portal.Portlets.ProxyPurgePortlet, SenseNet.CorePortlets</TypeName>
+    <ImageRef />
+    <ImageData attachment="Proxypurge.ImageData" />
+    <Hidden>false</Hidden>
+    <DisplayName>Proxy purge</DisplayName>
+    <Index>0</Index>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

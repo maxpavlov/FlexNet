@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="ApprovalWorkflow" parentType="Workflow" handler="SenseNet.Workflow.ApprovalWorkflow" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Approval Workflow</DisplayName>
+	<Description>Approval workflow can be used to launch an approval process on a list item. If you assign this workflow to a content list, users will be able to start the approval process on the Start workflow page of list items. During the assign process you will have to set the approver users and approve time frame for that content list.</Description>
+	<Icon>workflow</Icon>
+	<Fields>
+    <Field name="RelatedContent" type="Reference">
+      <DisplayName>Content to approve</DisplayName>
+      <Description>The content that the approvers have to approve</Description>
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+        <AllowMultiple>false</AllowMultiple>
+        <AllowedTypes>
+          <Type>GenericContent</Type>
+        </AllowedTypes>
+      </Configuration>
+    </Field>
+    <Field name="FirstLevelApprover" type="Reference">
+      <DisplayName>First level approver</DisplayName>
+      <Description>The user who need to approve the selected content</Description>
+      <Configuration>
+        <Compulsory>true</Compulsory>
+        <AllowMultiple>false</AllowMultiple>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+        <AllowedTypes>
+          <Type>User</Type>
+        </AllowedTypes>
+        <SelectionRoot>
+          <Path>/Root/IMS</Path>
+        </SelectionRoot>
+      </Configuration>
+    </Field>
+    <Field name="FirstLevelTimeFrame" type="ShortText">
+      <DisplayName>First level approve time frame</DisplayName>
+      <Description>Time frame that first level approver has for approving the content (timespan format: '[d.]hh:mm:ss')</Description>
+      <Configuration>
+        <Compulsory>true</Compulsory>
+        <DefaultValue>3</DefaultValue>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="SecondLevelApprover" type="Reference">
+      <DisplayName>Second level approvers</DisplayName>
+      <Description>Users who can approve the selected content if first level approvers did not approve it in the given time frame</Description>
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+        <AllowMultiple>true</AllowMultiple>
+        <AllowedTypes>
+          <Type>User</Type>          
+        </AllowedTypes>
+        <SelectionRoot>
+          <Path>/Root/IMS</Path>
+        </SelectionRoot>
+      </Configuration>
+    </Field>
+    <Field name="SecondLevelTimeFrame" type="ShortText">
+      <DisplayName>Second level approve time frame</DisplayName>
+      <Description>Time frame that second level approvers have for approving the content (timespan format: '[d.]hh:mm:ss')</Description>
+      <Configuration>
+        <DefaultValue>5</DefaultValue>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="WaitForAll" type="Boolean">
+      <DisplayName>Wait for all</DisplayName>
+      <Description>If this option is set to true, all second level approvers should approve the content. If false, one of the is enough.</Description>
+      <Configuration>
+        <DefaultValue>1</DefaultValue>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+  </Fields>
+</ContentType>

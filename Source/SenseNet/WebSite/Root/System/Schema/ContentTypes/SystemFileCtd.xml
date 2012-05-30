@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="SystemFile" parentType="File" handler="SenseNet.ContentRepository.File" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>System file</DisplayName>
+  <Description>A special file for internal use in the system</Description>
+  <Icon>File</Icon>
+  <Fields>
+  </Fields>
+</ContentType>

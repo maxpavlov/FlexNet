@@ -1,0 +1,1351 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Resources>
+  <ResourceClass name="Portal">
+    <Languages>
+      <Language cultureName="en">
+        <data name="Approve" xml:space="preserve">
+          <value>Approve</value>
+        </data>
+        <data name="Approving" xml:space="preserve">
+          <value>Approving</value>
+        </data>
+        <data name="AuthenticationNotSupportedOnSite" xml:space="preserve">
+          <value>On the site '{0}' the authentication mode has been set to '{1}', which is not supported.</value>
+        </data>
+        <data name="Cancel" xml:space="preserve">
+          <value>Cancel</value>
+        </data>
+        <data name="CheckedOutBy" xml:space="preserve">
+          <value>Checked-out by</value>
+        </data>
+        <data name="CheckIn" xml:space="preserve">
+          <value>Check in</value>
+        </data>
+        <data name="CheckOut" xml:space="preserve">
+          <value>Check out</value>
+        </data>
+        <data name="CheckInPortletTitle" xml:space="preserve">
+          <value>Checking in</value>
+        </data>
+        <data name="CheckInCommentsTextBoxTitle" xml:space="preserve">
+          <value>Comments</value>
+        </data>
+        <data name="CheckInCommentsCompulsory" xml:space="preserve">
+          <value>Please add some comments</value>
+        </data>
+        <data name="DefaultAuthenticationNotSupported" xml:space="preserve">
+          <value>The default authentication mode has been set to '{0}', which is not supported.</value>
+        </data>
+        <data name="Draft" xml:space="preserve">
+          <value>Draft</value>
+        </data>
+        <data name="ForceUndoCheckOut" xml:space="preserve">
+          <value>Force undo check out</value>
+        </data>
+        <data name="Public" xml:space="preserve">
+          <value>Public</value>
+        </data>
+        <data name="ForceUndoCheckOut" xml:space="preserve">
+          <value>Force undo check out</value>
+        </data>
+        <data name="Publish" xml:space="preserve">
+          <value>Publish</value>
+        </data>
+        <data name="Reject" xml:space="preserve">
+          <value>Reject</value>
+        </data>
+        <data name="Save" xml:space="preserve">
+          <value>Save</value>
+        </data>
+        <data name="UndoCheckOut" xml:space="preserve">
+          <value>UndoCheckOut</value>
+        </data>
+        <data name="UpladFileButton" xml:space="preserve">
+          <value>Upload File (Select)</value>
+        </data>
+        <data name="UpladFileErrorNotUploaded" xml:space="preserve">
+          <value>Binary has not been uploaded.</value>
+        </data>
+        <data name="UpladFileStopUploadButton" xml:space="preserve">
+          <value>Stop upload</value>
+        </data>
+        <data name="UpladSpecificContentType" xml:space="preserve">
+          <value>Upload as </value>
+        </data>
+        <data name="ChoiceControlExtraOptionText" xml:space="preserve">
+          <value>Other</value>
+        </data>
+        <data name="ChromeEdit" xml:space="preserve">
+          <value>Edit</value>
+        </data>
+        <data name="ChromeDelete" xml:space="preserve">
+          <value>Delete</value>
+        </data>
+        <data name="WebPartEmptyZoneText" xml:space="preserve">
+          <value>Add a Portlet to this zone by dropping it here.</value>
+        </data>
+        <data name="AddNewContent" xml:space="preserve">
+          <value>Add new {0}</value>
+        </data>
+        <data name="AddNewContentUnder" xml:space="preserve">
+          <value>Add new Content under {0}</value>
+        </data>
+        <data name="EditContent" xml:space="preserve">
+          <value>Edit {0}</value>
+        </data>
+        <data name="DeleteContent" xml:space="preserve">
+          <value>Delete {0}</value>
+        </data>
+        <data name="DetailsContent" xml:space="preserve">
+          <value>View properties for {0}</value>
+        </data>
+        <data name="ListViewTitle" xml:space="preserve">
+          <value>List view for {0}</value>
+        </data>
+        <data name="ManageFieldsTitle" xml:space="preserve">
+          <value>Manage Fields for {0}</value>
+        </data>
+        <data name="AddNewFieldTitle" xml:space="preserve">
+          <value>Add new {0}</value>
+        </data>
+        <data name="EditFieldTitle" xml:space="preserve">
+          <value>Edit {0} field </value>
+        </data>
+        <data name="UploadPageTitle" xml:space="preserve">
+          <value>Upload documents: {0} </value>
+        </data>
+        <data name="VersioningMode" xml:space="preserve">
+          <value>Versioning mode</value>
+        </data>
+        <data name="None" xml:space="preserve">
+          <value>None</value>
+        </data>
+        <data name="MajorOnly" xml:space="preserve">
+          <value>Major only</value>
+        </data>
+        <data name="MajorAndMinor" xml:space="preserve">
+          <value>Major and minor</value>
+        </data>
+        <data name="Inherited" xml:space="preserve">
+          <value>Inherited</value>
+        </data>
+        <data name="Approved" xml:space="preserve">
+          <value>Approved</value>
+        </data>
+        <data name="Draft" xml:space="preserve">
+          <value>Draft</value>
+        </data>
+        <data name="Locked" xml:space="preserve">
+          <value>Locked</value>
+        </data>
+        <data name="Pending" xml:space="preserve">
+          <value>Pending for approval</value>
+        </data>
+        <data name="Rejected" xml:space="preserve">
+          <value>Rejected</value>
+        </data>
+        <!-- ========== START OF 6.0.4 ========== -->
+
+        <data name="ProxyPurgePortletTitle" xml:space="preserve">
+          <value>Purge from proxy cache: {0}</value>
+        </data>
+        <data name="NoProxyServers" xml:space="preserve">
+          <value>There are no proxy servers defined</value>
+        </data>
+        <data name="NoUrlsToPurge" xml:space="preserve">
+          <value>No URLs to purge</value>
+        </data>
+        
+        <!-- Workspace Actions Scenario-->
+        
+        <data name="AddNewActionPrefix" xml:space="preserve">
+          <value>New </value>
+        </data>
+        <data name="OpenInContentExplorerActionText" xml:space="preserve">
+          <value>Open in Content Explorer</value>
+        </data>
+        <data name="CreateOtherActionText" xml:space="preserve">
+          <value>Create other...</value>
+        </data>    
+        
+        <!-- Workspace create other page -->
+
+        <data name="WorkspaceCreateOther_SelectAnItemText" xml:space="preserve">
+          <value>Select an item to create a new library, list, form, page or workspace</value>
+        </data>
+        <data name="WorkspaceCreateOther_YouDontHavePermissionText" xml:space="preserve">
+          <value>We're sorry, but you're not allowed to create any other content under this Workspace!</value>
+        </data>
+        
+        <data name="WorkspaceCreateOther_WorkspacesTitle" xml:space="preserve">
+          <value>Workspaces</value>
+        </data>
+        <data name="WorkspaceCreateOther_WorkspacesDescription" xml:space="preserve">
+          <value>Workspaces are mini portals dedicated to store and presenet information about a specific thing, such as a project. Workspaces are built up of lists, libraries and pages. Each workspace has a dashboard that collects relevant information to one page.</value>
+        </data>
+        
+        <data name="WorkspaceCreateOther_ListsTitle" xml:space="preserve">
+          <value>Lists</value>
+        </data>
+        <data name="WorkspaceCreateOther_ListsDescription" xml:space="preserve">
+          <value>Lists are collections of similar pieces of contents. Contents in the list are built up of Fields, that can be customized by the end user. The look and feel of each list depends on customizable Views.</value>
+        </data>
+        
+        <data name="WorkspaceCreateOther_LibrariesTitle" xml:space="preserve">
+          <value>Libraries</value>
+        </data>
+        <data name="WorkspaceCreateOther_LibrariesDescription" xml:space="preserve">
+          <value>Libraries are special lists that contain files, usually documents, images or multimedia. Files in libraries can be accessed using the portal user interface or with Windows Explorer using the WebDAV protocol.</value>
+        </data>
+        
+        <data name="WorkspaceCreateOther_PagesTitle" xml:space="preserve">
+          <value>Pages</value>
+        </data>
+        <data name="WorkspaceCreateOther_PagesDescription" xml:space="preserve">
+          <value>Pages are the generic building blocks of portals, web pages or intranets.</value>
+        </data>
+
+        <data name="WorkspaceCreateOther_CantCreateWorkspaceContent" xml:space="preserve">
+          <value>You cannot create any content of Workspace type in <strong>{0}</strong>.</value>
+        </data>
+        <data name="WorkspaceCreateOther_CantCreateListContent" xml:space="preserve">
+          <value>You cannot create any content of ContentList type in <strong>{0}</strong>.</value>
+        </data>
+        <data name="WorkspaceCreateOther_CantCreateLibraryContent" xml:space="preserve">
+          <value>You cannot create any content of Library type in <strong>{0}</strong>.</value>
+        </data>
+        <data name="WorkspaceCreateOther_CantCreatePageContent" xml:space="preserve">
+          <value>You cannot create any content of Page type in <strong>{0}</strong>.</value>
+        </data>
+        
+        <!-- BLOG CONTENT TYPE -->
+
+        <data name="SnBlog_BlogPostsPortlet_Title" xml:space="preserve">
+          <value>Blog posts</value>
+        </data>
+        <data name="SnBlog_BlogPostsPortlet_ArchiveTitle" xml:space="preserve">
+          <value>Blog posts in {0}</value>
+        </data>
+        <data name="SnBlog_BlogPostsPortlet_UnpublishedPost" xml:space="preserve">
+          <value>This post is not published yet!</value>
+        </data>
+        <data name="SnBlog_BlogPostsPortlet_EditPost" xml:space="preserve">
+          <value>Edit post</value>
+        </data>
+        <data name="SnBlog_BlogPostsPortlet_DeletePost" xml:space="preserve">
+          <value>Delete post</value>
+        </data>
+        <data name="SnBlog_BlogPostsPortlet_ReadMore" xml:space="preserve">
+          <value>Read more...</value>
+        </data>
+        <data name="SnBlog_BlogPostsPortlet_NoPosts" xml:space="preserve">
+          <value>There are no posts here...</value>
+        </data>
+        <data name="SnBlog_BlogPostsPortlet_Tags" xml:space="preserve">
+          <value>Tags:</value>
+        </data>
+        <data name="SnBlog_BlogPostsPortlet_Comments" xml:space="preserve">
+          <value>{0} comments</value>
+        </data>
+        <data name="SnBlog_BlogPostsPortlet_NoComments" xml:space="preserve">
+          <value>No comments</value>
+        </data>
+        <data name="SnBlog_BlogPostsPortlet_BackToMain" xml:space="preserve">
+          <value>Back to main</value>
+        </data>
+        <data name="SnBlog_CommentsPortlet_Title" xml:space="preserve">
+          <value>Comments</value>
+        </data>
+        <data name="SnBlog_TagCloudPortlet_Title" xml:space="preserve">
+          <value>Tag cloud</value>
+        </data>
+        <data name="SnBlog_TagCloudPortlet_NoTags" xml:space="preserve">
+          <value>No tags yet...</value>
+        </data>
+        <data name="SnBlog_ArchivePortlet_Title" xml:space="preserve">
+          <value>Archive</value>
+        </data>
+        <data name="SnBlog_ArchivePortlet_NoArchives" xml:space="preserve">
+          <value>There aren't any archives...</value>
+        </data>
+        <data name="SnBlog_SearchPortlet_Title" xml:space="preserve">
+          <value>Search posts</value>
+        </data>
+        <data name="SnBlog_SearchPortlet_SearchButtonTitle" xml:space="preserve">
+          <value>Search</value>
+        </data>
+        <data name="SnBlog_SearchPortlet_SearchResults" xml:space="preserve">
+          <value>{0} results found</value>
+        </data>
+        <data name="SnBlog_Menu_UnpublishedPostsPortlet_Title" xml:space="preserve">
+          <value>Unpublished posts</value>
+        </data>
+        <data name="SnBlog_NewEditBlogPost_LeadingText" xml:space="preserve">
+          <value>Leading text (required)</value>
+        </data>
+        <data name="SnBlog_NewEditBlogPost_BodyText" xml:space="preserve">
+          <value>Body text (optional)</value>
+        </data>
+        <data name="SnBlog_Menu_WorkspaceHome" xml:space="preserve">
+          <value>Workspace home</value>
+        </data>
+        <data name="SnBlog_Menu_BlogMainPage" xml:space="preserve">
+          <value>Blog main page</value>
+        </data>
+        <data name="SnBlog_Menu_NewPost" xml:space="preserve">
+          <value>New post</value>
+        </data>
+        <data name="SnBlog_Menu_UnpublishedPosts" xml:space="preserve">
+          <value>Unpublished posts</value>
+        </data>
+        <data name="SnBlog_Menu_Search" xml:space="preserve">
+          <value>Search</value>
+        </data>
+
+        <!-- ========== END OF 6.0.4 ========== -->
+        
+        <!-- 6.0.4 -->
+        <data name="AddNewActionPrefix" xml:space="preserve">
+          <value>New </value>
+        </data>
+        <data name="OpenInContentExplorerActionText" xml:space="preserve">
+          <value>Open in Content Explorer</value>
+        </data>
+        <data name="CreateOtherActionText" xml:space="preserve">
+          <value>Create other...</value>
+        </data>
+        <data name="DateFieldDateTimeFormatDescription" xml:space="preserve">
+          <value>Valid Date format is:{0}. You can specify the time in {1} format.</value>
+        </data>
+        <data name="DateFieldDateFormatDescription" xml:space="preserve">
+          <value>Valid Date format is:{0}.</value>
+        </data>
+
+        <!-- Content naming -->
+        <data name="InvalidNameMessage" xml:space="preserve">
+          <value>Content name may only contain alphanumeric characters or '.', '(', ')', '[', ']', '-', '_', ' ' !</value>
+        </data>
+        <data name="InvalidPathMessage" xml:space="preserve">
+          <value>Content path may only contain alphanumeric characters or '.', '(', ')', '[', ']', '-', '_', ' ', '/' !</value>
+        </data>
+        <data name="PathTooLongMessage" xml:space="preserve">
+          <value>Path too long. Max length is {0}.</value>
+        </data>
+        <data name="EmptyNameMessage" xml:space="preserve">
+          <value>Name cannot be empty.</value>
+        </data>
+        <data name="NameStartsWithWhitespaceMessage" xml:space="preserve">
+          <value>Name cannot start with whitespace.</value>
+        </data>
+        <data name="NameEndsWithWhitespaceMessage" xml:space="preserve">
+          <value>Name cannot end with whitespace.</value>
+        </data>
+        <data name="PathFirstCharMessage" xml:space="preserve">
+          <value>Path must start with '/' character.</value>
+        </data>
+        <data name="PathEndsWithDotMessage" xml:space="preserve">
+          <value>Path cannot end with '.' character.</value>
+        </data>
+        
+        <!-- Permission editor -->
+        <data name="PermissionLocalGroup" xml:space="preserve">
+          <value>local group</value>
+        </data>
+        <data name="EditPermissions" xml:space="preserve">
+          <value>Edit permissions</value>
+        </data>
+        <data name="Permission_See">
+          <value>See</value>
+        </data>
+        <data name="Permission_Open">
+          <value>Open</value>
+        </data>
+        <data name="Permission_OpenMinor">
+          <value>Open minor</value>
+        </data>
+        <data name="Permission_Save">
+          <value>Save</value>
+        </data>
+        <data name="Permission_Publish">
+          <value>Publish</value>
+        </data>
+        <data name="Permission_ForceCheckin">
+          <value>Force check-in</value>
+        </data>
+        <data name="Permission_AddNew">
+          <value>Add new</value>
+        </data>
+        <data name="Permission_Approve">
+          <value>Approve</value>
+        </data>
+        <data name="Permission_Delete">
+          <value>Delete</value>
+        </data>
+        <data name="Permission_RecallOldVersion">
+          <value>Recall old version</value>
+        </data>
+        <data name="Permission_DeleteOldVersion">
+          <value>Delete old version</value>
+        </data>
+        <data name="Permission_SeePermissions">
+          <value>See permissions</value>
+        </data>
+        <data name="Permission_SetPermissions">
+          <value>Set permissions</value>
+        </data>
+        <data name="Permission_RunApplication">
+          <value>Run application</value>
+        </data>
+        <data name="Permission_ManageListsAndWorkspaces">
+          <value>Manage lists and workspaces</value>
+        </data>
+        <data name="Permission_Desc_See">
+          <value>View content in lists and search results</value>
+        </data>
+        <data name="Permission_Desc_Open">
+          <value>View content and its fields</value>
+        </data>
+        <data name="Permission_Desc_OpenMinor">
+          <value>Open minor versions, e.g. 2.3 Draft</value>
+        </data>
+        <data name="Permission_Desc_Save">
+          <value>Save documents, articles or other content</value>
+        </data>
+        <data name="Permission_Desc_Publish">
+          <value>Mark content as published</value>
+        </data>
+        <data name="Permission_Desc_ForceCheckin">
+          <value>Unlock content that were checked out by other users</value>
+        </data>
+        <data name="Permission_Desc_AddNew">
+          <value>Add new content</value>
+        </data>
+        <data name="Permission_Desc_Approve">
+          <value>Approve files or any other content</value>
+        </data>
+        <data name="Permission_Desc_Delete">
+          <value>Delete content</value>
+        </data>
+        <data name="Permission_Desc_RecallOldVersion">
+          <value>View and open previous versions of content</value>
+        </data>
+        <data name="Permission_Desc_DeleteOldVersion">
+          <value>Delete old content versions</value>
+        </data>
+        <data name="Permission_Desc_SeePermissions">
+          <value>View the permission settings of a content</value>
+        </data>
+        <data name="Permission_Desc_SetPermissions">
+          <value>Modify the permission settings of a content</value>
+        </data>
+        <data name="Permission_Desc_RunApplication">
+          <value>Visualize content using an application</value>
+        </data>
+        <data name="Permission_Desc_ManageListsAndWorkspaces">
+          <value>Add, modify or delete lists or workspaces</value>
+        </data>
+        <data name="PermEditor_AddNewEntry">
+          <value>Add new security entry</value>
+        </data>
+        <data name="PermEditor_HasOwnPermission">
+            <value>{0} has custom permissions.</value>
+        </data>
+        <data name="PermEditor_InheritPermissionBegin">
+            <value><strong>{0}</strong> inherits permissions from its parent: </value>
+        </data>
+        <data name="PermEditor_InheritPermissionEnd">
+            <value></value>
+        </data>
+        <data name="PermEditor_HasExtended">
+            <value>This content has custom permissions.</value>
+        </data>
+        <data name="PermEditor_EditMembers">
+            <value>Edit members</value>
+        </data>
+        <data name="PermEditor_BreakInheritance">
+          <value>Break inheritance</value>
+        </data>
+        <data name="PermEditor_RemoveBreak">
+          <value>Remove break inheritance</value>
+        </data>
+        <data name="PermEditor_Type">
+          <value>Identity type</value>
+        </data>
+        <data name="PermEditor_SearchName">
+          <value>Type in a name</value>
+        </data>
+        <data name="PermEditor_ChooseEntry">
+          <value>Choose an entry</value>
+        </data>
+        <data name="PermEditor_BtnSearch">
+          <value>Search</value>
+        </data>
+        <data name="PermEditor_BtnAdd">
+          <value>Add</value>
+        </data>
+        <data name="PermEditor_BtnCancel">
+          <value>Cancel</value>
+        </data>
+        <data name="PermEditor_BtnSave">
+          <value>Save</value>
+        </data>
+        <data name="PermEditor_PermSettings">
+          <value>Permission settings</value>
+        </data>
+        <data name="PermEditor_Permission">
+          <value>Permission</value>
+        </data>
+        <data name="PermEditor_Allow">
+          <value>Allow</value>
+        </data>
+        <data name="PermEditor_InheritsFrom">
+          <value>Inherits from</value>
+        </data>
+        <data name="PermEditor_Deny">
+          <value>Deny</value>
+        </data>
+        <data name="PermEditor_Effective">
+          <value>Effective permission</value>
+        </data>
+        <data name="PermEditor_ToggleAll">
+          <value>Toggle all</value>
+        </data>
+
+        <data name="ContentList_ManageViewsTitle">
+          <value>Manage views of {0}</value>
+        </data>
+        <data name="ContentList_ManageViewsDefaultLabel">
+          <value>Default content list view</value>
+        </data>
+        <data name="ContentList_ManageViewsNoDefault">
+          <value>no default view selected</value>
+        </data>
+        <data name="ContentList_ManageViewsGlobal">
+          <value>This is a global view.</value>
+        </data>
+        
+      </Language>
+      <Language cultureName="hu">
+        <data name="Approve" xml:space="preserve">
+          <value>Jóváhagyás alatt</value>
+        </data>
+        <data name="Approving" xml:space="preserve">
+          <value>Elfogadás</value>
+        </data>
+        <data name="AuthenticationNotSupportedOnSite" xml:space="preserve">
+          <value>A(z) '{0}' oldalon az autentikációs mód '{1}', amely nem támogatott.</value>
+        </data>
+        <data name="Cancel" xml:space="preserve">
+          <value>Mégsem</value>
+        </data>
+        <data name="CheckedOutBy" xml:space="preserve">
+          <value>Kivette</value>
+        </data>
+        <data name="CheckIn" xml:space="preserve">
+          <value>Visszarak</value>
+        </data>
+        <data name="CheckOut" xml:space="preserve">
+          <value>Kivesz</value>
+        </data>
+        <data name="CheckInPortletTitle" xml:space="preserve">
+          <value>Visszarakás</value>
+        </data>
+        <data name="CheckInCommentsTextBoxTitle" xml:space="preserve">
+          <value>Megjegyzés</value>
+        </data>
+        <data name="CheckInCommentsCompulsory" xml:space="preserve">
+          <value>Kérem adjon meg megjegyzést</value>
+        </data>
+        <data name="DefaultAuthenticationNotSupported" xml:space="preserve">
+          <value>Az alapértelmezett autentikációs mód '{0}', amely nem támogatott.</value>
+        </data>
+        <data name="Draft" xml:space="preserve">
+          <value>Vázlat</value>
+        </data>
+        <data name="ForceUndoCheckOut" xml:space="preserve">
+          <value>Kivétel visszavonása</value>
+        </data>
+        <data name="Public" xml:space="preserve">
+          <value>Publikus</value>
+        </data>
+        <data name="Publish" xml:space="preserve">
+          <value>Publikálás</value>
+        </data>
+        <data name="Reject" xml:space="preserve">
+          <value>Elutasítás</value>
+        </data>
+        <data name="Save" xml:space="preserve">
+          <value>Mentés</value>
+        </data>
+        <data name="UndoCheckOut" xml:space="preserve">
+          <value>Kivétel visszavonás</value>
+        </data>
+        <data name="UpladFileButton" xml:space="preserve">
+          <value>Fájl feltöltése (tallózás)</value>
+        </data>
+        <data name="UpladFileErrorNotUploaded" xml:space="preserve">
+          <value>A fájl nem került feltöltésre.</value>
+        </data>
+        <data name="UpladFileStopUploadButton" xml:space="preserve">
+          <value>Feltöltés megszakítása</value>
+        </data>
+        <data name="UpladSpecificContentType" xml:space="preserve">
+          <value>Feltöltés mint </value>
+        </data>
+        <data name="ChoiceControlExtraOptionText" xml:space="preserve">
+          <value>Egyéb</value>
+        </data>
+        <data name="ChromeEdit" xml:space="preserve">
+          <value>Szerkesztés</value>
+        </data>
+        <data name="ChromeDelete" xml:space="preserve">
+          <value>Törlés</value>
+        </data>
+        <data name="WebPartEmptyZoneText" xml:space="preserve">
+          <value>Üres portlet zóna</value>
+        </data>
+        <data name="AddNewContent" xml:space="preserve">
+          <value>Új {0} felvétele</value>
+        </data>
+        <data name="AddNewContentUnder" xml:space="preserve">
+          <value>Új elem felvétele {0} alá</value>
+        </data>
+        <data name="EditContent" xml:space="preserve">
+          <value>{0} szerkesztése</value>
+        </data>
+        <data name="DeleteContent" xml:space="preserve">
+          <value>{0} törlése</value>
+        </data>
+        <data name="DetailsContent" xml:space="preserve">
+          <value>{0} tulajdonságai</value>
+        </data>
+        <data name="ListViewTitle" xml:space="preserve">
+          <value>{0} lista nézet</value>
+        </data>
+        <data name="ManageFieldsTitle" xml:space="preserve">
+          <value>Manage Fields for {0}</value>
+        </data>
+        <data name="AddNewFieldTitle" xml:space="preserve">
+          <value>Új {0} felvétele</value>
+        </data>
+        <data name="EditFieldTitle" xml:space="preserve">
+          <value>{0} mező szerkesztése</value>
+        </data>
+        <data name="UploadPageTitle" xml:space="preserve">
+          <value>Dokumentumok feltöltése: {0} </value>
+        </data>
+        <data name="VersioningMode" xml:space="preserve">
+          <value>Verziózás</value>
+        </data>
+        <data name="None" xml:space="preserve">
+          <value>Nincs</value>
+        </data>
+        <data name="MajorOnly" xml:space="preserve">
+          <value>Főverziók</value>
+        </data>
+        <data name="MajorAndMinor" xml:space="preserve">
+          <value>Fő- és alverziók</value>
+        </data>
+        <data name="Inherited" xml:space="preserve">
+          <value>Örökölt</value>
+        </data>
+        <data name="Approved" xml:space="preserve">
+          <value>Jóváhagyott</value>
+        </data>
+        <data name="Draft" xml:space="preserve">
+          <value>Draft</value>
+        </data>
+        <data name="Locked" xml:space="preserve">
+          <value>Zárolt</value>
+        </data>
+        <data name="Pending" xml:space="preserve">
+          <value>Jóváhagyásra vár</value>
+        </data>
+        <data name="Rejected" xml:space="preserve">
+          <value>Visszautasított</value>
+        </data>
+        <!-- ========== START OF 6.0.4 ========== -->
+
+        <data name="ProxyPurgePortletTitle" xml:space="preserve">
+          <value>Proxy cache törlése: {0}</value>
+        </data>
+        <data name="NoProxyServers" xml:space="preserve">
+          <value>Nincs proxy szerver bekonfigurálva</value>
+        </data>
+        <data name="NoUrlsToPurge" xml:space="preserve">
+          <value>Nincs törlendő url</value>
+        </data>
+        
+        <!-- Workspace Actions Scenario -->
+        <data name="AddNewActionPrefix" xml:space="preserve">
+          <value>Új </value>
+        </data>
+        <data name="OpenInContentExplorerActionText" xml:space="preserve">
+          <value>Megnyitás Content Explorer-ben</value>
+        </data>
+        <data name="CreateOtherActionText" xml:space="preserve">
+          <value>Új egyéb...</value>
+        </data>
+        
+        <!-- Workspace create other page -->
+
+        <data name="WorkspaceCreateOther_SelectAnItemText" xml:space="preserve">
+          <value>Az alábbi lista segítségével létre tud hozni új Könyvtárat, Listát, Űrlapot, Oldalt vagy Munkaterületet</value>
+        </data>
+        <data name="WorkspaceCreateOther_YouDontHavePermissionText" xml:space="preserve">
+          <value>Sajnáljuk, de Önnek nincs jogosultsága új tartalom létrehozásához!</value>
+        </data>
+
+        <data name="WorkspaceCreateOther_WorkspacesTitle" xml:space="preserve">
+          <value>Munkaterületek</value>
+        </data>
+        <data name="WorkspaceCreateOther_WorkspacesDescription" xml:space="preserve">
+          <value>A Munkaterületek olyan mini-portálok amelyek arra hivatottak, hogy tárolják és megjelenítsék az összes információt egy dologról, mint amilyen egy projekt is. Egy Munkaterület tartalmazhat Könyvtárakat, Listákat vagy különböző Oldalakat is.</value>
+        </data>
+        
+        <data name="WorkspaceCreateOther_ListsTitle" xml:space="preserve">
+          <value>Listák</value>
+        </data>
+        <data name="WorkspaceCreateOther_ListsDescription" xml:space="preserve">
+          <value>A Listák olyan gyűjtemények amelyek azonos tartalmakat tárolnak. A gyűjteményben lévő tartalmak Mezőkből épülnek fel, amelyek a felhasználó által szabadon módosíthatóak. A Listák megjelenítése szabályozható a Nézetek megfelelő beállításával.</value>
+        </data>
+        
+        <data name="WorkspaceCreateOther_LibrariesTitle" xml:space="preserve">
+          <value>Könyvtárak</value>
+        </data>
+        <data name="WorkspaceCreateOther_LibrariesDescription" xml:space="preserve">
+          <value>A Könyvtárak olyan speciális listák amelyek fájlokat tárolnak. Ezek általában dokumentumok, képek vagy más multimédiás tartalmak. Ezek a fájlok elérhetőek a Portál felületén keresztül vagy a Windows Intéző segítségével WebDAV protokollon keresztül.</value>
+        </data>
+        
+        <data name="WorkspaceCreateOther_PagesTitle" xml:space="preserve">
+          <value>Oldalak</value>
+        </data>
+        <data name="WorkspaceCreateOther_PagesDescription" xml:space="preserve">
+          <value>Az Oldalak az alapvetű építőkockái egy portálnak, weblapnak vagy Intranet-nek.</value>
+        </data>
+
+        <data name="WorkspaceCreateOther_CantCreateWorkspaceContent" xml:space="preserve">
+          <value>A(z) <strong>{0}</strong> alá nem lehet létrehozni semmilyen Munkaterület típusú tartalmat.</value>
+        </data>
+        <data name="WorkspaceCreateOther_CantCreateListContent" xml:space="preserve">
+          <value>A(z) <strong>{0}</strong> alá nem lehet létrehozni semmilyen Lista típusú tartalmat.</value>
+        </data>
+        <data name="WorkspaceCreateOther_CantCreateLibraryContent" xml:space="preserve">
+          <value>A(z) <strong>{0}</strong> alá nem lehet létrehozni semmilyen Könyvtár típusú tartalmat.</value>
+        </data>
+        <data name="WorkspaceCreateOther_CantCreatePageContent" xml:space="preserve">
+          <value>A(z) <strong>{0}</strong> alá nem lehet létrehozni semmilyen Oldal típusú tartalmat.</value>
+        </data>
+
+        <!-- BLOG CONTENT TYPE -->
+
+        <data name="SnBlog_BlogPostsPortlet_Title" xml:space="preserve">
+          <value>Blog bejegyzések</value>
+        </data>
+        <data name="SnBlog_BlogPostsPortlet_ArchiveTitle" xml:space="preserve">
+          <value>Blog bejegyzések a(z) {0} arhívumban</value>
+        </data>
+        <data name="SnBlog_BlogPostsPortlet_UnpublishedPost" xml:space="preserve">
+          <value>Ez a bejegyzés még nem került publikálásra!</value>
+        </data>
+        <data name="SnBlog_BlogPostsPortlet_EditPost" xml:space="preserve">
+          <value>Szerkesztés</value>
+        </data>
+        <data name="SnBlog_BlogPostsPortlet_DeletePost" xml:space="preserve">
+          <value>Törlés</value>
+        </data>
+        <data name="SnBlog_BlogPostsPortlet_ReadMore" xml:space="preserve">
+          <value>Tovább...</value>
+        </data>
+        <data name="SnBlog_BlogPostsPortlet_NoPosts" xml:space="preserve">
+          <value>Még nincsenek bejegyzések...</value>
+        </data>
+        <data name="SnBlog_BlogPostsPortlet_Tags" xml:space="preserve">
+          <value>Címkék:</value>
+        </data>
+        <data name="SnBlog_BlogPostsPortlet_Comments" xml:space="preserve">
+          <value>{0} hozzászólás</value>
+        </data>
+        <data name="SnBlog_BlogPostsPortlet_NoComments" xml:space="preserve">
+          <value>Nincs hozzászólás</value>
+        </data>
+        <data name="SnBlog_BlogPostsPortlet_BackToMain" xml:space="preserve">
+          <value>Vissza</value>
+        </data>
+        <data name="SnBlog_CommentsPortlet_Title" xml:space="preserve">
+          <value>Hozzászólások</value>
+        </data>
+        <data name="SnBlog_TagCloudPortlet_Title" xml:space="preserve">
+          <value>Címkefelhő</value>
+        </data>
+        <data name="SnBlog_TagCloudPortlet_NoTags" xml:space="preserve">
+          <value>Még nincsenek címkék...</value>
+        </data>
+        <data name="SnBlog_ArchivePortlet_Title" xml:space="preserve">
+          <value>Arhívumok</value>
+        </data>
+        <data name="SnBlog_ArchivePortlet_NoArchives" xml:space="preserve">
+          <value>Még nincsenek arhívumok...</value>
+        </data>
+        <data name="SnBlog_SearchPortlet_Title" xml:space="preserve">
+          <value>Bejegyzések keresése</value>
+        </data>
+        <data name="SnBlog_SearchPortlet_SearchButtonTitle" xml:space="preserve">
+          <value>Keresés</value>
+        </data>
+        <data name="SnBlog_SearchPortlet_SearchResults" xml:space="preserve">
+          <value>Találatok száma: {0}</value>
+        </data>
+        <data name="SnBlog_Menu_UnpublishedPostsPortlet_Title" xml:space="preserve">
+          <value>Nem publikált bejegyzések</value>
+        </data>
+        <data name="SnBlog_NewEditBlogPost_LeadingText" xml:space="preserve">
+          <value>Bevezető szöveg (kötelező)</value>
+        </data>
+        <data name="SnBlog_NewEditBlogPost_BodyText" xml:space="preserve">
+          <value>Bejegyzés tartalma (opcionális)</value>
+        </data>
+        <data name="SnBlog_Menu_WorkspaceHome" xml:space="preserve">
+          <value>Munkaterület</value>
+        </data>
+        <data name="SnBlog_Menu_BlogMainPage" xml:space="preserve">
+          <value>Blog kezdőlap</value>
+        </data>
+        <data name="SnBlog_Menu_NewPost" xml:space="preserve">
+          <value>Új bejegyzés</value>
+        </data>
+        <data name="SnBlog_Menu_UnpublishedPosts" xml:space="preserve">
+          <value>Nem publikáltak</value>
+        </data>        
+        <data name="SnBlog_Menu_Search" xml:space="preserve">
+          <value>Keresés</value>
+        </data>
+
+        <!-- ========== END OF 6.0.4 ========== -->
+        <!-- 6.0.4 -->
+        <data name="AddNewActionPrefix" xml:space="preserve">
+          <value>Új </value>
+        </data>
+        <data name="OpenInContentExplorerActionText" xml:space="preserve">
+          <value>Megnyitás Content Explorer-ben</value>
+        </data>
+        <data name="CreateOtherActionText" xml:space="preserve">
+          <value>Új egyéb...</value>
+        </data>
+        <data name="DateFieldDateTimeFormatDescription" xml:space="preserve">
+          <value>Dátum formátum: {0}. Az időt a következőképpen adhatja meg: {1}.</value>
+        </data>
+        <data name="DateFieldDateFormatDescription" xml:space="preserve">
+          <value>Dátum formátum: {0}.</value>
+        </data>
+
+        <!-- Content naming -->
+        <data name="InvalidNameMessage" xml:space="preserve">
+          <value>A Content név csak alfanumerikus karaketerket és a '.', '(', ')', '[', ']', '-', '_', ' ' karaktereket tartalmazhatja!</value>
+        </data>
+        <data name="InvalidPathMessage" xml:space="preserve">
+          <value>A path csak alfanumerikus karaktereket és a '.', '(', ')', '[', ']', '-', '_', ' ', '/' karaktereket tartalmazhatja!</value>
+        </data>
+        <data name="PathTooLongMessage" xml:space="preserve">
+          <value>Path túl hosszú. A maximum hossz {0} karakter.</value>
+        </data>
+        <data name="EmptyNameMessage" xml:space="preserve">
+          <value>Content név nem lehet üres.</value>
+        </data>
+        <data name="NameStartsWithWhitespaceMessage" xml:space="preserve">
+          <value>Content név nem kezdődhet szóközzel.</value>
+        </data>
+        <data name="NameEndsWithWhitespaceMessage" xml:space="preserve">
+          <value>Content név nem végződhet szóközre.</value>
+        </data>
+        <data name="PathFirstCharMessage" xml:space="preserve">
+          <value>A pathnak '/'-el kell kezdődnie.</value>
+        </data>
+        <data name="PathEndsWithDotMessage" xml:space="preserve">
+          <value>A path nem végződhet '.'-ra.</value>
+        </data>
+
+        <!-- Permission editor -->
+        <data name="PermissionLocalGroup" xml:space="preserve">
+          <value>helyi csoport</value>
+        </data>
+        <data name="EditPermissions" xml:space="preserve">
+          <value>Jogosultságok szerkesztése</value>
+        </data>
+        <data name="Permission_See">
+          <value>Láthatóság</value>
+        </data>
+        <data name="Permission_Open">
+          <value>Megnyitás</value>
+        </data>
+        <data name="Permission_OpenMinor">
+          <value>Tört verziók megnyitása</value>
+        </data>
+        <data name="Permission_Save">
+          <value>Mentés</value>
+        </data>
+        <data name="Permission_Publish">
+          <value>Publikálás</value>
+        </data>
+        <data name="Permission_ForceCheckin">
+          <value>Force check-in</value>
+        </data>
+        <data name="Permission_AddNew">
+          <value>Új tartalom felvétele</value>
+        </data>
+        <data name="Permission_Approve">
+          <value>Jóváhagyás</value>
+        </data>
+        <data name="Permission_Delete">
+          <value>Törlés</value>
+        </data>
+        <data name="Permission_RecallOldVersion">
+          <value>Korábbi verziók megtekintése</value>
+        </data>
+        <data name="Permission_DeleteOldVersion">
+          <value>Korábbi verziók törlése</value>
+        </data>
+        <data name="Permission_SeePermissions">
+          <value>Jogosultságok megtekintése</value>
+        </data>
+        <data name="Permission_SetPermissions">
+          <value>Jogosultságok módosítása</value>
+        </data>
+        <data name="Permission_RunApplication">
+          <value>Megjelenítő oldal futtatása</value>
+        </data>
+        <data name="Permission_ManageListsAndWorkspaces">
+          <value>Listák és munkaterületek kezelése</value>
+        </data>
+        <data name="Permission_Desc_See">
+          <value>View content in lists and search results</value>
+        </data>
+        <data name="Permission_Desc_Open">
+          <value>View content and its fields</value>
+        </data>
+        <data name="Permission_Desc_OpenMinor">
+          <value>Open minor versions, e.g. 2.3 Draft</value>
+        </data>
+        <data name="Permission_Desc_Save">
+          <value>Save documents, articles or other content</value>
+        </data>
+        <data name="Permission_Desc_Publish">
+          <value>Mark content as published</value>
+        </data>
+        <data name="Permission_Desc_ForceCheckin">
+          <value>Unlock content that were checked out by other users</value>
+        </data>
+        <data name="Permission_Desc_AddNew">
+          <value>Add new content</value>
+        </data>
+        <data name="Permission_Desc_Approve">
+          <value>Approve files or any other content</value>
+        </data>
+        <data name="Permission_Desc_Delete">
+          <value>Delete content</value>
+        </data>
+        <data name="Permission_Desc_RecallOldVersion">
+          <value>View and open previous versions of content</value>
+        </data>
+        <data name="Permission_Desc_DeleteOldVersion">
+          <value>Delete old content versions</value>
+        </data>
+        <data name="Permission_Desc_SeePermissions">
+          <value>View the permission settings of a content</value>
+        </data>
+        <data name="Permission_Desc_SetPermissions">
+          <value>Modify the permission settings of a content</value>
+        </data>
+        <data name="Permission_Desc_RunApplication">
+          <value>Visualize content using an application</value>
+        </data>
+        <data name="Permission_Desc_ManageListsAndWorkspaces">
+          <value>Add, modify or delete lists or workspaces</value>
+        </data>
+        <data name="PermEditor_HasOwnPermission">
+            <value>{0} egyedi beállításokkal rendelkezik.</value>
+        </data>
+        <data name="PermEditor_InheritPermissionBegin">
+            <value>{0} örökli a jogait a következő ősétől: </value>
+        </data>
+        <data name="PermEditor_InheritPermissionEnd">
+            <value></value>
+        </data>
+        <data name="PermEditor_HasExtended">
+            <value>A tartalom egyedi beállításokkal rendelkezik.</value>
+        </data>
+        <data name="PermEditor_EditMembers">
+            <value>Csoport szerkesztése</value>
+        </data>
+        <data name="PermEditor_AddNewEntry">
+          <value>Új jogosultság</value>
+        </data>
+        <data name="PermEditor_BreakInheritance">
+          <value>Öröklés megtörése</value>
+        </data>
+        <data name="PermEditor_RemoveBreak">
+          <value>Öröklés visszaállítása</value>
+        </data>
+        <data name="PermEditor_Type">
+          <value>Típus</value>
+        </data>
+        <data name="PermEditor_SearchName">
+          <value>Keresés a névben</value>
+        </data>
+        <data name="PermEditor_ChooseEntry">
+          <value>Válasszon egy felhasználót vagy csoportot</value>
+        </data>
+        <data name="PermEditor_BtnSearch">
+          <value>Keresés</value>
+        </data>
+        <data name="PermEditor_BtnAdd">
+          <value>Hozzáadás</value>
+        </data>
+        <data name="PermEditor_BtnCancel">
+          <value>Mégsem</value>
+        </data>
+        <data name="PermEditor_BtnSave">
+          <value>Mentés</value>
+        </data>
+        <data name="PermEditor_PermSettings">
+          <value>Jogosultságok</value>
+        </data>
+        <data name="PermEditor_Permission">
+          <value>Jogosultság</value>
+        </data>
+        <data name="PermEditor_Allow">
+          <value>Engedélyez</value>
+        </data>
+        <data name="PermEditor_InheritsFrom">
+          <value>Öröklés forrása</value>
+        </data>
+        <data name="PermEditor_Deny">
+          <value>Tilt</value>
+        </data>
+        <data name="PermEditor_Effective">
+          <value>Valódi jogosultság</value>
+        </data>
+        <data name="PermEditor_ToggleAll">
+          <value>Összes kapcsoló</value>
+        </data>
+
+        <data name="ContentList_ManageViewsTitle">
+          <value>Lista megjelenítők: {0}</value>
+        </data>
+        <data name="ContentList_ManageViewsDefaultLabel">
+          <value>Alapértelmezett megjelenítő</value>
+        </data>
+        <data name="ContentList_ManageViewsNoDefault">
+          <value>Nincs alapértelmezett megjelenítő</value>
+        </data>
+        <data name="ContentList_ManageViewsGlobal">
+          <value>Ez egy globális megjelenítő</value>
+        </data>
+      </Language>
+    </Languages>
+  </ResourceClass>
+  <ResourceClass name="FieldControlErrors">
+    <Languages>
+      <Language cultureName="en">
+        <data name="Password_PasswordsDoNotMatch">
+          <value>Passwords do not match.</value>
+        </data>
+        <data name="QueryFilter_InvalidQuery">
+          <value>Query is invalid</value>
+        </data>
+      </Language>
+      <Language cultureName="hu">
+        <data name="QueryFilter_InvalidQuery">
+          <value>Hibás query</value>
+        </data>
+      </Language>
+    </Languages>
+  </ResourceClass>
+  <ResourceClass name="FieldValidation">
+    <Languages>
+      <!--
+      ValidationError_{ContentTypeName}_{FieldName}_{FieldTypeName}_{ErrorKeyword}
+      ValidationError_{ContentTypeName}_{FieldTypeName}_{ErrorKeyword}
+      ValidationError_{FieldName}_{FieldTypeName}_{ErrorKeyword}
+      ValidationError_{FieldTypeName}_{ErrorKeyword}
+      ValidationError_{ErrorKeyword}
+      -->
+      <Language cultureName="en">
+        <!-- General -->
+        <data name="ValidationError_Compulsory">
+          <value>Compulsory</value>
+        </data>
+        <!-- ShortText -->
+        <data name="ValidationError_ShortText_Compulsory">
+          <value>Compulsory</value>
+        </data>
+        <data name="ValidationError_ShortText_MaxLength">
+          <value>Maximum length: {MaxLength}</value>
+        </data>
+        <data name="ValidationError_ShortText_MinLength">
+          <value>Minimum length: {MinLength}</value>
+        </data>
+        <data name="ValidationError_ShortText_Regex">
+          <value>Format is not valid.</value>
+        </data>
+        <!-- Reference -->
+        <data name="ValidationError_Reference_Compulsory">
+          <value>Compulsory</value>
+        </data>
+        <data name="ValidationError_Reference_AllowMultiple">
+          <value>Multiple reference is not enabled.</value>
+        </data>
+        <data name="ValidationError_Reference_AllowedTypes">
+          <value>Type of one or more selected items is not allowed: {NotAllowedType} ({Path}). Allowed types: {AllowedTypes}</value>
+        </data>
+        <data name="ValidationError_Reference_SelectionRoot">
+          <value>Following path is not allowed in this context: {SelectionRoot}</value>
+        </data>
+        <data name="ValidationError_Reference_Query">
+          <value>This reference cannot point to {Path}</value>
+        </data>
+        <data name="ValidationError_Reference_ReferenceValue">
+          <value>Referenced object must be null or a Node or a NodeList&lt;T&gt; where T is Node or inherited from Node</value>
+        </data>
+        <!-- Password -->
+        <data name="ValidationError_Password_Compulsory">
+          <value>Compulsory</value>
+        </data>
+        <data name="ValidationError_Password_OriginalPasswordIsInvalid">
+          <value>Invalid password.</value>
+        </data>
+        <data name="ValidationError_Password_PasswordCannotBeNull">
+          <value>Passwords cannot be empty.</value>
+        </data>
+        <!-- Integer and Number -->
+        <data name="ValidationError_MinValue">
+          <value>Must be greater than or equal to {MinValue}</value>
+        </data>
+        <data name="ValidationError_MaxValue">
+          <value>Must be less than or equal to {MaxValue}</value>
+        </data>
+        <!-- Choice -->
+        <data name="ValidationError_Choice_Compulsory">
+          <value>Compulsory</value>
+        </data>
+        <data name="ValidationError_AllowMultiple">
+          <value>Only one value is allowed.</value>
+        </data>
+        <data name="ValidationError_AllowExtraValue">
+          <value>Value is not found in the possible values.</value>
+        </data>
+      </Language>
+      <Language cultureName="hu">
+        <!-- General -->
+        <data name="ValidationError_Compulsory">
+          <value>Kötelező mező!</value>
+        </data>
+        <!-- ShortText -->
+        <data name="ValidationError_ShortText_Compulsory">
+          <value>Kötelező mező!</value>
+        </data>
+        <data name="ValidationError_ShortText_MaxLength">
+          <value>Maximális hossz: {MaxLength}</value>
+        </data>
+        <data name="ValidationError_ShortText_MinLength">
+          <value>Minimális hossz: {MinLength}</value>
+        </data>
+        <data name="ValidationError_ShortText_Regex">
+          <value>A megadott érték nem megfelelő formátumú.</value>
+        </data>
+        <!-- Reference -->
+        <data name="ValidationError_Reference_Compulsory">
+          <value>Kötelező mező!</value>
+        </data>
+        <data name="ValidationError_Reference_AllowMultiple">
+          <value>A többszörös referenciák nem engedélyezettek.</value>
+        </data>
+        <data name="ValidationError_Reference_AllowedTypes">
+          <value>Egy vagy több kiválasztott elem típusa nem megfelelő: {NotAllowedType} ({Path}). Engedélyezett típusok: {AllowedTypes}</value>
+        </data>
+        <data name="ValidationError_Reference_SelectionRoot">
+          <value>A következő elérési út ebben az esetben nem engedélyezett: {SelectionRoot}</value>
+        </data>
+        <data name="ValidationError_Reference_Query">
+          <value>A referencia nem mutathat erre az elemre: {Path}</value>
+        </data>
+        <data name="ValidationError_Reference_ReferenceValue">
+          <value>A hivatkozott objektumnak null-nak, Node típusúnak vagy NodeList&lt;T&gt; típusúnak kell lennie, ahol T Node típusú vagy abból származik.</value>
+        </data>
+        <!-- Password -->
+        <data name="ValidationError_Password_Compulsory">
+          <value>Kötelező mező!</value>
+        </data>
+        <data name="ValidationError_Password_OriginalPasswordIsInvalid">
+          <value>Érvénytelen jelszó.</value>
+        </data>
+        <data name="ValidationError_Password_PasswordCannotBeNull">
+          <value>Jelszó nem lehet üres.</value>
+        </data>
+        <!-- Integer and Number -->
+        <data name="ValidationError_MinValue">
+          <value>Legalább {MinValue} kell, hogy legyen az érték</value>
+        </data>
+        <data name="ValidationError_MaxValue">
+          <value>Legfeljebb {MaxValue} lehet az érték</value>
+        </data>
+        <!-- Choice -->
+        <data name="ValidationError_Choice_Compulsory">
+          <value>Kötelező mező!</value>
+        </data>
+        <data name="ValidationError_AllowMultiple">
+          <value>Csak egy értéket lehet megadni.</value>
+        </data>
+        <data name="ValidationError_AllowExtraValue">
+          <value>A megadott érték nem megengedett.</value>
+        </data>
+      </Language>
+    </Languages>
+  </ResourceClass>
+  <ResourceClass name="PortletFramework">
+    <Languages>
+      <Language cultureName="en">
+        <data name="RenderCategoryTitle" xml:space="preserve">
+          <value>Render</value>
+        </data>
+        <data name="CacheCategoryTitle" xml:space="preserve">
+          <value>Cache</value>
+        </data>
+        <data name="OtherCategoryTitle" xml:space="preserve">
+          <value>Misc</value>
+        </data>
+        <data name="SkinPrefixDisplayName" xml:space="preserve">
+          <value>Skin prefix</value>
+        </data>
+        <data name="SkinPrefixDescription" xml:space="preserve">
+          <value>Skin prefix</value>
+        </data>
+        <data name="RenderModeDisplayName" xml:space="preserve">
+          <value>RenderMode</value>
+        </data>
+        <data name="RenderModeDescription" xml:space="preserve">
+          <value>RenderMode of the portlet</value>
+        </data>
+        <data name="RendererDisplayName" xml:space="preserve">
+          <value>Xslt renderer</value>
+        </data>
+        <data name="RendererDescription" xml:space="preserve">
+          <value>Repository path of the renderer</value>
+        </data>
+        <data name="DebugDisplayName" xml:space="preserve">
+          <value>Debug</value>
+        </data>
+        <data name="DebugDescription" xml:space="preserve">
+          <value>If set to true, the portlet will show debug message.</value>
+        </data>
+        <data name="CacheByParamsDisplayName" xml:space="preserve">
+          <value>Cache by params</value>
+        </data>
+        <data name="CacheByParamsDescription" xml:space="preserve">
+          <value>Cache by params</value>
+        </data>
+        <data name="SlidingExpirationMinutesDisplayName" xml:space="preserve">
+          <value>Sliding expiration (minutes)</value>
+        </data>
+        <data name="SlidingExpirationMinutesDescription" xml:space="preserve">
+          <value>If the portlet is not accessed for the given minutes it will be refreshed</value>
+        </data>
+        <data name="AbsoluteExpirationDisplayName" xml:space="preserve">
+          <value>Absolute expiration (seconds)</value>
+        </data>
+        <data name="AbsoluteExpirationDescription" xml:space="preserve">
+          <value>The portlet will be refreshed with the given time period (in seconds)</value>
+        </data>
+        <data name="CacheableDisplayName" xml:space="preserve">
+          <value>Portlet is cacheable</value>
+        </data>
+        <data name="CacheableDescription" xml:space="preserve">
+          <value>If set the output of the portlet will be cached</value>
+        </data>
+        <data name="EditorZoneInstructionText" xml:space="preserve">
+          <value>Modify the properties of the portlet, then click OK to apply your changes.</value>
+        </data>
+        <data name="EditorZoneHeaderText" xml:space="preserve">
+          <value>Edit {0} portlet properties</value>
+        </data>
+        <data name="Enum-CacheableFor-Everyone" xml:space="preserve">
+          <value>Everyone</value>
+        </data>
+        <data name="Enum-CacheableFor-VisitorsOnly" xml:space="preserve">
+          <value>Visitors only</value>
+        </data>
+      </Language>
+      <Language cultureName="hu">
+        <data name="RenderCategoryTitle" xml:space="preserve">
+          <value>Render</value>
+        </data>
+        <data name="CacheCategoryTitle" xml:space="preserve">
+          <value>Cache</value>
+        </data>
+        <data name="OtherCategoryTitle" xml:space="preserve">
+          <value>Egyéb</value>
+        </data>
+        <data name="SkinPrefixDisplayName" xml:space="preserve">
+          <value>Skin prefix</value>
+        </data>
+        <data name="SkinPrefixDescription" xml:space="preserve">
+          <value>Skin prefix</value>
+        </data>
+        <data name="RenderModeDisplayName" xml:space="preserve">
+          <value>Render mód</value>
+        </data>
+        <data name="RenderModeDescription" xml:space="preserve">
+          <value>Portlet render módja</value>
+        </data>
+        <data name="RendererDisplayName" xml:space="preserve">
+          <value>Xslt renderer</value>
+        </data>
+        <data name="RendererDescription" xml:space="preserve">
+          <value>Renderer helye a Repository-ban</value>
+        </data>
+        <data name="DebugDisplayName" xml:space="preserve">
+          <value>Debug</value>
+        </data>
+        <data name="DebugDescription" xml:space="preserve">
+          <value>Ha be van kapcsolva, a debug üzenetek megjelennek.</value>
+        </data>
+        <data name="CacheByParamsDisplayName" xml:space="preserve">
+          <value>Cache by params</value>
+        </data>
+        <data name="CacheByParamsDescription" xml:space="preserve">
+          <value>Cache by params</value>
+        </data>
+        <data name="SlidingExpirationMinutesDisplayName" xml:space="preserve">
+          <value>Sliding expiration (minutes)</value>
+        </data>
+        <data name="SlidingExpirationMinutesDescription" xml:space="preserve">
+          <value>If the portlet is not accessed for the given minutes it will be refreshed</value>
+        </data>
+        <data name="AbsoluteExpirationDisplayName" xml:space="preserve">
+          <value>Absolute expiration (seconds)</value>
+        </data>
+        <data name="AbsoluteExpirationDescription" xml:space="preserve">
+          <value>The portlet will be refreshed with the given time period (in seconds)</value>
+        </data>
+        <data name="CacheableDisplayName" xml:space="preserve">
+          <value>Portlet is cacheable</value>
+        </data>
+        <data name="CacheableDescription" xml:space="preserve">
+          <value>If set the output of the portlet will be cached</value>
+        </data>
+        <data name="EditorZoneInstructionText" xml:space="preserve">
+          <value>Modify the properties of the portlet, then click OK to apply your changes.</value>
+        </data>
+        <data name="EditorZoneHeaderText" xml:space="preserve">
+          <value>Edit {0} portlet properties</value>
+        </data>
+        <data name="Enum-CacheableFor-Everyone" xml:space="preserve">
+          <value>Minden felhasználónak</value>
+        </data>
+        <data name="Enum-CacheableFor-VisitorsOnly" xml:space="preserve">
+          <value>Csak Visitornak</value>
+        </data>
+      </Language>
+    </Languages>
+  </ResourceClass>
+</Resources>

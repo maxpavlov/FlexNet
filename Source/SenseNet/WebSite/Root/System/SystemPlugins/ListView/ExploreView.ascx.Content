@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>ListView</ContentType>
+  <ContentName>ExploreView.ascx</ContentName>
+  <Fields>
+    <DisplayName>ExploreView</DisplayName>
+    <Template>
+      <Path>/Root/System/SystemPlugins/ListView/Templates/ExploreListView.xslt</Path>
+    </Template>
+    <Columns>
+    <![CDATA[<Columns>
+      <Column title="Locked" fullName="GenericContent.Locked" bindingName="GenericContent_Locked" modifiers="lock" width="62" hAlign="Center" index="1" />
+      <Column title="Name" fullName="GenericContent.DisplayName" bindingName="GenericContent_DisplayName" modifiers="main" index="2" />
+      <Column title="Modified by" fullName="GenericContent.ModifiedBy" bindingName="GenericContent_ModifiedBy" index="3" />
+      <Column title="Last modified" fullName="GenericContent.ModificationDate" bindingName="GenericContent_ModificationDate" index="4" />
+    </Columns>]]>
+    </Columns>
+    <SortBy>DisplayName ASC</SortBy>
+    <Flat>false</Flat>
+    <EnableAutofilters>2</EnableAutofilters>
+    <EnableLifespanFilter>2</EnableLifespanFilter>
+  </Fields>
+</ContentMetaData>

@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Resources>
+  <ResourceClass name="Voting">
+    <Languages>
+      <Language cultureName="en">
+        <data name="PortletTitle" xml:space="preserve">
+          <value>Voting</value>
+        </data>
+        <data name="Description" xml:space="preserve">
+          <value>This portlet presents a voting</value>
+        </data>
+        <data name="ContextNodeError" xml:space="preserve">
+          <value>Error: ContextNode cannot be null!</value>
+        </data>
+        <data name="ContextNodePermissionError" xml:space="preserve">
+          <value>You need more permissions to see this.</value>
+        </data>
+        <data name="BindingError" xml:space="preserve">
+          <value>Error: Binding root cannot be null!</value>
+        </data>
+        <data name="VotingOnlyError" xml:space="preserve">
+          <value>In VotingOnly PortletMode the state ResultView is not supported!</value>
+        </data>
+        <data name="VoteAndGotoResultError" xml:space="preserve">
+          <value>An error occurred in VoteAndGotoResult portlet mode!</value>
+        </data>
+        <data name="ResultAndVotingError" xml:space="preserve">
+          <value>An error occurred in ResultAndVoting portlet mode!</value>
+        </data>
+        <data name="NoResult" xml:space="preserve">
+          <value>There is no result view for voting.</value>
+        </data>
+        <data name="OnlyOneVoteError" xml:space="preserve">
+          <value>You cannot vote more than once at this time.</value>
+        </data>
+        <data name="GoToResultLink" xml:space="preserve">
+          <value>Go to results</value>
+        </data>
+        <data name="GoToVotingLink" xml:space="preserve">
+          <value>Go to voting</value>
+        </data>
+        <data name="ContentViewCreateError" xml:space="preserve">
+          <value>Error: ContentView cannot be created!</value>
+        </data>
+        <data name="ContentCreateError" xml:space="preserve">
+          <value>Error: Content cannot be created!</value>
+        </data>
+        <data name="PlaceHolderError" xml:space="preserve">
+          <value>PlaceHolder cannot be found in the ContentView!</value>
+        </data>
+        <data name="NoQuestion" xml:space="preserve">
+          <value>There is no avalaible question in the Voting yet!</value>
+        </data>
+        <data name="CannotFindLink" xml:space="preserve">
+          <value>Error: VotingAndResult control cannot be found!</value>
+        </data>
+        <data name="ContextNodeError" xml:space="preserve">
+          <value>Error: ContextNode cannot be represented as Voting!</value>
+        </data>
+        <data name="LandingPageError" xml:space="preserve">
+          <value>Error: Landing Page cannot be null!</value>
+        </data>
+        <data name="InvalidSurveyPageError" xml:space="preserve">
+          <value>Error: Invalid Survey Page!</value>
+        </data>
+        <data name="Result" xml:space="preserve">
+          <value>Result</value>
+        </data>
+      </Language>
+    </Languages>
+  </ResourceClass>
+</Resources>

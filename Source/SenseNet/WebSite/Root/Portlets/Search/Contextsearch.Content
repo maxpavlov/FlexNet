@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Portlet</ContentType>
+  <ContentName>Contextsearch</ContentName>
+  <Fields>
+    <DisplayName>Context search</DisplayName>
+    <Description><![CDATA[Run free text searches and display search results in a pageable list (context bound)]]></Description>
+    <TypeName>SenseNet.Portal.Portlets.ContextSearch, SenseNet.CorePortlets</TypeName>
+    <ImageRef />
+    <ImageData attachment="Contextsearch.ImageData" />
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate></Rate>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

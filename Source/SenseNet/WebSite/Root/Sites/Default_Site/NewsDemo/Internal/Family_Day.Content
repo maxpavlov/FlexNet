@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Article</ContentType>
+  <ContentName>Family_Day</ContentName>
+  <Fields>
+    <DisplayName>Family Day</DisplayName>
+    <Subtitle></Subtitle>
+    <Lead><![CDATA[
+      <p>We started the year with a colourful Family Day with entertainment for children, paragliding for adults, and all sorts of fun
+      for everyone! 02.02.2010, California, Neverland Island, Amusement Park</p>
+    ]]></Lead>
+    <Body><![CDATA[
+      <p>With sunshine and altogether great weather, everything was perfect for a fun and relaxing Family Day. Families started arriving at Neverland Island
+      around 10am, with children immediately attacking the roller-coaster and the ferris wheel, stuffing their faces with cotton candy. Fifty entertainers helped
+      manage the kids and ensure safety.</p>
+      <p>The most adventurous adults applied for paragliding training straight away, while the more laid-back ones were hunting for snacks and free beer at the bar.
+      The luckiest hunters could also add some autographs from their favorite football starts to their collection of trophies. Meanwhile, a wellness tent with organic
+      cocktails served by handsome mixers was tending to the relaxation and entertainment of the ladies.</p>
+      <p>At lunchtime, ten countries’ cuisine was served on unending rows of white tables. The most popular dishes were Italian pasta, Japanese sushi and Hungarian
+      gulyás. After lunch, we had the pleasure of watching the first paragliding show of the year.</p>
+      <p>I don't know about you, but I personally had the time of my life. See you all next year!</p>
+    ]]></Body>
+    <Pinned>false</Pinned>
+    <Keywords><![CDATA[]]></Keywords>
+    <Author></Author>
+    <ImageRef />
+    <ImageData attachment="Family_Day.ImageData.jpg" />
+    <ReviewDate>0001-01-01T00:00:00</ReviewDate>
+    <ArchiveDate>0001-01-01T00:00:00</ArchiveDate>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <Description><![CDATA[]]></Description>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateStr>0|1|0|0|0|0|0</RateStr>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

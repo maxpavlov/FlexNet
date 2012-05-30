@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Page</ContentType>
+  <ContentName>Portlets</ContentName>
+  <Fields>
+    <Index>3000</Index>
+    <PageTemplateNode>
+      <Path>/Root/Global/pagetemplates/sn-layout-intra.html</Path>
+    </PageTemplateNode>
+    <Binary attachment="Portlets.aspx" />
+    <PersonalizationSettings attachment="Portlets.PersonalizationSettings" />
+    <DisplayName>Portlets</DisplayName>
+    <Icon>portlets</Icon>
+  </Fields>
+</ContentMetaData>

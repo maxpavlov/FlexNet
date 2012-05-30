@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="ConfirmationItem" parentType="ListItem" handler="SenseNet.ContentRepository.GenericContent" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Confirmation item</DisplayName>
+  <Description>A content placeholder for delayed confirmation of a workflow operation</Description>
+  <Icon>FormItem</Icon>
+  <Fields>
+    <Field name="Name" type="ShortText">
+      <Configuration>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Confirmed" type="Boolean">
+      <DisplayName>Confirmed</DisplayName>
+      <Description>Set to true to confirm the operation</Description>
+      <Configuration>
+        <Default>false</Default>
+      </Configuration>
+    </Field>
+  </Fields>
+</ContentType>

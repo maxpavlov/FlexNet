@@ -1,0 +1,2 @@
+﻿<%--<sn:ActionList runat='server' ActionName='Browse' ContentPathList='<%# ListHelper.GetPathList(Container.DataItem as SNCR.Content, "@@fieldName@@") %>' UseContentIcon="True" />    --%>
+<%# Eval("@@bindingName@@") %>

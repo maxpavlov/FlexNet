@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>WebContentDemo</ContentType>
+  <ContentName>newsdemoinfo</ContentName>
+  <Fields>
+    <DisplayName></DisplayName>
+    <Subtitle></Subtitle>
+    <RelatedImage />
+    <Header><![CDATA[]]></Header>
+    <Body>
+      <![CDATA[<div class="sn-infobox"><h1 class="sn-content-title sn-article-title"><img src="/Root/Global/images/icons/32/info.png" class="sn-icon sn-icon_32" alt="" />News demo</h1>
+      <p>This demo introduces the CMS capabilities of Sense/Net 6.0. The current page is the start page for a demo news portal.
+      Visitors may browse news items organized under news sections:</p>
+      <ul>
+      <li>Click on a news section (eg. <strong>External news</strong>) in the menu to browse news articles under a specific section.</li>
+      <li>Click on <strong>Contact us</strong> to see a custom portlet page displaying a simple message.</li>
+      </ul>
+      <p>Administrators may edit, delete, and add new news articles and customize main page elements:</p>
+      <ul>
+      <li>Click on a news section (eg. <strong>External news</strong>) to manage news articles under a specific section (see detailed information on section pages).</li>
+      <li>Click on <strong>Add new menu item</strong> to add a new article, news section or custom portlet page and show it in the site menu.</li>
+      <li>Click on <strong>Manage content</strong> to browse, edit or delete a specific article.</li>
+      </ul>
+      <ul>
+      <li><strong>You need to be logged in as Administrator to modify content.</strong></li>
+      <li>This is a custom portlet page located at <em><a href="/Explore.html#/Root/Sites/Default_Site/NewsDemo/(apps)/This/Browse">/Root/Sites/Default_Site/NewsDemo/(apps)/This/Browse</a></em></li>
+      </ul>
+      </div>]]></Body>
+    <Details><a href="" target="" title=""></a></Details>
+    <Language>English</Language>
+    <Keywords><![CDATA[]]></Keywords>
+    <Author></Author>
+    <ReviewDate>0001-01-01T00:00:00</ReviewDate>
+    <ArchiveDate>0001-01-01T00:00:00</ArchiveDate>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <Description><![CDATA[]]></Description>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+        <VersioningMode>1</VersioningMode>
+    <InheritableVersioningMode>1</InheritableVersioningMode>
+    <ApprovingMode>1</ApprovingMode>
+    <InheritableApprovingMode>1</InheritableApprovingMode>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate>0.00|0|0|0|0|0</Rate>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

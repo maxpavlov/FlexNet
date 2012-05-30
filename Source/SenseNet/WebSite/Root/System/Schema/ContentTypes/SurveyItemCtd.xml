@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="SurveyItem" parentType="ListItem" handler="SenseNet.ContentRepository.SurveyItem" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+	<DisplayName>Survey Item</DisplayName>
+	<Description>Base content type for survey items</Description>
+	<Icon>FormItem</Icon>
+  <Fields>
+    <Field name="EvaluatedBy" type="Reference">
+      <DisplayName>Evaluated by</DisplayName>
+      <Description>The user who has evaluated the survey.</Description>
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="EvaluatedAt" type="DateTime">
+      <DisplayName>Evaluated at</DisplayName>
+      <Description>The date and time of the evaluation.</Description>
+      <Configuration>
+        <DateTimeMode>DateAndTime</DateTimeMode>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Evaluation" type="LongText">
+      <DisplayName>Evaluation</DisplayName>
+      <Description>The evaluation text of the survey.</Description>
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+	</Fields>
+</ContentType>

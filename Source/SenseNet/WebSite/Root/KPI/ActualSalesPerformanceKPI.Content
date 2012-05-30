@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>KPIDatasource</ContentType>
+  <ContentName>ActualSalesPerformanceKPI</ContentName>
+  <Fields>
+    <DisplayName>Actual Sales Peformance</DisplayName>
+    <KPIData>
+  <![CDATA[<KPI Name="Sales 2008">
+<data Label="Sales">
+	<goal>24000</goal>
+	<actual>12456</actual>
+</data>
+<data Label="Opportunities">
+	<goal>40000</goal>
+	<actual>32978</actual>
+</data>
+<data Label="Leads">
+	<goal>40000</goal>
+	<actual>22100</actual>
+</data>
+<data Label="Revenues">
+	<goal>2400000</goal>
+	<actual>1234566</actual>
+</data>
+<data Label="Margin #1">
+	<goal>50000</goal>
+	<actual>12456</actual>
+</data>
+</KPI>]]></KPIData>
+  </Fields>
+</ContentMetaData>

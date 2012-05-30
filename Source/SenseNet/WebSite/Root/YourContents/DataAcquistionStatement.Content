@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>WebContentDemo</ContentType>
+  <ContentName>DataAcquistionStatement</ContentName>
+  <Fields>
+    <DisplayName>Data Acquistion Statement</DisplayName>
+    <Subtitle></Subtitle>
+    <Header></Header>
+    <Body>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacinia eros eget enim. Cras sollicitudin. Praesent in risus. Sed cursus. Aliquam adipiscing. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sit amet libero. Fusce velit mi, tincidunt et, dictum non, consectetur non, dolor. Integer volutpat, tortor in convallis ornare, nisi enim pellentesque lacus, in pulvinar arcu lacus blandit nisi. Suspendisse ut eros. Nullam at risus.&lt;/p&gt;
+&lt;p&gt;Etiam facilisis eros eget augue. Aenean pulvinar diam ac leo. Vestibulum pellentesque mauris vel elit dapibus elementum. Quisque suscipit dignissim turpis. Nullam vel elit egestas nisl molestie consectetur. Ut nulla. Donec pretium volutpat risus. Phasellus nec arcu. Pellentesque nec purus fermentum justo mollis posuere. Aliquam viverra auctor nunc. Mauris venenatis sodales diam. Integer pretium fringilla eros. Nulla sollicitudin suscipit odio. Aliquam ornare dignissim tellus. Nullam condimentum scelerisque magna. Etiam metus libero, condimentum molestie, vulputate auctor, pellentesque vel, felis. Pellentesque interdum nisl ac odio mollis mollis. Nam dictum. Nulla facilisi. Maecenas lorem.&lt;/p&gt;
+&lt;p&gt;Integer ut velit eu est lacinia suscipit. Etiam hendrerit sagittis est. Pellentesque blandit, massa sit amet lacinia molestie, purus erat sodales dui, vitae semper metus leo in nunc. Sed risus purus, pellentesque eget, consectetur vitae, consectetur ut, turpis. Nulla sollicitudin magna sed enim. Aliquam nulla. Sed lectus. Duis dui velit, rhoncus eget, lacinia et, eleifend sagittis, velit. Proin vitae ipsum rutrum dolor tincidunt sollicitudin. Ut enim nisi, varius quis, placerat ut, molestie et, tellus. Phasellus rutrum dapibus augue. Phasellus placerat nisi vel lectus. Morbi vitae nibh. Nullam id nibh nec nisl varius pellentesque. Proin pharetra. Sed odio leo, mollis et, fringilla sed, vulputate vel, lectus.&lt;/p&gt;
+&lt;p&gt;Donec ullamcorper sem eu massa. Morbi eros arcu, mollis ac, aliquet vulputate, scelerisque imperdiet, velit. Vivamus ut quam. Nulla ut sapien eu dui egestas eleifend. Ut at leo. Vivamus nulla velit, imperdiet sed, tincidunt eu, mollis vel, ligula. Maecenas rhoncus porttitor velit. Maecenas semper magna nec ipsum. Curabitur dolor. Donec lacinia, dolor ac posuere tempor, justo arcu mattis enim, quis porttitor diam neque vel magna. Quisque vitae enim eu risus pulvinar vulputate. Sed a diam. Donec pharetra nisi in velit. Phasellus ligula lorem, pretium at, elementum et, gravida tempus, dui. Mauris sit amet dui. Aenean egestas. Praesent mattis purus ut est.&lt;/p&gt;</Body>
+    <Details><a href="" target="" title=""></a></Details>
+    <Language>English</Language>
+    <Keywords></Keywords>
+    <Author></Author>
+    <ValidFrom>0001-01-01T00:00:00.0000000+01:00</ValidFrom>
+    <ReviewDate>0001-01-01T00:00:00.0000000+01:00</ReviewDate>
+    <ArchiveDate>0001-01-01T00:00:00.0000000+01:00</ArchiveDate>
+    <ValidTill>0001-01-01T00:00:00.0000000+01:00</ValidTill>
+    <Index>0</Index>
+  </Fields>
+</ContentMetaData>

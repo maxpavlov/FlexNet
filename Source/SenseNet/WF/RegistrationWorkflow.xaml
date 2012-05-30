@@ -1,0 +1,216 @@
+﻿<Activity mc:Ignorable="sap" x:Class="SenseNet.Workflow.Definitions.RegistrationWorkflow" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mv="clr-namespace:Microsoft.VisualBasic;assembly=System" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:s1="clr-namespace:System;assembly=System" xmlns:s2="clr-namespace:System;assembly=System.Xml" xmlns:s3="clr-namespace:System;assembly=System.Core" xmlns:s4="clr-namespace:System;assembly=System.ServiceModel" xmlns:sa="clr-namespace:System.Activities;assembly=System.Activities" xmlns:sad="clr-namespace:System.Activities.Debugger;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sc="clr-namespace:SenseNet.ContentRepository;assembly=SenseNet.ContentRepository" xmlns:sc1="clr-namespace:SenseNet.ContentRepository;assembly=SenseNet.Storage" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System" xmlns:scg1="clr-namespace:System.Collections.Generic;assembly=System.ServiceModel" xmlns:scg2="clr-namespace:System.Collections.Generic;assembly=System.Core" xmlns:scg3="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:scs="clr-namespace:SenseNet.ContentRepository.Storage;assembly=SenseNet.Storage" xmlns:scsa="clr-namespace:SenseNet.ContentRepository.Security.ADSync;assembly=SenseNet.ContentRepository" xmlns:scss="clr-namespace:SenseNet.ContentRepository.Storage.Security;assembly=SenseNet.Storage" xmlns:scss1="clr-namespace:SenseNet.ContentRepository.Storage.Schema;assembly=SenseNet.Storage" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:sl="clr-namespace:System.Linq;assembly=System.Core" xmlns:ssi="clr-namespace:SenseNet.Search.Indexing;assembly=SenseNet.ContentRepository" xmlns:st="clr-namespace:System.Text;assembly=mscorlib" xmlns:sw="clr-namespace:SenseNet.Workflow;assembly=SenseNet.Workflow" xmlns:swa="clr-namespace:SenseNet.Workflow.Activities;assembly=SenseNet.Workflow" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="StateContent" Type="InArgument(sw:WfContent)" />
+  </x:Members>
+  <sap:VirtualizedContainerService.HintSize>538,2703</sap:VirtualizedContainerService.HintSize>
+  <mva:VisualBasic.Settings>Assembly references and imported namespaces for internal implementation</mva:VisualBasic.Settings>
+  <Sequence DisplayName="Main" sad:XamlDebuggerXmlReader.FileName="C:\Development_Atis_NET4\SenseNet\Development\Budapest\Source\SenseNet\WF\RegistrationWorkflow.xaml" sap:VirtualizedContainerService.HintSize="498,2663">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="sw:WfContent" Name="ConfirmationItem" />
+      <Variable x:TypeArguments="sw:WfContent" Name="ApprovalTask" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg3:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <swa:CreateContent ContentTypeName="[&quot;ConfirmationItem&quot;]" DisplayName="CreateContent" sap:VirtualizedContainerService.HintSize="476,177" Name="[Guid.NewGuid().ToString()]" ParentPath="[&quot;/Root/Sites/Default_Site/Publicregistration/Registrations&quot;]" Result="[ConfirmationItem]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg3:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </swa:CreateContent>
+    <InvokeMethod sap:VirtualizedContainerService.HintSize="476,130" MethodName="SetPermission">
+      <InvokeMethod.TargetObject>
+        <InArgument x:TypeArguments="sw:WfContent">[ConfirmationItem]</InArgument>
+      </InvokeMethod.TargetObject>
+      <InArgument x:TypeArguments="scss:IUser">[User.Visitor]</InArgument>
+      <InArgument x:TypeArguments="scss1:PermissionType">[PermissionType.Open]</InArgument>
+      <InArgument x:TypeArguments="scss:PermissionValue">[PermissionValue.Allow]</InArgument>
+    </InvokeMethod>
+    <InvokeMethod sap:VirtualizedContainerService.HintSize="476,130" MethodName="SetPermission">
+      <InvokeMethod.TargetObject>
+        <InArgument x:TypeArguments="sw:WfContent">[ConfirmationItem]</InArgument>
+      </InvokeMethod.TargetObject>
+      <InArgument x:TypeArguments="scss:IUser">[User.Visitor]</InArgument>
+      <InArgument x:TypeArguments="scss1:PermissionType">[PermissionType.RunApplication]</InArgument>
+      <InArgument x:TypeArguments="scss:PermissionValue">[PermissionValue.Allow]</InArgument>
+    </InvokeMethod>
+    <Assign DisplayName="Assign: Description" sap:VirtualizedContainerService.HintSize="476,58">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Object">[ConfirmationItem("Description")]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Object">["You have confirmed your account. Please wait for your registration to be approved, we will contact you shortly."]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <swa:SendMail Address="[CStr(StateContent(&quot;Email&quot;))]" Body="[&quot;Please confirm your registration by visiting this url: &quot; + StateContent.GetField(&quot;OwnerSiteUrl&quot;).ToString() + ConfirmationItem.ActionUrl(&quot;Browse&quot;)]" DisplayName="Send notification mail" sap:VirtualizedContainerService.HintSize="476,22" Subject="Please confirm your registration" />
+    <Pick DisplayName="Wait for confirmation" sap:VirtualizedContainerService.HintSize="476,51">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg3:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <PickBranch DisplayName="Confirmed" sap:VirtualizedContainerService.HintSize="200,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg3:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <PickBranch.Trigger>
+          <swa:WaitForContentChanged ContentPath="[ConfirmationItem.Path]" sap:VirtualizedContainerService.HintSize="200,100" />
+        </PickBranch.Trigger>
+      </PickBranch>
+      <PickBranch DisplayName="Timed out" sap:VirtualizedContainerService.HintSize="200,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg3:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <PickBranch.Trigger>
+          <Delay Duration="[TimeSpan.FromDays(2)]" sap:VirtualizedContainerService.HintSize="240,100" />
+        </PickBranch.Trigger>
+        <Sequence sap:VirtualizedContainerService.HintSize="240,316">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg3:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <InvokeMethod sap:VirtualizedContainerService.HintSize="218,130" MethodName="Delete">
+            <InvokeMethod.TargetObject>
+              <InArgument x:TypeArguments="sw:WfContent">[ConfirmationItem]</InArgument>
+            </InvokeMethod.TargetObject>
+          </InvokeMethod>
+          <TerminateWorkflow Exception="[New ApplicationException(&quot;Timeout&quot;)]" sap:VirtualizedContainerService.HintSize="218,22" Reason="Timeout" />
+        </Sequence>
+      </PickBranch>
+    </Pick>
+    <InvokeMethod sap:VirtualizedContainerService.HintSize="476,130" MethodName="Delete">
+      <InvokeMethod.TargetObject>
+        <InArgument x:TypeArguments="sw:WfContent">[ConfirmationItem]</InArgument>
+      </InvokeMethod.TargetObject>
+    </InvokeMethod>
+    <swa:CreateContent Name="{x:Null}" ContentTypeName="[&quot;ApprovalWorkflowTask&quot;]" sap:VirtualizedContainerService.HintSize="476,177" ParentPath="[&quot;/Root/Sites/Default_Site/Publicregistration/Tasks&quot;]" Result="[ApprovalTask]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg3:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </swa:CreateContent>
+    <Assign sap:VirtualizedContainerService.HintSize="476,62">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Object">[ApprovalTask("Description")]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String" xml:space="preserve">[String.Format("Please approve this public registration:&lt;br/&gt;{0}" &amp;
+              "Full name: {1}&lt;br/&gt;{0}" &amp;
+              "User name: {2}&lt;br/&gt;{0}" &amp;
+              "Email: {3}",
+              vbNewLine,
+              CStr(StateContent("FullName")),
+              StateContent("UserName"),
+              StateContent("Email"))]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Switch x:TypeArguments="x:String" Expression="[CStr(StateContent(&quot;RegistrationType&quot;))]" sap:VirtualizedContainerService.HintSize="476,51">
+      <Switch.Default>
+        <Assign sap:VirtualizedContainerService.HintSize="458,100">
+          <Assign.To>
+            <OutArgument x:TypeArguments="sw:WfContent">[ApprovalTask.Reference("AssignedTo")]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="sw:WfContent">[New WfContent("/Root/IMS/Demo/Marketing/juanitavargas")]</InArgument>
+          </Assign.Value>
+        </Assign>
+      </Switch.Default>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg3:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Assign x:Key="client" sap:VirtualizedContainerService.HintSize="456,100">
+        <Assign.To>
+          <OutArgument x:TypeArguments="sw:WfContent">[ApprovalTask.Reference("AssignedTo")]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="sw:WfContent">[New WfContent("/Root/IMS/Demo/Marketing/hxn")]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign x:Key="media" sap:VirtualizedContainerService.HintSize="456,100">
+        <Assign.To>
+          <OutArgument x:TypeArguments="sw:WfContent">[ApprovalTask.Reference("AssignedTo")]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="sw:WfContent">[New WfContent("/Root/IMS/Demo/Managers/alexschmidt")]</InArgument>
+        </Assign.Value>
+      </Assign>
+    </Switch>
+    <swa:WaitForContentChanged ContentPath="[ApprovalTask.Path]" sap:VirtualizedContainerService.HintSize="476,22" />
+    <Switch x:TypeArguments="x:String" Expression="[CStr(ApprovalTask(&quot;Result&quot;))]" sap:VirtualizedContainerService.HintSize="476,1089">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg3:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Sequence x:Key="yes" DisplayName="CreateUser" sap:VirtualizedContainerService.HintSize="456,925">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="sw:WfContent" Name="UserContent" />
+        </Sequence.Variables>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg3:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <swa:CreateContent ContentTypeName="[&quot;User&quot;]" sap:VirtualizedContainerService.HintSize="242,177" Name="[CStr(StateContent(&quot;UserName&quot;))]" ParentPath="[&quot;/Root/IMS/BuiltIn/Portal&quot;]" Result="[UserContent]" />
+        <Assign sap:VirtualizedContainerService.HintSize="242,58">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:Object">[UserContent("FullName")]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:Object">[StateContent("FullName")]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign sap:VirtualizedContainerService.HintSize="242,58">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:Object">[UserContent("Email")]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:Object">[StateContent("Email")]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign sap:VirtualizedContainerService.HintSize="242,58">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:Object">[UserContent("Password")]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[CStr(StateContent("InitialPassword"))]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign sap:VirtualizedContainerService.HintSize="242,58">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:Object">[UserContent("Enabled")]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:Object">[True]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <InvokeMethod sap:VirtualizedContainerService.HintSize="242,130" MethodName="AddMember">
+          <InvokeMethod.TargetObject>
+            <InArgument x:TypeArguments="sc:Group">[Group.RegisteredUsers]</InArgument>
+          </InvokeMethod.TargetObject>
+          <InArgument x:TypeArguments="sc:User">[Node.Load(Of User)(CStr(UserContent("Path")))]</InArgument>
+        </InvokeMethod>
+        <swa:SendMail Address="[CStr(StateContent(&quot;Email&quot;))]" Body="Your registration has been approved." sap:VirtualizedContainerService.HintSize="242,22" Subject="Registration approved" />
+      </Sequence>
+      <TerminateWorkflow x:Key="no" Exception="[New ApplicationException(&quot;Request rejected&quot;)]" sap:VirtualizedContainerService.HintSize="456,100" Reason="Request rejected" />
+    </Switch>
+  </Sequence>
+</Activity>

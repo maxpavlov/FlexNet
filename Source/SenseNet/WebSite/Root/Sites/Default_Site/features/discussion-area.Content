@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>DiscussionForum</ContentType>
+  <ContentName>discussion-area</ContentName>
+  <Fields>
+    <DisplayName>Discussion area</DisplayName>
+    <Description><![CDATA[A forum area for discussion. Please select a topic or create new topic. You have to login in to be able to create new topic or add forum posts!]]></Description>
+    <Hidden>false</Hidden>
+    <Index>50</Index>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate></Rate>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

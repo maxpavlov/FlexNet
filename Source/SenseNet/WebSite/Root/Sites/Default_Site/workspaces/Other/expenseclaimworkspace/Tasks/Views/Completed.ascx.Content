@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>ListView</ContentType>
+  <ContentName>Completed.ascx</ContentName>
+  <Fields>
+    <Template>
+      <Path>/Root/System/SystemPlugins/ListView/Templates/ListView.xslt</Path>
+    </Template>
+    <Columns>
+    <![CDATA[<Columns><Column title="Display Name" fullName="GenericContent.DisplayName" bindingName="GenericContent_DisplayName" index="1" width="0" hAlign="" wrap="" modifiers="main" />
+  <Column title="Due date" fullName="Task.DueDate" bindingName="Task_DueDate" index="2" width="0" hAlign="" wrap="" modifiers="" />
+  <Column title="Result" fullName="ApprovalWorkflowTask.Result" bindingName="ApprovalWorkflowTask_Result" index="3" width="0" hAlign="" wrap="" modifiers="" />
+</Columns>]]></Columns>
+    <SortBy>DueDate ASC</SortBy>
+    <GroupBy></GroupBy>
+    <Flat>false</Flat>
+    <DisplayName>Completed</DisplayName>
+    <FilterXml><![CDATA[+Result:(yes no)]]></FilterXml>
+    <EnableAutofilters>0</EnableAutofilters>
+    <EnableLifespanFilter>0</EnableLifespanFilter>
+    <Hidden>false</Hidden>
+    <Description><![CDATA[]]></Description>
+    <Index>0</Index>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

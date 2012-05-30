@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Page</ContentType>
+  <ContentName>content</ContentName>
+  <Fields>
+    <DisplayName>Content</DisplayName>
+    <PageTemplateNode>
+      <Path>/Root/Global/pagetemplates/sn-layout-inter.html</Path>
+    </PageTemplateNode>
+    <Hidden>false</Hidden>
+    <Index>25</Index>
+    <SmartUrl></SmartUrl>
+    <IsExternal>false</IsExternal>
+    <OuterUrl></OuterUrl>
+    <MetaTitle></MetaTitle>
+    <Keywords><![CDATA[]]></Keywords>
+    <MetaDescription><![CDATA[]]></MetaDescription>
+    <MetaAuthors></MetaAuthors>
+    <CustomMeta><![CDATA[]]></CustomMeta>
+    <PageId></PageId>
+    <NodeName></NodeName>
+    <TemporaryPortletInfo><![CDATA[]]></TemporaryPortletInfo>
+    <Binary attachment="content.aspx" />
+    <PersonalizationSettings attachment="content.PersonalizationSettings" />
+    <IsModal>false</IsModal>
+    <Disabled>false</Disabled>
+    <Clear>false</Clear>
+    <RequiredPermissions></RequiredPermissions>
+    <DeepPermissionCheck>false</DeepPermissionCheck>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate></Rate>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

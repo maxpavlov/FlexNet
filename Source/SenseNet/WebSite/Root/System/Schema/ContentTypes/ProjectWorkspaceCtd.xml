@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="ProjectWorkspace" parentType="Workspace" 
+			 handler="SenseNet.ContentRepository.Workspaces.Workspace" 
+			 xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Project workspace</DisplayName>
+  <Description>A workspace for project-oriented cooperation</Description>
+  <Icon>workspace-project</Icon>
+  <AllowedChildTypes>
+    Page,Folder,Blog,DocumentLibrary,ImageLibrary,EventList,MemoList,LinkList,TaskList,Survey,Voting,DiscussionForum,Form,CustomList,Posts
+  </AllowedChildTypes>
+  <Fields>
+    <Field name="Completion" type="Integer">
+      <DisplayName>Completion</DisplayName>
+    </Field>
+  </Fields>
+</ContentType>

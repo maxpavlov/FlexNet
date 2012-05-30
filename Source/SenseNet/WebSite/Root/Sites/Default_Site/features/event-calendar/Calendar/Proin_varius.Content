@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>CalendarEvent</ContentType>
+  <ContentName>Proin_varius</ContentName>
+  <Fields>
+    <DisplayName>Proin varius</DisplayName>
+    <Lead><![CDATA[<p>Proin mattis, metus a ultricies dictum, nibh ante viverra elit, egestas  porttitor neque turpis at sem. Fusce vestibulum felis sed dui bibendum  nec lobortis mi blandit. In rhoncus, neque sed gravida faucibus, purus  orci luctus orci, feugia.cursus.</p>]]></Lead>
+    <Description><![CDATA[<p>Maecenas sit amet facilisis massa. Duis quis dui vel metus feugiat  tristique eu non eros. Sed aliquet venenatis odio id suscipit. Mauris  arcu elit, luctus ac fermentum vitae, commodo vitae sem. Integer tortor  urna, fermentum a fringilla eget, malesuada ut ligula. Nulla facilisi.  Morbi porttitor felis eu magna lobortis in ornare urna vehicula.  Phasellus semper tellus eget sem imperdiet pellentesque. Morbi dapibus  augue congue massa scelerisque at condimentum purus iaculis. Duis  malesuada erat neque. Phasellus in massa sit amet nulla placerat  iaculis. Nulla convallis dictum fringilla. Suspendisse sit amet mi nec  erat gravida sollicitudin quis sit amet lacus. Nulla facilisi. Integer a  felis vel risus cursus laoreet. Fusce ullamcorper, quam quis faucibus  eleifend, est mauris mattis risus, a fringilla massa eros at tortor.  Duis in turpis dolor, vestibulum molestie felis.</p>
+<p>Proin varius sapien sit amet augue varius id elementum urna auctor. Aenean eget mollis felis. Vivamus nunc tortor, varius quis elementum sed, vestibulum quis metus.</p>]]></Description>
+    <StartDate>2010-08-30T00:00:00</StartDate>
+    <EndDate>2010-09-10T00:00:00</EndDate>
+    <AllDay>true</AllDay>
+    <Location>Vivamus nunc</Location>
+    <Index>0</Index>
+    <Hidden>false</Hidden>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+        <VersioningMode>1</VersioningMode>
+    <InheritableVersioningMode>1</InheritableVersioningMode>
+    <ApprovingMode>1</ApprovingMode>
+    <InheritableApprovingMode>1</InheritableApprovingMode>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate></Rate>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

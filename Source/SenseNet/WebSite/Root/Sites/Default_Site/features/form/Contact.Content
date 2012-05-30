@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Form</ContentType>
+  <ContentName>Contact</ContentName>
+  <Fields>
+    <DisplayName>Contact us</DisplayName>
+    <Description><![CDATA[]]></Description>
+    <AfterSubmitText><![CDATA[Thank you!]]></AfterSubmitText>
+    <EmailList><![CDATA[]]></EmailList>
+    <Hidden>true</Hidden>
+    <ContentListDefinition>
+          <![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<ContentListDefinition xmlns='http://schemas.sensenet.com/SenseNet/ContentRepository/ContentListDefinition'>
+	<DisplayName>Sample Form</DisplayName>
+	<Description>Sample form description.</Description>
+	<Icon>FormItem</Icon>
+	<Fields>
+		<ContentListField name='#Name' type='ShortText'>
+			<DisplayName>Name</DisplayName>
+			<Description></Description>
+			<Icon>icon.gif</Icon>
+			<Configuration>
+				<Compulsory>true</Compulsory>
+				<MaxLength>100</MaxLength>
+			</Configuration>
+		</ContentListField>
+		<ContentListField name='#Email' type='ShortText'>
+			<DisplayName>E-mail</DisplayName>
+			<Description></Description>
+			<Icon>icon.gif</Icon>
+			<Configuration>
+				<Compulsory>true</Compulsory>
+				<MaxLength>100</MaxLength>
+        <Regex>\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*</Regex>
+			</Configuration>
+		</ContentListField>
+		<ContentListField name='#Phone' type='ShortText'>
+			<DisplayName>Phone</DisplayName>
+			<Description></Description>
+			<Icon>icon.gif</Icon>
+			<Configuration>
+				<MaxLength>100</MaxLength>
+        <Regex>[\(\)\d\s\+-]*</Regex>
+			</Configuration>
+		</ContentListField>
+		<ContentListField name='#ContactType' type='Choice'>
+			<DisplayName>Contact type</DisplayName>
+			<Description>Select one</Description>
+			<Icon>field.gif</Icon>
+			<Configuration>
+				<AllowMultiple>false</AllowMultiple>
+				<Options>
+					<Option selected='true'>Support</Option>
+					<Option>Info</Option>
+					<Option>Enquiry</Option>
+					<Option>Other</Option>
+				</Options>
+			</Configuration>
+		</ContentListField>
+		<ContentListField name='#Message' type='LongText'>
+			<DisplayName>Message</DisplayName>
+			<Description></Description>
+			<Icon>icon.gif</Icon>
+			<Configuration>
+				<MaxLength>300</MaxLength>
+			</Configuration>
+		</ContentListField>
+	</Fields>
+</ContentListDefinition>]]></ContentListDefinition>
+    <Index>0</Index>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate></Rate>
+  </Fields>
+  <Permissions>
+    <Clear />
+    <Identity path="/Root/IMS/BuiltIn/Portal/Visitor">
+      <See>Allow</See>
+      <Open>Allow</Open>
+      <OpenMinor>Allow</OpenMinor>
+      <AddNew>Allow</AddNew>
+    </Identity>
+    <Identity path="/Root/IMS/BuiltIn/Portal/IdentifiedUsers">
+      <See>Allow</See>
+      <Open>Allow</Open>
+      <OpenMinor>Allow</OpenMinor>
+      <AddNew>Allow</AddNew>
+    </Identity>
+    <Identity path="/Root/IMS/BuiltIn/Portal/RegisteredUsers">
+      <See>Allow</See>
+      <Open>Allow</Open>
+      <OpenMinor>Allow</OpenMinor>
+      <AddNew>Allow</AddNew>
+    </Identity>
+  </Permissions>
+</ContentMetaData>

@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Resources>
+	<ResourceClass name="SearchPortlet">
+		<Languages>
+			<Language cultureName="en">
+				<data name="SearchCriteria3Char" xml:space="preserve">
+				  <value>Searched value should be at least 3 characters long.</value>
+				</data>
+				<data name="NoSearchResultText" xml:space="preserve">
+				  <value>No search result found.</value>
+				</data>
+				<data name="Search" xml:space="preserve">
+				  <value>Search</value>
+				</data>
+        <data name="ExtraQueryXMLDisplayName" xml:space="preserve">
+				  <value>Extra query XML</value>
+				</data>
+        <data name="ExtraQueryXMLDescription" xml:space="preserve">
+				  <value></value>
+				</data>
+        <data name="FullQueryXMLDisplayName" xml:space="preserve">
+				  <value>Full query XML</value>
+				</data>
+        <data name="FullQueryXMLDescription" xml:space="preserve">
+				  <value></value>
+				</data>
+        <data name="SearchPortletCategoryTitle" xml:space="preserve">
+				  <value>Search portlet</value>
+				</data>
+        <data name="PageSizeDisplayName" xml:space="preserve">
+				  <value>Page size</value>
+				</data>
+        <data name="SearchPaneModeDisplayName" xml:space="preserve">
+				  <value>Search pane mode</value>
+				</data>
+        <data name="CvFolderPathDisplayName" xml:space="preserve">
+				  <value>CV folder path</value>
+				</data>
+        <data name="AllowEmptySearchDisplayName" xml:space="preserve">
+				  <value>Allow empty search</value>
+				</data>
+        <data name="IsSystemAccountDisplayName" xml:space="preserve">
+				  <value>Is system account</value>
+				</data>
+			</Language>
+			<Language cultureName="hu">
+				<data name="SearchCriteria3Char" xml:space="preserve">
+				  <value>Kérjük, adjon meg legalább 3 karaktert.</value>
+				</data>
+				<data name="NoSearchResultText" xml:space="preserve">
+				  <value>Nincs találat.</value>
+				</data>
+				<data name="Search" xml:space="preserve">
+				  <value>Keresés</value>
+				</data>
+        <data name="ExtraQueryXMLDisplayName" xml:space="preserve">
+				  <value>Extra query XML</value>
+				</data>
+        <data name="ExtraQueryXMLDescription" xml:space="preserve">
+				  <value></value>
+				</data>
+        <data name="FullQueryXMLDisplayName" xml:space="preserve">
+				  <value>Full query XML</value>
+				</data>
+        <data name="FullQueryXMLDescription" xml:space="preserve">
+				  <value></value>
+				</data>
+        <data name="SearchPortletCategoryTitle" xml:space="preserve">
+				  <value>Search portlet</value>
+				</data>
+        <data name="PageSizeDisplayName" xml:space="preserve">
+				  <value>Page size</value>
+				</data>
+        <data name="SearchPaneModeDisplayName" xml:space="preserve">
+				  <value>Search pane mode</value>
+				</data>
+        <data name="CvFolderPathDisplayName" xml:space="preserve">
+				  <value>CV folder path</value>
+				</data>
+        <data name="AllowEmptySearchDisplayName" xml:space="preserve">
+				  <value>Allow empty search</value>
+				</data>
+        <data name="IsSystemAccountDisplayName" xml:space="preserve">
+				  <value>Is system account</value>
+				</data>
+			</Language>
+		</Languages>
+	</ResourceClass>
+</Resources>

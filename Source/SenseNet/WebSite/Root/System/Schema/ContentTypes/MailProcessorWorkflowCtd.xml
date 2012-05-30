@@ -1,0 +1,7 @@
+<ContentType name="MailProcessorWorkflow" parentType="Workflow" handler="SenseNet.Workflow.WorkflowHandlerBase" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Mail Processor Workflow</DisplayName>
+  <Description></Description>
+  <Icon>workflow</Icon>
+  <Fields>
+  </Fields>
+</ContentType>

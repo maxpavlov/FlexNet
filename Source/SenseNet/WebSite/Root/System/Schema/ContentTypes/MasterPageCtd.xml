@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="MasterPage" parentType="SystemFile" handler="SenseNet.Portal.MasterPage" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Master Page</DisplayName>
+	<Description>This type is for internal use only</Description>
+	<Icon>MasterPage</Icon>
+	<Fields />
+</ContentType>

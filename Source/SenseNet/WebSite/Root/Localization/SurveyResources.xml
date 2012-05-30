@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Resources>
+  <ResourceClass name="Survey">
+    <Languages>
+      <Language cultureName="en">
+        <data name="FillOut" xml:space="preserve">
+				  <value>Fill out</value>
+        </data>
+        <data name="CannotFillMore" xml:space="preserve">
+				  <value>You have already filled out this survey.</value>
+        </data>
+        <data name="TypeEvaluation" xml:space="preserve">
+				  <value>Type your evalution here:</value>
+        </data>
+        <data name="AfterSubmitPage" xml:space="preserve">
+				  <value>After submit page: </value>
+        </data>
+        <data name="InvalidSurveyPage" xml:space="preserve">
+				  <value>Invalid survey page: </value>
+        </data>
+        <data name="MailtTemplatePage" xml:space="preserve">
+				  <value>Mail template page: </value>
+        </data>
+        <data name="PortletTitle" xml:space="preserve">
+          <value>Voting</value>
+        </data>
+        <data name="Description" xml:space="preserve">
+          <value>This portlet presents a voting</value>
+        </data>
+        <data name="ContextNodeError" xml:space="preserve">
+          <value>Error: ContextNode cannot be null!</value>
+        </data>
+        <data name="BindingError" xml:space="preserve">
+          <value>Error: Binding root cannot be null!</value>
+        </data>
+        <data name="VotingOnlyError" xml:space="preserve">
+          <value>In VotingOnly PortletMode the state ResultView is not supported!</value>
+        </data>
+        <data name="VoteAndGotoResultError" xml:space="preserve">
+          <value>An error occurred in VoteAndGotoResult portlet mode!</value>
+        </data>
+        <data name="ResultAndVotingError" xml:space="preserve">
+          <value>An error occurred in ResultAndVoting portlet mode!</value>
+        </data>
+        <data name="NoResult" xml:space="preserve">
+          <value>There is no result view for voting.</value>
+        </data>
+        <data name="OnlyOneVoteError" xml:space="preserve">
+          <value>You cannot vote more than one at this time. You can set this in the 'Enable More Filing' property.</value>
+        </data>
+        <data name="GoToResultLink" xml:space="preserve">
+          <value>Go to results</value>
+        </data>
+        <data name="GoToVotingLink" xml:space="preserve">
+          <value>Go to voting</value>
+        </data>
+        <data name="NoContentView" xml:space="preserve">
+          <value>Error: No content view is set!</value>
+        </data>
+        <data name="NoPermission" xml:space="preserve">
+				  <value>You have no permission to fill out this survey.</value>
+        </data>
+        <data name="ReferenceFieldError" xml:space="preserve">
+				  <value>Error in SetQuestions(): Cannot get ReferenceField!</value>
+        </data>
+        <data name="ReferenceFieldError" xml:space="preserve">
+				  <value>Error in SetQuestions(): Cannot get customFields.OriginalValue!</value>
+        </data>
+        <data name="ListViewDataItemError" xml:space="preserve">
+				  <value>Error in ListItemDataBound(): Cannot get e.Item as ListViewDataItem!</value>
+        </data>
+        <data name="SurveyRuleError" xml:space="preserve">
+				  <value>Error in ListItemDataBound(): Cannot get SurveyRule!</value>
+        </data>
+        <data name="NoQuestion" xml:space="preserve">
+				  <value>There is no question in the Survey yet!</value>
+        </data>
+        <data name="FillOutPortletTitle" xml:space="preserve">
+				  <value>Fill out survey</value>
+        </data>
+      </Language>
+    </Languages>
+  </ResourceClass>
+</Resources>

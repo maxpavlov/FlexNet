@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>ProfileDomain</ContentType>
+  <ContentName>Demo</ContentName>
+  <Fields>
+    <DisplayName>Demo</DisplayName>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

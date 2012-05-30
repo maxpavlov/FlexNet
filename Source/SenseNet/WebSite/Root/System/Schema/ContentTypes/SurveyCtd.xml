@@ -1,0 +1,185 @@
+﻿<ContentType name="Survey" parentType="ItemList" handler="SenseNet.ContentRepository.Survey" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Survey</DisplayName>
+  <Description>A special List for storing survey</Description>
+  <Icon>ContentList</Icon>
+  <AllowedChildTypes>
+    SurveyItem
+  </AllowedChildTypes>
+  <Fields>
+    <Field name="Description" type="LongText">
+      <DisplayName>Description</DisplayName>
+      <Description>Description</Description>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.Standard.StandardAnalyzer</Analyzer>
+      </Indexing>
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="ValidFrom" type="DateTime">
+      <DisplayName>Valid From</DisplayName>
+      <Description>This content will appear on the date you set if lifespan handling is enabled for this content.</Description>
+      <Configuration>
+        <DateTimeMode>DateAndTime</DateTimeMode>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="ValidTill" type="DateTime">
+      <DisplayName>Valid Till</DisplayName>
+      <Description>This content will disappear on the date you set if lifespan handling is enabled for this content.</Description>
+      <Configuration>
+        <DateTimeMode>DateAndTime</DateTimeMode>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="LandingPage" type="Reference">
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="PageContentView" type="Reference">
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="InvalidSurveyPage" type="Reference">
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="ContentListDefinition" type="LongText">
+      <DisplayName>List Definition</DisplayName>
+      <Description>XML definition for additional fields</Description>
+      <Indexing>
+        <Mode>No</Mode>
+      </Indexing>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <DefaultValue>
+          <![CDATA[<ContentListDefinition xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentListDefinition">
+            <DisplayName>Survey</DisplayName>
+            <Description>Survey</Description>
+            <Fields></Fields>
+          </ContentListDefinition>]]>
+        </DefaultValue>
+      </Configuration>
+    </Field>
+    <Field name="InheritableVersioningMode" type="InheritableVersioningMode">
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <AllowMultiple>false</AllowMultiple>
+        <AllowExtraValue>false</AllowExtraValue>
+        <Options>
+          <Option selected="true" value="0">Inherited</Option>
+          <Option value="1">None</Option>
+          <Option value="2">Major only</Option>
+          <Option value="3">Major and minor</Option>
+        </Options>
+      </Configuration>
+    </Field>
+    <Field name="InheritableApprovingMode" type="InheritableApprovingMode">
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <AllowMultiple>false</AllowMultiple>
+        <AllowExtraValue>false</AllowExtraValue>
+        <Options>
+          <Option selected="true" value="0">Inherited</Option>
+          <Option value="1">False</Option>
+          <Option value="2">True</Option>
+        </Options>
+      </Configuration>
+    </Field>
+    <Field name="Version" type="Version">
+      <DisplayName>Version</DisplayName>
+      <Description>Version number.</Description>
+      <Indexing>
+        <Store>Yes</Store>
+      </Indexing>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <ReadOnly>true</ReadOnly>
+      </Configuration>
+    </Field>
+    <Field name="Index" type="Integer">
+      <DisplayName>Index</DisplayName>
+      <Description>Content order in navigation. Numbers closer to 0 will appear first.</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="EnableLifespan" type="Boolean">
+      <DisplayName>Enable Lifespan</DisplayName>
+      <Description>Specify whether you want to define starting and end date for the validity of this content.</Description>
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="EnableNotificationMail" type="Boolean">
+      <DisplayName>Enable notification e-mail</DisplayName>
+      <Description>Enable sending notification e-mails</Description>
+    </Field>
+    <Field name="SenderAddress" type="ShortText">
+      <DisplayName>Sender Address</DisplayName>
+      <Description>The e-mail address which will appear in the From field of the message.</Description>
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Evaluators" type="Reference">
+      <DisplayName>Evaluators</DisplayName>
+      <Description>Users or groups who will receive a notification e-mail after the survey was filled and can be evaluated.</Description>
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+        <AllowMultiple>true</AllowMultiple>
+        <AllowedTypes>
+          <Type>User</Type>
+          <Type>Group</Type>
+        </AllowedTypes>
+        <SelectionRoot>
+          <Path>/Root/IMS</Path>
+        </SelectionRoot>
+      </Configuration>
+    </Field>
+    <Field name="MailTemplatePage" type="Reference">
+      <DisplayName>Notification e-mail template file</DisplayName>
+      <Description>The path of the HTML file which gives the template of the notification e-mail.</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="EnableMoreFilling" type="Boolean">
+      <DisplayName>Enable more filling</DisplayName>
+      <Description>Enable the users to fill the survey more times</Description>
+    </Field>
+  </Fields>
+</ContentType>

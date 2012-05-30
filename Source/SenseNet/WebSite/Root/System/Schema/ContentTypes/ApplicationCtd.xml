@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="Application" parentType="GenericContent" handler="SenseNet.ApplicationModel.Application" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Application</DisplayName>
+  <Description>This is the base type for all executable content types</Description>
+  <Icon>Application</Icon>
+  <Fields>
+    <Field name="Name" type="ShortText">
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="AppName" type="ShortText">
+      <DisplayName>Application identifier</DisplayName>
+      <Configuration>
+        <ReadOnly>true</ReadOnly>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="DisplayName" type="ShortText">
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Description" type="LongText">
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Scenario" type="ShortText">
+      <DisplayName>Scenario</DisplayName>
+      <Description>Enter a list of scenarios to display this application in, separated with ',' or ';'.</Description>
+    </Field>
+    <Field name="ActionTypeName" type="ShortText">
+      <DisplayName>ActionTypeName</DisplayName>
+      <Description>The name of the action class as per Unity. Leave blank if uncertain.</Description>
+      <Configuration>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="IsModal" type="Boolean">
+      <DisplayName>Modal action</DisplayName>
+      <Description>Check this box if this application is a modal dialog that, after completion, returns the user to where he came from.</Description>
+      <Configuration>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Disabled" type="Boolean">
+      <DisplayName>Disabled</DisplayName>
+      <Description>Check this box if you wish to disable this application. This setting only disables this concrete application, all apps above will remain active!</Description>
+      <Configuration>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Clear" type="Boolean">
+      <DisplayName>Clear</DisplayName>
+      <Description>Check this box if you wish to clear this application and all applications above with this name.</Description>
+      <Configuration>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Icon" type="ShortText">
+      <DisplayName>Icon identifier</DisplayName>
+      <Description>The string identifier of the Application's icon</Description>
+      <Configuration>
+        <DefaultValue>application</DefaultValue>
+      </Configuration>
+    </Field>
+    <Field name="StyleHint" type="ShortText">
+      <DisplayName>Style hint</DisplayName>
+      <Description>A style hint to be interpreted by the rendering engine</Description>
+      <Configuration>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="RequiredPermissions" type="Choice">
+      <DisplayName>Required permissions</DisplayName>
+      <Description>Select the permissions needed to run the application on a Node</Description>
+      <Configuration handler="SenseNet.ContentRepository.Fields.PermissionChoiceFieldSetting">
+        <AllowMultiple>true</AllowMultiple>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="DeepPermissionCheck" type="Boolean">
+      <DisplayName>Deep permission check</DisplayName>
+      <Description>Check the required permissions for the entire subtree under the context</Description>
+      <Configuration>
+        <DefaultValue>false</DefaultValue>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="IncludeBackUrl" type="Choice">
+      <DisplayName>Include back url</DisplayName>
+      <Description>If set to False, the action link will not contain a back url</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+        <AllowMultiple>false</AllowMultiple>
+        <AllowExtraValue>false</AllowExtraValue>
+        <Options>
+          <Enum type="SenseNet.ApplicationModel.IncludeBackUrlMode"/>
+        </Options>
+      </Configuration>
+    </Field>
+    <Field name="CacheControl" type="Choice">
+      <DisplayName>Cache-Control</DisplayName>
+      <Description>The response is generated with the selected Cache-control headers.</Description>
+      <Configuration>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+        <AllowMultiple>false</AllowMultiple>
+        <AllowExtraValue>false</AllowExtraValue>
+        <Options>
+          <Option>Nondefined</Option>
+          <Option>NoCache</Option>
+          <Option>Private</Option>
+          <Option>Public</Option>
+          <Option>Server</Option>
+          <Option>ServerAndNoCache</Option>
+          <Option>ServerAndPrivate</Option>
+        </Options>
+        <DefaultValue>Nondefined</DefaultValue>
+      </Configuration>
+    </Field>
+    <Field name="MaxAge" type="ShortText">
+      <DisplayName>Max-age</DisplayName>
+      <Description>An integer value in seconds for Cache-control: maxage=x header to be sent out</Description>
+      <Configuration>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="CustomUrlParameters" type="ShortText">
+      <DisplayName>Custom url parameters</DisplayName>
+      <Description>Add custom parameters here to extend the functionality of the action. E.g. type=customvalue&amp;mode=2</Description>
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+  </Fields>
+</ContentType>

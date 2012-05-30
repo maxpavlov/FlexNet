@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="ImageLibrary" parentType="Library" handler="SenseNet.ContentRepository.ContentList" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Image library</DisplayName>
+	<Description>A special List for storing images</Description>
+	<Icon>ContentList</Icon>
+  <AllowedChildTypes>
+    Folder,Image
+  </AllowedChildTypes>
+  <Fields>
+  </Fields>
+</ContentType>

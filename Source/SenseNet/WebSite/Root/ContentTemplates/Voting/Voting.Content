@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Voting</ContentType>
+  <ContentName>Voting</ContentName>
+  <Fields>
+    <DisplayName>Voting</DisplayName>
+    <Description><![CDATA[]]></Description>
+        <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <LandingPage>
+      <Path>/Root/System/SystemPlugins/ListView/voting/aftersubmitcontent</Path>
+    </LandingPage>
+    <InvalidSurveyPage>
+      <Path>/Root/System/SystemPlugins/ListView/voting/invalidsurveycontent</Path>
+    </InvalidSurveyPage>
+    <ResultPageContentView>
+      <Path>/Root/System/SystemPlugins/ListView/voting/VotingResult.ascx</Path>
+    </ResultPageContentView>
+    <VotingPageContentView>
+      <Path>/Root/System/SystemPlugins/ListView/voting/VotingQuestion.ascx</Path>
+    </VotingPageContentView>
+    <CannotSeeResultContentView>
+      <Path>/Root/System/SystemPlugins/ListView/voting/cannotseeresultcontent</Path>
+    </CannotSeeResultContentView>
+    <ContentListDefinition><![CDATA[<ContentListDefinition xmlns='http://schemas.sensenet.com/SenseNet/ContentRepository/ContentListDefinition'><Fields /></ContentListDefinition>]]></ContentListDefinition>
+    <Index>0</Index>
+    <EnableLifespan>false</EnableLifespan>
+    <EnableNotificationMail>false</EnableNotificationMail>
+    <Evaluators />
+    <EnableMoreFilling>false</EnableMoreFilling>
+    <IsResultVisibleBefore>false</IsResultVisibleBefore>
+    <Hidden>false</Hidden>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

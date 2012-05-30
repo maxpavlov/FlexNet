@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="SmartFolder" parentType="Folder" handler="SenseNet.ContentRepository.SmartFolder" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Smart Folder</DisplayName>
+	<Description>Use smart folders to group information (contents) by Repository query.</Description>
+	<Icon>SmartFolder</Icon>
+  <Fields>
+	  <Field name="Query" type="LongText">
+		  <DisplayName>Query</DisplayName>
+		  <Description>Please give a query here that you want to use for collecting the children of this smart folder.</Description>
+      <Indexing>
+        <Mode>No</Mode>
+      </Indexing>
+	  </Field>
+    <Field name="EnableAutofilters" type="Choice">
+      <DisplayName>Enable autofilters</DisplayName>
+      <Description>If autofilters are enabled, system contents will be filtered from the query</Description>
+      <Configuration>
+        <AllowMultiple>false</AllowMultiple>
+        <AllowExtraValue>false</AllowExtraValue>
+        <Options>
+          <Enum type="SenseNet.Search.FilterStatus" />
+        </Options>
+      </Configuration>
+    </Field>
+    <Field name="EnableLifespanFilter" type="Choice">
+      <DisplayName>Enable lifespan filter</DisplayName>
+      <Description>If lifespan filter is enabled, only valid contents will be in the result</Description>
+      <Configuration>
+        <AllowMultiple>false</AllowMultiple>
+        <AllowExtraValue>false</AllowExtraValue>
+        <Options>
+          <Enum type="SenseNet.Search.FilterStatus" />
+        </Options>
+      </Configuration>
+    </Field>
+  </Fields>
+</ContentType>

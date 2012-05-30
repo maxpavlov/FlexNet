@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>CalendarEvent</ContentType>
+  <ContentName>Integer_feugiat</ContentName>
+  <Fields>
+    <DisplayName>Integer feugiat</DisplayName>
+    <Description><![CDATA[Integer feugiat, lectus a aliquam vulputate, lorem nibh lobortis lacus, non ultricies orci nisi nec ligula. Sed sed dignissim leo. Ut eget arcu mi. Donec hendrerit, elit et semper cursus, velit tellus cursus erat, eu laoreet lacus urna eget odio.]]></Description>
+    <StartDate>2010-02-19T10:00:00</StartDate>
+    <EndDate>2010-02-19T15:00:00</EndDate>
+    <AllDay>false</AllDay>
+    <Location>semper cursus</Location>
+    <RequiresRegistration>false</RequiresRegistration>
+    <NotificationMode></NotificationMode>
+    <MaxParticipants>0</MaxParticipants>
+    <NumParticipants>0</NumParticipants>
+    <Index>0</Index>
+    <Hidden>false</Hidden>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="EventRegistrationFormItem" parentType="FormItem" handler="SenseNet.Portal.Portlets.ContentHandlers.EventRegistrationFormItem" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Event Registration Form Item</DisplayName>
+  <Description>Content type for event registration form list items.</Description>
+  <Icon>FormItem</Icon>
+  <Fields>
+    <Field name="DisplayName" type="ShortText">
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Name" type="ShortText">
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.KeywordAnalyzer</Analyzer>
+      </Indexing>
+      <Configuration>
+        <Compulsory>true</Compulsory>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Description" type="LongText">
+      <DisplayName>Description</DisplayName>
+      <Configuration>
+        <ControlHint>sn:RichText</ControlHint>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Index" type="Integer">
+      <DisplayName>Index</DisplayName>
+      <Description>Content order in navigation</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Version" type="Version">
+      <DisplayName>Version</DisplayName>
+      <Description>Latest version number</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <ReadOnly>true</ReadOnly>
+      </Configuration>
+    </Field>
+    <Field name="TrashDisabled" type="Boolean">
+      <DisplayName>Disable trash</DisplayName>
+      <Description>Disable trash for this Content and its children. Delete operations will result in a forced purge if set.</Description>
+      <Configuration>
+        <DefaultValue>false</DefaultValue>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Email" type="ShortText">
+      <DisplayName>E-mail</DisplayName>
+      <Configuration>
+        <Compulsory>true</Compulsory>
+        <Regex>\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*</Regex>
+      </Configuration>
+    </Field>
+    <Field name="GuestNumber" type="Integer">
+      <DisplayName>Additional guests</DisplayName>
+      <Configuration>
+        <Compulsory>true</Compulsory>
+        <MinValue>0</MinValue>
+      </Configuration>
+    </Field>
+  </Fields>
+</ContentType>

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="FieldControlTemplates" parentType="Folder" handler="SenseNet.ContentRepository.Folder" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>FieldControlTemplates</DisplayName>
+  <Description>This is the container type for ContentViews. Instances are allowed only at /Root/Global/fieldcontroltemplates</Description>
+  <Icon>Folder</Icon>
+  <AllowedChildTypes>
+    FieldControlTemplates FieldControlTemplate
+  </AllowedChildTypes>
+  <Fields>
+  </Fields>
+</ContentType>

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="ContentView" parentType="File" handler="SenseNet.ContentRepository.File" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>ContentView</DisplayName>
+  <Description>A type for Content Views.</Description>
+  <Icon>ContentView</Icon>
+  <Fields>
+  </Fields>
+</ContentType>

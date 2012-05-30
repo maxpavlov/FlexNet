@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>WebContentDemo</ContentType>
+  <ContentName>surveyinfo</ContentName>
+  <Fields>
+    <Subtitle></Subtitle>
+    <RelatedImage />
+    <Header><![CDATA[]]></Header>
+    <Body>
+      <![CDATA[<div class="sn-infobox"><h1 class="sn-content-title sn-article-title"><img src="/Root/Global/images/icons/32/info.png" class="sn-icon sn-icon_32" alt="" />Survey</h1>
+      <p>This page illustrates how to present Surveys using Content Collection and Content Viewer portlets. A Survey offers a simple way to collect information from the users about anything you want. In this demo we present two built-in Survey instances: a simple one-page survey and a more complex multi-page survey.</p>
+      <ul>
+      <li><strong>You need to be logged in as Administrator to see or modify portlet properties.</strong></li>
+      <li>The list of surveys is rendered using a custom renderer at <em><a href="/Explore.html#/Root/System/SystemPlugins/ListView/SurveyList.ascx">/Root/System/SystemPlugins/ListView/SurveyList.ascx</a></em></li>
+      <li>The specific survey at the bottom of the page is visualized using a Content Viewer Portlet. The ContentView for the Survey Content Type is located at <em><a href="/Explore.html#/Root/Global/contentviews/Survey/Browse.ascx">/Root/Global/contentviews/Survey/Browse.ascx</a></em></li>
+      <li>Surveys are filled using the Add Application of the Survey instance located at <em><a href="/Explore.html#/Root/Sites/Default_Site/(apps)/Survey/add">/Root/Sites/Default_Site/(apps)/Survey/add</a></em></li>
+      </ul>
+      </div>]]>
+    </Body>
+    <Details><a href="" target="" title=""></a></Details>
+    <Language>English</Language>
+    <Keywords><![CDATA[]]></Keywords>
+    <Author></Author>
+    <ReviewDate>0001-01-01T00:00:00</ReviewDate>
+    <ArchiveDate>0001-01-01T00:00:00</ArchiveDate>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <DisplayName>surveyinfo</DisplayName>
+    <Description><![CDATA[]]></Description>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+        <VersioningMode>1</VersioningMode>
+    <InheritableVersioningMode>1</InheritableVersioningMode>
+    <ApprovingMode>1</ApprovingMode>
+    <InheritableApprovingMode>1</InheritableApprovingMode>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

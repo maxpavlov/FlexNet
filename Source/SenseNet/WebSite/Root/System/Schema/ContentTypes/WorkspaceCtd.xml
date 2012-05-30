@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="Workspace" parentType="Folder" 
+			 handler="SenseNet.ContentRepository.Workspaces.Workspace" 
+			 xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Workspace</DisplayName>
+  <Description>Collaborative workspace root</Description>
+  <Icon>workspace</Icon>
+  <AllowedChildTypes>
+    Page,Folder,Blog,DocumentLibrary,ImageLibrary,EventList,MemoList,LinkList,TaskList,Survey,Voting,DiscussionForum,Form,CustomList,Posts
+  </AllowedChildTypes>
+  <Fields>
+    <Field name="DisplayName" type="ShortText">
+      <DisplayName>Display Name</DisplayName>      
+    </Field>
+    <Field name="Description" type="LongText">
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Manager" type="Reference">
+      <DisplayName>Project manager</DisplayName>
+      <Description>The person responsible for the project</Description>
+      <Configuration>
+        <AllowMultiple>false</AllowMultiple>
+        <AllowedTypes>
+          <Type>User</Type>
+        </AllowedTypes>
+        <SelectionRoot>
+          <Path>/Root/IMS</Path>
+          <Path>/Root</Path>
+        </SelectionRoot>
+      </Configuration>
+    </Field>
+    <Field name="Deadline" type="DateTime">
+      <DisplayName>Project deadline</DisplayName>
+      <Configuration>
+        <DateTimeMode>DateAndTime</DateTimeMode>
+      </Configuration>
+    </Field>
+    <Field name="IsActive" type="Boolean">
+      <DisplayName>Active</DisplayName>
+      <Description>This workspace is currently active</Description>
+      <Configuration>
+        <Compulsory>true</Compulsory>
+        <DefaultValue>true</DefaultValue>
+      </Configuration>
+    </Field>
+    <Field name="WorkspaceSkin" type="Reference">
+      <DisplayName>Skin</DisplayName>
+      <Configuration>
+        <AllowMultiple>false</AllowMultiple>
+        <AllowedTypes>
+          <Type>Skin</Type>
+        </AllowedTypes>
+        <SelectionRoot>
+          <Path>/Root/Skins</Path>
+        </SelectionRoot>
+      </Configuration>
+    </Field>
+    <Field name="IsCritical" type="Boolean">
+      <DisplayName>Is critical</DisplayName>
+      <Description>This workspace is currently in a critical status</Description>
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="IsWallContainer" type="Boolean">
+      <DisplayName>Wall Container</DisplayName>
+      <Description>This workspace is configured to contain a wall - this indicates that posts are created under this workspace if Content are shared anywhere below this path.</Description>
+    </Field>
+    <Field name="AllowedChildTypes" type="AllowedChildTypes">
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="InheritableVersioningMode" type="InheritableVersioningMode">
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="InheritableApprovingMode" type="InheritableApprovingMode">
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+  </Fields>
+</ContentType>

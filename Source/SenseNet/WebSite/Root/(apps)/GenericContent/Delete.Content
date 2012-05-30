@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Page</ContentType>
+  <ContentName>Delete</ContentName>
+  <Fields>
+    <PageTemplateNode>
+      <Path>/Root/Global/pagetemplates/sn-layout-dialog.html</Path>
+    </PageTemplateNode>
+    <Hidden>false</Hidden>
+    <Index>6000</Index>
+    <SmartUrl><![CDATA[]]></SmartUrl>
+    <IsExternal>false</IsExternal>
+    <OuterUrl><![CDATA[]]></OuterUrl>
+    <MetaTitle><![CDATA[]]></MetaTitle>
+    <Keywords><![CDATA[]]></Keywords>
+    <MetaDescription><![CDATA[]]></MetaDescription>
+    <MetaAuthors><![CDATA[]]></MetaAuthors>
+    <CustomMeta><![CDATA[]]></CustomMeta>
+    <Binary attachment="Delete.aspx" />
+    <PersonalizationSettings attachment="Delete.PersonalizationSettings" />
+    <DisplayName><![CDATA[Delete]]></DisplayName>
+    <Description><![CDATA[]]></Description>
+    <Scenario><![CDATA[WorkspaceActions;ListItem;ExploreActions;ListActions;ManageViewsListItem]]></Scenario>
+    <ActionTypeName><![CDATA[]]></ActionTypeName>
+    <IsModal>false</IsModal>
+    <Disabled>false</Disabled>
+    <Clear>false</Clear>
+    <Icon><![CDATA[delete]]></Icon>
+    <StyleHint><![CDATA[]]></StyleHint>
+    <RequiredPermissions>9</RequiredPermissions>
+    <DeepPermissionCheck>false</DeepPermissionCheck>
+    <IncludeBackUrl>0</IncludeBackUrl>
+    <CacheControl>Nondefined</CacheControl>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <CreatedBy>
+      <Path>/Root/IMS/BuiltIn/Portal/Administrator</Path>
+    </CreatedBy>
+    <CreationDate>2012-02-29T16:42:34.567</CreationDate>
+    <ModifiedBy>
+      <Path>/Root/IMS/BuiltIn/Portal/Admin</Path>
+    </ModifiedBy>
+    <ModificationDate>2012-02-29T16:59:10.46</ModificationDate>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+    <Identity path="/Root/IMS/BuiltIn/Portal/IdentifiedUsers">
+      <See>Allow</See>
+      <Open>Allow</Open>
+      <RunApplication>Allow</RunApplication>
+    </Identity>
+  </Permissions>
+</ContentMetaData>

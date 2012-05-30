@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="BackupIndexHandler" parentType="Application" handler="SenseNet.Portal.Handlers.BackupIndexHandler" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Backup Index</DisplayName>
+  <Description>An IHttpHandler that backups Lucene index.</Description>
+  <Icon>Application</Icon>
+</ContentType>

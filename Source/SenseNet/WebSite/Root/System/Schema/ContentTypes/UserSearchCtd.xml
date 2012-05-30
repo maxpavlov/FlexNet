@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="UserSearch" parentType="GenericContent" handler="SenseNet.ContentRepository.GenericContent" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>UserSearch</DisplayName>
+	<Description>Content type for building user search page</Description>
+	<Icon>User</Icon>
+	<Fields>
+    <Field name="Search" type="ShortText">
+      <DisplayName>Search</DisplayName>
+    </Field>
+  </Fields>
+</ContentType>

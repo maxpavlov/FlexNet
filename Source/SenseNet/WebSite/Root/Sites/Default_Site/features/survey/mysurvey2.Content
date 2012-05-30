@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Survey</ContentType>
+  <ContentName>mysurvey2</ContentName>
+  <Fields>
+    <Description><![CDATA[<p>This is the second survey sample with page break.</p>]]></Description>
+    <ValidFrom>2010-10-01T00:00:00</ValidFrom>
+    <ValidTill>2010-12-31T00:00:00</ValidTill>
+    <LandingPage>
+      <Path>/Root/System/SystemPlugins/Survey/aftersubmitcontent</Path>
+    </LandingPage>
+    <PageContentView>
+      <Path>/Root/Global/contentviews/WebContentDemo/SurveyBrowse.ascx</Path>
+    </PageContentView>
+    <InvalidSurveyPage>
+      <Path>/Root/System/SystemPlugins/Survey/invalidsurveycontent</Path>
+    </InvalidSurveyPage>
+    <ContentListDefinition><![CDATA[<ContentListDefinition xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentListDefinition"><Fields><ContentListField name="#name" type="ShortText"><DisplayName>Name</DisplayName><Description>&lt;p&gt;Please, give your name here.&lt;/p&gt;</Description><Configuration><Compulsory>false</Compulsory><DefaultValue></DefaultValue><VisibleBrowse>Show</VisibleBrowse><VisibleEdit>Show</VisibleEdit><VisibleNew>Show</VisibleNew><FieldIndex>1</FieldIndex><MaxLength>50</MaxLength><Regex>[^.$]*</Regex></Configuration></ContentListField><ContentListField name="#birthday" type="DateTime"><DisplayName>Birthday</DisplayName><Description></Description><Configuration><Compulsory>false</Compulsory><DefaultValue></DefaultValue><VisibleBrowse>Show</VisibleBrowse><VisibleEdit>Show</VisibleEdit><VisibleNew>Show</VisibleNew><FieldIndex>2</FieldIndex><DateTimeMode>Date</DateTimeMode></Configuration></ContentListField><ContentListField name="#cmstype" type="Choice"><DisplayName>CMS type</DisplayName><Description>&lt;p&gt;What kind of cms would you like to create?&lt;/p&gt;</Description><Configuration><Compulsory>false</Compulsory><DefaultValue></DefaultValue><VisibleBrowse>Show</VisibleBrowse><VisibleEdit>Show</VisibleEdit><VisibleNew>Show</VisibleNew><FieldIndex>3</FieldIndex><AllowMultiple>false</AllowMultiple><AllowExtraValue>false</AllowExtraValue><Options><Option value="ecms">Enterprise CMS</Option><Option value="wcms">Web CMS</Option></Options><DisplayChoices>RadioButtons</DisplayChoices></Configuration></ContentListField><ContentListField name="#ecmsname" type="ShortText"><DisplayName>ECMS portal name</DisplayName><Description>&lt;p&gt;What will be your portal's name?&lt;/p&gt;</Description><Configuration><Compulsory>false</Compulsory><DefaultValue></DefaultValue><VisibleBrowse>Show</VisibleBrowse><VisibleEdit>Show</VisibleEdit><VisibleNew>Show</VisibleNew><FieldIndex>5</FieldIndex><MaxLength>100</MaxLength><Regex>[^.$]*</Regex></Configuration></ContentListField><ContentListField name="#commentecms" type="LongText"><DisplayName>Comment</DisplayName><Description></Description><Configuration><Compulsory>false</Compulsory><DefaultValue></DefaultValue><VisibleBrowse>Show</VisibleBrowse><VisibleEdit>Show</VisibleEdit><VisibleNew>Show</VisibleNew><FieldIndex>6</FieldIndex><MaxLength>500</MaxLength><TextType>LongText</TextType></Configuration></ContentListField><ContentListField name="#wcmsname" type="ShortText"><DisplayName>WCMS portal name</DisplayName><Description>&lt;p&gt;What will be your portal's name?&lt;/p&gt;</Description><Configuration><Compulsory>false</Compulsory><DefaultValue></DefaultValue><VisibleBrowse>Show</VisibleBrowse><VisibleEdit>Show</VisibleEdit><VisibleNew>Show</VisibleNew><FieldIndex>8</FieldIndex><MaxLength>100</MaxLength><Regex>[^.$]*</Regex></Configuration></ContentListField><ContentListField name="#comment" type="LongText"><DisplayName>Comment</DisplayName><Description></Description><Configuration><Compulsory>false</Compulsory><DefaultValue></DefaultValue><VisibleBrowse>Show</VisibleBrowse><VisibleEdit>Show</VisibleEdit><VisibleNew>Show</VisibleNew><FieldIndex>9</FieldIndex><MaxLength>400</MaxLength><TextType>LongText</TextType></Configuration></ContentListField><ContentListField name="#pagebreaktofinish" type="PageBreak"><DisplayName>--page break to finish</DisplayName><Description></Description><Configuration><Compulsory>false</Compulsory><VisibleBrowse>Show</VisibleBrowse><VisibleEdit>Show</VisibleEdit><VisibleNew>Show</VisibleNew><FieldIndex>7</FieldIndex><Rule>&lt;SurveyRule Question="#cmstype"&gt;&lt;Rule Answer="Enterprise CMS" AnswerId="ecms"&gt;-1&lt;/Rule&gt;&lt;Rule Answer="Web CMS" AnswerId="wcms"&gt;-1&lt;/Rule&gt;&lt;/SurveyRule&gt;</Rule></Configuration></ContentListField><ContentListField name="#cmspagebreak" type="PageBreak"><DisplayName>--page break</DisplayName><Description></Description><Configuration><Compulsory>false</Compulsory><VisibleBrowse>Show</VisibleBrowse><VisibleEdit>Show</VisibleEdit><VisibleNew>Show</VisibleNew><FieldIndex>4</FieldIndex><Rule>&lt;SurveyRule Question="#cmstype"&gt;&lt;Rule Answer="Enterprise CMS" AnswerId="ecms"&gt;1&lt;/Rule&gt;&lt;Rule Answer="Web CMS" AnswerId="wcms"&gt;2&lt;/Rule&gt;&lt;/SurveyRule&gt;</Rule></Configuration></ContentListField></Fields></ContentListDefinition>]]></ContentListDefinition>
+    <InheritableVersioningMode>1</InheritableVersioningMode>
+    <InheritableApprovingMode>1</InheritableApprovingMode>
+    <Index>0</Index>
+    <EnableLifespan>false</EnableLifespan>
+    <EnableNotificationMail>false</EnableNotificationMail>
+    <SenderAddress>survey@sensenet.com</SenderAddress>
+    <Evaluators />
+    <MailTemplatePage>
+      <Path>/Root/System/SystemPlugins/Survey/mailtemplatecontent</Path>
+    </MailTemplatePage>
+    <EnableMoreFilling>true</EnableMoreFilling>
+    <DisplayName>My Survey #2</DisplayName>
+    <Hidden>false</Hidden>
+    <VersioningMode>1</VersioningMode>
+    <ApprovingMode>1</ApprovingMode>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

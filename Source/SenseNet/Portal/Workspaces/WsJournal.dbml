@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SenseNetContentRepository" Class="WsJournalDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="ConnectionString" ConnectionString="Data Source=GYEBROVSZKIZ01\SQL2005;Initial Catalog=SenseNetContentRepository;Integrated Security=True" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.JournalItems" Member="JournalItems">
+    <Type Name="JournalItem">
+      <Column Name="Id" AutoSync="OnInsert" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="[When]" Member="When" Type="System.DateTime" DbType="DateTime NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Wherewith" Type="System.String" DbType="NVarChar(430) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="What" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Who" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="NodeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DisplayName" Type="System.String" DbType="NVarChar(450) NOT NULL" CanBeNull="false" />
+      <Column Name="NodeTypeName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="SourcePath" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="TargetPath" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="TargetDisplayName" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Hidden" Type="System.Boolean" DbType="Bit" CanBeNull="false" />
+      <Column Name="Details" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Resources>
+  <ResourceClass name="SlideSharePortlet">
+    <Languages>
+      <Language cultureName="en">
+        <data name="PortletTitle" xml:space="preserve">
+          <value>SlideShare</value>
+        </data>
+        <data name="PortletDescription" xml:space="preserve">
+          <value>Embed SlideShare presentation</value>
+        </data>
+        <data name="CategoryTitle" xml:space="preserve">
+          <value>SlideShare presentation</value>
+        </data>
+        <data name="LayoutStyleTitle" xml:space="preserve">
+          <value>Write here the SlideShare embed code.</value>
+        </data>
+        <data name="LayoutStyleDescription" xml:space="preserve">
+          <value>You can embed SlideShare presentations.</value>
+        </data>
+        <data name="CodeForHere" xml:space="preserve">
+          <value>You can embed SlideShare presentation here</value>
+        </data>
+        <data name="WrongCode" xml:space="preserve">
+          <value>The embed code is wrong</value>
+        </data>
+      </Language>
+      <Language cultureName="hu">
+        <data name="PortletTitle" xml:space="preserve">
+          <value>SlideShare Prezentáció</value>
+        </data>
+        <data name="PortletDescription" xml:space="preserve">
+          <value>SlideShare Prezentáció beágyazása</value>
+        </data>
+        <data name="CategoryTitle" xml:space="preserve">
+          <value>SlideShare beágyazható kód</value>
+        </data>
+        <data name="LayoutStyleTitle" xml:space="preserve">
+          <value>Ide illeszd a SlideShare kódod</value>
+        </data>
+        <data name="LayoutStyleDescription" xml:space="preserve">
+          <value>Ide ágyazhatod a SlideShare kódod.</value>
+        </data>
+        <data name="CodeForHere" xml:space="preserve">
+          <value>Ide ágyazhatod a SlideShare kódod.</value>
+        </data>
+        <data name="WrongCode" xml:space="preserve">
+          <value>A beágyazott kód hibás!</value>
+        </data>
+      </Language>
+    </Languages>
+  </ResourceClass>
+</Resources>

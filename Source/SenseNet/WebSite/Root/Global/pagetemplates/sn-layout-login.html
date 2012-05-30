@@ -1,0 +1,38 @@
+﻿<% String snLang = SenseNet.Portal.Virtualization.PortalContext.Current.Site.Language; %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="<%=snLang%>" xml:lang="<%=snLang%>">
+<head>
+    <title>Sense/Net 6.0 Demo Site</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="imagetoolbar" content="no" />
+  <sn:BaseTag ID="BaseTagControl1" runat="server" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+</head>
+
+<body class="sn-body sn-layout1 sn-layout-login sn-login-<%=snLang%>">
+<% String snLang = SenseNet.Portal.Virtualization.PortalContext.Current.Site.Language; %>
+   
+<sn:CssRequest CSSPath="$skin/styles/jqueryui/jquery-ui.css" ID="pageTemplateUIStyleReq" runat="server" />
+<sn:CssRequest CSSPath="$skin/styles/sn-layout.css" ID="snLayoutCss" runat="server" />
+<sn:CssRequest CSSPath="$skin/styles/skin.css" ID="pageTemplateCssRequest1" runat="server" />
+  
+<div class="sn-layout-container ui-helper-clearfix">
+    <div class="sn-layout-head">
+       <h1 class="sn-logo">
+        <a href="/" title="Home"><span>Sense/Net</span></a>
+      </h1>
+    </div>
+    <div class="sn-columns ui-helper-clearfix">
+        <div class="sn-column sn-column1">
+        	<snpe-zone name="center" HeaderText="Center">
+                <snpe:AdvancedLoginPortlet Title="Welcome!" ID="login" runat="server" LoginViewPath="/Root/System/SystemPlugins/Portlets/AdvancedLogin/LoginView.ascx" />
+            </snpe-zone>
+        </div>
+    </div>
+</div>
+
+<!-- prc -->
+<snpe:PortalRemoteControl ID="RemoteControl" runat="server" Groups="/Root/IMS/Demo/Developers;/Root/IMS/BuiltIn/Portal/Administrators" />
+<sn:ScriptRequest runat="server" Path="$skin/scripts/init.js" />
+</body>
+</html>

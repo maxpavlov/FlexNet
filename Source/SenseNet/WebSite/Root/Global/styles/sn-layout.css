@@ -1,0 +1,86 @@
+/* ** LAYOUTS ** */
+/* Based on standard 960 16 Column Grid */
+
+/* Layout 01 */
+.sn-layout1 .sn-layout-container { width: 960px; margin: 0 auto; }
+.sn-layout1 .sn-layout-head { margin: 10px; padding: 5px; }
+.sn-layout1 .sn-layout-foot { margin: 10px; padding: 5px; }
+.sn-layout1 .sn-column1 { margin: 10px; padding: 5px; }
+
+/* Layout 02 */
+.sn-layout2 .sn-layout-container { width: 100%; }
+.sn-layout2 .sn-layout-head { margin: 10px 0.5%; padding: 1%; }
+.sn-layout2 .sn-layout-foot { margin: 10px 0.5%; padding: 1%; }
+.sn-layout2 .sn-column1 { margin: 10px 0.5%; padding: 1%; }
+
+/* Layout 03 */
+.sn-layout3 .sn-layout-container { width: 960px; margin: 0 auto; }
+.sn-layout3 .sn-layout-head { margin: 10px; padding: 5px; }
+.sn-layout3 .sn-layout-foot { margin: 10px; padding: 5px; }
+.sn-layout3 .sn-column { float: left; display: inline; }
+.sn-layout3 .sn-column1 { width: 460px; margin: 0 10px; }
+.sn-layout3 .sn-column2 { width: 460px; margin: 0 10px; }
+
+/* Layout 04 */
+.sn-layout4 .sn-layout-container { width: 100%; }
+.sn-layout4 .sn-layout-head { margin: 10px 0.5%; padding: 5px; }
+.sn-layout4 .sn-layout-foot { margin: 10px 0.5%; padding: 5px; }
+.sn-layout4 .sn-column { float: left; display: inline; }
+.sn-layout4 .sn-column1 { width: 49%; margin: 0 0.5%; }
+.sn-layout4 .sn-column2 { width: 49%; margin: 0 0.5%; }
+
+/* Layout 05 */
+.sn-layout5 .sn-layout-container { width: 100%; }
+.sn-layout5 .sn-layout-head { margin: 10px 0.5%; padding: 5px; }
+.sn-layout5 .sn-layout-foot { margin: 10px 0.5%; padding: 5px; }
+.sn-layout5 .sn-column1 { float: left; width: 220px; margin: 0 20px 0 0.5%; }
+.sn-layout5 .sn-column2 { margin: 0 0.5% 0 250px; }
+
+/* Layout 06 */
+.sn-layout6 .sn-layout-container { width: 960px; margin: 0 auto; }
+.sn-layout6 .sn-layout-head { margin: 10px; padding: 5px; }
+.sn-layout6 .sn-layout-foot { margin: 10px; padding: 5px; }
+.sn-layout6 .sn-column { float: left; display: inline; }
+.sn-layout6 .sn-column1 { width: 220px; margin: 0 20px 0 10px; }
+.sn-layout6 .sn-column2 { width: 460px; }
+.sn-layout6 .sn-column3 { width: 220px; margin: 0 10px 0 20px; }
+
+/* Layout 07 */
+.sn-layout7 .sn-layout-container { width: 100%; }
+.sn-layout7 .sn-layout-head { margin: 10px 0.5%; padding: 5px; }
+.sn-layout7 .sn-layout-foot { margin: 10px 0.5%; padding: 5px; }
+.sn-layout7 .sn-column { float: left; display: inline; }
+.sn-layout7 .sn-column1 { width: 19%; margin: 0 0.5%; }
+.sn-layout7 .sn-column2 { width: 60%; }
+.sn-layout7 .sn-column3 { width: 19%; margin: 0 0.5%; }
+
+/* Layout 08 */
+.sn-layout8 .sn-layout-container { width: 100%; }
+.sn-layout8 .sn-layout-head { margin: 10px; padding: 5px; }
+.sn-layout8 .sn-layout-foot { margin: 10px; padding: 5px; }
+.sn-layout8 .sn-column1 { float: left; width: 220px; margin: 0 20px 0 10px; }
+.sn-layout8 .sn-columns .sn-columns { margin: 0 10px 0 250px; }
+.sn-layout8 .sn-column2 { margin-right: 240px; }
+.sn-layout8 .sn-column3 { float: right; width: 220px; margin-left: 20px; }
+
+/* Layout 09 */
+.sn-layout9 .sn-layout-container { width: 100%; }
+.sn-layout9 .sn-layout-head { margin: 10px 0.5%; padding: 5px; }
+.sn-layout9 .sn-layout-foot { margin: 10px 0.5%; padding: 5px; }
+.sn-layout9 .sn-column1 { float: left; width: 220px; margin: 0 20px 0 0.5%; }
+.sn-layout9 .sn-column2 { margin: 0 0.5% 0 250px; }
+.sn-layout9 .sn-columns .sn-columns .sn-column { float: left; display: inline; }
+.sn-layout9 .sn-columns .sn-columns .sn-column1 { width: 19%; margin: 0 0.5%; }
+.sn-layout9 .sn-columns .sn-columns .sn-column2 { width: 60%; margin: 0; }
+.sn-layout9 .sn-columns .sn-columns .sn-column3 { width: 19%; margin: 0 0.5%; }
+
+/* Layout 10 */
+.sn-layout10 .sn-layout-container { width: 100%; }
+.sn-layout10 .sn-layout-head { margin: 10px 0.5%; padding: 5px; }
+.sn-layout10 .sn-layout-foot { margin: 10px 0.5%; padding: 5px; }
+.sn-layout10 .sn-column2 { float: right; width: 220px; margin: 0 20px 0 0.5%; }
+.sn-layout10 .sn-column1 { margin: 0 250px 0 0.5%; }
+.sn-layout10 .sn-columns .sn-columns .sn-column { float: left; display: inline; }
+.sn-layout10 .sn-columns .sn-columns .sn-column1 { width: 19%; margin: 0 0.5%; }
+.sn-layout10 .sn-columns .sn-columns .sn-column2 { width: 60%; margin: 0; }
+.sn-layout10 .sn-columns .sn-columns .sn-column3 { width: 19%; margin: 0 0.5%; }

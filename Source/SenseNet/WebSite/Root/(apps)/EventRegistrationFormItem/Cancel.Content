@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Page</ContentType>
+  <ContentName>Cancel</ContentName>
+  <Fields>
+    <Hidden>false</Hidden>
+    <Index>5000</Index>
+    <SmartUrl></SmartUrl>
+    <PageTemplateNode>
+      <Path>/Root/Global/pagetemplates/sn-layout-dialog.html</Path>
+    </PageTemplateNode>
+    <IsExternal>false</IsExternal>
+    <OuterUrl></OuterUrl>
+    <MetaTitle></MetaTitle>
+    <Keywords><![CDATA[]]></Keywords>
+    <MetaDescription><![CDATA[]]></MetaDescription>
+    <MetaAuthors></MetaAuthors>
+    <CustomMeta><![CDATA[]]></CustomMeta>
+    <Binary attachment="Cancel.aspx" />
+    <PersonalizationSettings attachment="Cancel.PersonalizationSettings" />
+    <DisplayName>Cancel</DisplayName>
+    <Description><![CDATA[]]></Description>
+    <Scenario>EventRegistrationFormItem</Scenario>
+    <ActionTypeName>Cancel</ActionTypeName>
+    <Disabled>false</Disabled>
+    <Clear>false</Clear>
+    <Icon>delete</Icon>
+    <StyleHint></StyleHint>
+    <RequiredPermissions>9</RequiredPermissions>
+    <DeepPermissionCheck>false</DeepPermissionCheck>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+        <VersioningMode>1</VersioningMode>
+    <InheritableVersioningMode>1</InheritableVersioningMode>
+    <ApprovingMode>1</ApprovingMode>
+    <InheritableApprovingMode>1</InheritableApprovingMode>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <Tags><![CDATA[]]></Tags>
+    <IsRateable>false</IsRateable>
+    <Rate/>
+  </Fields>
+</ContentMetaData>

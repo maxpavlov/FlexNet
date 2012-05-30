@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Article</ContentType>
+  <ContentName>The_sweet_site_of_the_world</ContentName>
+  <Fields>
+    <DisplayName>The sweet site of the world</DisplayName>
+    <Subtitle></Subtitle>
+    <Lead><![CDATA[
+      <p>There is a little Charlie in everyone, just like in us! When we won the tender, childlike enthusiasm passed through the team.
+      Who thought that creating a chocolate factory website could be so motivating?</p>
+    ]]></Lead>
+    <Body><![CDATA[
+      <p>Did you think that a chocolate factory website has 15000 visitors per weekday and even more in the weekends?
+      Everyone loves chocolate, so the target group could be specified as EVERYONE! Chocolate consumers come from very different
+      areas of life, which means they are looking for different things on the factory website.</p>
+      <p>This explains why the chocolate factory project was a real challenge for our Business Solutions team.
+      The design needed to separate the content intended for various audiences. Entertainment for children, such as the Chocolate Labyrinth
+      and Memory Game portlets were placed into the central portion of the landing page. Portlets targeting singles, like the calories calculator and
+      the Dating with Chocolate applications got the right column.</p>
+      <p>As Bonjour Chocolate Factory takes social responsibility for overweight children and for people living with diabetes seriously,
+      body index calculators and the diabetes control campaign banners also got a prominent place on all pages.</p>
+    ]]></Body>
+    <Pinned>false</Pinned>
+    <Keywords><![CDATA[]]></Keywords>
+    <Author></Author>
+    <ImageRef />
+    <ImageData attachment="The_sweet_site_of_the_world.ImageData.jpg" />
+    <ReviewDate>0001-01-01T00:00:00</ReviewDate>
+    <ArchiveDate>0001-01-01T00:00:00</ArchiveDate>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <Description><![CDATA[]]></Description>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateStr>0|1|0|0|0|0|0</RateStr>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<Resources>
+  <ResourceClass name="LoginPortlet">
+    <Languages>
+      <Language cultureName="en">
+        <data name="LoginText" xml:space="preserve">
+				  <value>Please enter your username and password</value>
+				</data>
+        <data name="UsernameLabel" xml:space="preserve">
+				  <value>Username</value>
+				</data>
+        <data name="PasswordLabel" xml:space="preserve">
+				  <value>Password</value>
+				</data>
+        <data name="DefaultInputText" xml:space="preserve">
+				  <value>username</value>
+				</data>
+        <data name="RememberMe" xml:space="preserve">
+				  <value>Remember my login</value>
+				</data>
+        <data name="LoginButtonTitle" xml:space="preserve">
+				  <value>Login</value>
+				</data>
+        <data name="ForgotPass" xml:space="preserve">
+				  <value>Forgot your password?</value>
+				</data>
+        <data name="Registration" xml:space="preserve">
+				  <value>Registration</value>
+				</data>
+        <data name="LoggedIn" xml:space="preserve">
+				  <value>Logged in as</value>
+				</data>
+        <data name="Welcome" xml:space="preserve">
+				  <value>Welcome {0}</value>
+				</data>
+        <data name="EditProfile" xml:space="preserve">
+				  <value>Edit profile</value>
+				</data>
+        <data name="ChangePassword" xml:space="preserve">
+				  <value>Change password</value>
+				</data>
+        <data name="Logout" xml:space="preserve">
+				  <value>Logout</value>
+				</data>
+        <data name="FailureText" xml:space="preserve">
+				  <value>Wrong username or password.</value>
+				</data>
+      </Language>
+      <Language cultureName="hu">
+        <data name="LoginText" xml:space="preserve">
+				  <value>Adja meg felhasználónevét és jelszavát</value>
+				</data>
+        <data name="UsernameLabel" xml:space="preserve">
+				  <value>Felhasználónév</value>
+				</data>
+        <data name="PasswordLabel" xml:space="preserve">
+				  <value>Jelszó</value>
+				</data>
+        <data name="DefaultInputText" xml:space="preserve">
+				  <value>felhasználónév</value>
+				</data>
+        <data name="RememberMe" xml:space="preserve">
+				  <value>Bejelentkezés megjegyzése</value>
+				</data>
+        <data name="LoginButtonTitle" xml:space="preserve">
+				  <value>Bejelentkezés</value>
+				</data>
+        <data name="ForgotPass" xml:space="preserve">
+				  <value>Elfelejtett jelszó?</value>
+				</data>
+        <data name="Registration" xml:space="preserve">
+				  <value>Regisztráció</value>
+				</data>
+        <data name="LoggedIn" xml:space="preserve">
+				  <value>Belépve: </value>
+				</data>
+        <data name="Welcome" xml:space="preserve">
+				  <value>Üdvözöljük! ({0})</value>
+				</data>
+        <data name="EditProfile" xml:space="preserve">
+				  <value>Profil szerkesztése</value>
+				</data>
+        <data name="ChangePassword" xml:space="preserve">
+				  <value>Jelszó módosítása</value>
+				</data>
+        <data name="Logout" xml:space="preserve">
+				  <value>Kijelentkezés</value>
+				</data>
+        <data name="FailureText" xml:space="preserve">
+				  <value>Rossz felhasználónév vagy jelszó.</value>
+				</data>
+      </Language>
+    </Languages>
+  </ResourceClass>
+</Resources>

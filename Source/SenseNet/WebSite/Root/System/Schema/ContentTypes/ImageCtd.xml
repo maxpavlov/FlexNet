@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="Image" parentType="File" handler="SenseNet.ContentRepository.Image" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Image</DisplayName>
+	<Description>A special Document type for storing images</Description>
+	<Icon>Image</Icon>
+	<Fields>
+    <Field name="Keywords" type="LongText">
+      <DisplayName>Keywords</DisplayName>
+      <Description>Keywords describing the image</Description>
+    </Field>
+    <Field name="DateTaken" type="DateTime">
+      <DisplayName>Date taken</DisplayName>
+      <Description>Date the photo was taken, if applicable</Description>
+      <Configuration>
+        <DateTimeMode>DateAndTime</DateTimeMode>
+      </Configuration>
+    </Field>
+    <Field name="Index" type="Integer">
+    </Field>
+    <Field name="Version" type="Version">
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Width" type="Integer">
+      <DisplayName>Width</DisplayName>
+      <Configuration>
+        <ReadOnly>true</ReadOnly>
+      </Configuration>
+    </Field>
+    <Field name="Height" type="Integer">
+      <DisplayName>Height</DisplayName>
+      <Configuration>
+        <ReadOnly>true</ReadOnly>
+      </Configuration>
+    </Field>
+  </Fields>
+</ContentType>

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>ListView</ContentType>
+  <ContentName>Default.ascx</ContentName>
+  <Fields>
+    <Template>
+      <Path>/Root/System/SystemPlugins/ListView/Templates/ListView.xslt</Path>
+    </Template>
+    <Columns>
+      <![CDATA[<Columns>
+      <Column title="Locked" fullName="GenericContent.Locked" bindingName="GenericContent_Locked" modifiers="lock" width="62" hAlign="Center" index="1" />
+      <Column title="Name" fullName="GenericContent.DisplayName" bindingName="GenericContent_DisplayName" index="2" modifiers="main" />
+      <Column title="Modified by" fullName="GenericContent.ModifiedBy" bindingName="GenericContent_ModifiedBy" index="3" />
+      <Column title="Last modified" fullName="GenericContent.ModificationDate" bindingName="GenericContent_ModificationDate" index="4" />
+    </Columns>]]></Columns>
+    <SortBy>DisplayName ASC</SortBy>
+    <Flat>false</Flat>
+    <DisplayName>Default</DisplayName>
+    <EnableAutofilters>0</EnableAutofilters>
+    <EnableLifespanFilter>0</EnableLifespanFilter>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

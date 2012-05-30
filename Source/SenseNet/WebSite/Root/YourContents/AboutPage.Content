@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>WebContentDemo</ContentType>
+  <ContentName>AboutPage</ContentName>
+  <Fields>
+    <DisplayName>About us</DisplayName>
+    <Subtitle></Subtitle>
+    <Header>Mauris eu tellus ut elit sodales accumsan. Aliquam erat volutpat. Phasellus cursus aliquet dolor. Vivamus a ligula. Proin eu ligula et ipsum venenatis dictum. Morbi consequat augue nec nulla.</Header>
+    <Body>&lt;div id="lipsum"&gt;
+&lt;p&gt;Aenean tempor. In enim felis, elementum non, dignissim at, bibendum non, tortor. Quisque in orci. Vivamus nec nisi. Nunc ut arcu. Cras pede orci, pretium eget, gravida volutpat, pretium ac, lorem. Aenean elit nulla, ullamcorper non, consequat ut, consectetuer quis, ligula. Suspendisse potenti. Praesent et nisi eu lectus sodales egestas. Cras a massa.&lt;/p&gt;
+&lt;p&gt;&lt;img class="snContentPicRight" src="/Root/Global/images/test_03.jpg" alt="" /&gt;Nullam lacus. Curabitur a arcu hendrerit massa tincidunt auctor. Nam libero. Donec volutpat, magna ac convallis fringilla, magna nunc congue orci, nec hendrerit risus nibh nec quam. Maecenas justo purus, tincidunt eget, auctor vitae, pellentesque et, nibh. Donec iaculis vehicula dui. In dapibus commodo sem. Cras eget mi tristique est euismod egestas. Nam enim. Curabitur convallis vestibulum urna. Sed interdum ante quis turpis. Fusce sed nibh. Praesent id tortor. Aliquam nulla. Sed cursus suscipit tellus.&lt;/p&gt;
+&lt;p&gt;Aliquam erat volutpat. Vestibulum et urna. Ut ante enim, volutpat vitae, viverra at, imperdiet ac, lorem. Suspendisse elit justo, egestas eu, imperdiet vel, tincidunt eget, lectus. Vivamus leo elit, interdum ut, scelerisque a, iaculis quis, elit. Phasellus neque ante, pulvinar nec, convallis imperdiet, sollicitudin vel, elit. Curabitur sagittis nibh. Aliquam mi. Nunc faucibus ante non quam. Nam eleifend.&lt;/p&gt;
+&lt;p&gt;Nulla bibendum dignissim elit. Nam risus. Praesent laoreet iaculis orci. Nullam ultrices est vel nisl scelerisque pharetra. Nam pulvinar vestibulum augue. Fusce eget pede sed nisi aliquam commodo. Nulla commodo, tellus sit amet tincidunt mollis, purus sapien adipiscing lacus, non pellentesque lectus est quis eros. Pellentesque non neque. Aenean at tortor in dui laoreet ornare. Cras vel augue. Nam orci. Quisque malesuada tristique erat. Suspendisse lacinia, arcu vel feugiat mollis, pede nunc molestie sem, in dignissim ante sem ut mauris. Vivamus facilisis ante. Cras odio purus, ultrices non, accumsan ac, rutrum sit amet, lectus. In vel enim ut nunc blandit eleifend.&lt;/p&gt;
+&lt;/div&gt;</Body>
+    <Details><a href="" target="" title=""></a></Details>
+    <Language>English</Language>
+    <Keywords></Keywords>
+    <Author></Author>
+    <ValidFrom>2008-10-01T12:15:58.0000000+02:00</ValidFrom>
+    <ReviewDate>2008-10-01T12:15:58.0000000+02:00</ReviewDate>
+    <ArchiveDate>2008-10-01T12:15:58.0000000+02:00</ArchiveDate>
+    <ValidTill>2008-10-01T12:15:58.0000000+02:00</ValidTill>
+    <Index>0</Index>
+  </Fields>
+</ContentMetaData>

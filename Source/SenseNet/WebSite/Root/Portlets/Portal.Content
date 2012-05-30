@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>PortletCategory</ContentType>
+  <ContentName>Portal</ContentName>
+  <Fields>
+    <DisplayName>Portal</DisplayName>
+    <Description><![CDATA[Portal functions related portlets]]></Description>
+  </Fields>
+</ContentMetaData>

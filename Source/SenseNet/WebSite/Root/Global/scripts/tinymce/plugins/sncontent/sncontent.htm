@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+    <head> 
+	    <title>Insert content</title> 
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+        <script type="text/javascript" charset="utf-8" src="/Root/Global/scripts/jquery/jquery.js"></script>
+	    <script type="text/javascript" charset="utf-8" src="../../tiny_mce_popup.js"></script> 
+	    <script type="text/javascript" charset="utf-8" src="../../utils/mctabs.js"></script> 
+	    <script type="text/javascript" charset="utf-8" src="../../utils/form_utils.js"></script> 
+	    <script type="text/javascript" charset="utf-8" src="js/sncontent.js"></script> 
+	    <script type="text/javascript" charset="utf-8" src="editor_plugin.js"></script> 
+    	
+	    <link rel="stylesheet" type="text/css" href="css/sncontent.css" /> 
+	</head> 
+	<body style="display:none;"> 
+		<form name="editorform" onsubmit="SnContentDialog.insertSnContent();return false;" action="#"> 
+			<div class="tinymce_sncontent_fulldiv" style="padding: 20px 20px 0; width: 485px; height: 110px; overflow: hidden;" >
+				<div class="tinymce_sncontent_maindiv" style="margin-bottom: 10px;">
+					<div class="tinymce_sncontent_controlline" style="margin-bottom: 10px;">
+						<div class="tinymce_sncontent_title" style="float: left; width: 80px;">
+							Content
+							<div style="color: red; height: 1em;">
+								<div id="tinymce_sncontent_content_errordiv" style="display: none">
+									Required!
+								</div>
+							</div>
+						</div>
+						<div class="tinymce_sncontent_control" style="float: left;">
+							<input id="tinyMceSnContent_ContentPath" style="width: 330px; padding:2px;" />
+							<input type="button" id="selectContent" value="Select..." onclick="SnContentDialog.openContentPicker('tinyMceSnContent_ContentPath')" style="vertical-align: top;" />
+						</div>
+						<div style="clear: both"></div>
+					</div>
+					<div class="tinymce_sncontent_controlline" style="margin-bottom: 10px; overflow:hidden;">
+						<div class="tinymce_sncontent_title" style="float: left; width: 80px;">
+							Renderer
+							<div style="color: red; height: 1em;">
+								<div id="tinymce_sncontent_display_errordiv" style="display: none">
+									Required!
+								</div>
+							</div>
+						</div>
+						<div class="tinymce_sncontent_control" style="float: left;">
+							<input id="tinyMceSnContent_DisplayPath" style="width: 330px; padding:2px;" />
+							<input type="button" id="selectDisplay" value="Select..." onclick="SnContentDialog.openContentPicker('tinyMceSnContent_DisplayPath')" style="vertical-align: top;" />
+						</div>
+					</div>
+				</div>
+				<div style="float: left;"> 
+					<input type="button" class="button" id="insertBtn" name="insertBtn" value="Insert" onclick="SnContentDialog.insertSnContent();return false;" /> 
+				</div> 
+		 
+				<div style="float: right;">	
+					<input type="button" id="cancel" name="cancel" value="Cancel" onclick="tinyMCEPopup.close();" /> 
+				</div> 
+			</div>
+		</form> 
+	</body> 
+</html> 

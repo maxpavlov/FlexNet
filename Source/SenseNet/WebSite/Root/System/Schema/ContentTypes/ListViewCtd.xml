@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="ListView" parentType="ViewBase" handler="SenseNet.Portal.UI.ContentListViews.Handlers.ListView" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>List view</DisplayName>
+  <Description>A generic view for Lists</Description>
+  <Icon>File</Icon>
+  <Fields>
+    <Field name="Name" type="ShortText">
+      <Description>Specify a name that will appear in the address bar of the browser. The name of the list view should end with an '.ascx' extension.</Description>
+    </Field>
+    <Field name="Template" type="Reference">
+      <DisplayName>Markup template</DisplayName>
+      <Description>The Xslt template used to generate the view</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+        <AllowMultiple>false</AllowMultiple>
+        <DefaultValue>/Root/System/SystemPlugins/ListView/Templates/ListView.xslt</DefaultValue>
+      </Configuration>
+    </Field>
+    <Field name="Columns" type="LongText">
+      <DisplayName>View composition</DisplayName>
+      <Description>Select the fields of the Content List to be displayed</Description>
+      <Indexing>
+        <Mode>No</Mode>
+      </Indexing>
+      <Configuration>
+        <ControlHint>sn:ColumnSelector</ControlHint>
+      </Configuration>
+    </Field>
+    <Field name="SortBy" type="ShortText">
+      <DisplayName>Sort by</DisplayName>
+      <Description>Select the column to sort by</Description>
+      <Configuration>
+        <ControlHint>sn:SortingEditor</ControlHint>
+      </Configuration>
+    </Field>
+    <Field name="GroupBy" type="ShortText">
+      <DisplayName>Group by</DisplayName>
+      <Description>Select the column to group by. This setting only works if the view template is capable of rendering grouped items.</Description>
+      <Configuration>
+        <ControlHint>sn:GroupingEditor</ControlHint>
+      </Configuration>
+    </Field>
+    <Field name="Flat" type="Boolean">
+      <DisplayName>Flat</DisplayName>
+      <Description>Flatten contained content structure to a single list (display content from all depths)</Description>
+    </Field>
+    <Field name="Binary" type="Binary">
+      <Description>The binary content of the view. Please note that when a custom Markup template is specified this field is automatically filled - modify binary content by modifying given template!</Description>
+      <Configuration>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+  </Fields>
+</ContentType>

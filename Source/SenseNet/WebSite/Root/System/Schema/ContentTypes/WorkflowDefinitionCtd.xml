@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="WorkflowDefinition" parentType="File" handler="SenseNet.Workflow.WorkflowDefinitionHandler" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>WorkflowDefinition</DisplayName>
+  <Description>A type for storing XAML workflow definitions</Description>
+  <Icon>workflowdef</Icon>
+  <Fields>
+    <Field name="DisplayName" type="ShortText">
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Description" type="LongText">
+      <DisplayName>Description</DisplayName>
+      <Description>Description of the workflow.</Description>
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>    
+    <Field name="Binary" type="Binary">
+      <DisplayName>Binary</DisplayName>
+      <Description>The binary content of the document</Description>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.Standard.StandardAnalyzer</Analyzer>
+      </Indexing>
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="ContentWorkflow" type="Boolean">
+      <DisplayName>Content workflow</DisplayName>
+      <Description>True for workflow types that are related to one content (e.g. approval or printing). Related content must be an existing content.</Description>
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="AbortOnRelatedContentChange" type="Boolean">
+      <DisplayName>Abort on related content change</DisplayName>
+      <Description>If set to true workflow will be automatically aborted whenever the Related Content changes.</Description>
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+  </Fields>
+</ContentType>

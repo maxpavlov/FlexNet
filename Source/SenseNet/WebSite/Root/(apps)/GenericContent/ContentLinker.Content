@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Page</ContentType>
+  <ContentName>ContentLinker</ContentName>
+  <Fields>
+    <PageTemplateNode>
+      <Path>/Root/Global/pagetemplates/sn-layout-intra.html</Path>
+    </PageTemplateNode>
+    <Binary attachment="ContentLinker.aspx" />
+    <PersonalizationSettings attachment="ContentLinker.PersonalizationSettings" />
+    <DisplayName>ContentLinker</DisplayName>
+    <Icon>contentlinker</Icon>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

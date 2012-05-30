@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>CalendarEvent</ContentType>
+  <ContentName>Integer_feugiat</ContentName>
+  <Fields>
+    <DisplayName>Integer feugiat</DisplayName>
+    <Lead><![CDATA[<p>Integer feugiat, lectus a aliquam vulputate, lorem nibh lobortis lacus,  non ultricies orci nisi nec ligula. Sed sed dignissim leo. Ut eget arcu  mi. Donec hendrerit, elit et semper cursus, velit tellus cursus erat, eu  laoreet lacus urna eget odio.</p>]]></Lead>
+    <Description><![CDATA[<p>Ut ultrices, metus a malesuada egestas, turpis elit mollis arcu, id  sollicitudin sapien erat varius nisi. Cras auctor quam id nibh aliquet  aliquam. Ut at enim sit amet odio laoreet pellentesque. Proin ligula  tortor, volutpat vestibulum euismod ut, ultrices sed tellus. Aenean  faucibus tincidunt sagittis. Etiam sed enim enim, at malesuada nisl.  Pellentesque dictum convallis malesuada. Mauris egestas laoreet sapien a  egestas. Phasellus vel lorem a est congue ultrices ut ullamcorper  turpis. Sed eu mauris vel urna sagittis egestas sit amet vulputate  sapien. Donec eget turpis libero, vulputate imperdiet dolor. Quisque  luctus diam sit amet nunc accumsan vulputate ullamcorper libero  hendrerit. Vestibulum vestibulum risus ut diam tempor ut placerat elit  condimentum. Suspendisse vehicula elementum mi, congue tristique felis  feugiat a. In vitae augue justo. Vestibulum consequat molestie porta.</p>
+<p>Morbi nisl erat, tincidunt eu tempor a, pellentesque a augue. Fusce  rutrum sodales lectus. Curabitur pharetra posuere risus, ut posuere  tortor vestibulum rutrum. Pellentesque nec lorem at dui congue hendrerit  eget sit amet tellus. Ut in mollis dui. Fusce tempus enim sem.  Phasellus nec orci dolor. Nam massa sapien, consectetur at iaculis eu,  imperdiet vitae magna. Suspendisse sodales tortor sed neque mollis  ullamcorper. Cum sociis natoque penatibus et magnis dis parturient  montes, nascetur ridiculus mus.</p>]]></Description>
+    <StartDate>2010-08-08T10:00:00</StartDate>
+    <EndDate>2010-08-10T15:00:00</EndDate>
+    <AllDay>false</AllDay>
+    <Location>semper cursus</Location>
+    <Index>0</Index>
+    <Hidden>false</Hidden>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+        <VersioningMode>1</VersioningMode>
+    <InheritableVersioningMode>1</InheritableVersioningMode>
+    <ApprovingMode>1</ApprovingMode>
+    <InheritableApprovingMode>1</InheritableApprovingMode>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate></Rate>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

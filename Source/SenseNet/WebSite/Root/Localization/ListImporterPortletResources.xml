@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Resources>
+  <ResourceClass name="ListImporterPortlet">
+    <Languages>
+      <Language cultureName="en">
+        
+        <!-- Added in 6.0.4 -->
+        
+        <data name="PortletTitle" xml:space="preserve">
+          <value>List importer</value>
+        </data>
+        <data name="PortletDescription" xml:space="preserve">
+          <value>This portlet imports a list from a specified CSV file.</value>
+        </data>
+        <data name="MissingRequiredColumnFromCSV" xml:space="preserve">
+          <value>The selected CSV file doesn't contain the required '{0}' field!</value>
+        </data>
+        <data name="UpdatableNodeIsMissing" xml:space="preserve">
+          <value>The updatable node ('{0}') doesn't exist!</value>
+        </data>        
+        
+        <!-- Added earlier -->
+        
+        <data name="ViewPathTitle" xml:space="preserve">
+          <value>View path</value>
+        </data>
+        <data name="ViewPathDescription" xml:space="preserve">
+          <value>Path of the .ascx user control which provides the UI elements of the portlet</value>
+        </data>
+        <data name="SelectEncoding" xml:space="preserve">
+          <value>Select encoding</value>
+        </data>
+        <data name="ExcludeFieldsLabel" xml:space="preserve">
+          <value>Exclude these fields</value>
+        </data>
+        <data name="UpdateExistingLabel" xml:space="preserve">
+          <value>Update existing content</value>
+        </data>
+        <data name="ImportNewLabel" xml:space="preserve">
+          <value>Import new content</value>
+        </data>
+        <data name="ImportButtonLabel" xml:space="preserve">
+          <value>Import</value>
+        </data>
+        <data name="SuccesfullyImportedLabel" xml:space="preserve">
+          <value>Successfully imported</value>
+        </data>
+        <data name="NotImportedLabel" xml:space="preserve">
+          <value>Not imported</value>
+        </data>
+        <data name="NotImportedMessage" xml:space="preserve">
+          <value>Not imported due to import settings.</value>
+        </data>
+        <data name="UpdateSuccessfulMessage" xml:space="preserve">
+          <value>Update successful.</value>
+        </data>
+        <data name="UpdateFailedMessage" xml:space="preserve">
+          <value>Update failed.</value>
+        </data>
+        <data name="Options" xml:space="preserve">
+          <value>Options</value>
+        </data>
+        <data name="NoItems" xml:space="preserve">
+          <value>There are no items.</value>
+        </data>
+
+        <data name="ErrorInvalidColumns" xml:space="preserve">
+          <value>Invalid import file: missing columns in line {0}. Please check the number of separators and new line characters.</value>
+        </data>
+      </Language>
+
+      <Language cultureName="hu">
+        
+        <!-- Added in 6.0.4 -->
+        
+        <data name="PortletTitle" xml:space="preserve">
+          <value>Lista importáló</value>
+        </data>
+        <data name="PortletDescription" xml:space="preserve">
+          <value>Ez a portlet betölt egy listát a kiválasztott CSV fájl alapján.</value>
+        </data>
+        <data name="MissingRequiredColumnFromCSV" xml:space="preserve">
+          <value>A kiválasztott CSV fájlban nem található meg a következő mező: '{0}'!</value>
+        </data>
+        <data name="UpdatableNodeIsMissing" xml:space="preserve">
+          <value>A frissíteni kívánt node ('{0}') nem található!</value>
+        </data>
+
+        <!-- Added earlier -->
+        
+        <data name="ViewPathTitle" xml:space="preserve">
+          <value>View path</value>
+        </data>
+        <data name="ViewPathDescription" xml:space="preserve">
+          <value>Path of the .ascx user control which provides the UI elements of the portlet</value>
+        </data>
+        <data name="SelectEncoding" xml:space="preserve">
+          <value>Karakterkódolás</value>
+        </data>
+        <data name="ExcludeFieldsLabel" xml:space="preserve">
+          <value>A következő mezőket ne importálja</value>
+        </data>
+        <data name="UpdateExistingLabel" xml:space="preserve">
+          <value>Meglévő tartalom frissítése</value>
+        </data>
+        <data name="ImportNewLabel" xml:space="preserve">
+          <value>Új tartalom importálása</value>
+        </data>
+        <data name="ImportButtonLabel" xml:space="preserve">
+          <value>Importálás</value>
+        </data>
+        <data name="SuccesfullyImportedLabel" xml:space="preserve">
+          <value>Sikeresen importálva</value>
+        </data>
+        <data name="NotImportedLabel" xml:space="preserve">
+          <value>Nem került importálásra</value>
+        </data>
+        <data name="NotImportedMessage" xml:space="preserve">
+          <value>Import beállítások alapján nem került importálásra.</value>
+        </data>
+        <data name="UpdateSuccessfulMessage" xml:space="preserve">
+          <value>Sikeres frissítés.</value>
+        </data>
+        <data name="UpdateFailedMessage" xml:space="preserve">
+          <value>Frissítés sikertelen.</value>
+        </data>
+        <data name="Options" xml:space="preserve">
+          <value>Beállítások</value>
+        </data>
+        <data name="NoItems" xml:space="preserve">
+          <value>Nincs ilyen elem.</value>
+        </data>
+
+        <data name="ErrorInvalidColumns" xml:space="preserve">
+          <value>Hibás import állomány: a {0}. sorban hiányoznak oszlopok. Kérem ellenőrizze az elválasztó és új sor karaktereket.</value>
+        </data>
+      </Language>
+    </Languages>
+  </ResourceClass>
+</Resources>

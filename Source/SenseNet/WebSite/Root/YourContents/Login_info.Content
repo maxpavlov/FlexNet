@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>WebContentDemo</ContentType>
+  <ContentName>Login_info</ContentName>
+  <Fields>
+    <DisplayName>Login info</DisplayName>
+    <Subtitle></Subtitle>
+    <RelatedImage />
+    <Header><![CDATA[]]></Header>
+    <Body><![CDATA[<p>You can start testing the system.</p>
+<p>Administrator login name is: <strong class="snBigText">admin</strong>, password is also: <strong class="snBigText">admin</strong>.</p>]]></Body>
+    <Details><a href="" target="" title=""></a></Details>
+    <Language>English</Language>
+    <Keywords><![CDATA[]]></Keywords>
+    <Author></Author>
+    <ReviewDate>2008-10-01T12:12:23</ReviewDate>
+    <ArchiveDate>2008-10-01T12:12:23</ArchiveDate>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>2008-10-01T12:12:23</ValidFrom>
+    <ValidTill>2008-10-01T12:12:23</ValidTill>
+    <Description><![CDATA[]]></Description>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate>0.00|0|0|0|0|0</Rate>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

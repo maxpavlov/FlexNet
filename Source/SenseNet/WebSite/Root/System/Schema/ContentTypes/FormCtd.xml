@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="Form" parentType="ItemList" handler="SenseNet.Portal.Portlets.ContentHandlers.Form" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Form</DisplayName>
+  <Description>Form is a special List type. You can place a Form portlet on a page to show this form. Form submissions are sent out in an e-mail, and also stored in the Sense/Net Content Repository.</Description>
+  <Icon>Form</Icon>
+  <AllowedChildTypes>
+    FormItem
+  </AllowedChildTypes>
+  <Fields>
+    <Field name="DisplayName" type="ShortText">
+      <DisplayName>Display Name</DisplayName>
+      <Description>This is the title of the form</Description>
+    </Field>
+    <Field name="TitleSubmitter" type="ShortText">
+      <DisplayName>Submitter Mail Title</DisplayName>
+      <Description>This is the title of the submitter mail</Description>
+    </Field>
+    <Field name="Description" type="LongText">
+      <DisplayName>Description</DisplayName>
+      <Description>Please give a short description of this form</Description>
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="AfterSubmitText" type="LongText">
+      <DisplayName>AfterSubmitText</DisplayName>
+      <Description>This is the text displayed after the form is submitted</Description>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.Standard.StandardAnalyzer</Analyzer>
+      </Indexing> 
+    </Field>
+    <Field name="EmailList" type="LongText">
+      <DisplayName>EmailList</DisplayName>
+      <Description>The list of email addresses to where a notification message containing submitted values are sent after submitting the form. The addresses should be separated by ";" or ",".</Description>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.Standard.StandardAnalyzer</Analyzer>
+      </Indexing>
+    </Field>
+    <Field name="EmailFrom" type="ShortText">
+      <DisplayName>EmailFrom</DisplayName>
+      <Description>This address is displayed in the "From" field of the notification email.</Description>
+    </Field>
+    <Field name="EmailFromSubmitter" type="ShortText">
+      <DisplayName>Subbmitter EmailFrom</DisplayName>
+      <Description>This address is displayed in the "From" field of the user notification email. Default is "mailerservice@portalengine.org"</Description>
+    </Field>
+    <Field name="EmailField" type="ShortText">
+      <DisplayName>EmailField</DisplayName>
+      <Description>The name of the field specified among ContentList fields containing the submitter's email address. Ie.: "#Email" or "#SubmitterEmail"</Description>
+    </Field>
+    <Field name="EmailTemplate" type="LongText">
+      <DisplayName>EmailTemplate</DisplayName>
+      <Description>The template of the email message sent to the administrators. By default the template of notification email sent to the submitter is the same as the one sent to the recipients given in the email list above. Form contents can be inserted with the "{0}" string.</Description>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.Standard.StandardAnalyzer</Analyzer>
+      </Indexing>
+    </Field>
+    <Field name="EmailTemplateSubmitter" type="LongText">
+      <DisplayName>SubmitterEmailTemplate</DisplayName>
+      <Description>The template of the email message sent to the submitter. By default the template of notification email sent to the submitter is the same as the one sent to the recipients given in the email list above. Form contents can be inserted with the "{0}" string.</Description>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.Standard.StandardAnalyzer</Analyzer>
+      </Indexing>
+    </Field>
+  </Fields>
+</ContentType>

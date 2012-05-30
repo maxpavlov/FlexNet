@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="SystemFolder" parentType="Folder" handler="SenseNet.ContentRepository.SystemFolder" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>System Folder</DisplayName>
+	<Description>System Folders provide a way to store configuration and logic.</Description>
+	<Icon>Folder</Icon>
+  <Fields />
+</ContentType>

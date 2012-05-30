@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>ForumEntry</ContentType>
+  <ContentName>0</ContentName>
+  <Fields>
+    <DisplayName></DisplayName>
+    <Description>
+      <![CDATA[
+      <p>Full marks for the entire Chocolate Factory scrum team! The mission seemed to be impossible, but you could keep to deadline.
+      I can interpret you our client’s satisfaction and appreciation about your job! They are satisfied and planning intranet project with us.
+      Congratulations and thank you again! CEO</p>
+      ]]></Description>
+    <ReplyTo />
+    <PostedBy>
+      <Path>/Root/IMS/Demo/Managers/alexschmidt</Path>
+    </PostedBy>
+    <SerialNo>0</SerialNo>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+    <TrashDisabled>false</TrashDisabled>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+        <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate></Rate>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

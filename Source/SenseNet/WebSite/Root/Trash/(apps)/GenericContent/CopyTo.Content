@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Application</ContentType>
+  <ContentName>CopyTo</ContentName>
+  <Fields>
+    <DisplayName>CopyTo</DisplayName>
+    <Clear>true</Clear>
+  </Fields>
+</ContentMetaData>

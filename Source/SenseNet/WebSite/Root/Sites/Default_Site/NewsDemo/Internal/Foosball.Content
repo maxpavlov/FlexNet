@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Article</ContentType>
+  <ContentName>Foosball</ContentName>
+  <Fields>
+    <DisplayName>Foosball</DisplayName>
+    <Subtitle></Subtitle>
+    <Lead><![CDATA[
+        <p>Our Developer Team finished the End of Summer Foosball Championship with a glorious victory. They closed the
+        final with 11-1 against the Sales-Marketing Team. Congratulations guys!</p>
+        ]]></Lead>
+    <Body><![CDATA[
+      <p>Who would have thought that after such a hard sprint the developers would still have the energy for this unrivaled victory.
+      Their march of triumph started by beating the Back Office Team, who unfortunately had to play without Christina (alias BallKiller) this time.
+      The incomplete team lost the match 0-12, and had to hide under the foosball table in shame.</p>
+      <p>The match against Business Solutions was a hard run, but Bela’s tricky shots brought a well deserved victory. “At college we played a
+      lot of foosball. It’s like riding a bike, you can never forget it.” - said Bela, the shining star of the tournament.</p>
+    ]]></Body>
+    <Pinned>false</Pinned>
+    <Keywords><![CDATA[]]></Keywords>
+    <Author></Author>
+    <ImageRef />
+    <ImageData attachment="Foosball.ImageData.jpg" />
+    <ReviewDate>0001-01-01T00:00:00</ReviewDate>
+    <ArchiveDate>0001-01-01T00:00:00</ArchiveDate>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <Description><![CDATA[]]></Description>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateStr>0|1|0|0|0|0|0</RateStr>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

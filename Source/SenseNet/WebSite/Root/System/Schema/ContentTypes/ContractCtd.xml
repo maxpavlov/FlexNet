@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="Contract" parentType="File" handler="SenseNet.ContentRepository.File" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Contract</DisplayName>
+	<Description>An example content type to demonstrate the ECMS features of Sense/Net 6.0.</Description>
+	<Icon>Document</Icon>
+	<Fields>
+		<Field name='ContractId' type='ShortText'>
+			<DisplayName>Contract ID</DisplayName>
+		</Field>
+		<Field name='Project' type='ShortText'>
+			<DisplayName>Project</DisplayName>
+		</Field>
+		<Field name='Language' type='Choice'>
+			<DisplayName>Project</DisplayName>
+			<Configuration>
+				<AllowMultiple>false</AllowMultiple>
+				<AllowExtraValue>true</AllowExtraValue>
+				<Options>
+					<Option value='hu' selected='true'>Magyar</Option>
+					<Option value='en'>English</Option>
+					<Option value='de'>Deutsch</Option>
+				</Options>
+			</Configuration>
+		</Field>
+		<Field name='Responsee' type='Reference'>
+			<DisplayName>Responsee</DisplayName>
+			<Configuration>
+        <AllowMultiple>false</AllowMultiple>
+					<AllowedTypes>
+						<Type>User</Type>
+					</AllowedTypes>
+			</Configuration>
+		</Field>
+		<Field name='Lawyer' type='ShortText'>
+			<DisplayName>Lawyer</DisplayName>
+		</Field>
+		<Field name='Keywords' type='LongText'>
+			<DisplayName>Keywords</DisplayName>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.WhitespaceAnalyzer</Analyzer>
+      </Indexing>
+    </Field>
+		<Field name='Description' type='LongText'>
+			<DisplayName>Description</DisplayName>
+		</Field>
+	</Fields>
+</ContentType>

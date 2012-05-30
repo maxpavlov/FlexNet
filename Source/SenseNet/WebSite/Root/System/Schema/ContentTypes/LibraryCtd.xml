@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="Library" parentType="ContentList" handler="SenseNet.ContentRepository.ContentList" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Library</DisplayName>
+  <Description>A special List for storing child libraries such as Document Library.</Description>
+  <Icon>ContentList</Icon>
+  <Fields>
+  </Fields>
+</ContentType>

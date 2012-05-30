@@ -1,0 +1,404 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Resources>
+  <ResourceClass name="PortalRemoteControl">
+    <Languages>
+      <Language cultureName="en">
+        <data name="RootConsole" xml:space="preserve">
+          <value>Root Console</value>
+        </data>
+        <data name="AddButton" xml:space="preserve">
+          <value>Add</value>
+        </data>
+        <data name="AddPortlet" xml:space="preserve">
+          <value>Add portlet</value>
+        </data>
+        <data name="AlertOk" xml:space="preserve">
+          <value>Ok</value>
+        </data>
+        <data name="Approving" xml:space="preserve">
+          <value>Approving</value>
+        </data>
+        <data name="CancelButton" xml:space="preserve">
+          <value>Cancel</value>
+        </data>
+        <data name="CheckedIn" xml:space="preserve">
+          <value>Checked-in</value>
+        </data>
+        <data name="CheckedOutBy" xml:space="preserve">
+          <value>Check-out({0})</value>
+        </data>
+        <data name="CheckIn" xml:space="preserve">
+          <value>Check-in</value>
+        </data>
+        <data name="CheckOut" xml:space="preserve">
+          <value>Check-out</value>
+        </data>
+        <data name="CreateNewPageTitle" xml:space="preserve">
+          <value>Add new</value>
+        </data>
+        <data name="Draft" xml:space="preserve">
+          <value>Draft</value>
+        </data>
+        <data name="DeletePageTitle" xml:space="preserve">
+          <value>Delete</value>
+        </data>
+        <data name="DeletePageCancel" xml:space="preserve">
+          <value>Cancel</value>
+        </data>
+        <data name="DeletePageConfirm" xml:space="preserve">
+          <value>Do you really want to delete this page?<br />If you choose Yes you will navigate to the parent page or Content Explorer.<br /></value>
+        </data>
+        <data name="DeletePageOk" xml:space="preserve">
+          <value>Yes</value>
+        </data>
+        <data name="Edit" xml:space="preserve">
+          <value>Edit properties</value>
+        </data>
+        <data name="EditMode" xml:space="preserve">
+          <value>Edit mode</value>
+        </data>
+        <data name="EditPageDataSheet" xml:space="preserve">
+          <value>Edit page datasheet</value>
+        </data>
+        <data name="EditPageTitle" xml:space="preserve">
+          <value>Edit page datasheet</value>
+        </data>
+        <data name="ErrorPageHasSubItems" xml:space="preserve">
+          <value>You can't delete this page until it has any subitems.<br />If you wish to delete the page, switch to the Content Explorer.</value>
+        </data>
+        <data name="ModifyPortlets" xml:space="preserve">
+          <value>Modify portlets</value>
+        </data>
+        <data name="NewSubPage" xml:space="preserve">
+          <value>New subpage</value>
+        </data>
+        <data name="OpenContentExplorer" xml:space="preserve">
+          <value>Open Content Explorer</value>
+        </data>
+        <data name="OtherOptions" xml:space="preserve">
+          <value>Other options</value>
+        </data>
+        <data name="PortalRemoteControlClose" xml:space="preserve">
+          <value>Close</value>
+        </data>
+        <data name="PortalRemoteControlTitle" xml:space="preserve">
+          <value>Portal Remote Control</value>
+        </data>
+        <data name="PageModeLabel" xml:space="preserve">
+          <value>Mode</value>
+        </data>
+        <data name="PageMode" xml:space="preserve">
+          <value>{0}</value>
+        </data>
+        <data name="PageName" xml:space="preserve">
+          <value>Page name: {0}</value>
+        </data>
+        <data name="PageTemplateLabel" xml:space="preserve">
+          <value>Page template</value>
+        </data>
+        <data name="PageTemplate" xml:space="preserve">
+          <value>{0}</value>
+        </data>
+        <data name="PageVersion" xml:space="preserve">
+          <value>Version: {0}</value>
+        </data>
+        <data name="Preview" xml:space="preserve">
+          <value>Preview</value>
+        </data>
+        <data name="PreviewMode" xml:space="preserve">
+          <value>Preview mode</value>
+        </data>
+        <data name="Public" xml:space="preserve">
+          <value>Public</value>
+        </data>
+        <data name="Publish" xml:space="preserve">
+          <value>Publish</value>
+        </data>
+        <data name="Reject" xml:space="preserve">
+          <value>Reject</value>
+        </data>
+        <data name="UndoCheckOut" xml:space="preserve">
+          <value>Undo changes</value>
+        </data>
+        <data name="VersionLabel" xml:space="preserve">
+          <value>Version</value>
+        </data>
+        <data name="Version" xml:space="preserve">
+          <value>{0}</value>
+        </data>
+        <data name="Versions" xml:space="preserve">
+          <value>Versions</value>
+        </data>
+        <data name="OpenAppPage" xml:space="preserve">
+          <value>Edit Application page</value>
+        </data>
+        <data name="ContentType" xml:space="preserve">
+          <value>{0}</value>
+        </data>
+        <data name="ContentName" xml:space="preserve">
+          <value>{0}</value>
+        </data>
+        <data name="LastModifiedLabel" xml:space="preserve">
+          <value>Last modified</value>
+        </data>
+        <data name="LastModified" xml:space="preserve">
+          <value>{0}</value>
+        </data>
+        <data name="SkinLabel" xml:space="preserve">
+          <value>Skin</value>
+        </data>
+        <data name="Skin" xml:space="preserve">
+          <value>{0}</value>
+        </data>
+        <data name="Checked-out" xml:space="preserve">
+          <value>Checked out by</value>
+        </data>
+        <data name="MailSubject" xml:space="preserve">
+          <value>Please check in</value>
+        </data>
+        <data name="MailBody" xml:space="preserve">
+          <value>Please check in this page: </value>
+        </data>
+        <data name="MailLabel" xml:space="preserve">
+          <value>Send message</value>
+        </data>
+        <data name="Application" xml:space="preserve">
+          <value>Application</value>
+        </data>
+        <data name="Page" xml:space="preserve">
+          <value>Page</value>
+        </data>
+        <data name="Content" xml:space="preserve">
+          <value>Content</value>
+        </data>
+        <data name="Browse" xml:space="preserve">
+          <value>Browse</value>
+        </data>
+        <data name="SetPermissions" xml:space="preserve">
+          <value>Set permissions</value>
+        </data>
+        <data name="Rename" xml:space="preserve">
+          <value>Rename</value>
+        </data>
+        <data name="CopyTo" xml:space="preserve">
+          <value>Copy</value>
+        </data>
+        <data name="MoveTo" xml:space="preserve">
+          <value>Move</value>
+        </data>
+        <data name="ForceUndoCheckOut" xml:space="preserve">
+          <value>Force undo changes</value>
+        </data>
+        <data name="BrowseApp" xml:space="preserve">
+          <value>Jump to application</value>
+        </data>
+        <data name="ExploreApp" xml:space="preserve">
+          <value>Explore application</value>
+        </data>
+        <data name="AppList" xml:space="preserve">
+          <value>Application list</value>
+        </data>
+        <data name="CustomActionsTitle" xml:space="preserve">
+          <value>Custom actions</value>
+        </data>
+      </Language>
+      <Language cultureName="hu">
+        <data name="RootConsole" xml:space="preserve">
+          <value>Vezérlőpult</value>
+        </data>
+        <data name="AddButton" xml:space="preserve">
+          <value>Hozzáadás</value>
+        </data>
+        <data name="AddPortlet" xml:space="preserve">
+          <value>Portlet hozzáadása</value>
+        </data>
+        <data name="AlertOk" xml:space="preserve">
+          <value>Ok</value>
+        </data>
+        <data name="Approving" xml:space="preserve">
+          <value>Jóváhagyás</value>
+        </data>
+        <data name="CancelButton" xml:space="preserve">
+          <value>Mégse</value>
+        </data>
+        <data name="CheckedIn" xml:space="preserve">
+          <value>Visszatéve</value>
+        </data>
+        <data name="CheckedOutBy" xml:space="preserve">
+          <value>{0} kivette</value>
+        </data>
+        <data name="CheckIn" xml:space="preserve">
+          <value>Visszatesz</value>
+        </data>
+        <data name="CheckOut" xml:space="preserve">
+          <value>Kivesz</value>
+        </data>
+        <data name="CreateNewPageTitle" xml:space="preserve">
+          <value>Új elem hozzáadása</value>
+        </data>
+        <data name="Draft" xml:space="preserve">
+          <value>Piszkozat</value>
+        </data>
+        <data name="DeletePageTitle" xml:space="preserve">
+          <value>Törlés</value>
+        </data>
+        <data name="DeletePageCancel" xml:space="preserve">
+          <value>Mégse</value>
+        </data>
+        <data name="DeletePageConfirm" xml:space="preserve">
+          <value>Biztos, hogy töli az oldalt?<br />Amennyiben igen, úgy törlés után az oldal szülője vagy a Content Explorer nyílik meg.<br /></value>
+        </data>
+        <data name="DeletePageOk" xml:space="preserve">
+          <value>Törlés</value>
+        </data>
+        <data name="Edit" xml:space="preserve">
+          <value>Tulajdonságok szerkesztés</value>
+        </data>
+        <data name="EditMode" xml:space="preserve">
+          <value>Szerkesztő mód</value>
+        </data>
+        <data name="EditPageDataSheet" xml:space="preserve">
+          <value>Oldal adatlap szerkesztése</value>
+        </data>
+        <data name="EditPageTitle" xml:space="preserve">
+          <value>Oldal adatlap szerkesztése</value>
+        </data>
+        <data name="ErrorPageHasSubItems" xml:space="preserve">
+          <value>Nem törölhető az oldal, amíg vannak elemek alatta.<br />Az oldal törléséhez, kérem használja a Content Explorert.</value>
+        </data>
+        <data name="ModifyPortlets" xml:space="preserve">
+          <value>Porteltek módosítása</value>
+        </data>
+        <data name="NewSubPage" xml:space="preserve">
+          <value>Új aloldal</value>
+        </data>
+        <data name="OpenContentExplorer" xml:space="preserve">
+          <value>Content Explorer megnyitása</value>
+        </data>
+        <data name="OtherOptions" xml:space="preserve">
+          <value>További lehetőségek</value>
+        </data>
+        <data name="PortalRemoteControlClose" xml:space="preserve">
+          <value>Bezárás</value>
+        </data>
+        <data name="PortalRemoteControlTitle" xml:space="preserve">
+          <value>Portal Távvezérlő</value>
+        </data>
+        <data name="PageModeLabel" xml:space="preserve">
+          <value>Mód</value>
+        </data>
+        <data name="PageMode" xml:space="preserve">
+          <value>{0}</value>
+        </data>
+        <data name="PageName" xml:space="preserve">
+          <value>Oldal neve: {0}</value>
+        </data>
+        <data name="PageTemplateLabel" xml:space="preserve">
+          <value>Oldalsablon</value>
+        </data>
+        <data name="PageTemplate" xml:space="preserve">
+          <value>{0}</value>
+        </data>
+        <data name="PageVersion" xml:space="preserve">
+          <value>Verzió: {0}</value>
+        </data>
+        <data name="Preview" xml:space="preserve">
+          <value>Előnézet</value>
+        </data>
+        <data name="PreviewMode" xml:space="preserve">
+          <value>Előnézeti mód</value>
+        </data>
+        <data name="Public" xml:space="preserve">
+          <value>Publikus</value>
+        </data>
+        <data name="Publish" xml:space="preserve">
+          <value>Publikálás</value>
+        </data>
+        <data name="Reject" xml:space="preserve">
+          <value>Elutasítás</value>
+        </data>
+        <data name="UndoCheckOut" xml:space="preserve">
+          <value>Módosítások visszavonása</value>
+        </data>
+        <data name="VersionLabel" xml:space="preserve">
+          <value>Verzió</value>
+        </data>
+        <data name="Version" xml:space="preserve">
+          <value>{0}</value>
+        </data>
+        <data name="Versions" xml:space="preserve">
+          <value>Verziók</value>
+        </data>
+        <data name="OpenAppPage" xml:space="preserve">
+          <value>Application szerkesztése</value>
+        </data>
+        <data name="Rename" xml:space="preserve">
+          <value>Átnevezés</value>
+        </data>
+        <data name="Browse" xml:space="preserve">
+          <value>Böngészés</value>
+        </data>
+        <data name="SetPermissions" xml:space="preserve">
+          <value>Jogok beállítása</value>
+        </data>
+        <data name="CopyTo" xml:space="preserve">
+          <value>Másolás</value>
+        </data>
+        <data name="MoveTo" xml:space="preserve">
+          <value>Áthelyezés</value>
+        </data>
+        <data name="ContentType" xml:space="preserve">
+          <value>{0}</value>
+        </data>
+        <data name="ContentName" xml:space="preserve">
+          <value>{0}</value>
+        </data>
+        <data name="LastModifiedLabel" xml:space="preserve">
+          <value>Utoljára módosítva</value>
+        </data>
+        <data name="LastModified" xml:space="preserve">
+          <value>{0}</value>
+        </data>
+        <data name="Application" xml:space="preserve">
+          <value>Alkalmazás</value>
+        </data>
+        <data name="Skin" xml:space="preserve">
+          <value>Téma: {0}</value>
+        </data>
+        <data name="Checked-out" xml:space="preserve">
+          <value>Kivette: </value>
+        </data>
+        <data name="MailSubject" xml:space="preserve">
+          <value>Tedd vissza</value>
+        </data>
+        <data name="MailBody" xml:space="preserve">
+          <value>Kérlek tedd vissza ezt az oldalt: </value>
+        </data>
+        <data name="MailLabel" xml:space="preserve">
+          <value>Üzenet küldése</value>
+        </data>
+        <data name="Page" xml:space="preserve">
+          <value>Oldal</value>
+        </data>
+        <data name="Content" xml:space="preserve">
+          <value>Tartalom</value>
+        </data>
+        <data name="ForceUndoCheckOut" xml:space="preserve">
+          <value>Kényszerített visszatétel</value>
+        </data>
+        <data name="BrowseApp" xml:space="preserve">
+          <value>Ugrás az alkalmazásra</value>
+        </data>
+        <data name="ExploreApp" xml:space="preserve">
+          <value>Alkalmazás felderítése</value>
+        </data>
+        <data name="AppList" xml:space="preserve">
+          <value>Alkalmazáslista</value>
+        </data>
+        <data name="CustomActionsTitle" xml:space="preserve">
+          <value>Egyedi akciók</value>
+        </data>
+      </Language>
+    </Languages>
+  </ResourceClass>
+</Resources>

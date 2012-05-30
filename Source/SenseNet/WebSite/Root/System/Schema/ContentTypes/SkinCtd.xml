@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="Skin" parentType="SystemFolder" handler="SenseNet.ContentRepository.SystemFolder" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Skin</DisplayName>
+  <Description>Skin structure base folder</Description>
+  <Icon>Folder</Icon>
+  <AllowedChildTypes>
+    SystemFolder
+  </AllowedChildTypes>
+  <Fields>
+    <Field name="DisplayName" type="ShortText">
+      <DisplayName>Display Name</DisplayName>
+    </Field>
+  </Fields>
+</ContentType>

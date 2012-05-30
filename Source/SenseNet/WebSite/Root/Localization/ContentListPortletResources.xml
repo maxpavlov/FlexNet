@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Resources>
+  <ResourceClass name="ContentListPortlet">
+    <Languages>
+      <Language cultureName="en">
+        
+        <!-- PORTLET INFO -->
+        
+        <data name="PortletTitle" xml:space="preserve">
+          <value>List</value>
+        </data>
+        <data name="PortletDescription" xml:space="preserve">
+          <value>A portlet for displaying Lists (context bound)</value>
+        </data>
+        
+        <!-- PORTLET PROPERTIES -->
+        
+        <data name="ViewFrameDisplayName" xml:space="preserve">
+          <value>View frame</value>
+        </data>
+        <data name="ViewFrameDescription" xml:space="preserve">
+          <value>The View frame provides controls over the List, and loads the selected View</value>
+        </data>        
+        <data name="DefaultViewDisplayName" xml:space="preserve">
+          <value>Default view</value>
+        </data>        
+        <data name="DefaultViewDescription" xml:space="preserve">
+          <value>Select a default View. This setting will override the List-wide default</value>
+        </data>
+        
+        <!-- ERROR MESSAGES -->
+        
+        <data name="ViewFrameIsNotValid" xml:space="preserve">
+          <value>The specified View frame is not a valid ViewFrame object.</value>
+        </data>
+        <data name="ContentListDoesNotExist" xml:space="preserve">
+          <value>The ContentList does not exist.</value>
+        </data>
+        <data name="ContentDoesNotExist" xml:space="preserve">
+          <value>{0} does not exist (ContentListPortlet).</value>
+        </data>
+        <data name="ViewFramePathNotFound" xml:space="preserve">
+          <value>Path of View frame '{0}' is not found. Error message: {1}.</value>
+        </data>    
+        
+      </Language>      
+      <Language cultureName="hu">
+        
+        <!-- PORTLET INFO -->
+        
+        <data name="PortletTitle" xml:space="preserve">
+          <value>Lista</value>
+        </data>
+        <data name="PortletDescription" xml:space="preserve">
+          <value>Egy listákat megjelenítő Portlet (context bound)</value>
+        </data>
+        
+        <!-- PORTLET PROPERTIES -->
+        
+        <data name="ViewFrameDisplayName" xml:space="preserve">
+          <value>Megjelenítő keret</value>
+        </data>
+        <data name="ViewFrameDescription" xml:space="preserve">
+          <value>A Megjelenítő keret segítségével műveleteket végezhetünk a listán illetve betölti magát az alapértelmezett megjelenítőt is.</value>
+        </data>        
+        <data name="DefaultViewDisplayName" xml:space="preserve">
+          <value>Alapértelmezett megjelenítő</value>
+        </data>        
+        <data name="DefaultViewDescription" xml:space="preserve">
+          <value>Válasszon ki egy Alapértelmezett megjelenítőt. Ez felülírja a rendszerbeli beállítást.</value>
+        </data>
+        
+        <!-- ERROR MESSAGES -->
+        
+        <data name="ViewFrameIsNotValid" xml:space="preserve">
+          <value>A megadott Megjelenítő keret nem valós ViewFrame vezérlő. Kérjük, válasszon ki másikat!</value>
+        </data>
+        <data name="ContentListDoesNotExist" xml:space="preserve">
+          <value>A ContentList nem létezik.</value>
+        </data>
+        <data name="ContentDoesNotExist" xml:space="preserve">
+          <value>'{0}' nem található.</value>
+        </data>
+        <data name="PathNotFound" xml:space="preserve">
+          <value>A(z) '{0}' útvonal nem létezik.</value>
+        </data>
+        
+      </Language>
+    </Languages>
+  </ResourceClass>
+</Resources>

@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Resources>
+  <ResourceClass name="EventManager">
+    <Languages>
+      <Language cultureName="en">
+        <data name="PortletTitle" xml:space="preserve">
+          <value>Event manager</value>
+        </data>
+        <data name="PortletDescription" xml:space="preserve">
+          <value>Portlet for managing events. You can approve, reject and cancel subscriptions.</value>
+        </data>
+        <data name="CategoryTitle" xml:space="preserve">
+          <value>Event manager properties</value>
+        </data>
+        <data name="UserName" xml:space="preserve">
+          <value>Subscriber</value>
+        </data>
+        <data name="SubscriptionDate" xml:space="preserve">
+          <value>Subscription date</value>
+        </data>
+        <data name="Participants" xml:space="preserve">
+          <value>Participants</value>
+        </data>
+        <data name="Approving" xml:space="preserve">
+          <value>Approving</value>
+        </data>
+        <data name="Approved" xml:space="preserve">
+          <value>Approved</value>
+        </data>
+        <data name="Approve" xml:space="preserve">
+          <value>Approve</value>
+        </data>
+        <data name="Rejected" xml:space="preserve">
+          <value>Rejected</value>
+        </data>
+        <data name="Delete" xml:space="preserve">
+          <value>Delete</value>
+        </data>
+      </Language>
+      <Language cultureName="hu">
+        <data name="PortletTitle" xml:space="preserve">
+          <value>Eseménykezelő</value>
+        </data>
+        <data name="PortletDescription" xml:space="preserve">
+          <value>Események kezelésére szolgáló portlet. Lehetőség van eseményeket jóváhagyni, elutasítani és törölni.</value>
+        </data>
+        <data name="CategoryTitle" xml:space="preserve">
+          <value>Eseménykezelő beállítások</value>
+        </data>
+        <data name="UserName" xml:space="preserve">
+          <value>Jelentkező</value>
+        </data>
+        <data name="SubscriptionDate" xml:space="preserve">
+          <value>Jelentkezés dátuma</value>
+        </data>
+        <data name="Participants" xml:space="preserve">
+          <value>Résztvevők száma</value>
+        </data>
+        <data name="Approving" xml:space="preserve">
+          <value>Jóváhagyás</value>
+        </data>
+        <data name="Approved" xml:space="preserve">
+          <value>Jóváhagyva</value>
+        </data>
+        <data name="Approve" xml:space="preserve">
+          <value>Jováhagy</value>
+        </data>
+        <data name="Rejected" xml:space="preserve">
+          <value>Visszautasítva</value>
+        </data>
+        <data name="Delete" xml:space="preserve">
+          <value>Törlés</value>
+        </data>
+      </Language>
+    </Languages>
+  </ResourceClass>
+</Resources>

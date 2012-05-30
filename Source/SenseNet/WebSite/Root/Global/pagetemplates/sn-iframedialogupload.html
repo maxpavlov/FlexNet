@@ -1,0 +1,26 @@
+﻿<% String snLang = SenseNet.Portal.Virtualization.PortalContext.Current.Site.Language; %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="<%=snLang%>" xml:lang="<%=snLang%>">
+<head>
+    <title><% = (SenseNet.Portal.Virtualization.PortalContext.Current.Workspace != null) ? SenseNet.Portal.Virtualization.PortalContext.Current.Workspace.DisplayName : "Sense/Net" %></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="imagetoolbar" content="no" />
+  <sn:BaseTag ID="BaseTagControl1" runat="server" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+</head>
+
+<body class="sn-body" style="min-width:0; background:0;">
+<% String snLang = SenseNet.Portal.Virtualization.PortalContext.Current.Site.Language; %>
+  
+  <sn:CssRequest CSSPath="$skin/styles/jqueryui/jquery-ui.css" ID="pageTemplateUIStyleReq" runat="server" />
+  <sn:CssRequest CSSPath="$skin/styles/sn-layout.css" ID="snLayoutCss" runat="server" />
+  <sn:CssRequest CSSPath="$skin/styles/skin.css" ID="pageTemplateCssRequest1" runat="server" />
+    
+  <div class="sn-layout-full ui-helper-clearfix" style="margin-top:20px;">
+    <snpe:DialogFileUploadPortlet ID="portlet" runat="server" AllowedContentTypes="Image" />
+  </div>
+          
+<!-- prc -->
+<sn:ScriptRequest runat="server" Path="$skin/scripts/init.js" />
+</body>
+</html>

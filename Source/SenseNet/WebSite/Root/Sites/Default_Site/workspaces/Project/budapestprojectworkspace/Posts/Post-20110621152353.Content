@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Post</ContentType>
+  <ContentName>Post-20110621152353</ContentName>
+  <Fields>
+    <JournalId>0</JournalId>
+    <PostType>0</PostType>
+    <SharedContent>
+      <Path>/Root/Sites/Default_Site/workspaces/Project/budapestprojectworkspace/Blog/Posts/2011-06/Sample-blog-post</Path>
+    </SharedContent>
+    <DisplayName>Post-20110621152353</DisplayName>
+    <Description><![CDATA[I found this blog post and I wanted to share with you...]]></Description>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+        <CreatedBy>
+      <Path>/Root/IMS/BuiltIn/Portal/Admin</Path>
+    </CreatedBy>
+    <CreationDate>2011-06-21T15:23:53.93</CreationDate>
+    <ModifiedBy>
+      <Path>/Root/IMS/BuiltIn/Portal/Admin</Path>
+    </ModifiedBy>
+    <ModificationDate>2011-06-21T15:23:54</ModificationDate>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

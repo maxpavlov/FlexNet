@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="DiscussionForum" parentType="Folder" 
+			 handler="SenseNet.ContentRepository.Folder" 
+			 xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Discussion forum</DisplayName>
+  <Description>A forum area for discussions</Description>
+  <Icon>forum</Icon>
+  <AllowedChildTypes>
+    ForumTopic
+  </AllowedChildTypes>
+  <Fields>
+    <Field name="DisplayName" type="ShortText">
+      <DisplayName>Forum title</DisplayName>      
+    </Field>
+    <Field name="Description" type="LongText">
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+  </Fields>
+</ContentType>

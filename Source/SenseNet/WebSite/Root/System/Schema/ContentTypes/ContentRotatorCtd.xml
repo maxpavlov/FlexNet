@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="ContentRotator" parentType="SmartFolder" handler="SenseNet.ContentRepository.ContentRotator" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Content rotator</DisplayName>
+  <Description>Use content rotator to select single content from grouped contents.</Description>
+  <Icon>SmartFolder</Icon>
+  <Fields>
+    <Field name="SelectionMode" type="Choice">
+      <DisplayName>Selection Mode</DisplayName>
+      <Description>Choose selection mode that defines which node (content) should be selected</Description>
+      <Configuration>
+        <AllowMultiple>false</AllowMultiple>
+        <AllowExtraValue>false</AllowExtraValue>
+        <Options>
+          <Option selected="true">Random</Option>
+          <Option>First</Option>
+        </Options>
+      </Configuration>
+    </Field>
+    <Field name="OrderingMode" type="Choice">
+      <DisplayName>Ordering Mode</DisplayName>
+      <Description>Choose ordering mode that defines the order of nodes before selection</Description>
+      <Configuration>
+        <AllowMultiple>false</AllowMultiple>
+        <AllowExtraValue>false</AllowExtraValue>
+        <Options>
+          <Option selected="true">DefaultOrder</Option>
+          <Option>ValidityOrder</Option>
+        </Options>
+      </Configuration>
+    </Field>
+  </Fields>
+</ContentType>

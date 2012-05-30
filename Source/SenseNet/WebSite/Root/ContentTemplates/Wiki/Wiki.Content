@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Wiki</ContentType>
+  <ContentName>Wiki</ContentName>
+  <Fields>
+    <DisplayName>Wiki</DisplayName>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

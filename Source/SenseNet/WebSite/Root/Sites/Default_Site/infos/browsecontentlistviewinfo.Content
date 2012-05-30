@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>WebContentDemo</ContentType>
+  <ContentName>browsecontentlistviewinfo</ContentName>
+  <Fields>
+    <DisplayName>browsecontentlistviewinfo</DisplayName>
+    <Subtitle></Subtitle>
+    <RelatedImage />
+    <Header><![CDATA[]]></Header>
+    <Body><![CDATA[<h2 class="sn-content-title sn-article-title"><img class="sn-icon sn-icon_32" src="/Root/Global/images/icons/32/info.png" alt="" /><strong> Please note that the source of this view can be edited only if there is no markup template defined for the view. If a template is defined, the view will be generated using the template when you press the Done editing button.</strong></h2>]]></Body>
+    <Details><a href="" target="" title=""></a></Details>
+    <Language>English</Language>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

@@ -1,0 +1,159 @@
+﻿<ContentType name="ImgResizeApplication" parentType="Application" handler="SenseNet.Portal.ApplicationModel.ImgResizeApplication" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Image Resizing Application</DisplayName>
+  <Description>This application allows resizing and caching images dynamically.</Description>
+  <Icon>Application</Icon>
+  <Fields>
+    <Field name="ResizeTypeMode" type="Choice">
+      <DisplayName>Resize type</DisplayName>
+      <Description></Description>
+      <Configuration>
+        <AllowMultiple>false</AllowMultiple>
+        <Options>
+          <Option selected="true" value="Resize">Resize</Option>
+          <Option value="Crop">Crop</Option>
+        </Options>
+      </Configuration>
+    </Field>
+    <Field name="ImageType" type="Choice">
+      <DisplayName>Image type</DisplayName>
+      <Description>Type of how the image is being stored.</Description>
+      <Configuration>
+        <AllowMultiple>false</AllowMultiple>
+        <Options>
+          <Option value="Binary">Binary image</Option>
+          <Option value="Reference">Image Reference</Option>
+          <Option value="ImageData">Image Field</Option>
+          <Option value="Attachment">Attachment</Option>
+        </Options>
+      </Configuration>
+    </Field>
+    <Field name="ImageFieldName" type="ShortText">
+      <DisplayName>Image Field Name</DisplayName>
+      <Description>Name of the image field in a content.</Description>
+    </Field>
+    <Field name="Width" type="Integer">
+      <DisplayName>Width</DisplayName>
+      <Description>The width of an image.</Description>
+    </Field>
+    <Field name="Height" type="Integer">
+      <DisplayName>Height</DisplayName>
+      <Description>The height of an image.</Description>
+    </Field>
+    <Field name="Stretch" type="Boolean">
+      <DisplayName>Stretch</DisplayName>
+      <Description>Allow stretching or keep the original aspect ratio.</Description>
+      <Configuration>
+        <Visible>true</Visible>
+        <DefaultValue>false</DefaultValue>
+      </Configuration>
+    </Field>
+    <Field name="OutputFormat" type="Choice">
+      <DisplayName>Output format</DisplayName>
+      <Description>Choose the output format of the resized image. Set to 'AUTO' to keep the original format.</Description>
+      <Configuration>
+        <AllowMultiple>False</AllowMultiple>
+        <VisibleNew>Advanced</VisibleNew>
+        <VisibleEdit>Advanced</VisibleEdit>        
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <Options>
+          <Option selected="true">Auto</Option>
+          <Option>Jpeg</Option>
+          <Option>Png</Option>
+          <Option>Gif</Option>
+          <Option>Icon</Option>
+          <Option>Tiff</Option>
+        </Options>
+      </Configuration>
+    </Field>
+    <Field name="SmoothingMode" type="Choice">
+      <DisplayName>Smoothing mode</DisplayName>
+      <Description>Specifies whether smoothing (antialiasing) is applied to lines and curves and the edges of filled areas.</Description>
+      <Configuration>
+        <AllowMultiple>False</AllowMultiple>
+        <VisibleNew>Advanced</VisibleNew>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <Options>
+          <Option selected="true">AntiAlias</Option>
+          <Option>Default</Option>
+          <Option>HighQuality</Option>
+          <Option>HighSpeed</Option>
+          <Option>Invalid</Option>
+          <Option>None</Option>
+        </Options>
+      </Configuration>
+    </Field>
+    <Field name="InterpolationMode" type="Choice">
+      <DisplayName>Interpolation mode</DisplayName>
+      <Description>Specifies the algorithm that is used when images are scaled or rotated.</Description>
+      <Configuration>
+        <AllowMultiple>False</AllowMultiple>
+        <VisibleNew>Advanced</VisibleNew>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <Options>
+          <Option>Invalid</Option>
+          <Option>Default</Option>
+          <Option>Low</Option>
+          <Option>High</Option>
+          <Option>Bilinear</Option>
+          <Option>Bicubic</Option>
+          <Option>NearestNeighbor</Option>
+          <Option>HighQualityBilinear</Option>
+          <Option selected="true">HighQualityBicubic</Option>
+        </Options>
+      </Configuration>
+    </Field>
+    <Field name="PixelOffsetMode" type="Choice">
+      <DisplayName>Pixel offset mode</DisplayName>
+      <Description>Specifies how pixels are offset during rendering.</Description>
+      <Configuration>
+        <AllowMultiple>False</AllowMultiple>
+        <VisibleNew>Advanced</VisibleNew>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <Options>
+          <Option>Invalid</Option>
+          <Option>Default</Option>
+          <Option>HighSpeed</Option>
+          <Option selected="true">HighQuality</Option>
+          <Option>None</Option>
+          <Option>Half</Option>
+        </Options>
+      </Configuration>
+    </Field>
+    
+    <Field name="CropHAlign" type="Choice">
+      <DisplayName>Crop horizontal align</DisplayName>
+      <Description></Description>
+      <Configuration>
+        <AllowMultiple>False</AllowMultiple>
+        <AllowExtraValue>true</AllowExtraValue>
+        <VisibleNew>Advanced</VisibleNew>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <Options>
+          <Option selected="true" value="Left">Left</Option>
+          <Option value="Center">Center</Option>
+          <Option value="Right">Right</Option>
+        </Options>
+      </Configuration>
+    </Field>
+    <Field name="CropVAlign" type="Choice">
+      <DisplayName>Crop vertical align</DisplayName>
+      <Description></Description>
+      <Configuration>
+        <AllowMultiple>False</AllowMultiple>
+        <AllowExtraValue>true</AllowExtraValue>
+        <VisibleNew>Advanced</VisibleNew>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <Options>
+          <Option selected="true" value="Top">Top</Option>
+          <Option value="Center">Center</Option>
+          <Option value="Bottom">Bottom</Option>
+        </Options>
+      </Configuration>
+    </Field>
+  </Fields>
+</ContentType>

@@ -1,0 +1,50 @@
+<div class="sn-likelist">
+    <div class="sn-likelist-items">
+    </div>
+    <div class="sn-likelist-buttoncontainer">
+        <div class="sn-likelist-buttondiv">
+            <input type="button" class="sn-submit sn-button sn-notdisabled" value="Close" onclick="SN.Wall.closeLikeList();return false;" />
+        </div>
+    </div>
+</div>
+
+<div class="sn-postdiv">
+    <input class="sn-postid" type="hidden" value="{{postid}}" />
+    <div class="sn-postdiv-avatardiv">
+		<img src={{shareicon}} class="sn-postdiv-avatar"/>
+    </div>
+    <div class="sn-postdiv-textdiv">
+		<strong>{{sharedisplayname}}</strong>&nbsp;({{sharecontenttype}})
+		<div class="sn-wrap"><small>{{sharepath}}</small></div>
+        <div class="sn-likecontrols" style="display:{{interactdisplay}};">
+            <a class='sn-like' href='javascript:' onclick="SN.Wall.like($(this));" style="display:{{ilikedisplay}}">Like</a><a class='sn-unlike' href='javascript:' onclick="SN.Wall.unlike($(this));" style="display:{{iunlikedisplay}};">Unlike</a> - <a href='javascript:' class='sn-comment' onclick="SN.Wall.comment($(this));">Comment</a> - <a href='javascript:' class='sn-share' onclick="SN.Wall.openShareDialog('{{postid}}');">Share</a>
+        </div>
+        <div class="sn-commentsection">
+            <div class='sn-likebox sn-commentsectiondiv' style="display:{{likeboxdisplay}};">
+                <span class='sn-likelabel'>{{likes}}</span>
+            </div>
+            <div class="sn-commentsectiondiv" style="display:{{hiddencommentboxdisplay}};">
+                <a href='javascript:' onclick="SN.Wall.viewAllComments($(this));">View all {{commentcount}} comments</a>
+            </div>
+            <div class="sn-hiddencomments">
+                {{hiddencomments}}
+            </div>
+            <div class="sn-comments">
+                {{comments}}
+            </div>
+            <div class='sn-commentboxdiv sn-unfocused-commentbox' style="display:{{interactdisplay}};">
+                <input type="text" class="sn-commentbox sn-unfocused-postbox" onkeydown="if (SN.Wall.createComment(event, $(this))) return false;" onfocus="SN.Wall.onfocusCommentBox($(this));" onblur="SN.Wall.onblurCommentBox($(this));" value="Write something..." />
+                <div class="sn-wall-clear">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sn-wall-clear">
+    </div>
+</div>
+
+<div class="sn-wall-relatedposts">related posts</div>
+<input type="hidden" class="sn-posts-workspace-path" value='{{workspacepath}}' />
+<div id="sn-posts" class="sn-wallposts">
+    {{posts}}
+</div>

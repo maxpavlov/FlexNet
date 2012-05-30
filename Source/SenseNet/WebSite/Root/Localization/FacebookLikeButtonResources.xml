@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Resources>
+  <ResourceClass name="FacebookLikeButton">
+    <Languages>
+      <Language cultureName="en">
+
+        <data name="PortletTitle" xml:space="preserve">
+          <value>Facebook like</value>
+        </data>
+        <data name="PortletDescription" xml:space="preserve">
+          <value>You can create a Facebook like button on current context</value>
+        </data>
+        <data name="CategoryTitle" xml:space="preserve">
+          <value>Facebook Like Button properties</value>
+        </data>
+        <data name="LayoutStyleTitle" xml:space="preserve">
+          <value>Layout style</value>
+        </data>
+        <data name="LayoutStyleDescription" xml:space="preserve">
+          <value>You can choose between two standard layouts. 
+          Default value is the 'standard' layout.</value>
+        </data>
+        <data name="ShowFacesTitle" xml:space="preserve">
+          <value>Show faces?</value>
+        </data>
+        <data name="ShowFacesDescription" xml:space="preserve">
+          <value>You can specifies whether to display profile photos below the button.
+          It works only standard layout!</value>
+        </data>
+        <data name="ButtonWidthTitle" xml:space="preserve">
+          <value>Width</value>
+        </data>
+        <data name="ButtonWidthDescription" xml:space="preserve">
+          <value>The width of the Like button</value>
+        </data>
+        <data name="ActionTitle" xml:space="preserve">
+          <value>Like button text</value>
+        </data>
+        <data name="ActionDescription" xml:space="preserve">
+          <value>The verb to display on the button. Two possible options are 'like' and 'recommend'.
+          Default value is 'like'.
+          </value>
+        </data>
+        <data name="ButtonFontTitle" xml:space="preserve">
+          <value>Like button font</value>
+        </data>
+        <data name="ButtonFontDescription" xml:space="preserve">
+          <value>You can choose which font to display in the button.</value>
+        </data>
+        <data name="ColorSchemaTitle" xml:space="preserve">
+          <value>Color schema</value>
+        </data>
+        <data name="ColorSchemaDescription" xml:space="preserve">
+          <value>You can choose between two available color schemas: light and dark.
+          Default value is 'light'</value>
+        </data>
+
+        <data name="LayoutStyleEnum_Standard" xml:space="preserve">
+          <value>Standard</value>
+        </data>
+        <data name="LayoutStyleEnum_ButtonCount" xml:space="preserve">
+          <value>Button and count</value>
+        </data>
+        <data name="ActionEnum_Like" xml:space="preserve">
+          <value>Like</value>
+        </data>
+        <data name="ActionEnum_Recommend" xml:space="preserve">
+          <value>Recommend</value>
+        </data>
+        <data name="ColorSchemaEnum_Light" xml:space="preserve">
+          <value>Light</value>
+        </data>
+        <data name="ColorSchemaEnum_Dark" xml:space="preserve">
+          <value>Dark</value>
+        </data>
+        <data name="Error_HtmlFragment" xml:space="preserve">
+          <value>Internal portlet error. Please contact your system administrator</value>
+        </data>
+        <data name="Error_ReplaceParams" xml:space="preserve">
+          <value>Internal portlet error. Please contact your system administrator</value>
+        </data>
+      </Language>
+      <Language cultureName="hu">
+        <data name="LayoutStyleTitle" xml:space="preserve">
+          <value>Elrendezés</value>
+        </data>
+        <data name="LayoutStyleDescription" xml:space="preserve">
+          <value>Választhatsz a két alap elrendezés közül. Alapértelmezett érték 'standard'.</value>
+        </data>
+      </Language>
+    </Languages>
+  </ResourceClass>
+</Resources>

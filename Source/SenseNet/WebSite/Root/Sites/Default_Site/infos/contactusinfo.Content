@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>WebContentDemo</ContentType>
+  <ContentName>contactusinfo</ContentName>
+  <Fields>
+    <DisplayName></DisplayName>
+    <Subtitle></Subtitle>
+    <RelatedImage />
+    <Header><![CDATA[]]></Header>
+    <Body>
+      <![CDATA[<div class="sn-infobox"><h1 class="sn-content-title sn-article-title"><img src="/Root/Global/images/icons/32/info.png" class="sn-icon sn-icon_32" alt="" />Static page</h1>
+      <p>This is a unique portlet page to demonstrate the possibility of adding an entirely custom page to a managed, application-based content setup like the news section.</p>
+      <p>This page has a <em>Breadcrumb trail</em> (Navigation) and a <em>Content viewer</em> (Contact us) portlet.</p>
+      <p>To create your own, you need to do the following:</p>
+      <ol>
+      <li>On the <a href="/NewsDemo">News demo site</a> click on <strong>Add new menu item</strong> and select <strong>Portlet Page</strong>.</li>
+      <li>Fill out the <strong>URL Name</strong> and <strong>Name</strong> fields and select a <strong>Page Template</strong> (<em>Internet_Page_Blank.html</em> will do nicely).</li>
+      <li>Click <strong>Done editing</strong></li>
+      <li>Click on the newly created page link, and the empty page will show instantly</li>
+      <li>Click on the <strong>Portal Remote Control</strong> icon to open the list of page actions.</li>
+      <li>Click <em>Edit mode</em> to switch the page into edit mode, where you can add and configure portlets.</li>
+      <li>Click <em>Preview mode</em> to view your edited page in browse view.</li>
+      </ol>
+      <ul>
+      <li><strong>You need to be logged in as Administrator to use this feature.</strong></li>
+      <li>The content displayed on this page can be accessed under <a href="/Explore.html#/Root/Sites/Default_Site/NewsDemo/ContactUs/canwehelpyou">/Root/Sites/Default_Site/NewsDemo/ContactUs/canwehelpyou</a></li>
+      <li>This is a custom portlet page located at <em><a href="/Explore.html#/Root/Sites/Default_Site/NewsDemo/ContactUs">/Root/Sites/Default_Site/NewsDemo/ContactUs</a></em></li>
+      </ul>
+      </div>
+       ]]></Body>
+    <Details><a href="" target="" title=""></a></Details>
+    <Language>English</Language>
+    <Keywords><![CDATA[]]></Keywords>
+    <Author></Author>
+    <ReviewDate>0001-01-01T00:00:00</ReviewDate>
+    <ArchiveDate>0001-01-01T00:00:00</ArchiveDate>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <Description><![CDATA[]]></Description>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+        <VersioningMode>1</VersioningMode>
+    <InheritableVersioningMode>1</InheritableVersioningMode>
+    <ApprovingMode>1</ApprovingMode>
+    <InheritableApprovingMode>1</InheritableApprovingMode>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate>0.00|0|0|0|0|0</Rate>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

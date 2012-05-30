@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>ArticleSection</ContentType>
+  <ContentName>first-menu-section</ContentName>
+  <Fields>
+    <DisplayName>First menu section</DisplayName>
+    <AllowedChildTypes>Article ArticleSection WebContentDemo</AllowedChildTypes>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

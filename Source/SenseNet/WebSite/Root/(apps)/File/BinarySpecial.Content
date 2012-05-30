@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Page</ContentType>
+  <ContentName>BinarySpecial</ContentName>
+  <Fields>
+    <PageTemplateNode>
+      <Path>/Root/Global/pagetemplates/sn-layout-dialog.html</Path>
+    </PageTemplateNode>
+    <Binary attachment="BinarySpecial.aspx" />
+    <PersonalizationSettings attachment="BinarySpecial.PersonalizationSettings" />
+    <DisplayName>Edit source</DisplayName>
+    <Scenario>ListItem;ExploreToolbar</Scenario>
+    <Icon>editbinary</Icon>
+    <ActionTypeName>BinarySpecialAction</ActionTypeName>
+  </Fields>
+  <Permissions>
+    <Clear />
+    <Identity path="/Root/IMS/BuiltIn/Portal/IdentifiedUsers">
+      <See>Allow</See>
+      <Open>Allow</Open>
+      <RunApplication>Allow</RunApplication>
+    </Identity>
+  </Permissions>
+</ContentMetaData>

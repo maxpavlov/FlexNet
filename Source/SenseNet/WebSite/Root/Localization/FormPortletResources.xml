@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<Resources>
+	<ResourceClass name="FormPortlet">
+		<Languages>
+			<Language cultureName="en">
+				<data name="ExportToCsv" xml:space="preserve">
+				  <value>Export to .csv</value>
+				</data>
+			  <data name="DateFrom" xml:space="preserve">
+				  <value>From</value>
+				</data>
+			  <data name="DateTo" xml:space="preserve">
+				  <value>To</value>
+				</data>
+			  <data name="LastExport" xml:space="preserve">
+				  <value>Last export: </value>
+				</data>
+			  <data name="IncorrectDateFormat" xml:space="preserve">
+				  <value>Incorrect date format in .csv export.</value>
+				</data>
+			</Language>
+			<Language cultureName="hu">
+				<data name="ExportToCsv" xml:space="preserve">
+				  <value>Exportálás (.csv)</value>
+				</data>
+			  <data name="DateFrom" xml:space="preserve">
+				  <value>Dátumtól</value>
+				</data>
+			  <data name="DateTo" xml:space="preserve">
+				  <value>Dátumig</value>
+				</data>
+			  <data name="LastExport" xml:space="preserve">
+				  <value>Utolsó export: </value>
+				</data>
+			  <data name="IncorrectDateFormat" xml:space="preserve">
+				  <value>Helytelen dátum formázás az exportnál.</value>
+				</data>
+			</Language>
+		</Languages>
+	</ResourceClass>
+</Resources>

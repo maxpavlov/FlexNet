@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Sense/Net Layout 10</title>
+    <meta http-equiv="imagetoolbar" content="no" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<sn:BaseTag ID="BaseTagControl1" runat="server" />
+</head>
+
+<body class="sn-body sn-layout10">
+<sn:CssRequest ID="ref1" CSSPath="$skin/styles/jqueryui/jquery-ui.css" Rel="stylesheet" Media="all" Order="10" runat="server" />
+<sn:CssRequest ID="ref2" CSSPath="$skin/styles/sn-layout.css" Rel="stylesheet" Media="all" Order="20" runat="server" />
+<sn:CssRequest ID="ref3" CSSPath="$skin/styles/skin.css" Rel="stylesheet" Media="all" Order="30" runat="server" />
+<div class="sn-layout-container ui-helper-clearfix">
+    <div class="sn-layout-head">
+		<snpe-zone name="header" HeaderText="Header"></snpe-zone>
+    </div>
+    <div class="sn-columns ui-helper-clearfix">
+        <div class="sn-column sn-column2">
+        	<snpe-zone name="rightcol" HeaderText="Right Column"></snpe-zone>
+        </div>
+        <div class="sn-column sn-column1 ui-helper-clearfix">
+			<div class="sn-layout-head">
+				<snpe-zone name="leftcol_head" HeaderText="Left Column / Head"></snpe-zone>
+			</div>
+			<div class="sn-columns ui-helper-clearfix">
+				<div class="sn-column sn-column1">
+					<snpe-zone name="leftcol_col1" HeaderText="Left Column / Column1"></snpe-zone>
+				</div>
+				<div class="sn-column sn-column2">
+					<snpe-zone name="leftcol_col2" HeaderText="Left Column / Column2"></snpe-zone>
+				</div>
+				<div class="sn-column sn-column3">
+					<snpe-zone name="leftcol_col3" HeaderText="Left Column / Column3"></snpe-zone>
+				</div>
+			</div>
+			<div class="sn-layout-foot">
+				<snpe-zone name="leftcol_foot" HeaderText="Left Column / Foot"></snpe-zone>
+			</div>
+		</div>
+    </div>
+    <div class="sn-layout-foot ui-helper-clearfix">
+		<snpe-zone name="footer" HeaderText="Footer"></snpe-zone>
+    </div>
+</div>
+<!-- prc -->
+<sn:PortalRemoteControl ID="RemoteControl" runat="server" />
+<sn:ScriptRequest runat="server" Path="$skin/scripts/init.js" />
+</body>
+</html>

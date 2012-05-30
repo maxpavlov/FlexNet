@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Resources>
+	<ResourceClass name="PagerControl">
+		<Languages>
+			<Language cultureName="en">
+				<data name="FirstPage" xml:space="preserve">
+				  <value>First</value>
+				</data>
+        <data name="BackMorePages" xml:space="preserve">
+				  <value>&lt;&lt;&lt;</value>
+				</data>
+        <data name="BackPage" xml:space="preserve">
+				  <value>&lt; Back</value>
+				</data>
+        <data name="ForwardPage" xml:space="preserve">
+				  <value>Forward &gt;</value>
+				</data>
+        <data name="ForwardMorePages" xml:space="preserve">
+				  <value>&gt;&gt;&gt;</value>
+				</data>
+        <data name="LastPage" xml:space="preserve">
+				  <value>Last</value>
+				</data>
+      </Language>
+			<Language cultureName="hu">
+        <data name="FirstPage" xml:space="preserve">
+				  <value>Első</value>
+				</data>
+        <data name="BackMorePages" xml:space="preserve">
+				  <value>&lt;&lt;&lt;</value>
+				</data>
+        <data name="BackPage" xml:space="preserve">
+				  <value>&lt; Előző</value>
+				</data>
+        <data name="ForwardPage" xml:space="preserve">
+				  <value>Következő &gt;</value>
+				</data>
+        <data name="ForwardMorePages" xml:space="preserve">
+				  <value>&gt;&gt;&gt;</value>
+				</data>
+        <data name="LastPage" xml:space="preserve">
+				  <value>Utolsó</value>
+				</data>
+      </Language>
+		</Languages>
+	</ResourceClass>
+</Resources>

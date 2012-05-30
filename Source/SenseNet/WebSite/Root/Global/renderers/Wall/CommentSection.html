@@ -1,0 +1,24 @@
+<div class="sn-commentsection">
+	<div class='sn-likebox sn-commentsectiondiv' style="display:{{likeboxdisplay}};">
+		<span class='sn-likelabel'>{{likes}}</span>
+	</div>
+	<div class="sn-commentsectiondiv" style="display:{{hiddencommentboxdisplay}};">
+		<a href='javascript:' onclick="SN.Wall.viewAllComments($(this));">View all {{commentcount}} comments</a>
+	</div>
+	<div class="sn-hiddencomments">
+		{{hiddencomments}}
+	</div>
+	<div class="sn-comments">
+		{{comments}}
+	</div>
+	<div class='sn-commentboxdiv sn-unfocused-commentbox' style="display:{{commentboxdisplay}};">
+		<!-- div class='sn-commentbox-avatardiv'>
+			<a href="{{currentuserlink}}">
+				<img src="{{currentuseravatar}}" class="sn-commentbox-avatar" />
+			</a>
+		</div -->
+		<input type="text" class="sn-commentbox sn-unfocused-postbox" onkeydown="if (SN.Wall.createComment(event, $(this))) return false;" onfocus="SN.Wall.onfocusCommentBox($(this));" onblur="SN.Wall.onblurCommentBox($(this));" value="Write something..." />
+		<div class="sn-wall-clear">
+		</div>
+	</div>
+</div>

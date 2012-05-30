@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>HTMLContent</ContentType>
+  <ContentName>Social</ContentName>
+  <Fields>
+    <HTMLFragment><![CDATA[<div style="text-align:center"><a href="http://www.facebook.com/sensenetcms" target="_blank"><img src="/Root/YourContents/Images/social_fb.gif" title="Like Us on Facebook" alt="Like Us on Facebook" /></a><a href="http://www.twitter.com/sensenet" target="_blank"><img style="margin-left: 3px" src="/Root/YourContents/Images/social_twitter.gif" title="Follow Us on Twitter" alt="Follow Us on Twitter" /></a></div>
+]]></HTMLFragment>
+    <ReviewDate>0001-01-01T00:00:00</ReviewDate>
+    <ArchiveDate>0001-01-01T00:00:00</ArchiveDate>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <DisplayName>Social</DisplayName>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate>0|0|0|0|0|0</Rate>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

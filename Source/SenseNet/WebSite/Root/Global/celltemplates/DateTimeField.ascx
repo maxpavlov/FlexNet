@@ -1,0 +1,1 @@
+<%# ((Container.DataItem as SNCR.Content).Fields["@@fieldName@@"].FieldSetting as SNCR.Fields.DateTimeFieldSetting).DateTimeMode == SNCR.Fields.DateTimeMode.Date ? ((DateTime)Eval("@@bindingName@@")).ToShortDateString() : Eval("@@bindingName@@") %>

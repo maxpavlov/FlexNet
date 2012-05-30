@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Page</ContentType>
+  <ContentName>contentcollection-customization</ContentName>
+  <Fields>
+    <DisplayName>Content collection customization</DisplayName>
+    <PageTemplateNode>
+      <Path>/Root/Global/pagetemplates/sn-layout-inter.html</Path>
+    </PageTemplateNode>
+    <Hidden>false</Hidden>
+    <Index>40</Index>
+    <SmartUrl></SmartUrl>
+    <IsExternal>false</IsExternal>
+    <Binary attachment="contentcollection-customization.aspx" />
+    <PersonalizationSettings attachment="contentcollection-customization.PersonalizationSettings" />
+    <IsModal>false</IsModal>
+    <Disabled>false</Disabled>
+    <Clear>false</Clear>
+    <RequiredPermissions></RequiredPermissions>
+    <DeepPermissionCheck>false</DeepPermissionCheck>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate></Rate>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

@@ -1,0 +1,88 @@
+/*********** Rating ***********/
+div.sn-rating { height: 25px; }
+
+div.rating-cancel, div.star-rating {
+	background: transparent;
+	height: 17px;
+	width: 19px;
+	display: block;
+	float: left;
+	overflow: hidden;
+	cursor: pointer;
+	text-indent: -999em;
+}
+
+div.rating-cancel { margin-top: 1px; }
+
+div.star-rating, div.star-rating a { background: url(../images/rating_star.png) no-repeat 0 0px; }
+
+div.rating-cancel a, div.star-rating a {
+	background-position: 0 0px;
+	height: 100%;
+	width: 19px;
+	display: block;
+	border: 0;
+}
+
+div.star-rating-on a { background-position:0 -17px !important; }
+
+div.star-rating-hover a { background-position:0 -34px; }
+
+/* Read Only CSS */
+div.star-rating-readonly a { cursor:default !important }
+/* Partial Star CSS */
+div.star-rating { background:transparent!important;overflow:hidden!important }
+
+/*********** Rating Search ***********/
+div#sn-rating-search { margin: 0 0 10px 0; }
+
+div#sn-rating-search div.sn-rating-search-row {
+    margin: 0 15px 0 0;
+    float: left;
+}
+
+div#sn-rating-search div.sn-rating-search-row input[type=text] {
+    padding: 3px;
+    width: 50px;
+}
+
+/*********** Rating Hover EM - All Votes Diagram ***********/
+div.RatingHoverPanel { display: none; }
+
+div.RatingHoverPanel .rating-tooltip-bg { background: #f1f1f1; }
+
+div.RatingHoverPanel .rating-scale {
+	background: white;
+	width: 125px;
+}
+
+div.RatingHoverPanel .rating-scale-fill {
+	background: url(../images/bg_rating_hover_cell.png) no-repeat;
+	height: 100%;
+	text-indent: -9999px;
+	float: left;
+}
+
+div.RatingHoverPanel div.rating-popup {
+	padding: 0;
+	position: absolute;
+}
+
+div.RatingHoverPanel div.rating-inside {
+	background: #f1f1f1;
+	position: relative;
+	/*top: -250px;
+	left: 50px;*/
+	width: 220px;
+	z-index: 2000;
+
+	/* box shadow */
+	-webkit-box-shadow: 0 0 13px #999999;
+	-moz-box-shadow: 0 0 13px #999999;
+	box-shadow: 0 0 13px #999999;
+
+	/* box border radius */
+	-webkit-border-radius: 17px;
+	-moz-border-radius: 17px;
+	border-radius: 17px;
+}

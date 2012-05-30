@@ -1,0 +1,12 @@
+<div class="sn-postdiv sn-smallpost ui-helper-clearfix">
+    <input class="sn-postid" type="hidden" value="{{postid}}" />
+    <div>
+        <div class="sn-postdiv-textdiv">
+            <img src="{{smallposticon}}" class="sn-wall-smallicon" /><strong><a href="{{userlink}}">{{username}}</a></strong>&nbsp;{{text}} - <span title='{{date}}' style="color: Gray;">{{friendlydate}}</span><span style="display:{{detailsdisplay}}"> - <a href='javascript:' onclick="SN.Wall.smallPostDetails($(this));">Details</a></span><span style="display:{{interactdisplay}};"> - <a class='sn-like' href='javascript:' onclick="SN.Wall.like($(this));" style="display:{{ilikedisplay}}">Like</a><a class='sn-unlike' href='javascript:' onclick="SN.Wall.unlike($(this));" style="display:{{iunlikedisplay}};">Unlike</a> - <a href='javascript:' class='sn-comment' onclick="SN.Wall.comment($(this));">Comment</a></span>
+            <div class="sn-postdiv-details sn-commentsectiondiv" style="display:none;">
+                {{detailssection}}
+            </div>
+            {{commentsection}}
+        </div>
+    </div>
+</div>

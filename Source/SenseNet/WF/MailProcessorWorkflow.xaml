@@ -1,0 +1,193 @@
+﻿<Activity mc:Ignorable="sap" x:Class="SenseNet.Workflow.Definitions.MailProcessor" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mewd="clr-namespace:Microsoft.Exchange.WebServices.Data;assembly=Microsoft.Exchange.WebServices" xmlns:mv="clr-namespace:Microsoft.VisualBasic;assembly=System" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:s1="clr-namespace:System;assembly=System" xmlns:s2="clr-namespace:System;assembly=System.Xml" xmlns:s3="clr-namespace:System;assembly=System.Core" xmlns:s4="clr-namespace:System;assembly=System.ServiceModel" xmlns:sa="clr-namespace:System.Activities;assembly=System.Activities" xmlns:sad="clr-namespace:System.Activities.Debugger;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sc="clr-namespace:SenseNet.ContentRepository;assembly=SenseNet.ContentRepository" xmlns:sc1="clr-namespace:SenseNet.ContentRepository;assembly=SenseNet.Storage" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System" xmlns:scg1="clr-namespace:System.Collections.Generic;assembly=System.ServiceModel" xmlns:scg2="clr-namespace:System.Collections.Generic;assembly=System.Core" xmlns:scg3="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:scs="clr-namespace:SenseNet.ContentRepository.Storage;assembly=SenseNet.Storage" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:sl="clr-namespace:System.Linq;assembly=System.Core" xmlns:sph="clr-namespace:SenseNet.Portal.Helpers;assembly=SenseNet.Portal" xmlns:ssi="clr-namespace:SenseNet.Search.Indexing;assembly=SenseNet.Portal" xmlns:ssi1="clr-namespace:SenseNet.Search.Indexing;assembly=SenseNet.ContentRepository" xmlns:st="clr-namespace:System.Text;assembly=mscorlib" xmlns:sw="clr-namespace:SenseNet.Workflow;assembly=SenseNet.Workflow" xmlns:swa="clr-namespace:SenseNet.Workflow.Activities;assembly=SenseNet.Workflow" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="StateContent" Type="InArgument(sw:WfContent)" />
+  </x:Members>
+  <sap:VirtualizedContainerService.HintSize>654,676</sap:VirtualizedContainerService.HintSize>
+  <mva:VisualBasic.Settings>Assembly references and imported namespaces for internal implementation</mva:VisualBasic.Settings>
+  <Flowchart sad:XamlDebuggerXmlReader.FileName="C:\Development\SenseNet\Development\Budapest\Source\SenseNet\WF\MailProcessorWorkflow.xaml" sap:VirtualizedContainerService.HintSize="614,636">
+    <Flowchart.Variables>
+      <Variable x:TypeArguments="x:String" Default="[StateContent.Reference(&quot;RelatedContent&quot;).Path]" Name="RelatedContentPath" />
+      <Variable x:TypeArguments="x:Boolean" Default="[CType(StateContent.Reference(&quot;RelatedContent&quot;)(&quot;OverwriteFiles&quot;), Boolean)]" Name="OverwriteFiles" />
+      <Variable x:TypeArguments="x:Boolean" Default="[CType(StateContent.Reference(&quot;RelatedContent&quot;)(&quot;SaveOriginalEmail&quot;), Boolean)]" Name="SaveOriginalEmail" />
+      <Variable x:TypeArguments="x:String" Default="[CType(StateContent.Reference(&quot;RelatedContent&quot;)(&quot;GroupAttachments&quot;), String)]" Name="GroupAttachments" />
+    </Flowchart.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+        <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
+        <av:Size x:Key="ShapeSize">60,75</av:Size>
+        <av:PointCollection x:Key="ConnectorLocation">300,77.5 300,107.5 300,244.5</av:PointCollection>
+      </scg3:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Flowchart.StartNode>
+      <FlowStep x:Name="__ReferenceID0">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">200,244.5</av:Point>
+            <av:Size x:Key="ShapeSize">200,51</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">300,295.5 300,325.5 300,379</av:PointCollection>
+          </scg3:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <Sequence DisplayName="MainFlow" sap:VirtualizedContainerService.HintSize="309,392">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="mewd:EmailMessage[]" Name="Messages" />
+          </Sequence.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg3:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <swa:ExchangePoller ContentListPath="[RelatedContentPath]" sap:VirtualizedContainerService.HintSize="287,22" PushNotification="False" Result="[Messages]" />
+          <ForEach x:TypeArguments="mewd:EmailMessage" DisplayName="ForEach&lt;EmailMessage&gt;" sap:VirtualizedContainerService.HintSize="287,206" Values="[Messages]">
+            <ActivityAction x:TypeArguments="mewd:EmailMessage">
+              <ActivityAction.Argument>
+                <DelegateInArgument x:TypeArguments="mewd:EmailMessage" Name="Message" />
+              </ActivityAction.Argument>
+              <Sequence DisplayName="MessageFlow" sap:VirtualizedContainerService.HintSize="257,100">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="sw:WfContent" Name="EmailContent" />
+                  <Variable x:TypeArguments="x:String" Name="FolderName" />
+                </Sequence.Variables>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg3:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Switch x:TypeArguments="x:String" Expression="[GroupAttachments]" sap:VirtualizedContainerService.HintSize="589,308">
+                  <Sequence x:Key="email" sap:VirtualizedContainerService.HintSize="456,100">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg3:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <swa:CreateContent Name="{x:Null}" ContentDisplayName="[Message.Subject]" ContentTypeName="[&quot;Email&quot;]" FieldValues="[New Dictionary(Of String, Object) From {{&quot;From&quot;, Message.Sender.Name + &quot; &lt;&quot; + Message.Sender.Address + &quot;&gt;&quot;}, {&quot;Body&quot;, Message.Body.Text}, {&quot;Sent&quot;, Message.DateTimeCreated}}]" sap:VirtualizedContainerService.HintSize="357,191" ParentPath="[RelatedContentPath]" Result="[EmailContent]" />
+                    <ForEach x:TypeArguments="mewd:Attachment" DisplayName="ForEach&lt;Attachment&gt;" sap:VirtualizedContainerService.HintSize="357,206" Values="[Message.Attachments]">
+                      <ActivityAction x:TypeArguments="mewd:Attachment">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="mewd:Attachment" Name="attach" />
+                        </ActivityAction.Argument>
+                        <swa:ExchangeCreateAttachment Attachment="[attach]" sap:VirtualizedContainerService.HintSize="257,100" OverwriteExistingContent="[OverwriteFiles]" ParentPath="[EmailContent.Path]" />
+                      </ActivityAction>
+                    </ForEach>
+                  </Sequence>
+                  <ForEach x:TypeArguments="mewd:Attachment" x:Key="root" DisplayName="ForEach&lt;Attachment&gt;" sap:VirtualizedContainerService.HintSize="629,206" Values="[Message.Attachments]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg3:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ActivityAction x:TypeArguments="mewd:Attachment">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="mewd:Attachment" Name="attach" />
+                      </ActivityAction.Argument>
+                      <swa:ExchangeCreateAttachment Attachment="[attach]" sap:VirtualizedContainerService.HintSize="257,100" OverwriteExistingContent="[OverwriteFiles]" ParentPath="[RelatedContentPath]" />
+                    </ActivityAction>
+                  </ForEach>
+                  <If x:Key="subject" Condition="[(Message.Attachments.Count &gt; 0) Or (SaveOriginalEmail)]" sap:VirtualizedContainerService.HintSize="456,100">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg3:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If.Then>
+                      <Sequence sap:VirtualizedContainerService.HintSize="504,791">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg3:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <swa:GetNameFromDisplayName ContentOriginalName="{x:Null}" ContentDisplayName="[Message.Subject]" DisplayName="Get container name" sap:VirtualizedContainerService.HintSize="482,22" Result="[FolderName]" />
+                        <swa:LoadContent DisplayName="Load container" sap:VirtualizedContainerService.HintSize="482,22" Path="[RelatedContentPath + &quot;/&quot; + FolderName]" Result="[EmailContent]" />
+                        <If Condition="[EmailContent.Id = 0]" sap:VirtualizedContainerService.HintSize="482,297">
+                          <If.Then>
+                            <swa:CreateContent FieldValues="{x:Null}" Name="{x:Null}" ContentDisplayName="[Message.Subject]" ContentTypeName="[&quot;Folder&quot;]" sap:VirtualizedContainerService.HintSize="357,191" ParentPath="[RelatedContentPath]" Result="[EmailContent]" />
+                          </If.Then>
+                        </If>
+                        <ForEach x:TypeArguments="mewd:Attachment" DisplayName="ForEach&lt;Attachment&gt;" sap:VirtualizedContainerService.HintSize="482,206" Values="[Message.Attachments]">
+                          <ActivityAction x:TypeArguments="mewd:Attachment">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="mewd:Attachment" Name="attach" />
+                            </ActivityAction.Argument>
+                            <swa:ExchangeCreateAttachment Attachment="[attach]" sap:VirtualizedContainerService.HintSize="257,100" OverwriteExistingContent="[OverwriteFiles]" ParentPath="[EmailContent.Path]" />
+                          </ActivityAction>
+                        </ForEach>
+                      </Sequence>
+                    </If.Then>
+                  </If>
+                  <If x:Key="sender" Condition="[(Message.Attachments.Count &gt; 0) Or (SaveOriginalEmail)]" sap:VirtualizedContainerService.HintSize="629,897">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg3:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If.Then>
+                      <Sequence sap:VirtualizedContainerService.HintSize="504,791">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg3:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <swa:GetNameFromDisplayName ContentOriginalName="{x:Null}" ContentDisplayName="[Message.Sender.Name]" DisplayName="Get container name" sap:VirtualizedContainerService.HintSize="482,22" Result="[FolderName]" />
+                        <swa:LoadContent DisplayName="Load container" sap:VirtualizedContainerService.HintSize="482,22" Path="[RelatedContentPath + &quot;/&quot; + FolderName]" Result="[EmailContent]" />
+                        <If Condition="[EmailContent.Id = 0]" DisplayName="Create container if not exists" sap:VirtualizedContainerService.HintSize="482,297">
+                          <If.Then>
+                            <swa:CreateContent FieldValues="{x:Null}" Name="{x:Null}" ContentDisplayName="[Message.Sender.Name]" ContentTypeName="[&quot;Folder&quot;]" sap:VirtualizedContainerService.HintSize="357,191" ParentPath="[RelatedContentPath]" Result="[EmailContent]" />
+                          </If.Then>
+                        </If>
+                        <ForEach x:TypeArguments="mewd:Attachment" DisplayName="ForEach&lt;Attachment&gt;" sap:VirtualizedContainerService.HintSize="482,206" Values="[Message.Attachments]">
+                          <ActivityAction x:TypeArguments="mewd:Attachment">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="mewd:Attachment" Name="attach" />
+                            </ActivityAction.Argument>
+                            <swa:ExchangeCreateAttachment Attachment="[attach]" sap:VirtualizedContainerService.HintSize="257,100" OverwriteExistingContent="[OverwriteFiles]" ParentPath="[EmailContent.Path]" />
+                          </ActivityAction>
+                        </ForEach>
+                      </Sequence>
+                    </If.Then>
+                  </If>
+                </Switch>
+                <If Condition="[SaveOriginalEmail]" DisplayName="Create .eml file if configured" sap:VirtualizedContainerService.HintSize="589,312">
+                  <If.Then>
+                    <If Condition="[GroupAttachments = &quot;root&quot;]" DisplayName="Target location depends on grouping options" sap:VirtualizedContainerService.HintSize="464,206">
+                      <If.Then>
+                        <swa:ExchangeCreateEml ContentName="{x:Null}" ContentDisplayName="[Message.Sender.Name + &quot; - &quot; + Message.Subject]" sap:VirtualizedContainerService.HintSize="219,100" Message="[Message]" OverwriteExistingContent="[OverwriteFiles]" ParentPath="[RelatedContentPath]" />
+                      </If.Then>
+                      <If.Else>
+                        <swa:ExchangeCreateEml ContentName="{x:Null}" ContentDisplayName="[Message.Sender.Name + &quot; - &quot; + Message.Subject]" sap:VirtualizedContainerService.HintSize="220,100" Message="[Message]" OverwriteExistingContent="[OverwriteFiles]" ParentPath="[EmailContent.Path]" />
+                      </If.Else>
+                    </If>
+                  </If.Then>
+                </If>
+                <swa:ExchangeMarkAsRead sap:VirtualizedContainerService.HintSize="589,22" Message="[Message]" />
+              </Sequence>
+            </ActivityAction>
+          </ForEach>
+        </Sequence>
+        <FlowStep.Next>
+          <FlowStep x:Name="__ReferenceID1">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+                <av:Point x:Key="ShapeLocation">200,379</av:Point>
+                <av:Size x:Key="ShapeSize">200,22</av:Size>
+                <av:PointCollection x:Key="ConnectorLocation">400,390 430,390 430,270 400,270</av:PointCollection>
+              </scg3:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Delay Duration="00:01:00" sap:VirtualizedContainerService.HintSize="200,22" />
+            <FlowStep.Next>
+              <x:Reference>__ReferenceID0</x:Reference>
+            </FlowStep.Next>
+          </FlowStep>
+        </FlowStep.Next>
+      </FlowStep>
+    </Flowchart.StartNode>
+    <x:Reference>__ReferenceID0</x:Reference>
+    <x:Reference>__ReferenceID1</x:Reference>
+  </Flowchart>
+</Activity>

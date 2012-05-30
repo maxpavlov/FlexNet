@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="ImageGallery" parentType="DocumentLibrary" handler="SenseNet.Portal.Portlets.ContentHandlers.ImageGallery" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+	<DisplayName>Image Gallery</DisplayName>
+	<Description>Image Gallery is a special List type. Thumbnails are generated from images uploaded to this list. Use the Image Gallery portlet to show it on a page.</Description>
+	<Icon>gallery</Icon>
+	<Fields>
+		<Field name="Tag" type="ShortText">
+			<DisplayName>Tag</DisplayName>
+			<Description>Tag</Description>
+		</Field>
+		<Field name="ViewSizeX" type="Integer">
+			<DisplayName>ViewSizeX</DisplayName>
+			<Description>ViewSizeX</Description>
+		</Field>
+		<Field name="ViewSizeY" type="Integer">
+			<DisplayName>ViewSizeY</DisplayName>
+			<Description>ViewSizeY</Description>
+		</Field>
+		<Field name="ViewQuality" type="Integer">
+			<DisplayName>ViewQuality</DisplayName>
+			<Description>ViewQuality</Description>
+		</Field>
+		<Field name="ThumbSizeX" type="Integer">
+			<DisplayName>ThumbSizeX</DisplayName>
+			<Description>ThumbSizeX</Description>
+		</Field>
+		<Field name="ThumbSizeY" type="Integer">
+			<DisplayName>ThumbSizeY</DisplayName>
+			<Description>ThumbSizeY</Description>
+		</Field>
+		<Field name="ThumbQuality" type="Integer">
+			<DisplayName>ThumbQuality</DisplayName>
+			<Description>ThumbQuality</Description>
+		</Field>
+    <Field name="ContentListDefinition" type="LongText">
+      <DisplayName>List Definition</DisplayName>
+      <Description>XML definition for additional fields</Description>
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+        <DefaultValue>
+          <![CDATA[<ContentListDefinition xmlns='http://schemas.sensenet.com/SenseNet/ContentRepository/ContentListDefinition'>
+            <DisplayName>ImageGallery</DisplayName>
+            <Description>ImageGallery</Description>
+            <Icon>ImageGallery</Icon>
+            <Fields>
+              <ContentListField name="#DisplayName" type="ShortText">
+                <DisplayName>DisplayName</DisplayName>
+                <Description>DisplayName</Description>
+              </ContentListField>
+              <ContentListField name="#Tag" type="ShortText">
+                <DisplayName>Tag</DisplayName>
+                <Description>Tag</Description>
+              </ContentListField>
+              <ContentListField name="#Description2" type="LongText">
+                <DisplayName>Description2</DisplayName>
+                <Description>Description2</Description>
+              </ContentListField>
+              <ContentListField name="#View" type="Binary">
+                <DisplayName>View</DisplayName>
+                <Description>Web view picture</Description>
+              </ContentListField>
+              <ContentListField name="#Thumb" type="Binary">
+                <DisplayName>Thumb</DisplayName>
+                <Description>Thumbnail picture</Description>
+              </ContentListField>
+            </Fields>
+          </ContentListDefinition>]]>
+        </DefaultValue>
+      </Configuration>
+    </Field>
+	</Fields>
+</ContentType>

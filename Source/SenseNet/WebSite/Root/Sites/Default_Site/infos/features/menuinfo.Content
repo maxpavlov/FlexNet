@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>WebContentDemo</ContentType>
+  <ContentName>menuinfo</ContentName>
+  <Fields>
+    <DisplayName></DisplayName>
+    <Subtitle></Subtitle>
+    <RelatedImage />
+    <Header><![CDATA[]]></Header>
+    <Body>
+      <![CDATA[<div class="sn-infobox"><h1 class="sn-content-title sn-article-title"><img src="/Root/Global/images/icons/32/info.png" class="sn-icon sn-icon_32" alt="" />Menu customization</h1>
+    <p>Our built-in SiteMenu portlet offers a wide range of customizable layouts via custom views, CSS and Javascript.
+    In the following example, you can see a menu of the demo site structure, displayed with the native view of the portlet. This menu has the '<strong>custommenu1</strong>'
+    css class set through the <strong>Portlet CSS Class</strong> property. The CSS and JS files of the current skin define the look and feel of the menu.
+    <ul>
+    <li><strong>You need to be logged in as Administrator to see or modify portlet properties, or edit the files below.</strong></li>
+    <li>The CSS rules are contained in the file <em><a href="/Explore.html#/Root/Skins/sensenet/styles/skin.css">/Root/Skins/sensenet/styles/skin.css</a></em></li>
+    <li>The script defining the behavior for the menu is in the file <em><a href="/Explore.html#/Root/Skins/sensenet/scripts/init.js">/Root/Skins/sensenet/scripts/init.js</a></em></li>
+    </ul></div>]]></Body>
+    <Details><a href="" target="" title=""></a></Details>
+    <Language>English</Language>
+    <Keywords><![CDATA[]]></Keywords>
+    <Author></Author>
+    <ReviewDate>0001-01-01T00:00:00</ReviewDate>
+    <ArchiveDate>0001-01-01T00:00:00</ArchiveDate>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <Description><![CDATA[]]></Description>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate>0.00|0|0|0|0|0</Rate>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

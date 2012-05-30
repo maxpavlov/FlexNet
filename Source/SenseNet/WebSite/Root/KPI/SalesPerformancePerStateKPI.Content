@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>KPIDatasource</ContentType>
+  <ContentName>SalesPerformancePerStateKPI</ContentName>
+  <Fields>
+    <DisplayName>Sales Peformance per State</DisplayName>
+    <KPIData>
+  <![CDATA[<KPI Name="Sales by States">
+<data Label="Illinois">
+	<goal>24000</goal>
+	<actual>12456</actual>
+</data>
+<data Label="Texas">
+	<goal>40000</goal>
+	<actual>32978</actual>
+</data>
+<data Label="Connecticut">
+	<goal>31000</goal>
+	<actual>16423</actual>
+</data>
+<data Label="Florida">
+	<goal>52100</goal>
+	<actual>22178</actual>
+</data>
+<data Label="New Jersey">
+	<goal>38321</goal>
+	<actual>39154</actual>
+</data>
+<data Label="Chicago">
+	<goal>31561</goal>
+	<actual>13000</actual>
+</data>
+</KPI>
+]]></KPIData>
+  </Fields>
+</ContentMetaData>

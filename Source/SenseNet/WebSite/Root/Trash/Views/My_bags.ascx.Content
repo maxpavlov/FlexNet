@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>ListView</ContentType>
+  <ContentName>My_bags.ascx</ContentName>
+  <Fields>
+    <Template>
+      <Path>/Root/System/SystemPlugins/ListView/Templates/ListView.xslt</Path>
+    </Template>
+    <Columns>
+    <![CDATA[<Columns>
+  <Column title="Name" fullName="GenericContent.DisplayName" bindingName="GenericContent_DisplayName" index="1" wrap="" modifiers="main" />
+  <Column title="Deleted at" fullName="GenericContent.CreationDate" bindingName="GenericContent_CreationDate" index="2" wrap="NoWrap" modifiers="" />
+  <Column title="Original path" fullName="TrashBag.OriginalPath" bindingName="TrashBag_OriginalPath" index="3" wrap="Wrap" width="200" modifiers="" />
+</Columns>]]></Columns>
+    <SortBy>CreationDate DESC</SortBy>    
+    <Flat>false</Flat>
+    <DisplayName>My deleted items</DisplayName>
+    <EnableAutofilters>2</EnableAutofilters>
+    <EnableLifespanFilter>2</EnableLifespanFilter>
+    <FilterXml>-(InTree:"/Root/Trash/(apps)" InTree:"/Root/Trash/Views") +CreatedBy:@@CurrentUser@@</FilterXml>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+        <VersioningMode>1</VersioningMode>
+    <InheritableVersioningMode>1</InheritableVersioningMode>
+    <ApprovingMode>1</ApprovingMode>
+    <InheritableApprovingMode>1</InheritableApprovingMode>
+    <TrashDisabled>false</TrashDisabled>
+  </Fields>
+</ContentMetaData>

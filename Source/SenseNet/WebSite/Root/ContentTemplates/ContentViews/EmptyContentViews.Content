@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>ContentViews</ContentType>
+  <ContentName>EmptyContentViews</ContentName>
+  <Field>
+    <DisplayName>Empty Folder for ContentViews</DisplayName>
+  </Field>
+</ContentMetaData>

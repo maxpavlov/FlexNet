@@ -1,0 +1,59 @@
+<ContentType name="Subscription" parentType="GenericContent" handler="SenseNet.ContentRepository.GenericContent" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+	<DisplayName>Subscription</DisplayName>
+	<Description>It stores a subscription for a user</Description>
+	<Icon>Content</Icon>
+    <Fields>
+      <Field name="ContentPath" type="ShortText">
+            <DisplayName>ContentPath</DisplayName>
+        </Field>
+        <Field name="UserPath" type="ShortText">
+            <DisplayName>UserPath</DisplayName>
+        </Field>
+        <Field name="UserEmail" type="ShortText">
+            <DisplayName>Notification address</DisplayName>
+            <Description>Notification emails will be sent to this address</Description>
+        </Field>
+        <Field name="UserId" type="Number">
+            <DisplayName>UserId</DisplayName>
+        </Field>
+        <Field name="UserName" type="ShortText">
+            <DisplayName>UserName</DisplayName>
+        </Field>
+        <Field name="IsActive" type="Boolean">
+            <DisplayName>Active notification</DisplayName>
+            <Description>Defines whether the portal sends notification emails or not</Description>
+          <Configuration>
+            <DefaultValue>true</DefaultValue>
+          </Configuration>
+        </Field>
+        <Field name="Frequency" type="Choice">
+            <DisplayName>Frequency</DisplayName>
+          <Description>
+            Defines the frequency of the notification&lt;br /&gt;
+            &lt;br /&gt;&lt;i&gt;Immediately:&lt;/i&gt; immediate email when a content changes
+            &lt;br /&gt;&lt;i&gt;Daily:&lt;/i&gt; one email per day with the summary of changes
+            &lt;br /&gt;&lt;i&gt;Weekly:&lt;/i&gt; one email per week with the summary of changes
+            &lt;br /&gt;&lt;i&gt;Monthly:&lt;/i&gt;  one email per month with the summary of changes
+          </Description>
+            <Configuration>
+              <ControlHint>sn:RadioButtonGroup</ControlHint>
+                <Options>
+                  <Option selected="true" value="0">Immediately</Option>
+                  <Option value="1">Daily</Option>
+                  <Option value="2">Weekly</Option>
+                  <Option value="3">Monthly</Option>
+                </Options>
+            </Configuration>
+        </Field>
+        <Field name="Language" type="Choice">
+            <DisplayName>Language</DisplayName>
+            <Description>Defines the language of the notification</Description>
+            <Configuration>
+                <Options>
+                    <Option selected="true" value="en">English</Option>
+                    <Option value="hu">Hungarian</Option>
+                </Options>
+            </Configuration>
+        </Field>
+    </Fields>
+</ContentType>

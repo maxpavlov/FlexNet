@@ -1,0 +1,5 @@
+<ContentType name="PageBreakFieldSetting" parentType="FieldSettingContent" handler="SenseNet.ContentRepository.Schema.FieldSettingContent" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Page break</DisplayName>
+  <Icon></Icon>
+  <Fields />
+</ContentType>

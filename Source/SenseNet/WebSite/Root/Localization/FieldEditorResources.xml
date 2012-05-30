@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Resources>
+	<ResourceClass name="FieldEditor">
+		<Languages>
+			<Language cultureName="en">
+				<data name="FieldTitle_Compulsory" xml:space="preserve">
+				  <value>Compulsory</value>
+				</data>
+        <data name="FieldDesc_Compulsory" xml:space="preserve">
+				  <value></value>
+				</data>
+        <data name="FieldTitle_ReadOnly" xml:space="preserve">
+				  <value>Read-only</value>
+				</data>
+        <data name="FieldDesc_ReadOnly" xml:space="preserve">
+				  <value></value>
+				</data>
+        <data name="FieldTitle_DefaultValue" xml:space="preserve">
+				  <value>Default value</value>
+				</data>
+        <data name="FieldDesc_DefaultValue" xml:space="preserve">
+				  <value></value>
+				</data>
+        <data name="FieldTitle_DefaultOrder" xml:space="preserve">
+				  <value>Default order</value>
+				</data>
+        <data name="FieldDesc_DefaultOrder" xml:space="preserve">
+				  <value></value>
+				</data>
+        <data name="FieldTitle_Visible" xml:space="preserve">
+				  <value>Visible</value>
+				</data>
+        <data name="FieldDesc_Visible" xml:space="preserve">
+				  <value></value>
+				</data>
+        <data name="FieldTitle_VisibleBrowse" xml:space="preserve">
+				  <value>Visible in browse mode</value>
+				</data>
+        <data name="FieldDesc_VisibleBrowse" xml:space="preserve">
+				  <value>Specify whether this field is visible or hidden in Browse mode, or is displayed on the Advanced panel.</value>
+				</data>
+        <data name="FieldTitle_VisibleEdit" xml:space="preserve">
+				  <value>Visible in Edit mode</value>
+				</data>
+        <data name="FieldDesc_VisibleEdit" xml:space="preserve">
+				  <value>Specify whether this field is visible or hidden in Edit mode, or is displayed on the Advanced panel.</value>
+				</data>
+        <data name="FieldTitle_VisibleNew" xml:space="preserve">
+				  <value>Visible in New mode</value>
+				</data>
+        <data name="FieldDesc_VisibleNew" xml:space="preserve">
+				  <value>Specify whether this field is visible or hidden in New mode, or is displayed on the Advanced panel.</value>
+				</data>        
+        <data name="FieldTitle_ControlHint" xml:space="preserve">
+				  <value>Control hint</value>
+				</data>
+        <data name="FieldDesc_ControlHint" xml:space="preserve">
+				  <value></value>
+				</data>
+        <data name="FieldTitle_AddToDefaultView" xml:space="preserve">
+				  <value>Add to default view</value>
+				</data>
+        <data name="FieldDesc_AddToDefaultView" xml:space="preserve">
+				  <value>The field will appear immediately as the last column of the default view</value>
+				</data>
+        <data name="FieldTitle_ShortName" xml:space="preserve">
+				  <value>Shortname</value>
+				</data>
+        <data name="FieldDesc_ShortName" xml:space="preserve">
+				  <value></value>
+				</data>
+        <data name="FieldTitle_FieldClassName" xml:space="preserve">
+				  <value>Field className</value>
+				</data>
+        <data name="FieldDesc_FieldClassName" xml:space="preserve">
+				  <value></value>
+				</data>
+        <data name="FieldTitle_Description" xml:space="preserve">
+				  <value>Description</value>
+				</data>
+        <data name="FieldDesc_Description" xml:space="preserve">
+				  <value></value>
+				</data>
+        <data name="FieldTitle_Icon" xml:space="preserve">
+				  <value>Icon</value>
+				</data>
+        <data name="FieldDesc_Icon" xml:space="preserve">
+				  <value></value>
+				</data>
+        <data name="FieldTitle_AppInfo" xml:space="preserve">
+				  <value>AppInfo</value>
+				</data>
+        <data name="FieldDesc_AppInfo" xml:space="preserve">
+				  <value></value>
+				</data>
+        <data name="FieldTitle_Owner" xml:space="preserve">
+				  <value>Owner</value>
+				</data>
+        <data name="FieldDesc_Owner" xml:space="preserve">
+				  <value></value>
+				</data>
+        <data name="FieldTitle_IsText" xml:space="preserve">
+				  <value>Is text</value>
+				</data>
+        <data name="FieldDesc_IsText" xml:space="preserve">
+				  <value></value>
+				</data>
+        <data name="FieldTitle_DateTimeMode" xml:space="preserve">
+				  <value>DateTime mode</value>
+				</data>
+        <data name="FieldDesc_DateTimeMode" xml:space="preserve">
+				  <value>This property indicates whether you want to display only the date, or both the date and time</value>
+				</data>
+        <data name="FieldTitle_UrlFormat" xml:space="preserve">
+				  <value>Url format</value>
+				</data>
+        <data name="FieldDesc_UrlFormat" xml:space="preserve">
+				  <value></value>
+				</data>
+        <data name="FieldTitle_MaxValue" xml:space="preserve">
+				  <value>Maximum value</value>
+				</data>
+        <data name="FieldDesc_MaxValue" xml:space="preserve">
+				  <value></value>
+				</data>
+        <data name="FieldTitle_MinValue" xml:space="preserve">
+				  <value>Minimum value</value>
+				</data>
+        <data name="FieldDesc_MinValue" xml:space="preserve">
+				  <value></value>
+				</data>
+        <data name="FieldTitle_ShowAsPercentage" xml:space="preserve">
+				  <value>Show as percentage</value>
+				</data>
+        <data name="FieldDesc_ShowAsPercentage" xml:space="preserve">
+				  <value>If set, a '%' sign will be displayed at the end of the value in edit views</value>
+				</data>
+        <data name="FieldTitle_Digits" xml:space="preserve">
+				  <value>Number of digits</value>
+				</data>
+        <data name="FieldDesc_Digits" xml:space="preserve">
+				  <value>Number of digits in case of a number value. E.g. if you want '123.00' to be displayed, set this field to 2.</value>
+				</data>
+        <data name="FieldTitle_AllowMultiple" xml:space="preserve">
+				  <value>Allow multiple</value>
+				</data>
+        <data name="FieldDesc_AllowMultiple" xml:space="preserve">
+				  <value>If set, reference field can hold multiple values</value>
+				</data>
+        <data name="FieldTitle_AllowedTypes" xml:space="preserve">
+				  <value>Allowed content types</value>
+				</data>
+        <data name="FieldDesc_AllowedTypes" xml:space="preserve">
+				  <value>List of content types that can be used with this reference field</value>
+				</data>
+        <data name="FieldTitle_SelectionRoot" xml:space="preserve">
+				  <value>Selection root</value>
+				</data>
+        <data name="FieldDesc_SelectionRoot" xml:space="preserve">
+				  <value>Only contents below this path can be used</value>
+				</data>
+        <data name="FieldTitle_Query" xml:space="preserve">
+				  <value>Query</value>
+				</data>
+        <data name="FieldDesc_Query" xml:space="preserve">
+				  <value></value>
+				</data>
+        <data name="FieldTitle_Type" xml:space="preserve">
+				  <value>Type</value>
+				</data>
+        <data name="FieldDesc_Type" xml:space="preserve">
+				  <value></value>
+				</data>
+        <data name="FieldTitle_FieldName" xml:space="preserve">
+				  <value>Field name</value>
+				</data>
+        <data name="FieldDesc_FieldName" xml:space="preserve">
+				  <value></value>
+				</data>
+        <data name="FieldTitle_MaxLength" xml:space="preserve">
+				  <value>Maximum length</value>
+				</data>
+        <data name="FieldDesc_MaxLength" xml:space="preserve">
+				  <value></value>
+				</data>
+        <data name="FieldTitle_MinLength" xml:space="preserve">
+				  <value>Minimum length</value>
+				</data>
+        <data name="FieldDesc_MinLength" xml:space="preserve">
+				  <value></value>
+				</data>
+        <data name="FieldTitle_ExpectedXmlNamespace" xml:space="preserve">
+				  <value>Expected xml namespace</value>
+				</data>
+        <data name="FieldDesc_ExpectedXmlNamespace" xml:space="preserve">
+				  <value></value>
+				</data>
+        <data name="FieldTitle_TextType" xml:space="preserve">
+				  <value>Text type</value>
+				</data>
+        <data name="FieldDesc_TextType" xml:space="preserve">
+				  <value>Indicates the display type of this field in edit views</value>
+				</data>
+        <data name="FieldTitle_Rows" xml:space="preserve">
+				  <value>Rows</value>
+				</data>
+        <data name="FieldDesc_Rows" xml:space="preserve">
+				  <value>Count of rows in the text area</value>
+				</data>
+        <data name="FieldTitle_AppendModifications" xml:space="preserve">
+				  <value>Append modifications</value>
+				</data>
+        <data name="FieldDesc_AppendModifications" xml:space="preserve">
+				  <value>If set, modifications will be appended to the previous value</value>
+				</data>
+        <data name="FieldTitle_Regex" xml:space="preserve">
+				  <value>Regular expression</value>
+				</data>
+        <data name="FieldDesc_Regex" xml:space="preserve">
+				  <value></value>
+				</data>
+        <data name="FieldTitle_Choice_AllowMultiple" xml:space="preserve">
+				  <value>Allow multiple</value>
+				</data>
+        <data name="FieldDesc_Choice_AllowMultiple" xml:space="preserve">
+				  <value>If set, choice field can hold multiple values</value>
+				</data>
+        <data name="FieldTitle_AllowExtraValue" xml:space="preserve">
+				  <value>Allow extra value</value>
+				</data>
+        <data name="FieldDesc_AllowExtraValue" xml:space="preserve">
+				  <value>If set, a textbox will appear after the choice options that can be filled with an extra value</value>
+				</data>
+        <data name="FieldTitle_Options" xml:space="preserve">
+				  <value>Options</value>
+				</data>
+        <data name="FieldDesc_Options" xml:space="preserve">
+				  <value>Available options. Please use the Add and Remove buttons to edit the option list. 
+          Values must be distinct. When users fill out this field, they will see the Text of the options.</value>
+				</data>
+        <data name="FieldTitle_DisplayChoices" xml:space="preserve">
+				  <value>Display choices</value>
+				</data>
+        <data name="FieldDesc_DisplayChoices" xml:space="preserve">
+				  <value>Indicates the control type of the field in editor views</value>
+				</data>
+        <data name="FieldTitle_Format" xml:space="preserve">
+				  <value>Format</value>
+				</data>
+        <data name="FieldDesc_Format" xml:space="preserve">
+				  <value>Currency format</value>
+				</data>
+        <data name="FieldTitle_FieldIndex" xml:space="preserve">
+				  <value>Field index</value>
+				</data>
+        <data name="FieldDesc_FieldIndex" xml:space="preserve">
+				  <value>Use this numeric value to determine the display order of fields on forms</value>
+				</data>
+        <data name="FieldTitle_Rule" xml:space="preserve">
+				  <value>Rule</value>
+				</data>
+        <data name="FieldDesc_Rule" xml:space="preserve">
+				  <value>It defines the field and its possible values which determine to which survey page the user will be jumped when reached the page break.</value>
+				</data>
+        <data name="FieldTitle_OutputMethod" xml:space="preserve">
+				  <value>Output method</value>
+				</data>
+        <data name="FieldDesc_OutputMethod" xml:space="preserve">
+				  <value>Field output method for supporting the XSS protection mechanism</value>
+				</data>
+        <data name="FieldError_FieldExists" xml:space="preserve">
+				  <value>Field already exists with this name</value>
+				</data>
+      </Language>
+			<Language cultureName="hu">
+      </Language>
+		</Languages>
+	</ResourceClass>
+</Resources>

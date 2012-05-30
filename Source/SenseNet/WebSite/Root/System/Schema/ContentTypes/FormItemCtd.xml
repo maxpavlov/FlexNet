@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="FormItem" parentType="ListItem" handler="SenseNet.Portal.Portlets.ContentHandlers.FormItem" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Form Item</DisplayName>
+	<Description>Base content type for form list items.</Description>
+	<Icon>FormItem</Icon>
+	<Fields>
+    <Field name="Name" type="ShortText">
+      <Configuration>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+	</Fields>
+</ContentType>

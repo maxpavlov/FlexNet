@@ -1,0 +1,43 @@
+﻿<ContentType name="NotificationConfig" parentType="GenericContent" handler="SenseNet.Messaging.NotificationConfig" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Notification Configuration</DisplayName>
+  <Description>Configuration content for notifications to be placed under a (config) folder anywhere in the Content Repository</Description>
+  <Icon>Content</Icon>
+  <Fields>
+    <Field name="Subject" type="ShortText">
+      <DisplayName>Subject</DisplayName>
+      <Description>Subject of the email to be sent as notification. Provided "{FieldName}" entities will be replaced with referenced Field values of the content triggering notification.</Description>
+    </Field>
+    <Field name="Body" type="LongText">
+      <DisplayName>Body</DisplayName>
+      <Description>Body of the email to be sent as notification. Provided "{FieldName}" entities will be replaced with referenced Field values of the content triggering notification.</Description>
+    </Field>
+    <Field name="DisplayName" type="ShortText">
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Version" type="Version">
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Index" type="Integer">
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="Description" type="LongText">
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+  </Fields>
+</ContentType>

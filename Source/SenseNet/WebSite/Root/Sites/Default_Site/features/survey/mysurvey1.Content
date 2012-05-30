@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Survey</ContentType>
+  <ContentName>mysurvey1</ContentName>
+  <Fields>
+    <Description><![CDATA[<p>This is the description of the first survey.</p>]]></Description>
+    <ValidFrom>2011-06-03T00:00:00</ValidFrom>
+    <ValidTill>2040-10-01T00:00:00</ValidTill>
+    <LandingPage>
+      <Path>/Root/System/SystemPlugins/Survey/aftersubmitcontent</Path>
+    </LandingPage>
+    <PageContentView>
+      <Path>/Root/Global/contentviews/WebContentDemo/SurveyBrowse.ascx</Path>
+    </PageContentView>
+    <InvalidSurveyPage>
+      <Path>/Root/System/SystemPlugins/Survey/invalidsurveycontent</Path>
+    </InvalidSurveyPage>
+    <ContentListDefinition><![CDATA[<ContentListDefinition xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentListDefinition"><Fields><ContentListField name="#fullname" type="ShortText"><DisplayName>Full name</DisplayName><Description>&lt;p&gt;Give your full name please.&lt;/p&gt;</Description><Configuration><Compulsory>false</Compulsory><DefaultValue></DefaultValue><VisibleBrowse>Show</VisibleBrowse><VisibleEdit>Show</VisibleEdit><VisibleNew>Show</VisibleNew><FieldIndex>1</FieldIndex><MaxLength>50</MaxLength><Regex>[^.$]*</Regex></Configuration></ContentListField><ContentListField name="#comment" type="LongText"><DisplayName>Comment</DisplayName><Description></Description><Configuration><Compulsory>false</Compulsory><DefaultValue></DefaultValue><VisibleBrowse>Show</VisibleBrowse><VisibleEdit>Show</VisibleEdit><VisibleNew>Show</VisibleNew><FieldIndex>2</FieldIndex><MaxLength>500</MaxLength><TextType>LongText</TextType></Configuration></ContentListField></Fields></ContentListDefinition>]]></ContentListDefinition>
+    <InheritableVersioningMode>1</InheritableVersioningMode>
+    <InheritableApprovingMode>1</InheritableApprovingMode>
+    <Index>0</Index>
+    <EnableLifespan>false</EnableLifespan>
+    <EnableNotificationMail>false</EnableNotificationMail>
+    <SenderAddress>survey@sensenet.com</SenderAddress>
+    <Evaluators />
+    <MailTemplatePage>
+      <Path>/Root/System/SystemPlugins/Survey/mailtemplatecontent</Path>
+    </MailTemplatePage>
+    <EnableMoreFilling>true</EnableMoreFilling>
+    <DisplayName>My Survey #1</DisplayName>
+    <Hidden>false</Hidden>
+    <VersioningMode>1</VersioningMode>
+    <ApprovingMode>1</ApprovingMode>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Page</ContentType>
+  <ContentName>Explore</ContentName>
+  <Fields>
+    <PageTemplateNode>
+      <Path>/Root/Global/pagetemplates/sn-layout-explore.html</Path>
+    </PageTemplateNode>
+    <Binary attachment="Explore.aspx" />
+    <PersonalizationSettings attachment="Explore.PersonalizationSettings" />
+    <DisplayName>Explore</DisplayName>
+    <Icon>explore</Icon>
+    <PageSkin>
+      <Path>/Root/Skins/sensenet</Path>
+    </PageSkin>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

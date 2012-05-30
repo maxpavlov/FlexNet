@@ -1,0 +1,30 @@
+﻿<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Sense/Net</title>
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="1024" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="apple-touch-fullscreen" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <sn:BaseTag ID="BaseTagControl1" runat="server" />
+	<link rel="apple-touch-startup-image" href="/Root/Skins/snmobile/images/sn-Landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)" />
+	<link rel="apple-touch-startup-image" href="/Root/Skins/snmobile/images/sn-Portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)" />
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/Root/Skins/snmobile/images/icon114.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/Root/Skins/snmobile/images/icon72.png"> 
+	<link rel="stylesheet/less" href="/Root/Skins/snmobile/styles/style.css">
+	<script src="/Root/Skins/snmobile/scripts/less-1.1.3.min.js"></script>
+</head>
+
+<body class="snm-body">
+<% if (SenseNet.ContentRepository.User.Current.Id == SenseNet.ContentRepository.User.Visitor.Id && SenseNet.Portal.Virtualization.PortalContext.Current.Page.Name != "mobilelogin") HttpContext.Current.Response.Redirect("/mobilelogin?OriginalUrl="+System.Web.HttpUtility.UrlEncode(SenseNet.Portal.Virtualization.PortalContext.Current.OriginalUri.ToString()), false); %>
+<snpe-zone name="Content" HeaderText="Content" PartChromeType="None"></snpe-zone>
+<!-- prc -->
+<%-- snpe:PortalRemoteControl runat="server" / --%>
+<script src="/Root/Skins/snmobile/scripts/jquery-1.6.1.min.js"></script>
+<script src="/Root/Skins/snmobile/scripts/iscroll-min.js"></script>
+<script src="/Root/Skins/snmobile/scripts/script.js"></script>
+</body>
+</html>

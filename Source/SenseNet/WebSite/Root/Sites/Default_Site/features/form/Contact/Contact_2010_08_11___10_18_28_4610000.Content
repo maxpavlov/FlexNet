@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>FormItem</ContentType>
+  <ContentName>Contact_2010_08_11___10_18_28_4610000</ContentName>
+  <Fields>
+    <DisplayName>Contact_2010_08_03___06_40_28_4559702</DisplayName>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate></Rate>
+    <Name subType="ContentList">William Taylor</Name>
+    <Email subType="ContentList">william@taylor.com</Email>
+    <Phone subType="ContentList">+123456789</Phone>
+    <ContactType subType="ContentList">Info</ContactType>
+    <Message subType="ContentList"><![CDATA[I need something..]]></Message>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

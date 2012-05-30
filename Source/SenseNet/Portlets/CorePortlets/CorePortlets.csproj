@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B33E5A6E-4EBC-4192-8B2E-D7E43E8A7820}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SenseNet.Portal.Portlets</RootNamespace>
+    <AssemblyName>SenseNet.CorePortlets</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActionListPresenterPortlet.cs" />
+    <Compile Include="ActionPresenterPortlet.cs" />
+    <Compile Include="AdvancedLoginPortlet.cs" />
+    <Compile Include="ApplicationListPresenterPortlet.cs" />
+    <Compile Include="BreadCrumbPortlet.cs" />
+    <Compile Include="CancelEventPortlet.cs" />
+    <Compile Include="ContentCollection\ContentCollectionPortletState.cs" />
+    <Compile Include="ContentCollection\ContentSearchPortlet.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentCollection\ContentSearchPortletState.cs" />
+    <Compile Include="ContentCollection\ParametricSearchPortlet.cs" />
+    <Compile Include="ContentCollection\ParametricSearchViewModel.cs" />
+    <Compile Include="ContentOperations\StartWorkflowPortlet.cs" />
+    <Compile Include="ContentOperations\AssignWorkflowPortlet.cs" />
+    <Compile Include="ContentOperations\ContentAddNewPortlet.cs" />
+    <Compile Include="ContentOperations\ContentApprovalPortlet.cs" />
+    <Compile Include="ContentOperations\ContentCheckInPortlet.cs" />
+    <Compile Include="ContentOperations\ContentCheckOutPortlet.cs" />
+    <Compile Include="ContentCollection\ContentCollectionPortlet.cs" />
+    <Compile Include="ContentCollection\ContentCollectionView.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentCollection\ContentCollectionViewModel.cs">
+    </Compile>
+    <Compile Include="ContentCollection\ContentQueryPresenterViewModel.cs" />
+    <Compile Include="ContentCollection\PagerAction.cs" />
+    <Compile Include="ContentCollection\PagerModel.cs" />
+    <Compile Include="ContentOperations\ContentCopyPortlet.cs" />
+    <Compile Include="ContentOperations\ContentDeletePortlet.cs" />
+    <Compile Include="ContentOperations\ContentEditorPortlet.cs" />
+    <Compile Include="ContentHandlers\EventRegistrationForm.cs" />
+    <Compile Include="ContentHandlers\EventRegistrationFormItem.cs" />
+    <Compile Include="ContentHandlers\Form.cs" />
+    <Compile Include="ContentOperations\ContentHistoryPortlet.cs" />
+    <Compile Include="ContentOperations\ContentLinkerPortlet.cs" />
+    <Compile Include="ContentOperations\ContentListPortlet.cs" />
+    <Compile Include="ContentOperations\ContentMovePortlet.cs" />
+    <Compile Include="ContentPortlet.cs" />
+    <Compile Include="ContentOperations\ContentPublishPortlet.cs" />
+    <Compile Include="ContentCollection\ContentQueryPresenterPortlet.cs" />
+    <Compile Include="ContentCollection\ContentQueryPresenterView.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentOperations\ContentRenamePortlet.cs" />
+    <Compile Include="ContentOperations\ContentRestorePortlet.cs" />
+    <Compile Include="ContentOperations\ContentRestoreVersionPortlet.cs" />
+    <Compile Include="ContentOperations\ContentUndoCheckOutPortlet.cs" />
+    <Compile Include="ContentViewBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContextSearch.cs" />
+    <Compile Include="Controls\ExportFormItems.cs" />
+    <Compile Include="Controls\LoginView.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContentHandlers\DocumentLibrary.cs" />
+    <Compile Include="CreateNewWorkspaceWizard.cs" />
+    <Compile Include="ContentHandlers\FormItem.cs" />
+    <Compile Include="DialogFileUploadPortlet.cs" />
+    <Compile Include="EventManagerPortlet.cs" />
+    <Compile Include="FacebookLikePortlet.cs" />
+    <Compile Include="FieldDeletePortlet.cs" />
+    <Compile Include="FieldEditorPortlet.cs" />
+    <Compile Include="FieldMoverPortlet.cs" />
+    <Compile Include="FormPortlet.cs" />
+    <Compile Include="HtmlPortlet.cs" />
+    <Compile Include="ImportExportControlFacade.cs" />
+    <Compile Include="ImportExportPortlet.cs" />
+    <Compile Include="ImportExportPortletState.cs" />
+    <Compile Include="IncomingEmailSettingsPortlet.cs" />
+    <Compile Include="JournalPortlet.cs" />
+    <Compile Include="KPI\GlobalKPIPortlet.cs" />
+    <Compile Include="KPI\KPIDropDownPartOptions.cs" />
+    <Compile Include="KPI\KPIViewDropDownPartField.cs" />
+    <Compile Include="KPI\WorkspaceAggregatedKPIPortlet.cs" />
+    <Compile Include="KPI\WorkspaceKPIPortlet.cs" />
+    <Compile Include="KPI\WorkspaceSummaryPortlet.cs" />
+    <Compile Include="ListImporterPortlet.cs" />
+    <Compile Include="LoginDemoPortlet.cs" />
+    <Compile Include="Notification\NotificationDeletePortlet.cs" />
+    <Compile Include="Notification\NotificationEditorPortlet.cs" />
+    <Compile Include="Notification\NotificationListPortlet.cs" />
+    <Compile Include="Notification\NotificationActivatorPortlet.cs" />
+    <Compile Include="OrganizationChartPortlet.cs" />
+    <Compile Include="ProxyPurgePortlet.cs" />
+    <Compile Include="SiteMenu\NavigableNodeFeed.cs" />
+    <Compile Include="SiteMenu\NavigableTreeNode.cs" />
+    <Compile Include="NodeQueryXsltProxy.cs" />
+    <Compile Include="PageAdminPortlet.cs" />
+    <Compile Include="PortletState.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PurgePortlet.cs" />
+    <Compile Include="QuickSearchPortlet.cs" />
+    <Compile Include="ResourceXsltClient.cs" />
+    <Compile Include="SingleContentPortlet.cs" />
+    <Compile Include="SiteMenu\SiteMenu.cs" />
+    <Compile Include="SiteMenu\SiteMenuBase.cs" />
+    <Compile Include="SiteMenu\SiteMenuNodeEnumerator.cs" />
+    <Compile Include="SlideSharePortlet.cs" />
+    <Compile Include="StatusCodePortlet.cs" />
+    <Compile Include="SyncObjectFromADPortlet.cs" />
+    <Compile Include="UIControlsFactory.cs" />
+    <Compile Include="UIControlsFactoryBase.cs" />
+    <Compile Include="UserControlPortlet.cs" />
+    <Compile Include="ContentViewModel.cs" />
+    <Compile Include="UserGroupManagerPortlet.cs" />
+    <Compile Include="VotingPortlet.cs" />
+    <Compile Include="VotingQuestionAddNewPortlet.cs" />
+    <Compile Include="Wall\CommentPortlet.cs" />
+    <Compile Include="Wall\UserWallPortlet.cs" />
+    <Compile Include="Wall\WallPortlet.cs" />
+    <Compile Include="Workflow\AbortWorkflowPortlet.cs" />
+    <Compile Include="Workflow\ApprovePortlet.cs" />
+    <Compile Include="Workflow\ConfirmPortlet.cs" />
+    <Compile Include="YouTubePortlet.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ContentRepository\ContentRepository.csproj">
+      <Project>{786E6165-CA02-45A9-BF58-207A45D7D6DF}</Project>
+      <Name>ContentRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DirectoryServices\DirectoryServices.csproj">
+      <Project>{71BBF82C-84D2-409F-8BC0-A9F401B016FB}</Project>
+      <Name>DirectoryServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\LuceneNet_2_9_2\Lucene.Net.csproj">
+      <Project>{01262AA3-7163-40DA-90F9-BC0B67CEFB34}</Project>
+      <Name>Lucene.Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Messaging\Messaging.csproj">
+      <Project>{0C18D047-E725-46E1-8C9B-522D4A807FFF}</Project>
+      <Name>Messaging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Portal\Portal.csproj">
+      <Project>{1C62D342-FCFB-4402-90FE-9BCD24406A82}</Project>
+      <Name>Portal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Services.csproj">
+      <Project>{B72529C8-FEB1-49F5-B08B-56055B58F296}</Project>
+      <Name>Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Storage\Storage.csproj">
+      <Project>{5DB4DDBA-81F6-4D81-943A-18F3178B3355}</Project>
+      <Name>Storage</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WF\WF.csproj">
+      <Project>{EAFB31F9-5C6C-4661-9068-4D13AD33EABE}</Project>
+      <Name>WF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Workflow\Workflow.csproj">
+      <Project>{DCCA8F3A-C617-4609-AE2E-39795177ED10}</Project>
+      <Name>Workflow</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Controls\ContentAddNewUserControl.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Controls\NewWorkspaceWizard.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Controls\LoginView.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>HTMLContent</ContentType>
+  <ContentName>BookFooterContent</ContentName>
+  <Fields>
+    <HTMLFragment><![CDATA[          <div class="ui-helper-clearfix">
+            <p>
+              Book Rental
+              <br />
+              1234 Neverland
+              <br />
+              Somewhere street #1
+              <br />
+              Over the rainbow
+            </p>
+            <p>
+              Telephone:
+              <br />
+              +00 (1) 123 4567
+              <br />
+              Fax:
+              <br />
+              +00 (1) 123 4568
+            </p>
+            <ul>
+              <li>
+                <a href="/Book_Rental_Demo_Site/AboutUs">About Us</a>
+              </li>
+              <li>
+                <a href="/Book_Rental_Demo_Site/Books">Books</a>
+              </li>
+              <li>
+                <a href="/Book_Rental_Demo_Site/Forum">Forum</a>
+              </li>
+              <li>
+                <a href="/Book_Rental_Demo_Site/Calendar">Event Calendar</a>
+              </li>
+              <li>
+                <a href="/Book_Rental_Demo_Site/News">News</a>
+              </li>
+              <li>
+                <a href="/Book_Rental_Demo_Site/Download">Download eBooks</a>
+              </li>
+            </ul>
+          </div>
+        ]]></HTMLFragment>
+    <ReviewDate>0001-01-01T00:00:00</ReviewDate>
+    <ArchiveDate>0001-01-01T00:00:00</ArchiveDate>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <DisplayName>BookFooterContent</DisplayName>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate>0|0|0|0|0|0</Rate>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

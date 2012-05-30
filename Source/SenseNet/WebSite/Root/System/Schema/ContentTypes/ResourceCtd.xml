@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="Resource" parentType="SystemFile" handler="SenseNet.ContentRepository.i18n.Resource" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Resource</DisplayName>
+	<Description>String or binary reource used to localize the system. Its format is the same as the internal part of a resx file.</Description>
+	<Icon>Resource</Icon>
+	<Fields>
+		<Field name="Binary" type="Binary">
+			<DisplayName>Binary</DisplayName>
+			<Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+        <IsText>true</IsText>
+      </Configuration>
+		</Field>
+		<Field name="Downloads" type="Number">
+			<DisplayName>Downloads</DisplayName>
+			<Description>The number of downloads</Description>
+			<Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+				<ReadOnly>true</ReadOnly>
+			</Configuration>
+		</Field>
+		<Field name="Size" type="Number">
+			<DisplayName>Size</DisplayName>
+			<Description>Size of this version</Description>
+			<Configuration>
+				<ReadOnly>true</ReadOnly>
+			</Configuration>
+		</Field>
+		<Field name="FullSize" type="Number">
+			<DisplayName>Full size</DisplayName>
+			<Description>Size of all versions together</Description>
+			<Configuration>
+				<ReadOnly>true</ReadOnly>
+			</Configuration>
+		</Field>
+	</Fields>
+</ContentType>

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>PortletCategory</ContentType>
+  <ContentName>Enterprise2.0</ContentName>
+  <Fields>
+    <DisplayName>Enterprise 2.0</DisplayName>
+    <Description><![CDATA[Enterprise 2.0 portlets]]></Description>
+  </Fields>
+</ContentMetaData>

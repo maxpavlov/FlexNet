@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="LinkList" parentType="ItemList" handler="SenseNet.ContentRepository.ContentList" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Link List</DisplayName>
+	<Description>A List type for storing Links</Description>
+	<Icon>ContentList</Icon>
+  <AllowedChildTypes>
+    Link
+  </AllowedChildTypes>
+  <Fields>
+  </Fields>
+</ContentType>

@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>HTMLContent</ContentType>
+  <ContentName>Welcome</ContentName>
+  <Fields>
+    <HTMLFragment>
+    <![CDATA[
+      <div id="sn-intro" class="ui-helper-clearfix">
+        <p>Sense/Net CMS is the only <b>Open Source Enterprise Content Management</b> system for the .NET platform, a perfect <b>alternative to SharePoint</b>. Sense/Net is ideal for building enterprise Intranets, Extranets and Internet sites.</p>
+        <p>
+          <ul>
+            <li>Content Repository with powerful search and query</li>
+            <li>Workspaces, lists and libraries for collaboration and document management</li>
+            <li>WebDAV protocol and Microsoft Office integration for enhanced user experience</li>
+            <li>Windows Workflow Foundation 4 based workflows for BPM</li>
+            <li>Skin system, WYSIWYG and Smart Application Model for managing loads of web content</li>
+            <li>ASP.NET based development platform with Webpart and MVC support</li>
+            <li>Scalable Enterprise Architecture and Active Directory integration for enterprise deployment</li>
+            <li>Free Community and supported Enterprise editions with professional training</li>
+          </ul>
+        </p>
+      </div>
+    ]]>
+    </HTMLFragment>
+    <ReviewDate>0001-01-01T00:00:00</ReviewDate>
+    <ArchiveDate>0001-01-01T00:00:00</ArchiveDate>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <DisplayName>Welcome</DisplayName>
+    <Description><![CDATA[]]></Description>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+        <VersioningMode>1</VersioningMode>
+    <InheritableVersioningMode>1</InheritableVersioningMode>
+    <ApprovingMode>1</ApprovingMode>
+    <InheritableApprovingMode>1</InheritableApprovingMode>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate>0.00|0|0|0|0|0</Rate>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

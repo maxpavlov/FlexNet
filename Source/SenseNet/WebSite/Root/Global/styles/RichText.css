@@ -1,0 +1,85 @@
+body.sn-richtext { margin:0; padding: 0;background-color: Transparent;}
+body.sn-richtext,
+body.sn-richtext td, 
+body.sn-richtext pre { color:#333; font-family:Arial, Helvetica, sans-serif; font-size:12px; margin:0; }
+body.sn-richtext { background:transparent;}
+body.sn-richtext:focus { background-color: #eee !important; }
+
+body.mceForceColors {background:#FFF; color:#000;}
+
+.sn-richtext h1 {font-size: 2em; margin: 1em 0;}
+.sn-richtext h2 {font-size: 1.5em; margin: 1em 0;}
+.sn-richtext h3 {font-size: 1.17em; margin: 1em 0;}
+.sn-richtext h4 {font-size: 1em; margin: 1em 0;}
+.sn-richtext h5 {font-size: .83em; margin: 1em 0;}
+.sn-richtext h6 {font-size: .75em; margin: 1em 0;}
+
+.sn-richtext p { margin: 0 0 1em; }
+.sn-richtext a { color:#007DC6; }
+
+.sn-richtext table td, .sn-richtext table th {cursor:text}
+.sn-richtext ins {border-bottom:1px solid green; text-decoration: none; color:green}
+.sn-richtext del {color:red; text-decoration:line-through}
+.sn-richtext cite {border-bottom:1px dashed blue}
+.sn-richtext acronym {border-bottom:1px dotted #CCC; cursor:help}
+.sn-richtext abbr {border-bottom:1px dashed #CCC; cursor:help}
+
+/*** TinyMCE styles ***/
+.sn-richtext a:link      { color: #007dc2; text-decoration: none; }
+.sn-richtext a:visited   { color: #000000; text-decoration: underline; }
+.sn-richtext a:hover     { color: #007dc2; text-decoration: underline; }
+.sn-richtext a:active    { color: #007dc2; text-decoration: none; }
+
+.snSectionTitle {
+  font-size: 100%;
+  margin: 1em 0;
+  font-weight: bold;
+  color: #007dc2;
+}
+
+.sn-content-subtitle
+{
+  margin: 0 0 1em 0;
+  padding: 0;
+  color: #007dc2;
+  font-size: 130%;
+  font-weight: bold;
+}
+
+.snContentPicLeft {
+  border: 1px solid #ccc;
+  margin: 0 10px 5px 0;
+  padding: 5px;
+  background: #fff;
+  float: left;
+}
+
+.snContentPicRight {
+  border: 1px solid #ccc;
+  margin: 0 0 5px 10px;
+  padding: 5px;
+  background: #fff;
+  float: right;
+}
+
+.snContentPicCenter {
+  border: 1px solid #ccc;
+  margin: 10px auto;
+  padding: 5px;
+  background: #fff;
+}
+
+.snTableGrid {
+  border: 1px solid #ccc;
+  margin: 10px auto;
+  padding: 0;
+  width: 100%;
+  font-size: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #222;
+}
+
+.snTableGrid th, .snTableGrid td { border: 1px solid #ccc; }
+.snTableGrid th { background: #ccc; }
+.snSmallText { font-size: 80%; }
+.snBigText { font-size: 120%; }

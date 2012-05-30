@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>SalesWorkspace</ContentType>
+  <ContentName>tokiosalesworkspace</ContentName>
+  <Fields>
+    <Manager>
+      <Path>/Root/IMS/Demo/ProjectManagers/albamonday</Path>
+    </Manager>
+    <Customer><![CDATA[]]></Customer>
+    <Description><![CDATA[<p>This workspace emcompasses all sales details and related items associated with the Tokio Sales project.</p>]]></Description>
+    <ExpectedRevenue>80000000.0000</ExpectedRevenue>
+    <ChanceOfWinning>40.0000</ChanceOfWinning>
+    <StartDate>2010-04-10T00:00:00</StartDate>
+    <Deadline>2011-03-15T00:00:00</Deadline>
+    <Contacts><![CDATA[]]></Contacts>
+    <Notes><![CDATA[]]></Notes>
+    <Completion>25</Completion>
+    <ContractSigned>false</ContractSigned>
+    <ContractSignedDate>0001-01-01T00:00:00</ContractSignedDate>
+    <DisplayName>Tokio Sales Workspace</DisplayName>
+    <IsActive>true</IsActive>
+    <IsCritical>true</IsCritical>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+    <Identity path="/Root/Sites/Default_Site/workspaces/Sales/tokiosalesworkspace/Groups/Owners">
+      <See>Allow</See>
+      <Open>Allow</Open>
+      <OpenMinor>Allow</OpenMinor>
+      <Save>Allow</Save>
+      <ManageListsAndWorkspaces>Allow</ManageListsAndWorkspaces>
+      <Publish>Allow</Publish>
+      <ForceCheckin>Allow</ForceCheckin>
+      <AddNew>Allow</AddNew>
+      <Approve>Allow</Approve>
+      <Delete>Allow</Delete>
+      <RecallOldVersion>Allow</RecallOldVersion>
+      <DeleteOldVersion>Allow</DeleteOldVersion>
+      <SeePermissions>Allow</SeePermissions>
+      <SetPermissions>Allow</SetPermissions>
+      <RunApplication>Allow</RunApplication>
+    </Identity>
+    <Identity path="/Root/Sites/Default_Site/workspaces/Sales/tokiosalesworkspace/Groups/Members">
+      <See>Allow</See>
+      <Open>Allow</Open>
+      <OpenMinor>Allow</OpenMinor>
+      <Save>Allow</Save>
+      <Publish>Allow</Publish>
+      <AddNew>Allow</AddNew>
+      <Delete>Allow</Delete>
+      <RecallOldVersion>Allow</RecallOldVersion>
+      <RunApplication>Allow</RunApplication>
+    </Identity>
+    <Identity path="/Root/Sites/Default_Site/workspaces/Sales/tokiosalesworkspace/Groups/Visitors">
+      <See>Allow</See>
+      <Open>Allow</Open>
+      <RunApplication>Allow</RunApplication>
+    </Identity>
+  </Permissions>
+</ContentMetaData>

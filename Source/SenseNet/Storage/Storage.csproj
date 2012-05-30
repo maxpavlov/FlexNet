@@ -1,0 +1,363 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5DB4DDBA-81F6-4D81-943A-18F3178B3355}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SenseNet.ContentRepository.Storage</RootNamespace>
+    <AssemblyName>SenseNet.Storage</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <DocumentationFile>
+    </DocumentationFile>
+    <CodeAnalysisRules>
+    </CodeAnalysisRules>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.JScript" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=4.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\EntLibReferences\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=4.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\EntLibReferences\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging.Database, Version=4.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\EntLibReferences\Microsoft.Practices.EnterpriseLibrary.Logging.Database.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\EntLibReferences\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\EntLibReferences\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActiveSchema.cs" />
+    <Compile Include="Caching\Dependency\EventServer.cs" />
+    <Compile Include="Data\IndexBackup.cs" />
+    <Compile Include="Data\IndexBackupProgress.cs" />
+    <Compile Include="Data\PsStreamManager.cs" />
+    <Compile Include="ISnService.cs" />
+    <Compile Include="AppModel\IApplicationCache.cs" />
+    <Compile Include="AppModel\ApplicationResolver.cs" />
+    <Compile Include="ApplicationMessaging\UploadToken.cs" />
+    <Compile Include="AppModel\ApplicationQuery.cs" />
+    <Compile Include="AppModel\RepositoryCancelEvent.cs" />
+    <Compile Include="AppModel\RepositoryCancelEventArgs.cs" />
+    <Compile Include="AppModel\RepositoryCancelEventHandler.cs" />
+    <Compile Include="AppModel\RepositoryEvent.cs" />
+    <Compile Include="AppModel\RepositoryEventBase.cs" />
+    <Compile Include="AppModel\RepositoryEventException.cs" />
+    <Compile Include="AppModel\RepositoryEventHandler.cs" />
+    <Compile Include="AppModel\RepositoryEventArgs.cs" />
+    <Compile Include="AppModel\RepositoryEventHandlerBase.cs" />
+    <Compile Include="AppModel\RepositoryEventRouter.cs" />
+    <Compile Include="BinaryData.cs" />
+    <Compile Include="Caching\AspNetCache.cs" />
+    <Compile Include="Caching\CacheBase.cs" />
+    <Compile Include="Caching\CacheDependencyFactory.cs" />
+    <Compile Include="Caching\Dependency\NodeTypeDependency.cs" />
+    <Compile Include="Caching\EventArgsGeneric.cs" />
+    <Compile Include="Caching\Dependency\NodeIdDependency.cs" />
+    <Compile Include="Caching\Dependency\PathDependency.cs" />
+    <Compile Include="Caching\ICache.cs" />
+    <Compile Include="Diagnostics\TimeboxedActivity.cs" />
+    <Compile Include="DistributedApplication\Messaging\MsmqChannel.cs" />
+    <Compile Include="IContentQuery.cs" />
+    <Compile Include="DataBackingStore.cs" />
+    <Compile Include="Data\ConfigurationException.cs" />
+    <Compile Include="ContextHandler.cs" />
+    <Compile Include="Data\IDataProcedure.cs" />
+    <Compile Include="Data\INodeWriter.cs" />
+    <Compile Include="Data\INodeQueryCompiler.cs" />
+    <Compile Include="Data\ITransactionProvider.cs" />
+    <Compile Include="Data\NodeBuilder.cs" />
+    <Compile Include="Caching\Populators\CacheItemPopulator.cs" />
+    <Compile Include="Caching\DistributedActions\CleanupNodeCacheAction.cs" />
+    <Compile Include="Data\PropertyMapping.cs" />
+    <Compile Include="Data\RepositoryStream.cs" />
+    <Compile Include="Diagnostics\AuditEvent.cs" />
+    <Compile Include="Diagnostics\DebugWriteLoggerAdapter.cs" />
+    <Compile Include="Diagnostics\EntlibLoggerAdapter.cs" />
+    <Compile Include="Diagnostics\ILoggerAdapter.cs" />
+    <Compile Include="Diagnostics\Logger.cs" />
+    <Compile Include="Diagnostics\OperationTrace.cs" />
+    <Compile Include="Diagnostics\Tracing.cs" />
+    <Compile Include="Diagnostics\Utility.cs" />
+    <Compile Include="IQueryPageNavigable.cs" />
+    <Compile Include="IQueryPageNavigator.cs" />
+    <Compile Include="NodeIsOutOfDateException.cs" />
+    <Compile Include="NodeOperation.cs" />
+    <Compile Include="NodePager.cs" />
+    <Compile Include="NodeSaveSettings.cs" />
+    <Compile Include="QueryResult.cs" />
+    <Compile Include="QuerySettings.cs" />
+    <Compile Include="Search\IIndexPopulator.cs" />
+    <Compile Include="Instrumentation\TraceFrame.cs" />
+    <Compile Include="Instrumentation\TraceFrameEventType.cs" />
+    <Compile Include="Instrumentation\TraceHelper.cs" />
+    <Compile Include="Instrumentation\TraceSourceAttribute.cs" />
+    <Compile Include="NodeData.cs" />
+    <Compile Include="NodeEnumerator.cs" />
+    <Compile Include="NodeHead.cs" />
+    <Compile Include="Data\DataOperationException.cs" />
+    <Compile Include="Data\DataOperationResult.cs" />
+    <Compile Include="Data\TransactionQueue.cs" />
+    <Compile Include="Data\RepositoryConfiguration.cs" />
+    <Compile Include="Data\DataProvider.cs" />
+    <Compile Include="Data\SqlClient\FlatPropertyWriter.cs" />
+    <Compile Include="Data\SqlClient\PropertyMap.cs" />
+    <Compile Include="Data\SqlClient\SqlCompiler.cs" />
+    <Compile Include="Data\SqlClient\SqlNodeWriter.cs" />
+    <Compile Include="Data\SqlClient\SqlProcedure.cs" />
+    <Compile Include="Data\SqlClient\SqlProvider.cs" />
+    <Compile Include="Data\SqlClient\SqlSchemaWriter.cs" />
+    <Compile Include="Data\SqlClient\Transaction.cs" />
+    <Compile Include="BinaryFileName.cs" />
+    <Compile Include="Caching\DistributedActions\CleanupCacheAction.cs" />
+    <Compile Include="Caching\DistributedActions\PortletChangedAction.cs" />
+    <Compile Include="Caching\DistributedActions\PortletChangedMessage.cs" />
+    <Compile Include="Caching\Dependency\PortletDependency.cs" />
+    <Compile Include="DistributedApplication.cs" />
+    <Compile Include="DistributedApplication\Messaging\BinaryMessageFormatter.cs" />
+    <Compile Include="DistributedApplication\Messaging\ClusterChannel.cs" />
+    <Compile Include="DistributedApplication\Messaging\ClusterMemberInfo.cs" />
+    <Compile Include="DistributedApplication\Messaging\ClusterMessage.cs" />
+    <Compile Include="DistributedApplication\Messaging\DistributedAction.cs" />
+    <Compile Include="DistributedApplication\Messaging\IClusterChannel.cs" />
+    <Compile Include="DistributedApplication\Messaging\LoopbackChannel.cs" />
+    <Compile Include="DistributedApplication\Messaging\UnknownMessageType.cs" />
+    <Compile Include="Events\CancellableNodeEvent.cs" />
+    <Compile Include="Events\CancellableNodeEventArgs.cs" />
+    <Compile Include="Events\CancellableNodeOperationEventArgs.cs" />
+    <Compile Include="Events\CancelNodeEventException.cs" />
+    <Compile Include="Events\INodeEventArgs.cs" />
+    <Compile Include="Events\NodeEvent.cs" />
+    <Compile Include="Events\NodeEventArgs.cs" />
+    <Compile Include="Events\NodeObserver.cs" />
+    <Compile Include="Events\NodeOperationEventArgs.cs" />
+    <Compile Include="IContentList.cs" />
+    <Compile Include="Search\DateTimeParser.cs" />
+    <Compile Include="Search\ISearchEngine.cs" />
+    <Compile Include="Search\Internal\Operator.cs" />
+    <Compile Include="Search\NodeQueryResult.cs" />
+    <Compile Include="Search\NodeQueryTemplateReplacer.cs" />
+    <Compile Include="Security\AclEditor.cs" />
+    <Compile Include="Security\IOrganizationalUnit.cs" />
+    <Compile Include="Security\ISecurityMember.cs" />
+    <Compile Include="Security\MembershipExtender.cs" />
+    <Compile Include="Security\PermissionEvaluator.cs" />
+    <Compile Include="Security\SnAccessControlEntry.cs" />
+    <Compile Include="Security\SnAccessControlEntryExtensions.cs" />
+    <Compile Include="Security\SnAccessControlList.cs" />
+    <Compile Include="Security\SnAccessControlListExtensions.cs" />
+    <Compile Include="Security\SnEffectivePermission.cs" />
+    <Compile Include="Security\SnEffectivePermissionExtensions.cs" />
+    <Compile Include="Security\SnIdentity.cs" />
+    <Compile Include="Security\SnIdentityExtensions.cs" />
+    <Compile Include="Security\SnIdentityKind.cs" />
+    <Compile Include="Security\StartupUser.cs" />
+    <Compile Include="Security\SystemAccount.cs" />
+    <Compile Include="StorageContext.cs" />
+    <Compile Include="TransactionParticipant.cs" />
+    <Compile Include="TypeHandler.cs" />
+    <Compile Include="MimeTable.cs" />
+    <Compile Include="NodeComparer.cs" />
+    <Compile Include="RepositoryException.cs" />
+    <Compile Include="Schema\ContentListType.cs" />
+    <Compile Include="Schema\SchemaWriter.cs" />
+    <Compile Include="Schema\TypeConverter.cs" />
+    <Compile Include="Scripting\Evaluator.cs" />
+    <Compile Include="Scripting\IEvaluator.cs" />
+    <Compile Include="Scripting\ScriptTagNameAttribute.cs" />
+    <Compile Include="Search\Internal\Literal.cs" />
+    <Compile Include="Search\Internal\PropertyLiteral.cs" />
+    <Compile Include="Security\LockedNodeException.cs" />
+    <Compile Include="Security\PermissionValue.cs" />
+    <Compile Include="Security\SystemUser.cs" />
+    <Compile Include="TransactionScope.cs" />
+    <Compile Include="InvalidPathException.cs" />
+    <Compile Include="RepositoryPath.cs" />
+    <Compile Include="Schema\InvalidSchemaException.cs" />
+    <Compile Include="Schema\ISchemaRoot.cs" />
+    <Compile Include="Schema\PermissionType.cs" />
+    <Compile Include="Schema\PropertySet.cs" />
+    <Compile Include="Schema\Enums.cs" />
+    <Compile Include="Schema\RegistrationException.cs" />
+    <Compile Include="Schema\SchemaEditor.cs" />
+    <Compile Include="Schema\SchemaEditorCommandException.cs" />
+    <Compile Include="Schema\SchemaItem.cs" />
+    <Compile Include="Schema\SchemaRoot.cs" />
+    <Compile Include="Schema\TypeCollection.cs" />
+    <Compile Include="Search\Internal\BinaryExpression.cs" />
+    <Compile Include="Search\Internal\ExpressionEnumerator.cs" />
+    <Compile Include="Search\Internal\IBinaryExpression.cs" />
+    <Compile Include="Search\NotExpression.cs" />
+    <Compile Include="Search\SearchOrder.cs" />
+    <Compile Include="Search\TypeExpression.cs" />
+    <Compile Include="Security\AccessProvider.cs" />
+    <Compile Include="Security\IGroup.cs" />
+    <Compile Include="Security\LockHandler.cs" />
+    <Compile Include="NodeList.cs" />
+    <Compile Include="Schema\NodeTypeManager.cs" />
+    <Compile Include="Schema\PropertyType.cs" />
+    <Compile Include="Search\CurrencyExpression.cs" />
+    <Compile Include="Search\DateTimeExpression.cs" />
+    <Compile Include="Search\Expression.cs" />
+    <Compile Include="Search\ExpressionList.cs" />
+    <Compile Include="Search\IntExpression.cs" />
+    <Compile Include="Search\NodeQuery.cs" />
+    <Compile Include="Search\ReferenceExpression.cs" />
+    <Compile Include="Search\SearchExpression.cs" />
+    <Compile Include="Search\StringExpression.cs" />
+    <Compile Include="Search\Enums.cs" />
+    <Compile Include="Security\SecurityEntry.cs" />
+    <Compile Include="Security\SenseNetSecurityException.cs" />
+    <Compile Include="Security\IUser.cs" />
+    <Compile Include="SR.cs" />
+    <Compile Include="TypeNotFoundException.cs" />
+    <Compile Include="VersionNumber.cs" />
+    <Compile Include="NodeToken.cs" />
+    <Compile Include="Node.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Schema\NodeType.cs" />
+    <Compile Include="Security\SecurityHandler.cs" />
+    <Compile Include="VersionStatus.cs" />
+    <Compile Include="XmlValidator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Data\StorageSchemaSample.xml" />
+    <EmbeddedResource Include="Search\QuerySample.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\SqlClient\Scripts\Create_SenseNet_Database.sql" />
+    <None Include="Data\SqlClient\Scripts\Create_SenseNet_Test_Database.sql" />
+    <None Include="Data\SqlClient\Scripts\Drop_SenseNet_Database.sql" />
+    <None Include="Data\SqlClient\Scripts\Drop_SenseNet_Test_Database.sql" />
+    <None Include="Data\SqlClient\Scripts\Install_01_Schema.sql" />
+    <None Include="Data\SqlClient\Scripts\Install_02_Procs.sql" />
+    <None Include="Data\SqlClient\Scripts\Install_03_Data_Phase1.sql" />
+    <None Include="Data\SqlClient\Scripts\Install_04_Data_Phase2.sql" />
+    <None Include="Data\SqlClient\Scripts\Rebuild_SenseNet_FullTextCatalog.sql" />
+    <EmbeddedResource Include="Search\QuerySchema.xsd">
+      <SubType>
+      </SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Data\SqlClient\Scripts\Install_05_Data_Phase3.sql" />
+    <Content Include="Data\SqlClient\Scripts\SqlWorkflowInstanceStoreLogic.sql" />
+    <Content Include="Data\SqlClient\Scripts\SqlWorkflowInstanceStoreSchema.sql" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

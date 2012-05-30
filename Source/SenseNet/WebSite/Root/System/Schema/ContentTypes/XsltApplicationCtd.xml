@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="XsltApplication" parentType="Application" handler="SenseNet.Portal.Handlers.XsltApplication" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>XsltApplication</DisplayName>
+  <Description>Xslt rendering application</Description>
+  <Icon>File</Icon>
+  <Fields>
+    <Field name="Binary" type="Binary">
+      <DisplayName>Xslt template</DisplayName>
+      <Description>Upload or enter the Xslt template to be used in rendering</Description>
+      <Configuration>
+        <IsText>true</IsText>
+      </Configuration>
+    </Field>
+    <Field name="MimeType" type="ShortText">
+      <DisplayName>MIME type</DisplayName>
+      <Description>
+        Sets HTTP MIME type of the output stream.
+        Default value: application/xml
+      </Description>
+      <Icon>field.gif</Icon>
+      <Configuration>
+        <Compulsory>false</Compulsory>
+        <MaxLength>60</MaxLength>
+      </Configuration>
+    </Field>
+    <Field name="OmitXmlDeclaration" type="Boolean">
+      <DisplayName>OmitXmlDeclaration</DisplayName>
+      <Description>
+        Sets a value indicating whether to write XML declaration
+        Default value: true
+      </Description>
+      <Icon>field.gif</Icon>
+      <Configuration>
+        <DefaultValue>false</DefaultValue>
+      </Configuration>
+    </Field>
+    <Field name="ResponseEncoding" type="ShortText">
+      <DisplayName>Response encoding</DisplayName>
+      <Description>
+        Sets the text encoding to use
+        Default value: UTF8
+      </Description>
+      <Icon>field.gif</Icon>
+      <Configuration>
+        <Compulsory>false</Compulsory>
+        <MaxLength>60</MaxLength>
+        <DefaultValue>utf-8</DefaultValue>
+      </Configuration>
+    </Field>
+    <Field name="WithChildren" type="Boolean">
+      <DisplayName>With children</DisplayName>
+      <Description>
+        Sets a value indicating whether to render content with all children
+        Default value: true
+      </Description>
+      <Icon>field.gif</Icon>
+      <Configuration>
+        <DefaultValue>false</DefaultValue>
+      </Configuration>
+    </Field>
+    <Field name="Cacheable" type="Boolean">
+      <DisplayName>Application is cached</DisplayName>
+      <Description>If set the output of the application will be cached. <![CDATA[<div class='ui-helper-clearfix sn-dialog-editportlet-warning'><img class='sn-icon sn-icon16 sn-floatleft' src='/Root/Global/images/icons/16/warning.png' /><i>Switching off application cache may cause performance issues!</i></div>]]></Description>
+      <Configuration>
+        <DefaultValue>true</DefaultValue>
+      </Configuration>
+    </Field>
+    <Field name="CacheableForLoggedInUser" type="Boolean">
+      <DisplayName>Application is cached for logged in users</DisplayName>
+      <Description>If set the output of the application will be cached for logged in users. <![CDATA[<div class='ui-helper-clearfix sn-dialog-editportlet-warning'><img class='sn-icon sn-icon16 sn-floatleft' src='/Root/Global/images/icons/16/warning.png' /><i>Switching off application cache may cause performance issues!</i></div>]]></Description>
+      <Configuration>
+        <DefaultValue>true</DefaultValue>
+      </Configuration>
+    </Field>
+    <Field name="CacheByPath" type="Boolean">
+      <DisplayName>Request path influences caching</DisplayName>
+      <Description>Defines whether the requested content path is included in the cache key. When unchecked application output is preserved regardless of the page's current context content or request path. Check it if you want to cache application output depending on the requested context content.</Description>
+      <Configuration>
+        <DefaultValue>true</DefaultValue>
+      </Configuration>
+    </Field>
+    <Field name="CacheByParams" type="Boolean">
+      <DisplayName>Url query params influence caching</DisplayName>
+      <Description>Defines whether the url query params are also included in the cache key. When unchecked application output is preserved regardless of changing url params.</Description>
+      <Configuration>
+        <DefaultValue>false</DefaultValue>
+      </Configuration>
+    </Field>
+    <Field name="AbsoluteExpiration" type="Integer">
+      <DisplayName>Absolute expiration</DisplayName>
+      <Description>Given in seconds. The application will be refreshed periodically with the given time period. -1 means that the value is defined by 'AbsoluteExpirationSeconds' setting in the web.config.</Description>
+      <Configuration>
+        <DefaultValue>-1</DefaultValue>
+      </Configuration>
+    </Field>
+    <Field name="SlidingExpirationMinutes" type="Integer">
+      <DisplayName>Sliding expiration</DisplayName>
+      <Description>Given in seconds. The application is refreshed when it has not been accessed for the given seconds. -1 means that the value is defined by 'SlidingExpirationSeconds' setting in the web.config.</Description>
+      <Configuration>
+        <DefaultValue>-1</DefaultValue>
+      </Configuration>
+    </Field>
+    <Field name="CustomCacheKey" type="ShortText">
+      <DisplayName>Custom cache key</DisplayName>
+      <Description>
+        Defines a custom cache key independent of requested path and query params. Useful when the same static output is rendered at various pages. <![CDATA[<div class='ui-helper-clearfix sn-dialog-editportlet-warning'><img class='sn-icon sn-icon16 sn-floatleft' src='/Root/Global/images/icons/16/warning.png' /><i>For experts only! Leave empty if unsure.</i></div>]]>
+      </Description>
+    </Field>
+  </Fields>
+</ContentType>

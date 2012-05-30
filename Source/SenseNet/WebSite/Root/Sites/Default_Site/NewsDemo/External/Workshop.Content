@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Article</ContentType>
+  <ContentName>Workshop</ContentName>
+  <Fields>
+    <DisplayName>Workshop</DisplayName>
+    <Subtitle></Subtitle>
+    <Lead><![CDATA[
+      <p>: Do you have opinion about real enterprise criteria? What kind of opportunities are still hidden in .Net platform?
+      We are inviting the great authorities of the subjects.</p>
+    ]]></Lead>
+    <Body><![CDATA[
+      <p>We are constantly collecting professional opinions about Enterprise Content Management, .Net platform and open source software.
+      The next workshop will be held on 23 -24 November, 2010 in Vienna (Austria). Participation and social events are gratuitous. Find
+      the agenda listed on page Enterprise Workshop, Vienna  and send your application for us.</p>
+      <p>And for the night we can promise you the biggest Geek Party that you’ve ever seen. Learn Rubik Cube game from the world champions,
+      dress yourself to be a Jabba and drink cocktails served by hundreds of Princess Leia!</p>
+    ]]></Body>
+    <Pinned>false</Pinned>
+    <Keywords><![CDATA[]]></Keywords>
+    <Author></Author>
+    <ImageRef />
+    <ImageData attachment="Workshop.ImageData.jpg" />
+    <ReviewDate>0001-01-01T00:00:00</ReviewDate>
+    <ArchiveDate>0001-01-01T00:00:00</ArchiveDate>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <Description><![CDATA[]]></Description>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateStr>0|1|0|0|0|0|0</RateStr>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

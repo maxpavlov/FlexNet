@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="HTMLContent" parentType="WebContent" handler="SenseNet.ContentRepository.GenericContent" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>HTML Content (unstructured web content)</DisplayName>
+	<Description>This content can store an unstructured single html fragment.</Description>
+	<Icon>WebContent</Icon>
+	<Fields>
+		<Field name="HTMLFragment" type="LongText">
+			<DisplayName>HTML fragment</DisplayName>
+			<Description>Write your HTML code in the text area</Description>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.Standard.StandardAnalyzer</Analyzer>
+      </Indexing>
+      <Configuration>
+        <OutputMethod>Html</OutputMethod>
+      </Configuration>
+    </Field>
+	</Fields>
+</ContentType>

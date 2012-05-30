@@ -1,0 +1,160 @@
+﻿<ContentType name="ContentList" parentType="Folder" handler="SenseNet.ContentRepository.ContentList" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Content List</DisplayName>
+  <Description>Generic Content List type</Description>
+  <Icon>ContentList</Icon>
+  <Fields>
+    <Field name="DisplayName" type="ShortText">
+      <DisplayName>Display Name</DisplayName>
+    </Field>
+    <Field name="ContentListDefinition" type="LongText">
+      <DisplayName>List Definition</DisplayName>
+      <Description>XML definition for additional fields</Description>
+      <Indexing>
+        <Mode>No</Mode>
+      </Indexing>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Advanced</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="DefaultView" type="ShortText">
+      <DisplayName>Default view</DisplayName>
+      <Description>The default View to use</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="AvailableViews" type="Reference">
+      <DisplayName>Available views</DisplayName>
+      <Description>Select global content list views here that you want to offer users to choose from</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <AllowMultiple>true</AllowMultiple>
+        <AllowedTypes>
+          <Type>ListView</Type>
+        </AllowedTypes>
+      </Configuration>
+    </Field>
+    <Field name="FieldSettingContents" type="Reference">
+      <DisplayName>FieldSetting Contents</DisplayName>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <AllowMultiple>true</AllowMultiple>
+        <AllowedTypes>
+          <Type>FieldSettingContent</Type>
+        </AllowedTypes>
+      </Configuration>
+    </Field>
+    <Field name="AvailableContentTypeFields" type="Reference">
+      <DisplayName>Available ContentType Field Contents</DisplayName>
+      <Configuration>
+        <ReadOnly>true</ReadOnly>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+        <AllowMultiple>true</AllowMultiple>
+        <AllowedTypes>
+          <Type>FieldSettingContent</Type>
+        </AllowedTypes>
+      </Configuration>
+    </Field>
+    <!-- Exchange integration -->
+    <Field name="ListEmail" type="ShortText">
+      <DisplayName>Email address of Content List</DisplayName>
+      <Description>Emails sent to this address will be imported as Email content into the Document Library.</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="ExchangeSubscriptionId" type="ShortText">
+      <DisplayName>Exchange Subscription Id</DisplayName>
+      <Description>The id of the most recent Exchange push notification subscription of the Document Library. Multiple subscriptions are eliminated by accepting subscription notification events with this Id only. Filled when subscribing to Exchange push notifications.</Description>
+      <Configuration>
+        <ReadOnly>true</ReadOnly>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="OverwriteFiles" type="Boolean">
+      <DisplayName>Overwrite files with same name</DisplayName>
+      <Description>If checked new emails and attachments with the same name will overwrite existing items in list. Otherwise increment suffix is used in the name of new mail items.</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="GroupAttachments" type="Choice">
+      <DisplayName>Group attachments</DisplayName>
+      <Description>Select the appropriate option to group attachment files under folders or email content or not.</Description>
+      <Configuration>
+        <AllowMultiple>false</AllowMultiple>
+        <AllowExtraValue>false</AllowExtraValue>
+        <Options>
+          <Option value="email" selected="true">Save all attachments as children of separate Email content</Option>
+          <Option value="root">Save all attachments in root</Option>
+          <Option value="subject">Save all attachments in folders grouped by subject</Option>
+          <Option value="sender">Save all attachments in folders grouped by sender</Option>
+        </Options>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="SaveOriginalEmail" type="Boolean">
+      <DisplayName>Save original email</DisplayName>
+      <Description>A separate .eml file will be created for every incoming email.</Description>
+      <Configuration>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="IncomingEmailWorkflow" type="Reference">
+      <DisplayName>Incoming email workflow</DisplayName>
+      <Description>Select the workflow to be executed on every incoming email.</Description>
+      <Configuration>
+        <AllowMultiple>false</AllowMultiple>
+        <SelectionRoot>
+          <Path>/Root/System/Schema/ContentTypes/GenericContent/Workflow/MailProcessorWorkflow</Path>
+        </SelectionRoot>
+        <DefaultValue>/Root/System/Schema/ContentTypes/GenericContent/Workflow/MailProcessorWorkflow</DefaultValue>
+        <VisibleBrowse>Hide</VisibleBrowse>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
+      </Configuration>
+    </Field>
+    <!-- Exchange integration end -->
+    <Field name="AllowedChildTypes" type="AllowedChildTypes">
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="InheritableVersioningMode" type="InheritableVersioningMode">
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+    <Field name="InheritableApprovingMode" type="InheritableApprovingMode">
+      <Configuration>
+        <VisibleBrowse>Show</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
+  </Fields>
+</ContentType>

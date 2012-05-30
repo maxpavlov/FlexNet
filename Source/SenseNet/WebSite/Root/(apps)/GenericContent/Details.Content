@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Page</ContentType>
+  <ContentName>Details</ContentName>
+  <Fields>
+    <DisplayName>Browse</DisplayName>
+    <PageTemplateNode>
+      <Path>/Root/Global/pagetemplates/sn-layout-dialog.html</Path>
+    </PageTemplateNode>
+    <Binary attachment="Details.aspx" />
+    <PersonalizationSettings attachment="Details.PersonalizationSettings" />
+    <Icon>browse</Icon>
+  </Fields>
+</ContentMetaData>

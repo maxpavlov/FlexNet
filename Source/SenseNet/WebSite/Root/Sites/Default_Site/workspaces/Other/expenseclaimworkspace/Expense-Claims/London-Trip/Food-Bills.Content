@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>ExpenseClaimItem</ContentType>
+  <ContentName>Food-Bills</ContentName>
+  <Fields>
+    <Amount>200</Amount>
+    <Currency>EUR</Currency>
+    <Date>2011-04-14T00:00:00</Date>
+    <ImageRef />
+    <ImageData attachment="Food-Bills.ImageData" />
+    <Index>0</Index>
+    <DisplayName>Food Bills</DisplayName>
+    <Description><![CDATA[<p>My food bills.</p>]]></Description>
+    <Hidden>false</Hidden>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

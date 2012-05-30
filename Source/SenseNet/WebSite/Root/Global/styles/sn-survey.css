@@ -1,0 +1,153 @@
+/* Survey Browse and Evaluation View */
+div.sn-survey-browse table {
+    margin: 0 0 20px;
+}
+
+div.sn-survey-browse ul li {
+    list-style-type: none;
+    margin: 15px 0;
+}
+
+div.sn-survey-browse ul li span {
+    margin: 3px 0;
+}
+
+div.sn-survey-browse div.info {
+    position: relative;
+    top: 45px;
+    left: 4px;
+    font-variant: small-caps;
+    color: Gray;
+    text-align: left;
+}
+
+div.sn-survey-browse div.desc p {
+    text-align: justify;
+}
+
+div.sn-survey-browse div.desc p span {
+    font-size: 12px !important;
+    line-height: 20px !important;
+}
+
+div.sn-survey-browse div.percentage {
+    color: Gray;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+div.sn-survey-browse div.container {
+    width: 100%;
+    border: 1px solid #f4f4f4;
+    background: white;
+}
+
+div.sn-survey-browse div.progress {
+    height: 8px;
+    width: 60%;
+    background: #007dc2;
+}
+
+div.sn-survey-browse input.sn-survey-nextbutton {
+    background: white;
+    color: #007dc2;
+    border: 1px solid #ccc;
+    padding: 5px;
+    outline: none;
+}
+
+div.sn-survey-browse input.sn-textbox {
+    padding: 4px;
+    width: 240px;
+    color: #6a6a6a;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+div.sn-survey-browse li.sn-survey-circle {
+    list-style-type: disc;
+}
+
+div.sn-survey-browse .sn-inputunit {
+    border: 1px solid #CCCCCC;
+    margin: 10px 0;
+    padding: 0;
+    width: 90%;
+}
+
+div.sn-survey-browse .sn-iu-label {
+    color: #007dc2;
+    display: block;
+    float: left;
+    margin: 4px 0;
+    padding: 10px 5px;
+    text-align: center;
+    width: 300px;
+}
+
+div.sn-survey-browse .sn-iu-control {
+    background: #F0F0F0;
+    margin: 0;
+    padding: 15px 0;
+    height: 15px;
+    width: 50%;
+    float: right;
+    text-align: center;
+}
+
+div.sn-survey-browse .sn-iu-control p {
+    margin: 0;
+}
+
+div.sn-survey-evaluation textarea {
+	width: 98%;
+	margin: 0 4px 10px;
+}
+
+/* Survey Edit View */
+span.sn-survey-edit .sn-inputunit {
+    border: 1px solid #CCCCCC;
+	margin: 10px 0;
+	padding: 0px !important;
+	height: auto;
+}
+
+span.sn-survey-edit .sn-inputunit div.sn-iu-label {
+	float: left;
+	padding: 10px;
+	text-align: center;
+	width: 330px;
+}
+
+span.sn-survey-edit .sn-inputunit div.sn-iu-control {
+	background: #F0F0F0;
+	height: inherit;
+	padding: 10px;
+	width: 400px;
+	text-align: left;
+}
+
+table.sn-survey-wizard input[type="submit"] {
+	background: #007dc2;
+	border: 0;
+	color: white;
+	font-weight: bold;
+	padding: 5px;
+	outline: none;
+	overflow: hidden;
+}
+
+/* Voting Result View */
+div.sn-voting-result table.sn-voting-result-table { width: 350px; }
+
+div.sn-voting-result table.sn-voting-result-table td.sn-voting-result-question { padding: 2px 5px; }
+
+div.sn-voting-result table.sn-voting-result-table td.sn-voting-result-answer { width: 100%; }
+
+div.sn-voting-result table.sn-voting-result-table td.sn-voting-result-answer div.sn-voting-result-graph { text-align: center; background: #007dc2; }
+
+div.sn-voting-result table.sn-voting-result-table td.sn-voting-result-answer div.sn-voting-result-graph span.sn-voting-result-count { color: White; }
+
+
+

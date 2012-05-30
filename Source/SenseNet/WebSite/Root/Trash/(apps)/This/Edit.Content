@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Page</ContentType>
+  <ContentName>Edit</ContentName>
+  <Fields>
+    <DisplayName>Settings</DisplayName>
+    <Hidden>false</Hidden>
+    <Index>100</Index>
+    <SmartUrl></SmartUrl>
+    <PageTemplateNode>
+      <Path>/Root/Global/pagetemplates/sn-layout-dialog.html</Path>
+    </PageTemplateNode>
+    <IsExternal>false</IsExternal>
+    <OuterUrl></OuterUrl>
+    <MetaTitle></MetaTitle>
+    <Keywords><![CDATA[]]></Keywords>
+    <MetaDescription><![CDATA[]]></MetaDescription>
+    <MetaAuthors></MetaAuthors>
+    <CustomMeta><![CDATA[]]></CustomMeta>
+    <Binary attachment="Edit.aspx" />
+    <PersonalizationSettings attachment="Edit.PersonalizationSettings" />
+    <Description><![CDATA[]]></Description>
+        <Scenario>WorkspaceActions;ListActions;Settings</Scenario>
+    <Icon>edit</Icon>
+    <RequiredPermissions>2;4</RequiredPermissions>
+  </Fields>
+</ContentMetaData>

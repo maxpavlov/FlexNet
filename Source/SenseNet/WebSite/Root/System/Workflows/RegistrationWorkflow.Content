@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>WorkflowDefinition</ContentType>
+  <ContentName>RegistrationWorkflow.xaml</ContentName>
+  <Fields>
+    <Binary attachment="RegistrationWorkflow.xaml" />
+    <ContentWorkflow>false</ContentWorkflow>
+    <AbortOnRelatedContentChange>false</AbortOnRelatedContentChange>
+    <DisplayName>Registration workflow</DisplayName>
+    <Description><![CDATA[<p>Registration workflow defines a basic user registration process. After starting the registration, users will receive an email containing a confirmation link. Clicking on the link generates a task for an administrator who has to approve the registration. After this users can log in to the portal.</p>]]></Description>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+        <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

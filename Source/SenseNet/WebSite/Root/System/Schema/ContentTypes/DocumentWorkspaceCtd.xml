@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="DocumentWorkspace" parentType="Workspace" 
+			 handler="SenseNet.ContentRepository.Workspaces.Workspace" 
+			 xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Document workspace</DisplayName>
+  <Description>A workspace for document-based cooperation</Description>
+  <Icon>workspace-document</Icon>
+  <AllowedChildTypes>
+    Page,Folder,Blog,DocumentLibrary,ImageLibrary,EventList,MemoList,LinkList,TaskList,Survey,Voting,DiscussionForum,Form,CustomList,Posts
+  </AllowedChildTypes>
+  <Fields>
+  </Fields>
+</ContentType>

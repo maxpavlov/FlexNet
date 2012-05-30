@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>WebContentDemo</ContentType>
+  <ContentName>newssectioninfo</ContentName>
+  <Fields>
+    <DisplayName></DisplayName>
+    <Subtitle></Subtitle>
+    <RelatedImage />
+    <Header><![CDATA[]]></Header>
+    <Body>
+      <![CDATA[<div class="sn-infobox"><h1 class="sn-content-title sn-article-title"><img src="/Root/Global/images/icons/32/info.png" class="sn-icon sn-icon_32" alt="" />News section</h1>
+      <p>This is a <em>news section</em> page of the news portal demo. Visitors may browse news organized under this section.</p>
+      <p>Administrators may edit, delete, add new news articles:</p>
+      <ul>
+      <li>click on <strong>Add new article</strong> to add a new article to this section.</li>
+      <li>click on <strong>Manage content</strong> link displayed on articles to browse, edit or delete a specific article.</li>
+      </ul>
+      <ul>
+      <li><strong>You need to be logged in as Administrator to modify content.</strong></li>
+      <li>This page is a <strong>Browse</strong> smart application page, defined at <em><a href="/Explore.html#/Root/Sites/Default_Site/NewsDemo/(apps)/ArticleSection/Browse">/Root/Sites/Default_Site/NewsDemo/(apps)/ArticleSection/Browse</a></em></li>
+      </ul></div>]]></Body>
+    <Details><a href="" target="" title=""></a></Details>
+    <Language>English</Language>
+    <Keywords><![CDATA[]]></Keywords>
+    <Author></Author>
+    <ReviewDate>0001-01-01T00:00:00</ReviewDate>
+    <ArchiveDate>0001-01-01T00:00:00</ArchiveDate>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <Description><![CDATA[]]></Description>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+        <VersioningMode>1</VersioningMode>
+    <InheritableVersioningMode>1</InheritableVersioningMode>
+    <ApprovingMode>1</ApprovingMode>
+    <InheritableApprovingMode>1</InheritableApprovingMode>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate>0.00|0|0|0|0|0</Rate>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

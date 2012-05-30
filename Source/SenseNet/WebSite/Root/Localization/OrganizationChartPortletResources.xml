@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Resources>
+  <ResourceClass name="OrganizationChart">
+    <Languages>
+      <Language cultureName="en">
+        <data name="PortletTitle" xml:space="preserve">
+          <value>Organization chart</value>
+        </data>
+        <data name="PortletDescription" xml:space="preserve">
+          <value>Portlet for displaying the chart of the organization</value>
+        </data>
+        <data name="CategoryTitle" xml:space="preserve">
+          <value>Chart settings</value>
+        </data>
+        <data name="FirstManagerTitle" xml:space="preserve">
+          <value>Starting manager</value>
+        </data>
+        <data name="FirstManagerDescription" xml:space="preserve">
+          <value>The root of the chart, from which you would like to draw it</value>
+        </data>
+        <data name="DepthLimitTitle" xml:space="preserve">
+          <value>Numbers of levels</value>
+        </data>
+        <data name="DepthLimitDescription" xml:space="preserve">
+          <value>The depth of the chart</value>
+        </data>
+        <data name="NoSuchManagerError" xml:space="preserve">
+          <value>No such manager!</value>
+        </data>
+        <data name="CircularReferenceError" xml:space="preserve">
+          <value>Cannot generate chart because there are circular references between users.</value>
+        </data>
+      </Language>
+    </Languages>
+  </ResourceClass>
+</Resources>

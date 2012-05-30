@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Application</ContentType>
+  <ContentName>CopyAppLocal</ContentName>
+  <Fields>
+    <DisplayName>CopyAppLocal</DisplayName>
+    <ActionTypeName>CopyAppLocalAction</ActionTypeName>
+    <Icon>copy</Icon>
+    <Index>4300</Index>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

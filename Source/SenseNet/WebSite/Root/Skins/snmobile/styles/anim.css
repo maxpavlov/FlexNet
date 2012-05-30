@@ -1,0 +1,31 @@
+@-webkit-keyframes fadein {
+	0% {opacity:0; }
+	100% {opacity:1; }
+}
+.anim-fadein.run { -webkit-animation: fadein ease-out .8s; }
+
+@-webkit-keyframes zoomin {
+	0% { -webkit-transform: scale(0.25,0.25); }
+	100% { }
+}
+.anim-zoomin { -webkit-animation: zoomin ease-out .8s; }
+
+@-webkit-keyframes smalljump {
+	0% {  }
+	15% { top: 0; }
+	30% {  }
+}
+
+@-webkit-keyframes slidein {
+	0% { opacity: 0; left: 40px; }
+	100% { opacity:1; }
+}
+.anim-slidein { position: relative; -webkit-animation: slidein 1s ease-out; }
+
+@-webkit-keyframes pagein {
+	0% {
+         -webkit-transform-origin: 100% 50%;
+         -webkit-transform: translate3d(200px,0,-1000px) rotate3d(0,1,0,-90deg);
+    }
+	100% {}
+}

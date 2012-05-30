@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="WebContentDemo" parentType="WebContent" handler="SenseNet.ContentRepository.GenericContent" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+  <DisplayName>Web Content Demo</DisplayName>
+  <Description>A demo web content type with title, subtitle, header and rich text body. </Description>
+  <Icon>WebContent</Icon>
+  <Fields>
+    <Field name="Subtitle" type="ShortText">
+      <DisplayName>Subtitle</DisplayName>
+    </Field>
+    <Field name="RelatedImage" type="Reference">
+      <DisplayName>Related Image</DisplayName>
+      <Description></Description>
+      <Configuration>
+        <Reference multiple="disabled" nullValue="enabled">
+          <AllowedTypes>
+            <Type>File</Type>
+          </AllowedTypes>
+        </Reference>
+      </Configuration>
+    </Field>
+    <Field name="Header" type="LongText">
+      <DisplayName>Header</DisplayName>
+      <Description></Description>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.Standard.StandardAnalyzer</Analyzer>
+      </Indexing>
+      <Configuration>
+        <ControlHint>sn:RichText</ControlHint>
+      </Configuration>
+    </Field>
+    <Field name="Body" type="LongText">
+      <DisplayName>Body</DisplayName>
+      <Description>Body</Description>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.Standard.StandardAnalyzer</Analyzer>
+      </Indexing>
+      <Configuration>
+        <ControlHint>sn:RichText</ControlHint>
+      </Configuration>
+    </Field>
+    <Field name="Details" type="HyperLink">
+      <DisplayName>Details</DisplayName>
+      <Description>Details page link</Description>
+    </Field>
+    <Field name="Language" type="Choice">
+      <DisplayName>Language</DisplayName>
+      <Description>Choose a language</Description>
+      <Bind property="ContentLanguage" />
+      <Configuration>
+        <AllowMultiple>false</AllowMultiple>
+        <AllowExtraValue>true</AllowExtraValue>
+        <Options>
+          <Option selected="true">English</Option>
+        </Options>
+      </Configuration>
+    </Field>
+    <Field name="Keywords" type="LongText">
+      <DisplayName>Keywords</DisplayName>
+      <Description></Description>
+      <Indexing>
+        <Analyzer>Lucene.Net.Analysis.WhitespaceAnalyzer</Analyzer>
+      </Indexing>
+    </Field>
+    <Field name="Author" type="ShortText">
+      <DisplayName>Author</DisplayName>
+      <Description></Description>
+    </Field>
+  </Fields>
+</ContentType>

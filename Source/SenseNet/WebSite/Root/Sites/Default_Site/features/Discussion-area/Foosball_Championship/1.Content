@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>ForumEntry</ContentType>
+  <ContentName>1</ContentName>
+  <Fields>
+    <DisplayName></DisplayName>
+    <Description>
+      <![CDATA[
+      <p>Thanks a lot! but sincerely I was not the best player  in the college. There was a guy who was playing with one hand! Can you imagine that?</p>
+      ]]></Description>
+    <ReplyTo />
+    <PostedBy>
+      <Path>/Root/IMS/Demo/Developers/ilguy</Path>
+    </PostedBy>
+    <SerialNo>1</SerialNo>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+    <TrashDisabled>false</TrashDisabled>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+        <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <Rate></Rate>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

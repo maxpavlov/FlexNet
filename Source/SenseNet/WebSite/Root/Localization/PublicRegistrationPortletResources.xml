@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Resources>
+	<ResourceClass name="PublicRegistrationPortlet">
+		<Languages>
+			<Language cultureName="en">
+				<data name="NoConfiguration" xml:space="preserve">
+				  <value>Please set up pubic registration by configuring portlet properties.</value>
+				</data>
+				<data name="UserTypeDoesNotMatch" xml:space="preserve">
+				  <value>You must be registered through public registration to be able to edit your data. If you have the necessary rights, you can edit your user data on the Explore page.</value>
+				</data>
+				<data name="ErrorCreatingContentView" xml:space="preserve">
+				  <value>Error creating contentview {0}</value>
+				</data>
+				<data name="ErrorLoadingContent" xml:space="preserve">
+				  <value>Couldn't load node from {0} path.</value>
+				</data>
+				<data name="ConfigSettingNotFound" xml:space="preserve">
+				  <value>Couldn't find configuration setting at {0} path.</value>
+				</data>
+				<data name="ErrorCreatingUser" xml:space="preserve">
+				  <value>Error creating user into {0}.</value>
+				</data>
+				<!-- Not used yet-->
+				<data name="DuplicateErrorMessage" xml:space="preserve">
+				  <value>This user name is already in use. Please choose another one.</value>
+				</data>
+				<data name="ActivationSuccessful" xml:space="preserve">
+				  <value>Registration activated successfully.</value>
+				</data>
+				<data name="AlreadyActivated" xml:space="preserve">
+				  <value>Activation has already been done.</value>
+				</data>
+				<data name="ChangePasswordSuccessful" xml:space="preserve">
+				  <value>Password changed successfully.</value>
+				</data>
+				<data name="ChangePasswordRestricted" xml:space="preserve">
+				  <value>You mist sign in to view this page.</value>
+				</data>
+				<data name="AlreadyRegisteredUser" xml:space="preserve">
+				  <value>You have already registered.</value>
+				</data>
+				<data name="UpdateProfileSuccess" xml:space="preserve">
+				  <value>Profile updated successfully.</value>
+				</data>
+				<data name="EmailNotValid" xml:space="preserve">
+				  <value>Email address is not valid.</value>
+				</data>
+				<data name="NoEmailGiven" xml:space="preserve">
+				  <value>Please provide an email address.</value>
+				</data>
+				<!-- /Not used yet-->
+				<data name="ActivationEmailError" xml:space="preserve">
+			      <value>Couldn't send activation email.</value>
+				</data>
+				<data name="EmailSendError" xml:space="preserve">
+				  <value>Couldn't send the email with further instructions.</value>
+				</data>
+				<data name="EmailSendError2" xml:space="preserve">
+				  <value>An error has been occured during sending registration email.</value>
+				</data>
+				<data name="ErrorWhileSaving" xml:space="preserve">
+				  <value>There was an error during saving activation values.</value>
+				</data>
+				<data name="PasswordNotValid" xml:space="preserve">
+				  <value>Passwords don't meet the requirements.</value>
+				</data>
+				<data name="PasswordsDontMatch" xml:space="preserve">
+				  <value>Passwords must match exactly.</value>
+				</data>
+				<data name="UserAlreadyExists" xml:space="preserve">
+				  <value>A user with the given name already exists. Please choose a different one.</value>
+				</data>
+			</Language>
+			<Language cultureName="hu">
+				<data name="NoConfiguration" xml:space="preserve">
+				  <value>Kérem, állítsa be a portlet konfigurációs fájlt a portlet tulajdonságokban!</value>
+				</data>
+				<data name="UserTypeDoesNotMatch" xml:space="preserve">
+				  <value>A regisztráció hivatkozáson kerresztül kell regisztrálni ahhoz, hogy az adatokat módosítani lehessen. Amennyiben adminisztrátori jogkörrel rendelkezel, akkor a Content Explorerben az IMS mappában lehet a felhasználói adatokat szerkeszteni.</value>
+				</data>
+				<data name="ErrorCreatingContentView" xml:space="preserve">
+				  <value>{0} contentview létrehozása közben hiba történt.</value>
+				</data>
+				<data name="ErrorLoadingContent" xml:space="preserve">
+				  <value>Az elem nem tölthető be a(z) {0} útvonalon.</value>
+				</data>
+				<data name="ConfigSettingNotFound" xml:space="preserve">
+				  <value>A konfigurációs fájl nem található a(z) {0} útvonalon.</value>
+				</data>
+				<data name="ErrorCreatingUser" xml:space="preserve">
+				  <value>Hiba történt a felhasználó létrehozásakor a(z) {0} útvonal alá.</value>
+				</data>
+				<!-- Not used yet-->
+				<data name="DuplicateErrorMessage" xml:space="preserve">
+				  <value>Ez a felhasználói név már foglalt. Kérjük válasszon egy másikat!</value>
+				</data>
+				<data name="ActivationSuccessful" xml:space="preserve">
+				  <value>A regisztráció aktiválása sikeres volt.</value>
+				</data>
+				<data name="AlreadyActivated" xml:space="preserve">
+				  <value>Ez a felhasználói fiók már aktiválva van.</value>
+				</data>
+				<data name="ChangePasswordSuccessful" xml:space="preserve">
+				  <value>A jelszó megváltozatása sikeres volt.</value>
+				</data>
+				<data name="ChangePasswordRestricted" xml:space="preserve">
+				  <value>Az oldal megtekintéséhez be kell jelentkeznie.</value>
+				</data>
+				<data name="AlreadyRegisteredUser" xml:space="preserve">
+				  <value>Ön már bejelentkezett.</value>
+				</data>
+				<data name="UpdateProfileSuccess" xml:space="preserve">
+				  <value>A profil módosítása sikeres volt.</value>
+				</data>
+				<data name="EmailNotValid" xml:space="preserve">
+				  <value>Érvénytelen e-mail cím.</value>
+				</data>
+				<data name="NoEmailGiven" xml:space="preserve">
+				  <value>Adjon meg egy e-mail címet!</value>
+				</data>
+				<!-- /Not used yet-->
+				<data name="ActivationEmailError" xml:space="preserve">
+				  <value>Az aktivációs email küldése közben hiba lépett fel. Kérjük, próbáljon újra regisztrálni.</value>
+				</data>
+				<data name="EmailSendError" xml:space="preserve">
+				  <value>A további információkat részletező email küldése közben hiba lépett fel.</value>
+				</data>
+				<data name="EmailSendError2" xml:space="preserve">
+				  <value>Hiba történt az aktivációs email küldésekor.</value>
+				</data>
+				<data name="ErrorWhileSaving" xml:space="preserve">
+				  <value>Hiba lépett fel a regisztráció mentésekor.</value>
+				</data>
+				<data name="PasswordNotValid" xml:space="preserve">
+				  <value>A jelszó nem megfelelő.</value>
+				</data>
+				<data name="PasswordsDontMatch" xml:space="preserve">
+				  <value>A két jelszónak egyeznie kell.</value>
+				</data>
+				<data name="UserAlreadyExists" xml:space="preserve">
+				  <value>Ilyen névvel már történt regisztráció. Kérjük, válasszon másik felhasználónevet.</value>
+				</data>
+			</Language>
+		</Languages>
+	</ResourceClass>
+</Resources>

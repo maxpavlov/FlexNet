@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>ProjectWorkspace</ContentType>
+  <ContentName>budapestprojectworkspace</ContentName>
+  <Fields>
+    <Completion>15</Completion>
+    <DisplayName>Budapest Project Workspace</DisplayName>
+    <Description><![CDATA[<p>This workspace emcompasses all project details and related items associated with the Budapest project.</p>]]></Description>
+    <Manager>
+      <Path>/Root/IMS/Demo/ProjectManagers/albamonday</Path>
+    </Manager>
+    <Deadline>2011-01-01T00:00:00</Deadline>
+    <IsActive>true</IsActive>
+    <IsCritical>false</IsCritical>
+    <IsWallContainer>true</IsWallContainer>
+    <Hidden>false</Hidden>
+    <Index>10</Index>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <CreatedBy>
+      <Path>/Root/IMS/BuiltIn/Portal/Administrator</Path>
+    </CreatedBy>
+    <CreationDate>2011-06-16T17:01:43.393</CreationDate>
+    <ModifiedBy>
+      <Path>/Root/IMS/BuiltIn/Portal/Admin</Path>
+    </ModifiedBy>
+    <ModificationDate>2011-06-17T14:57:16.44</ModificationDate>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+    <Identity path="/Root/Sites/Default_Site/workspaces/Project/budapestprojectworkspace/Groups/Owners">
+      <See>Allow</See>
+      <Open>Allow</Open>
+      <OpenMinor>Allow</OpenMinor>
+      <Save>Allow</Save>
+      <ManageListsAndWorkspaces>Allow</ManageListsAndWorkspaces>
+      <Publish>Allow</Publish>
+      <ForceCheckin>Allow</ForceCheckin>
+      <AddNew>Allow</AddNew>
+      <Approve>Allow</Approve>
+      <Delete>Allow</Delete>
+      <RecallOldVersion>Allow</RecallOldVersion>
+      <DeleteOldVersion>Allow</DeleteOldVersion>
+      <SeePermissions>Allow</SeePermissions>
+      <SetPermissions>Allow</SetPermissions>
+      <RunApplication>Allow</RunApplication>
+    </Identity>
+    <Identity path="/Root/Sites/Default_Site/workspaces/Project/budapestprojectworkspace/Groups/Members">
+      <See>Allow</See>
+      <Open>Allow</Open>
+      <OpenMinor>Allow</OpenMinor>
+      <Save>Allow</Save>
+      <Publish>Allow</Publish>
+      <AddNew>Allow</AddNew>
+      <Delete>Allow</Delete>
+      <RecallOldVersion>Allow</RecallOldVersion>
+      <RunApplication>Allow</RunApplication>
+    </Identity>
+    <Identity path="/Root/Sites/Default_Site/workspaces/Project/budapestprojectworkspace/Groups/Visitors">
+      <See>Allow</See>
+      <Open>Allow</Open>
+      <RunApplication>Allow</RunApplication>
+    </Identity>
+  </Permissions>
+</ContentMetaData>

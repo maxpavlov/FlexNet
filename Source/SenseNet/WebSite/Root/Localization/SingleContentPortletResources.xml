@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Resources>
+	<ResourceClass name="SingleContentPortlet">
+		<Languages>
+			<Language cultureName="en">
+				<data name="PathNotFound" xml:space="preserve">
+				  <value>Content not found. ({0})</value>
+				</data>
+				<data name="ContentNameAlreadyExists" xml:space="preserve">
+				  <value>Contentname already exists.</value>
+				</data>
+				<data name="CreateNewContent" xml:space="preserve">
+				  <value>Create new content</value>
+				</data>
+				<data name="EditContent" xml:space="preserve">
+				  <value>Edit content</value>
+				</data>
+				<data name="BrowseContent" xml:space="preserve">
+				  <value>Browse content</value>
+				</data>
+				<data name="NewContent" xml:space="preserve">
+				  <value>New content</value>
+				</data>
+                <data name="ContentPortletCategoryTitle" xml:space="preserve">
+                    <value>CMS</value>
+                </data>				
+                <data name="ContentPathDisplayName" xml:space="preserve">
+                    <value>Content path</value>
+                </data>
+                <data name="ContentPathDescription" xml:space="preserve">
+                    <value>The path of the content in the Sense/Net Content Repository.</value>
+                </data>
+                <data name="ContentViewDisplayName" xml:space="preserve">
+                    <value>Browse contentview path</value>
+                </data>
+                <data name="ContentViewDescription" xml:space="preserve">
+                    <value>The path of the browser contentview in the Sense/Net Content Repository.</value>
+                </data>
+                <data name="ContentViewEditPathDisplayName" xml:space="preserve">
+                    <value>Edit contentview path</value>
+                </data>
+                <data name="ContentViewEditPathDescription" xml:space="preserve">
+                    <value>The path of the edit contentview in the Sense/Net Content Repository.</value>
+                </data>
+                <data name="UseUrlPathPathDisplayName" xml:space="preserve">
+                    <value>Edit Use URL ContentPath</value>
+                </data>
+                <data name="UseUrlPathPathDescription" xml:space="preserve">
+                    <value>Indicates that portlet loads Content from the proper part of the URL.</value>
+                </data>
+                <data name="UsedContentTypeNameDisplayName" xml:space="preserve">
+                    <value>Content type name</value>
+                </data>
+                <data name="UsedContentTypeNameDescription" xml:space="preserve">
+                    <value>Content type name.</value>
+                </data>
+                <data name="ValidationSettingDisplayName" xml:space="preserve">
+                    <value>Content validity check</value>
+                </data>
+                <data name="ValidationSettingDescription" xml:space="preserve">
+                    <value>How to load content</value>
+                </data>
+            </Language>
+			<Language cultureName="hu">
+				<data name="PathNotFound" xml:space="preserve">
+				  <value>A tartalom nem található. ({0})</value>
+				</data>
+				<data name="ContentNameAlreadyExists" xml:space="preserve">
+				  <value>Ilyen névvel már létezik tartalom.</value>
+				</data>
+				<data name="CreateNewContent" xml:space="preserve">
+				  <value>Új tartalom létrehozása</value>
+				</data>
+				<data name="EditContent" xml:space="preserve">
+				  <value>Tartalom szerkesztése</value>
+				</data>
+				<data name="BrowseContent" xml:space="preserve">
+				  <value>Tartalom tallózása</value>
+				</data>
+				<data name="NewContent" xml:space="preserve">
+				  <value>Új tartalom</value>
+				</data>
+                <data name="ContentPortletCategoryTitle" xml:space="preserve">
+                    <value>CMS</value>
+                </data>
+                <data name="ContentPathDisplayName" xml:space="preserve">
+                    <value>Content path</value>
+                </data>
+                <data name="ContentPathDescription" xml:space="preserve">
+                    <value>The path of the content in the Sense/Net Content Repository.</value>
+                </data>
+                <data name="ContentViewDisplayName" xml:space="preserve">
+                    <value>Browse contentview path</value>
+                </data>
+                <data name="ContentViewDescription" xml:space="preserve">
+                    <value>The path of the browser contentview in the Sense/Net Content Repository.</value>
+                </data>
+                <data name="ContentViewEditPathDisplayName" xml:space="preserve">
+                    <value>Edit contentview path</value>
+                </data>
+                <data name="ContentViewEditPathDescription" xml:space="preserve">
+                    <value>The path of the edit contentview in the Sense/Net Content Repository.</value>
+                </data>
+                <data name="UseUrlPathPathDisplayName" xml:space="preserve">
+                    <value>Edit Use URL ContentPath</value>
+                </data>
+                <data name="UseUrlPathPathDescription" xml:space="preserve">
+                    <value>Indicates that portlet loads Content from the proper part of the URL.</value>
+                </data>
+                <data name="UsedContentTypeNameDisplayName" xml:space="preserve">
+                    <value>Content type name</value>
+                </data>
+                <data name="UsedContentTypeNameDescription" xml:space="preserve">
+                    <value>Content type name.</value>
+                </data>
+                <data name="ValidationSettingDisplayName" xml:space="preserve">
+                    <value>Content validity check</value>
+                </data>
+                <data name="ValidationSettingDescription" xml:space="preserve">
+                    <value>How to load content</value>
+                </data>                                                
+            </Language>
+		</Languages>
+	</ResourceClass>
+</Resources>
