@@ -233,7 +233,7 @@ namespace SenseNet.Portal
             StringBuilder sb = new StringBuilder();
             sb.Append(@"<div style=""color:#fff;background:#008;font-weight:bold,padding:2px"">");
             //this.Cacheable && this.CanCache
-            sb.Append(String.Format("Execution time of the current page was {0:F10} seconds.", _timer.Elapsed.TotalSeconds ));
+            sb.Append(String.Format("Execution time of the current page was <b>{0:F10}</b> seconds.", _timer.Elapsed.TotalSeconds));
             sb.Append(@"</div>");
             writer.Write(sb.ToString());
         }

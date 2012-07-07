@@ -94,5 +94,15 @@
         <VisibleNew>Show</VisibleNew>
       </Configuration>
     </Field>
+    <Field name="Icon" type="ShortText">
+      <DisplayName>Icon identifier</DisplayName>
+      <Description>The string identifier of the View's icon</Description>
+      <Configuration>
+        <DefaultValue>views</DefaultValue>
+        <VisibleBrowse>Advanced</VisibleBrowse>
+        <VisibleEdit>Show</VisibleEdit>
+        <VisibleNew>Show</VisibleNew>
+      </Configuration>
+    </Field>
   </Fields>
 </ContentType>

@@ -2,7 +2,9 @@
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using SenseNet.ApplicationModel;
+using SenseNet.Diagnostics;
 using SNCR = SenseNet.ContentRepository;
 using SenseNet.ContentRepository.Storage;
 using SenseNet.Portal.UI;
@@ -51,6 +53,27 @@ namespace SenseNet.Portal.AppModel
 
             iconNode.Binary.GetStream().Read(image, 0, image.Length);
             return File(image, iconNode.Binary.ContentType);
+        }
+
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult Logout(string back)
+        {
+            var info = new CancellableLoginInfo { UserName = SNCR.User.Current.Username };
+            LoginExtender.OnLoggingOut(info);
+
+            FormsAuthentication.SignOut();
+
+            if (!info.Cancel)
+            {
+                Logger.WriteAudit(AuditEvent.Logout, new Dictionary<string, object> { { "UserName", SNCR.User.Current.Username }, { "ClientAddress", Request.ServerVariables["REMOTE_ADDR"] } });
+                LoginExtender.OnLoggedOut(new LoginInfo { UserName = SNCR.User.Current.Username });
+            }
+
+            Session.Clear();
+
+            back = string.IsNullOrEmpty(back) ? "/" : HttpUtility.UrlDecode(back);
+
+            return this.Redirect(back);
         }
     }
 }

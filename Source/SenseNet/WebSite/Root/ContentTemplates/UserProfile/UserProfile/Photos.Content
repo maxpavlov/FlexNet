@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ContentMetaData>
-  <ContentType>ImageGalleryLight</ContentType>
+  <ContentType>ImageLibrary</ContentType>
   <ContentName>Photos</ContentName>
   <Fields>
     <DisplayName>Photos</DisplayName>

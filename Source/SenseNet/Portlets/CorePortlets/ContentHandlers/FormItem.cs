@@ -8,14 +8,13 @@ using SenseNet.ContentRepository.Storage;
 using SenseNet.ContentRepository.Storage.Data;
 using SenseNet.Diagnostics;
 using System.Collections.Generic;
-using System.Configuration;
+using System.Web.Configuration;
 
 namespace SenseNet.Portal.Portlets.ContentHandlers
 {
     [ContentHandler]
     public class FormItem : GenericContent
     {
-        private const string DefaultEmailSenderAppsettingKey = "DefaultEmailSender";
         private const string MailHostAppsettingKey = "SMTP";
 
         protected List<Attachment> Attachments { get; set; }
@@ -118,18 +117,21 @@ namespace SenseNet.Portal.Portlets.ContentHandlers
 
             return emailText;
         }
-        
+
         protected static string GetSubmitterAddress(string emailField, Content c)
         {
             if (emailField == null) return string.Empty;
             //ContentRepository.Content c = ContentRepository.Content.Create(this);
             if (!c.Fields.ContainsKey(emailField)) return string.Empty;
             return c.Fields[emailField].GetData() as string;
+
+
+
         }
 
         protected virtual void SendMail()
         {
-            var emailHost = System.Web.Configuration.WebConfigurationManager.AppSettings[MailHostAppsettingKey];
+            var emailHost = WebConfigurationManager.AppSettings[MailHostAppsettingKey];
             if (string.IsNullOrEmpty(emailHost)) 
                 return;
 
@@ -157,7 +159,8 @@ namespace SenseNet.Portal.Portlets.ContentHandlers
                                                : ReplaceField(parentForm.DisplayName, false, itemContent),
                                  Body = string.IsNullOrEmpty(parentForm.EmailTemplate)
                                             ? CreateEmailText()
-                                            : ReplaceField(parentForm.EmailTemplate, false, itemContent)
+                                            : ReplaceField(parentForm.EmailTemplate, false, itemContent),
+                                 IsBodyHtml = !string.IsNullOrEmpty(parentForm.EmailTemplate)
                              };
                     
                 if (Attachments.Count > 0)
@@ -251,17 +254,13 @@ namespace SenseNet.Portal.Portlets.ContentHandlers
         protected string GetSender(Form form)
         {
             var sender = form.EmailFrom;
-            if (!string.IsNullOrEmpty(sender))
-                return sender;
-            return System.Web.Configuration.WebConfigurationManager.AppSettings[DefaultEmailSenderAppsettingKey];
+            return !string.IsNullOrEmpty(sender) ? sender : Repository.EmailSenderAddress;
         }
 
         protected string GetSenderOfSubmiter(Form form)
         {
             var sender = form.EmailFromSubmitter;
-            if (!string.IsNullOrEmpty(sender))
-                return sender;
-            return System.Web.Configuration.WebConfigurationManager.AppSettings[DefaultEmailSenderAppsettingKey];
+            return !string.IsNullOrEmpty(sender) ? sender : Repository.EmailSenderAddress;
         }
         //================================================================================= Generic Property handling
     }

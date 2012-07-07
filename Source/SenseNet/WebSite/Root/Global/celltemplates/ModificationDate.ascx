@@ -1,0 +1,1 @@
+﻿<%# SenseNet.Portal.UI.UITools.GetFriendlyDate(Container.DataItem as SNCR.Content, "@@fieldName@@") %>

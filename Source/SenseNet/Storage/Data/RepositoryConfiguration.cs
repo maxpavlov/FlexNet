@@ -74,7 +74,7 @@ namespace SenseNet.ContentRepository.Storage.Data
         {
             get { return (System.Web.HttpContext.Current != null); }
         }
-        internal static int SqlCommandTimeout
+        public static int SqlCommandTimeout
         {
             get
             {
@@ -169,6 +169,81 @@ namespace SenseNet.ContentRepository.Storage.Data
                     _isOuterSearchEngineEnabled = value;
                 }
                 return _isOuterSearchEngineEnabled.Value;
+            }
+        }
+
+        private static int? _luceneMergeFactor;
+        private static object _luceneMergeFactorSync = new object();
+        private static readonly string LuceneMergeFactorKey = "LuceneMergeFactor";        
+        public static int LuceneMergeFactor
+        {
+            get
+            {
+                if (!_luceneMergeFactor.HasValue)
+                {
+                    lock (_luceneMergeFactorSync)
+                    {
+                        if (!_luceneMergeFactor.HasValue)
+                        {
+                            int value;
+                            var setting = ConfigurationManager.AppSettings[LuceneMergeFactorKey];
+                            if (String.IsNullOrEmpty(setting) || !Int32.TryParse(setting, out value))
+                                value = 10;
+                            _luceneMergeFactor = value;
+                        }
+                    }
+                }
+                return _luceneMergeFactor.Value;
+            }
+        }
+
+        private static double? _luceneRAMBufferSizeMB;
+        private static object _luceneRAMBufferSizeMBSync = new object();
+        private static readonly string LuceneRAMBufferSizeMBKey = "LuceneRAMBufferSizeMB";
+        public static double LuceneRAMBufferSizeMB
+        {
+            get
+            {
+                if (!_luceneRAMBufferSizeMB.HasValue)
+                {
+                    lock (_luceneRAMBufferSizeMBSync)
+                    {
+                        if (!_luceneRAMBufferSizeMB.HasValue)
+                        {
+                            double value;
+                            var setting = ConfigurationManager.AppSettings[LuceneRAMBufferSizeMBKey];
+                            if (String.IsNullOrEmpty(setting) || !double.TryParse(setting, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out value))
+                                value = 16.0;
+                            _luceneRAMBufferSizeMB = value;
+                        }
+                    }
+                }
+                return _luceneRAMBufferSizeMB.Value;
+            }
+        }
+
+        private static int? _luceneMaxMergeDocs;
+        private static object _luceneMaxMergeDocsSync = new object();
+        private static readonly string LuceneMaxMergeDocsKey = "LuceneMaxMergeDocs";
+        public static int LuceneMaxMergeDocs
+        {
+            get
+            {
+                if (!_luceneMaxMergeDocs.HasValue)
+                {
+                    lock (_luceneMaxMergeDocsSync)
+                    {
+                        if (!_luceneMaxMergeDocs.HasValue)
+                        {
+                            int value;
+                            var setting = ConfigurationManager.AppSettings[LuceneMaxMergeDocsKey];
+                            if (String.IsNullOrEmpty(setting) || !Int32.TryParse(setting, out value))
+                                value = Int32.MaxValue;
+                            _luceneMaxMergeDocs = value;
+                        }
+                    }
+                }
+                return _luceneMaxMergeDocs.Value;
             }
         }
 
@@ -284,32 +359,9 @@ namespace SenseNet.ContentRepository.Storage.Data
         public const int EveryoneGroupId = 8;
         public const int CreatorsGroupId = 9;
 
-        private static int _lastModifiersGroupId;
-        private static object _lastModifiersGroupIdSync = new object();
-        private static bool _lastModifiersGroupIdIsLoaded;
-        public static int LastModifiersGroupId
-        {
-            get
-            {
-                if (!_lastModifiersGroupIdIsLoaded)
-                {
-                    lock (_lastModifiersGroupIdSync)
-                    {
-                        if (!_lastModifiersGroupIdIsLoaded)
-                        {
-                            _lastModifiersGroupId = LoadLastModifiersGroupId();
-                            _lastModifiersGroupIdIsLoaded = true;
-                        }
-                    }
-                }
-                return _lastModifiersGroupId;
-            }
-        }
-
-        private static int LoadLastModifiersGroupId()
-        {
-            return DataProvider.Current.LoadLastModifiersGroupId();
-        }
+        //this was a dynamic property before, now it is 
+        //hardcoded for performance reasons
+        public static readonly int LastModifiersGroupId = 10;
 
         private static string[] _specialGroupNames = new[] { "Everyone", "Creators", "LastModifiers" };
         public static string[] SpecialGroupNames
@@ -369,12 +421,11 @@ namespace SenseNet.ContentRepository.Storage.Data
             }
         }
 
-        
 
         public static readonly string IndexHealthMonitorRunningPeriodKey = "IndexHealthMonitorRunningPeriod";
         private static int? _indexHealthMonitorRunningPeriod;
         /// <summary>
-        /// Periodicity of checking and executing unprocessed indexing tasks in seconds. Default: 300 (5 minutes), minimum: 5
+        /// Periodicity of executing the lost indexing tasks in seconds. Default: 60 (1 minutes), minimum: 1
         /// </summary>
         public static int IndexHealthMonitorRunningPeriod
         {
@@ -385,15 +436,94 @@ namespace SenseNet.ContentRepository.Storage.Data
                     int value;
                     var setting = ConfigurationManager.AppSettings[IndexHealthMonitorRunningPeriodKey];
                     if (String.IsNullOrEmpty(setting) || !Int32.TryParse(setting, out value))
-                        value = 300;
-                    if (value < 5)
-                        value = 5;
+                        value = 60;
+                    if (value < 1)
+                        value = 1;
                     _indexHealthMonitorRunningPeriod = value;
                 }
                 return _indexHealthMonitorRunningPeriod.Value;
             }
         }
 
+        public static readonly string IndexHealthMonitorGapPartitionsKey = "IndexHealthMonitorGapPartitions";
+        private static int? _indexHealthMonitorGapPartitions;
+        /// <summary>
+        /// Rotating partition count of the lost indexing task container. Default: 10, minimum 2
+        /// </summary>
+        public static int IndexHealthMonitorGapPartitions
+        {
+            get
+            {
+                if (_indexHealthMonitorGapPartitions == null)
+                {
+                    int value;
+                    var setting = ConfigurationManager.AppSettings[IndexHealthMonitorGapPartitionsKey];
+                    if (String.IsNullOrEmpty(setting) || !Int32.TryParse(setting, out value))
+                        value = 10;
+                    if (value < 2)
+                        value = 2;
+                    _indexHealthMonitorGapPartitions = value;
+                }
+                return _indexHealthMonitorGapPartitions.Value;
+            }
+        }
+
+        public static readonly string IndexHistoryItemLimitKey = "IndexHistoryItemLimit";
+        private static int? _indexHistoryItemLimit;
+        /// <summary>
+        /// Max number of cached items in indexing history. Default is 1000000.
+        /// </summary>
+        public static int IndexHistoryItemLimit
+        {
+            get
+            {
+                if (_indexHistoryItemLimit == null)
+                {
+                    int value;
+                    var setting = ConfigurationManager.AppSettings[IndexHistoryItemLimitKey];
+                    if (String.IsNullOrEmpty(setting) || !Int32.TryParse(setting, out value))
+                        value = 1000000;
+                    _indexHistoryItemLimit = value;
+                }
+                return _indexHistoryItemLimit.Value;
+            }
+        }
+
+        public static readonly string CommitDelayInSecondsKey = "CommitDelayInSeconds";
+        private static double? _commitDelayInSeconds;
+        public static double CommitDelayInSeconds
+        {
+            get
+            {
+                if (!_commitDelayInSeconds.HasValue)
+                {
+                    double value;
+                    var setting = ConfigurationManager.AppSettings[CommitDelayInSecondsKey];
+                    if (String.IsNullOrEmpty(setting) || !double.TryParse(setting, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out value))
+                        value = 2;
+                    _commitDelayInSeconds = value;
+                }
+                return _commitDelayInSeconds.Value;
+            }
+        }
+
+        public static readonly string DelayedCommitCycleMaxCountKey = "DelayedCommitCycleMaxCount";
+        private static int? _delayedCommitCycleMaxCount;
+        public static int DelayedCommitCycleMaxCount
+        {
+            get
+            {
+                if (!_delayedCommitCycleMaxCount.HasValue)
+                {
+                    int value;
+                    var setting = ConfigurationManager.AppSettings[DelayedCommitCycleMaxCountKey];
+                    if (String.IsNullOrEmpty(setting) || !Int32.TryParse(setting, out value))
+                        value = 10;
+                    _delayedCommitCycleMaxCount = value;
+                }
+                return _delayedCommitCycleMaxCount.Value;
+            }
+        }
 
         //============================================================ Working modes
 
@@ -442,6 +572,30 @@ namespace SenseNet.ContentRepository.Storage.Data
                         _indexBackupCreatorId = String.Empty;
                 }
                 return _indexBackupCreatorId;
+            }
+        }
+
+        public enum CacheContentAfterSaveOption
+        {
+            None = 0,
+            Containers,
+            All
+        }
+        private static readonly string CacheContentAfterSaveModeKey = "CacheContentAfterSaveMode";
+        private static CacheContentAfterSaveOption? _cacheContentAfterSaveMode;
+        public static CacheContentAfterSaveOption CacheContentAfterSaveMode
+        {
+            get
+            {
+                if (!_cacheContentAfterSaveMode.HasValue)
+                {
+                    CacheContentAfterSaveOption value;
+                    var setting = ConfigurationManager.AppSettings[CacheContentAfterSaveModeKey];
+                    if (String.IsNullOrEmpty(setting) || !Enum.TryParse<CacheContentAfterSaveOption>(setting, out value))
+                        value = CacheContentAfterSaveOption.All;
+                    _cacheContentAfterSaveMode = value;
+                }
+                return _cacheContentAfterSaveMode.Value;
             }
         }
 
@@ -560,7 +714,6 @@ namespace SenseNet.ContentRepository.Storage.Data
             }
         }
 
-
         private static readonly string MsmqReconnectDelayKey = "MsmqReconnectDelay";
         private static int DefaultMsmqReconnectDelay = 30;
         private static int? _msmqReconnectDelay;
@@ -583,6 +736,113 @@ namespace SenseNet.ContentRepository.Storage.Data
             }
         }
 
+        private static readonly string MessageProcessorThreadCountKey = "MessageProcessorThreadCount";
+        private static int? _messageProcessorThreadCount;
+        /// <summary>
+        /// Number of clusterchannel message processor threads. Default is 5.
+        /// </summary>
+        public static int MessageProcessorThreadCount
+        {
+            get
+            {
+                if (!_messageProcessorThreadCount.HasValue)
+                {
+                    int value;
+                    var setting = ConfigurationManager.AppSettings[MessageProcessorThreadCountKey];
+                    if (String.IsNullOrEmpty(setting) || !Int32.TryParse(setting, out value))
+                        value = 5;
+                    _messageProcessorThreadCount = value;
+                }
+                return _messageProcessorThreadCount.Value;
+            }
+        }
+
+        private static readonly string MessageProcessorThreadMaxMessagesKey = "MessageProcessorThreadMaxMessages";
+        private static int? _messageProcessorThreadMaxMessages;
+        /// <summary>
+        /// Max number of messages processed by a single clusterchannel message processor thread. Default is 100.
+        /// </summary>
+        public static int MessageProcessorThreadMaxMessages
+        {
+            get
+            {
+                if (!_messageProcessorThreadMaxMessages.HasValue)
+                {
+                    int value;
+                    var setting = ConfigurationManager.AppSettings[MessageProcessorThreadMaxMessagesKey];
+                    if (String.IsNullOrEmpty(setting) || !Int32.TryParse(setting, out value))
+                        value = 100;
+                    _messageProcessorThreadMaxMessages = value;
+                }
+                return _messageProcessorThreadMaxMessages.Value;
+            }
+        }
+
+        private static readonly string DelayRequestsOnHighMessageCountUpperLimitKey = "DelayRequestsOnHighMessageCountUpperLimit";
+        private static int? _delayRequestsOnHighMessageCountUpperLimit;
+        /// <summary>
+        /// Number of messages in process queue to trigger delaying of incoming requests. Default is 1000.
+        /// </summary>
+        public static int DelayRequestsOnHighMessageCountUpperLimit
+        {
+            get
+            {
+                if (!_delayRequestsOnHighMessageCountUpperLimit.HasValue)
+                {
+                    int value;
+                    var setting = ConfigurationManager.AppSettings[DelayRequestsOnHighMessageCountUpperLimitKey];
+                    if (String.IsNullOrEmpty(setting) || !Int32.TryParse(setting, out value))
+                        value = 1000;
+                    _delayRequestsOnHighMessageCountUpperLimit = value;
+                }
+                return _delayRequestsOnHighMessageCountUpperLimit.Value;
+            }
+        }
+
+        private static readonly string DelayRequestsOnHighMessageCountLowerLimitKey = "DelayRequestsOnHighMessageCountLowerLimit";
+        private static int? _delayRequestsOnHighMessageCountLowerLimit;
+        /// <summary>
+        /// Number of messages in process queue to switch off delaying of incoming requests. Default is 500.
+        /// </summary>
+        public static int DelayRequestsOnHighMessageCountLowerLimit
+        {
+            get
+            {
+                if (!_delayRequestsOnHighMessageCountLowerLimit.HasValue)
+                {
+                    int value;
+                    var setting = ConfigurationManager.AppSettings[DelayRequestsOnHighMessageCountLowerLimitKey];
+                    if (String.IsNullOrEmpty(setting) || !Int32.TryParse(setting, out value))
+                        value = 500;
+                    _delayRequestsOnHighMessageCountLowerLimit = value;
+                }
+                return _delayRequestsOnHighMessageCountLowerLimit.Value;
+            }
+        }
+
+        private static readonly string MsmqIndexDocumentSizeLimitKey = "MsmqIndexDocumentSizeLimit";
+        private static int? _msmqIndexDocumentSizeLimit;
+        /// <summary>
+        /// Max size (in bytes) of indexdocument that can be sent over MSMQ. Default is 2000000. Larger indexdocuments will be retrieved from db. 
+        /// </summary>
+        public static int MsmqIndexDocumentSizeLimit
+        {
+            get
+            {
+                if (!_msmqIndexDocumentSizeLimit.HasValue)
+                {
+                    int value;
+                    var setting = ConfigurationManager.AppSettings[MsmqIndexDocumentSizeLimitKey];
+                    if (String.IsNullOrEmpty(setting) || !Int32.TryParse(setting, out value))
+                        value = 2000000;
+                    _msmqIndexDocumentSizeLimit = value;
+                }
+                return _msmqIndexDocumentSizeLimit.Value;
+            }
+        }
+
+        //============================================================ PasswordField
+
         private static readonly string PasswordHistoryFieldMaxLengthKey = "PasswordHistoryFieldMaxLength";
         private static int? _passwordHistoryFieldMaxLength;
         public static int PasswordHistoryFieldMaxLength
@@ -601,5 +861,107 @@ namespace SenseNet.ContentRepository.Storage.Data
             }
         }
 
+        //============================================================ Diagnostics
+
+        private static bool? _countersEnabled;
+        public static bool PerformanceCountersEnabled
+        {
+            get
+            {
+                if (!_countersEnabled.HasValue)
+                    _countersEnabled = GetBooleanConfigValue("PerformanceCountersEnabled", true);
+
+                return _countersEnabled.Value;
+            }
+        }
+
+        private static CounterCreationDataCollection _customPerformanceCounters;
+        public static CounterCreationDataCollection CustomPerformanceCounters
+        {
+            get
+            {
+                if (_customPerformanceCounters == null)
+                {
+                    var counterNames = GetStringArrayConfigValue("CustomPerformanceCounters");
+
+                    _customPerformanceCounters = new CounterCreationDataCollection(counterNames.Distinct().Select(cn => new CounterCreationData
+                    {
+                        CounterType = PerformanceCounterType.NumberOfItems32,
+                        CounterName = cn
+                    }).ToArray());
+                }
+
+                return _customPerformanceCounters;
+            }
+        }
+
+        //============================================================ Security
+
+        public static readonly string BuiltInDomainName = "BuiltIn";
+        private static readonly string DefaultDomainKey = "DefaultDomain";
+        private static string _defaultDomain;
+        public static string DefaultDomain
+        {
+            get
+            {
+                if (_defaultDomain == null)
+                {
+                    _defaultDomain = ConfigurationManager.AppSettings[DefaultDomainKey];
+                    if (string.IsNullOrEmpty(_defaultDomain))
+                        _defaultDomain = BuiltInDomainName;
+                }
+                return _defaultDomain;
+            }
+        }
+
+        //============================================================ Helper methods
+
+        private static bool GetBooleanConfigValue(string key, bool defaultValue)
+        {
+            var result = defaultValue;
+            //var settings = ConfigurationManager.GetSection(SECTIONKEY) as NameValueCollection;
+            //if (settings != null)
+            //{
+            var configString = ConfigurationManager.AppSettings[key];
+            if (!string.IsNullOrEmpty(configString))
+            {
+                bool configVal;
+                if (bool.TryParse(configString, out configVal))
+                    result = configVal;
+            }
+            //}
+
+            return result;
+        }
+
+        private static string[] GetStringArrayConfigValue(string key)
+        {
+            //var settings = ConfigurationManager.GetSection(SECTIONKEY) as NameValueCollection;
+            //if (settings != null)
+            //{
+            var configString = ConfigurationManager.AppSettings[key];
+            if (!string.IsNullOrEmpty(configString))
+            {
+                return configString.Split(new[] { ';', ',' }, StringSplitOptions.RemoveEmptyEntries);
+            }
+            //}
+
+            return new string[0];
+        }
+
+        public static string[] GetStringArrayConfigValues(string sectionKey, string key)
+        {
+            var settings = ConfigurationManager.GetSection(sectionKey) as NameValueCollection;
+            if (settings != null && settings.AllKeys.Contains(key))
+            {
+                var configString = settings[key];
+                if (!string.IsNullOrEmpty(configString))
+                {
+                    return configString.Split(new[] { ';', ',' }, StringSplitOptions.RemoveEmptyEntries);
+                }
+            }
+
+            return new string[0];
+        }
     }
 }

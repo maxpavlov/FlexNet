@@ -9,7 +9,7 @@
     <Header><![CDATA[]]></Header>
     <Body>
       <![CDATA[<div class="sn-infobox"><h1 class="sn-content-title sn-article-title"><img src="/Root/Global/images/icons/32/info.png" class="sn-icon sn-icon_32" alt="" />News demo</h1>
-      <p>This demo introduces the CMS capabilities of Sense/Net 6.0. The current page is the start page for a demo news portal.
+      <p>This demo introduces the CMS capabilities of Sense/Net 6.1. The current page is the start page for a demo news portal.
       Visitors may browse news items organized under news sections:</p>
       <ul>
       <li>Click on a news section (eg. <strong>External news</strong>) in the menu to browse news articles under a specific section.</li>

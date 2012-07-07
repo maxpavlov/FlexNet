@@ -43,6 +43,7 @@ namespace SenseNet.Portal.UI.Controls
         public string ActionName { get; set; }
         public string IconName { get; set; }
         public string IconUrl { get; set; }
+        public bool OverlayVisible { get; set; }
 
         #endregion
     }

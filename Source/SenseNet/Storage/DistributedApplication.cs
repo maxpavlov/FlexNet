@@ -18,7 +18,6 @@ namespace SenseNet.ContentRepository
         {
             get
             {
-                
                 if (_cache == null)
                 {
                     lock (_syncRoot)
@@ -26,7 +25,6 @@ namespace SenseNet.ContentRepository
                         if (_cache == null)
                         {
                             _cache = new AspNetCache();
-                            //_cache.AddPopulator(new SenseNet.ContentRepository.Storage.NodeCachePopulator());
                         }
                     }
                 }
@@ -35,20 +33,6 @@ namespace SenseNet.ContentRepository
         }
 
         private static IClusterChannel _currentChannel;
-        //public static void HandleException(Exception exc, bool reraise)
-        //{
-        //    try
-        //    {
-        //        StackTrace st = new StackTrace(exc);
-        //        Debug.WriteLine("Distributed exception at :" + st.GetFrame(0).GetMethod().Name + ":>" + exc.Message);
-        //    }
-        //    catch (Exception e) //TODO: catch block
-        //    {
-        //        Debug.WriteLine("Exception in HandleException: " + e.Message);
-        //    }
-        //    if (reraise)
-        //        throw exc;
-        //}
 
         public static IClusterChannel ClusterChannel
         {

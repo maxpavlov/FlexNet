@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SenseNet.Communication.Messaging;
+using SenseNet.ContentRepository.Storage.Data;
 
 namespace SenseNet.ContentRepository.Storage.Search
 {
@@ -11,10 +13,10 @@ namespace SenseNet.ContentRepository.Storage.Search
         void RepopulateTree(string newPath);
         void PopulateTree(string newPath);
         object BeginPopulateNode(Node node, NodeSaveSettings settings, string originalPath, string newPath);
-        void CommitPopulateNode(object data);
-        void DeleteTree(string path);
-        void DeleteForest(IEnumerable<int> idSet);
-        void DeleteForest(IEnumerable<string> pathSet);
+        void CommitPopulateNode(object data, IndexDocumentData indexDocument);
+        void DeleteTree(string path, bool moveOrRename);
+        void DeleteForest(IEnumerable<int> idSet, bool moveOrRename);
+        void DeleteForest(IEnumerable<string> pathSet, bool moveOrRename);
 
         void RefreshIndexDocumentInfo(IEnumerable<Node> nodes);
         void RefreshIndexDocumentInfo(Node node, bool recursive);
@@ -39,11 +41,11 @@ namespace SenseNet.ContentRepository.Storage.Search
         public void RepopulateTree(string newPath) { }
         public void PopulateTree(string newPath) { }
         public object BeginPopulateNode(Node node, NodeSaveSettings settings, string originalPath, string newPath) { return PopulatorData; }
-        public void CommitPopulateNode(object data) { }
-        public void DeleteTree(string path) { }
+        public void CommitPopulateNode(object data, IndexDocumentData indexDocument) { }
+        public void DeleteTree(string path, bool moveOrRename) { }
         public event EventHandler<NodeIndexedEvenArgs> NodeIndexed;
-        public void DeleteForest(IEnumerable<int> idSet) { }
-        public void DeleteForest(IEnumerable<string> pathSet) { }
+        public void DeleteForest(IEnumerable<int> idSet, bool moveOrRename) { }
+        public void DeleteForest(IEnumerable<string> pathSet, bool moveOrRename) { }
 
         public void RefreshIndexDocumentInfo(IEnumerable<Node> nodes)
         {
@@ -69,6 +71,5 @@ namespace SenseNet.ContentRepository.Storage.Search
 
         public void RefreshIndex(IEnumerable<Node> nodes) { }
         public void RefreshIndex(Node node, bool recursive) { }
-
     }
 }

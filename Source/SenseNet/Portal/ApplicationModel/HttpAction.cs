@@ -65,59 +65,27 @@ namespace SenseNet.Portal.AppModel
 
         public virtual bool CheckPermission()
         {
-            bool isOwner;
             if (TargetNode != null)
             {
-                isOwner = TargetNode.CreatorId == User.Current.Id;
                 if (!SecurityHandler.HasPermission(TargetNode, PermissionType.See))
                     ThrowNotFound();
                 if (!SecurityHandler.HasPermission(TargetNode, PermissionType.RunApplication))
-                {
-                    Trace.WriteLine(String.Format("#> ######################### Current user ({0} has not RunApplication permission to the context node: {1})", User.Current.Username, TargetNode.Path));
                     return false;
-                }
             }
             if (_appNode != null)
             {
-                isOwner = _appNode.CreatorId == User.Current.Id;
                 if (!SecurityHandler.HasPermission(_appNode, PermissionType.RunApplication))
-                {
-                    Trace.WriteLine(String.Format("#> ######################### Current user ({0} has not RunApplication permission to the application node: {1})", User.Current.Username, _appNode.Path));
                     return false;
-                }
-
                 if (TargetNode != null)
-                {
                     if (!ActionFramework.HasRequiredPermissions(Node.Load<Application>(_appNode.Id), TargetNode))
                         return false;
-                }
             }
             return true;
         }
 
         public virtual void AssertPermissions()
         {
-            bool isOwner;
-            if (TargetNode != null)
-            {
-                isOwner = TargetNode.CreatorId == User.Current.Id;
-                if (!SecurityHandler.HasPermission(TargetNode, PermissionType.See))
-                    ThrowNotFound();
-                if (!SecurityHandler.HasPermission(TargetNode, PermissionType.RunApplication))
-                    ThrowForbidden();
-            }
-            
-            if (_appNode == null) 
-                return;
-
-            isOwner = _appNode.CreatorId == User.Current.Id;
-            if (!SecurityHandler.HasPermission(_appNode, PermissionType.RunApplication))
-                ThrowForbidden();
-
-            if (TargetNode == null) 
-                return;
-
-            if (!ActionFramework.HasRequiredPermissions(Node.Load<Application>(_appNode.Id), TargetNode))
+            if(!CheckPermission())
                 ThrowForbidden();
         }
 
@@ -227,6 +195,16 @@ namespace SenseNet.Portal.AppModel
                 }
             }
             HttpContext.Current.RemapHandler(handler);
+        }
+        public override bool CheckPermission()
+        {
+            if (!base.CheckPermission())
+                return false;
+            if (HttpHandlerNode != null)
+                if (!SecurityHandler.HasPermission(HttpHandlerNode, PermissionType.RunApplication))
+                    return false;
+            return true;
+
         }
     }
 }

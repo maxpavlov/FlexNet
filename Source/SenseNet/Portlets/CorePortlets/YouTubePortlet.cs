@@ -29,6 +29,8 @@ namespace SenseNet.Portal.Portlets
             this.Name = SenseNetResourceManager.Current.GetString("YouTubePortlet", "PortletTitle");
             this.Description = SenseNetResourceManager.Current.GetString("YouTubePortlet", "PortletDescription");
             this.Category = new PortletCategory(PortletCategoryType.Application);
+
+            this.HiddenProperties.Add("Renderer");
         }
 
         protected override void Render(System.Web.UI.HtmlTextWriter writer)

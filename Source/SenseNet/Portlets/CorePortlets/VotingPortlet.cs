@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Web.UI.WebControls.WebParts;
 using SenseNet.ContentRepository.Storage;
@@ -108,11 +110,13 @@ namespace SenseNet.Portal.Portlets
         /// Gets or sets the content view path.
         /// </summary>
         /// <value>The content view path.</value>
-        [WebBrowsable(true)]
+        [WebBrowsable(false)]
         [Personalizable(true)]
         [WebCategory(EditorCategory.UI, EditorCategory.UI_Order)]
-        [WebDisplayName("ContentView path")]
-        [WebDescription("Enter the path of the ContentView")]
+        [LocalizedWebDisplayName(PORTLETFRAMEWORK_CLASSNAME, RENDERER_DISPLAYNAME)]
+        [LocalizedWebDescription(PORTLETFRAMEWORK_CLASSNAME, RENDERER_DESCRIPTION)]
+        [Editor(typeof(ViewPickerEditorPartField), typeof(IEditorPartField))]
+        [ContentPickerEditorPartOptions(ContentPickerCommonType.ContentView, PortletViewType.Ascx)]
         [WebOrder(50)]
         public string ContentViewPath { get; set; }
 
@@ -160,7 +164,7 @@ namespace SenseNet.Portal.Portlets
         [Personalizable(true)]
         [WebCategory(EditorCategory.UI, EditorCategory.UI_Order)]
         [WebDisplayName("Enable foldering")]
-        [WebDescription("Enables Voting Items' storings in folders")]
+        [WebDescription("Enable to store Voting Items in folders")]
         [WebOrder(50)]
         public bool FolderingEnabled { get; set; }
 
@@ -185,6 +189,8 @@ namespace SenseNet.Portal.Portlets
             this.Description = SenseNetResourceManager.Current.GetString("Voting", "Description");
             this.Category = new PortletCategory(PortletCategoryType.Content);
             this.EnableLifeSpan = false;
+
+            this.HiddenProperties.Add("Renderer");
         }
 
         #endregion

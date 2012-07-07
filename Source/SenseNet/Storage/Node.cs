@@ -57,13 +57,23 @@ namespace SenseNet.ContentRepository.Storage
     public abstract class Node
     {
         private NodeData _data;
-        internal NodeData Data { get { return _data; } }
+        internal NodeData Data
+        {
+            get
+            {
+                return _data;
+            }
+        }
 
         private bool _copying;
         public bool CopyInProgress
         {
             get { return _copying; }
         }
+
+        private bool IsDirty { get; set; }
+
+        public abstract bool IsContentType { get; }
 
         /// <summary>
         /// Set this to override AllowIncrementalNaming setting of ContentType programatically
@@ -257,6 +267,7 @@ namespace SenseNet.ContentRepository.Storage
             {
                 if (value == null)
                     throw new ArgumentNullException("value");
+
                 MakePrivateData();
                 _data.Name = value;
             }
@@ -351,11 +362,17 @@ namespace SenseNet.ContentRepository.Storage
 
         public long NodeTimestamp
         {
-            get { return _data.NodeTimestamp; }
+            get
+            {
+                return _data.NodeTimestamp;
+            }
         }
         public long VersionTimestamp
         {
-            get { return _data.VersionTimestamp; }
+            get
+            {
+                return _data.VersionTimestamp;
+            }
         }
 
         public virtual bool IsNew
@@ -374,16 +391,14 @@ namespace SenseNet.ContentRepository.Storage
         /// <value>The creation date.</value>
         public virtual DateTime NodeCreationDate
         {
-            get
-            {
-                return _data.NodeCreationDate;
-            }
+            get { return _data.NodeCreationDate; }
             set
             {
                 if (value < DataProvider.Current.DateTimeMinValue)
                     throw SR.Exceptions.General.Exc_LessThanDateTimeMinValue();
                 if (value > DataProvider.Current.DateTimeMaxValue)
                     throw SR.Exceptions.General.Exc_BiggerThanDateTimeMaxValue();
+
                 MakePrivateData();
                 _data.NodeCreationDate = value;
             }
@@ -394,16 +409,14 @@ namespace SenseNet.ContentRepository.Storage
         /// <value>The modification date.</value>
         public virtual DateTime NodeModificationDate
         {
-            get
-            {
-                return _data.NodeModificationDate;
-            }
+            get { return _data.NodeModificationDate; }
             set
             {
                 if (value < DataProvider.Current.DateTimeMinValue)
                     throw SR.Exceptions.General.Exc_LessThanDateTimeMinValue();
                 if (value > DataProvider.Current.DateTimeMaxValue)
                     throw SR.Exceptions.General.Exc_BiggerThanDateTimeMaxValue();
+
                 MakePrivateData();
                 _data.NodeModificationDate = value;
             }
@@ -438,6 +451,7 @@ namespace SenseNet.ContentRepository.Storage
                     throw new ArgumentOutOfRangeException("value", "Referenced 'CreatedBy' node must be saved.");
                 if (!(value is IUser))
                     throw new ArgumentOutOfRangeException("value", "'CreatedBy' must be IUser.");
+
                 MakePrivateData();
                 _data.NodeCreatedById = value.Id;
             }
@@ -472,6 +486,7 @@ namespace SenseNet.ContentRepository.Storage
                     throw new ArgumentOutOfRangeException("value", "Referenced 'NodeModifiedBy' node must be saved.");
                 if (!(value is IUser))
                     throw new ArgumentOutOfRangeException("value", "'NodeModifiedBy' must be IUser.");
+
                 MakePrivateData();
                 _data.NodeModifiedById = value.Id;
             }
@@ -492,8 +507,15 @@ namespace SenseNet.ContentRepository.Storage
         /// <value>The version.</value>
         public VersionNumber Version
         {
-            get { return _data.Version; }
-            set { MakePrivateData(); _data.Version = value; }
+            get
+            {
+                return _data.Version;
+            }
+            set
+            {
+                MakePrivateData(); 
+                _data.Version = value;
+            }
         }
         /// <summary>
         /// Gets the version id.
@@ -501,7 +523,10 @@ namespace SenseNet.ContentRepository.Storage
         /// <value>The version id.</value>
         public int VersionId
         {
-            get { return _data.VersionId; }
+            get
+            {
+                return _data.VersionId;
+            }
         }
         /// <summary>
         /// Gets or sets the creation date.
@@ -516,6 +541,7 @@ namespace SenseNet.ContentRepository.Storage
                     throw SR.Exceptions.General.Exc_LessThanDateTimeMinValue();
                 if (value > DataProvider.Current.DateTimeMaxValue)
                     throw SR.Exceptions.General.Exc_BiggerThanDateTimeMaxValue();
+
                 MakePrivateData();
                 _data.CreationDate = value;
             }
@@ -533,6 +559,7 @@ namespace SenseNet.ContentRepository.Storage
                     throw SR.Exceptions.General.Exc_LessThanDateTimeMinValue();
                 if (value > DataProvider.Current.DateTimeMaxValue)
                     throw SR.Exceptions.General.Exc_BiggerThanDateTimeMaxValue();
+
                 MakePrivateData();
                 _data.ModificationDate = value;
             }
@@ -567,6 +594,7 @@ namespace SenseNet.ContentRepository.Storage
                     throw new ArgumentOutOfRangeException("value", "Referenced 'CreatedBy' node must be saved.");
                 if (!(value is IUser))
                     throw new ArgumentOutOfRangeException("value", "'CreatedBy' must be IUser.");
+
                 MakePrivateData();
                 _data.CreatedById = value.Id;
             }
@@ -598,7 +626,11 @@ namespace SenseNet.ContentRepository.Storage
                 }
                 if (node is IUser)
                     return node;
-                throw new ApplicationException("'ModifiedById' should be IUser.");
+
+                if (node == null)
+                    throw new ApplicationException("Modifier user not found. Content: " + this.Path + ", ModifiedById: " + _data.ModifiedById);
+                else
+                    throw new ApplicationException("'ModifiedById' should refer to an IUser.");
             }
             set
             {
@@ -608,6 +640,7 @@ namespace SenseNet.ContentRepository.Storage
                     throw new ArgumentOutOfRangeException("value", "Referenced 'ModifiedBy' node must be saved.");
                 if (!(value is IUser))
                     throw new ArgumentOutOfRangeException("value", "'ModifiedBy' must be IUser.");
+
                 MakePrivateData();
                 _data.ModifiedById = value.Id;
             }
@@ -644,32 +677,56 @@ namespace SenseNet.ContentRepository.Storage
         public string ETag
         {
             get { return _data.ETag; }
-            set { MakePrivateData(); _data.ETag = value; }
+            set
+            {
+                MakePrivateData(); 
+                _data.ETag = value;
+            }
         }
         public int LockType
         {
             get { return _data.LockType; }
-            set { MakePrivateData(); _data.LockType = value; }
+            set
+            {
+                MakePrivateData(); 
+                _data.LockType = value;
+            }
         }
         public int LockTimeout
         {
             get { return _data.LockTimeout; }
-            internal set { MakePrivateData(); _data.LockTimeout = value; }
+            internal set
+            {
+                MakePrivateData(); 
+                _data.LockTimeout = value;
+            }
         }
         public DateTime LockDate
         {
             get { return _data.LockDate; }
-            set { MakePrivateData(); _data.LockDate = value; }
+            set
+            {
+                MakePrivateData(); 
+                _data.LockDate = value;
+            }
         }
         public string LockToken
         {
             get { return _data.LockToken; }
-            internal set { MakePrivateData(); _data.LockToken = value; }
+            internal set
+            {
+                MakePrivateData(); 
+                _data.LockToken = value;
+            }
         }
         public DateTime LastLockUpdate
         {
             get { return _data.LastLockUpdate; }
-            internal set { MakePrivateData(); _data.LastLockUpdate = value; }
+            internal set
+            {
+                MakePrivateData(); 
+                _data.LastLockUpdate = value;
+            }
         }
 
         #endregion
@@ -756,6 +813,7 @@ namespace SenseNet.ContentRepository.Storage
                 switch (propertyType.DataType)
                 {
                     case DataType.Binary:
+                        return GetAccessor(propertyType);
                     case DataType.Reference:
                         return GetAccessor(propertyType);
                     default:
@@ -764,9 +822,6 @@ namespace SenseNet.ContentRepository.Storage
             }
             set
             {
-                //if (propertyType.DataType == DataType.Binary || propertyType.DataType == DataType.Reference)
-                //    throw new NotSupportedException(String.Concat("Storage2: ", propertyType.DataType, " property is read only. Property name: ", propertyType.Name));
-                //data.SetDynamicRawData(propertyType, value);
                 MakePrivateData();
                 switch (propertyType.DataType)
                 {
@@ -1178,10 +1233,14 @@ namespace SenseNet.ContentRepository.Storage
         {
             SetVersionInfo(NodeHead.Get(this.Id));
         }
+        internal void RefreshVersionInfo(NodeHead nodeHead)
+        {
+            SetVersionInfo(nodeHead);
+        }
         private void SetVersionInfo(NodeHead nodeHead)
         {
             var versionId = this.VersionId;
-            this.IsLastPublicVersion = nodeHead.LastMajorVersionId == versionId;
+            this.IsLastPublicVersion = nodeHead.LastMajorVersionId == versionId && this.Version.Status == VersionStatus.Approved;
             this.IsLatestVersion = nodeHead.LastMinorVersionId == versionId;
         }
 
@@ -1731,17 +1790,15 @@ namespace SenseNet.ContentRepository.Storage
                 var populatorData = Populator.BeginPopulateNode(this, settings, thisPath, thisPath);
 
                 //-- save
-                DataBackingStore.SaveNodeData(this, settings);
+                IndexDocumentData indexDocument;
+                DataBackingStore.SaveNodeData(this, settings, out indexDocument);
 
                 //-- <L2Cache>
                 StorageContext.L2Cache.Clear();
                 //-- </L2Cache>
 
-                ////-- save index document
-                //SaveIndexDocument();
-
                 //-- populate
-                Populator.CommitPopulateNode(populatorData);
+                Populator.CommitPopulateNode(populatorData, indexDocument);
 
                 if (this is IGroup)
                     //DataProvider.Current.ExplicateGroupMemberships();
@@ -1752,6 +1809,20 @@ namespace SenseNet.ContentRepository.Storage
                     //DataProvider.Current.ExplicateOrganizationUnitMemberships(thisAsUser);
                     SecurityHandler.ExplicateOrganizationUnitMemberships(thisAsUser);
 
+                //-- refresh data (e.g. in case of undo checkout)
+                if (settings.ForceRefresh)
+                {
+                    this.IsDirty = true;
+                    Refresh();
+                }
+
+                //-- make it as shared (flatten the data)
+                NodeData.MakeSharedData(this._data);
+
+                //-- insert node data into cache after save
+                CacheNodeAfterSave();
+
+                //-- events
                 FireOnCreated();
 
                 traceOperation.IsSuccessful = true;
@@ -1807,8 +1878,14 @@ namespace SenseNet.ContentRepository.Storage
             }
             Save(settings);
         }
+
         public virtual void Save(NodeSaveSettings settings)
         {
+            //BenchmarkCounter.Reset();
+
+            if (_data != null)
+                _data.SavingTimer.Restart();
+
             if (StorageContext.Search.SearchEngine.IndexingPaused)
                 WaitForIndexingContinued("save the content");
 
@@ -1816,6 +1893,8 @@ namespace SenseNet.ContentRepository.Storage
             if (_copying)
             {
                 SaveCopied(settings);
+                if (_data != null)
+                    _data.SavingTimer.Stop();
                 return;
             }
 
@@ -1838,6 +1917,8 @@ namespace SenseNet.ContentRepository.Storage
                 {
                     Logger.WriteVerbose("Node is not saved because it has no changes", Logger.GetDefaultProperties, this);
                     traceOperation.IsSuccessful = true;
+                    if (_data != null)
+                        _data.SavingTimer.Stop();
                     return;
                 }
 
@@ -1851,19 +1932,6 @@ namespace SenseNet.ContentRepository.Storage
                 var originalPath = renamed ? RepositoryPath.Combine(parentPath, originalName) : newPath;
 
                 //==== Update the modification
-                //if (_data.SharedData != null)
-                //{
-                //    DateTime now = DateTime.Now;
-                //    if (_data.ModificationDate == _data.SharedData.ModificationDate)
-                //        this.ModificationDate = now;
-                //    if (_data.ModifiedById == _data.SharedData.ModifiedById)
-                //        this.Data.ModifiedById = currentUserId;
-                //    if (_data.NodeModificationDate == _data.SharedData.NodeModificationDate)
-                //        this.NodeModificationDate = now;
-                //    if (_data.NodeModifiedById == _data.SharedData.NodeModifiedById)
-                //        this.Data.NodeModifiedById = currentUserId;
-                //}
-
                 DateTime now = DateTime.Now;
                 if (!_data.ModificationDateChanged)
                     this.ModificationDate = now;
@@ -1873,6 +1941,7 @@ namespace SenseNet.ContentRepository.Storage
                     this.NodeModificationDate = now;
                 if (!_data.NodeModifiedByIdChanged)
                     this.Data.NodeModifiedById = currentUserId;
+
 
                 //-- collect changed field values for logging and info for nodeobservers
                 IEnumerable<ChangedData> changedData = null;
@@ -1898,26 +1967,32 @@ namespace SenseNet.ContentRepository.Storage
                 //-- collect data for populator
                 var populatorData = Populator.BeginPopulateNode(this, settings, originalPath, newPath);
 
+                BenchmarkCounter.IncrementBy(BenchmarkCounter.CounterName.BeforeSaveToDb, _data != null ? _data.SavingTimer.ElapsedTicks : 0);
+                if (_data != null)
+                    _data.SavingTimer.Restart();
+
                 //-- save
-                DataBackingStore.SaveNodeData(this, settings);
+                IndexDocumentData indexDocument;
+                DataBackingStore.SaveNodeData(this, settings, out indexDocument);
 
                 //-- <L2Cache>
                 StorageContext.L2Cache.Clear();
                 //-- </L2Cache>
 
-                ////-- save index document
-                //SaveIndexDocument();
-
                 //-- populate
                 AccessProvider.ChangeToSystemAccount();
                 try
                 {
-                    Populator.CommitPopulateNode(populatorData);
+                    Populator.CommitPopulateNode(populatorData, indexDocument);
                 }
                 finally
                 {
                     AccessProvider.RestoreOriginalUser();
                 }
+
+                BenchmarkCounter.IncrementBy(BenchmarkCounter.CounterName.CommitPopulateNode, _data != null ? _data.SavingTimer.ElapsedTicks : 0);
+                if (_data != null)
+                    _data.SavingTimer.Restart();
 
                 //-- security
                 if (renamed)
@@ -1933,6 +2008,10 @@ namespace SenseNet.ContentRepository.Storage
                             new object[] { this.Id, this.Path, changedData });
                 }
 
+                BenchmarkCounter.IncrementBy(BenchmarkCounter.CounterName.Audit, _data != null ? _data.SavingTimer.ElapsedTicks : 0);
+                if (_data != null) 
+                    _data.SavingTimer.Restart();
+
                 //-- memberships
                 if (this is IGroup)
                     SecurityHandler.ExplicateGroupMembership();
@@ -1941,24 +2020,21 @@ namespace SenseNet.ContentRepository.Storage
                 if (thisAsUser != null)
                     SecurityHandler.ExplicateOrganizationUnitMemberships(thisAsUser);
 
-                //-- for additional change tracking
-                //var pt = _data.PropertyTypes;
-                //_data = NodeData.CreatePrivateData(this.Data);
-                //if (_data.PropertyTypes.Count != pt.Count)
-                //    ExtendAccessorsWithListProperties();               
+                //-- refresh data (e.g. in case of undo checkout)
+                if (settings.ForceRefresh)
+                {
+                    this.IsDirty = true;
+                    Refresh();
+                }
 
-                var nodeHead = NodeHead.Get(Id);
+                //-- make it as shared (flatten the data)
+                NodeData.MakeSharedData(this._data);
 
-                //  Reload by: nodeHead.LastMinorVersionId
-                //var sharedData = DataBackingStore.GetNodeData(nodeHead, nodeHead.LastMinorVersionId);
-                //var privateData = NodeData.CreatePrivateData(sharedData.NodeData);
-                //_data = privateData;
-                //__accessors = null;
-                var token = DataBackingStore.GetNodeData(nodeHead, nodeHead.LastMinorVersionId);
-                var sharedData = token.NodeData;
-                sharedData.IsShared = true;
-                _data = sharedData;
-                __accessors = null;
+                //-- remove too big items
+                this._data.RemoveStreamsAndLongTexts();
+
+                //-- insert node data into cache after save
+                CacheNodeAfterSave();
 
                 //-- events
                 if (isNewNode)
@@ -1966,7 +2042,54 @@ namespace SenseNet.ContentRepository.Storage
                 else
                     FireOnModified(originalPath, changedData);
                 traceOperation.IsSuccessful = true;
+
+                BenchmarkCounter.IncrementBy(BenchmarkCounter.CounterName.FinalizingSave, _data != null ? _data.SavingTimer.ElapsedTicks : 0);
+                if (_data != null) 
+                    _data.SavingTimer.Restart();
             }
+            if (_data != null)
+                _data.SavingTimer.Stop();
+        }
+        private void CacheNodeAfterSave()
+        {
+            // don't insert into cache if node is a content type
+            if (this.IsContentType)
+                return;
+
+            switch (RepositoryConfiguration.CacheContentAfterSaveMode)
+            {
+                case RepositoryConfiguration.CacheContentAfterSaveOption.None:
+                    // do nothing
+                    break;
+                case RepositoryConfiguration.CacheContentAfterSaveOption.Containers:
+                    // cache IFolders only
+                    if (this is IFolder)
+                        DataBackingStore.CacheNodeData(this._data);
+                    break;
+                case RepositoryConfiguration.CacheContentAfterSaveOption.All:
+                    // cache every node
+                    DataBackingStore.CacheNodeData(this._data);
+                    break;
+            }
+        }
+        internal void Refresh()
+        {
+            if (!this.IsDirty)
+                return;
+
+            var nodeHead = NodeHead.Get(Id);
+
+            if (nodeHead != null)
+            {
+                //  Reload by nodeHead.LastMinorVersionId
+                var token = DataBackingStore.GetNodeData(nodeHead, nodeHead.LastMinorVersionId);
+                var sharedData = token.NodeData;
+                sharedData.IsShared = true;
+                _data = sharedData;
+                __accessors = null;
+            }
+
+            this.IsDirty = false;
         }
 
         private void ApplySettings(NodeSaveSettings settings)
@@ -2093,8 +2216,6 @@ namespace SenseNet.ContentRepository.Storage
         /// <remarks>Use this method if you do not want to instantiate the nodes.</remarks>
         public static void Move(string sourcePath, string targetPath)
         {
-            RepositoryPath.CheckValidPath(sourcePath);
-            RepositoryPath.CheckValidPath(targetPath);
             Node sourceNode = Node.LoadNode(sourcePath);
             if (sourceNode == null)
                 throw new InvalidOperationException(String.Format(CultureInfo.CurrentCulture, "Source node does not exist with {0} path", sourcePath));
@@ -2156,7 +2277,7 @@ namespace SenseNet.ContentRepository.Storage
             PathDependency.FireChanged(pathToInvalidate);
             PathDependency.FireChanged(this.Path);
 
-            Populator.DeleteTree(this.Path);
+            Populator.DeleteTree(this.Path, true);
 
             var nodeHead = NodeHead.Get(Id);
             var userAccessLevel = GetUserAccessLevel(nodeHead);
@@ -2381,8 +2502,6 @@ namespace SenseNet.ContentRepository.Storage
         /// <remarks>Use this method if you do not want to instantiate the nodes.</remarks>
         public static void Copy(string sourcePath, string targetPath)
         {
-            RepositoryPath.CheckValidPath(sourcePath);
-            RepositoryPath.CheckValidPath(targetPath);
             Node sourceNode = Node.LoadNode(sourcePath);
             if (sourceNode == null)
                 throw new InvalidOperationException(String.Format(CultureInfo.InvariantCulture, "Source node does not exist with {0} path", sourcePath));
@@ -2398,7 +2517,6 @@ namespace SenseNet.ContentRepository.Storage
                 throw new ArgumentNullException("nodeList");
             if (nodeList.Count == 0)
                 return;
-            RepositoryPath.CheckValidPath(targetPath);
 
             CopyMoreInternal(nodeList, targetPath, ref errors);
         }
@@ -2737,7 +2855,6 @@ namespace SenseNet.ContentRepository.Storage
         [Obsolete("DeletePhysical is obsolete. Use ForceDelete to delete Node permanently.")]
         public static void DeletePhysical(string sourcePath)
         {
-            RepositoryPath.CheckValidPath(sourcePath);
             var sourceNode = Node.LoadNode(sourcePath);
             if (sourceNode == null)
                 throw new InvalidOperationException(String.Concat("Source node does not exist with ", sourcePath, " path"));
@@ -2766,7 +2883,6 @@ namespace SenseNet.ContentRepository.Storage
 
         public static void ForceDelete(string sourcePath)
         {
-            RepositoryPath.CheckValidPath(sourcePath);
             var sourceNode = Node.LoadNode(sourcePath);
             if (sourceNode == null)
                 throw new InvalidOperationException(String.Concat("Source node does not exist with ", sourcePath, " path"));
@@ -2823,7 +2939,7 @@ namespace SenseNet.ContentRepository.Storage
             var hadContentList = RemoveContentListTypesInTree(contentListTypesInTree) > 0;
 
             SecurityHandler.Delete(myPath);
-            Populator.DeleteTree(myPath);
+            Populator.DeleteTree(myPath, false);
 
             if (hadContentList)
                 FireAnyContentListDeleted();
@@ -2857,7 +2973,6 @@ namespace SenseNet.ContentRepository.Storage
         /// </summary>
         public static void Delete(string sourcePath)
         {
-            RepositoryPath.CheckValidPath(sourcePath);
             var sourceNode = Node.LoadNode(sourcePath);
             if (sourceNode == null)
                 throw new InvalidOperationException(String.Concat("Source node does not exist with ", sourcePath, " path"));
@@ -2977,7 +3092,7 @@ namespace SenseNet.ContentRepository.Storage
             }
             try
             {
-                Populator.DeleteForest(ids);    
+                Populator.DeleteForest(ids, false);    
             } catch(Exception e)
             {
                 errors.Add(e);
@@ -3353,6 +3468,68 @@ Debug.WriteLine(String.Format("#> {0} ---- WaitForIndexingContinued", AppDomain.
 
 
 
+
+    }
+    public class BenchmarkCounter
+    {
+        public enum CounterName { 
+            GetParentPath,
+            LoadParent,
+            ContentCreate,
+            BinarySet,
+            FullSave,
+            BeforeSaveToDb, 
+            SaveNodeBaseData, 
+            SaveNodeBinaries, 
+            SaveNodeFlatProperties, 
+            SaveNodeTextProperties, 
+            SaveNodeReferenceProperties, 
+            CommitPopulateNode, 
+            Audit, 
+            FinalizingSave
+        }
+
+        public static readonly string TraceCounterDataSlotName = "XCounterDataSlot";
+        private static readonly int EnumLength;
+        public static void IncrementBy(CounterName counterName, long value)
+        {
+            var slot = System.Threading.Thread.GetNamedDataSlot(TraceCounterDataSlotName);
+            var xcounter = (BenchmarkCounter)System.Threading.Thread.GetData(slot);
+            if (xcounter == null)
+            {
+                xcounter = new BenchmarkCounter();
+                System.Threading.Thread.SetData(slot, xcounter);
+            }
+            xcounter[counterName] += value;
+        }
+
+        public static void Reset()
+        {
+            var slot = System.Threading.Thread.GetNamedDataSlot(TraceCounterDataSlotName);
+            System.Threading.Thread.SetData(slot, new BenchmarkCounter());
+        }
+        public static long[] GetAll()
+        {
+            var slot = System.Threading.Thread.GetNamedDataSlot(TraceCounterDataSlotName);
+            var xcounter = (BenchmarkCounter)System.Threading.Thread.GetData(slot);
+            if (xcounter == null)
+                return new long[EnumLength];
+            return xcounter._counters;
+        }
+
+        // ==========================================================================================
+
+        static BenchmarkCounter()
+        {
+            EnumLength = Enum.GetNames(typeof(CounterName)).Length;
+        }
+
+        private long[] _counters = new long[EnumLength];
+        private long this[CounterName counterName]
+        {
+            get { return _counters[(int)counterName]; }
+            set { _counters[(int)counterName] = value; }
+        }
 
     }
 }

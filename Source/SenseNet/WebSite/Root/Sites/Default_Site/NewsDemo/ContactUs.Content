@@ -3,39 +3,49 @@
   <ContentType>Page</ContentType>
   <ContentName>ContactUs</ContentName>
   <Fields>
-    <DisplayName>Contact us</DisplayName>
     <PageTemplateNode>
       <Path>/Root/Global/pagetemplates/sn-layout-inter-blank.html</Path>
     </PageTemplateNode>
     <Hidden>false</Hidden>
     <Index>1000</Index>
-    <SmartUrl></SmartUrl>
+    <SmartUrl><![CDATA[]]></SmartUrl>
     <IsExternal>false</IsExternal>
-    <OuterUrl></OuterUrl>
-    <MetaTitle></MetaTitle>
+    <OuterUrl><![CDATA[]]></OuterUrl>
+    <MetaTitle><![CDATA[]]></MetaTitle>
     <Keywords><![CDATA[]]></Keywords>
     <MetaDescription><![CDATA[]]></MetaDescription>
-    <MetaAuthors></MetaAuthors>
+    <MetaAuthors><![CDATA[]]></MetaAuthors>
     <CustomMeta><![CDATA[]]></CustomMeta>
     <Binary attachment="ContactUs.aspx" />
     <PersonalizationSettings attachment="ContactUs.PersonalizationSettings" />
+    <DisplayName><![CDATA[Contact us]]></DisplayName>
     <Description><![CDATA[]]></Description>
-    <Scenario></Scenario>
-    <ActionTypeName></ActionTypeName>
+    <Scenario><![CDATA[]]></Scenario>
+    <ActionTypeName><![CDATA[]]></ActionTypeName>
     <IsModal>false</IsModal>
     <Disabled>false</Disabled>
     <Clear>false</Clear>
-    <Icon></Icon>
-    <StyleHint></StyleHint>
+    <Icon><![CDATA[]]></Icon>
+    <StyleHint><![CDATA[]]></StyleHint>
     <RequiredPermissions></RequiredPermissions>
     <DeepPermissionCheck>false</DeepPermissionCheck>
+    <IncludeBackUrl>0</IncludeBackUrl>
+    <CacheControl>Nondefined</CacheControl>
     <EnableLifespan>false</EnableLifespan>
     <ValidFrom>0001-01-01T00:00:00</ValidFrom>
     <ValidTill>0001-01-01T00:00:00</ValidTill>
-        <TrashDisabled>false</TrashDisabled>
+    <CreatedBy>
+      <Path>/Root/IMS/BuiltIn/Portal/Administrator</Path>
+    </CreatedBy>
+    <CreationDate>2012-05-21T10:32:07.75</CreationDate>
+    <ModifiedBy>
+      <Path>/Root/IMS/BuiltIn/Portal/Admin</Path>
+    </ModifiedBy>
+    <ModificationDate>2012-06-15T18:31:06.45</ModificationDate>
+    <TrashDisabled>false</TrashDisabled>
     <IsTaggable>false</IsTaggable>
     <IsRateable>false</IsRateable>
-    <RateStr>0|1|0|0|0|0|0</RateStr>
+    <RateStr><![CDATA[0|1|0|0|0|0|0]]></RateStr>
     <RateAvg>0.0000</RateAvg>
     <RateCount>0</RateCount>
   </Fields>

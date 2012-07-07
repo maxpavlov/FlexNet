@@ -36,7 +36,6 @@ namespace SenseNet.Portal.Portlets
     public class PublicRegistrationPortlet : PortletBase
     {
         private const string MailHostAppsettingKey = "SMTP";
-        private const string DefaultEmailSenderAppsettingKey = "DefaultEmailSender";
 
         public enum PortletState
         {
@@ -444,7 +443,7 @@ namespace SenseNet.Portal.Portlets
         {
             if (!String.IsNullOrEmpty(Configuration.MailFrom))
                 return Configuration.MailFrom;
-            var from = System.Web.Configuration.WebConfigurationManager.AppSettings[DefaultEmailSenderAppsettingKey];
+            var from = Repository.EmailSenderAddress;
             if (!String.IsNullOrEmpty(from))
                 return from;
             throw new ApplicationException("Configuration.MailFrom is not configured");

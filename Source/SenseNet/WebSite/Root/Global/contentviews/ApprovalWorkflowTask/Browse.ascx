@@ -1,4 +1,4 @@
-﻿<%@  Language="C#" AutoEventWireup="true" Inherits="SenseNet.Portal.UI.SingleContentView" %>
+﻿<%@  Language="C#" AutoEventWireup="true" Inherits="SenseNet.Portal.UI.SingleContentView" EnableViewState="false" %>
 <%@ Import Namespace="SenseNet.ContentRepository" %>
 <%@ Import Namespace="SenseNet.Portal.UI" %>
 <%@ Import Namespace="SenseNet.Portal.Helpers" %>
@@ -25,8 +25,8 @@
 <% var status = this.Content.ContentHandler.GetProperty<string>("Result");
    if (status == null)
    { %>
-    <asp:Button CssClass="sn-submit" Text="Approve" ID="Approve" runat="server" />
-    <asp:Button CssClass="sn-submit" Text="Reject" ID="Reject" runat="server" />
+    <asp:Button CssClass="sn-submit" Text="Approve" ID="Approve" runat="server" OnClick="Click" CommandName="Approve" />
+    <asp:Button CssClass="sn-submit" Text="Reject" ID="Reject" runat="server" OnClick="Click" CommandName="Reject" />
     <% }
    else
    { %>
@@ -34,3 +34,26 @@
     <% } %>
     <sn:BackButton CssClass="sn-submit" Text="Cancel" ID="BackButton1" runat="server" />
 </div>
+
+<script runat="server">
+
+    protected virtual void Click(object sender, EventArgs e)
+    {
+        string actionName = "";
+        IButtonControl button = sender as IButtonControl;
+        if (button != null)
+            actionName = button.CommandName;
+
+        if (!string.IsNullOrEmpty(actionName))
+        {
+            switch (actionName)
+            {
+                case "Approve": this.Content["Result"] = "yes"; this.Content.Save(); this.CallDone(); return;
+                case "Reject": this.Content["Result"] = "no"; this.Content.Save(); this.CallDone(); return;
+            }
+        }
+
+        base.Click(sender, e);
+    }
+
+</script>

@@ -19,10 +19,10 @@
           <value></value>
         </data>
         <data name="SearchFormRendererTitle" xml:space="preserve">
-          <value>Search form renderer</value>
+          <value>Search form view</value>
         </data>
         <data name="SearchFormRendererDescription" xml:space="preserve">
-          <value>Select an ASCX renderer for rendering search form</value>
+          <value>Select an .ascx view for rendering the search form</value>
         </data>
 
         <data name="PluginFullPathTitle" xml:space="preserve">

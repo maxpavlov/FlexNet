@@ -1006,5 +1006,16 @@ namespace SenseNet.Portal.UI
             if (this.ContentException == null)
                 this.ContentException = new InvalidOperationException("Invalid data. See detailed error messages below.");
         }
+
+        protected void CallDone()
+        {
+            CallDone(true);
+        }
+        protected void CallDone(bool endResponse)
+        {
+            var p = Page as PageBase;
+            if (p != null)
+                p.Done(endResponse);
+        }
     }
 }

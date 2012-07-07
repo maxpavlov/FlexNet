@@ -6,10 +6,37 @@
     <PageTemplateNode>
       <Path>/Root/Global/pagetemplates/sn-layout-intra.html</Path>
     </PageTemplateNode>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+    <SmartUrl><![CDATA[]]></SmartUrl>
+    <IsExternal>false</IsExternal>
     <Binary attachment="ContentLinker.aspx" />
     <PersonalizationSettings attachment="ContentLinker.PersonalizationSettings" />
-    <DisplayName>ContentLinker</DisplayName>
-    <Icon>contentlinker</Icon>
+    <DisplayName><![CDATA[ContentLinker]]></DisplayName>
+    <IsModal>false</IsModal>
+    <Disabled>false</Disabled>
+    <Clear>false</Clear>
+    <Icon><![CDATA[contentlinker]]></Icon>
+    <RequiredPermissions></RequiredPermissions>
+    <DeepPermissionCheck>false</DeepPermissionCheck>
+    <IncludeBackUrl>0</IncludeBackUrl>
+    <CacheControl>Nondefined</CacheControl>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <CreatedBy>
+      <Path>/Root/IMS/BuiltIn/Portal/Administrator</Path>
+    </CreatedBy>
+    <CreationDate>2012-03-07T10:57:55.04</CreationDate>
+    <ModifiedBy>
+      <Path>/Root/IMS/BuiltIn/Portal/Admin</Path>
+    </ModifiedBy>
+    <ModificationDate>2012-03-07T11:05:16.39</ModificationDate>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
   </Fields>
   <Permissions>
     <Clear />

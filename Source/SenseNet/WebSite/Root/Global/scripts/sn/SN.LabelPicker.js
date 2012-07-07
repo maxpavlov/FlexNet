@@ -1,7 +1,7 @@
-/// <depends path="$skin/scripts/sn/SN.js" />
-/// <depends path="$skin/scripts/sn/SN.Util.js" />
-/// <depends path="$skin/scripts/jquery/jquery.js" />
-/// <depends path="$skin/scripts/jqueryui/minified/jquery-ui.min.js" />
+// using $skin/scripts/sn/SN.js
+// using $skin/scripts/sn/SN.Util.js
+// using $skin/scripts/jquery/jquery.js
+// using $skin/scripts/jqueryui/minified/jquery-ui.min.js
 
 SN.LabelPicker = {
 

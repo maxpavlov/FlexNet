@@ -5,9 +5,11 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Web;
 using Eclipse.IndexingService;
 using Ionic.Zip;
 using iTextSharp.text.pdf;
+using iTextSharp.text.pdf.parser;
 using SenseNet.ContentRepository;
 using SenseNet.ContentRepository.Storage;
 using SenseNet.Diagnostics;
@@ -80,8 +82,9 @@ namespace SenseNet.Search
                 var act = new TimeboxedActivity();
                 act.InArgument = stream;
                 act.Activity = timeboxedFunctionCall;
+                act.Context = HttpContext.Current;
 
-                var finishedWithinTime = act.ExecuteAndWait(5000);
+                var finishedWithinTime = act.ExecuteAndWait(Repository.TextExtractTimeout * 1000);
                 if (!finishedWithinTime)
                 {
                     act.Abort();
@@ -273,7 +276,7 @@ namespace SenseNet.Search
 
         protected static void WriteElapsedLog(Stopwatch sw, string message, long length)
         {
-            Trace.WriteLine( string.Format(">>>>>>> Text extract **** {0} **** {1} ms **** length: {2}", message ?? string.Empty, sw.ElapsedMilliseconds.ToString().PadLeft(5), length));
+            //Trace.WriteLine( string.Format(">>>>>>> Text extract **** {0} **** {1} ms **** length: {2}", message ?? string.Empty, sw.ElapsedMilliseconds.ToString().PadLeft(5), length));
         }
 
         protected static byte[] GetBytesFromStream(Stream stream)
@@ -323,39 +326,15 @@ namespace SenseNet.Search
         {
             var extractedTexts = new StringBuilder();
             var pdfReader = new PdfReader(stream);
+            var stes = new SimpleTextExtractionStrategy();
             for (var page = 1; page <= pdfReader.NumberOfPages; page++)
             {
-                var text = ExtractTextFromPdfBytes(pdfReader.GetPageContent(page));
-                if (String.IsNullOrEmpty(text))
+                var text = iTextSharp.text.pdf.parser.PdfTextExtractor.GetTextFromPage(pdfReader, page, stes);
+                if (string.IsNullOrEmpty(text))
                     continue;
                 extractedTexts.Append(text);
             }
             return extractedTexts.ToString();
-        }
-        private static string ExtractTextFromPdfBytes(byte[] input)
-        {
-            if (input == null || input.Length == 0)
-                return "";
-            var result = new StringBuilder();
-            var token = new PRTokeniser(input);
-            while (token.NextToken())
-            {
-                var tknType = token.TokenType;
-                var tknValue = token.StringValue;
-
-                if (tknType == PRTokeniser.TokType.STRING)
-                    result.Append(token.StringValue);
-                else switch (tknValue)
-                {
-                    case "-600":
-                        result.Append(" ");
-                        break;
-                    case "TJ":
-                        result.Append(" ");
-                        break;
-                }
-            }
-            return result.ToString();
         }
     }
     internal sealed class XmlTextExtractor : TextExtractor

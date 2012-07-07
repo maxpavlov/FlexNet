@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.UI;
+using SenseNet.Diagnostics;
 using SenseNet.Portal.UI.PortletFramework;
 using System.Web.UI.WebControls;
 
@@ -60,7 +61,14 @@ namespace SenseNet.Portal.UI.Controls
             }
             foreach (var portlet in uninstalled)
             {
-                PortletInventory.ImportPortlet(portlet, repoPortlets);
+                try
+                {
+                    PortletInventory.ImportPortlet(portlet, repoPortlets);
+                }
+                catch (Exception ex)
+                {
+                    Logger.WriteException(ex);
+                }
             }
 
             BindList();

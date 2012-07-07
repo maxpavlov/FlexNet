@@ -4,6 +4,18 @@
 <%@ Import Namespace="SenseNet.Portal.Helpers" %>
 <%@ Import Namespace="SenseNet.ContentRepository.Fields" %>
 
+<% string user = (SenseNet.ContentRepository.User.Current).ToString(); %>
+<%if (user == "Visitor")
+  {%>
+   <div class="sn-pt-body-border ui-widget-content ui-corner-all">
+	<div class="sn-pt-body ui-corner-all">
+		<%=GetGlobalResourceObject("Portal", "WSContentList_Visitor")%>
+	</div>
+</div>
+<% }%>
+<%else
+  {%>
+
 <div class="sn-workspace-list">
 
     <sn:Toolbar runat="server">
@@ -66,4 +78,4 @@
     </sn:Toolbar>
 
 </div>
-
+<%} %>

@@ -3,24 +3,79 @@
   <ContentType>HTMLContent</ContentType>
   <ContentName>Index_header</ContentName>
   <Fields>
-    <HTMLFragment><![CDATA[
-      <div id="sn-index-header">
-        <a href="http://www.sensenet.com" title="" alt="More Information"><img id="sn-intro-img" src="/Root/YourContents/Images/sn-header-ce.png" alt="" /></a>
+    <HTMLFragment>
+      <![CDATA[<div class="sn-index-header1 active">
+  <div class="inner">
+        <div class="sn-index-header-left">
+          <h1>Brutal performance.<br>
+            Extreme customization.
+          </h1>
+          <div>Build your intranet, extranet and internet site in one system using our open source ECM &amp; Portal platform. From WYSIWYG publishing to SAP integration all in one system.
+          </div>
+        </div>
+        <div class="sn-index-header-right">
+          <a href="/workspaces/Project/budapestprojectworkspace">
+            <div class="sn-index-header-button">
+              Workspace demo
+            </div>
+            </a>
+          <a href="/features">
+          <div class="sn-index-header-button">WCMS features demo</div>
+          </a>
+        </div>
+        <div class="clear">&nbsp;</div>
+  </div>
       </div>
-    ]]></HTMLFragment>
+<div class="sn-index-header2" style="display: none;">
+  <div class="inner">
+        <div class="sn-index-header-left">
+          <h1>Fastest content repository
+<br>
+on Earth.
+          </h1>
+          <div>We have tested it. We have saved over 100 million documents to Sense/Net Content Repository with over 300 documents per second on average. All documents indexed and searchable immediately.
+          </div>
+        </div>
+        <div class="sn-index-header-right">
+           <div class="sn-index-header-overlay"><img src="/Root/YourContents/Images/index-head-overlay.png" /></div>
+           <a href="http://wiki.sensenet.com/index.php?title=Benchmark_Tool" target="_blank">
+          <div class="sn-index-header-button">Benchmark Sense/Net</div>
+          </a>
+        </div>
+ 
+        <div class="clear">&nbsp;</div>
+    </div>
+      </div>
+<div class="pager">
+        <div class="sn-head-pager-left">«</div>
+  <div class="sn-head-pager-right">»</div>
+
+</div>
+​
+]]></HTMLFragment>
     <ReviewDate>0001-01-01T00:00:00</ReviewDate>
     <ArchiveDate>0001-01-01T00:00:00</ArchiveDate>
     <EnableLifespan>false</EnableLifespan>
     <ValidFrom>0001-01-01T00:00:00</ValidFrom>
     <ValidTill>0001-01-01T00:00:00</ValidTill>
-    <DisplayName>Index_header</DisplayName>
+    <DisplayName><![CDATA[Index_header]]></DisplayName>
     <Description><![CDATA[]]></Description>
     <Hidden>false</Hidden>
     <Index>0</Index>
-        <TrashDisabled>false</TrashDisabled>
+    <CreatedBy>
+      <Path>/Root/IMS/BuiltIn/Portal/Administrator</Path>
+    </CreatedBy>
+    <CreationDate>2012-05-21T09:48:04.787</CreationDate>
+    <ModifiedBy>
+      <Path>/Root/IMS/BuiltIn/Portal/Admin</Path>
+    </ModifiedBy>
+    <ModificationDate>2012-05-22T09:51:08.877</ModificationDate>
+    <TrashDisabled>false</TrashDisabled>
     <IsTaggable>false</IsTaggable>
     <IsRateable>false</IsRateable>
-    <Rate>0.00|0|0|0|0|0</Rate>
+    <RateStr><![CDATA[0|1|0|0|0|0|0]]></RateStr>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
   </Fields>
   <Permissions>
     <Clear />

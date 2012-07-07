@@ -13,7 +13,7 @@
     <SortBy>DueDate ASC</SortBy>
     <Flat>false</Flat>
     <DisplayName>Deadlines</DisplayName>
-    <FilterXml><![CDATA[<?xml version="1.0" encoding="utf-16"?><Query xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/QueryEditor"><ExpressionItem xsi:type="Predicate" logicalOperator="None" type="StringExpression" operator="Equal"><LeftOperand>Status</LeftOperand><RightOperand>Active</RightOperand></ExpressionItem></Query>]]></FilterXml>
+    <FilterXml><![CDATA[+Status:Active]]></FilterXml>
     <EnableAutofilters>0</EnableAutofilters>
     <EnableLifespanFilter>0</EnableLifespanFilter>
     <Hidden>true</Hidden>

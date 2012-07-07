@@ -54,7 +54,7 @@ namespace SenseNet.Portal.Portlets
             this.Description = "A portlet for presenting a custom KPI datasource with its view";
             this.Category = new PortletCategory(PortletCategoryType.KPI);
 
-            this.HiddenProperties = new List<string>() { "SkinPreFix", "Renderer" };
+            this.HiddenProperties.AddRange(new [] { "SkinPreFix", "Renderer" });
             this.HiddenPropertyCategories = new List<string>() {"Context binding"};
         }
 
@@ -62,6 +62,9 @@ namespace SenseNet.Portal.Portlets
         /* ====================================================================================================== Methods */
         protected override void OnInit(EventArgs e)
         {
+            if (ShowExecutionTime)
+                Timer.Start();
+
             UITools.AddScript("$skin/scripts/sn/SN.KPIViewDropDown.js");
 
             // setup views list
@@ -88,10 +91,17 @@ namespace SenseNet.Portal.Portlets
 
             string script = string.Format("SN.KPIViewDropDown.init('{0}','{1}',{2});", masterDropdownCss, slaveDropdownCss, viewListStr);
             UITools.RegisterStartupScript("KPIViewDropDownScript", script, this.Page);
+
+            if (ShowExecutionTime)
+                Timer.Stop();
+
             base.OnInit(e);
         }
         protected override void CreateChildControls()
         {
+            if (ShowExecutionTime)
+                Timer.Start();
+
             // load view
             UserControl view = null;
             if (!string.IsNullOrEmpty(this.KPIViewName))
@@ -115,6 +125,9 @@ namespace SenseNet.Portal.Portlets
 
 
             this.ChildControlsCreated = true;
+
+            if (ShowExecutionTime)
+                Timer.Stop();
         }
         protected override Node GetContextNode()
         {

@@ -14,5 +14,8 @@
       <Path>/Root/YourContents/Avatars/dev1.jpg</Path>
     </ImageRef>
     <Phone>1212121212</Phone>
+    <Manager>
+      <Path>/Root/IMS/Demo/ProjectManagers/rupertbrown</Path>
+    </Manager>
   </Fields>
 </ContentMetaData>

@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" Inherits="SenseNet.Portal.UI.SingleContentView" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" Inherits="SenseNet.Portal.UI.SingleContentView" EnableViewState="false" %>
 <%@ Import Namespace="SenseNet.ContentRepository.Storage" %>
 <%@ Import Namespace="SenseNet.ContentRepository.Storage.Schema" %>
 <%@ Import Namespace="SenseNet.Portal.Helpers" %>

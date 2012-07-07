@@ -17,13 +17,21 @@ namespace SenseNet.ApplicationModel
                     return string.Empty;
 
                 var s = SerializeParameters(GetParameteres());
+                var uri = string.Format("/{0}/{1}", ServiceName, MethodName);
 
-                return string.Format("/{0}/{1}?{2}={3}{4}",
-                    ServiceName,
-                    MethodName,
-                    PortalContext.BackUrlParamName,
-                    HttpUtility.UrlEncode(this.BackUri),
-                    s);
+                if (!string.IsNullOrEmpty(s))
+                {
+                    uri = ContinueUri(uri);
+                    uri += s.Substring(1);
+                }
+
+                if (this.IncludeBackUrl && !string.IsNullOrEmpty(this.BackUri))
+                {
+                    uri = ContinueUri(uri);
+                    uri += string.Format("{0}={1}", PortalContext.BackUrlParamName, System.Uri.EscapeDataString(this.BackUri));
+                }
+
+                return uri;
             }
         }
     }

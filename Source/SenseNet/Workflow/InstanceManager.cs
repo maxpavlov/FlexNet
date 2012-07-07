@@ -80,7 +80,7 @@ namespace SenseNet.Workflow
             }
             Logger.WriteVerbose("Trying execute active workflows", Logger.EmptyCategoryList, 
                 new Dictionary<string, object> { { "ResultCount", result.Count }, { "PollingItems", instances.Count }, });
-Debug.WriteLine("##WF> Trying execute active workflows: " + instances.Count);
+Debug.WriteLine(String.Format("##WF> Trying execute active workflows: ResultCount: {0}, PollingItems: {1}", result.Count, instances.Count));
 
             return instances.Values.ToArray();
         }
@@ -184,6 +184,7 @@ Debug.WriteLine("##WF> Starting id: " + id);
             if (reason == WorkflowApplicationAbortReason.ManuallyAborted && !workflowInstance.Security.HasPermission(PermissionType.Save))
             {
                 Logger.WriteVerbose(String.Concat("InstanceManager cannot abort the instance: ", workflowInstance.Path, ", because the user doesn't have the sufficient permissions (Save)."));
+Debug.WriteLine(String.Concat("##WF> ############ ERROR: InstanceManager cannot abort the instance: ", workflowInstance.Path, ", because the user doesn't have the sufficient permissions (Save)."));
                 throw new SenseNetSecurityException(workflowInstance.Path, PermissionType.Save, AccessProvider.Current.GetCurrentUser());
             }
 
@@ -193,11 +194,13 @@ Debug.WriteLine("##WF> Starting id: " + id);
                 var wfApp = CreateWorkflowApplication(workflowInstance, WorkflowApplicationCreationPurpose.Abort, null);
                 
                 wfApp.Load(Guid.Parse(workflowInstance.WorkflowInstanceGuid));
-                wfApp.Abort();
+                //wfApp.Abort();
+                wfApp.Cancel(); //.Terminate(string.Format("#### Aborted. Reason {0}, Path: {1}", reason, workflowInstance.Path));
             }
             catch(Exception e)
             {
                 Logger.WriteVerbose(String.Concat("InstanceManager cannot abort the instance: ", workflowInstance.Path, ". Exception message: ", e.Message));
+Debug.WriteLine("##WF> ERROR: " + e.Message);
             }
 
             //write back workflow state

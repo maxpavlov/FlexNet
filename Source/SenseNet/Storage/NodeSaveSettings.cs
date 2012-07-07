@@ -16,6 +16,11 @@ namespace SenseNet.ContentRepository.Storage
         protected NodeHead.NodeVersion[] _versionHistory;
         private VersionNumber _latestVersion;
 
+        /// <summary>
+        /// If set, node will be refreshed from the database after save. Used mainly with undo check out operation.
+        /// </summary>
+        public bool ForceRefresh { get; protected set; }
+
         public Node Node { get; set; }
         public bool HasApproving { get; set; }
         public VersioningMode VersioningMode { get; set; }

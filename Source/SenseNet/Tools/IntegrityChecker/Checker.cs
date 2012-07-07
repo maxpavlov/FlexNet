@@ -17,8 +17,8 @@ namespace SenseNet.Tools.IntegrityChecker
     internal class Checker : IDisposable
     {
         public const string RootPath = "/Root";
-        private const string LastTaskIdKey = "LastTaskId";
-        private const string MissingTasksKey = "MissingTasks";
+        private const string LastTaskIdKey = "LastActivityId";
+        private const string MissingTasksKey = "MissingActivities";
 
         public static IEnumerable<Difference> Check(string indexPath, string connectionString)
         {
@@ -124,13 +124,13 @@ namespace SenseNet.Tools.IntegrityChecker
             var scoredocs = GetDocsUnderTree(path, false);
             foreach (var scoredoc in scoredocs)
             {
-                var docid = scoredoc.doc;
+                var docid = scoredoc.Doc;
                 var doc = ixreader.Document(docid);
                 if (!docids.Contains(docid))
                 {
                     result.Add(new Difference(IndexDifferenceKind.NotInDatabase)
                     {
-                        DocId = scoredoc.doc,
+                        DocId = scoredoc.Doc,
                         VersionId = ParseInt(doc.Get(LucObject.FieldName.VersionId)),
                         NodeId = ParseInt(doc.Get(LucObject.FieldName.NodeId)),
                         Path = path,
@@ -334,10 +334,10 @@ namespace SenseNet.Tools.IntegrityChecker
             var numDocs = idxReader.NumDocs();
             try
             {
-                var collector = TopScoreDocCollector.create(numDocs, false);
+                var collector = TopScoreDocCollector.Create(numDocs, false);
                 searcher.Search(lq.Query, collector);
                 var topDocs = collector.TopDocs(0, numDocs);
-                return topDocs.scoreDocs;
+                return topDocs.ScoreDocs;
             }
             finally
             {
@@ -370,7 +370,7 @@ namespace SenseNet.Tools.IntegrityChecker
         
         private int GetLastTaskIdFromDb()
         {
-            const string sql = "SELECT CASE WHEN i.last_value IS NULL THEN 0 ELSE CONVERT(int, i.last_value) END last_value FROM sys.identity_columns i JOIN sys.tables t ON i.object_id = t.object_id WHERE t.name = 'IndexingTask'";
+            const string sql = "SELECT CASE WHEN i.last_value IS NULL THEN 0 ELSE CONVERT(int, i.last_value) END last_value FROM sys.identity_columns i JOIN sys.tables t ON i.object_id = t.object_id WHERE t.name = 'IndexingActivity'";
             using (var connection = new SqlConnection(GetConnectionString()))
             {
                 using (var proc = new SqlCommand())
@@ -390,7 +390,7 @@ namespace SenseNet.Tools.IntegrityChecker
         private int GetLastTaskIdFromIndex(IDictionary<string,string> cud)
         {
             if (cud == null || !cud.ContainsKey(LastTaskIdKey))
-                throw new Exception("Commit user data is not valid (missing LastTaskId).");
+                throw new Exception("Commit user data is not valid (missing LastActivityId).");
 
             int lastTaskId = 0;
             
@@ -539,7 +539,7 @@ namespace SenseNet.Tools.IntegrityChecker
                 var scoredocs = GetDocsUnderTree(path, true);
                 for (int i = 0; i < scoredocs.Length; i++)
                 {
-                    var docid = scoredocs[i].doc;
+                    var docid = scoredocs[i].Doc;
                     docbits[docid / intsize] ^= 1 << docid % intsize;
                 }
             }

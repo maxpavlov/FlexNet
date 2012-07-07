@@ -1,7 +1,7 @@
-﻿/// <depends path="$skin/scripts/sn/SN.js" />
-/// <depends path="$skin/scripts/sn/SN.Util.js" />
-/// <depends path="$skin/scripts/jquery/plugins/jquery.cookie.js" />
-/// <depends path="$skin/scripts/sn/SN.Picker.js" />
+﻿// using $skin/scripts/sn/SN.js
+// using $skin/scripts/sn/SN.Util.js
+// using $skin/scripts/jquery/plugins/jquery.cookie.js
+// using $skin/scripts/sn/SN.Picker.js
 
 /// <reference path="jquery/jquery.vsdoc.js"/>
 SN.PortalRemoteControl = {
@@ -38,9 +38,9 @@ SN.PortalRemoteControl = {
 
         // set hover for prc toolbar
         $('#' + this.PRCToolbarId).hover(function(a) {
-            el.addClass("sn-prc-toolbar-hover");
+            $(this).addClass("sn-prc-toolbar-hover");
         }, function(a) {
-            el.removeClass("sn-prc-toolbar-hover");
+            $(this).removeClass("sn-prc-toolbar-hover");
         });
         // bind prc open for prc icon and toolbar buttons
         $('#' + this.PRCToolbarId + ', #' + this.PRCIconId).click(function() {

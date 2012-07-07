@@ -6,7 +6,7 @@
   <Description>Collaborative workspace root</Description>
   <Icon>workspace</Icon>
   <AllowedChildTypes>
-    Page,Folder,Blog,DocumentLibrary,ImageLibrary,EventList,MemoList,LinkList,TaskList,Survey,Voting,DiscussionForum,Form,CustomList,Posts
+    Page,Folder,Blog,DocumentLibrary,ImageLibrary,EventList,MemoList,LinkList,TaskList,Survey,Voting,DiscussionForum,Form,CustomList,Posts,Workspace,DocumentWorkspace,ProjectWorkspace,SalesWorkspace,Wiki
   </AllowedChildTypes>
   <Fields>
     <Field name="DisplayName" type="ShortText">

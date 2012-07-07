@@ -283,7 +283,7 @@ namespace SenseNet.ApplicationModel
                 var sc = this.Scenario;
 
                 if (!string.IsNullOrEmpty(sc))
-                    scl.AddRange(sc.Split(new[] { ';', ',' }, StringSplitOptions.RemoveEmptyEntries));
+                    scl.AddRange(sc.Split(new[] { ';', ',' }, StringSplitOptions.RemoveEmptyEntries).Select(st => st.Trim()));
 
                 return scl;
             }

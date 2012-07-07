@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Xml;
 using SenseNet.ContentRepository.Schema;
 using SenseNet.ContentRepository.Storage;
@@ -22,6 +23,23 @@ using SenseNet.ContentRepository.Storage.Security;
 
 namespace SenseNet.ContentRepository
 {
+    public enum FieldSerializationOptions { All, None, Custom }
+    public enum ActionSerializationOptions { All, None/*, BrowseOnly*/ }
+    public class SerializationOptions
+    {
+        class DefaultSerializationOptions : SerializationOptions
+        {
+            public override FieldSerializationOptions Fields { get { return FieldSerializationOptions.All; } set { } }
+            public override IEnumerable<string> FieldNames { get { return null; } set { } }
+            public override ActionSerializationOptions Actions { get { return ActionSerializationOptions.All; } set { } }
+        }
+        public virtual FieldSerializationOptions Fields { get; set; }
+        public virtual IEnumerable<string> FieldNames { get; set; }
+        public virtual ActionSerializationOptions Actions { get; set; }
+
+        public static readonly SerializationOptions _default = new DefaultSerializationOptions();
+        public static SerializationOptions Default { get { return _default; } }
+    }
     public interface IActionLinkResolver
     {
         string ResolveRelative(string targetPath);
@@ -417,19 +435,44 @@ namespace SenseNet.ContentRepository
             else
                 InitializeFields(contentType);
 
+            if (_contentType == null)
+                throw new ArgumentNullException("contentType");
+            if (_contentType.Name == null)
+                throw new InvalidOperationException("ContentType name is null");
+
             //field collection of the temporary fieldsetting content
             //or journal node must not contain the ContentList fields
             if (contentHandler is FieldSettingContent || _contentType.Name.CompareTo("JournalNode") == 0)
                 return;
 
-            var list = contentHandler.LoadContentList() as ContentList;
-            if (list == null)
-                return;
+            ContentList list;
 
-            foreach (var fieldSetting in list.FieldSettings)
+            try
             {
-                var field = Field.Create(this, fieldSetting);
-                _fields.Add(field.Name, field);
+                list = contentHandler.LoadContentList() as ContentList;
+                if (list == null)
+                    return;
+            }
+            catch (Exception ex)
+            {
+                //handle errors that occur during heavy load
+                if (contentHandler == null)
+                    throw new ArgumentNullException("Content handler became null.", ex);
+                
+                throw new InvalidOperationException("Error during content list load.", ex);
+            }
+
+            try
+            {
+                foreach (var fieldSetting in list.FieldSettings)
+                {
+                    var field = Field.Create(this, fieldSetting);
+                    _fields.Add(field.Name, field);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("Error during content list field creation.", ex);
             }
         }
         private void InitializeFields(ContentType contentType)
@@ -631,8 +674,38 @@ namespace SenseNet.ContentRepository
                     arguments[i + 2] = args[i];
                 }
 
-                ConstructorInfo ctorInfo = type.GetConstructor(signature);
-                Node node = (Node)ctorInfo.Invoke(arguments);
+                var ctorInfo = type.GetConstructor(signature);
+                Node node = null;
+                var nodeCreateRetryCount = 0;
+                Exception nodeCreateException = null;
+
+                while (true)
+                {
+                    try
+                    {
+                        node = (Node) ctorInfo.Invoke(arguments);
+                        
+                        //log previous exception if exists
+                        if (nodeCreateException != null)
+                            Logger.WriteWarning("Error during node creation: " + Tools.CollectExceptionMessages(nodeCreateException));
+
+                        break;
+                    }
+                    catch (Exception ex)
+                    {
+                        //store the exception for later use
+                        nodeCreateException = ex;
+
+                        //retry a few times to handle errors that occur during heavy load
+                        nodeCreateRetryCount++;
+
+                        if (nodeCreateRetryCount > 2)
+                            throw new Exception(string.Format("Node creation failed. ContentType name: {0}, Parent: {1}, Name: {2}", 
+                                contentTypeName ?? string.Empty, parent == null ? "NULL" : parent.Path, nameBase ?? string.Empty), ex);
+
+                        Thread.Sleep(10);
+                    }
+                }
 
                 var name = ContentNamingHelper.GetNewName(nameBase, contentType, parent);
 
@@ -640,7 +713,11 @@ namespace SenseNet.ContentRepository
                     node.Name = name;
 
                 traceOperation.IsSuccessful = true;
-                return Content.Create(node);
+
+                //try to re-use the already created content in GenericContent
+                var gc = node as GenericContent;
+
+                return gc == null ? Content.Create(node) : gc.Content;
             }
         }
 
@@ -1414,9 +1491,9 @@ namespace SenseNet.ContentRepository
 
         //------------------------------------------------------------------------- Xml Methods
 
-        protected override void WriteXml(XmlWriter writer, bool withChildren)
+        protected override void WriteXml(XmlWriter writer, bool withChildren, SerializationOptions options)
         {
-            WriteXmlHeaderAndFields(writer);
+            WriteXmlHeaderAndFields(writer, options);
 
             if (withChildren)
             {
@@ -1424,7 +1501,7 @@ namespace SenseNet.ContentRepository
                 if (folder != null)
                 {
                     writer.WriteStartElement("Children");
-                    WriteXml(folder.Children, writer);
+                    WriteXml(folder.Children, writer, options);
                     writer.WriteEndElement();
                 }
             }
@@ -1434,10 +1511,10 @@ namespace SenseNet.ContentRepository
         public Action<XmlWriter> XmlWriterExtender;
         private const string FieldXmlCacheKey = "ContentFieldXml";
 
-        protected override void WriteXml(XmlWriter writer, string queryFilter, QuerySettings querySettings)
+        protected override void WriteXml(XmlWriter writer, string queryFilter, QuerySettings querySettings, SerializationOptions options)
         {
-            WriteXmlHeaderAndFields(writer);
-             
+            WriteXmlHeaderAndFields(writer, options);
+
             var folder = ContentHandler as GenericContent;
             if (folder != null)
             {
@@ -1453,20 +1530,20 @@ namespace SenseNet.ContentRepository
 
                 //WriteXml(
                 //    querySettings.Top > 0 ? result.CurrentPage : result.Nodes, writer);
-                WriteXml(result.Nodes, writer);
+                WriteXml(result.Nodes, writer, options);
                 
                 writer.WriteEndElement();
             }
             writer.WriteEndElement();
         }
 
-        private void WriteXmlHeaderAndFields(XmlWriter writer)
+        private void WriteXmlHeaderAndFields(XmlWriter writer, SerializationOptions options)
         {
             writer.WriteStartElement("Content");
             base.WriteHead(writer, this.ContentType.Name, this.ContentType.DisplayName, this.Name, this.ContentType.Icon, this.Path, this.ContentHandler is IFolder);
 
             var fieldsXml = this.ContentHandler.GetCachedData(FieldXmlCacheKey) as string;
-//string fieldsXml = null;
+            //string fieldsXml = null;
 
             if (string.IsNullOrEmpty(fieldsXml))
             {
@@ -1475,7 +1552,7 @@ namespace SenseNet.ContentRepository
                     using (var xw = new XmlTextWriter(sw))
                     {
                         xw.WriteStartElement("Fields");
-                        this.WriteFieldData(xw);
+                        this.WriteFieldsData(xw, options);
                         xw.WriteEndElement();
 
                         fieldsXml = sw.ToString();
@@ -1490,10 +1567,11 @@ namespace SenseNet.ContentRepository
             //write fields xml
             writer.WriteRaw(fieldsXml);
 
-            base.WriteActions(writer, this.Path, Actions);
+            if (options == null || options.Actions == ActionSerializationOptions.All)
+                base.WriteActions(writer, this.Path, Actions);
         }
 
-        protected override void WriteXml(XmlWriter writer, string referenceMemberName)
+        protected override void WriteXml(XmlWriter writer, string referenceMemberName, SerializationOptions options)
         {
             writer.WriteStartElement("Content");
             base.WriteHead(writer, this.ContentType.Name, this.Name, this.ContentType.Icon, this.Path, this.ContentHandler is IFolder);
@@ -1507,7 +1585,7 @@ namespace SenseNet.ContentRepository
                     using (var xw = new XmlTextWriter(sw))
                     {
                         xw.WriteStartElement("Fields");
-                        this.WriteFieldData(xw);
+                        this.WriteFieldsData(xw, options);
                         xw.WriteEndElement();
 
                         fieldsXml = sw.ToString();
@@ -1522,50 +1600,73 @@ namespace SenseNet.ContentRepository
             //write fields xml
             writer.WriteRaw(fieldsXml);
 
-            base.WriteActions(writer, this.Path, Actions);
+            if (options == null || options.Actions == ActionSerializationOptions.All)
+                base.WriteActions(writer, this.Path, Actions);
 
             if (!string.IsNullOrEmpty(referenceMemberName))
             {
                 var folder = ContentHandler as IFolder;
                 writer.WriteStartElement(referenceMemberName);
                 //WriteXml(ContentHandler.GetReferences(referenceMemberName), writer);
-                WriteXml(this[referenceMemberName] as IEnumerable<Node>, writer);
+                WriteXml(this[referenceMemberName] as IEnumerable<Node>, writer, options);
                 writer.WriteEndElement();
             }
             writer.WriteEndElement();
         }
-        private void WriteFieldData(XmlWriter writer)
+        private void WriteFieldsData(XmlWriter writer, SerializationOptions options)
         {
-            //if (this.ContentHandler is ContentType)
-            //    return;
-
-            foreach (var field in this.Fields.Values)
+            if (options == null)
+                options = SerializationOptions.Default;
+            switch (options.Fields)
             {
-                if (field.Name == "Name" || (field.Name == "Versions" && !Security.HasPermission(Storage.Schema.PermissionType.RecallOldVersion)))
-                    continue;
-
-                try
-                {
-                    field.WriteXml(writer);
-                }
-                catch(SenseNetSecurityException ex)
-                {
-                    //access denied to the field
-                }
-                catch(InvalidOperationException ex)
-                {
-                    //access denied to a reference field...
-                    if (ex.InnerException is SenseNetSecurityException)
+                case FieldSerializationOptions.All:
+                    foreach (var field in this.Fields.Values)
+                        WriteFieldData(field, writer);
+                    return;
+                case FieldSerializationOptions.Custom:
+                    if (options.FieldNames == null)
                         return;
+                    if (options.FieldNames.Count() == 0)
+                        return;
+                    foreach (var fieldName in options.FieldNames)
+                    {
+                        Field field;
+                        if (this.Fields.TryGetValue(fieldName, out field))
+                            WriteFieldData(field, writer);
+                    }
+                    return;
+                case FieldSerializationOptions.None:
+                    return;
+                default:
+                    throw new NotImplementedException("Unknown FieldSerializationOptions: " + options.Fields);
+            }
+        }
+        private void WriteFieldData(Field field, XmlWriter writer)
+        {
+            if (field.Name == "Name" || (field.Name == "Versions" && !Security.HasPermission(Storage.Schema.PermissionType.RecallOldVersion)))
+                return;
 
-                    //unknown error
-                    Logger.WriteException(ex);
-                }
-                catch (Exception ex)
-                {
-                    //unknown error
-                    Logger.WriteException(ex);
-                }
+            try
+            {
+                field.WriteXml(writer);
+            }
+            catch (SenseNetSecurityException)
+            {
+                //access denied to the field
+            }
+            catch (InvalidOperationException ex)
+            {
+                //access denied to a reference field...
+                if (ex.InnerException is SenseNetSecurityException)
+                    return;
+
+                //unknown error
+                Logger.WriteException(ex);
+            }
+            catch (Exception ex)
+            {
+                //unknown error
+                Logger.WriteException(ex);
             }
         }
 
@@ -1656,6 +1757,8 @@ namespace SenseNet.ContentRepository
             Type _type;
             object _object;
             public ContentType ContentType { get; private set; }
+
+            public override bool IsContentType { get { return false; } }
 
             public override string Name
             {

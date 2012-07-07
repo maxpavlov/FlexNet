@@ -13,21 +13,25 @@ using SenseNet.Search.Indexing;
 
 namespace SenseNet.Search.Indexing.Activities
 {
-
-
     [Serializable]
-    public class AddDocumentActivity : LuceneDocumentActivity
+    internal class AddDocumentActivity : LuceneDocumentActivity
     {
-        public override void Execute()
+        internal override void Execute()
         {
             using (var optrace = new OperationTrace("AddDocumentActivity Execute"))
             {
-                if(Document != null)
-                    LuceneManager.AddDocument(Document);
+                if (Document != null)
+                {
+                    if (true == this.SingleVersion)
+                        LuceneManager.AddCompleteDocument(Document);
+                    else
+                        LuceneManager.AddDocument(Document);
+                }
                 base.Execute();
                 optrace.IsSuccessful = true;
             }
         }
+
     }
 
 }

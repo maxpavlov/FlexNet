@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SenseNet.ContentRepository;
@@ -64,6 +65,27 @@ namespace SenseNet.Portal.UI.Controls
 
             writer.Write("<br />");
             _inheritedValueLabel.RenderControl(writer);
+        }
+
+        protected override void FillBrowseControls()
+        {
+            base.FillBrowseControls();
+
+            var ic = GetBrowseControl() as Label;
+            if (ic == null)
+                return;
+
+            var data = this.GetData() as List<string>;
+            if (data == null)
+                return;
+
+            if (data.Count == 1 && data[0] == "0")
+            {
+                var gc = this.Content == null ? null : this.Content.ContentHandler as GenericContent;
+                var parentValue = gc == null ? string.Empty : gc.InheritableVersioningMode.ToString("g");
+
+                ic.Text += ": " + parentValue;
+            }
         }
 
         //===========================================================================

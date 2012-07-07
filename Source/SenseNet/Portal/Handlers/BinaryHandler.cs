@@ -20,7 +20,7 @@ namespace SenseNet.Portal.Handlers
                     return NodeHead.Get(nodeid.Value);
 
                 var nodepath = RequestedNodePath;
-                if (string.IsNullOrEmpty(nodepath))
+                if (!string.IsNullOrEmpty(nodepath))
                     return NodeHead.Get(nodepath);
 
                 return null;

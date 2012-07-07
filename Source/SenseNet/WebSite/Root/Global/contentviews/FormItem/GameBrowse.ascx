@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" Inherits="SenseNet.Portal.UI.SingleContentView" %>
-<%@ Register Assembly="VotingWebControlCaptcha" Namespace="SenseNet.Toolbox.WebControlCaptcha" TagPrefix="cap" %>
+<%--<%@ Register Assembly="VotingWebControlCaptcha" Namespace="SenseNet.Toolbox.WebControlCaptcha" TagPrefix="cap" %>--%>
 <div class="sn-form ui-helper-clearfix">
      
     <h2 class="sn-form-title">
@@ -20,7 +20,7 @@
         <sn:ShortText runat="server" ID = "Utcahazszam" FieldName="#Utcahazszam" />
         <sn:ShortText runat="server" ID = "Telefonszam" FieldName="#Telefonszam" />
         <p>Ezen tudjuk egyeztetni a nyeremények átadását</p>
-        <cap:CaptchaControl ID="Captcha" runat="server" CaptchaHandlerPath="/Root/System/SystemPlugins/Controls/" />
+<%--        <cap:CaptchaControl ID="Captcha" runat="server" CaptchaHandlerPath="/Root/System/SystemPlugins/Controls/" />--%>
         <p>Kérünk, hogy minden adatot tölts ki, és jelöld be, hogy elfogadod a szabályzatot, mert csak így tudod elküldeni a kérdőívet!</p>
         <p>Adatkezelési nyilvántartási szám: XXXXX-XXXX</p>
         <sn:CheckBoxGroup ID="AcceptTerms" FieldName="#AcceptTerms" runat = "server" />      

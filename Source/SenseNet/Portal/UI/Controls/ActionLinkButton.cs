@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using SenseNet.ContentRepository;
 using SenseNet.ContentRepository.Storage.Security;
 using SenseNet.Portal.UI.PortletFramework;
 using SenseNet.Portal.Virtualization;
@@ -13,6 +14,7 @@ using SenseNet.ContentRepository.Fields;
 using SenseNet.ContentRepository.Storage;
 using SenseNet.Diagnostics;
 using SenseNet.ContentRepository.Storage.Schema;
+using System.Collections.Generic;
 
 namespace SenseNet.Portal.UI.Controls
 {
@@ -29,6 +31,7 @@ namespace SenseNet.Portal.UI.Controls
         public string Scenario { get; set; }
         public string ScenarioParameters { get; set; }
         public string ActionName { get; set; }
+        public bool OverlayVisible { get; set; }
 
         private string _iconName;
         public string IconName
@@ -87,7 +90,16 @@ namespace SenseNet.Portal.UI.Controls
 
             //hide action link if action is empty
             if (Action == null)
+            {
                 this.Visible = false;
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(this.Action.CssClass))
+                {
+                    this.CssClass = (this.CssClass + " " + this.Action.CssClass).TrimStart(new []{' '});
+                }
+            }
         }
 
         protected override void Render(HtmlTextWriter writer)
@@ -97,10 +109,11 @@ namespace SenseNet.Portal.UI.Controls
                 return;
 
             var actionClickable = true;
+
             if (CheckActionCount)
             {
                 var am = ActionMenu.FindContainerActionMenu(this);
-                var actionCount = 0;
+                List<ActionBase> scActions = null;
                 var scenario = string.Empty;
 
                 if (am != null)
@@ -109,17 +122,30 @@ namespace SenseNet.Portal.UI.Controls
 
                     if (!string.IsNullOrEmpty(scenario))
                     {
-                        var sc = ScenarioManager.GetScenario(scenario);
+                        var sc = ScenarioManager.GetScenario(scenario, am.GetReplacedScenarioParameters());
                         if (sc != null)
                         {
-                            actionCount = sc.GetActions(Content.Load(ContextPath), null).Count();
+                            scActions = sc.GetActions(Content.Load(ContextPath), PortalContext.Current.RequestedUri.PathAndQuery).ToList();
                         }
                     }
                 }
 
-                if (actionCount > 1) // && string.Equals(scenario, "new", StringComparison.CurrentCultureIgnoreCase))
+                if (scActions != null)
                 {
-                    actionClickable = false;
+                    if (scActions.Count > 1)
+                    {
+                        actionClickable = false;
+                    }
+                    else if (scActions.Count == 1 
+                        && string.Equals(scenario, "new", StringComparison.CurrentCultureIgnoreCase)
+                        && string.Equals(this.ActionName, "add", StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        //change action to the single "New" action found in the parent menu
+                        _action = scActions.First();
+                        _actionChecked = true;
+
+                        this.Text = this.Text + " " + _action.Text;
+                    }
                 }
             }
 
@@ -156,12 +182,17 @@ namespace SenseNet.Portal.UI.Controls
             if (!IconVisible) 
                 return;
 
-            if (UseContentIcon && this.Action != null)
-                IconName = this.Action.GetContent().Icon;
+            var content = this.Action != null ? this.Action.GetContent() : null;
 
+            if (UseContentIcon && content != null)
+                IconName = content.Icon;
+
+            var title = string.Empty;
+            var overlay = OverlayVisible ? IconHelper.GetOverlay(content, out title) : string.Empty;
+            
             writer.Write(!string.IsNullOrEmpty(IconUrl)
-                             ? IconHelper.RenderIconTagFromPath(IconUrl, IconSize, this.ToolTip)
-                             : IconHelper.RenderIconTag(IconName, null, IconSize, this.ToolTip));
+                ? IconHelper.RenderIconTagFromPath(IconUrl, overlay, IconSize, string.IsNullOrEmpty(title) ? this.ToolTip : title)
+                : IconHelper.RenderIconTag(IconName, overlay, IconSize, string.IsNullOrEmpty(title) ? this.ToolTip : title));
         }
 
         //======================================================== Internals
@@ -226,6 +257,11 @@ namespace SenseNet.Portal.UI.Controls
                 }
 
                 return _action;
+            }
+            set
+            {
+                _action = value;
+                _actionChecked = true;
             }
         }
 

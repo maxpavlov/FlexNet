@@ -6,8 +6,8 @@
              You are about to approve or reject subscription:
          </p>
          <p>
-         Subscriber: <%Eval("CreatedBy") %></br>
-         Subscription date: <%Eval("CreationDate") %>
+         Subscriber: <%# Eval("CreatedBy") %><br/>
+         Subscription date: <%# Eval("CreationDate") %>
          </p>
          <asp:PlaceHolder runat="server" ID="ErrorPanel">
              <div style="background-color:Red;font-weight:bold;color:White">

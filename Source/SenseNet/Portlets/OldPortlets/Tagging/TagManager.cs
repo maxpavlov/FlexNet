@@ -32,76 +32,79 @@ namespace SenseNet.Portal.Portlets
         /// <returns>Dictionary key: Tag; Value: overall occurrency on content.</returns>
         public static Dictionary<string, int> GetTagOccurrencies(string[] paths, string[] types)
         {
-            var reader = LuceneManager.IndexReader;
-
-            var pathList = new List<string>();
-            var typeList = new List<string>();
-
-            if (types != null)
+            using (var readerFrame = LuceneManager.GetIndexReaderFrame())
             {
-                typeList.AddRange(types.Select(type => type.ToLower()));
-            }
-            if (paths != null)
-            {
-                pathList.AddRange(paths.Select(path => path.ToLower()));
-            }
+                var reader = readerFrame.IndexReader;
 
+                var pathList = new List<string>();
+                var typeList = new List<string>();
 
-
-            var occ = new Dictionary<string, int>();
-            var terms = reader.Terms(new Term("Tags", "*"));
-
-            do
-            {
-                if (terms.Term().Field() == "Tags")
+                if (types != null)
                 {
-                    var docs = reader.TermDocs(terms.Term());
-                    var count = 0;
+                    typeList.AddRange(types.Select(type => type.ToLower()));
+                }
+                if (paths != null)
+                {
+                    pathList.AddRange(paths.Select(path => path.ToLower()));
+                }
 
 
-                    while (docs.Next())
+
+                var occ = new Dictionary<string, int>();
+                var terms = reader.Terms(new Term("Tags", "*"));
+
+                do
+                {
+                    if (terms.Term().Field() == "Tags")
                     {
-                        var pathValid = false;
+                        var docs = reader.TermDocs(terms.Term());
+                        var count = 0;
 
 
-
-                        var doc = reader.Document(docs.Doc()); //lucene document to examine for search criterias
-
-                        if (pathList.Count() > 0)
+                        while (docs.Next())
                         {
-                            if (pathList.Any(path => doc.Get("Path").StartsWith(path)))
+                            var pathValid = false;
+
+
+
+                            var doc = reader.Document(docs.Doc()); //lucene document to examine for search criterias
+
+                            if (pathList.Count() > 0)
+                            {
+                                if (pathList.Any(path => doc.Get("Path").StartsWith(path)))
+                                {
+                                    pathValid = true;
+                                }
+                            }
+                            else
                             {
                                 pathValid = true;
                             }
+
+                            var typeValid = typeList.Count() <= 0 || typeList.Contains(doc.Get("Type"));
+
+
+                            if (typeValid && pathValid)
+                            {
+                                count++;
+
+                            }
                         }
-                        else
+
+
+                        if (!occ.ContainsKey(terms.Term().Text().ToLower()) && count > 0)
                         {
-                            pathValid = true;
-                        }
-
-                        var typeValid = typeList.Count() <= 0 || typeList.Contains(doc.Get("Type"));
+                            occ.Add(terms.Term().Text(), count);
 
 
-                        if (typeValid && pathValid)
-                        {
-                            count++;
 
                         }
                     }
+                } while (terms.Next());
 
-
-                    if (!occ.ContainsKey(terms.Term().Text().ToLower()) && count > 0)
-                    {
-                        occ.Add(terms.Term().Text(), count);
-
-
-
-                    }
-                }
-            } while (terms.Next());
-
-            terms.Close();
-            return occ;
+                terms.Close();
+                return occ;
+            }
         }
 
         /// <summary>
@@ -241,42 +244,45 @@ namespace SenseNet.Portal.Portlets
         public static bool IsBlacklisted(string tag, List<string> blacklistPaths)
         {
             LucQuery query;
-            var reader = LuceneManager.IndexReader;
-            var terms = reader.Terms(new Term("BlackListPath", "*"));
-
-            if (blacklistPaths != null && blacklistPaths.Count > 0)
+            using (var readerFrame = LuceneManager.GetIndexReaderFrame())
             {
-                var usedPaths = new List<string>();
+                var reader = readerFrame.IndexReader;
+                var terms = reader.Terms(new Term("BlackListPath", "*"));
 
-                do
+                if (blacklistPaths != null && blacklistPaths.Count > 0)
                 {
-                    if (terms.Term().Field() == "BlackListPath")
+                    var usedPaths = new List<string>();
+
+                    do
                     {
-                        if (blacklistPaths.Any(path => path.ToLower().StartsWith(terms.Term().Text())))
+                        if (terms.Term().Field() == "BlackListPath")
                         {
-                            usedPaths.Add(terms.Term().Text());
+                            if (blacklistPaths.Any(path => path.ToLower().StartsWith(terms.Term().Text())))
+                            {
+                                usedPaths.Add(terms.Term().Text());
+                            }
                         }
-                    }
-                } while (terms.Next());
+                    } while (terms.Next());
 
-                var pathString = usedPaths.Aggregate(string.Empty, (current, usedPath) => String.Concat(current, usedPath, " "));
+                    var pathString = usedPaths.Aggregate(string.Empty, (current, usedPath) => String.Concat(current, usedPath, " "));
 
-                pathString = pathString.TrimEnd(' ');
+                    pathString = pathString.TrimEnd(' ');
 
-                var queryString = String.Format("+Type:tag +DisplayName:\"{0}\"", tag.ToLower());
+                    var queryString = String.Format("+Type:tag +DisplayName:\"{0}\"", tag.ToLower());
 
-                queryString = String.Concat(queryString, String.IsNullOrEmpty(pathString) ? " +BlackListPath:/root" : String.Format(" +BlackListPath:({0})", pathString));
+                    queryString = String.Concat(queryString, String.IsNullOrEmpty(pathString) ? " +BlackListPath:/root" : String.Format(" +BlackListPath:({0})", pathString));
 
-                query = LucQuery.Parse(queryString);
+                    query = LucQuery.Parse(queryString);
 
+                }
+                else
+                {
+                    query = LucQuery.Parse(String.Concat("+Type:tag +DisplayName:\"", tag.ToLower(), "\" +BlackListPath:/root"));
+                }
+
+                var result = query.Execute();
+                return (result.Count() > 0);
             }
-            else
-            {
-                query = LucQuery.Parse(String.Concat("+Type:tag +DisplayName:\"", tag.ToLower(), "\" +BlackListPath:/root"));
-            }
-
-            var result = query.Execute();
-            return (result.Count() > 0);
         }
 
         /// <summary>

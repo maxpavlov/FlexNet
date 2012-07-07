@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>ListView</ContentType>
+  <ContentName>ThumbnailView.ascx</ContentName>
+  <Fields>
+    <Template>
+      <Path>/Root/System/SystemPlugins/ListView/Templates/ThumbnailView.xslt</Path>
+    </Template>
+    <Columns><![CDATA[<Columns>
+  <Column title="Binary" fullName="File.Binary" bindingName="File_Binary" index="1" width="0" hAlign="" wrap="" modifiers="" />
+  <Column title="Display Name" fullName="GenericContent.DisplayName" bindingName="GenericContent_DisplayName" index="2" width="0" hAlign="" wrap="" modifiers="main" />
+  <Column title="Modified By" fullName="GenericContent.ModifiedBy" bindingName="GenericContent_ModifiedBy" index="3" width="0" hAlign="" wrap="" modifiers="" />
+  <Column title="Modification Date" fullName="GenericContent.ModificationDate" bindingName="GenericContent_ModificationDate" index="4" width="0" hAlign="" wrap="" modifiers="" />
+</Columns>]]></Columns>
+    <SortBy><![CDATA[]]></SortBy>
+    <GroupBy><![CDATA[]]></GroupBy>
+    <Flat>false</Flat>
+    <Binary attachment="ThumbnailView.ascx" />
+    <DisplayName><![CDATA[Thumbnails]]></DisplayName>
+    <FilterXml><![CDATA[]]></FilterXml>
+    <EnableAutofilters>0</EnableAutofilters>
+    <EnableLifespanFilter>0</EnableLifespanFilter>
+    <Hidden>false</Hidden>
+    <QueryTop>0</QueryTop>
+    <QuerySkip>0</QuerySkip>
+    <Icon><![CDATA[views]]></Icon>
+    <ModifiedBy>
+      <Path>/Root/IMS/BuiltIn/Portal/Admin</Path>
+    </ModifiedBy>
+    <ModificationDate>2012-06-13T09:43:06.57</ModificationDate>
+    <Description><![CDATA[]]></Description>
+    <Index>20</Index>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <CreatedBy>
+      <Path>/Root/IMS/BuiltIn/Portal/Administrator</Path>
+    </CreatedBy>
+    <CreationDate>2012-06-11T16:07:25.69</CreationDate>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

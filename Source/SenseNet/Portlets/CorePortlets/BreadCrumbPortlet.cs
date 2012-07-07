@@ -22,6 +22,9 @@ namespace SenseNet.Portal.Portlets
             this.Name = "Breadcrumb trail";
             this.Description = "Helps to keep track of location relative to the site root (context bound)";
             this.Category = new PortletCategory(PortletCategoryType.Navigation);
+
+            //maybe Renderer property will be resurrected later when the portlet html will be customizable
+            this.HiddenProperties.Add("Renderer");
         }
 
         // Members and properties /////////////////////////////////////////////////
@@ -151,7 +154,14 @@ namespace SenseNet.Portal.Portlets
         // Events /////////////////////////////////////////////////////////////////
         protected override void RenderContents(HtmlTextWriter writer)
         {
+            if (ShowExecutionTime)
+                Timer.Start();
+
             RenderContentsInternal(writer);
+
+            if (ShowExecutionTime)
+                Timer.Stop();
+
             base.RenderContents(writer);
         }
 
@@ -250,9 +260,9 @@ namespace SenseNet.Portal.Portlets
                     pageHref = ProcessUrl(replacedSitePath);
                 }
 
-                var renderLink = i > 0;
-
-                RenderBreadCrumbItems(writer, pageHref, displayName, renderLink);
+                //var renderLink = i > 0;
+                //RenderBreadCrumbItems(writer, pageHref, displayName, renderLink);
+                RenderBreadCrumbItems(writer, pageHref, displayName, true);
 
                 if (i == 0)
                     continue;

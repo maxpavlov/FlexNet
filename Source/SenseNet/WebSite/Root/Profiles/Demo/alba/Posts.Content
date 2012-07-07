@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>Posts</ContentType>
+  <ContentName>Posts</ContentName>
+  <Fields>
+    <DisplayName>Posts</DisplayName>
+    <CreatedBy>
+      <Path>/Root/IMS/Demo/ProjectManagers/alba</Path>
+    </CreatedBy>
+    <ModifiedBy>
+      <Path>/Root/IMS/Demo/ProjectManagers/alba</Path>
+    </ModifiedBy>
+  </Fields>
+</ContentMetaData>

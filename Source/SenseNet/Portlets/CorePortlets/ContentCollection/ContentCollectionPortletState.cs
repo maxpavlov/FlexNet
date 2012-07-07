@@ -11,9 +11,10 @@ namespace SenseNet.Portal.Portlets
     [Serializable]
     public class ContentCollectionPortletState : PortletState
     {
-        public int SkipFirst
+        public virtual int SkipFirst
         {
             get { return Portlet.SkipFirst; }
+            set { throw new NotImplementedException("You must override this property if you want to set the value"); }
         }
         
         public string PortletHash

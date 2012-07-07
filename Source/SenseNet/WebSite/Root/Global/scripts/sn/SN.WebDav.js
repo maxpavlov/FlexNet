@@ -1,5 +1,5 @@
-﻿/// <depends path="$skin/scripts/sn/SN.js" />
-/// <depends path="$skin/scripts/jquery/jquery.js" />
+﻿// using $skin/scripts/sn/SN.js
+// using $skin/scripts/jquery/jquery.js
 
 SN.ns('SN.WebDav');
 
@@ -10,23 +10,40 @@ SN.WebDav = {
     RefreshPageOnNextFocus: function () {
         //window.onfocus = SN.WebDav.RefreshPage;
     },
-    GetActiveXObject: function (objectid) {
-        var activexobject = null;
-        if (window.ActiveXObject) {
-            try {
-                activexobject = new ActiveXObject(objectid);
+    GetSPSObject: function (objectid) {
+        if ($.browser.msie) {
+            var activexobject = null;
+            if (window.ActiveXObject) {
+                try {
+                    activexobject = new ActiveXObject(objectid);
+                }
+                catch (e) {
+                    activexobject = null;
+                }
             }
-            catch (e) {
-                activexobject = null;
-            }
+            return activexobject;
         }
-        return activexobject;
+        else {
+            try {
+                var x = document.getElementById("winFirefoxPlugin");
+                if (!x && navigator.mimeTypes && navigator.mimeTypes["application/x-sharepoint"] && navigator.mimeTypes["application/x-sharepoint"].enabledPlugin) {
+                    var t = document.createElement("object");
+                    t.id = "winFirefoxPlugin";
+                    t.type = "application/x-sharepoint";
+                    t.width = 0;
+                    t.height = 0;
+                    t.style.setProperty("visibility", "hidden", "");
+                    document.body.appendChild(t);
+                    x = document.getElementById("winFirefoxPlugin")
+                }
+            }
+            catch (e)
+      { x = null }
+            return x
+        }
     },
     OpenDocument: function (path) {
-        if (!$.browser.msie) {
-            alert("This feature only works in Internet Explorer!");
-            return;
-        }
+
 
         var spobjid = "SharePoint.OpenDocuments";
         if (path.charAt(0) == "/" || path.substr(0, 3).toLowerCase() == "%2f")
@@ -43,12 +60,13 @@ SN.WebDav = {
             alert("The document could not be opened.");
     },
     OpenDocumentWithObject: function (mode, path) {
+
         // mode 0: SharePoint.OpenDocuments.3, EditDocument3
         // mode 1: SharePoint.OpenDocuments, EditDocument2
         // mode 2: SharePoint.OpenDocuments, EditDocument, ppt
         var objId = (mode == 0) ? "SharePoint.OpenDocuments.3" : "SharePoint.OpenDocuments";
         try {
-            var spobj = SN.WebDav.GetActiveXObject(objId);
+            var spobj = SN.WebDav.GetSPSObject(objId);
             if (spobj) {
                 var res = false;
                 if (mode == 0)
@@ -73,8 +91,10 @@ SN.WebDav = {
                 } else {
                     window.onfocus = SN.WebDav.RefreshPage;
                 }
-                event.cancelBubble = false;
-                event.returnValue = false;
+                if (window.event) {
+                    window.event.cancelBubble = false;
+                    window.event.returnValue = false;
+                }
                 return true;
             }
         }
@@ -97,6 +117,11 @@ SN.WebDav = {
         }
     },
     BrowseFolder: function (src) {
+        if (!$.browser.msie) {
+            alert("This feature only works in Internet Explorer!");
+            return;
+        }
+
         var webFolderTarget = null;
         var webFolderSsrc = null;
         var webFolderDiv = null;

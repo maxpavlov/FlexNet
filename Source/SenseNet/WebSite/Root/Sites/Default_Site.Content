@@ -5,8 +5,8 @@
   <Fields>
     <AllowedChildTypes>
       Page Folder Blog DocumentLibrary ImageLibrary EventList MemoList LinkList TaskList
-      Survey Voting DiscussionForum Form CustomList ArticleSection WebContentDemo ImageGalleryLight
-      Image GoogleSitemap Workspace 
+      Survey Voting DiscussionForum Form CustomList ArticleSection WebContentDemo
+      Image GoogleSitemap Workspace
       OtherWorkspaceFolder DocumentWorkspaceFolder ProjectWorkspaceFolder SalesWorkspaceFolder
     </AllowedChildTypes>    
     <Language>en</Language>

@@ -92,6 +92,8 @@ namespace SenseNet.Portal.Workspaces
         public JournalNode(Node parent, JournalItem journalItem) : base(parent, null) { _journalItem = journalItem; }
         protected JournalNode(NodeToken nt) : base(nt) { }
 
+        public override bool IsContentType { get { return false; } }
+
         public string What { get { return _journalItem.What; } }
         public string Wherewith { get { return _journalItem.Wherewith; } }
         public string Who { get { return _journalItem.Who; } }

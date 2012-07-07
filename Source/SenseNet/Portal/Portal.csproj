@@ -53,6 +53,9 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxMin">
+      <HintPath>..\..\..\References\AjaxMin.dll</HintPath>
+    </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.84.0.0, Culture=neutral, PublicKeyToken=1b03e6acf1164f73">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\References\ICSharpCode.SharpZipLib.dll</HintPath>
@@ -81,6 +84,7 @@
     </Reference>
     <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.Serialization">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
@@ -138,11 +142,13 @@
     <Compile Include="ApplicationModel\ImgResizeApplication.cs" />
     <Compile Include="ApplicationModel\ListActionsScenario.cs" />
     <Compile Include="ApplicationModel\ListItemScenario.cs" />
+    <Compile Include="ApplicationModel\LogoutAction.cs" />
     <Compile Include="ApplicationModel\ManageViewsAction.cs" />
     <Compile Include="ApplicationModel\MoveBatchAction.cs" />
     <Compile Include="ApplicationModel\MoveToAction.cs" />
     <Compile Include="ApplicationModel\NewsApprovingScenario.cs" />
     <Compile Include="ApplicationModel\NewScenario.cs" />
+    <Compile Include="ApplicationModel\OpenLinkAction.cs" />
     <Compile Include="ApplicationModel\OpenPickerAction.cs" />
     <Compile Include="ApplicationModel\PortalAction.cs" />
     <Compile Include="ApplicationModel\PurgeFromProxyAction.cs" />
@@ -207,6 +213,8 @@
     <Compile Include="Exchange\ExchangeHelper.cs" />
     <Compile Include="Helpers\Security.cs" />
     <Compile Include="Helpers\UserProfiles.cs" />
+    <Compile Include="LoginExtender.cs" />
+    <Compile Include="LoginInfo.cs" />
     <Compile Include="PortalActionLink.cs" />
     <Compile Include="ContentManager.cs" />
     <Compile Include="Handlers\HttpHandlerApplication.cs" />
@@ -251,6 +259,7 @@
     <Compile Include="Packaging\PrerequisitAttributes.cs" />
     <Compile Include="Packaging\StepResult.cs" />
     <Compile Include="PortalQueryTemplateReplacer.cs" />
+    <Compile Include="PortletFramework\ViewPickerEditorPartField.cs" />
     <Compile Include="PortletTemplateReplacer.cs" />
     <Compile Include="PortletFramework\CheckBoxEditorPartField.cs" />
     <Compile Include="PortletFramework\ContentPickerEditorPartField.cs" />
@@ -292,6 +301,12 @@
     <Compile Include="Search\PortalLucQueryTemplateReplacer.cs" />
     <Compile Include="Security.cs" />
     <Compile Include="SkinManager.cs" />
+    <Compile Include="UI\Bundling\Bundle.cs" />
+    <Compile Include="UI\Bundling\BundleCacheInvalidator.cs" />
+    <Compile Include="UI\Bundling\BundleHandler.cs" />
+    <Compile Include="UI\Bundling\CssBundle.cs" />
+    <Compile Include="UI\Bundling\JsBundle.cs" />
+    <Compile Include="UI\Bundling\PortalBundleOptions.cs" />
     <Compile Include="UI\CommandButtonsEventArgs.cs" />
     <Compile Include="UI\ContentListViews\FieldControls\GroupingEditor.cs" />
     <Compile Include="UI\ContentListViews\ListHelper.cs" />
@@ -348,9 +363,7 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="UI\Controls\ContextInfo.cs" />
-    <Compile Include="UI\Controls\CssRequest.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
+    <Compile Include="UI\Controls\CssRequest.cs" />
     <Compile Include="UI\Controls\DialogFileUpload.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -410,11 +423,9 @@
     <Compile Include="UI\Controls\PermissionEditor.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="UI\Controls\FieldControls\Picture.cs" />
     <Compile Include="UI\Controls\PortalRemoteControl.cs">
     </Compile>
     <Compile Include="UI\Controls\PortletMarkup.cs" />
-    <Compile Include="UI\Controls\FieldControls\QueryEditor.cs" />
     <Compile Include="UI\Controls\PortletSynchronizer.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -542,6 +553,7 @@
     <Compile Include="Wall\PostInfo.cs" />
     <Compile Include="Wall\WallController.cs" />
     <Compile Include="Wall\WallHelper.cs" />
+    <Compile Include="WarmUp.cs" />
     <Compile Include="WebDAV\Common.cs" />
     <Compile Include="WebDAV\Config.cs" />
     <Compile Include="WebDAV\Delete.cs" />

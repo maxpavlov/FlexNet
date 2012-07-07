@@ -13,7 +13,7 @@
     if (!string.IsNullOrEmpty(allowedContentTypes))
     {
         var allowedContentTypesArray = allowedContentTypes.Split(',',';');
-        contentTypes = allowedContentTypesArray.Select(c => SenseNet.ContentRepository.Schema.ContentType.GetByName(c)).ToList();
+        contentTypes = allowedContentTypesArray.Select(c => SenseNet.ContentRepository.Schema.ContentType.GetByName(c)).Where(ct => ct != null).ToList();
     }
     else
     {

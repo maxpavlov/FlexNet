@@ -9,6 +9,9 @@ using SenseNet.Portal.Wall;
 using System.Web.UI.WebControls;
 using SenseNet.Portal.UI;
 using SenseNet.Portal.UI.Controls;
+using SenseNet.ContentRepository.Storage.Schema;
+using SenseNet.ContentRepository.Storage;
+using SenseNet.Diagnostics;
 
 namespace SenseNet.Portal.Portlets.Wall
 {
@@ -27,55 +30,74 @@ namespace SenseNet.Portal.Portlets.Wall
         protected override void OnInit(EventArgs e)
         {
             base.OnInit(e);
+            
+            if (ShowExecutionTime)
+                Timer.Start();
+            
             UITools.AddScript("$skin/scripts/sn/SN.Wall.js");
+
+            if (ShowExecutionTime)
+                Timer.Stop();
         }
         protected override void CreateChildControls()
         {
             if (this.ContextNode == null)
                 return;
 
+            if (ShowExecutionTime)
+                Timer.Start();
+
             // gather posts for this content
-            PostInfo prevPost = null;
-            var postsMarkup = new StringBuilder();
-            foreach (var postInfo in DataLayer.GetPostsForContent(this.ContextNode))
+            List<PostInfo> posts;
+            using (new OperationTrace("Wall - Gather posts"))
             {
-                // get comments for current post
-                var commentInfo = new CommentInfo(postInfo.Id);
-
-                // get likes for this post
-                var likeInfo = new LikeInfo(postInfo.Id);
-
-                var drawBoundary = (prevPost != null) && (prevPost.Type != PostType.BigPost) && (postInfo.Type == PostType.BigPost);
-
-                var markup = WallHelper.GetPostMarkup(
-                    postInfo,
-                    this.ContextNode.Path,
-                    commentInfo.HiddenCommentsMarkup,
-                    commentInfo.CommentsMarkup,
-                    commentInfo.CommentCount,
-                    likeInfo, drawBoundary);
-
-                prevPost = postInfo;
-                postsMarkup.Append(markup);
+                posts = DataLayer.GetPostsForContent(this.ContextNode).ToList();
+            }
+            string postsMarkup;
+            using (new OperationTrace("Wall - Posts markup"))
+            {
+                postsMarkup = WallHelper.GetWallPostsMarkup(this.ContextNode.Path, posts);
             }
 
+            CommentInfo contentCommentInfo;
+            LikeInfo contentLikeInfo;
+            using (new OperationTrace("Wall - Gather content comments"))
+            {
+                var commentsAndLikesQuery = "+TypeIs:(Comment Like) +InTree:\"" + this.ContextNode.Path + "\"";
+                var settings = new QuerySettings() { EnableAutofilters = false };
+                var allCommentsAndLikes = ContentQuery.Query(commentsAndLikesQuery, settings).Nodes.ToList();
 
+                var commentNodeTypeId = NodeType.GetByName("Comment").Id;
+                var likeTypeId = NodeType.GetByName("Like").Id;
 
-            // get comments for this content
-            var contentCommentInfo = new CommentInfo(this.ContextNode.Id);
+                var commentsForPost = allCommentsAndLikes.Where(c => c.NodeTypeId == commentNodeTypeId).ToList();
+                var likesForPostAndComments = allCommentsAndLikes.Where(l => l.NodeTypeId == likeTypeId).ToList();
+                var likesForPost = likesForPostAndComments.Where(l => RepositoryPath.GetParentPath(RepositoryPath.GetParentPath(l.Path)) == this.ContextNode.Path).ToList();
 
-            // get likes for this content
-            var contentLikeInfo = new LikeInfo(this.ContextNode.Id);
+                var commentMarkupStr = WallHelper.GetCommentMarkupStr();
 
-            var markupStr = WallHelper.GetContentWallMarkup(
-                this.ContextNode, 
-                contentCommentInfo.HiddenCommentsMarkup,
-                contentCommentInfo.CommentsMarkup,
-                contentCommentInfo.CommentCount,
-                contentLikeInfo,
-                postsMarkup.ToString());
+                // get comments for this content
+                contentCommentInfo = new CommentInfo(commentsForPost, likesForPostAndComments, commentMarkupStr);
 
-            this.Controls.Add(new Literal { Text = markupStr });
+                // get likes for this content
+                contentLikeInfo = new LikeInfo(likesForPost, this.ContextNode.Id);
+            }
+
+            using (new OperationTrace("Wall - Content comments markup"))
+            {
+                var markupStr = WallHelper.GetContentWallMarkup(
+                    this.ContextNode,
+                    contentCommentInfo.HiddenCommentsMarkup,
+                    contentCommentInfo.CommentsMarkup,
+                    contentCommentInfo.CommentCount,
+                    contentLikeInfo,
+                    postsMarkup);
+
+                this.Controls.Add(new Literal { Text = markupStr });
+            }
+
+            if (ShowExecutionTime)
+                Timer.Stop();
 
             base.CreateChildControls();
             this.ChildControlsCreated = true;

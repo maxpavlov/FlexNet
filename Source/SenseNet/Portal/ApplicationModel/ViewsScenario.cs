@@ -30,13 +30,19 @@ namespace SenseNet.ApplicationModel
             if (context == null)
                 return actList;
 
+            var list = context.ContentHandler as ContentList;
+            var hash = ViewFrame.GetHashCode(context.Path, PortletId);
+            var selectedView = string.IsNullOrEmpty(hash) ? string.Empty : ViewFrame.GetSelectedView(hash) ?? (DefaultView ?? string.Empty);
+            if (string.IsNullOrEmpty(selectedView) && list != null)
+                selectedView = list.DefaultView ?? string.Empty;
+
             if (!string.IsNullOrEmpty(DefaultView) && DefaultView.StartsWith("/Root/"))
             {
                 var view = Node.Load<File>(DefaultView);
                 if (view != null && !_collectedViews.Contains(view.Id))
                 {
                     _collectedViews.Add(view.Id);
-                    var act = GetServiceAction(context, view, true, PortletId, backUrl);
+                    var act = GetServiceAction(context, view, true, PortletId, selectedView, backUrl);
                     if (act != null)
                         actList.Add(act);
                 }
@@ -50,7 +56,7 @@ namespace SenseNet.ApplicationModel
                 _collectedViews.Add(view.Id);
 
                 //add local views with only name
-                var act = GetServiceAction(context, view, false, PortletId, backUrl);
+                var act = GetServiceAction(context, view, false, PortletId, selectedView, backUrl);
                 if (act != null)
                     actList.Add(act);
             }
@@ -66,7 +72,7 @@ namespace SenseNet.ApplicationModel
                     _collectedViews.Add(view.Id);
 
                     //add global views with full path
-                    var act = GetServiceAction(context, view, true, PortletId, backUrl);
+                    var act = GetServiceAction(context, view, true, PortletId, selectedView, backUrl);
                     if (act != null)
                         actList.Add(act);
                 }
@@ -88,12 +94,12 @@ namespace SenseNet.ApplicationModel
                 PortletId = string.Empty;
 
             if (parameters.ContainsKey("DefaultView"))
-                DefaultView = parameters["DefaultView"] as string;
+                DefaultView = parameters["DefaultView"] as string ?? string.Empty;
             else
                 DefaultView = string.Empty;
         }
 
-        private static ServiceAction GetServiceAction(Content context, Node view, bool addFullPath, string portletId, string backUrl)
+        private static ServiceAction GetServiceAction(Content context, Node view, bool addFullPath, string portletId, string selectedView, string backUrl)
         {
             //create app-less action for view selection
             var act = ActionFramework.GetAction("ServiceAction", context, backUrl,
@@ -107,10 +113,22 @@ namespace SenseNet.ApplicationModel
             if (act == null)
                 return null;
 
+            var gc = view as GenericContent;
+            var icon = gc != null ? gc.Icon : string.Empty;
+            if (string.IsNullOrEmpty(icon))
+                icon = "views";
+
+            act.Name = "ServiceAction";
             act.ServiceName = "ContentListViewHelper.mvc";
             act.MethodName = "SetView";
             act.Text = view.DisplayName;
+            act.Icon = icon;
 
+            if (selectedView.CompareTo(view.Name) == 0 || selectedView.CompareTo(view.Path) == 0)
+            {
+                act.CssClass = (act.CssClass + " sn-actionlink-selectedview").TrimStart(new[] { ' ' });
+                act.Forbidden = true;
+            }
             return act;
         }
     }

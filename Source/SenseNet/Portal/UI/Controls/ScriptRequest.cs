@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace SenseNet.Portal.UI.Controls
 {
     [DefaultProperty("Path")]
     [ToolboxData("<{0}:ScriptRequest runat=server></{0}:ScriptRequest>")]
-    public class ScriptRequest : WebControl
+    public class ScriptRequest : Control
     {
         [Bindable(true)]
         [DefaultValue("")]
@@ -33,6 +28,11 @@ namespace SenseNet.Portal.UI.Controls
         {
             UITools.AddScript(Path);
             base.OnInit(e);
+        }
+
+        protected override void Render(HtmlTextWriter writer)
+        {
+            return;
         }
     }
 }

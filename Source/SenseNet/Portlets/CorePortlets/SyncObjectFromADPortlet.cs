@@ -43,7 +43,7 @@ namespace SenseNet.Portal.Portlets
             this.Description = "You can synchronize Users, Groups, OrganizationalUnits from Active Directory providing an LDAP path with this portlet.";
             this.Category = new PortletCategory(PortletCategoryType.Portal);
 
-            this.HiddenProperties = new List<string>() { "Renderer" };
+            this.HiddenProperties.Add("Renderer");
         }
 
 

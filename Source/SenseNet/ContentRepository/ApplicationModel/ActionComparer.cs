@@ -58,7 +58,7 @@ namespace SenseNet.ApplicationModel
             var contentType = ContentType.GetByName(contentTypeName);
             if (contentType == null)
             {
-                contentTypeName = RepositoryPath.GetFileNameSafe(RepositoryPath.GetParentPathSafe(contentTypeName));
+                contentTypeName = RepositoryPath.GetFileNameSafe(RepositoryPath.GetParentPath(contentTypeName));
                 contentType = ContentType.GetByName(contentTypeName);
             }
 

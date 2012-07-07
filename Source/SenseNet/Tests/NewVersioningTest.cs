@@ -102,6 +102,8 @@ namespace SenseNet.ContentRepository.Tests
             Page samplePage = new Page(TestRoot);
             
             samplePage.Name = "SamplePage";
+            samplePage.VersioningMode = ContentRepository.Versioning.VersioningType.MajorAndMinor;
+            samplePage.ApprovingMode = ContentRepository.Versioning.ApprovingType.True;
             
             //set binaries
             BinaryData pageBinaryData = CreateBinaryDataFromString("Page Binary");

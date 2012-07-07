@@ -81,7 +81,6 @@
     <Compile Include="AuditLogViewPortlet.cs" />
     <Compile Include="BookCalendarPortlet.cs" />
     <Compile Include="ConfigurationWrapper.cs" />
-    <Compile Include="ContentHandlers\ImageGallery.cs" />
     <Compile Include="ContentQueryPortlet.cs" />
     <Compile Include="Controls\AuditLogControl.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -110,11 +109,8 @@
     <Compile Include="Controls\UserChangePassword.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ECMAPortlet.cs" />
     <Compile Include="EventCalendarPortlet.cs" />
     <Compile Include="GoogleSearch\GoogleSiteSearchResult.cs" />
-    <Compile Include="ImageGalleryObserver.cs" />
-    <Compile Include="ImageGalleryPortlet.cs" />
     <Compile Include="IRatingSearchPortlet.cs" />
     <Compile Include="ITagSearchPortlet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -135,8 +131,8 @@
       <Project>{786E6165-CA02-45A9-BF58-207A45D7D6DF}</Project>
       <Name>ContentRepository</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\LuceneNet_2_9_2\Lucene.Net.csproj">
-      <Project>{01262AA3-7163-40DA-90F9-BC0B67CEFB34}</Project>
+    <ProjectReference Include="..\..\LuceneNet_2_9_4g\Lucene.Net.csproj">
+      <Project>{5D4AD9BE-1FFB-41AB-9943-25737971BF57}</Project>
       <Name>Lucene.Net</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Portal\Portal.csproj">
@@ -157,7 +153,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ContentHandlers\ImageGalleryCtd.xml" />
     <Content Include="Controls\AuditLogControl.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>

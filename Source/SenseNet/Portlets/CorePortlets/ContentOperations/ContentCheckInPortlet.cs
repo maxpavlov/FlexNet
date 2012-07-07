@@ -20,7 +20,7 @@ namespace SenseNet.Portal.Portlets
             this.Category = new PortletCategory(PortletCategoryType.ContentOperation);
 
             this.HiddenPropertyCategories = new List<string>() { EditorCategory.Cache };
-            this.HiddenProperties = new List<string>() { "Renderer" };
+            this.HiddenProperties.Add("Renderer");
             Cacheable = false;
         }
 

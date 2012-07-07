@@ -5,6 +5,7 @@ using System.Text;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SenseNet.ApplicationModel;
+using SenseNet.ContentRepository;
 using SNCR=SenseNet.ContentRepository;
 using SenseNet.Diagnostics;
 using SenseNet.Portal.Virtualization;
@@ -57,6 +58,7 @@ namespace SenseNet.Portal.UI.Controls
                 throw new NotImplementedException();
             }
         }
+        bool IActionUiAdapter.OverlayVisible { get; set; }
 
         #endregion
 
@@ -147,7 +149,8 @@ namespace SenseNet.Portal.UI.Controls
                 }
                 else
                 {
-                    var sc = ScenarioManager.GetScenario(Scenario, ScenarioParameters);
+                    var scParams = GetReplacedScenarioParameters();
+                    var sc = ScenarioManager.GetScenario(Scenario, scParams);
                     if (sc != null)
                     {
                         actions = sc.GetActions(ContentRepository.Content.Load(NodePath),
@@ -202,6 +205,8 @@ namespace SenseNet.Portal.UI.Controls
             if (actionLink == null)
                 return;
 
+            actionLink.Action = action;
+            actionLink.Parameters = action.GetParameteres();
             actionLink.ActionName = action.Name;
             actionLink.Text = action.Text;
             actionLink.IconVisible = ActionIconVisible;
@@ -209,6 +214,21 @@ namespace SenseNet.Portal.UI.Controls
 
             if (UseContentIcon)
                 actionLink.IconName = action.GetContent().Icon;
+        }
+
+        //================================================================ Helper methods
+
+        public string GetReplacedScenarioParameters()
+        {
+            var scParams = ScenarioParameters;
+            if (string.IsNullOrEmpty(scParams))
+                return scParams;
+
+            //backward compatibility
+            if (scParams.StartsWith("{PortletID}"))
+                scParams = string.Concat("PortletID=", scParams);
+
+            return TemplateManager.Replace(typeof(PortletTemplateReplacer), scParams, this);
         }
     }
 }

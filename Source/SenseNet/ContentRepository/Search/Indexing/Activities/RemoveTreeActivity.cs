@@ -11,20 +11,18 @@ using Lucene.Net.Util;
 namespace SenseNet.Search.Indexing.Activities
 {
     [Serializable]
-    public class RemoveTreeActivity : LuceneTreeActivity
+    internal class RemoveTreeActivity : LuceneTreeActivity
     {
-        public override void Execute()
+        internal override void Execute()
         {
             using (var optrace = new OperationTrace("RemoveTreeActivity Execute"))
             {
                 var terms = new[] { new Term("InTree", TreeRoot), new Term("Path", TreeRoot) };
-                LuceneManager.DeleteDocuments(terms);
+                LuceneManager.DeleteDocuments(terms, MoveOrRename);
                 base.Execute();
 
                 optrace.IsSuccessful = true;
             }
         }
     }
-
-
 }

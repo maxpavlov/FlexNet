@@ -13,6 +13,8 @@ namespace SenseNet.ContentRepository.Tests.ContentHandlers
 		public FieldTestHandler(Node parent, string nodeTypeName) : base(parent, nodeTypeName) { }
 		protected FieldTestHandler(NodeToken nt) : base(nt) { }
 
+        public override bool IsContentType { get { return false; } }
+
 		[RepositoryProperty("ShortText")]
 		public string ShortText
 		{

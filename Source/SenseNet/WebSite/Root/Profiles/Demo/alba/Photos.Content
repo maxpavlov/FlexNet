@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>ImageLibrary</ContentType>
+  <ContentName>Photos</ContentName>
+  <Fields>
+    <DisplayName>Photos</DisplayName>
+    <CreatedBy>
+      <Path>/Root/IMS/Demo/ProjectManagers/alba</Path>
+    </CreatedBy>
+    <ModifiedBy>
+      <Path>/Root/IMS/Demo/ProjectManagers/alba</Path>
+    </ModifiedBy>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

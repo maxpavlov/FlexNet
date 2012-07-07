@@ -112,10 +112,7 @@ namespace SenseNet.ContentRepository.Storage
             }
             if (throwOnError && type == null)
                 new TypeNotFoundException(typeName);
-            if (type == null && typeName.Contains("ImageGallery"))
-            {
-                int q = 1;
-            }
+
             return type;
         }
 

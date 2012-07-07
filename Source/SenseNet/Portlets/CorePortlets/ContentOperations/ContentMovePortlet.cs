@@ -237,7 +237,7 @@ namespace SenseNet.Portal.Portlets
 
                             var p = Page as PageBase;
                             if (p != null)
-                                p.Response.Redirect(back, true);
+                                p.Response.Redirect(back, false);
                         }
                     }
                     
@@ -293,7 +293,7 @@ namespace SenseNet.Portal.Portlets
 
                     var p = Page as PageBase;
                     if (p != null)
-                        p.Response.Redirect(back);
+                        p.Response.Redirect(back, false);
                 }
                 else
                 {

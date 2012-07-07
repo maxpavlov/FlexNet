@@ -1,58 +1,62 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ContentType name="Site" parentType="Workspace" handler="SenseNet.Portal.Site" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
   <DisplayName>Site</DisplayName>
-	<Description>The Site is the  provides a primary entry point to your Portal</Description>
-	<Icon>Site</Icon>
+  <Description>The Site is the  provides a primary entry point to your Portal</Description>
+  <Icon>Site</Icon>
   <AllowedChildTypes>
     Folder,Page,Workspace,DocumentWorkspace,ProjectWorkspace,SalesWorkspace,
     Image,GoogleSitemap,Blog,DocumentLibrary,ImageLibrary,EventList,MemoList,
     LinkList,TaskList,Survey,Voting,DiscussionForum,Form,CustomList
   </AllowedChildTypes>
   <Fields>
-		<Field name="Language" type="Choice">
-			<DisplayName>Language</DisplayName>
-			<Description>Please define the default language of this site</Description>
-			<Configuration>
-				<AllowMultiple>false</AllowMultiple>
-				<AllowExtraValue>false</AllowExtraValue>
-				<Options>
-					<Option value="en" selected='true'>English</Option>
-					<Option value="hu">Hungarian</Option>
-				</Options>
-			</Configuration>
-		</Field>
-		<Field name="UrlList" type="UrlList">
-			<DisplayName>URL list</DisplayName>
-			<Description>Select the URLs to associate with this Site</Description>
-		</Field>
-		<Field name="StartPage" type="Reference">
-			<DisplayName>Alternative start page</DisplayName>
-			<Description>If set, the site will use this start page instead of the default</Description>
-			<Configuration>
-				<AllowMultiple>false</AllowMultiple>
-				<AllowedTypes>
-					<Type>Page</Type>
+    <Field name="Language" type="Choice">
+      <DisplayName>Language</DisplayName>
+      <Description>Please define the default language of this site</Description>
+      <Configuration>
+        <AllowMultiple>false</AllowMultiple>
+        <AllowExtraValue>false</AllowExtraValue>
+        <Options>
+          <Option value="en" selected='true'>English</Option>
+          <Option value="hu">Hungarian</Option>
+        </Options>
+      </Configuration>
+    </Field>
+    <Field name="EnableClientBasedCulture" type="Boolean">
+      <DisplayName>Enable Client Based Culture</DisplayName>
+      <Description>Enable this to allow user browser settings override default site language settings</Description>
+    </Field>
+    <Field name="UrlList" type="UrlList">
+      <DisplayName>URL list</DisplayName>
+      <Description>Select the URLs to associate with this Site</Description>
+    </Field>
+    <Field name="StartPage" type="Reference">
+      <DisplayName>Alternative start page</DisplayName>
+      <Description>If set, the site will use this start page instead of the default</Description>
+      <Configuration>
+        <AllowMultiple>false</AllowMultiple>
+        <AllowedTypes>
+          <Type>Page</Type>
           <Type>Workspace</Type>
           <Type>ContentList</Type>
-				</AllowedTypes>
-				<SelectionRoot>
-					<Path>.</Path>
-				</SelectionRoot>
-			</Configuration>
-		</Field>
-		<Field name="LoginPage" type="Reference">
-			<DisplayName>Login page</DisplayName>
-			<Description>The login page to display when a user tries to access restricted Content (Forms authentication only)</Description>
-			<Configuration>
-				<AllowMultiple>false</AllowMultiple>
-				<AllowedTypes>
-					<Type>Page</Type>
-				</AllowedTypes>
-				<SelectionRoot>
-					<Path>.</Path>
-				</SelectionRoot>
-			</Configuration>
-		</Field>
+        </AllowedTypes>
+        <SelectionRoot>
+          <Path>.</Path>
+        </SelectionRoot>
+      </Configuration>
+    </Field>
+    <Field name="LoginPage" type="Reference">
+      <DisplayName>Login page</DisplayName>
+      <Description>The login page to display when a user tries to access restricted Content (Forms authentication only)</Description>
+      <Configuration>
+        <AllowMultiple>false</AllowMultiple>
+        <AllowedTypes>
+          <Type>Page</Type>
+        </AllowedTypes>
+        <SelectionRoot>
+          <Path>.</Path>
+        </SelectionRoot>
+      </Configuration>
+    </Field>
     <Field name="IsActive" type="Boolean">
       <Configuration>
         <VisibleBrowse>Hide</VisibleBrowse>

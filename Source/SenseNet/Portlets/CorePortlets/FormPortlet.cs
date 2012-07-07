@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Web.UI;
@@ -58,11 +59,11 @@ namespace SenseNet.Portal.Portlets
 
 		[WebBrowsable(true)]
         [Personalizable(true)]
-        [WebDisplayName("Contentview path")]
-        [WebDescription("Path of the contentview which provides the UI elements for the form items")]
+        [LocalizedWebDisplayName(PORTLETFRAMEWORK_CLASSNAME, RENDERER_DISPLAYNAME)]
+        [LocalizedWebDescription(PORTLETFRAMEWORK_CLASSNAME, RENDERER_DESCRIPTION)]
         [WebCategory(EditorCategory.UI, EditorCategory.UI_Order)]
-        [Editor(typeof(ContentPickerEditorPartField), typeof(IEditorPartField))]
-        [ContentPickerEditorPartOptions(ContentPickerCommonType.ContentView)]
+        [Editor(typeof(ViewPickerEditorPartField), typeof(IEditorPartField))]
+        [ContentPickerEditorPartOptions(ContentPickerCommonType.ContentView, PortletViewType.Ascx)]
         [WebOrder(110)]
         public string ContentViewPath
 		{
@@ -72,8 +73,8 @@ namespace SenseNet.Portal.Portlets
 
         [WebBrowsable(true)]
         [Personalizable(true)]
-        [WebDisplayName("After submit contentview path")]
-        [WebDescription("Path of the contentview which provides the UI elements for the After submit dialog")]
+        [WebDisplayName("After submit view path")]
+        [WebDescription("Path of the content view which provides the UI elements for the 'After submit' dialog")]
         [WebCategory(EditorCategory.UI, EditorCategory.UI_Order)]
         [Editor(typeof(ContentPickerEditorPartField), typeof(IEditorPartField))]
         [ContentPickerEditorPartOptions(ContentPickerCommonType.ContentView)]
@@ -116,6 +117,8 @@ namespace SenseNet.Portal.Portlets
             this.Description = "Submit new items to a form list with this porlet";
             this.Category = new PortletCategory(PortletCategoryType.Application);
             isContentValid = false;
+
+            this.HiddenProperties.Add("Renderer");
         }
 		//-- Initialize --------------------------------------------------
         //protected override void Initialize()
@@ -330,7 +333,10 @@ namespace SenseNet.Portal.Portlets
         }
 	    void ok_Click(object sender, EventArgs e)
 		{
-			//CreateControls();
+	        isContentValid = false;
+			Controls.Clear();
+	        CreateControls();
+
             CallDone();
 		}
 

@@ -6,12 +6,13 @@
     <Template>
       <Path>/Root/System/SystemPlugins/ListView/Templates/ListView.xslt</Path>
     </Template>
-    <Columns><![CDATA[<Columns>
+    <Columns>
+    <![CDATA[<Columns>
   <Column title="Display Name" fullName="GenericContent.DisplayName" bindingName="GenericContent_DisplayName" index="1" width="0" hAlign="" modifiers="main" />
   <Column title="Amount" fullName="ExpenseClaimItem.Amount" bindingName="ExpenseClaimItem_Amount" index="2" width="0" hAlign="" modifiers="" />
   <Column title="Currency" fullName="ExpenseClaimItem.Currency" bindingName="ExpenseClaimItem_Currency" index="3" width="0" hAlign="" modifiers="" />
   <Column title="Description" fullName="GenericContent.Description" bindingName="GenericContent_Description" index="4" width="0" hAlign="" modifiers="" />
-  <Column title="Status" fullName="ExpenseClaimItem.Status" bindingName="ExpenseClaimItem_Status" index="5" width="0" hAlign="" modifiers="" />
+  <Column title="Expense status" fullName="ExpenseClaimItem.ExpenseStatus" bindingName="ExpenseClaimItem_ExpenseStatus" index="5" width="0" hAlign="" modifiers="" />
 </Columns>]]></Columns>
     <SortBy>DisplayName ASC</SortBy>
     <GroupBy></GroupBy>

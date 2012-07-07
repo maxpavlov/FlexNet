@@ -15,7 +15,7 @@ using SenseNet.ContentRepository.Storage.Data;
 namespace SenseNet.Search.Indexing.Activities
 {
     [Serializable]
-    public class AddTreeActivity : LuceneTreeActivity
+    internal class AddTreeActivity : LuceneTreeActivity
     {
         private Document[] Documents { get; set; }
 
@@ -31,7 +31,7 @@ namespace SenseNet.Search.Indexing.Activities
             }
         }
 
-        public override void Execute()
+        internal override void Execute()
         {
             using (var optrace = new OperationTrace("AddTreeActivity Execute"))
             {

@@ -566,3 +566,5 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
  */
 .sn-admin .ui-progressbar { height:2em; text-align: left; }
 .sn-admin .ui-progressbar .ui-progressbar-value {margin: -1px; height:100%; }
+
+.ui-datepicker-trigger {margin-right: 10px;}

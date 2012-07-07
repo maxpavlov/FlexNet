@@ -1,0 +1,133 @@
+
+
+#slides {
+	height: 400px;
+	position:relative;
+	width: 855px;
+	margin-top: 20px;
+}
+
+.slides_container {
+	width:800px;
+	overflow:hidden;
+	position:relative;
+	display:none;
+	height: 400px;
+	margin-left: 24px;
+}
+
+/*
+	Each slide
+	Important:
+	Set the width of your slides
+	If height not specified height will be set by the slide content
+	Set to display block
+*/
+
+.slides_container a {
+	width:570px;
+	height:270px;
+	display:block;
+}
+
+.slides_container a img {
+	display:block;
+	width: 850px;
+}
+
+/*
+	Next/prev buttons
+*/
+
+#slides .next,#slides .prev {
+	position:absolute;
+	top:170px;
+	left:0px;
+	width:24px;
+	height:43px;
+	display:block;
+	z-index:101;
+}
+
+#slides .next {
+	left:824px;
+}
+
+/*
+	Pagination
+*/
+
+.pagination {
+	margin:26px auto 0;
+	width:200px;
+}
+
+.pagination li {
+	float:left;
+	margin:0 1px;
+	list-style:none;
+}
+
+.pagination li a {
+	display:block;
+	width:12px;
+	height:0;
+	padding-top:12px;
+	background-image:url(/Root/Global/images/slides/pagination.png);
+	background-position:0 0;
+	float:left;
+	overflow:hidden;
+}
+
+.pagination li.current a {
+	background-position:0 -12px;
+}
+
+/*
+	Footer
+*/
+
+#footer {
+	text-align:center;
+	width:580px;
+	margin-top:9px;
+	padding:4.5px 0 18px;
+	border-top:1px solid #dfdfdf;
+}
+
+#footer p {
+	margin:4.5px 0;
+	font-size:1.0em;
+}
+
+/*
+	Anchors
+*/
+
+#slides a:link, #slides a:visited {
+	color:#599100;
+	text-decoration:none;
+}
+
+#slides a:hover,#slides a:active {
+	color:#599100;
+	text-decoration:underline;
+}
+
+.sn-title {margin-top: 100px;font-weight: bold;}
+.sn-modifiedby {}
+
+.sn-gallery-toolbar {border: none}
+.sn-gallery-toolbar .sn-toolbar-inner {background: none;border: none;}
+.sn-gallery-toolbar .sn-toolbar-btngroup {border: solid 1px #ccc;border-radius:3px;}
+.sn-gallery-toolbar .sn-toolbar-btngroup div {float:left;padding: 5px;}
+.sn-gallery-hover {background: #eee;}
+.sn-gallery-toolbar .sn-disabled {
+    color: #333 !important;
+    cursor: default !important;
+    text-shadow: 1px 1px #FFFFFF !important;
+}
+.sn-gallery-toolbar .sn-disabled img {
+    opacity: 1;
+}
+.sn-listgrid-container {overflow-x:hidden;}

@@ -6,20 +6,18 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Web;
+using SenseNet.ApplicationModel;
 using SenseNet.Communication.Messaging;
 using SenseNet.ContentRepository;
-using SenseNet.ContentRepository.Security;
 using SenseNet.ContentRepository.Storage;
 using SenseNet.ContentRepository.Storage.Data;
 using SenseNet.ContentRepository.Storage.Schema;
 using SenseNet.ContentRepository.Storage.Search;
 using SenseNet.ContentRepository.Storage.Security;
-using SenseNet.Portal.AppModel;
-using SenseNet.Diagnostics;
 using SenseNet.ContentRepository.Workspaces;
-using System.Web.Configuration;
-using SenseNet.ApplicationModel;
-using SenseNet.Search;
+using SenseNet.Diagnostics;
+using SenseNet.Portal.AppModel;
+using SenseNet.Portal.UI.Bundling;
 
 namespace SenseNet.Portal.Virtualization
 {
@@ -86,6 +84,8 @@ namespace SenseNet.Portal.Virtualization
     {
         public Uri RequestUri;
         public bool IsWebdavRequest;
+        public bool IsOfficeProtocolRequest;
+        public string BasicAuthHeaders;
         public Site RequestedSite;
         public string SiteUrl;
         public string SiteRelativePath;
@@ -143,6 +143,18 @@ namespace SenseNet.Portal.Virtualization
             get { return _isWebdavRequest; }
         }
 
+        private bool _isOfficeProtocolRequest;
+        public bool IsOfficeProtocolRequest
+        {
+            get { return _isOfficeProtocolRequest; }
+        }
+
+        private string _basicAuthHeaders;
+        public string BasicAuthHeaders
+        {
+            get { return _basicAuthHeaders; }
+        }
+
         #region Distributed Action child classes
 
         [Serializable]
@@ -181,25 +193,12 @@ namespace SenseNet.Portal.Virtualization
         public static string BackTargetParamName { get { return "backtarget"; } }
         public static string VersionParamName { get { return "version"; } }
 
-        [Obsolete("Use AuthenticationHelper.DenyAccess instead", true)]
-        public static void ForceBasicAuthentication(HttpContext context)
-        {
-            context.Response.Clear();
-            context.Response.Buffer = true;
-            context.Response.StatusCode = 401;
-            context.Response.Status = "401 Unauthorized";
-            context.Response.AddHeader("WWW-Authenticate", "Basic");
-
-            //context.Response.Flush();
-            context.Response.End();
-        }
-
         private static readonly string CONTEXT_ITEM_KEY = "_CurrentPortalContext";
         private static readonly string QUERYSTRING_NODEPROPERTY_KEY = "NodeProperty";
         public static readonly string DefaultNodePropertyName = "Binary";
         public static readonly string InRepositoryPageSuffix = "/InRepositoryPage.aspx";
         public static readonly string WebRootFolderPath = "/Root/System/WebRoot";
-        private static readonly string PortalSectionKey = "sensenet/portalSettings";
+        internal static readonly string PortalSectionKey = "sensenet/portalSettings";
 
         private static NameValueCollection _urlPaths;
         private static NameValueCollection _startPages;
@@ -213,6 +212,17 @@ namespace SenseNet.Portal.Virtualization
         {
             var requestUri = context.Request.Url;
             var absPathLower = requestUri.AbsolutePath.ToLower();
+
+            // check basic auth headers
+            string authHeader = context.Request.Headers["Authorization"];
+            string basicAuthHeaders = null;
+            if (authHeader != null && authHeader.StartsWith("Basic "))
+            {
+                basicAuthHeaders = authHeader;
+
+                // remove header so that IIS will not send 401 automatically when remapping action to webdavhandler
+                context.Request.Headers.Remove("Authorization");
+            }
 
             //---- STEP 1: Search for a matching Site URL based on the Request URL
             string matchingSiteUrl = null;
@@ -239,12 +249,16 @@ namespace SenseNet.Portal.Virtualization
 
             //---- STEP 2: WebDav
             bool isWebdavRequest = false;
+            var translateHeader = context.Request.Headers["Translate"];
+            if (!string.IsNullOrEmpty(translateHeader))
+                translateHeader = translateHeader.ToLower();
+
             var useragent = context.Request.Headers["User-Agent"];
+            var ualower = string.Empty;
             if (!string.IsNullOrEmpty(useragent))
-            {
-                var ualower = useragent.ToLower();
-                isWebdavRequest = ualower.Contains("webdav") || ualower == "microsoft office protocol discovery" || ualower == "microsoft office existence discovery";
-            }
+                ualower = useragent.ToLower();
+
+            isWebdavRequest = ualower.Contains("webdav") || ualower.StartsWith("microsoft office") || ualower.Contains("frontpage") || translateHeader == "f";
 
             if (isWebdavRequest && absPathLower.StartsWith(TrashBin.TrashBinPath.ToLower()))
             {
@@ -263,6 +277,7 @@ namespace SenseNet.Portal.Virtualization
                 siteRelativePath = null;
             }
 
+            var isOfficeProtocolRequest = false;
             //---- if DWSS (Document Workspace Web Service Protocol)
             if (absPathLower.EndsWith("_vti_bin/dws.asmx") ||
                 absPathLower.EndsWith("_vti_bin/webs.asmx") ||
@@ -282,6 +297,7 @@ namespace SenseNet.Portal.Virtualization
                 var redirectPath = string.Concat(PortalContext.WebRootFolderPath, "/DWS", requestPath.Substring(prefixIdx + prefix.Length)); // ie. /Root/System/WebRoot/DWS/lists.asmx ... 
                 repositoryPath = redirectPath.Replace("owssvr.dll", "owssvr.aspx");
                 isWebdavRequest = false;    // user agent might be webdav, but we should redirect to given content, and not to webdav service
+                isOfficeProtocolRequest = true;
             }
 
             //---- if FPP (FrontPage Protocol)
@@ -299,6 +315,7 @@ namespace SenseNet.Portal.Virtualization
                 // NOTE: workflow.asmx is not actually implemented, we return a HTTP 200 using FppHandler.cs
                 repositoryPath = string.Concat(PortalContext.WebRootFolderPath, "/DWS/Fpp.ashx");
                 isWebdavRequest = false;    // user agent might be webdav, but we should redirect to given content, and not to webdav service
+                isOfficeProtocolRequest = true;
             }
 
             // otherwise (not webroot, not fpp, not dws): set repositorypath to addressed repository content path
@@ -343,7 +360,7 @@ namespace SenseNet.Portal.Virtualization
 
             //---- STEP 6: BinaryHandler requestednodehead for preliminary is-modified-since handling
             NodeHead binaryhandlerRequestedNodeHead = null;
-            if (absPathLower.EndsWith("/binaryhandler.ashx"))
+            if (absPathLower.EndsWith("/binaryhandler.ashx") && String.IsNullOrEmpty(actionName))
                 binaryhandlerRequestedNodeHead = SenseNet.Portal.Handlers.BinaryHandler.RequestedNodeHead;
 
             Site requestedNodeSite = null;
@@ -354,6 +371,8 @@ namespace SenseNet.Portal.Virtualization
             {
                 RequestUri = requestUri,
                 IsWebdavRequest = isWebdavRequest,
+                IsOfficeProtocolRequest = isOfficeProtocolRequest,
+                BasicAuthHeaders = basicAuthHeaders,
                 RequestedSite = requestedSite,
                 SiteUrl = matchingSiteUrl,
                 SiteRelativePath = siteRelativePath,
@@ -714,7 +733,7 @@ namespace SenseNet.Portal.Virtualization
                 catch 
                 {
                     //it is possible that logging module is not working yet
-                    Trace.WriteLine("PortalContext.IsWebSiteRoot: Getting AppDomainAppVirtualPath is impossible.");
+                    //Trace.WriteLine("PortalContext.IsWebSiteRoot: Getting AppDomainAppVirtualPath is impossible.");
                 }
 
                 return true;
@@ -850,6 +869,11 @@ namespace SenseNet.Portal.Virtualization
         {
             get { return ContextWorkspace; }
         }
+
+        /// <summary>
+        /// Gets the bundling options associated with this portal context.
+        /// </summary>
+        public PortalBundleOptions BundleOptions { get; private set; }
 
         private string _authenticationMode;
         public string AuthenticationMode
@@ -1329,13 +1353,19 @@ namespace SenseNet.Portal.Virtualization
 
         //======================================================================== Creation
 
-        private PortalContext() { }
+        private PortalContext()
+        {
+            BundleOptions = new PortalBundleOptions();
+        }
+
         private void Initialize(HttpContext context, PortalContextInitInfo initInfo)
         {
             _ownerHttpContext = context;
             // use absolute uri to clone. requesturi.tostring messes up encoded parts, like backurl
             _originalUri = new Uri(initInfo.RequestUri.AbsoluteUri.ToString()); // clone
             _isWebdavRequest = initInfo.IsWebdavRequest;
+            _isOfficeProtocolRequest = initInfo.IsOfficeProtocolRequest;
+            _basicAuthHeaders = initInfo.BasicAuthHeaders;
 
             _site = initInfo.RequestedSite;
             _siteUrl = initInfo.SiteUrl;

@@ -96,6 +96,18 @@ namespace SenseNet.Portal.UI.ContentListViews.Handlers
             set { this[VIEWQUERYSKIP] = value; }
         }
 
+        public const string ICONNAME = "Icon";
+        [RepositoryProperty(ICONNAME, RepositoryDataType.String)]
+        public override string Icon
+        {
+            get
+            {
+                var icon = GetProperty<string>(ICONNAME);
+                return !string.IsNullOrEmpty(icon) ? icon : base.Icon;
+            }
+            set { this[ICONNAME] = value; }
+        }
+
         public bool FilterIsContentQuery
         {
             get
@@ -124,6 +136,8 @@ namespace SenseNet.Portal.UI.ContentListViews.Handlers
                     return this.QueryTop;
                 case VIEWQUERYSKIP:
                     return this.QuerySkip;
+                case ICONNAME:
+                    return this.Icon;
                 default:
                     return base.GetProperty(name);
             }
@@ -149,6 +163,9 @@ namespace SenseNet.Portal.UI.ContentListViews.Handlers
                     break;
                 case VIEWQUERYSKIP:
                     this.QuerySkip = (int)value;
+                    break;
+                case ICONNAME:
+                    this.Icon = (string)value;
                     break;
                 default:
                     base.SetProperty(name, value);

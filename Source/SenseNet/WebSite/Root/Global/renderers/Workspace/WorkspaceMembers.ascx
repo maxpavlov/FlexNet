@@ -25,7 +25,7 @@
 
 <%
     var settings = new SenseNet.Search.QuerySettings { EnableAutofilters = false };
-    var workspaceGroups = SenseNet.Search.ContentQuery.Query("+TypeIs:Group +InTree:\"" + PortalContext.Current.ContextWorkspace.Path + "\"", settings).Nodes;
+    var workspaceGroups = SenseNet.Search.ContentQuery.Query("+TypeIs:Group +InTree:\"" + PortalContext.Current.ContextWorkspace.Path + "\"", settings).Nodes.ToList();
 %>
 
 <div id="sn-workspacemembers-adduser">
@@ -60,9 +60,7 @@
 <%
     var members = new[] { new { Group = null as SenseNet.ContentRepository.Group, Member = null as Node } }.ToList();
     members.Clear();
-    var groups = (this.Parent as ContextBoundPortlet).ContextNode;
-    var groupsFolder = groups as IFolder;
-    foreach (var groupNode in groupsFolder.Children)
+    foreach (var groupNode in workspaceGroups)
     {
         var group = groupNode as SenseNet.ContentRepository.Group;
         if (group == null)
@@ -78,7 +76,7 @@
      %>
 
 <div class="sn-workspacemembers">
-    <% var editable = groups.Security.HasPermission(SenseNet.ContentRepository.Storage.Schema.PermissionType.Save); %>
+    <% var editable = (this.Parent as ContextBoundPortlet).ContextNode.Security.HasPermission(SenseNet.ContentRepository.Storage.Schema.PermissionType.Save); %>
 
     <% if (editable) { %>
     <div class="sn-workspacemembers-addmembers">
@@ -104,7 +102,7 @@
                 %>
             <div class="sn-workspacemembers-item <%= index > 5 ? "sn-workspacemembers-item-hidden" : "" %>">
 			    <div class="sn-workspacemembers-itemavatardiv">
-				    <img src=<%= UITools.GetAvatarUrl(node) %> style="width:32px; height:32px;" />
+				    <img src="<%= UITools.GetAvatarUrl(node) %>" style="width:32px; height:32px;" />
 			    </div>
 			    <div class="sn-workspacemembers-itemnamediv">
 				    <a class="sn-workspacemembers-itemnamelink" href="<%= link %>"><%=name %></a><br />

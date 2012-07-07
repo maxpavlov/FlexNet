@@ -180,6 +180,12 @@ namespace SenseNet.ContentRepository
 
         //========================================================================= Helper methods
 
+        public static void Init()
+        {
+            //init replacers
+            var reps = TemplateReplacers;
+        }
+
         public static string GetProperty(GenericContent content, string propertyName)
         {
             if (content == null)

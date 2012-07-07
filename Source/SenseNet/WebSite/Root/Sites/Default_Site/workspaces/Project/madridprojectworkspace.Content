@@ -7,9 +7,9 @@
     <DisplayName>Madrid Project Workspace</DisplayName>
     <Description><![CDATA[<p>This workspace emcompasses all project details and related items associated with the Madrid project.</p>]]></Description>
     <Manager>
-      <Path>/Root/IMS/Demo/ProjectManagers/albamonday</Path>
+      <Path>/Root/IMS/Demo/ProjectManagers/alba</Path>
     </Manager>
-    <Deadline>2011-08-15T00:00:00</Deadline>
+    <Deadline>2012-06-30T00:00:00</Deadline>
     <IsActive>true</IsActive>
     <IsCritical>true</IsCritical>
     <IsWallContainer>true</IsWallContainer>

@@ -15,5 +15,5 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyProduct("Sense/Net CMS")]
 [assembly: AssemblyTrademark("Sense/Net Inc.")]
 [assembly: AssemblyCulture("")]
-[assembly: AssemblyVersion("6.0.8.3195")]
-[assembly: AssemblyFileVersion("6.0.8.3195")]
+[assembly: AssemblyVersion("6.1.0.3723")]
+[assembly: AssemblyFileVersion("6.1.0.3723")]

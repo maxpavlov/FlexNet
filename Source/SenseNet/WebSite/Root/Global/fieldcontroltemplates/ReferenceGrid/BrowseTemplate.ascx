@@ -1,4 +1,4 @@
-<%@  Language="C#" %>
+<%@  Language="C#" EnableViewState="false" %>
 <asp:TextBox ID="HiddenTextBoxControl" runat="server" TextMode="MultiLine" style="display: none;" Columns="20" Rows="2"/>
 <asp:Table ID="TableControl" runat="server"></asp:Table>
 <asp:Panel ID="PagerDiv" runat="server"></asp:Panel>

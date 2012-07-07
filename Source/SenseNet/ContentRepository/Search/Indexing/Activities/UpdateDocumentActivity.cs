@@ -13,9 +13,9 @@ using Lucene.Net.Util;
 namespace SenseNet.Search.Indexing.Activities
 {
     [Serializable]
-    public class UpdateDocumentActivity : LuceneDocumentActivity
+    internal class UpdateDocumentActivity : LuceneDocumentActivity
     {
-        private Term GetIdTerm(Document document)
+        internal static Term GetIdTerm(Document document)
         {
             var versionID =
                  NumericUtils.IntToPrefixCoded(Int32.Parse((string)document.GetFieldable(LuceneManager.KeyFieldName).StringValue()));
@@ -26,7 +26,7 @@ namespace SenseNet.Search.Indexing.Activities
             return term;
         }
 
-        public override void Execute()
+        internal override void Execute()
         {
             using (var optrace = new OperationTrace("UpdateDocumentActivity Execute"))
             {

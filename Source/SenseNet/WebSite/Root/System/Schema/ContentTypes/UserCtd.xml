@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ContentType name="User" parentType="GenericContent" handler="SenseNet.ContentRepository.User" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
   <DisplayName>User</DisplayName>
-  <Description>The basic user type of Sense/Net 6.0. Use it for intranet and extranet users.</Description>
+  <Description>The basic user type of Sense/Net 6.1. Use it for intranet and extranet users.</Description>
   <Icon>User</Icon>
   <AllowedChildTypes>
     Image
@@ -162,7 +162,7 @@
       <DisplayName>Phone</DisplayName>
       <Description>Phone number. (e.g. +123456789 or 1234)</Description>
       <Configuration>
-        <Regex>(^\+?\d+)?</Regex>
+        <Regex>(^\d*([-\s\+\(\)]\d*)*$)?</Regex>
         <Visible>true</Visible>
       </Configuration>
     </Field>

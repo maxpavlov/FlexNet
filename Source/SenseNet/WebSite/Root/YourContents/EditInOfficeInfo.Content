@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>HTMLContent</ContentType>
+  <ContentName>EditInOfficeInfo</ContentName>
+  <Fields>
+    <HTMLFragment>
+      <![CDATA[<div class="sn-infobox"><h1 class="sn-content-title sn-article-title">
+
+  <img src="/Root/Global/images/icons/32/info.png" class="sn-icon sn-icon_32" alt="">Edit in Microsoft Office</h1>
+  <div style="margin: 20px;">
+   
+  <img src="/Root/YourContents/Images/office_enabled.png" style="float:left;margin-right: 20px;" />
+     <strong>Open and edit documents with Microsoft Office from a browser or from Windows Explorer. Sense/Net behaves as SharePoint to Office.</strong>
+    <p>
+Enterprise users work in Microsoft Office and they love using it. Why make them leave what they love? You can use Sense/Net from Office without desktop installation. You can open documents, check-out, modify, check-in and add version comment right from Office.</p>
+  <ul style="margin-left: 270px;">
+      <li style="line-height: 20px;">If you have a Microsoft Office 2010 install on your computer, you can open documents with 'Edit in Microsoft Office' action. It works in Internet Explorer, Firefox and Chrome.</li>
+      <li>If you have a Microsoft Office 2007 install, you can use this action only in Internet Explorer.</li>
+    </ul>
+    <div class="clear"></div>
+  </div></div>
+​
+]]></HTMLFragment>
+    <ReviewDate>0001-01-01T00:00:00</ReviewDate>
+    <ArchiveDate>0001-01-01T00:00:00</ArchiveDate>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <DisplayName><![CDATA[EditInOfficeInfo]]></DisplayName>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

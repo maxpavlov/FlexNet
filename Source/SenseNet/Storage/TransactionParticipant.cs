@@ -15,6 +15,8 @@ namespace SenseNet.ContentRepository.Storage
     {
         public NodeData Data { get; set; }
         public NodeSaveSettings Settings { get; set; }
+        public bool IsNewNode { get; set; }
+
         public void Commit()
         {
             DataBackingStore.OnNodeDataCommit(this);
@@ -22,6 +24,20 @@ namespace SenseNet.ContentRepository.Storage
         public void Rollback()
         {
             DataBackingStore.OnNodeDataRollback(this);
+        }
+    }
+
+    internal class InsertCacheParticipant : ITransactionParticipant
+    {
+        public string CacheKey { get; set; }
+
+        public void Commit()
+        {
+            // do nothing
+        }
+        public void Rollback()
+        {
+            DistributedApplication.Cache.Remove(CacheKey);
         }
     }
 }

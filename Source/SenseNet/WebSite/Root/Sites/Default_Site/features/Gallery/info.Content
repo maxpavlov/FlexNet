@@ -7,7 +7,7 @@
     <Subtitle></Subtitle>
     <RelatedImage />
     <Header><![CDATA[]]></Header>
-    <Body><![CDATA[<h1 class="sn-content-title sn-article-title"><img src="/Root/Global/images/icons/32/info.png" class="sn-icon sn-icon_32" alt="" />Display a Gallery with the Content Collection portlet</h1><p>This page is an example for a gallery made from a special content type (ImageGalleryLight) and presented with a Content collection portlet. This portlet uses a unique renderer (/Root/Global/renderers/GalleryView.ascx) which does all the job. See the source of this renderer for a second layout example or just play with the portlet properties for paging and ordering.</p>]]></Body>
+    <Body><![CDATA[<h1 class="sn-content-title sn-article-title"><img src="/Root/Global/images/icons/32/info.png" class="sn-icon sn-icon_32" alt="" />Display a Gallery with the Content Collection portlet</h1><p>This page is an example for a gallery made from a special content type (ImageLibrary) and presented with a Content list portlet. This portlet uses a unique renderer (/Root/Global/renderers/GalleryView.ascx) which does all the job. See the source of this renderer for a second layout example or just play with the portlet properties for paging and ordering.</p>]]></Body>
     <Details><a href="" target="" title=""></a></Details>
     <Language>English</Language>
     <Keywords><![CDATA[]]></Keywords>

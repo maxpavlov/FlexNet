@@ -1,4 +1,4 @@
-<%@  Language="C#" %>
+<%@  Language="C#" EnableViewState="false" %>
 <asp:ListView ID="InnerListView" runat="server" EnableViewState="false" >
     <LayoutTemplate>
         <table class="sn-ctrl-urllist" >

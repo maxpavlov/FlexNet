@@ -22,18 +22,20 @@ namespace SenseNet.Portal.Portlets
             this.Description = "A portlet for creating content links (context bound)";
             this.Category = new PortletCategory(PortletCategoryType.Collection);
 
+            this.HiddenProperties.Add("Renderer");
+
             Cacheable = false;   // by default, caching is switched off
             this.HiddenPropertyCategories = new List<string>() { EditorCategory.Cache };
         }
 
         //================================================================ Portlet properties
 
-        [WebDisplayName("View path for the content list")]
-        [WebDescription("Path of the .ascx user control which provides the UI elements for the content list")]
+        [LocalizedWebDisplayName(PORTLETFRAMEWORK_CLASSNAME, RENDERER_DISPLAYNAME)]
+        [LocalizedWebDescription(PORTLETFRAMEWORK_CLASSNAME, RENDERER_DESCRIPTION)]
         [WebBrowsable(true), Personalizable(true)]
         [WebCategory(EditorCategory.UI, EditorCategory.UI_Order)]
         [WebOrder(100)]
-        [Editor(typeof(ContentPickerEditorPartField), typeof(IEditorPartField))]
+        [Editor(typeof(ViewPickerEditorPartField), typeof(IEditorPartField))]
         [ContentPickerEditorPartOptions(ContentPickerCommonType.Ascx)]
         public string ViewPath
         {

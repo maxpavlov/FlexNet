@@ -848,8 +848,8 @@ namespace SenseNet.ContentRepository
             }
 
             Build();
-            base.SetCachedData(CONTENTLISTTYPEKEY, _contentListType);
             base.SetCachedData(FIELDSETTINGSKEY, _fieldSettings);
+            base.SetCachedData(CONTENTLISTTYPEKEY, _contentListType);
         }
 	}
 }

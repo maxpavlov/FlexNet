@@ -197,8 +197,8 @@ namespace SenseNet.ContentRepository
             var targetParent = Node.Load<GenericContent>(targetPath);
             if (targetParent == null)
             {
-                throw new RestoreException(RestoreResultType.NoParent, 
-                    RepositoryPath.GetParentPathSafe(targetPath));
+                throw new RestoreException(RestoreResultType.NoParent,
+                    RepositoryPath.GetParentPath(targetPath));
             }       
 
             //assert permissions
@@ -210,7 +210,7 @@ namespace SenseNet.ContentRepository
 
             if (Node.Exists(targetContentPath))
             {
-                var newName = ContentNamingHelper.EnsureContentName(node.Name, targetParent);
+                var newName = ContentNamingHelper.IncrementNameSuffixToLastName(node.Name, targetParent.Id);
                 targetContentPath = RepositoryPath.Combine(targetPath, newName);
 
                 if (addNewName)

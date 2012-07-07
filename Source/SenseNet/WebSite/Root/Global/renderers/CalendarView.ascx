@@ -34,7 +34,7 @@
                           {
                               ActionName = "Add", 
                               NodePath = this.Model.Content.Path,
-                              ParameterString = "StartDate=" + e.Day.Date,
+                              ParameterString = "StartDate=" + e.Day.Date + ";ContentTypeName=CalendarEvent",
                               IconVisible = false,
                               Text = "Add",
                               ToolTip = "Add new event for " + e.Day.Date.ToString("MMMM dd")

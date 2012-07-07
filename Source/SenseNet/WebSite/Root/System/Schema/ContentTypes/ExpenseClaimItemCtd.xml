@@ -65,8 +65,8 @@
         <ControlHint>sn:Image</ControlHint>
       </Configuration>
     </Field>
-    <Field name="Status" type="ShortText">
-      <DisplayName>Status</DisplayName>
+    <Field name="ExpenseStatus" type="ShortText">
+      <DisplayName>Expense status</DisplayName>
       <Description>The status of the Expense Claim</Description>
       <Configuration>
         <VisibleBrowse>Show</VisibleBrowse>

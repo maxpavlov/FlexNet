@@ -107,14 +107,17 @@ namespace SenseNet.Portal
 
             RepositoryInstance.WaitForWriterLockFileIsReleased(RepositoryInstance.WaitForLockFileType.OnStart);
 
-            SenseNet.ContentRepository.Repository.Start(startConfig);
+            Repository.Start(startConfig);
 
             //-- <L2Cache>
             StorageContext.L2Cache = new L2CacheImpl();
             //-- </L2Cache>
 
             RegisterRoutes(RouteTable.Routes);
-            SenseNet.Portal.Virtualization.RepositoryPathProvider.Register();
+            RepositoryPathProvider.Register();
+
+            //preload
+            WarmUp.Preload();
         }
         protected static void ApplicationEndHandler(object sender, EventArgs e, HttpApplication application)
         {
@@ -328,7 +331,19 @@ namespace SenseNet.Portal
 
             //System.Threading.Thread.CurrentThread.CurrentUICulture = System.Globalization.CultureInfo.CreateSpecificCulture("en-US");
         }
-
+        protected void Application_EndRequest(object sender, EventArgs e)
+        {
+            if (PortalContext.Current.IsOfficeProtocolRequest || PortalContext.Current.IsWebdavRequest)
+            {
+                // force 401, if formsauthentication module converted a 401 response to a 302 redirect to login page. we turn it back to 401
+                var redirectingToLogin = HttpContext.Current.Response.StatusCode == 302 && HttpContext.Current.Response.RedirectLocation.ToLower().StartsWith(System.Web.Security.FormsAuthentication.LoginUrl);
+                if (redirectingToLogin)
+                {
+                    HttpContext.Current.Response.RedirectLocation = null;    // this is not any more a redirect
+                    Dws.DwsHelper.CheckVisitor();
+                }
+            }
+        }
 
         /* ============================================================================================================ helpers */
         private static bool GetStatusCode(Exception exception, out int exceptionStatusCode, out int exceptionSubStatusCode)

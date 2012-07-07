@@ -2,9 +2,6 @@
 /* Based on standard 960 16 Column Grid */
 
 /* Layout 01 */
-.sn-layout1 .sn-layout-container { width: 960px; margin: 0 auto; }
-.sn-layout1 .sn-layout-head { margin: 10px; padding: 5px; }
-.sn-layout1 .sn-layout-foot { margin: 10px; padding: 5px; }
 .sn-layout1 .sn-column1 { margin: 10px; padding: 5px; }
 
 /* Layout 02 */
@@ -14,7 +11,7 @@
 .sn-layout2 .sn-column1 { margin: 10px 0.5%; padding: 1%; }
 
 /* Layout 03 */
-.sn-layout3 .sn-layout-container { width: 960px; margin: 0 auto; }
+.sn-layout3 .sn-layout-container {  margin: 0 auto; }
 .sn-layout3 .sn-layout-head { margin: 10px; padding: 5px; }
 .sn-layout3 .sn-layout-foot { margin: 10px; padding: 5px; }
 .sn-layout3 .sn-column { float: left; display: inline; }
@@ -86,23 +83,23 @@
 .sn-layout10 .sn-columns .sn-columns .sn-column3 { width: 19%; margin: 0 0.5%; }
 
 /* sn-layout-inter - based on sn-layout3 */
-.sn-layout-inter .sn-layout-container { width: 980px; margin: 0 auto; }
-.sn-layout-inter .sn-layout-head { margin: 0 0 18px; padding: 0; }
+.sn-layout-inter .sn-layout-container { margin: 0 auto; }
+.sn-layout-inter .sn-layout-head { margin: 0 0 0px; padding: 0; }
 .sn-layout-inter .sn-layout-foot { margin: 10px 0 0; padding: 5px 0; }
 .sn-layout-inter .sn-layout-full {}
 .sn-layout-inter .sn-column { float: left; display: inline; }
 .sn-layout-inter .sn-column1 { width: 193px; margin: 0 19px 0 0; }
-.sn-layout-inter .sn-column2 { width: 768px; margin: 0; }
-.sn-layout-inter .sn-columns .sn-columns .sn-column1 { width: 556px; }
+.sn-layout-inter .sn-column2 { width: 888px; margin: 0; }
+.sn-layout-inter .sn-columns .sn-columns .sn-column1 { width: 676px; }
 .sn-layout-inter .sn-columns .sn-columns .sn-column2 { width: 193px; }
 .sn-layout-inter .sn-columns .sn-columns .sn-columns .sn-column { width: 268px; }
 
 /* sn-layout-intra - based on sn-layout5 */
-.sn-layout-intra { padding: 0 5px; }
+/*.sn-layout-intra { padding: 0 5px; }*/
 .sn-layout-intra .sn-layout-container { width: 100%; }
-.sn-layout-intra .sn-layout-head { width: 100%; margin: 0 0 18px; padding: 0; }
-.sn-layout-intra .sn-layout-foot { width: 100%; margin: 10px 0 0; padding: 5px 0; }
-.sn-layout-intra .sn-layout-full, .sn-layout-intra .sn-columns { float:left; width:100%; }
+.sn-layout-intra .sn-layout-head { width: 100%; margin: 0 0 0px; padding: 0; }
+.sn-layout-intra .sn-layout-foot { width: 100%; margin: 10px 0 -10px 0; padding: 5px 0; }
+.sn-layout-intra .sn-layout-full, .sn-layout-intra .sn-columns { width:100%; }
 .sn-layout-intra .sn-columns .sn-column-half { float: left; width: 49.5%; margin-left: 0.95%; }
 .sn-layout-intra .sn-columns .sn-column-half .sn-column-half { float: left; width: 49%; margin-left: 2%; }
 .sn-layout-intra .sn-columns .sn-column-half:first-child {  margin-left: 0; }
@@ -116,7 +113,7 @@
 /* sn-layout-explore - based on sn-layout10 */
 .sn-layout-explore { padding: 0 5px; }
 .sn-layout-explore .sn-layout-container { width: 100%; }
-.sn-layout-explore .sn-layout-head { width: 100%; margin: 0 0 18px; padding: 0; height: 77px; }
+.sn-layout-explore .sn-layout-head { width: 100%; margin: 0 0 0px; padding: 0; height: 77px; }
 .sn-layout-explore .sn-layout-foot { width: 100%; margin: 10px 0 0; padding: 5px 0; }
 .sn-layout-explore .sn-column2 { float: right; width: 193px; margin: 0 10px 0 0; }
 .sn-layout-explore .sn-column1 { margin: 0 213px 0 0; }
@@ -137,12 +134,13 @@
     margin:7em auto 0 auto; padding: 0;
     background: none;
     text-align: center;
+    border: none !important;
 }
 .sn-layout-login .sn-layout-head h1 {
-    margin:0 auto; padding: 0;
-    width: 300px; height: 114px;
-    background: url(../images/snlogo.gif);
-    position: relative; top: auto; left: auto;
+    margin:0 auto !important; padding: 0 !important;
+    width: 300px !important; height: 114px !important;
+    background: url(../images/snlogo.gif) !important;
+    position: relative !important; top: auto !important; left: auto !important;
 }
 .sn-layout-login .sn-columns { width: 100%; text-align:center; }
 .sn-layout-login .sn-column1 { text-align: left; width: 320px; margin: 0 auto; padding:0; }

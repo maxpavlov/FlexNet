@@ -48,7 +48,7 @@ namespace SenseNet.Portal.Virtualization
                     // This leads to an exception when the action doesn't have that version. 
                     // _repositoryPath will point to the node of action and ContextNode will be the document
                     // if paths are not equal then we will return the last version of the requested action
-                    if (String.IsNullOrEmpty(PortalContext.Current.VersionRequest) || _repositoryPath != PortalContext.Current.ContextNodePath)
+                    if (PortalContext.Current == null || string.IsNullOrEmpty(PortalContext.Current.VersionRequest) || _repositoryPath != PortalContext.Current.ContextNodePath)
                     {
                         _node = Node.LoadNode(_repositoryPath);
                     }
@@ -61,9 +61,11 @@ namespace SenseNet.Portal.Virtualization
                 }
                 catch (SenseNetSecurityException ex) //logged
                 {
-                    if (HttpContext.Current == null)
-                        throw ex;
                     Logger.WriteException(ex);
+
+                    if (HttpContext.Current == null)
+                        throw;
+                    
                     AuthenticationHelper.DenyAccess(HttpContext.Current.ApplicationInstance);
                 }
             }

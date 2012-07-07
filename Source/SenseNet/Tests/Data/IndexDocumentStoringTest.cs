@@ -92,6 +92,17 @@ namespace SenseNet.ContentRepository.Tests.Data
         }
         #endregion
 
+        [TestMethod]
+        public void IndexDocuments_LoadDocuments()
+        {
+            var nodes = ContentQuery.Query("InTree:/Root .AUTOFILTERS:OFF .TOP:10").Nodes;
+            var versionIds = nodes.Select(n => n.VersionId).ToArray();
+
+            var docs = StorageContext.Search.LoadIndexDocumentByVersionId(versionIds);
+
+            Assert.IsTrue(docs.Select(doc => doc.VersionId).Except(versionIds).Count() == 0, "Returned index documents had unexpected version IDs");
+            Assert.IsTrue(versionIds.Except(docs.Select(doc => doc.VersionId)).Count() == 0, "Not all version IDs were found in returned results");
+        }
     }
 
 }

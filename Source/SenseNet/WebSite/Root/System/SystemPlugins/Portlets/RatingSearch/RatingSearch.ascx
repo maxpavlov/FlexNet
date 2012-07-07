@@ -9,7 +9,7 @@
 <div id="sn-rating-search">
 	<div class="sn-rating-search-row">From: <asp:TextBox ID="tbRatingSearchFrom" CssClass="sn-rating-search-from" runat="server"></asp:TextBox></div>
     <div class="sn-rating-search-row">To: <asp:TextBox ID="tbRatingSearchTo" CssClass="sn-rating-search-to" runat="server"></asp:TextBox></div>
-    <asp:Button ID="sn-rating-search-btn" CssClass="sn-rating-search-btn" runat="server" onclick="btnSearch_Click" Text="Search" />
+    <asp:Button ID="btnRatingSearch" CssClass="sn-rating-search-btn" runat="server" onclick="btnSearch_Click" Text="Search" />
 </div>
 
 <asp:ListView ID="RatingSearchListView" runat="server">

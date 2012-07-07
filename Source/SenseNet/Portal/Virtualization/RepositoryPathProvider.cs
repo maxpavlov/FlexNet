@@ -135,6 +135,14 @@ namespace SenseNet.Portal.Virtualization
 
         public override VirtualFile GetFile(string virtualPath)
         {
+            // office protocol: instruct microsoft office to open the document without further webdav requests when simply downloading the file
+            // webdav requests would cause an authentication window to pop up when downloading a docx
+            if (HttpContext.Current != null && HttpContext.Current.Response != null)
+            {
+                if (Repository.WebdavEditExtensions.Any(extension => virtualPath.EndsWith(extension)))
+                    HttpContext.Current.Response.AddHeader("Content-Disposition", "Attachment");
+            }
+
             if (DiskFSSupportMode == DiskFSSupportMode.Prefer &&
                 base.FileExists(virtualPath))
             {

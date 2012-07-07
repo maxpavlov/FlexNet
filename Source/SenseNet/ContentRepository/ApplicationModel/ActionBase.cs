@@ -150,6 +150,14 @@ namespace SenseNet.ApplicationModel
             set { _icon = value; }
         }
 
+        private string _actionCssClass;
+
+        public string CssClass
+        {
+            get { return _actionCssClass ?? string.Empty; }
+            set { _actionCssClass = value; }
+        }
+
         public abstract string Uri { get; }
 
         private string _text;

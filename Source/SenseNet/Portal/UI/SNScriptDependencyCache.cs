@@ -97,15 +97,12 @@ namespace SenseNet.Portal.UI
             if (line == null)
                 return null;
             
-            if (line.StartsWith("///"))
+            if (line.StartsWith("/// <depends"))
             {
                 // old way: /// <depends path="$skin/scripts/jquery/jquery.js" />
-                var exp = new Regex(@"<depends\s+path=""(?<path>.*)""\s*/>",
-                    RegexOptions.CultureInvariant | RegexOptions.IgnoreCase | RegexOptions.Compiled);
-
-                var m = exp.Match(line);
-                if (m.Success)
-                    path = m.Groups["path"].Value;
+                var startidx = line.IndexOf('"');
+                var endidx = line.LastIndexOf('"');
+                path = line.Substring(startidx + 1, endidx - startidx - 1);
             }
             else if (line.StartsWith("//"))
             {

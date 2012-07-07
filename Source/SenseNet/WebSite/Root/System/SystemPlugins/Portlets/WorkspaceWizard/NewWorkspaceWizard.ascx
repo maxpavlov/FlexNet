@@ -7,10 +7,10 @@
                     <HeaderTemplate>
                         <div class="snWsWizardHeader">
                             <h1>
-                                Sense/Net 6.0<br />
+                                Sense/Net 6.1<br />
                                 New Workspace Wizard</h1>
                             <div class="sn-logo">
-                                SenseNet 6.0</div>
+                                SenseNet 6.1</div>
                         </div>
                     </HeaderTemplate>
                     <SideBarTemplate>

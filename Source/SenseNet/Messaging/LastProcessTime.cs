@@ -51,7 +51,8 @@ namespace SenseNet.Messaging
             var ct = Configuration.DailyHour * 60 + Configuration.DailyMinute;
             var ot = origin.Hour * 60 + origin.Minute;
             var d = ct > ot ? 0 : 1;
-            return new DateTime(origin.Year, origin.Month, origin.Day + d, Configuration.DailyHour, Configuration.DailyMinute, 0);
+            var newDate = origin.AddDays(d);
+            return new DateTime(newDate.Year, newDate.Month, newDate.Day, Configuration.DailyHour, Configuration.DailyMinute, 0);
         }
 
         internal static DateTime GetNextWeeklyTimeWithoutOrigin(DateTime now)

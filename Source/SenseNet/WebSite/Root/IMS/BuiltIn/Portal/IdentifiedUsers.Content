@@ -6,13 +6,13 @@
     <Members>
       <Path>/Root/IMS/BuiltIn/Portal/Administrators</Path>
       <Path>/Root/IMS/Demo/Developers/ilguy</Path>
-      <Path>/Root/IMS/Demo/Developers/mikescroll</Path>
+      <Path>/Root/IMS/Demo/Developers/mike</Path>
       <Path>/Root/IMS/Demo/Managers/alexschmidt</Path>
       <Path>/Root/IMS/Demo/Managers/robspace</Path>
       <Path>/Root/IMS/Demo/Marketing/hxn</Path>
       <Path>/Root/IMS/Demo/Marketing/juanitavargas</Path>
       <Path>/Root/IMS/Demo/Operators/bencellery</Path>
-      <Path>/Root/IMS/Demo/ProjectManagers/albamonday</Path>
+      <Path>/Root/IMS/Demo/ProjectManagers/alba</Path>
       <Path>/Root/IMS/Demo/ProjectManagers/rupertbrown</Path>
       <Path>/Root/IMS/Demo/Sales/terrycherry</Path>
     </Members>

@@ -4,16 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Caching;
-using SenseNet.ContentRepository.Storage.Caching.Populators;
 using System.Collections;
 
 namespace SenseNet.ContentRepository.Storage.Caching
 {
     public abstract class CacheBase : ICache
     {
-        private Dictionary<Type, CacheItemPopulator> _populators =
-            new Dictionary<Type, CacheItemPopulator>();
-
         protected HttpContext _currentContext;
 
         public abstract object Get(string key);
@@ -31,40 +27,6 @@ namespace SenseNet.ContentRepository.Storage.Caching
             CacheItemRemovedCallback onRemoveCallback);
 
         public abstract void Remove(string key);
-
-        public T Get<T>(object initParam)
-        {
-            CacheItemPopulator itemPopulator = _populators[typeof(T)];
-            return (T)itemPopulator.CreateItem(initParam);
-            ////if (((IIdentity)AccessProvider.Current.GetCurrentUser()).IsAuthenticated)
-            //if (HttpContext.Current == null ||
-            //    HttpContext.Current.User == null ||
-            //    HttpContext.Current.User.Identity.IsAuthenticated
-            //    )
-            //{
-            //    return (T)itemPopulator.CreateItem(initParam);
-            //}
-
-            //string cacheKey = itemPopulator.CreateKey(initParam);
-            //object item = Get(cacheKey);
-            //if (item == null)
-            //{
-            //    item = itemPopulator.CreateItem(initParam);
-            //    CacheDependency dependencies = itemPopulator.CreateDependencies(item, initParam);
-            //    Insert(cacheKey, item, dependencies);
-            //}
-            //return (T)item;
-        }
-
-        public void AddPopulator(CacheItemPopulator populator)
-        {
-            Type itemType = populator.GetItemType();
-            if (!_populators.ContainsKey(itemType))
-            {
-                _populators[itemType] = populator;
-            }
-        }
-
 
         public abstract void Reset();
 

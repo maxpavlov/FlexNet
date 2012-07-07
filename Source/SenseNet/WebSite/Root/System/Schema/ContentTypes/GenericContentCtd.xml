@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ContentType name="GenericContent" handler="SenseNet.ContentRepository.GenericContent" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
   <DisplayName>Content</DisplayName>
-  <Description>This type is the base content type of the Sense/Net 6.0 ECMS.</Description>
+  <Description>This type is the base content type of the Sense/Net 6.1 ECMS.</Description>
   <Icon>Content</Icon>
   <Fields>
     <Field name="Id" type="Integer">
@@ -532,16 +532,6 @@
         <VisibleEdit>Hide</VisibleEdit>
         <VisibleNew>Hide</VisibleNew>
         <AllowMultiple>true</AllowMultiple>
-        <ReadOnly>true</ReadOnly>
-      </Configuration>
-    </Field>
-    <Field name="WorkflowsRunning" type="Boolean">
-      <DisplayName>Workflows Running</DisplayName>
-      <Description>True if one or more workflows are running on this content</Description>
-      <Configuration>
-        <VisibleBrowse>Hide</VisibleBrowse>
-        <VisibleEdit>Hide</VisibleEdit>
-        <VisibleNew>Hide</VisibleNew>
         <ReadOnly>true</ReadOnly>
       </Configuration>
     </Field>

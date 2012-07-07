@@ -159,9 +159,9 @@ namespace SenseNet.ContentRepository.Storage
             }
             finally
             {
-                //Cache.Clear(); // State "rollback" in cache. TODO: cache clear in cluster must be ensured.
-                //CACHE: Ez sose mûködött jól... Cache.Clear kéne.
-                DistributedApplication.Cache.Reset();
+                ////Cache.Clear(); // State "rollback" in cache. TODO: cache clear in cluster must be ensured.
+                ////CACHE: Ez sose mûködött jól... Cache.Clear kéne.
+                //DistributedApplication.Cache.Reset();
 
                 ContextHandler.SetTransaction(null);
                 ContextHandler.SetTransactionQueue(null);

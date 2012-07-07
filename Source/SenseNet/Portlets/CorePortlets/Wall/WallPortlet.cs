@@ -14,6 +14,9 @@ using SenseNet.Portal.UI.Controls;
 using SenseNet.Portal.UI.PortletFramework;
 using SenseNet.Portal.Wall;
 using System.Collections.Generic;
+using System.Text;
+using System.Web.UI.WebControls.WebParts;
+using SenseNet.Diagnostics;
 
 namespace SenseNet.Portal.Portlets.Wall
 {
@@ -28,6 +31,16 @@ namespace SenseNet.Portal.Portlets.Wall
             public string value { get; set; }
         }
 
+        // ================================================================================================ Properties
+
+        public int _pageSize = 20;
+        [WebBrowsable(true), Personalizable(true)]
+        [WebDisplayName("Page size")]
+        [WebDescription("Number of posts to show")]
+        [WebCategory("Wall", 60)]
+        [WebOrder(100)]
+        public int PageSize { get { return _pageSize; } set { _pageSize = value; } }
+
         // ================================================================================================ Members
 
         private PlaceHolder _workspaceIsWallContainer;
@@ -39,6 +52,8 @@ namespace SenseNet.Portal.Portlets.Wall
             this.Name = "Workspace wall";
             this.Description = "This portlet displays a wall with posts and comments (context bound)";
             this.Category = new PortletCategory(PortletCategoryType.Enterprise20);
+
+            this.HiddenProperties.Add("Renderer");
         }
 
         // ================================================================================================ Methods
@@ -49,6 +64,9 @@ namespace SenseNet.Portal.Portlets.Wall
             
             if (this.ContextNode == null)
                 return;
+
+            if (ShowExecutionTime)
+                Timer.Start();
 
             UITools.AddScript(UITools.ClientScriptConfigurations.SNWallPath);
             
@@ -75,12 +93,18 @@ namespace SenseNet.Portal.Portlets.Wall
             }
 
             UITools.RegisterStartupScript("initdropboxautocomplete", string.Format("SN.Wall.initDropBox({0})", jsonData), this.Page);
+
+            if (ShowExecutionTime)
+                Timer.Stop();
         }
 
         protected override void CreateChildControls()
         {
             if (this.ContextNode == null)
                 return;
+
+            if (ShowExecutionTime)
+                Timer.Start();
 
             var control = Page.LoadControl("/Root/Global/renderers/Wall/Wall.ascx");
             this.Controls.Add(control);
@@ -107,31 +131,20 @@ namespace SenseNet.Portal.Portlets.Wall
             }
 
             var postsPlaceholder = control.FindControlRecursive("Posts");
-
-            // gather posts
-            PostInfo prevPost = null;
-            foreach (var postInfo in GatherPosts())
+            
+            List<PostInfo> posts;
+            using (new OperationTrace("Wall - Gather posts"))
             {
-                // get comments for current post
-                var commentInfo = new CommentInfo(postInfo.Id);
-
-                // get likes for this post
-                var likeInfo = new LikeInfo(postInfo.Id);
-
-                var drawBoundary = (prevPost != null) && (prevPost.Type != PostType.BigPost) && (postInfo.Type == PostType.BigPost);
-
-                var markup = WallHelper.GetPostMarkup(
-                    postInfo,
-                    this.ContextNode.Path,
-                    commentInfo.HiddenCommentsMarkup,
-                    commentInfo.CommentsMarkup,
-                    commentInfo.CommentCount, 
-                    likeInfo, drawBoundary);
-
-                prevPost = postInfo;
-
-                postsPlaceholder.Controls.Add(new Literal { Text = markup });
+                var postInfos = GatherPosts();
+                posts = postInfos == null ? new List<PostInfo>() : postInfos.Take(PageSize).ToList();
             }
+            using (new OperationTrace("Wall - Posts markup"))
+            {
+                postsPlaceholder.Controls.Add(new Literal { Text = WallHelper.GetWallPostsMarkup(this.ContextNode.Path, posts) });
+            }
+
+            if (ShowExecutionTime)
+                Timer.Stop();
 
             base.CreateChildControls();
             this.ChildControlsCreated = true;

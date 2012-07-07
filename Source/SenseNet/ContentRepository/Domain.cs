@@ -1,9 +1,8 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-using  SenseNet.ContentRepository.Schema;
+using SenseNet.ContentRepository.Schema;
 using SenseNet.ContentRepository.Storage;
 using SenseNet.ContentRepository.Security.ADSync;
+using SenseNet.ContentRepository.Storage.Data;
 
 namespace SenseNet.ContentRepository
 {
@@ -12,7 +11,8 @@ namespace SenseNet.ContentRepository
     {
         [Obsolete("Use typeof(Domain).Name instead.", true)]
         public static readonly string NodeTypeName = typeof(Domain).Name;
-        public static readonly string BuiltInDomainName = "BuiltIn";
+        [Obsolete("Use RepositoryConfiguration.BuiltInDomainName instead.", true)]
+        public static readonly string BuiltInDomainName = RepositoryConfiguration.BuiltInDomainName;
 
         public Domain(Node parent) : this(parent, null) { }
         public Domain(Node parent, string nodeTypeName) : base(parent, nodeTypeName) { }
@@ -22,7 +22,7 @@ namespace SenseNet.ContentRepository
 
         public bool IsBuiltInDomain
         {
-            get { return Name == BuiltInDomainName; }
+            get { return Name == RepositoryConfiguration.BuiltInDomainName; }
         }
 
         //=================================================================================== IADSyncable Members

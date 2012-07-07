@@ -3,6 +3,7 @@
   <DisplayName>Memo</DisplayName>
   <Description>A content type for short memos or posts on a subject</Description>
   <Icon>Document</Icon>
+  <AllowIncrementalNaming>true</AllowIncrementalNaming>
   <Fields>
     <Field name="Description" type="LongText">
       <DisplayName>Body</DisplayName>

@@ -1,8 +1,8 @@
-﻿/// <depends path="$skin/scripts/sn/SN.js" />
-/// <depends path="$skin/scripts/sn/SN.Util.js" />
-/// <depends path="$skin/scripts/jquery/jquery.js" />
-/// <depends path="$skin/scripts/jqueryui/minified/jquery-ui.min.js" />
-/// <depends path="$skin/scripts/sn/SN.Picker.js" />
+﻿// using $skin/scripts/sn/SN.js
+// using $skin/scripts/sn/SN.Util.js
+// using $skin/scripts/jquery/jquery.js
+// using $skin/scripts/jqueryui/minified/jquery-ui.min.js
+// using $skin/scripts/sn/SN.Picker.js
 
 SN.Wall = {
     postDefaultText: 'Post something...',
@@ -35,6 +35,7 @@ SN.Wall = {
         autoOpen: true,
         close: function () { $(this).dialog("destroy") }
     },
+    skip: 0,
 
     // post
     createPost: function (event, $postbox) {
@@ -80,6 +81,26 @@ SN.Wall = {
         var $postDiv = $this.closest('.sn-postdiv');
         var $detailsDiv = $('.sn-postdiv-details', $postDiv);
         $detailsDiv.toggle();
+    },
+    getPosts: function ($link) {
+        var workspacePath = $('.sn-posts-workspace-path').val();
+        var pageSize = parseInt($('.sn-posts-pagesize').val());
+        SN.Wall.skip += pageSize;
+        $.getJSON('/Wall.mvc/GetPosts',
+			{
+			    contextPath: workspacePath,
+			    skip: SN.Wall.skip,
+			    pageSize: pageSize,
+			    rnd: Math.random()
+			},
+			function (o) {
+			    if (o.length > 0) {
+			        $('#sn-posts').append(o);
+			    } else {
+			        $link.hide();
+			        $('#sn-wall-nomoreposts').show();
+			    }
+			});
     },
 
 

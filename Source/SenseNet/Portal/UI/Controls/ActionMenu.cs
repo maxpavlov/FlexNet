@@ -14,6 +14,7 @@ using System.ComponentModel;
 using System.Linq;
 using SenseNet.ContentRepository.Storage.Security;
 using SenseNet.ContentRepository.Storage;
+using Content = SenseNet.ContentRepository.Content;
 
 [assembly: WebResource("SenseNet.Portal.UI.Controls.ActionMenu.js", "application/x-javascript")]
 namespace SenseNet.Portal.UI.Controls
@@ -39,6 +40,8 @@ namespace SenseNet.Portal.UI.Controls
         public bool CheckActionCount { get; set; }
         public string RequiredPermissions { get; set; }
         protected bool ClickDisabled { get; set; }
+
+        protected Content Content { get; set; }
 
         // Events //////////////////////////////////////////////////////
 
@@ -73,10 +76,13 @@ namespace SenseNet.Portal.UI.Controls
 
             base.RenderBeginTag(writer);
 
+            var title = string.Empty;
+            var overlay = OverlayVisible ? IconHelper.GetOverlay(this.Content, out title) : string.Empty;
+
             if (!String.IsNullOrEmpty(IconUrl))
-                writer.Write(IconHelper.RenderIconTagFromPath(IconUrl, 16));
+                writer.Write(IconHelper.RenderIconTagFromPath(IconUrl, overlay, 16, title));
             else if (!String.IsNullOrEmpty(IconName))
-                writer.Write(IconHelper.RenderIconTag(IconName));
+                writer.Write(IconHelper.RenderIconTag(IconName, overlay, 16, title));
         }
         
         public override void RenderEndTag(HtmlTextWriter writer)
@@ -159,6 +165,7 @@ namespace SenseNet.Portal.UI.Controls
         public string ActionName { get; set; }
         public string IconName { get; set; }
         public string IconUrl { get; set; }
+        public bool OverlayVisible { get; set; }
         
         // Internals //////////////////////////////////////////////////
         
@@ -176,14 +183,7 @@ namespace SenseNet.Portal.UI.Controls
         /// </summary>
         private void SetServiceUrl()
         {
-            var scParams = ScenarioParameters;
-
-            //backward compatibility
-            if (!string.IsNullOrEmpty(scParams) && scParams.StartsWith("{PortletID}"))
-                scParams = string.Concat("PortletID=", scParams);
-
-            scParams = TemplateManager.Replace(typeof(PortletTemplateReplacer), scParams, this);
-
+            var scParams = GetReplacedScenarioParameters();
             var context = UITools.FindContextInfo(this, ContextInfoID);
             var path = !String.IsNullOrEmpty(ContextInfoID) ? context.Path : NodePath;
 
@@ -199,6 +199,8 @@ namespace SenseNet.Portal.UI.Controls
                 return;
             }
 
+            this.Content = Content.Load(path);
+
             //Pre-check action count. If empty, hide the action menu.
             if (CheckActionCount)
             {
@@ -206,7 +208,7 @@ namespace SenseNet.Portal.UI.Controls
                 var actionCount = 0;
 
                 if (sc != null)
-                    actionCount = sc.GetActions(ContentRepository.Content.Load(path), PortalContext.Current.RequestedUri.PathAndQuery).Count();
+                    actionCount = sc.GetActions(this.Content, PortalContext.Current.RequestedUri.PathAndQuery).Count();
 
                 if (actionCount < 2 && string.Equals(Scenario, "new", StringComparison.CurrentCultureIgnoreCase))
                 {
@@ -231,6 +233,19 @@ namespace SenseNet.Portal.UI.Controls
 
             ServiceUrl = String.Format("/SmartAppHelper.mvc/GetActions?path={0}&scenario={1}&back={2}&parameters={3}",
                                             encodedPath, Scenario, encodedReturnUrl, encodedParams);
+        }
+
+        public string GetReplacedScenarioParameters()
+        {
+            var scParams = ScenarioParameters;
+            if (string.IsNullOrEmpty(scParams))
+                return scParams;
+
+            //backward compatibility
+            if (scParams.StartsWith("{PortletID}"))
+                scParams = string.Concat("PortletID=", scParams);
+
+            return TemplateManager.Replace(typeof(PortletTemplateReplacer), scParams, this);
         }
 
         internal static string GetPathFromContentView(Control parent)

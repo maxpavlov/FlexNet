@@ -11,7 +11,7 @@
     <SortBy>StartDate ASC</SortBy>
     <Flat>false</Flat>
     <DisplayName>Upcoming</DisplayName>
-    <FilterXml><![CDATA[<?xml version="1.0" encoding="utf-16"?><Query xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/QueryEditor"><ExpressionItem xsi:type="Predicate" logicalOperator="None" type="DateTimeExpression" operator="GreaterThanOrEqual"><LeftOperand>StartDate</LeftOperand><RightOperand>[Today]</RightOperand></ExpressionItem></Query>]]></FilterXml>
+    <FilterXml><![CDATA[+StartDate:>=@@CurrentMonth@@]]></FilterXml>
     <Hidden>true</Hidden>
     <Binary attachment="Upcoming.ascx" />
     <Index>0</Index>

@@ -502,7 +502,7 @@ namespace SenseNet.ContentRepository
             return sb.ToString();
         }
 
-        internal const string FIELDSUBTYPEATTRIBUTENAME = "subType";
+        public const string FIELDSUBTYPEATTRIBUTENAME = "subType";
 		internal static string GetExportName(string fieldName, out FieldSubType subType)
 		{
 			if (fieldName[0] == '#')
@@ -584,7 +584,7 @@ namespace SenseNet.ContentRepository
     }
 
     
-    internal enum FieldSubType
+    public enum FieldSubType
 	{
 		General, ContentList
 	}

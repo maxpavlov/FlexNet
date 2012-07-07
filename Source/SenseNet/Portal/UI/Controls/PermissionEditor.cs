@@ -509,6 +509,12 @@ namespace SenseNet.Portal.UI.Controls
 
         private void RefreshIdentityResults()
         {
+            ListEntries.Items.Clear();
+
+            //do not allow empty search here
+            if (SearchText.Text.Length == 0)
+                return;
+
             var ws = Workspace.GetWorkspaceForNode(ContextNode);
             var permQuery = ContentQuery.CreateQuery(string.Format("InTree:\"{0}\"", Repository.ImsFolderPath));
             if (ws != null)
@@ -541,9 +547,9 @@ namespace SenseNet.Portal.UI.Controls
             }
 
             permQuery.Settings.EnableAutofilters = false;
+            permQuery.Settings.Top = 500;
             permQuery.Settings.Sort = new List<SortInfo>() {new SortInfo {FieldName = "Name"}};
-
-            ListEntries.Items.Clear();
+            
             ListEntries.Items.AddRange((from node in permQuery.Execute().Nodes
                                         select GetListItem(node)).ToArray());
         }

@@ -18,22 +18,24 @@ namespace SenseNet.ContentRepository
 
         //========================================================== Cached data
 
-        private IEnumerable<string> cachedData;
+        private IEnumerable<string> cachedData = new List<string>();
         public IEnumerable<string> CachedData { get { return cachedData; } }
 
         private const string CACHEDAPPLICATIONDATAKEY = "CachedApplicationData";
 
-        protected override void OnLoaded(object sender, NodeEventArgs e)
-        {
-            base.OnLoaded(sender, e);
+        //removed due performance reasons
 
-            cachedData = (IEnumerable<string>)base.GetCachedData(CACHEDAPPLICATIONDATAKEY);
-            if (cachedData != null)
-                return;
+        //protected override void OnLoaded(object sender, NodeEventArgs e)
+        //{
+        //    base.OnLoaded(sender, e);
 
-            var stringData = Tools.GetStreamString(this.Binary.GetStream());
-            cachedData = stringData.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-            base.SetCachedData(CACHEDAPPLICATIONDATAKEY, cachedData);
-        }
+        //    cachedData = (IEnumerable<string>)base.GetCachedData(CACHEDAPPLICATIONDATAKEY);
+        //    if (cachedData != null)
+        //        return;
+
+        //    var stringData = Tools.GetStreamString(this.Binary.GetStream());
+        //    cachedData = stringData.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+        //    base.SetCachedData(CACHEDAPPLICATIONDATAKEY, cachedData);
+        //}
     }
 }

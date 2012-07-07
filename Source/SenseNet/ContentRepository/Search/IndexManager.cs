@@ -9,19 +9,21 @@ using Lucene.Net.Analysis.Standard;
 using SenseNet.ContentRepository.Storage.Data;
 using SenseNet.Diagnostics;
 using System.Diagnostics;
+using SenseNet.Search.Indexing;
+using SenseNet.ContentRepository.Storage;
 
 namespace SenseNet.Search
 {
     internal class CommitUserData
     {
-        public int LastTaskId;
+        public int LastActivityId;
         public List<int> Gap;
     }
 
     internal class IndexManager
     {
-        internal static readonly string LastTaskIdKey = "LastTaskId";
-        internal static readonly string MissingTasksKey = "MissingTasks";
+        internal static readonly string LastActivityIdKey = "LastActivityId";
+        internal static readonly string MissingActivitiesKey = "MissingActivities";
 
         static IndexManager()
         {
@@ -32,6 +34,7 @@ namespace SenseNet.Search
         {
             Directory dir = FSDirectory.GetDirectory(SenseNet.ContentRepository.Storage.IndexDirectory.CurrentOrDefaultDirectory, createNew);
             return new IndexWriter(dir, GetAnalyzer(), createNew, IndexWriter.MaxFieldLength.UNLIMITED);
+            //return LuceneManager.CreateIndexWriter(FSDirectory.Open(new System.IO.DirectoryInfo(IndexDirectory.CurrentOrDefaultDirectory)), createNew);
         }
 
         internal static Analyzer GetAnalyzer()
@@ -55,26 +58,27 @@ namespace SenseNet.Search
             foreach (var item in SenseNet.ContentRepository.Storage.StorageContext.Search.SearchEngine.GetAnalyzers())
                 masterAnalyzer.AddAnalyzer(item.Key, (Analyzer)Activator.CreateInstance(item.Value));
             masterAnalyzer.AddAnalyzer(LucObject.FieldName.AllText, new StandardAnalyzer());
+            //masterAnalyzer.AddAnalyzer(LucObject.FieldName.AllText, new StandardAnalyzer(SenseNet.Search.Indexing.LuceneManager.LuceneVersion));
             return masterAnalyzer;
         }
 
         internal static CommitUserData ReadCommitUserData(IndexReader reader)
         {
-            int lastTaskId = 0;
+            int lastActivityId = 0;
             var gap = new List<int>();
 
             var cud = reader.GetCommitUserData();
             if (cud != null)
             {
-                if (cud.ContainsKey(IndexManager.LastTaskIdKey))
+                if (cud.ContainsKey(IndexManager.LastActivityIdKey))
                 {
-                    var lastID = cud[IndexManager.LastTaskIdKey];
+                    var lastID = cud[IndexManager.LastActivityIdKey];
                     if (!string.IsNullOrEmpty(lastID))
-                        int.TryParse(lastID, out lastTaskId);
+                        int.TryParse(lastID, out lastActivityId);
                 }
-                if (cud.ContainsKey(IndexManager.MissingTasksKey))
+                if (cud.ContainsKey(IndexManager.MissingActivitiesKey))
                 {
-                    var gapstring = cud[IndexManager.MissingTasksKey];
+                    var gapstring = cud[IndexManager.MissingActivitiesKey];
                     int g;
                     if (!string.IsNullOrEmpty(gapstring))
                         foreach (var s in gapstring.Split(','))
@@ -82,18 +86,18 @@ namespace SenseNet.Search
                                 gap.Add(g);
                 }
             }
-            return new CommitUserData { LastTaskId = lastTaskId, Gap = gap };
+            return new CommitUserData { LastActivityId = lastActivityId, Gap = gap };
         }
-        internal static Dictionary<string, string> CreateCommitUserData(int lastTaskId)
+        internal static Dictionary<string, string> CreateCommitUserData(int lastActivityId)
         {
-            return CreateCommitUserData(lastTaskId, null);
+            return CreateCommitUserData(lastActivityId, null);
         }
-        internal static Dictionary<string, string> CreateCommitUserData(int lastTaskId, string gapString)
+        internal static Dictionary<string, string> CreateCommitUserData(int lastActivityId, string gapString)
         {
             var d = new Dictionary<string, string>();
-            d.Add(IndexManager.LastTaskIdKey, lastTaskId.ToString());
+            d.Add(IndexManager.LastActivityIdKey, lastActivityId.ToString());
             if(gapString != null)
-                d.Add(IndexManager.MissingTasksKey, gapString);
+                d.Add(IndexManager.MissingActivitiesKey, gapString);
             return d;
         }
 

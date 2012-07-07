@@ -375,8 +375,18 @@ namespace SenseNet.Portal.UI.Controls
             var modLink = prcTemplateControl.FindControlRecursive("LastModifiedLink") as System.Web.UI.WebControls.HyperLink;
             if (modLink != null)
             {
-                modLink.NavigateUrl = node.ModifiedBy.Path;
-                modLink.Text = node.ModifiedBy.Name;
+                User modifier = null;
+                try
+                {
+                    modifier = node.ModifiedBy as User;
+                }
+                catch(Exception ex)
+                {
+                    Logger.WriteException(ex);
+                }
+
+                modLink.NavigateUrl = modifier == null ? string.Empty : modifier.Path;
+                modLink.Text = modifier == null ? "unknown" : modifier.Name;
             }
 
             //Page template
@@ -701,13 +711,13 @@ namespace SenseNet.Portal.UI.Controls
             var webPartTypeName = webPart.GetType().Name;
             var title = String.Format("{0} portlet properties ({1})", webPartName, webPartTypeName);
             //var callback = String.Format(@"SN.PortalRemoteControl.showDialog('{0}', {{ autoOpen: true, width: 550, height:600, minWidth: 500, minHeight: 550, resize: SN.PortalRemoteControl.ResizePortletEditorAccordion, title:'{1}' }});", toolPanel.ClientID, title);
-            var callback = String.Format(@"SN.PortalRemoteControl.showDialog('{0}', {{ autoOpen: true, width: 550, height:600, minWidth: 500, minHeight: 550, resize: SN.PortalRemoteControl.ResizePortletEditorAccordion }});", toolPanel.ClientID);
+            var callback = String.Format(@"SN.PortalRemoteControl.showDialog('{0}', {{ autoOpen: true, width: 850, height:600, minWidth: 800, minHeight: 550, resize: SN.PortalRemoteControl.ResizePortletEditorAccordion }});", toolPanel.ClientID);
             var editorZone = page.Master.FindControlRecursive("EditorZone_Editor") as CollapsibleEditorZone;
             if (editorZone != null)
             {
                 var p = page.ClientScript.GetPostBackEventReference(editorZone, "cancel");
                 callback = String.Format(
-                    @"SN.PortalRemoteControl.showDialog('{0}', {{ autoOpen: true, width: 550, height:600, minWidth: 500, minHeight: 550, resize: SN.PortalRemoteControl.ResizePortletEditorAccordion, title:'{1}', close: function(event,ui) {{ {2}; }} }} );",
+                    @"SN.PortalRemoteControl.showDialog('{0}', {{ autoOpen: true, width: 850, height:600, minWidth: 800, minHeight: 550, resize: SN.PortalRemoteControl.ResizePortletEditorAccordion, title:'{1}', close: function(event,ui) {{ {2}; }} }} );",
                     toolPanel.ClientID, title, p);
             }
 

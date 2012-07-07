@@ -5,9 +5,9 @@
   <Fields>
     <HTMLFragment>
         <![CDATA[<p class="sn-article-content">
-    <h1 class="sn-article-title sn-content-title">Sense/Net 6.0 Community Edition</h1><pre>
+    <h1 class="sn-article-title sn-content-title">Sense/Net 6.1 Community Edition</h1><pre>
     *********************************************************************  
-    Sense/Net CMS Community Edition 6.0.8 (V6.0.8.3195)
+    Sense/Net CMS Community Edition 6.1 (V6.1.0.3723)
 
     *********************************************************************
     !!!PLEASE READ THIS DOCUMENT FROM THE BEGINNING TO THE END!!!
@@ -340,7 +340,7 @@
     and logo, and to make sure that derivative works can easily be told apart from 
     official Sense/Net distributions by simply looking at the GUI.
 
-    The GUI of Sense/Net 6.0 has the following key elements that are 
+    The GUI of Sense/Net 6.1 has the following key elements that are 
     licensed in a different way, not the GPL.
 
     -Portal Explorer, including its icons made by Sense/Net
@@ -359,7 +359,7 @@
     For these elements, Sense/Net grants you, free of charge, a revocable 
     right to use and distribute only with an unmodified installation package.
 
-    This means, that if you make derivative works of the code of Sense/Net 6.0 
+    This means, that if you make derivative works of the code of Sense/Net 6.1 
     based on the GPL license, you may not use and redistribute these files with it.
 
     Violation of the terms of the Sense/Net GUI License v1 also terminates 

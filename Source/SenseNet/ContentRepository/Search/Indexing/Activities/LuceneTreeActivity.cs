@@ -10,7 +10,7 @@ using Lucene.Net.Index;
 namespace SenseNet.Search.Indexing.Activities
 {
     [Serializable]
-    public abstract class LuceneTreeActivity : LuceneIndexingActivity
+    internal abstract class LuceneTreeActivity : LuceneIndexingActivity
     {
         public string TreeRoot
         {

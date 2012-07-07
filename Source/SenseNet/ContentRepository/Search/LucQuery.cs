@@ -417,12 +417,13 @@ namespace SenseNet.Search
                     currentQuery = this.LucQuery.Query;
                 }
 
-                //zpace
-                //var idxReader = IndexManager.GetIndexReader();
-                var idxReader = LuceneManager.IndexReader;
-
                 int totalCount;
-                var result = DoExecute(currentQuery, allVersions, idxReader, out totalCount);
+                IEnumerable<LucObject> result;
+                using (var readerFrame = LuceneManager.GetIndexReaderFrame())
+                {
+                    var idxReader = readerFrame.IndexReader;
+                    result = DoExecute(currentQuery, allVersions, idxReader, out totalCount);
+                }
 
                 TotalCount = totalCount;
 
@@ -488,8 +489,8 @@ namespace SenseNet.Search
                     FinishKernelTime();
                     BeginCollectingTime();
                     topDocs = collector.TopDocs();
-                    totalCount = topDocs.totalHits;
-                    hits = topDocs.scoreDocs;
+                    totalCount = topDocs.TotalHits;
+                    hits = topDocs.ScoreDocs;
                     FinishCollectingTime();
                 }
                 else
@@ -500,8 +501,8 @@ namespace SenseNet.Search
                     FinishKernelTime();
                     BeginCollectingTime();
                     topDocs = collector.TopDocs();
-                    totalCount = topDocs.totalHits;
-                    hits = topDocs.scoreDocs;
+                    totalCount = topDocs.TotalHits;
+                    hits = topDocs.ScoreDocs;
                     FinishCollectingTime();
                 }
                 BeginPagingTime();
@@ -554,7 +555,7 @@ namespace SenseNet.Search
 
             foreach (var hit in hits)
             {
-                Document doc = searcher.Doc(hit.doc);
+                Document doc = searcher.Doc(hit.Doc);
                 if (allVersions || IsPermitted(doc, user, isCurrentUser))
                 {
                     if (++count >= startIndex)
@@ -614,9 +615,13 @@ namespace SenseNet.Search
                 searcher.Search(query, collector);
                 FinishKernelTime();
                 BeginCollectingTime();
-                var topDocs = collector.TopDocs(start, howMany);
-                totalCount = topDocs.totalHits;
-                var hits = topDocs.scoreDocs;
+                //var topDocs = collector.TopDocs(start, howMany);
+                var topDocs = (this.LucQuery.SortFields.Length > 0) ?
+                    ((TopFieldCollector)collector).TopDocs(start, howMany) :
+                    ((TopScoreDocCollector)collector).TopDocs(start, howMany);
+
+                totalCount = topDocs.TotalHits;
+                var hits = topDocs.ScoreDocs;
                 FinishCollectingTime();
                 //====================================================
 
@@ -630,8 +635,12 @@ namespace SenseNet.Search
                     numHits = numDocs - start;
                     collector = CreateCollector(numHits);
                     searcher.Search(query, collector);
-                    topDocs = collector.TopDocs(start);
-                    hits = topDocs.scoreDocs;
+                    //topDocs = collector.TopDocs(start);
+                    topDocs = (this.LucQuery.SortFields.Length > 0) ?
+                        ((TopFieldCollector)collector).TopDocs(start, howMany) :
+                        ((TopScoreDocCollector)collector).TopDocs(start, howMany);
+
+                    hits = topDocs.ScoreDocs;
                     result = GetResultPage(hits, searcher, top, allVersions, out noMoreHits);
                 }
 
@@ -653,7 +662,7 @@ namespace SenseNet.Search
                 FinishFullExecutingTime();
             }
         }
-        protected TopDocsCollector CreateCollector(int numHits)
+        protected Collector CreateCollector(int numHits)
         {
             var docsScoredInOrder = false;
             if (this.LucQuery.SortFields.Length > 0)
@@ -662,9 +671,9 @@ namespace SenseNet.Search
                 var fillFields = false;
                 var trackDocScores = true;
                 var trackMaxScore = false;
-                return TopFieldCollector.create(sort, numHits, fillFields, trackDocScores, trackMaxScore, docsScoredInOrder);
+                return TopFieldCollector.Create(sort, numHits, fillFields, trackDocScores, trackMaxScore, docsScoredInOrder);
             }
-            return TopScoreDocCollector.create(numHits, docsScoredInOrder);
+            return TopScoreDocCollector.Create(numHits, docsScoredInOrder);
         }
         protected IEnumerable<LucObject> GetResultPage(ScoreDoc[] hits, Searcher searcher, int howMany, bool allVersions, out bool noMoreHits)
         {
@@ -683,7 +692,7 @@ namespace SenseNet.Search
             var index = 0;
             while (true)
             {
-                Document doc = searcher.Doc(hits[index].doc);
+                Document doc = searcher.Doc(hits[index].Doc);
                 if (allVersions || IsPermitted(doc, user, isCurrentUser))
                 {
                     result.Add(new LucObject(doc));
@@ -765,7 +774,11 @@ namespace SenseNet.Search
                 searcher.Search(query, collector);
                 FinishKernelTime();
                 BeginCollectingTime();
-                totalCount = collector.GetTotalHits();
+                //totalCount = collector.GetTotalHits();
+                totalCount = (this.LucQuery.SortFields.Length > 0) ?
+                    ((TopFieldCollector)collector).GetTotalHits() :
+                    ((TopScoreDocCollector)collector).GetTotalHits();
+
                 FinishCollectingTime();
                 //====================================================
 
@@ -835,19 +848,22 @@ namespace SenseNet.Search
                     currentQuery = this.LucQuery.Query;
                 }
 
-                var idxReader = LuceneManager.IndexReader;
-
-                BeginFullExecutingTime();
+                //var idxReader = LuceneManager.IndexReader;
                 SearchResult r = null;
-                try
+                using (var readerFrame = LuceneManager.GetIndexReaderFrame())
                 {
-                    r = DoExecute(currentQuery, allVersions, idxReader, timer);
-                }
-                finally
-                {
-                    FinishFullExecutingTime();
-                }
+                    var idxReader = readerFrame.IndexReader;
 
+                    BeginFullExecutingTime();
+                    try
+                    {
+                        r = DoExecute(currentQuery, allVersions, idxReader, timer);
+                    }
+                    finally
+                    {
+                        FinishFullExecutingTime();
+                    }
+                }
                 TotalCount = r.totalCount;
 
                 var searchtimer = r.searchTimer;
@@ -997,9 +1013,19 @@ namespace SenseNet.Search
             t.FinishKernelTime();
 
             t.BeginCollectingTime();
-            var topDocs = p.useHowMany ? collector.TopDocs(p.skip, p.howMany) : collector.TopDocs(p.skip);
-            r.totalCount = topDocs.totalHits;
-            var hits = topDocs.scoreDocs;
+            //var topDocs = p.useHowMany ? collector.TopDocs(p.skip, p.howMany) : collector.TopDocs(p.skip);
+            TopDocs topDocs = null;
+            if (this.LucQuery.SortFields.Length > 0)
+            {
+                topDocs = p.useHowMany ? ((TopFieldCollector)collector).TopDocs(p.skip, p.howMany) : ((TopFieldCollector)collector).TopDocs(p.skip);
+            }
+            else
+            {
+                topDocs = p.useHowMany ? ((TopScoreDocCollector)collector).TopDocs(p.skip, p.howMany) : ((TopScoreDocCollector)collector).TopDocs(p.skip);
+            }
+            r.totalCount = topDocs.TotalHits;
+            var hits = topDocs.ScoreDocs;
+
             t.FinishCollectingTime();
 
             t.BeginPagingTime();
@@ -1008,7 +1034,7 @@ namespace SenseNet.Search
 
             return r;
         }
-        private TopDocsCollector CreateCollector(int size)
+        private Collector CreateCollector(int size)
         {
             var docsScoredInOrder = false;
             if (this.LucQuery.SortFields.Length > 0)
@@ -1017,9 +1043,9 @@ namespace SenseNet.Search
                 var fillFields = false;
                 var trackDocScores = true;
                 var trackMaxScore = false;
-                return TopFieldCollector.create(sort, size, fillFields, trackDocScores, trackMaxScore, docsScoredInOrder);
+                return TopFieldCollector.Create(sort, size, fillFields, trackDocScores, trackMaxScore, docsScoredInOrder);
             }
-            return TopScoreDocCollector.create(size, docsScoredInOrder);
+            return TopScoreDocCollector.Create(size, docsScoredInOrder);
         }
         private void GetResultPage(ScoreDoc[] hits, SearchParams p, SearchResult r)
         {
@@ -1034,7 +1060,7 @@ namespace SenseNet.Search
             var index = 0;
             while (true)
             {
-                Document doc = p.searcher.Doc(hits[index].doc);
+                Document doc = p.searcher.Doc(hits[index].Doc);
                 if (p.allVersions || IsPermitted(doc, p.user, p.isCurrentUser))
                 {
                     result.Add(new LucObject(doc));

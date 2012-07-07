@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" Inherits="SenseNet.Portal.UI.SingleContentView" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" Inherits="SenseNet.Portal.UI.SingleContentView" EnableViewState="false" %>
 
 
   <span style='font-size:10.0pt;font-family:"Tahoma","sans-serif"'><b>From: </b><sn:ShortText ID="From" runat="server" FieldName="From" /></span><br/>

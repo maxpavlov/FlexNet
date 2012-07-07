@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using SenseNet.ContentRepository.Storage.Data;
 
 namespace SenseNet.ContentRepository.Storage.Security
 {
@@ -28,7 +29,7 @@ namespace SenseNet.ContentRepository.Storage.Security
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "value", Justification = "Interface implementation")]
         public string Domain
         {
-            get { return "BuiltIn"; }
+            get { return RepositoryConfiguration.BuiltInDomainName; }
             set { throw new InvalidOperationException("You cannot set a property of the SYSTEM user."); }
         }
         public string Email

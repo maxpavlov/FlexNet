@@ -10,18 +10,20 @@ namespace SenseNet.ContentRepository.Storage.Data
         void Open();
         void Close();
 
+        void InsertNodeAndVersionRows(NodeData nodeData, out int lastMajorVersionId, out int lastMinorVersionId);
+
         //============================================================================ Node Insert/Update
 
         void UpdateSubTreePath(string oldPath, string newPath);
-        int InsertNodeRow(NodeData nodeData);
+        //int InsertNodeRow(NodeData nodeData);
         void UpdateNodeRow(NodeData nodeData);
 
         //============================================================================ Version Insert/Update
 
-        int InsertVersionRow(NodeData nodeData);
-        void UpdateVersionRow(NodeData nodeData);
-        void CopyAndUpdateVersion(NodeData nodeData, int previousVersionId);
-        void CopyAndUpdateVersion(NodeData nodeData, int previousVersionId, int destinationVersionId);
+        //int InsertVersionRow(NodeData nodeData);
+        void UpdateVersionRow(NodeData nodeData, out int lastMajorVersionId, out int lastMinorVersionId);
+        void CopyAndUpdateVersion(NodeData nodeData, int previousVersionId, out int lastMajorVersionId, out int lastMinorVersionId);
+        void CopyAndUpdateVersion(NodeData nodeData, int previousVersionId, int destinationVersionId, out int lastMajorVersionId, out int lastMinorVersionId);
 
         //============================================================================ Property Insert/Update
 
@@ -31,7 +33,7 @@ namespace SenseNet.ContentRepository.Storage.Data
         void SaveCurrencyProperty(int versionId, PropertyType propertyType, decimal value);
         void SaveTextProperty(int versionId, PropertyType propertyType, bool isLoaded, string value);
         void SaveReferenceProperty(int versionId, PropertyType propertyType, IEnumerable<int> value);
-        int InsertBinaryProperty(int versionId, int propertyTypeId, BinaryDataValue value);
+        int InsertBinaryProperty(int versionId, int propertyTypeId, BinaryDataValue value, bool isNewNode);
         void UpdateBinaryProperty(int binaryDataId, BinaryDataValue value);
         void DeleteBinaryProperty(int versionId, PropertyType propertyType);
 

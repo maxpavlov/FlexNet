@@ -19,6 +19,8 @@ namespace SenseNet.ContentRepository.Tests.ContentHandlers
 		public EventTestNode(Node parent, string nodeTypeName) : base(parent, nodeTypeName) { }
 		protected EventTestNode(NodeToken token) : base(token) { }
 
+        public override bool IsContentType { get { return false; } }
+
 		protected override void OnCreating(object sender, CancellableNodeEventArgs e)
 		{
 			if (e.SourceNode.Index == 0)

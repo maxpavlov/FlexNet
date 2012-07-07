@@ -15,8 +15,8 @@ namespace SenseNet.Services.WebDav
     {
         public static void TransformContentType(Node node, HttpContext context, object extension)
         {
-            string traceMessage = string.Concat("   TRANSFORM CTD: ", node.Name, Environment.NewLine);
-            System.Diagnostics.Trace.Write(traceMessage);
+            //string traceMessage = string.Concat("   TRANSFORM CTD: ", node.Name, Environment.NewLine);
+            //System.Diagnostics.Trace.Write(traceMessage);
 
             Stream outputStream = context.Response.OutputStream;
             var content = Content.Load(node.Path);
@@ -30,8 +30,8 @@ namespace SenseNet.Services.WebDav
 
         public static void TransformContent(Node node, HttpContext context, object extension)
         {
-            var traceMessage = string.Concat("   TRANSFORM content: ", node.Name, Environment.NewLine);
-            System.Diagnostics.Trace.Write(traceMessage);
+            //var traceMessage = string.Concat("   TRANSFORM content: ", node.Name, Environment.NewLine);
+            //System.Diagnostics.Trace.Write(traceMessage);
 
             var outputStream = context.Response.OutputStream;
 			var content = Content.Load(node.Path);
@@ -65,8 +65,8 @@ namespace SenseNet.Services.WebDav
 
         public static void TransformFile(Node node, HttpContext context, object extension)
         {
-            var traceMessage = string.Concat("   TRANSFORMFILE: ", node.Name, Environment.NewLine);
-            System.Diagnostics.Trace.Write(traceMessage);
+            //var traceMessage = string.Concat("   TRANSFORMFILE: ", node.Name, Environment.NewLine);
+            //System.Diagnostics.Trace.Write(traceMessage);
 
             var f = node as IFile;
             var binaryPropertyName = extension.ToString();

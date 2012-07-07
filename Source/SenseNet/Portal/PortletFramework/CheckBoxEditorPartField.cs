@@ -36,6 +36,7 @@ namespace SenseNet.Portal.UI.PortletFramework
             string htmlPart = @"<div class=""{0}"" id=""{1}"">";
             writer.Write(String.Format(htmlPart, EditorPartCssClass, clientId));
             RenderTitle(writer);
+            CssClass = "checkbox";
 
             writer.Write(String.Format(@"<div class=""{0}"">", ControlWrapperCssClass));
             base.Render(writer);

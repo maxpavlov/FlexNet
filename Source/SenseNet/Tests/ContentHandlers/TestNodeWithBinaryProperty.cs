@@ -14,6 +14,8 @@ namespace SenseNet.ContentRepository.Tests.ContentHandlers
 			</ContentType>
 			";
 
+        public override bool IsContentType { get { return false; } }
+
 		public TestNodeWithBinaryProperty(Node parent) : base(parent, "RepositoryTest_TestNodeWithBinaryProperty") { }
 		protected TestNodeWithBinaryProperty(NodeToken token) : base(token) { }
 

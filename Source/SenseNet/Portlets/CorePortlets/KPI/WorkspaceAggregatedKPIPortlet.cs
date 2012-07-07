@@ -21,7 +21,7 @@ namespace SenseNet.Portal.Portlets
             Category = new PortletCategory(PortletCategoryType.Collection);
 
             this.HiddenPropertyCategories = new List<string>() { EditorCategory.Collection, EditorCategory.ContextBinding };
-            this.HiddenProperties = new List<string>() { "SkinPreFix", "Renderer" };
+            this.HiddenProperties.AddRange(new[] { "SkinPreFix", "Renderer" });
         }
 
         //====================================================================== Properties

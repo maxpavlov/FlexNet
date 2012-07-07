@@ -170,7 +170,7 @@ namespace SenseNet.ContentRepository.Tests
 			Node.Move(null, TestRoot.Path);
 		}
 		[TestMethod]
-		[ExpectedException(typeof(InvalidPathException))]
+        [ExpectedException(typeof(InvalidOperationException))]
 		public void Move_InvalidSourcePath()
 		{
 			Node.Move(string.Empty, TestRoot.Path);
@@ -182,7 +182,7 @@ namespace SenseNet.ContentRepository.Tests
 			Node.Move(TestRoot.Path, null);
 		}
 		[TestMethod]
-		[ExpectedException(typeof(InvalidPathException))]
+        [ExpectedException(typeof(InvalidOperationException))]
 		public void Move_InvalidTargetPath()
 		{
 			Node.Move(TestRoot.Path, string.Empty);
@@ -220,7 +220,7 @@ namespace SenseNet.ContentRepository.Tests
 			EnsureNode("[TestRoot]/Source/N1/N2");
 			EnsureNode("[TestRoot]/Source/N3");
 			EnsureNode("[TestRoot]/Target");
-			MoveNode("[TestRoot]/Source", "[TestRoot]/Target");
+			MoveNode("[TestRoot]/Source", "[TestRoot]/Target", true);
 			Assert.IsNotNull(LoadNode("[TestRoot]/Target/Source/N1"), "#1");
 			Assert.IsNotNull(LoadNode("[TestRoot]/Target/Source/N1/N2"), "#2");
 			Assert.IsNotNull(LoadNode("[TestRoot]/Target/Source/N3"), "#3");
@@ -337,7 +337,7 @@ namespace SenseNet.ContentRepository.Tests
 			try
 			{
 				lockedNode.Lock.Lock();
-				MoveNode("[TestRoot]/Source", "[TestRoot]/Target");
+				MoveNode("[TestRoot]/Source", "[TestRoot]/Target", true);
 			}
 			finally
 			{
@@ -382,7 +382,7 @@ namespace SenseNet.ContentRepository.Tests
                 sourceNode.Security.SetPermission(visitor, true, PermissionType.Delete, PermissionValue.Allow);
                 targetNode.Security.SetPermission(visitor, true, PermissionType.AddNew, PermissionValue.Allow);
 				AccessProvider.Current.SetCurrentUser(visitor);
-				MoveNode("[TestRoot]/Source", "[TestRoot]/Target");
+				MoveNode("[TestRoot]/Source", "[TestRoot]/Target", true);
 			}
 			finally
 			{
@@ -558,7 +558,7 @@ namespace SenseNet.ContentRepository.Tests
             ((GenericContent)LoadNode("[TestRoot]/Source/M1")).CheckOut();
             EnsureNode("[TestRoot]/Target");
 
-            MoveNode("[TestRoot]/Source", "[TestRoot]/Target");
+            MoveNode("[TestRoot]/Source", "[TestRoot]/Target", true);
 
             var result = ContentQuery.Query(String.Format("InTree:'{0}' .AUTOFILTERS:OFF", DecodePath("[TestRoot]/Target")));
             var paths = result.Nodes.Select(n => n.Path).ToArray();
@@ -984,7 +984,7 @@ namespace SenseNet.ContentRepository.Tests
 			Node.Copy(null, TestRoot.Path);
 		}
 		[TestMethod]
-		[ExpectedException(typeof(InvalidPathException))]
+        [ExpectedException(typeof(InvalidOperationException))]
 		public void Copy_InvalidSourcePath()
 		{
 			Node.Copy(string.Empty, TestRoot.Path);
@@ -996,7 +996,7 @@ namespace SenseNet.ContentRepository.Tests
 			Node.Copy(TestRoot.Path, null);
 		}
 		[TestMethod]
-		[ExpectedException(typeof(InvalidPathException))]
+        [ExpectedException(typeof(InvalidOperationException))]
 		public void Copy_InvalidTargetPath()
 		{
 			Node.Copy(TestRoot.Path, string.Empty);
@@ -1863,12 +1863,25 @@ namespace SenseNet.ContentRepository.Tests
 				} while (lastUnlockedId != 0);
 			}
 		}
-		private void MoveNode(string encodedSourcePath, string encodedTargetPath)
+
+	    private void MoveNode(string encodedSourcePath, string encodedTargetPath, bool clearTarget = false)
 		{
 			string sourcePath = DecodePath(encodedSourcePath);
 			string targetPath = DecodePath(encodedTargetPath);
 			int sourceId = Node.LoadNode(sourcePath).Id;
 			int targetId = Node.LoadNode(targetPath).Id;
+
+            //make sure target does not contain the source node
+            if (clearTarget)
+            {
+                var sourceName = RepositoryPath.GetFileNameSafe(sourcePath);
+                if (!string.IsNullOrEmpty(sourceName))
+                {
+                    var targetPathWithName = RepositoryPath.Combine(targetPath, sourceName);
+                    if (Node.Exists(targetPathWithName))
+                        Node.ForceDelete(targetPathWithName);
+                }
+            }
 
 			Node.Move(sourcePath, targetPath);
 

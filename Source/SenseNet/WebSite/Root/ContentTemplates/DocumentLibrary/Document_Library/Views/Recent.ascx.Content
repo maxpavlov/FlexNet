@@ -8,10 +8,9 @@
     </Template>
     <Columns>
       <![CDATA[<Columns>
-      <Column title="Locked" fullName="GenericContent.Locked" bindingName="GenericContent_Locked" modifiers="lock" width="62" hAlign="Center" index="1" />
-  <Column title="Name" fullName="GenericContent.DisplayName" bindingName="GenericContent_DisplayName" index="2" modifiers="main" />
-  <Column title="Modification date" fullName="GenericContent.ModificationDate" bindingName="GenericContent_ModificationDate" index="3" />
-  <Column title="Modified by" fullName="GenericContent.ModifiedBy" bindingName="GenericContent_ModifiedBy" index="4" />
+  <Column title="Name" fullName="GenericContent.DisplayName" bindingName="GenericContent_DisplayName" index="1" modifiers="main" />
+  <Column title="Modification date" fullName="GenericContent.ModificationDate" bindingName="GenericContent_ModificationDate" index="2" />
+  <Column title="Modified by" fullName="GenericContent.ModifiedBy" bindingName="GenericContent_ModifiedBy" index="3" />
 </Columns>]]></Columns>
     <SortBy>ModificationDate DESC</SortBy>
     

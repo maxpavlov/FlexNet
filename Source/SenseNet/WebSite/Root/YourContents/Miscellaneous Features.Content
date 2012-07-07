@@ -3,7 +3,8 @@
   <ContentType>HTMLContent</ContentType>
   <ContentName>Miscellaneous Features</ContentName>
   <Fields>
-    <HTMLFragment><![CDATA[<div class="sn-feature-content ui-helper-clearfix">
+    <HTMLFragment>
+    <![CDATA[<div class="sn-feature-content ui-helper-clearfix">
   <div class="sn-feature">
     <div class="sn-feature-border">
       <div class="sn-feature-body">
@@ -26,7 +27,7 @@
             <a href="/features/search?text=About" title="Go to search demo"><div class="sn-feature-img-overlay"></div><img src="/Root/YourContents/Images/ss_search.jpg" alt="Go to search demo" /></a>
           </div>
           <div class="sn-feature-shadow">&#160;</div>
-          <p>Discover the Sense/Net 6.0 search engine, and put it to the test! We guarantee that you will be amazed by its speed. Try any common word as a search expression, you won’t be disappointed!<br /><a class="SN_Hover" href="/features/search?text=About" title="Go to search demo">&#187; Search demo</a></p>
+          <p>Discover the Sense/Net 6.1 search engine, and put it to the test! We guarantee that you will be amazed by its speed. Try any common word as a search expression, you won’t be disappointed!<br /><a class="SN_Hover" href="/features/search?text=About" title="Go to search demo">&#187; Search demo</a></p>
       </div>
     </div>
     <div class="sn-feature-footer"><div class="sn-feature-footer-bl"></div><div class="sn-feature-footer-br"></div></div>
@@ -73,7 +74,19 @@
     </div>
     <div class="sn-feature-footer"><div class="sn-feature-footer-bl"></div><div class="sn-feature-footer-br"></div></div>
   </div>
-
+<div class="sn-feature-last">
+    <div class="sn-feature-border">
+      <div class="sn-feature-body">
+          <h2 class="sn-feature-title"><a href="/features/form/" title="Go to form demo">Organization Chart</a></h2>
+          <div class="sn-feature-img-border">
+            <a href="/features/organizationchart/" title="Go to organization chart demo"><div class="sn-feature-img-overlay"></div><img src="/Root/YourContents/Images/ss_orgchart.jpg" alt="Go to organization chart demo" /></a>
+          </div>
+          <div class="sn-feature-shadow">&#160;</div>
+          <p>Organization chart<br /><a class="SN_Hover" href="/features/form/" title="Go to organization chart demo">&#187; Organization chart demo</a></p>
+      </div>
+    </div>
+    <div class="sn-feature-footer"><div class="sn-feature-footer-bl"></div><div class="sn-feature-footer-br"></div></div>
+  </div>
 
 </div>
 ]]></HTMLFragment>

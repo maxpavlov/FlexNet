@@ -5,6 +5,7 @@ using SenseNet.ContentRepository.Storage;
 using SenseNet.ContentRepository.Versioning;
 using SenseNet.ContentRepository.Storage.Schema;
 using SenseNet.ContentRepository.Schema;
+using SenseNet.ContentRepository.Storage.Data;
 
 namespace SenseNet.ContentRepository
 {
@@ -113,7 +114,13 @@ namespace SenseNet.ContentRepository
             //-- Unlock
             this.LockerUserId = 0;
         }
+        
         public void UndoCheckOut()
+        {
+            UndoCheckOut(true);
+        }
+
+        public void UndoCheckOut(bool forceRefresh = true)
         {
             NeedToSaveData = false;
             AssertValidAction(StateAction.UndoCheckOut);
@@ -135,6 +142,7 @@ namespace SenseNet.ContentRepository
             DeletableVersionIds.Add(deletableNodeVersion.VersionId);
 
             LockerUserId = 0;
+            ForceRefresh = forceRefresh;
         }
         public void Publish()
         {
@@ -346,11 +354,12 @@ namespace SenseNet.ContentRepository
                     Node.Save(this);
                     break;
                 }
-                catch (SenseNet.ContentRepository.Storage.Data.NodeAlreadyExistsException)
+                catch (Storage.Data.NodeAlreadyExistsException)
                 {
                     if (!autoNamingAllowed)
                         throw;
-                    this.Node.Name = ContentNamingHelper.IncrementNameSuffix(this.Node.Name);
+
+                    this.Node.Name = ContentNamingHelper.IncrementNameSuffixToLastName(Node.Name, Node.ParentId);
                 }
             }
         }

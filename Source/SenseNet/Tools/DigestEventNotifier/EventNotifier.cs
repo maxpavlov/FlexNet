@@ -13,7 +13,6 @@ namespace SenseNet.Portal.ContentExplorer
     /// </summary>
     public static class EventNotifier
     {
-        private const string DefaultEmailSenderAppsettingKey = "DefaultEmailSender";
         private const string MailHostAppsettingKey = "SMTP";
 
         /// <summary>
@@ -83,9 +82,7 @@ namespace SenseNet.Portal.ContentExplorer
                         var sc = new SmtpClient(emailHost);
                         var from = regForm.EmailFrom;
                         if (string.IsNullOrEmpty(from))
-                            from = System.Web.Configuration.WebConfigurationManager.AppSettings[DefaultEmailSenderAppsettingKey];
-
-
+                            from = Repository.EmailSenderAddress;
 
                         var emailList = String.Empty;
                         if (!String.IsNullOrEmpty(regForm.EmailList))

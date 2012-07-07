@@ -1564,7 +1564,7 @@ namespace SenseNet.ContentRepository.Tests.Security
             if (readOnlyMask == null)
                 readOnlyMask = initial.Replace("+", "r").Replace("-", "r");
 
-            Trace.WriteLine(String.Format("@> TEST #{0}: {1} | {2} | {3} | {4}", operationNumber, initial, readOnlyMask, set, expected));
+            //Trace.WriteLine(String.Format("@> TEST #{0}: {1} | {2} | {3} | {4}", operationNumber, initial, readOnlyMask, set, expected));
 
             var node = TestRoot;
             var visitor = User.Visitor;

@@ -17,7 +17,8 @@ namespace SenseNet.Portal.UI.PortletFramework
         ViewFrame,
         Icon,
         Css,
-        Js
+        Js,
+        FirstManager
     }
 
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
@@ -49,6 +50,8 @@ namespace SenseNet.Portal.UI.PortletFramework
         /// </summary>
         public string TargetField { get; set; }
 
+        public PortletBase.PortletViewType ViewType { get; private set; }
+
 
         /* ================================================================================================================= Common constructors */
         public ContentPickerEditorPartOptions()
@@ -61,18 +64,22 @@ namespace SenseNet.Portal.UI.PortletFramework
                 case ContentPickerCommonType.Renderer:
                     TreeRoots = "/Root/Global/renderers;/Root/System/Renderers;/Root/Global/contentviews;/Root/Skins;/Root/System/SystemPlugins;/Root";
                     AllowedContentTypes = "File;Folder";
+                    ViewType = PortletBase.PortletViewType.Ascx;
                     break;
                 case ContentPickerCommonType.Ascx:
                     TreeRoots = "/Root/Global/renderers;/Root/System/Renderers;/Root/Global/contentviews;/Root/Skins;/Root/System/SystemPlugins;/Root";
                     AllowedContentTypes = "File;Folder";
+                    ViewType = PortletBase.PortletViewType.Ascx;
                     break;
                 case ContentPickerCommonType.ContentView:
                     TreeRoots = "/Root/Global/contentviews;/Root/Skins;/Root";
                     AllowedContentTypes = "File;Folder";
+                    ViewType = PortletBase.PortletViewType.Ascx;
                     break;
                 case ContentPickerCommonType.ViewFrame:
                     TreeRoots = "/Root/System/SystemPlugins/ListView;/Root";
                     AllowedContentTypes = "File;Folder";
+                    ViewType = PortletBase.PortletViewType.Ascx;
                     break;
                 case ContentPickerCommonType.Icon:
                     TreeRoots = "/Root/Global/images/icons/16;/Root";
@@ -86,7 +93,20 @@ namespace SenseNet.Portal.UI.PortletFramework
                     TreeRoots = "/Root/Global/scripts;/Root/Skins;/Root";
                     AllowedContentTypes = "File;Folder";
                     break;
+                case ContentPickerCommonType.FirstManager:
+                    TreeRoots = "/Root/IMS";
+                    AllowedContentTypes = "User";
+                    break;
             }
+        }
+        public ContentPickerEditorPartOptions(PortletBase.PortletViewType viewType) : this(ContentPickerCommonType.Renderer)
+        {
+            ViewType = viewType;
+        }
+        public ContentPickerEditorPartOptions(ContentPickerCommonType commonType, PortletBase.PortletViewType viewType)
+            : this(commonType)
+        {
+            ViewType = viewType;
         }
     }
 }

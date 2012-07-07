@@ -7,6 +7,7 @@ using SenseNet.ContentRepository.Storage;
 using SenseNet.ContentRepository.Storage.Schema;
 using SenseNet.ContentRepository.Versioning;
 using SenseNet.Portal;
+using SenseNet.ContentRepository.Storage.Data;
 
 namespace SenseNet.ContentRepository.Tests
 {
@@ -1099,6 +1100,152 @@ namespace SenseNet.ContentRepository.Tests
 
 			test.Reject();
 		}
+
+		//-------------------------------------------------------------------- Others ----------------
+
+        [TestMethod()]
+        public void GenericContent_MajorAndMinor_CheckoutSaveCheckin_BinaryData()
+        {
+            //--------------------------------------------- prepare
+
+            var folderContent = Content.CreateNew("Folder", TestRoot, Guid.NewGuid().ToString());
+            var folder = (Folder)folderContent.ContentHandler;
+            folder.InheritableVersioningMode = InheritableVersioningType.MajorAndMinor;
+            folder.Save();
+
+            var fileContent = Content.CreateNew("File", folder, null);
+            var file = (File)fileContent.ContentHandler;
+
+            var stream = Tools.GetStreamFromString("asdf qwer yxcv");
+            var binaryData = new BinaryData { ContentType = "text/plain", FileName = "1.txt", Size = stream.Length };
+            binaryData.SetStream(stream);
+
+            file.SetBinary("Binary", binaryData);
+            file.Save();
+
+            var fileId = file.Id;
+
+            //--------------------------------------------- operating
+
+            file = Node.Load<File>(fileId);
+            file.CheckOut();
+
+            file = Node.Load<File>(fileId);
+            file.Binary.SetStream(Tools.GetStreamFromString("asdf qwer yxcv 123"));
+            file.Save();
+
+            file = Node.Load<File>(fileId);
+            file.CheckIn();
+
+            file = Node.Load<File>(fileId);
+            var s = Tools.GetStreamString(file.Binary.GetStream());
+
+            Assert.IsTrue(s == "asdf qwer yxcv 123");
+        }
+
+        [TestMethod()]
+        public void GenericContent_None_CheckoutSaveCheckin_BinaryData()
+        {
+            //--------------------------------------------- prepare
+
+            var folderContent = Content.CreateNew("Folder", TestRoot, Guid.NewGuid().ToString());
+            var folder = (Folder)folderContent.ContentHandler;
+            folder.InheritableVersioningMode = InheritableVersioningType.None;
+            folder.Save();
+
+            var fileContent = Content.CreateNew("File", folder, null);
+            var file = (File)fileContent.ContentHandler;
+
+            var stream = Tools.GetStreamFromString("asdf qwer yxcv");
+            var binaryData = new BinaryData { ContentType = "text/plain", FileName = "1.txt", Size = stream.Length };
+            binaryData.SetStream(stream);
+
+            file.SetBinary("Binary", binaryData);
+            file.Save();
+
+            var fileId = file.Id;
+
+            //--------------------------------------------- operating
+
+            file = Node.Load<File>(fileId);
+            file.CheckOut();
+
+            file = Node.Load<File>(fileId);
+            file.Binary.SetStream(Tools.GetStreamFromString("asdf qwer yxcv 123"));
+            file.Save();
+
+            file = Node.Load<File>(fileId);
+            file.CheckIn();
+
+            file = Node.Load<File>(fileId);
+            var s = Tools.GetStreamString(file.Binary.GetStream());
+
+            Assert.IsTrue(s == "asdf qwer yxcv 123");
+        }
+        [TestMethod()]
+        public void GenericContent_None_CheckoutSaveCheckin_BinaryData_OfficeProtocolBug()
+        {
+            //--------------------------------------------- prepare
+
+            var folderContent = Content.CreateNew("Folder", TestRoot, Guid.NewGuid().ToString());
+            var folder = (Folder)folderContent.ContentHandler;
+            folder.InheritableVersioningMode = InheritableVersioningType.None;
+            folder.Save();
+
+            var fileContent = Content.CreateNew("File", folder, null);
+            var file = (File)fileContent.ContentHandler;
+
+            var stream2 = Tools.GetStreamFromString("asdf qwer yxcv");
+            var binaryData = new BinaryData { ContentType = "text/plain", FileName = "1.txt", Size = stream2.Length };
+            binaryData.SetStream(stream2);
+
+            file.SetBinary("Binary", binaryData);
+            file.Save();
+
+            var fileId = file.Id;
+
+            //--------------------------------------------- operating
+
+            var node = Node.LoadNode(fileId);
+            var gc = node as GenericContent;
+            gc.CheckOut();
+
+            // save
+            var node2 = Node.LoadNode(fileId);
+            using (var stream = new System.IO.MemoryStream())
+            {
+                using (var streamwriter = new System.IO.StreamWriter(stream))
+                {
+                    streamwriter.Write("asdf qwer yxcv 123");
+                    streamwriter.Flush();
+                    stream.Seek(0, System.IO.SeekOrigin.Begin);
+
+                    ((BinaryData)node2["Binary"]).SetStream(stream);
+
+                    node2.Save();
+                }
+            }
+
+            // load
+            var node3 = Node.LoadNode(fileId);
+            var bdata = (BinaryData)node3["Binary"];
+            var expstream = bdata.GetStream();
+            Assert.IsTrue(expstream.Length > 0, "stream length is 0");
+
+            var s = Tools.GetStreamString(expstream);
+            Assert.IsTrue(s == "asdf qwer yxcv 123", String.Format("content is '{0}'. expected: 'asdf qwer yxcv 123'", s));
+        }
+
+        [TestMethod]
+        public void LoggedDataProvider_RightWrappingAndRestoring()
+        {
+            var dataProvider = DataProvider.Current;
+            using (var loggedDataProvider = new LoggedDataProvider())
+            {
+                Assert.ReferenceEquals(loggedDataProvider, DataProvider.Current);
+            }
+            Assert.ReferenceEquals(dataProvider, DataProvider.Current);
+        }
 
 		//-------------------------------------------------------------------- Helper methods -----------
 

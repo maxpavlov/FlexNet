@@ -8,8 +8,8 @@
       <![CDATA[<div class="sn-infobox"><h1 class="sn-content-title sn-article-title"><img class="sn-icon sn-icon_32" src="/Root/Global/images/icons/32/info.png" alt="" />Search</h1>
       <p>One of the most important features of a content management system is a good <strong>search</strong> engine. In enterprise scenarios, where lots of content is generated
       on a daily basis, quickly finding what you are looking for is crucial to user experience and productivity.</p>
-      <p>SenseNet 6.0 provides a fast, powerful search system that is also easy to use. At a first glance, the textbox below acts as a simple search box, and will give you relevant
-      results to the simplest word-based queries, but it also allows you to enter advanced and powerful filter expressions, as described in our <a href="http://wiki.sensenet.com/">wiki</a>.</p>
+      <p>SenseNet 6.1 provides a fast, powerful search system that is also easy to use. At a first glance, the textbox below acts as a simple search box, and will give you relevant
+      results to the simplest word-based queries, but it also allows you to enter advanced and powerful filter expressions, as described in our <a href="http://wiki.sensenet.com/index.php?title=Query_syntax" target="_blank">wiki</a>.</p>
       <p>Feel free to try the following search expressions, or to see the real-time capabilities of our system, create a new content item, and find it immediately via the search engine.</p>
       <p>Demo search expressions:</p>
       <ul>

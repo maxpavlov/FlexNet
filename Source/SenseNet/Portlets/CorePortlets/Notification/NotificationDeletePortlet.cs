@@ -18,12 +18,16 @@ namespace SenseNet.Portal.Portlets
             this.Name = "Notification delete";
             this.Description = "This portlet allows you to delete a subscription";
             this.Category = new PortletCategory("Notification", "Portlets for handling notifications");
+
+            this.HiddenProperties.Add("Renderer");
         }
 
         protected override void OnInit(EventArgs e)
         {
             base.OnInit(e);
 
+            if (string.IsNullOrEmpty(PortalContext.Current.ActionName) || PortalContext.Current.ActionName.ToLower() != "deletenotification")
+                return;
             
             var contentPath = HttpContext.Current.Request["ContentPath"];
             if (string.IsNullOrEmpty(contentPath))

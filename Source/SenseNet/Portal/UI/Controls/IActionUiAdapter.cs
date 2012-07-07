@@ -11,5 +11,6 @@ namespace SenseNet.Portal.UI.Controls
         string ActionName { get; set; }
         string IconName { get; set; }
         string IconUrl { get; set; }
+        bool OverlayVisible { get; set; }
     }
 }

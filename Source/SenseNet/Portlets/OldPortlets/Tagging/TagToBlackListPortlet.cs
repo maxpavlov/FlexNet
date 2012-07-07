@@ -26,7 +26,12 @@ namespace SenseNet.Portal.Portlets
             }
 
             var tmp = Content.Load(contextNode.Id);
-            var pathList = Page.Request.Params["Paths"].Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            var pathListParam = Page.Request.Params["Paths"];
+
+            if (string.IsNullOrEmpty(pathListParam)) 
+                return;
+
+            var pathList = pathListParam.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries).ToList();
 
             switch (Page.Request.QueryString["Do"])
             {

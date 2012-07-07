@@ -927,6 +927,12 @@ namespace SenseNet.ContentRepository.Tests
             string msg;
             msg = TestNextDailyTime(1, 23, 0, "2011-01-01 10:10:10", "2011-01-01 23:00:00"); Assert.IsNull(msg, msg);
             msg = TestNextDailyTime(2, 23, 0, "2011-01-01 23:10:10", "2011-01-02 23:00:00"); Assert.IsNull(msg, msg);
+
+            //skip to next month
+            msg = TestNextDailyTime(3, 12, 0, "2012-01-31 23:10:10", "2012-02-01 12:00:00"); Assert.IsNull(msg, msg);
+
+            //skip to next year
+            msg = TestNextDailyTime(4, 12, 0, "2012-12-31 13:00:10", "2013-01-01 12:00:00"); Assert.IsNull(msg, msg);
         }
         [TestMethod]
         public void Notification_NextTime_Weekly()

@@ -24,5 +24,15 @@ namespace SenseNet.ApplicationModel
                 return PortalContext.GetSiteRelativePath(Content.Path);
             }
         }
+
+        protected static string ContinueUri(string uri)
+        {
+            if (uri.Contains("?"))
+                uri += "&";
+            else
+                uri += "?";
+
+            return uri;
+        }
     }
 }

@@ -24,7 +24,7 @@ namespace SenseNet.Portal.UI.PortletFramework
         }
 
         private static readonly string CacheTimerStringFormat =
-            "Execution time of the {1} portlet was {0:F10} seconds. Cacheable:{2}, CanCache:{3}, IsInCache:{4}";
+            "Execution time of the {1} portlet was <b>{0:F10}</b> seconds. Cacheable:{2}, CanCache:{3}, IsInCache:{4}";
 
         // Properties /////////////////////////////////////////////////////////////
         [WebBrowsable(true), Personalizable(true)]
@@ -285,7 +285,7 @@ namespace SenseNet.Portal.UI.PortletFramework
             if (IsInCache)
                 sb.Append(@"<div style=""color:#fff;background:#060;font-weight:bold,padding:2px"">");
             else
-                sb.Append(@"<div style=""color:#fff;background:#f00;font-weight:bold,padding:2px"">");
+                sb.Append(@"<div style=""color:#fff;background:#c00;font-weight:bold,padding:2px"">");
             var msg = String.Format(CacheTimerStringFormat, Timer.Elapsed.TotalSeconds, ID, Cacheable, CanCache,
                                     IsInCache);
             if (!string.IsNullOrEmpty(message))

@@ -155,6 +155,13 @@ namespace SenseNet.Portal
 			set { this["Language"] = value; }
 		}
 
+        [RepositoryProperty("EnableClientBasedCulture", RepositoryDataType.Int)]
+        public virtual bool EnableClientBasedCulture
+        {
+            get { return base.GetProperty<int>("EnableClientBasedCulture") != 0; }
+            set { this["EnableClientBasedCulture"] = value ? 1 : 0; }
+        }
+
 		[RepositoryProperty("UrlList", RepositoryDataType.Text)]
 		public IDictionary<string, string> UrlList
 		{
@@ -380,6 +387,8 @@ namespace SenseNet.Portal
 					return this.PendingUserLang;
 				case "Language":
 					return this.Language;
+                case "EnableClientBasedCulture":
+                    return this.EnableClientBasedCulture;
 				case "UrlList":
 					return this.UrlList;
 				case "StartPage":
@@ -411,6 +420,9 @@ namespace SenseNet.Portal
 				case "Language":
 					this.Language = (string)value;
 					break;
+                case "EnableClientBasedCulture":
+                    this.EnableClientBasedCulture = (bool)value;
+                    break;
 				case "UrlList":
 					this.UrlList = (Dictionary<string, string>)value;
 					break;
@@ -446,6 +458,5 @@ namespace SenseNet.Portal
 					return true;
 			return false;
 		}
-
-	}
+    }
 }

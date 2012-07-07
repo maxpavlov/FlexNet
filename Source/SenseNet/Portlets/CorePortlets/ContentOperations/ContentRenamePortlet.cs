@@ -26,12 +26,12 @@ namespace SenseNet.Portal.Portlets
 
         //================================================================ Portlet properties
 
-        [WebDisplayName("View path")]
-        [WebDescription("Path of the .ascx user control which provides the UI elements for the dialog")]
+        [LocalizedWebDisplayName(PORTLETFRAMEWORK_CLASSNAME, RENDERER_DISPLAYNAME)]
+        [LocalizedWebDescription(PORTLETFRAMEWORK_CLASSNAME, RENDERER_DESCRIPTION)]
         [WebBrowsable(true), Personalizable(true)]
         [WebCategory(EditorCategory.UI, EditorCategory.UI_Order)]
         [WebOrder(100)]
-        [Editor(typeof(ContentPickerEditorPartField), typeof(IEditorPartField))]
+        [Editor(typeof(ViewPickerEditorPartField), typeof(IEditorPartField))]
         [ContentPickerEditorPartOptions(ContentPickerCommonType.Ascx)]
         public string ViewPath
         {
@@ -39,8 +39,8 @@ namespace SenseNet.Portal.Portlets
             set { _viewPath = value; }
         }
 
-        [WebDisplayName("ContentView path")]
-        [WebDescription("Path of the contentview which handles name field controls")]
+        [WebDisplayName("Rename view path")]
+        [WebDescription("Path of the .ascx content view which displays the name and display name fields")]
         [WebBrowsable(true), Personalizable(true)]
         [WebCategory(EditorCategory.UI, EditorCategory.UI_Order)]
         [WebOrder(110)]
@@ -232,11 +232,11 @@ namespace SenseNet.Portal.Portlets
                         back = back.Remove(paramsIndex).Remove(back.LastIndexOf(oldUrlName)) + newUrlName + parameters;
                     }
 
-                    pageBase.Response.Redirect(back);
+                    pageBase.Response.Redirect(back, false);
                 }
                 else
                 {
-                    pageBase.Done();
+                    pageBase.Done(false);
                 }
             }
             catch (Exception ex)

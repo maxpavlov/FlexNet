@@ -1,7 +1,9 @@
-﻿<ContentType name="ExpenseClaimWorkflow" parentType="Workflow" handler="SenseNet.Workflow.WorkflowHandlerBase" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentType name="ExpenseClaimWorkflow" parentType="Workflow" handler="SenseNet.Workflow.WorkflowHandlerBase" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
   <DisplayName>Expense Claim Workflow</DisplayName>
   <Description>Expense Claim</Description>
   <Icon>workflow</Icon>
+  <AllowIncrementalNaming>true</AllowIncrementalNaming>
   <Fields>
     <Field name="CEO" type="Reference">
       <DisplayName>CEO</DisplayName>

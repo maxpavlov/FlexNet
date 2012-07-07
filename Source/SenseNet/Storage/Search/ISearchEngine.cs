@@ -20,6 +20,8 @@ namespace SenseNet.ContentRepository.Storage.Search
         IDictionary<string, Type> GetAnalyzers();
 
         void SetIndexingInfo(object indexingInfo);
+
+        object DeserializeIndexDocumentInfo(byte[] IndexDocumentInfoBytes);
     }
     public class InternalSearchEngine : ISearchEngine
     {
@@ -42,6 +44,10 @@ namespace SenseNet.ContentRepository.Storage.Search
         public void SetIndexingInfo(object indexingInfo)
         {
             // do nothing
+        }
+        public object DeserializeIndexDocumentInfo(byte[] IndexDocumentInfoBytes)
+        {
+            return null;
         }
     }
 

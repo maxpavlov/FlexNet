@@ -25,6 +25,8 @@ namespace SenseNet.ContentRepository.Tests.ContentHandlers
 		public BadHandler2(Node parent, string nodeTypeName) : base(parent, nodeTypeName) { }
 		protected BadHandler2(NodeToken nt) : base(nt) { }
 
+        public override bool IsContentType { get { return false; } }
+
 		[RepositoryProperty]
 		public int TestInt
 		{
@@ -39,6 +41,8 @@ namespace SenseNet.ContentRepository.Tests.ContentHandlers
 		public TestNode3(Node parent) : this(parent, "TestNode3") { }
 		public TestNode3(Node parent, string nodeTypeName) : base(parent, nodeTypeName) { }
 		protected TestNode3(NodeToken nt) : base(nt) { }
+
+        public override bool IsContentType { get { return false; } }
 
 		[RepositoryProperty]
 		public int TestInt
@@ -55,6 +59,8 @@ namespace SenseNet.ContentRepository.Tests.ContentHandlers
 		public TestNode4(Node parent, string nodeTypeName) : base(parent, nodeTypeName) { }
 		protected TestNode4(NodeToken nt) : base(nt) { }
 
+        public override bool IsContentType { get { return false; } }
+
 		[RepositoryProperty("TestInt1")]
 		public int TestInt
 		{
@@ -69,6 +75,8 @@ namespace SenseNet.ContentRepository.Tests.ContentHandlers
 		public TestNode5(Node parent) : this(parent, "TestNode5") { }
 		public TestNode5(Node parent, string nodeTypeName) : base(parent, nodeTypeName) { }
 		protected TestNode5(NodeToken nt) : base(nt) { }
+
+        public override bool IsContentType { get { return false; } }
 
 		[RepositoryProperty(RepositoryDataType.Int)]
 		public int TestInt
@@ -85,6 +93,8 @@ namespace SenseNet.ContentRepository.Tests.ContentHandlers
 		public TestNode6(Node parent, string nodeTypeName) : base(parent, nodeTypeName) { }
 		protected TestNode6(NodeToken nt) : base(nt) { }
 
+        public override bool IsContentType { get { return false; } }
+
 		[RepositoryProperty("TestInt1", RepositoryDataType.Int)]
 		public int TestInt
 		{
@@ -98,6 +108,8 @@ namespace SenseNet.ContentRepository.Tests.ContentHandlers
 		public TestNodeBase(Node parent) : this(parent, "TestNodeBase") { }
 		public TestNodeBase(Node parent, string nodeTypeName) : base(parent, nodeTypeName) { }
 		protected TestNodeBase(NodeToken nt) : base(nt) { }
+
+        public override bool IsContentType { get { return false; } }
 
 		protected virtual int TestInt
 		{
@@ -157,6 +169,8 @@ namespace SenseNet.ContentRepository.Tests.ContentHandlers
 		public TestNode8(Node parent, string nodeTypeName) : base(parent, nodeTypeName) { }
 		protected TestNode8(NodeToken nt) : base(nt) { }
 
+        public override bool IsContentType { get { return false; } }
+
 		[RepositoryProperty("bool")]       public bool       TestProp01 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 		[RepositoryProperty("byte")]       public byte       TestProp02 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 		[RepositoryProperty("sbyte")]      public sbyte      TestProp03 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -181,6 +195,8 @@ namespace SenseNet.ContentRepository.Tests.ContentHandlers
 		public TestNode9(Node parent, string nodeTypeName) : base(parent, nodeTypeName) { }
 		protected TestNode9(NodeToken nt) : base(nt) { }
 
+        public override bool IsContentType { get { return false; } }
+
 		[RepositoryProperty("TestProp1")]                     public int    TestProp1 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 		[RepositoryProperty("TestProp2", RepositoryDataType.String)] public int    TestProp2 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 		[RepositoryProperty("TestProp3", RepositoryDataType.Text)]   public string TestProp3 { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -194,6 +210,8 @@ namespace SenseNet.ContentRepository.Tests.ContentHandlers
 		public TestNode10(Node parent) : this(parent, "TestNode10") { }
 		public TestNode10(Node parent, string nodeTypeName) : base(parent, nodeTypeName) { }
 		protected TestNode10(NodeToken nt) : base(nt) { }
+
+        public override bool IsContentType { get { return false; } }
 
 		[RepositoryProperty("X")]
 		public int X
@@ -225,6 +243,8 @@ namespace SenseNet.ContentRepository.Tests.ContentHandlers
 		public TestNode12(Node parent, string nodeTypeName) : base(parent, nodeTypeName) { }
 		protected TestNode12(NodeToken nt) : base(nt) { }
 
+        public override bool IsContentType { get { return false; } }
+
 		[RepositoryProperty("A")] public int A { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 		[RepositoryProperty("B")] public int B { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
 		[RepositoryProperty("C")] public int C { get { throw new NotImplementedException(); } set { throw new NotImplementedException(); } }
@@ -248,6 +268,8 @@ namespace SenseNet.ContentRepository.Tests.ContentHandlers
         public EnumTestNode(Node parent) : this(parent, "EnumTestNode") { }
         public EnumTestNode(Node parent, string nodeTypeName) : base(parent, nodeTypeName) { }
         protected EnumTestNode(NodeToken nt) : base(nt) { }
+
+        public override bool IsContentType { get { return false; } }
 
         public TestEnum TestProperty { get; set; }
     }

@@ -26,6 +26,13 @@ namespace SenseNet.ContentRepository.Storage
 
 	public class NodeData
 	{
+        private Stopwatch _savingTimer;
+
+	    internal Stopwatch SavingTimer
+	    {
+	        get { return _savingTimer ?? (_savingTimer = Stopwatch.StartNew()); }
+	    }
+
 		private class SnapshotData
 		{
 			public int Id;
@@ -413,6 +420,12 @@ namespace SenseNet.ContentRepository.Storage
         {
             if (IsShared)
                 throw Exception_SharedIsReadOnly();
+
+            if (propertyType.DataType == DataType.Binary)
+                if (data != null && !(data is BinaryDataValue))
+                    throw new NotSupportedException(
+                        String.Format("An instance of {0} cannot be any Binary property value. Only {1} allowed", data.GetType().Name, typeof(BinaryDataValue).Name));
+
             var id = propertyType.Id;
             if (!withCheckModifying || IsDynamicPropertyChanged(propertyType, data))
             {
@@ -581,7 +594,7 @@ namespace SenseNet.ContentRepository.Storage
             //    ExtendSharedDataWithListProperties(privateData);
 			return privateData;
 		}
-		private static void MakeSharedData(NodeData data)
+		internal static void MakeSharedData(NodeData data)
 		{
 			if (data.SharedData != null)
 			{
@@ -610,6 +623,32 @@ namespace SenseNet.ContentRepository.Storage
                 }
             }
 		}
+
+        internal void RemoveStreamsAndLongTexts()
+        {
+            lock (LockObject)
+            {
+                foreach (var propTypeId in dynamicData.Keys.ToArray())
+                {
+                    var propType = ActiveSchema.PropertyTypes.GetItemById(propTypeId);
+                    if (propType != null)
+                    {
+                        if (propType.DataType == DataType.Binary)
+                        {
+                            var bdv = dynamicData[propTypeId] as BinaryDataValue;
+                            if (bdv != null)
+                                bdv.Stream = null;
+                        }
+                        if (propType.DataType == DataType.Text)
+                        {
+                            var item = dynamicData[propTypeId] as string;
+                            if (!SenseNet.ContentRepository.Storage.Data.DataProvider.Current.IsCacheableText(item))
+                                dynamicData.Remove(propTypeId);
+                        }
+                    }
+                }
+            }
+        }
 
         //---------------------------------------------------------- copy
 
@@ -938,11 +977,12 @@ namespace SenseNet.ContentRepository.Storage
             return u.Username;
         }
 
-        //=========================================================== Shared extension
+        /*=========================================================== Shared extension */
 
         //System.Collections.Concurrent.ConcurrentDictionary<string, object> _extendedSharedData;
         Dictionary<string, object> _extendedSharedData;
-        ReaderWriterLock _extendedSharedDataLock;
+        ReaderWriterLockSlim _extendedSharedDataLock;
+        object _sharedDataCreateLock = new object();
 
         internal object GetExtendedSharedData(string name)
         {
@@ -954,17 +994,21 @@ namespace SenseNet.ContentRepository.Storage
                 //throw new NotSupportedException("Cannot set extended data if there is no shared data.");
                 return null;
 
+            return shared.GetExtendedSharedDataPrivate(name);
+        }
+        private object GetExtendedSharedDataPrivate(string name)
+        {
             switch (name)
             {
                 case "ContentFieldXml":
-                    return shared.ContentFieldXml;
+                    return ContentFieldXml;
             }
 
-            var dict = shared._extendedSharedData;
+            var dict = _extendedSharedData;
             if (dict == null)
                 return null;
 
-            shared._extendedSharedDataLock.AcquireReaderLock(Timeout.Infinite);
+            _extendedSharedDataLock.EnterReadLock();
             try
             {
                 object value;
@@ -974,7 +1018,7 @@ namespace SenseNet.ContentRepository.Storage
             }
             finally
             {
-                shared._extendedSharedDataLock.ReleaseReaderLock();
+                _extendedSharedDataLock.ExitReadLock();
             }
         }
         internal void SetExtendedSharedData(string name, object value)
@@ -987,22 +1031,31 @@ namespace SenseNet.ContentRepository.Storage
                 //throw new NotSupportedException("Cannot set extended data if there is no shared data.");
                 return;
 
+            shared.SetExtendedSharedDataPrivate(name, value);
+        }
+        internal void SetExtendedSharedDataPrivate(string name, object value)
+        {
             switch (name)
             {
                 case "ContentFieldXml":
-                    shared.ContentFieldXml = value as string;
+                    ContentFieldXml = value as string;
                     return;
             }
 
-            var dict = shared._extendedSharedData;
-            if (dict == null)
+            if (_extendedSharedData == null)
             {
-                dict = new Dictionary<string, object>();
-                shared._extendedSharedData = dict;
-                shared._extendedSharedDataLock = new ReaderWriterLock();
+                lock (_sharedDataCreateLock)
+                {
+                    if (_extendedSharedData == null)
+                    {
+                        _extendedSharedDataLock = new ReaderWriterLockSlim();
+                        _extendedSharedData = new Dictionary<string, object>();
+                    }
+                }
             }
+            var dict = _extendedSharedData;
 
-            shared._extendedSharedDataLock.AcquireWriterLock(Timeout.Infinite);
+            _extendedSharedDataLock.EnterWriteLock();
             try
             {
                 if (!dict.ContainsKey(name))
@@ -1012,7 +1065,7 @@ namespace SenseNet.ContentRepository.Storage
             }
             finally
             {
-                shared._extendedSharedDataLock.ReleaseWriterLock();
+                _extendedSharedDataLock.ExitWriteLock();
             }
         }
         internal void ResetExtendedSharedData(string name)
@@ -1023,6 +1076,10 @@ namespace SenseNet.ContentRepository.Storage
             if (SharedData == null)
                 return;
 
+            SharedData.ResetExtendedSharedDataPrivate(name);
+        }
+        internal void ResetExtendedSharedDataPrivate(string name)
+        {
             switch (name)
             {
                 case "ContentFieldXml":
@@ -1030,11 +1087,11 @@ namespace SenseNet.ContentRepository.Storage
                     return;
             }
 
-            var dict = SharedData._extendedSharedData;
+            var dict = _extendedSharedData;
             if (dict == null)
                 return;
 
-            SharedData._extendedSharedDataLock.AcquireReaderLock(Timeout.Infinite);
+            _extendedSharedDataLock.EnterReadLock();
             try
             {
                 if (dict.ContainsKey(name))
@@ -1042,7 +1099,7 @@ namespace SenseNet.ContentRepository.Storage
             }
             finally
             {
-                SharedData._extendedSharedDataLock.ReleaseReaderLock();
+                _extendedSharedDataLock.ExitReadLock();
             }
         }
     }

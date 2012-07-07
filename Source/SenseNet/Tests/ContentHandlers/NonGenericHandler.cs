@@ -16,6 +16,8 @@ namespace SenseNet.ContentRepository.Tests.ContentHandlers
 		public NonGenericHandler(Node parent, string nodeTypeName) : base(parent, nodeTypeName) { }
 		protected NonGenericHandler(NodeToken token) : base(token) { }
 
+        public override bool IsContentType { get { return false; } }
+
 		[RepositoryProperty("TestString")]
 		public string TestString
 		{

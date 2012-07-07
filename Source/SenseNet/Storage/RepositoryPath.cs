@@ -6,6 +6,7 @@ using SenseNet.ContentRepository.Storage.Search;
 using System.Globalization;
 using SenseNet.ContentRepository.Storage.Schema;
 using System.Collections;
+using System.Linq;
 using System.Web;
 using System.Configuration;
 using System.Text.RegularExpressions;
@@ -132,31 +133,28 @@ namespace SenseNet.ContentRepository.Storage
         }
 
         /// <summary>
-        /// Gets the parent path prom the valid path.
+        /// Gets the parent path from a path.
         /// </summary>
         /// <param name="path">The path.</param>
         /// <returns>Parent path</returns>
         public static string GetParentPath(string path)
         {
-			RepositoryPath.CheckValidPath(path);
-            int index = path.LastIndexOf(PathSeparator, StringComparison.Ordinal);
-            if(index == 0)
-                return null;
-            return path.Substring(0, index);
+            if (string.IsNullOrEmpty(path))
+                return string.Empty;
+
+            var index = path.LastIndexOf(PathSeparator, StringComparison.Ordinal);
+            return index <= 0 ? string.Empty : path.Substring(0, index);
         }
-        //TODO: Missing unit test
-        //TODO: Check Substring outbound
+
         /// <summary>
-        /// Gets the parent path prom the path without checking path validity.
+        /// Gets the parent path from the path without checking path validity.
         /// </summary>
         /// <param name="path">The path.</param>
         /// <returns>Parent path</returns>
+        [Obsolete("Use GetParentPath instead.")]
         public static string GetParentPathSafe(string path)
         {
-            if (string.IsNullOrEmpty(path))
-                return string.Empty;
-            var index = path.LastIndexOf(RepositoryPath.PathSeparator, StringComparison.Ordinal);
-            return index <= 0 ? path : path.Substring(0, index);
+            return GetParentPath(path);
         }
         /// <summary>
         /// Concatenates the specified pathes.
@@ -170,8 +168,54 @@ namespace SenseNet.ContentRepository.Storage
 				throw new ArgumentNullException("path1");
 			if (path2 == null)
 				throw new ArgumentNullException("path2");
-			return string.Concat(path1.TrimEnd(PathSeparatorChars), PathSeparator, path2.TrimStart(PathSeparatorChars));
-		}
+            if (path1.Length == 0)
+                return path2;
+            if (path2.Length == 0)
+                return path1;
+
+            //return string.Concat(path1.TrimEnd(PathSeparatorChars), PathSeparator, path2.TrimStart(PathSeparatorChars));
+
+            var x = 0;
+            if (path1[path1.Length - 1] == '/')
+                x += 2;
+            if (path2[0] == '/')
+                x += 1;
+            switch (x)
+            {
+                case 0:    //  path1,   path2
+                    return String.Concat(path1, "/", path2);
+                case 1:    //  path1,  /path2
+                case 2:    //  path1/,  path2
+                    return String.Concat(path1, path2);
+                case 3:    //  path1/, /path2
+                    var sb = new StringBuilder(path1);
+                    sb.Length--;
+                    sb.Append(path2);
+                    return sb.ToString();
+            }
+            return null; //cannot run here
+        }
+
+        public static string Combine(params string[] pathList)
+        {
+            if (pathList == null)
+				throw new ArgumentNullException("pathList");
+
+            var length = pathList.Length;
+            if (length == 0)
+                return string.Empty;
+
+            var index = 1;
+            var path = pathList[0];
+            while (index < length)
+            {
+                path = Combine(path, pathList[index]);
+                index++;
+            }
+
+            return path;
+        }
+
         /// <summary>
         /// Gets the file name from a valid path, which is located after the last PathSeparator.
         /// </summary>
@@ -200,7 +244,7 @@ namespace SenseNet.ContentRepository.Storage
             var p = path.LastIndexOf(RepositoryPath.PathSeparator, StringComparison.Ordinal);
             return p <= 0 ? path : path.Substring(p + 1);
         }
-
+        
         /// <summary>
         /// Determines whether the specified path is valid.
         /// </summary>
@@ -317,6 +361,14 @@ namespace SenseNet.ContentRepository.Storage
 			}
 		}
 
+        public static int GetDepth(string path)
+        {
+            if (string.IsNullOrEmpty(path))
+                return 0;
+
+            var depth = path.Split(PathSeparator.ToCharArray(), StringSplitOptions.RemoveEmptyEntries).Length - 1;
+            return depth;
+        }
         
         /* ========================================================================== Messages */
         private static string EmptyNameMessage

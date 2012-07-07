@@ -105,7 +105,7 @@ namespace SenseNet.ContentRepository.Tests.LuceneParser
         #endregion
         #endregion
 
-        Lucene.Net.Util.Version LUCENEVERSION = Lucene.Net.Util.Version.LUCENE_CURRENT;
+        //Lucene.Net.Util.Version LUCENEVERSION = Lucene.Net.Util.Version.LUCENE_CURRENT;
 
         [TestMethod]
         public void Parser_x1()
@@ -945,10 +945,10 @@ namespace SenseNet.ContentRepository.Tests.LuceneParser
             QueryParser parser;
             SnLucParser snParser;
 
-            parser = new QueryParser(LUCENEVERSION, LucObject.FieldName.AllText, IndexManager.GetAnalyzer());
+            parser = new QueryParser(SenseNet.Search.Indexing.LuceneManager.LuceneVersion, LucObject.FieldName.AllText, IndexManager.GetAnalyzer());
             var lucQueryOr = parser.Parse(queryText);
 
-            parser = new QueryParser(LUCENEVERSION, LucObject.FieldName.AllText, IndexManager.GetAnalyzer());
+            parser = new QueryParser(SenseNet.Search.Indexing.LuceneManager.LuceneVersion, LucObject.FieldName.AllText, IndexManager.GetAnalyzer());
             parser.SetDefaultOperator(QueryParser.Operator.AND);
             var LucQueryAnd = parser.Parse(queryText);
 
@@ -1138,7 +1138,7 @@ namespace SenseNet.ContentRepository.Tests.LuceneParser
         private Query ParseLucQuery(string queryText)
         {
             var analyzer = IndexManager.GetAnalyzer();
-            return new QueryParser(LUCENEVERSION, LucObject.FieldName.AllText, analyzer).Parse(queryText);
+            return new QueryParser(SenseNet.Search.Indexing.LuceneManager.LuceneVersion, LucObject.FieldName.AllText, analyzer).Parse(queryText);
         }
         private Query ParseNewQuery(string queryText)
         {

@@ -24,7 +24,6 @@ namespace SenseNet.Portal.Portlets.ContentHandlers
         private bool _admin = false;
         private string _eventTitle;
 
-        private const string DefaultEmailSenderAppsettingKey = "DefaultEmailSender";
         private const string MailHostAppsettingKey = "SMTP";
 
         //================================================================================= Properties

@@ -1,4 +1,4 @@
-﻿<%@  Language="C#" AutoEventWireup="true" Inherits="SenseNet.Portal.UI.SingleContentView" %>
+﻿<%@  Language="C#" AutoEventWireup="true" Inherits="SenseNet.Portal.UI.SingleContentView" EnableViewState="false" %>
 <sn:ErrorView ID="ErrorView1" runat="server" />
 <sn:GenericFieldControl ID="GenericField1" runat="server" />
 <div class="sn-panel sn-buttons">

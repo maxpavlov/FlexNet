@@ -2,14 +2,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="<%=snLang%>" xml:lang="<%=snLang%>">
 <head>
-  <title>Sense/Net 6.0 Demo Site</title>
+  <title>Sense/Net 6.1 Demo Site</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta http-equiv="imagetoolbar" content="no" />
   <sn:BaseTag ID="BaseTagControl1" runat="server" />
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 </head>
 
-<body class="sn-body sn-layout1 sn-layout-error sn-error-<%=snLang%>">
+<body class="sn-body sn-layout1 sn-error-<%=snLang%>">
 <% String snLang = SenseNet.Portal.Virtualization.PortalContext.Current.Site.Language; %>
     
   <sn:CssRequest CSSPath="$skin/styles/jqueryui/jquery-ui.css" ID="pageTemplateUIStyleReq" runat="server" />
@@ -18,9 +18,14 @@
         
   <div class="sn-layout-container ui-helper-clearfix">
     <div class="sn-layout-head">
-      <h1 class="sn-logo">
-        <a href="/" title="Home"><span>Sense/Net</span></a>
-      </h1>
+      <div class="sn-layout-head-left">
+      <div class="sn-logo">
+        <a href="/" title="Sense/Net 6.1 Site"><img src="/Root/Global/images/logo_portalengine.gif" /></a>
+      </div>      
+      </div>
+      
+      
+      
     </div>
     <div class="sn-columns ui-helper-clearfix">
       <div class="sn-column sn-column1 ui-helper-clearfix">
@@ -29,19 +34,10 @@
         </snpe-zone>
       </div>
     </div>
-    <div class="sn-layout-foot ui-helper-clearfix">
-      <div class="sn-layout-foot-top"><div class="sn-layout-foot-tl"></div><div class="sn-layout-foot-tc"></div><div class="sn-layout-foot-tr"></div></div>
-      <div class="sn-layout-foot-center ui-helper-clearfix">
-        <a href="http://www.sensenet.com" title="Sense/Net 6.0 Site" class="snPortalengine">
-          <span>Sense/Net 6.0 Site</span>
-        </a>
+     <div class="sn-copyright">
+        <a href="/legal/">Legal</a><span class="sn-separator"> - </span>
+          Powered by <a href="http://www.sensenet.com" title="www.sensenet.com" >Sense/Net CMS Community Edition 6.1 (V6.1.0.3723)</a>
       </div>
-      <div class="sn-layout-foot-bottom"><div class="sn-layout-foot-bl"></div><div class="sn-layout-foot-bc"></div><div class="sn-layout-foot-br"></div></div>
-      <div class="sn-copyright">
-        <a href="/legal/">Legal</a><span class="sn-separator"> &bull; </span>
-          Powered by <a href="http://www.sensenet.com" title="www.sensenet.com">Sense/Net CMS Community Edition 6.0.8 (V6.0.8.3195)</a>
-      </div>
-    </div>
   </div>
     
 <!-- prc -->

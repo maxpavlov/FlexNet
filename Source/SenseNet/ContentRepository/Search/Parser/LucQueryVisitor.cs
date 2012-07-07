@@ -278,7 +278,7 @@ namespace SenseNet.Search.Parser
         {
             _text.Append(TermToString(fuzzyq.GetTerm()));
             _text.Append('~');
-            _text.Append(SupportClass.Single.ToString(fuzzyq.GetMinSimilarity()));
+            _text.Append(Lucene.Net.Support.Single.ToString(fuzzyq.GetMinSimilarity()));
             _text.Append(BoostToString(fuzzyq.GetBoost()));
 
             return base.VisitFuzzyQuery(fuzzyq);

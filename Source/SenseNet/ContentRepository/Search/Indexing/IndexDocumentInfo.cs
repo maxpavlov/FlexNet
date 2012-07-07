@@ -220,9 +220,12 @@ namespace SenseNet.Search.Indexing
             return result;
         }
 
-        internal static Document GetDocument(SenseNet.ContentRepository.Storage.Data.IndexDocumentData docData)
+        internal static Document GetDocument(IndexDocumentData docData)
         {
-            var buffer = (byte[])docData.IndexDocumentInfo;
+            var buffer = docData.IndexDocumentInfoBytes;
+            //if (buffer.Length == 0)
+            //    return null;
+
             var docStream = new System.IO.MemoryStream(buffer);
             var formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
             var info = (IndexDocumentInfo)formatter.Deserialize(docStream);
@@ -236,12 +239,12 @@ namespace SenseNet.Search.Indexing
             {
                 Path = node.Path,
                 ParentId = node.ParentId,
-                IsLastDraft = node.IsLastPublicVersion && node.Version.Status == VersionStatus.Approved,
-                IsLastPublic = node.IsLatestVersion
+                IsLastPublic = node.IsLastPublicVersion,
+                IsLastDraft = node.IsLatestVersion
             };
             return CreateDocument(info, data);
         }
-        private static Document CreateDocument(IndexDocumentInfo info, SenseNet.ContentRepository.Storage.Data.IndexDocumentData docData)
+        internal static Document CreateDocument(IndexDocumentInfo info, IndexDocumentData docData)
         {
             var doc = new Document();
             foreach (var fieldInfo in info.fields)

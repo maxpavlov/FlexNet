@@ -1,5 +1,5 @@
-﻿/// <depends path="$skin/scripts/sn/SN.js" />
-/// <depends path="$skin/scripts/jquery/jquery.js" />
+﻿// using $skin/scripts/sn/SN.js
+// using $skin/scripts/jquery/jquery.js
 
 SN.KPIViewDropDown = {
     views: null,

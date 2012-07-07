@@ -3,7 +3,8 @@
 	<DisplayName>Workflow</DisplayName>
 	<Description>A Content representation of a Workflow instance</Description>
 	<Icon>workflow</Icon>
-	<Fields>
+  <AllowIncrementalNaming>true</AllowIncrementalNaming>
+  <Fields>
     <Field name="Description" type="LongText">
       <DisplayName>Description</DisplayName>
       <Description>Description of the workflow.</Description>

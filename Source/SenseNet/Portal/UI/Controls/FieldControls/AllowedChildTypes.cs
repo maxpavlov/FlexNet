@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
+using System.Web.UI;
 using SenseNet.ContentRepository.Schema;
 using System.Web.UI.WebControls;
-using SenseNet.ContentRepository;
 
 namespace SenseNet.Portal.UI.Controls
 {
@@ -50,36 +49,50 @@ namespace SenseNet.Portal.UI.Controls
             }
         }
 
+        public bool ReadOnlyMode
+        {
+            get
+            {
+                return this.ReadOnly || this.Field.ReadOnly || this.ControlMode == FieldControlControlMode.Browse;
+            }
+        }
 
         /* ========================================================================================= Methods */
         protected override void OnInit(EventArgs e)
         {
             base.OnInit(e);
             UITools.AddScript("$skin/scripts/sn/SN.AllowedChildTypes.js");
+            UITools.AddStyleSheetToHeader(UITools.GetHeader(), "$skin/styles/icons.css");
         }
         protected override void OnPreRender(EventArgs e)
         {
-            string jsonData;
-
-            using (var s = new MemoryStream())
+            if (!this.ReadOnlyMode && !UseBrowseTemplate)
             {
-                var workData = ContentType.GetContentTypes().Select(n => new ContentTypeItem { value = n.Name, label = n.DisplayName, path = n.Path, icon = n.Icon }).OrderBy(n => n.label);
-                var serializer = new DataContractJsonSerializer(typeof(ContentTypeItem[]));
-                serializer.WriteObject(s, workData.ToArray());
-                s.Flush();
-                s.Position = 0;
-                using (var sr = new StreamReader(s))
+                string jsonData;
+
+                using (var s = new MemoryStream())
                 {
-                    jsonData = sr.ReadToEnd();
+                    var workData = ContentType.GetContentTypes()
+                        .Select(n => new ContentTypeItem {value = n.Name, label = n.DisplayName, path = n.Path, icon = n.Icon})
+                        .OrderBy(n => n.label);
+
+                    var serializer = new DataContractJsonSerializer(typeof (ContentTypeItem[]));
+                    serializer.WriteObject(s, workData.ToArray());
+                    s.Flush();
+                    s.Position = 0;
+                    using (var sr = new StreamReader(s))
+                    {
+                        jsonData = sr.ReadToEnd();
+                    }
                 }
+
+                // init control happens in prerender to handle postbacks (eg. pressing 'inherit from ctd' button)
+                var contentTypes = _contentTypes ?? GetContentTypesFromControl();
+                InitControl(contentTypes);
+                var inherit = contentTypes == null || contentTypes.Count() == 0 ? 0 : 1;
+
+                UITools.RegisterStartupScript("initdropboxautocomplete", string.Format("SN.ACT.init({0},{1})", jsonData, inherit), this.Page);
             }
-
-            // init control happens in prerender to handle postbacks (eg. pressing 'inherit from ctd' button)
-            var contentTypes = _contentTypes ?? GetContentTypesFromControl();
-            InitControl(contentTypes);
-            var inherit = contentTypes == null || contentTypes.Count() == 0 ? 0 : 1;
-
-            UITools.RegisterStartupScript("initdropboxautocomplete", string.Format("SN.ACT.init({0},{1})", jsonData, inherit), this.Page);
 
             base.OnPreRender(e);
         }
@@ -95,12 +108,8 @@ namespace SenseNet.Portal.UI.Controls
         }
         private void InitControl(IEnumerable<ContentType> contentTypes)
         {
-            var control = this.InnerControl;
-            if (control == null)
-                return;
-
             // if empty, set types defined on CTD
-            string contentTypeNames = string.Empty;
+            string contentTypeNames;
             if (contentTypes == null || contentTypes.Count() == 0)
             {
                 contentTypeNames = string.Join(" ", CTDContentTypeNames.OrderBy(t => t));
@@ -110,7 +119,13 @@ namespace SenseNet.Portal.UI.Controls
                 contentTypeNames = string.Join(" ", contentTypes.Select(t => t.Name).OrderBy(t => t));
             }
 
-            control.Text = contentTypeNames;
+            var editControl = this.InnerControl;
+            if (editControl != null)
+                editControl.Text = contentTypeNames;
+
+            var browseControl = GetInnerControl() as Label;
+            if (browseControl != null)
+                browseControl.Text = contentTypeNames;
         }
         private IEnumerable<ContentType> GetContentTypesFromControl()
         {
@@ -134,5 +149,7 @@ namespace SenseNet.Portal.UI.Controls
             var contentTypes = contentTypeNames.Select(name => ContentType.GetByName(name));
             return contentTypes;
         }
+
+        public Control GetInnerControl() { return this.FindControlRecursive(InnerControlID); }
     }
 }

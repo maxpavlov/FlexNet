@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ContentType name="Car" parentType="ListItem" handler="SenseNet.ContentRepository.GenericContent" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
   <DisplayName>Car</DisplayName>
-  <Description>Car is a leaf content type to demonstrate the ECMS features of Sense/Net 6.0.</Description>
+  <Description>Car is a leaf content type to demonstrate the ECMS features of Sense/Net 6.1.</Description>
   <Icon>Car</Icon>
+  <AllowIncrementalNaming>true</AllowIncrementalNaming>
   <Fields>
     <Field name="Name" type="ShortText">
       <Configuration>

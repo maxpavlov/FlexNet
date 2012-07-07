@@ -821,7 +821,7 @@ namespace SenseNet.ContentRepository.Storage.Security
                             if (origPerm.Deny && !perm.Deny) // reset
                             {
                                 ed.SetPermission(ident, propagates, ActiveSchema.PermissionTypes[perm.Name], PermissionValue.NonDefined);
-                                Trace.WriteLine("@> Reset deny " + perm.Name);
+                                //Trace.WriteLine("@> Reset deny " + perm.Name);
                             }
                     }
 
@@ -834,7 +834,7 @@ namespace SenseNet.ContentRepository.Storage.Security
                             if (origPerm.Allow && !perm.Allow) // reset
                             {
                                 ed.SetPermission(ident, propagates, ActiveSchema.PermissionTypes[perm.Name], PermissionValue.NonDefined);
-                                Trace.WriteLine("@> Reset allow " + perm.Name);
+                                //Trace.WriteLine("@> Reset allow " + perm.Name);
                             }
                     }
                     //---- set allow bits
@@ -846,7 +846,7 @@ namespace SenseNet.ContentRepository.Storage.Security
                             if (!origPerm.Allow && perm.Allow) // set
                             {
                                 ed.SetPermission(ident, propagates, ActiveSchema.PermissionTypes[perm.Name], PermissionValue.Allow);
-                                Trace.WriteLine("@> Set allow " + perm.Name);
+                                //Trace.WriteLine("@> Set allow " + perm.Name);
                             }
                     }
                     //---- set deny bits
@@ -858,7 +858,7 @@ namespace SenseNet.ContentRepository.Storage.Security
                             if (!origPerm.Deny && perm.Deny) // set
                             {
                                 ed.SetPermission(ident, propagates, ActiveSchema.PermissionTypes[perm.Name], PermissionValue.Deny);
-                                Trace.WriteLine("@> Set deny " + perm.Name);
+                                //Trace.WriteLine("@> Set deny " + perm.Name);
                             }
                     }
 

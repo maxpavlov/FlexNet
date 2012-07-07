@@ -237,24 +237,25 @@ namespace SenseNet.ContentRepository.Tests
         #region GetParentPath use cases
 
         [TestMethod()]
-        [ExpectedException(typeof(ArgumentNullException))]
+        //[ExpectedException(typeof(ArgumentNullException))]
         public void Path_GetParentPath_Null()
         {
-            RepositoryPath.GetParentPath(null);
+            Assert.AreEqual(string.Empty, RepositoryPath.GetParentPath(null));
         }
 
         [TestMethod()]
-        [ExpectedException(typeof(InvalidPathException))]
+        //[ExpectedException(typeof(InvalidPathException))]
         public void Path_GetParentPath_InvalidPath()
         {
-            RepositoryPath.GetParentPath("");
+            Assert.AreEqual(string.Empty, RepositoryPath.GetParentPath(""));
         }
 
         [TestMethod()]
         public void Path_GetParentPath_RootPath()
         {
-            string val = RepositoryPath.GetParentPath("/RootSample");
-            Assert.IsNull(val);
+            //string val = RepositoryPath.GetParentPath("/RootSample");
+            //Assert.IsNull(val);
+            Assert.AreEqual(string.Empty, RepositoryPath.GetParentPath("/RootSample"));
         }
 
         [TestMethod()]
@@ -274,6 +275,38 @@ namespace SenseNet.ContentRepository.Tests
         #endregion
 
 
+        #region Path.Combine tests
+
+        [TestMethod()]
+        public void Path_Combine_1()
+        {
+            var val = RepositoryPath.Combine("/Root1");
+            Assert.AreEqual("/Root1", val);
+
+            val = RepositoryPath.Combine("/Root", "AAA", "BBB");
+            Assert.AreEqual("/Root/AAA/BBB", val);
+
+            val = RepositoryPath.Combine("/Root", "/AAA", "BBB/");
+            Assert.AreEqual("/Root/AAA/BBB/", val);
+
+            val = RepositoryPath.Combine("/Root/", "AAA/", "/BBB");
+            Assert.AreEqual("/Root/AAA/BBB", val);
+
+            val = RepositoryPath.Combine("/Root", "/", "BBB");
+            Assert.AreEqual("/Root/BBB", val);
+
+            val = RepositoryPath.Combine("/Root", "", "BBB");
+            Assert.AreEqual("/Root/BBB", val);
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Path_Combine_Error_1()
+        {
+            var val = RepositoryPath.Combine("/Root", null, "BBB");
+        }
+
+        #endregion
     }
 
 }

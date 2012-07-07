@@ -586,6 +586,8 @@ namespace SenseNet.ContentRepository.Tests.AppModel
         public TestRepositoryEventHandlerNode(Node parent, string nodeTypeName) : base(parent, nodeTypeName) { }
         protected TestRepositoryEventHandlerNode(NodeToken nt) : base(nt) { }
 
+        public override bool IsContentType { get { return false; } }
+
         [RepositoryProperty("EnableEventBubbling", RepositoryDataType.Int)]
         public override bool StopEventBubbling
         {
@@ -623,6 +625,8 @@ namespace SenseNet.ContentRepository.Tests.AppModel
         public TestRepositoryCancelEventHandlerNode(Node parent) : this(parent, "TestRepositoryCancelEventHandlerNode") { }
         public TestRepositoryCancelEventHandlerNode(Node parent, string nodeTypeName) : base(parent, nodeTypeName) { }
         protected TestRepositoryCancelEventHandlerNode(NodeToken nt) : base(nt) { }
+
+        public override bool IsContentType { get { return false; } }
 
         [RepositoryProperty("EnableEventBubbling", RepositoryDataType.Int)]
         public override bool StopEventBubbling

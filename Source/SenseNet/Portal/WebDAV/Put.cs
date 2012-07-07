@@ -40,11 +40,13 @@ namespace SenseNet.Services.WebDav
             {
                 inputStream.Seek(0, SeekOrigin.Begin);
 
-                ((BinaryData)node[propertyName]).SetStream(inputStream);
+                var bdata = (BinaryData)node[propertyName];
+                bdata.SetStream(inputStream);
 
                 if (!string.IsNullOrEmpty(binaryName))
-                    ((BinaryData)node[propertyName]).FileName = binaryName;
+                    bdata.FileName = binaryName;
 
+                node[propertyName] = bdata;
                 node.Save();
             }
         }
@@ -166,11 +168,11 @@ namespace SenseNet.Services.WebDav
             {
                 #region debug
 
-                string traceMessage = string.Concat("    parentpath: ", parentPath, Environment.NewLine);
-                traceMessage = string.Concat(traceMessage, "    filename: ", fileName, Environment.NewLine);
-                traceMessage = string.Concat(traceMessage, "    parentnode: ", parentNode.Id.ToString(), "-", parentNode.Name, Environment.NewLine);
+                //string traceMessage = string.Concat("    parentpath: ", parentPath, Environment.NewLine);
+                //traceMessage = string.Concat(traceMessage, "    filename: ", fileName, Environment.NewLine);
+                //traceMessage = string.Concat(traceMessage, "    parentnode: ", parentNode.Id.ToString(), "-", parentNode.Name, Environment.NewLine);
 
-                System.Diagnostics.Trace.Write(traceMessage);
+                //System.Diagnostics.Trace.Write(traceMessage);
 
                 #endregion
 
@@ -185,8 +187,8 @@ namespace SenseNet.Services.WebDav
                 string contentType = GetContentTypeName(realFileName);
                 if (contentType != null)
                 {
-                    traceMessage = string.Concat("    NEW ", contentType, Environment.NewLine);
-                    System.Diagnostics.Trace.Write(traceMessage);
+                    //traceMessage = string.Concat("    NEW ", contentType, Environment.NewLine);
+                    //System.Diagnostics.Trace.Write(traceMessage);
 
                     var nodeType = ActiveSchema.NodeTypes[contentType];
                     var specialFile = nodeType.CreateInstance(parentNode) as IFile;

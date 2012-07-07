@@ -35,8 +35,8 @@ namespace SenseNet.ApplicationModel
         {
             base.Initialize(context, backUri, application, parameters);
 
-            if (string.Compare(PortalContext.Current.AuthenticationMode, "windows", StringComparison.CurrentCultureIgnoreCase) != 0)
-                this.Forbidden = true;
+            //if (string.Compare(PortalContext.Current.AuthenticationMode, "windows", StringComparison.CurrentCultureIgnoreCase) != 0)
+            //    this.Forbidden = true;
 
             if (!Repository.WebdavEditExtensions.Any(extension => context.Name.EndsWith(extension)))
                 this.Visible = false;

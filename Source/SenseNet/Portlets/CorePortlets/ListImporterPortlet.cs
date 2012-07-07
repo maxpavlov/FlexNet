@@ -77,11 +77,10 @@ namespace SenseNet.Portal.Portlets
         #region Properties
 
         [WebBrowsable(true), Personalizable(true)]
-        [LocalizedWebDisplayName("ListImporterPortlet", "ViewPathTitle"), LocalizedWebDescription("ListImporterPortlet", "ViewPathDescription")]
-        //[WebDisplayName("View path")]
-        //[WebDescription("Path of the .ascx user control which provides the UI elements of the portlet")]
+        [LocalizedWebDisplayName(PORTLETFRAMEWORK_CLASSNAME, RENDERER_DISPLAYNAME)]
+        [LocalizedWebDescription(PORTLETFRAMEWORK_CLASSNAME, RENDERER_DESCRIPTION)]
         [WebCategory(EditorCategory.UI, EditorCategory.UI_Order)]
-        [Editor(typeof(ContentPickerEditorPartField), typeof(IEditorPartField))]
+        [Editor(typeof(ViewPickerEditorPartField), typeof(IEditorPartField))]
         [ContentPickerEditorPartOptions(ContentPickerCommonType.Ascx)]
         [WebOrder(100)]
         public string ContentViewPath
@@ -270,8 +269,7 @@ namespace SenseNet.Portal.Portlets
 
                         //because of the empty name we need to ensure 
                         //that we do not try to use existing name
-                        if (string.IsNullOrEmpty(name))
-                            newContent["Name"] = ContentNamingHelper.EnsureContentName(newContent.Name, parentNode);
+                        newContent.ContentHandler.AllowIncrementalNaming = true;
 
                         newContent.Save();
                         successful.Add(new ImportData(newContent.Name, ""));

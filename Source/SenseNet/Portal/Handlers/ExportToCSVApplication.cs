@@ -112,7 +112,10 @@ namespace SenseNet.Services
                         XmlNode fieldNode = null;
                         try
                         {
-                            fieldNode = cXml.DocumentElement.SelectSingleNode("/Content/Fields/" + fieldName);
+                            //content list fields need a different xpath search method
+                            fieldNode = fieldName.StartsWith("#") 
+                                ? cXml.DocumentElement.SelectSingleNode("/Content/Fields/" + fieldName.Substring(1) + "[@" + Field.FIELDSUBTYPEATTRIBUTENAME + "='" + FieldSubType.ContentList + "']") 
+                                : cXml.DocumentElement.SelectSingleNode("/Content/Fields/" + fieldName);
                         }
                         catch (System.Xml.XPath.XPathException)
                         {

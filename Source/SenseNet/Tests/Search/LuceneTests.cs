@@ -2460,7 +2460,7 @@ namespace SenseNet.ContentRepository.Tests.Search
         }
 
         [TestMethod]
-        public void __Lucene_Security_1()
+        public void Lucene_Security_1()
         {
             IUser savedCurrentUser;
             NodeQuery nodeQuery;

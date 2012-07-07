@@ -4,47 +4,51 @@
   <ContentName>FooterContent</ContentName>
   <Fields>
     <HTMLFragment>
-      <![CDATA[
-          <div class="ui-helper-clearfix">
+      <![CDATA[<div class="ui-helper-clearfix">
             <p>
-              Your Company
-              <br />
-              1234 Neverland
-              <br />
-              Somewhere street #1
-              <br />
-              Over the rainbow
+              <strong>Sense/Net</strong>
+              <br/ >
+              1 Infopark sétány 
+              <br/ >
+              Infopark, Building "I"
+              <br/ >
+              Budapest, 1117
+              <br/ >
+              Hungary
             </p>
             <p>
-              Telephone:
-              <br />
-              +00 (1) 123 4567
-              <br />
-              Fax:
-              <br />
-              +00 (1) 123 4568
+              <strong>Telephone:</strong>
+              <br/ >
+              +36-1-464-7070 
+              <br/ >
+              <strong>Fax:</strong>
+              <br/ >
+              +36-1-464-7080
             </p>
-            <ul>
-              <li>
-                <a href="/" title="Home page">Home</a>
-              </li>
-              <li>
-                <a href="/NewsDemo">Dynamic content demo</a>
-              </li>
-              <li>
-                <a href="/features/content">Features</a>
-              </li>
-              <li>
-                <a href="http://wiki.sensenet.com/" title="Wiki at Sense/Net">Help</a>
-              </li>
-            </ul>
-          </div>
-        ]]>
-    </HTMLFragment>
-    <ValidFrom>2008-12-05T12:07:39.8370000+01:00</ValidFrom>
-    <ReviewDate>2008-12-05T12:07:39.8370000+01:00</ReviewDate>
-    <ArchiveDate>2008-12-05T12:07:39.8370000+01:00</ArchiveDate>
-    <ValidTill>2008-12-05T12:07:39.8370000+01:00</ValidTill>
+          </div>​]]></HTMLFragment>
+    <ReviewDate>2008-12-05T12:07:39.837</ReviewDate>
+    <ArchiveDate>2008-12-05T12:07:39.837</ArchiveDate>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>2008-12-05T12:07:39.837</ValidFrom>
+    <ValidTill>2008-12-05T12:07:39.837</ValidTill>
+    <DisplayName><![CDATA[FooterContent]]></DisplayName>
+    <Hidden>false</Hidden>
     <Index>0</Index>
+    <CreatedBy>
+      <Path>/Root/IMS/BuiltIn/Portal/Administrator</Path>
+    </CreatedBy>
+    <CreationDate>2012-05-21T10:32:51.073</CreationDate>
+    <ModifiedBy>
+      <Path>/Root/IMS/BuiltIn/Portal/Admin</Path>
+    </ModifiedBy>
+    <ModificationDate>2012-05-21T10:45:18.85</ModificationDate>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
   </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
 </ContentMetaData>

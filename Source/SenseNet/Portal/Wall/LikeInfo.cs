@@ -14,7 +14,7 @@ namespace SenseNet.Portal.Wall
 
         // =============================================================================== Properties
         public bool iLike { get; private set; }
-        public IEnumerable<Node> Nodes { get; private set; }
+        public IEnumerable<Node> LikeUsers { get; private set; }
         public int Count { get; private set; }
         
 
@@ -83,8 +83,16 @@ namespace SenseNet.Portal.Wall
                 return;
 
             iLike = result.Nodes.Any(n => n.CreatedById == User.Current.Id);
-            Nodes = result.Nodes.Select(n => n.CreatedBy);
+            LikeUsers = result.Nodes.Select(n => n.CreatedBy);
             Count = result.Count;
+        }
+        public LikeInfo(List<Node> likesNodes, int parentId)
+        {
+            _likeListLinkParams = string.Format(LIKELISTLINKPARAMS, parentId);
+
+            iLike = likesNodes.Any(n => n.CreatedById == User.Current.Id);
+            LikeUsers = likesNodes.Select(n => n.CreatedBy);
+            Count = likesNodes.Count;
         }
     }
 }

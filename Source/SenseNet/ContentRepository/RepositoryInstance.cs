@@ -109,6 +109,12 @@ namespace SenseNet.ContentRepository
             ConsoleWriteLine("Starting Repository...");
             ConsoleWriteLine();
 
+            var x = Lucene.Net.Documents.Field.Index.NO;
+            var y = Lucene.Net.Documents.Field.Store.NO;
+            var z = Lucene.Net.Documents.Field.TermVector.NO;
+
+            CounterManager.Start();
+
             RegisterAppdomainEventHandlers();
 
             if (_settings.IndexPath != null)
@@ -136,9 +142,9 @@ namespace SenseNet.ContentRepository
             }
             ConsoleWriteLine("Starting LuceneManager:");
 
-            var x = Lucene.Net.Documents.Field.Index.NO;
-            var y = Lucene.Net.Documents.Field.Store.NO;
-            var z = Lucene.Net.Documents.Field.TermVector.NO;
+            //var x = Lucene.Net.Documents.Field.Index.NO;
+            //var y = Lucene.Net.Documents.Field.Store.NO;
+            //var z = Lucene.Net.Documents.Field.TermVector.NO;
             SenseNet.Search.Indexing.LuceneManager.Start(_settings.Console);
 
             ConsoleWriteLine("LuceneManager has started.");
@@ -212,9 +218,12 @@ namespace SenseNet.ContentRepository
         {
             object dummy;
 
-            ConsoleWrite("Starting message channel ... ");
+            ConsoleWrite("Initializing cache ... ");
             dummy = SenseNet.ContentRepository.DistributedApplication.Cache.Count;
-            dummy = SenseNet.ContentRepository.DistributedApplication.ClusterChannel;
+            ConsoleWriteLine("ok.");
+
+            ConsoleWrite("Starting message channel ... ");
+            var channel = SenseNet.ContentRepository.DistributedApplication.ClusterChannel;
             ConsoleWriteLine("ok.");
 
             ConsoleWrite("Starting NodeType system ... ");
@@ -233,6 +242,11 @@ namespace SenseNet.ContentRepository
                 StartLucene();
             else
                 ConsoleWriteLine("LuceneManager is not started.");
+
+            //switch on message processing after LuceneManager was started
+            channel.AllowMessageProcessing = true;
+
+            SenseNet.Search.Indexing.IndexHealthMonitor.Start(_settings.Console);
 
             if (_settings.StartWorkflowEngine)
                 StartWorkflowEngine();
@@ -322,6 +336,8 @@ namespace SenseNet.ContentRepository
         internal static void Shutdown()
         {
             _instance.ConsoleWriteLine();
+
+            DistributedApplication.ClusterChannel.ShutDown();
 
             if (Instance.StartSettings.BackupIndexAtTheEnd)
             {
@@ -490,27 +506,15 @@ namespace SenseNet.ContentRepository
                     throw new NotSupportedException("Querying running state of LuceneManager is not supported when RepositoryInstance is not created.");
                 return SenseNet.Search.Indexing.LuceneManager.Running;
             }
-            //internal set
-            //{
-            //    if (_instance == null)
-            //        throw new NotSupportedException("Setting running state of LuceneManager is not supported when RepositoryInstance is not created. Value: " + value);
-            //    _instance._luceneManagerIsRunning = value;
-            //}
         }
         public static bool IndexingPaused
         {
             get
             {
-                if (SenseNet.Search.Indexing.ActivityQueue.Instance != null)
-                    return SenseNet.Search.Indexing.ActivityQueue.Instance.Paused;
-                return false;
+                if (_instance == null)
+                    throw new NotSupportedException("Querying pausing state of LuceneManager is not supported when RepositoryInstance is not created.");
+                return SenseNet.Search.Indexing.LuceneManager.Paused;
             }
-            //internal set
-            //{
-            //    if (_instance == null)
-            //        throw new NotSupportedException("Setting IndexingPaused is not supported when RepositoryInstance is not created.");
-            //    _instance._indexingPaused = value;
-            //}
         }
 
         internal static bool RestoreIndexOnStartup()

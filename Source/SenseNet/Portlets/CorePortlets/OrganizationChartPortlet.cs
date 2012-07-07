@@ -29,6 +29,8 @@ namespace SenseNet.Portal.Portlets
         [WebBrowsable(true), Personalizable(true)]
         [WebCategory("OrganizationChart", "CategoryTitle", 5), WebOrder(20)]
         [LocalizedWebDisplayName("OrganizationChart", "FirstManagerTitle"), LocalizedWebDescription("OrganizationChart", "FirstManagerDescription")]
+        [Editor(typeof(ContentPickerEditorPartField), typeof(IEditorPartField))]
+        [ContentPickerEditorPartOptions(ContentPickerCommonType.FirstManager)]
         public string FirstManager
         {
             get { return _firstManager; }
@@ -50,6 +52,25 @@ namespace SenseNet.Portal.Portlets
             set { _depthLimit = value; }
         }
 
+        [WebBrowsable(true), Personalizable(true)]
+        [LocalizedWebDisplayName(PORTLETFRAMEWORK_CLASSNAME, RENDERER_DISPLAYNAME)]
+        [LocalizedWebDescription(PORTLETFRAMEWORK_CLASSNAME, RENDERER_DESCRIPTION)]
+        [WebCategory(EditorCategory.UI, EditorCategory.UI_Order)]
+        [WebOrder(1000)]
+        [Editor(typeof(ViewPickerEditorPartField), typeof(IEditorPartField))]
+        [ContentPickerEditorPartOptions(PortletViewType.All)]
+        public override string Renderer
+        {
+            get
+            {
+                return base.Renderer;
+            }
+            set
+            {
+                base.Renderer = value;
+            }
+        }
+
         private List<int> _usedNodeId;
 
         /// <summary>
@@ -61,6 +82,9 @@ namespace SenseNet.Portal.Portlets
             this.Description = SenseNetResourceManager.Current.GetString("OrganizationChart", "PortletDescription");
             this.Category = new PortletCategory(PortletCategoryType.Collection);
             this.Renderer = "/Root/System/SystemPlugins/Portlets/OrganizationChart/OrgChartView.xslt";
+
+            //remove the xml/xslt fields from the hidden collection
+            this.HiddenProperties.RemoveAll(s => XmlFields.Contains(s));
         }
 
         /// <summary>
@@ -113,7 +137,7 @@ namespace SenseNet.Portal.Portlets
             var employeesNode = container.OwnerDocument.CreateElement("Employees");
             container.AppendChild(employeesNode);
 
-            var query = SenseNet.Search.LucQuery.Parse(string.Format("+Manager:{0}", manager.Id));
+            var query = SenseNet.Search.LucQuery.Parse(string.Format("+Manager:{0} +Type:User", manager.Id));
             var result = query.Execute();
             
             foreach (var lucObject in result)

@@ -10,7 +10,6 @@
     <![CDATA[<Columns>
   <Column title="Display Name" fullName="GenericContent.DisplayName" bindingName="GenericContent_DisplayName" index="1" width="0" hAlign="" wrap="" modifiers="main" />
   <Column title="Sum" fullName="ExpenseClaim.Sum" bindingName="ExpenseClaim_Sum" index="2" width="0" hAlign="" wrap="" modifiers="" />
-  <Column title="WorkflowsRunning" fullName="GenericContent.WorkflowsRunning" bindingName="GenericContent_WorkflowsRunning" index="3" width="0" hAlign="" wrap="" modifiers="" />
 </Columns>]]></Columns>
     <SortBy>DisplayName ASC</SortBy>
     <GroupBy></GroupBy>

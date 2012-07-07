@@ -273,7 +273,7 @@ namespace SenseNet.Portal.UI.Controls
                 newName = newName.Substring(lastSeparator + 1);
 
             // also ensure that name is unique
-            newName = ContentNamingHelper.EnsureContentName(newName, container);
+            content.ContentHandler.AllowIncrementalNaming = true;
 
             content["Name"] = newName;
             content["DisplayName"] = newName;

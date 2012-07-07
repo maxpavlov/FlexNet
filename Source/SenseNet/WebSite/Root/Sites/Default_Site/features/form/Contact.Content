@@ -7,6 +7,7 @@
     <Description><![CDATA[]]></Description>
     <AfterSubmitText><![CDATA[Thank you!]]></AfterSubmitText>
     <EmailList><![CDATA[]]></EmailList>
+    <EmailField><![CDATA[#Email]]></EmailField>
     <Hidden>true</Hidden>
     <ContentListDefinition>
           <![CDATA[<?xml version="1.0" encoding="utf-8" ?>

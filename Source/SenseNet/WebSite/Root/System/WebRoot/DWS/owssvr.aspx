@@ -55,7 +55,7 @@
             user-select: none;
         }
         #header {
-            background:url(/Root/Global/images/logo_portalengine.gif) no-repeat 14px 10px #007dc2;
+            background:url(/Root/Global/images/sensenetlogo.png) no-repeat 14px 10px #007dc2;
             height: 60px;
             overflow: hidden; text-indent: -3000em;
             position: fixed; left:0px; right: 0px;

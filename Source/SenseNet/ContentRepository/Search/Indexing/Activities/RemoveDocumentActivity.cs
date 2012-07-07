@@ -11,14 +11,14 @@ using Lucene.Net.Util;
 namespace SenseNet.Search.Indexing.Activities
 {
     [Serializable]
-    public class RemoveDocumentActivity : LuceneDocumentActivity
+    internal class RemoveDocumentActivity : LuceneDocumentActivity
     {
-        public override void Execute()
+        internal override void Execute()
         {
             using (var optrace = new OperationTrace("RemoveDocumentActivity Execute"))
             {
                 var delTerm = new Term(LuceneManager.KeyFieldName, NumericUtils.IntToPrefixCoded(this.VersionId));
-                LuceneManager.DeleteDocuments(new[] { delTerm });
+                LuceneManager.DeleteDocuments(new[] { delTerm }, MoveOrRename);
                 base.Execute();
                 optrace.IsSuccessful = true;
             }

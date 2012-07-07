@@ -3,6 +3,7 @@
 <%@ Import Namespace="SenseNet.ContentRepository.Storage" %>
 <%@ Import Namespace="SenseNet.Portal.Virtualization" %>
 
+
 <div>
     <div>
         <asp:PlaceHolder ID="WorkspaceIsWallContainer" runat="server" Visible="false">
@@ -82,8 +83,14 @@
         </div>
     </div>    
     <% } %>
+    <% var pageSize = (this.Parent as SenseNet.Portal.Portlets.Wall.WallPortlet).PageSize; %>
     <input type="hidden" class="sn-posts-workspace-path" value=<%= SenseNet.Portal.Virtualization.PortalContext.Current.ContextWorkspace.Path %> />
+    <input type="hidden" class="sn-posts-pagesize" value=<%= pageSize %> />
     <div id="sn-posts">
         <asp:PlaceHolder ID="Posts" runat="server"></asp:PlaceHolder>
+    </div>
+    <div class="sn-wall-olderposts">
+        <a href="javascript:" onclick="SN.Wall.getPosts($(this))">Older posts</a>
+        <div id="sn-wall-nomoreposts" style="display:none;">No more posts to show.</div>
     </div>
 </div>

@@ -10,6 +10,7 @@ using System.Xml.XPath;
 using System.IO;
 using SenseNet.ContentRepository.Storage;
 using System.Configuration;
+using SenseNet.ContentRepository.Storage.Data;
 
 namespace SenseNet.ContentRepository
 {
@@ -136,6 +137,24 @@ namespace SenseNet.ContentRepository
         {
             get { return new char[] { '(', ')', '[', ']' }; }
         }
+
+        [Obsolete("Set node.AllowIncrementalNaming = true; before saving instead of pre-ensureing contentname - or use ContentNamingHelper.IncrementNameSuffixToLastName", true)]
+        public static string EnsureContentName(string nameBase, Node container)
+        {
+            if (string.IsNullOrEmpty(nameBase))
+                return nameBase;
+
+            if (container == null)
+                throw new ApplicationException("Cannot create a new Content: expected context node is null");
+
+            var index = 0;
+            string newName = null;
+            while (Node.Exists(GetNewPath(container, nameBase, index++, out newName)))
+            {
+            }
+
+            return newName;
+        }
         #endregion
 
 
@@ -143,7 +162,7 @@ namespace SenseNet.ContentRepository
         public static string GetNewName(string nameBase, ContentType type, Node parent)
         {
             var namewithext = EnforceRequiredExtension(nameBase, type);
-            return EnsureContentName(namewithext, parent);
+            return namewithext;
         }
         public static string EnforceRequiredExtension(string nameBase, ContentType type)
         {
@@ -165,22 +184,6 @@ namespace SenseNet.ContentRepository
 
             return nameBase + reqext;
         }
-        public static string EnsureContentName(string nameBase, Node container)
-        {
-            if (string.IsNullOrEmpty(nameBase))
-                return nameBase;
-
-            if (container == null)
-                throw new ApplicationException("Cannot create a new Content: expected context node is null");
-
-            var index = 0;
-            string newName = null;
-            while (Node.Exists(GetNewPath(container, nameBase, index++, out newName)))
-            {
-            }
-
-            return newName;
-        }
         private static string GetNewPath(Node container, string defaultName, int index, out string newName)
         {
             var ext = Path.GetExtension(defaultName);
@@ -190,21 +193,56 @@ namespace SenseNet.ContentRepository
 
             return RepositoryPath.Combine(container.Path, newName);
         }
-
-        public static string IncrementNameSuffix(string name)
+        public static string IncrementNameSuffixToLastName(string currentName, int parentNodeId)
         {
-            name = RepositoryPath.GetFileName(name);
-            //var parentPath = RepositoryPath.GetParentPath(path);
-            var ext = Path.GetExtension(name);
-            var fileName = Path.GetFileNameWithoutExtension(name);
+            currentName = RepositoryPath.GetFileName(currentName);
+            var ext = Path.GetExtension(currentName);
             string nameBase;
-            var index = ParseSuffix(fileName, out nameBase);
-            var newName = String.Format("{0}({1}){2}", nameBase, ++index, ext);
+            bool inValidNumber;
+            var fileName = Path.GetFileNameWithoutExtension(currentName);
+            ContentNamingHelper.ParseSuffix(fileName, out nameBase, out inValidNumber);
+            var lastName = DataProvider.Current.GetNameOfLastNodeWithNameBase(parentNodeId, nameBase, ext);
+            
+            // if there is no suffixed name in db, return with first variant
+            if (lastName == null)
+                return String.Format("{0}(1){1}", nameBase, ext);
+
+            // there was a suffixed name in db in the form namebase(x), increment it
+            // car(5)-> car(6), car(test)(5) -> car(test)(6), car(test) -> car(guid)
+            string newNameBase;
+            var newName = ContentNamingHelper.IncrementNameSuffix(lastName, out newNameBase);
+
+            // incremented name base differs from original name base (for example 'car(hello)(2)' and 'car(5)')
+            // edge case, use guid with original namebase
+            if (newNameBase != nameBase)
+                return String.Format("{0}({1}){2}", nameBase, Guid.NewGuid().ToString(), ext);
+
+            // incremented name base and original name base are equal, so incremented name is correct (eg 'car(2)')
             return newName;
         }
-        private static int ParseSuffix(string name, out string nameBase)
+        public static string IncrementNameSuffix(string name, out string nameBase)
+        {
+            name = RepositoryPath.GetFileName(name);
+            var ext = Path.GetExtension(name);
+            var fileName = Path.GetFileNameWithoutExtension(name);
+            bool inValidNumber;
+            var index = ContentNamingHelper.ParseSuffix(fileName, out nameBase, out inValidNumber);
+            var newName = (inValidNumber) ? 
+                String.Format("{0}({1}){2}", nameBase, Guid.NewGuid().ToString(), ext) : 
+                String.Format("{0}({1}){2}", nameBase, ++index, ext);
+            return newName;
+        }
+        /// <summary>
+        /// Parses name from format 'name(x)'
+        /// </summary>
+        /// <param name="name">name to parse</param>
+        /// <param name="nameBase">parsed namebase</param>
+        /// <param name="inValidNumber">true if correct format is detected but (x) is not a valid number</param>
+        /// <returns>the parsed number in suffix</returns>
+        public static int ParseSuffix(string name, out string nameBase, out bool inValidNumber)
         {
             nameBase = name;
+            inValidNumber = false;
             if (!name.EndsWith(")"))
                 return 0;
             var p = name.LastIndexOf("(");
@@ -215,6 +253,7 @@ namespace SenseNet.ContentRepository
             int result;
             if (Int32.TryParse(n, out result))
                 return result;
+            inValidNumber = true;
             nameBase = name;
             return 0;
         }

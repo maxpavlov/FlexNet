@@ -102,38 +102,41 @@ namespace SenseNet.Search.Indexing
         private IEnumerable<Difference> CheckNode(string path)
         {
             var result = new List<Difference>();
-            var ixreader = LuceneManager.IndexReader;
-            //var sql = String.Format(checkNodeSql, path);
-            //var proc = SenseNet.ContentRepository.Storage.Data.DataProvider.CreateDataProcedure(sql);
-            //proc.CommandType = System.Data.CommandType.Text;
-            var docids = new List<int>();
-            var proc = DataProvider.Current.GetTimestampDataForOneNodeIntegrityCheck(path);
-            using (var dbreader = proc.ExecuteReader())
+            using (var readerFrame = LuceneManager.GetIndexReaderFrame())
             {
-                while (dbreader.Read())
+                var ixreader = readerFrame.IndexReader;
+                //var sql = String.Format(checkNodeSql, path);
+                //var proc = SenseNet.ContentRepository.Storage.Data.DataProvider.CreateDataProcedure(sql);
+                //proc.CommandType = System.Data.CommandType.Text;
+                var docids = new List<int>();
+                var proc = DataProvider.Current.GetTimestampDataForOneNodeIntegrityCheck(path);
+                using (var dbreader = proc.ExecuteReader())
                 {
-                    var docid = CheckDbAndIndex(dbreader, ixreader, result);
-                    if (docid >= 0)
-                        docids.Add(docid);
-                }
-            }
-            var scoredocs = GetDocsUnderTree(path, false);
-            foreach (var scoredoc in scoredocs)
-            {
-                var docid = scoredoc.doc;
-                var doc = ixreader.Document(docid);
-                if (!docids.Contains(docid))
-                {
-                    result.Add(new Difference(IndexDifferenceKind.NotInDatabase)
+                    while (dbreader.Read())
                     {
-                        DocId = scoredoc.doc,
-                        VersionId = ParseInt(doc.Get(LucObject.FieldName.VersionId)),
-                        NodeId = ParseInt(doc.Get(LucObject.FieldName.NodeId)),
-                        Path = path,
-                        Version = doc.Get(LucObject.FieldName.Version),
-                        IxNodeTimestamp = ParseLong(doc.Get(LucObject.FieldName.NodeTimestamp)),
-                        IxVersionTimestamp = ParseLong(doc.Get(LucObject.FieldName.VersionTimestamp))
-                    });
+                        var docid = CheckDbAndIndex(dbreader, ixreader, result);
+                        if (docid >= 0)
+                            docids.Add(docid);
+                    }
+                }
+                var scoredocs = GetDocsUnderTree(path, false);
+                foreach (var scoredoc in scoredocs)
+                {
+                    var docid = scoredoc.Doc;
+                    var doc = ixreader.Document(docid);
+                    if (!docids.Contains(docid))
+                    {
+                        result.Add(new Difference(IndexDifferenceKind.NotInDatabase)
+                        {
+                            DocId = scoredoc.Doc,
+                            VersionId = ParseInt(doc.Get(LucObject.FieldName.VersionId)),
+                            NodeId = ParseInt(doc.Get(LucObject.FieldName.NodeId)),
+                            Path = path,
+                            Version = doc.Get(LucObject.FieldName.Version),
+                            IxNodeTimestamp = ParseLong(doc.Get(LucObject.FieldName.NodeTimestamp)),
+                            IxVersionTimestamp = ParseLong(doc.Get(LucObject.FieldName.VersionTimestamp))
+                        });
+                    }
                 }
             }
             return result;
@@ -146,67 +149,70 @@ namespace SenseNet.Search.Indexing
         {
             var result = new List<Difference>();
 
-            var ixreader = LuceneManager.IndexReader;
-            numdocs = ixreader.NumDocs() + ixreader.NumDeletedDocs();
-            var x = numdocs / intsize;
-            var y = numdocs % intsize;
-            docbits = new int[x + (y > 0 ? 1 : 0)];
-            if (path == null)
+            using (var readerFrame = LuceneManager.GetIndexReaderFrame())
             {
-                if (y > 0)
+                var ixreader = readerFrame.IndexReader;
+                numdocs = ixreader.NumDocs() + ixreader.NumDeletedDocs();
+                var x = numdocs / intsize;
+                var y = numdocs % intsize;
+                docbits = new int[x + (y > 0 ? 1 : 0)];
+                if (path == null)
                 {
-                    var q = 0;
-                    for (int i = 0; i < y; i++)
-                        q += 1 << i;
-                    docbits[docbits.Length - 1] = q ^ (-1);
-                }
-            }
-            else
-            {
-                for (int i = 0; i < docbits.Length; i++)
-                    docbits[i] = -1;
-                var scoredocs = GetDocsUnderTree(path, true);
-                for (int i = 0; i < scoredocs.Length; i++)
-                {
-                    var docid = scoredocs[i].doc;
-                    docbits[docid / intsize] ^= 1 << docid % intsize;
-                }
-            }
-            var proc = DataProvider.Current.GetTimestampDataForRecursiveIntegrityCheck(path);
-            using (var dbreader = proc.ExecuteReader())
-            {
-                while (dbreader.Read())
-                {
-                    var docid = CheckDbAndIndex(dbreader, ixreader, result);
-                    if (docid > -1)
-                        docbits[docid / intsize] |= 1 << docid % intsize;
-                }
-            }
-            for (int i = 0; i < docbits.Length; i++)
-            {
-                if (docbits[i] != -1)
-                {
-                    var bits = docbits[i];
-                    for (int j = 0; j < intsize; j++)
+                    if (y > 0)
                     {
-                        if ((bits & (1 << j)) == 0)
+                        var q = 0;
+                        for (int i = 0; i < y; i++)
+                            q += 1 << i;
+                        docbits[docbits.Length - 1] = q ^ (-1);
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < docbits.Length; i++)
+                        docbits[i] = -1;
+                    var scoredocs = GetDocsUnderTree(path, true);
+                    for (int i = 0; i < scoredocs.Length; i++)
+                    {
+                        var docid = scoredocs[i].Doc;
+                        docbits[docid / intsize] ^= 1 << docid % intsize;
+                    }
+                }
+                var proc = DataProvider.Current.GetTimestampDataForRecursiveIntegrityCheck(path);
+                using (var dbreader = proc.ExecuteReader())
+                {
+                    while (dbreader.Read())
+                    {
+                        var docid = CheckDbAndIndex(dbreader, ixreader, result);
+                        if (docid > -1)
+                            docbits[docid / intsize] |= 1 << docid % intsize;
+                    }
+                }
+                for (int i = 0; i < docbits.Length; i++)
+                {
+                    if (docbits[i] != -1)
+                    {
+                        var bits = docbits[i];
+                        for (int j = 0; j < intsize; j++)
                         {
-                            var docid = i * intsize + j;
-                            if (docid >= numdocs)
-                                break;
-                            if (!ixreader.IsDeleted(docid))
+                            if ((bits & (1 << j)) == 0)
                             {
-                                var doc = ixreader.Document(docid);
-                                result.Add(new Difference(IndexDifferenceKind.NotInDatabase)
+                                var docid = i * intsize + j;
+                                if (docid >= numdocs)
+                                    break;
+                                if (!ixreader.IsDeleted(docid))
                                 {
-                                    DocId = docid,
-                                    VersionId = ParseInt(doc.Get(LucObject.FieldName.VersionId)),
-                                    NodeId = ParseInt(doc.Get(LucObject.FieldName.NodeId)),
-                                    Path = doc.Get(LucObject.FieldName.Path),
-                                    Version = doc.Get(LucObject.FieldName.Version),
-                                    IxNodeTimestamp = ParseLong(doc.Get(LucObject.FieldName.NodeTimestamp)),
-                                    IxVersionTimestamp = ParseLong(doc.Get(LucObject.FieldName.VersionTimestamp))
-                                });
+                                    var doc = ixreader.Document(docid);
+                                    result.Add(new Difference(IndexDifferenceKind.NotInDatabase)
+                                    {
+                                        DocId = docid,
+                                        VersionId = ParseInt(doc.Get(LucObject.FieldName.VersionId)),
+                                        NodeId = ParseInt(doc.Get(LucObject.FieldName.NodeId)),
+                                        Path = doc.Get(LucObject.FieldName.Path),
+                                        Version = doc.Get(LucObject.FieldName.Version),
+                                        IxNodeTimestamp = ParseLong(doc.Get(LucObject.FieldName.NodeTimestamp)),
+                                        IxVersionTimestamp = ParseLong(doc.Get(LucObject.FieldName.VersionTimestamp))
+                                    });
+                                }
                             }
                         }
                     }
@@ -317,21 +323,24 @@ namespace SenseNet.Search.Indexing
             var field = recurse ? "InTree" : "Path";
             var lq = LucQuery.Parse(String.Format("{0}:'{1}'", path, path.ToLower()));
 
-            var idxReader = LuceneManager.IndexReader;
-            var searcher = new IndexSearcher(idxReader);
-            var numDocs = idxReader.NumDocs();
-            try
+            using (var readerFrame = LuceneManager.GetIndexReaderFrame())
             {
-                var collector = TopScoreDocCollector.create(numDocs, false);
-                searcher.Search(lq.Query, collector);
-                var topDocs = collector.TopDocs(0, numDocs);
-                return topDocs.scoreDocs;
-            }
-            finally
-            {
-                if (searcher != null)
-                    searcher.Close();
-                searcher = null;
+                var idxReader = readerFrame.IndexReader;
+                var searcher = new IndexSearcher(idxReader);
+                var numDocs = idxReader.NumDocs();
+                try
+                {
+                    var collector = TopScoreDocCollector.Create(numDocs, false);
+                    searcher.Search(lq.Query, collector);
+                    var topDocs = collector.TopDocs(0, numDocs);
+                    return topDocs.ScoreDocs;
+                }
+                finally
+                {
+                    if (searcher != null)
+                        searcher.Close();
+                    searcher = null;
+                }
             }
         }
 

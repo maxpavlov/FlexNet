@@ -30,6 +30,7 @@ namespace SenseNet.Portal.Portlets
             this.Description = SenseNetResourceManager.Current.GetString("SlideSharePortlet", "PortletDescription");
             this.Category = new PortletCategory(PortletCategoryType.Application);
 
+            this.HiddenProperties.Add("Renderer");
         }
 
         protected override void Render(System.Web.UI.HtmlTextWriter writer)

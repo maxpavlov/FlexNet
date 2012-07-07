@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Threading;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Text;
 using System.Collections.Generic;
@@ -15,9 +16,39 @@ using System.Linq;
 using System.Diagnostics;
 using SenseNet.Portal;
 using SenseNet.ContentRepository.Versioning;
+using SenseNet.ContentRepository.Storage.Data.SqlClient;
 
 namespace SenseNet.ContentRepository.Tests
 {
+    internal class CacheContentAfterSaveModeHacker : IDisposable
+    {
+        private const string CACHECONTENTAFTERSAVEMODE_FIELDNAME = "_cacheContentAfterSaveMode";
+        RepositoryConfiguration.CacheContentAfterSaveOption originalOption;
+        public CacheContentAfterSaveModeHacker(RepositoryConfiguration.CacheContentAfterSaveOption option)
+        {
+            originalOption = GetCacheContentAfterSaveMode();
+            SetCacheContentAfterSaveMode(option);
+        }
+        public void Dispose()
+        {
+            SetCacheContentAfterSaveMode(originalOption);
+        }
+        private RepositoryConfiguration.CacheContentAfterSaveOption GetCacheContentAfterSaveMode()
+        {
+            var dummy = RepositoryConfiguration.CacheContentAfterSaveMode;  // make sure private field is initialized
+
+            Type type = typeof(RepositoryConfiguration);
+            FieldInfo info = type.GetField(CACHECONTENTAFTERSAVEMODE_FIELDNAME, BindingFlags.NonPublic | BindingFlags.Static);
+            return (RepositoryConfiguration.CacheContentAfterSaveOption)info.GetValue(null);
+        }
+        private void SetCacheContentAfterSaveMode(RepositoryConfiguration.CacheContentAfterSaveOption option)
+        {
+            Type type = typeof(RepositoryConfiguration);
+            FieldInfo info = type.GetField(CACHECONTENTAFTERSAVEMODE_FIELDNAME, BindingFlags.NonPublic | BindingFlags.Static);
+            info.SetValue(null, option);
+        }
+    }
+
 	[TestClass]
     public class NodeTest2 : TestBase
 	{
@@ -738,6 +769,65 @@ namespace SenseNet.ContentRepository.Tests
             Assert.IsTrue(content.ContentHandler.CreatedById == User.Visitor.Id, String.Format("content.CreatedById is {0}, expected: {1}", content.ContentHandler.CreatedById, User.Visitor.Id));
             //Assert.IsTrue(head.CreatorId == User.Visitor.Id, String.Format("head.CreatorId is {0}, expected: {1}", head.CreatorId, User.Visitor.Id));
         }
+
+        [TestMethod]
+        public void Node_CachingAfterSave()
+        {
+            using (new CacheContentAfterSaveModeHacker(RepositoryConfiguration.CacheContentAfterSaveOption.Containers))
+            {
+                var content = Content.CreateNew("Car", TestRoot, null);
+                Assert.IsFalse(DataBackingStore.IsInCache(content.ContentHandler.Data));
+                content.Save();
+                Assert.IsFalse(DataBackingStore.IsInCache(content.ContentHandler.Data));
+                content = Content.Load(content.Id);
+                Assert.IsTrue(DataBackingStore.IsInCache(content.ContentHandler.Data));
+                content.ContentHandler.Index++;
+                content.Save();
+                Assert.IsFalse(DataBackingStore.IsInCache(content.ContentHandler.Data));
+                content.CheckOut();
+                Assert.IsFalse(DataBackingStore.IsInCache(content.ContentHandler.Data));
+                content.ContentHandler.Index++;
+                content.CheckIn();
+                Assert.IsFalse(DataBackingStore.IsInCache(content.ContentHandler.Data));
+            }
+        }
+
+        [TestMethod]
+        public void Node_NoReloadAfterSave()
+        {
+            //-- initialization if it is the first test
+            var content = Content.CreateNew("Car", TestRoot, null);
+            content.Save();
+            content.DeletePhysical();
+
+            //-- test
+            using (var loggedDataProvider = new LoggedDataProvider())
+            {
+                content = Content.CreateNew("Car", TestRoot, null);
+                content.Save();
+                var log = loggedDataProvider._GetLogAndClear();
+                Assert.IsTrue(!log.Contains("LoadNodes(buildersByVersionId="), "Node is reloaded from database.");
+            }
+
+            var proc = DataProvider.CreateDataProcedure("SELECT N.[Timestamp], V.[Timestamp] FROM Nodes N JOIN Versions V ON N.NodeId = V.NodeId WHERE N.NodeId = @NodeId");
+            proc.CommandType = System.Data.CommandType.Text;
+            var prm = DataProvider.CreateParameter();
+            prm.ParameterName = "@NodeId";
+            prm.DbType = System.Data.DbType.Int32;
+            prm.Value = content.Id;
+            proc.Parameters.Add(prm);
+
+            long nodeTimestamp, versionTimestamp;
+            using (var r = proc.ExecuteReader())
+            {
+                r.Read();
+                nodeTimestamp = DataProvider.GetLongFromBytes((byte[])r[0]);
+                versionTimestamp = DataProvider.GetLongFromBytes((byte[])r[1]);
+            }
+
+            Assert.IsTrue(content.ContentHandler.NodeTimestamp == nodeTimestamp, "Nodetimestamps are not equal.");
+            Assert.IsTrue(content.ContentHandler.VersionTimestamp == versionTimestamp, "Versiontimestamps are not equal.");
+        }
 	}
 
 	[TestClass()]
@@ -1019,7 +1109,158 @@ namespace SenseNet.ContentRepository.Tests
 			file2.Save();
 		}
 
-		#endregion
+        [TestMethod()]
+        public void Node_Save_Refresh_1()
+        {
+            //this test does a few general things to be sure that they do not fail
+            const string text = "text file content";
+            const string text2 = "new text";
+            var bd = new BinaryData {FileName = "TestFile.txt"};
+            bd.SetStream(Tools.GetStreamFromString(text));
+
+            //create a file
+            var file = new File(this.TestRoot) {Index = 1, Binary = bd};
+            file.Save();
+
+            //check binary
+            Assert.AreEqual(text, Tools.GetStreamString(file.Binary.GetStream()), "#1");
+
+            var mod1 = file.ModificationDate;
+
+            //this should indicate a refresh inside
+            file.Index = 2;
+            file.Save();
+
+            var mod2 = file.ModificationDate;
+
+            Assert.AreEqual(2, file.Index, "#2");
+            Assert.IsTrue(mod1 < mod2, "#3");
+
+            //reaload
+            file = Node.Load<File>(file.Id);
+
+            Assert.AreEqual(2, file.Index, "#4");
+            Assert.AreEqual(mod2.ToString(), file.ModificationDate.ToString(), "#5");
+
+            //change the file
+            file.Index = 3;
+            file.Save();
+
+            bd = new BinaryData { FileName = "TestFile.txt" };
+            bd.SetStream(Tools.GetStreamFromString(text2));
+
+            //this should indicate a refresh inside
+            file.Binary = bd;
+            file.Save();
+
+            //check binary
+            Assert.AreEqual(text2, Tools.GetStreamString(file.Binary.GetStream()), "#6");
+
+            //reaload
+            file = Node.Load<File>(file.Id);
+
+            //check binary
+            Assert.AreEqual(text2, Tools.GetStreamString(file.Binary.GetStream()), "#7");
+        }
+
+        [TestMethod()]
+        public void Node_Save_Refresh_2()
+        {
+            var carContent = Content.CreateNew("Car", this.TestRoot, null, null);
+            carContent.Save();
+
+            var car = Node.Load<GenericContent>(carContent.Id);
+            var carNodeTs = car.NodeTimestamp;
+            var carTs = car.VersionTimestamp;
+            var carVId = car.VersionId;
+            var carNodeModDate = car.NodeModificationDate;
+            var carModDate = car.ModificationDate;
+
+            car["Make"] = "999";
+            car.Save();
+
+            CheckTimestampAndStuff(car, carNodeTs, carTs, carNodeModDate, carModDate, 1);
+
+            Assert.IsTrue(car.VersionId == carVId, "Version ID changed #1");
+            Assert.IsTrue(car["Make"].ToString() == "999", "Car.Make value is incorrect #1");
+
+            //set versioning mode to test changing of the version id
+            car.VersioningMode = VersioningType.MajorAndMinor;
+            car["Make"] = "1000";
+
+            carNodeTs = car.NodeTimestamp;
+            carTs = car.VersionTimestamp;
+            carVId = car.VersionId;
+            carNodeModDate = car.NodeModificationDate;
+            carModDate = car.ModificationDate;
+
+            var carVersionNum = car.Version.Minor;
+            
+            //save to change version to 1.1D
+            car.Save();
+
+            CheckTimestampAndStuff(car, carNodeTs, carTs, carNodeModDate, carModDate, 2);
+
+            Assert.IsTrue(car.VersionId > carVId, "Version ID has not changed #2");
+            Assert.IsTrue(car.Version.Minor == carVersionNum + 1, "Version number has not changed #2");
+            Assert.IsTrue(car["Make"].ToString() == "1000", "Car.Make value is incorrect #2");
+
+            carNodeTs = car.NodeTimestamp;
+            carTs = car.VersionTimestamp;
+            carVId = car.VersionId;
+            carNodeModDate = car.NodeModificationDate;
+            carModDate = car.ModificationDate;
+
+            var versionIdBeforeCheckout = carVId;
+            var versionTsBeforeCheckout = carTs;
+
+            car.CheckOut();
+
+            CheckTimestampAndStuff(car, carNodeTs, carTs, carNodeModDate, carModDate, 3);
+            Assert.IsTrue(car.VersionId > carVId, "Version ID has not changed #3");
+
+            car["Make"] = "1001";
+
+            carNodeTs = car.NodeTimestamp;
+            carTs = car.VersionTimestamp;
+            carVId = car.VersionId;
+            carNodeModDate = car.NodeModificationDate;
+            carModDate = car.ModificationDate;
+
+            //save to store the changed index
+            car.Save();
+
+            CheckTimestampAndStuff(car, carNodeTs, carTs, carNodeModDate, carModDate, 4);
+            Assert.IsTrue(car.VersionId == carVId, "Version ID has changed #4");
+
+            carNodeTs = car.NodeTimestamp;
+            
+            car.UndoCheckOut();
+
+            //node timestamp changed because of the modifications on the node row
+            Assert.IsTrue(car.NodeTimestamp > carNodeTs, "Node timestamp has not changed #5");
+            Assert.IsTrue(car.VersionTimestamp == versionTsBeforeCheckout, "Version timestamp has changed #5");
+            Assert.IsTrue(car.VersionId == versionIdBeforeCheckout, "Version ID has not changed back #5");
+            Assert.IsTrue(car["Make"].ToString() == "1000", "Car.Make value is incorrect #5");
+        }
+
+	    //[TestMethod()]
+        //[ExpectedException(typeof(NodeIsOutOfDateException))]
+        //public void Node_Save_Refresh_Dirty()
+        //{
+        //    var file = new File(this.TestRoot) { Index = 1 };
+        //    file.Save();
+
+        //    //modify private field to avoid refresh
+        //    typeof (Node).InvokeMember("IsDirty",
+        //                               BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.SetProperty |
+        //                               BindingFlags.Instance, null, file, new object[] {false});
+
+        //    file.Index = 10;
+        //    file.Save();
+        //}
+
+	    #endregion
 
 		#region Delete tests
 
@@ -1655,7 +1896,7 @@ namespace SenseNet.ContentRepository.Tests
             var loadedFileInnerData = loadedFile.Data.SharedData;
             Assert.IsTrue(loadedFileData.IsShared, "Loaded file data is not shared");
             Assert.IsNull(loadedFileInnerData, "Loaded file inner data is not null");
-            Assert.IsTrue(Object.ReferenceEquals(loadedFileData, savedFileData), "Saved shared and loaded shared are not the same");
+            //Assert.IsTrue(Object.ReferenceEquals(loadedFileData, savedFileData), "Saved shared and loaded shared are not the same");
 
             //----
 
@@ -1666,7 +1907,7 @@ namespace SenseNet.ContentRepository.Tests
             Assert.IsTrue(reloadedFileData.IsShared, "Loaded file data is not shared");
             Assert.IsNull(reloadedFileInnerData, "Loaded file inner data is not null");
             Assert.IsTrue(Object.ReferenceEquals(reloadedFileData, loadedFileData), "Reloaded shared and loaded shared are not the same");
-            Assert.IsTrue(Object.ReferenceEquals(reloadedFileData, savedFileData), "Reloaded shared and saved shared are not the same");
+            //Assert.IsTrue(Object.ReferenceEquals(reloadedFileData, savedFileData), "Reloaded shared and saved shared are not the same");
 
             //----
 
@@ -1679,7 +1920,7 @@ namespace SenseNet.ContentRepository.Tests
             Assert.IsTrue(editedFileInnerData.IsShared, "Edited file inner data is not shared");
 
             Assert.IsTrue(Object.ReferenceEquals(editedFileInnerData, loadedFileData), "Edited shared and loaded shared are not the same");
-            Assert.IsTrue(Object.ReferenceEquals(editedFileInnerData, savedFileData), "Edited shared and saved shared are not the same");
+            //Assert.IsTrue(Object.ReferenceEquals(editedFileInnerData, savedFileData), "Edited shared and saved shared are not the same");
 
             //----
 
@@ -1693,6 +1934,281 @@ namespace SenseNet.ContentRepository.Tests
             newFile.ForceDelete();
         }
         #endregion
+
+        [TestMethod]
+        public void Cache_NodeHead_Folder()
+        {
+            using (new CacheContentAfterSaveModeHacker(RepositoryConfiguration.CacheContentAfterSaveOption.Containers))
+            {
+                var newFolder = new Folder(TestRoot);
+                newFolder.Name = Guid.NewGuid().ToString();
+                newFolder.Save();
+                var id = newFolder.Id;
+                var path = newFolder.Path;
+                var idKey = DataBackingStore.CreateNodeHeadIdCacheKey(id);
+                var pathKey = DataBackingStore.CreateNodeHeadPathCacheKey(path);
+
+                Assert.IsNotNull((NodeHead)DistributedApplication.Cache.Get(idKey), "A folder's NodeHead is not cached by id after creation");
+                Assert.IsNotNull((NodeHead)DistributedApplication.Cache.Get(pathKey), "A folder's NodeHead is not cached by path after creation");
+
+                var head = NodeHead.Get(id);
+
+                Assert.IsNotNull((NodeHead)DistributedApplication.Cache.Get(idKey), "A folder's NodeHead is not cached by id after load");
+                Assert.IsNotNull((NodeHead)DistributedApplication.Cache.Get(pathKey), "A folder's NodeHead is not cached by path after load");
+
+                var folder = Node.LoadNode(id);
+                folder.Index++;
+                folder.Save();
+
+                Assert.IsNull((NodeHead)DistributedApplication.Cache.Get(idKey), "A folder's NodeHead is not cached by id after updating");
+                Assert.IsNull((NodeHead)DistributedApplication.Cache.Get(pathKey), "A folder's NodeHead is not cached by path after updating");
+
+                newFolder.ForceDelete();
+            }
+        }
+        [TestMethod]
+        public void Cache_NodeHead_File()
+        {
+            using (new CacheContentAfterSaveModeHacker(RepositoryConfiguration.CacheContentAfterSaveOption.Containers))
+            {
+                var newFile = new File(TestRoot);
+                newFile.Name = Guid.NewGuid().ToString();
+                newFile.Save();
+                var id = newFile.Id;
+                var path = newFile.Path;
+                var idKey = DataBackingStore.CreateNodeHeadIdCacheKey(id);
+                var pathKey = DataBackingStore.CreateNodeHeadPathCacheKey(path);
+
+                Assert.IsNull((NodeHead)DistributedApplication.Cache.Get(idKey), "A file's NodeHead is cached by id after creation");
+                Assert.IsNull((NodeHead)DistributedApplication.Cache.Get(pathKey), "A file's NodeHead is cached by path after creation");
+
+                var head = NodeHead.Get(id);
+
+                Assert.IsNotNull((NodeHead)DistributedApplication.Cache.Get(idKey), "A file's NodeHead is not cached by id after load");
+                Assert.IsNotNull((NodeHead)DistributedApplication.Cache.Get(pathKey), "A file's NodeHead is not cached by path after load");
+
+                var file = Node.LoadNode(id);
+                file.Index++;
+                file.Save();
+
+                Assert.IsNull((NodeHead)DistributedApplication.Cache.Get(idKey), "A file's NodeHead is cached by id after updating");
+                Assert.IsNull((NodeHead)DistributedApplication.Cache.Get(pathKey), "A file's NodeHead is cached by path after updating");
+
+                newFile.ForceDelete();
+            }
+        }
+        //private RepositoryConfiguration.CacheContentAfterSaveOption GetCacheContentAfterSaveMode()
+        //{
+        //    var dummy = RepositoryConfiguration.CacheContentAfterSaveMode;  // make sure private field is initialized
+
+        //    Type type = typeof(RepositoryConfiguration);
+        //    FieldInfo info = type.GetField(CACHECONTENTAFTERSAVEMODE_FIELDNAME, BindingFlags.NonPublic | BindingFlags.Static);
+        //    return (RepositoryConfiguration.CacheContentAfterSaveOption)info.GetValue(null);
+        //}
+        //private void SetCacheContentAfterSaveMode(RepositoryConfiguration.CacheContentAfterSaveOption option)
+        //{
+        //    Type type = typeof(RepositoryConfiguration);
+        //    FieldInfo info = type.GetField(CACHECONTENTAFTERSAVEMODE_FIELDNAME, BindingFlags.NonPublic | BindingFlags.Static);
+        //    info.SetValue(null, option);
+        //}
+        [TestMethod]
+        public void Cache_NodeData_Folder()
+        {
+            /////////////////////////////////////////////////////////////
+            // test Containers
+            using (new CacheContentAfterSaveModeHacker(RepositoryConfiguration.CacheContentAfterSaveOption.Containers))
+            {
+                var newFolder = new Folder(TestRoot);
+                newFolder.Name = Guid.NewGuid().ToString();
+                newFolder.Save();
+                var id = newFolder.Id;
+                var versionId = newFolder.VersionId;
+                var idKey = DataBackingStore.GenerateNodeDataVersionIdCacheKey(versionId);
+
+                Assert.IsNotNull((NodeData)DistributedApplication.Cache.Get(idKey), "A folder's NodeData is not cached after creation");
+
+                var folder = Node.LoadNode(id);
+
+                Assert.IsNotNull((NodeData)DistributedApplication.Cache.Get(idKey), "A folder's NodeData is not cached after loading");
+
+                folder.Index++;
+                folder.Save();
+
+                Assert.IsNotNull((NodeData)DistributedApplication.Cache.Get(idKey), "A folder's NodeData is not cached after updating");
+
+                newFolder.ForceDelete();
+            }
+
+            /////////////////////////////////////////////////////////////
+            // test all
+            using (new CacheContentAfterSaveModeHacker(RepositoryConfiguration.CacheContentAfterSaveOption.All))
+            {
+                var newFolder = new Folder(TestRoot);
+                newFolder.Name = Guid.NewGuid().ToString();
+                newFolder.Save();
+                var id = newFolder.Id;
+                var versionId = newFolder.VersionId;
+                var idKey = DataBackingStore.GenerateNodeDataVersionIdCacheKey(versionId);
+
+                Assert.IsNotNull((NodeData)DistributedApplication.Cache.Get(idKey), "A folder's NodeData is not cached after creation");
+
+                var folder = Node.LoadNode(id);
+
+                Assert.IsNotNull((NodeData)DistributedApplication.Cache.Get(idKey), "A folder's NodeData is not cached after loading");
+
+                folder.Index++;
+                folder.Save();
+
+                Assert.IsNotNull((NodeData)DistributedApplication.Cache.Get(idKey), "A folder's NodeData is not cached after updating");
+
+                newFolder.ForceDelete();
+            }
+
+            /////////////////////////////////////////////////////////////
+            // test none
+            using (new CacheContentAfterSaveModeHacker(RepositoryConfiguration.CacheContentAfterSaveOption.None))
+            {
+
+                var newFolder = new Folder(TestRoot);
+                newFolder.Name = Guid.NewGuid().ToString();
+                newFolder.Save();
+                var id = newFolder.Id;
+                var versionId = newFolder.VersionId;
+                var idKey = DataBackingStore.GenerateNodeDataVersionIdCacheKey(versionId);
+
+                Assert.IsNull((NodeData)DistributedApplication.Cache.Get(idKey), "A folder's NodeData is cached after creation");
+
+                var folder = Node.LoadNode(id);
+
+                Assert.IsNotNull((NodeData)DistributedApplication.Cache.Get(idKey), "A folder's NodeData is not cached after loading");
+
+                folder.Index++;
+                folder.Save();
+
+                Assert.IsNull((NodeData)DistributedApplication.Cache.Get(idKey), "A folder's NodeData is cached after updating");
+
+                newFolder.ForceDelete();
+            }
+        }
+        [TestMethod]
+        public void Cache_NodeData_File()
+        {
+            using (new CacheContentAfterSaveModeHacker(RepositoryConfiguration.CacheContentAfterSaveOption.Containers))
+            {
+                var newFile = new File(TestRoot);
+                newFile.Name = Guid.NewGuid().ToString();
+                newFile.Save();
+                var id = newFile.Id;
+                var versionId = newFile.VersionId;
+                var idKey = DataBackingStore.GenerateNodeDataVersionIdCacheKey(versionId);
+
+                Assert.IsNull((NodeData)DistributedApplication.Cache.Get(idKey), "A file's NodeData is cached after creation");
+
+                var file = Node.LoadNode(id);
+
+                Assert.IsNotNull((NodeData)DistributedApplication.Cache.Get(idKey), "A file's NodeData is not cached after loading");
+
+                file.Index++;
+                file.Save();
+
+                Assert.IsNull((NodeData)DistributedApplication.Cache.Get(idKey), "A file's NodeData is cached after updating");
+
+                newFile.ForceDelete();
+            }
+
+            /////////////////////////////////////////////////////////////
+            // test none
+            using (new CacheContentAfterSaveModeHacker(RepositoryConfiguration.CacheContentAfterSaveOption.None))
+            {
+                var newFile = new File(TestRoot);
+                newFile.Name = Guid.NewGuid().ToString();
+                newFile.Save();
+                var id = newFile.Id;
+                var versionId = newFile.VersionId;
+                var idKey = DataBackingStore.GenerateNodeDataVersionIdCacheKey(versionId);
+
+                Assert.IsNull((NodeData)DistributedApplication.Cache.Get(idKey), "A file's NodeData is cached after creation");
+
+                var file = Node.LoadNode(id);
+
+                Assert.IsNotNull((NodeData)DistributedApplication.Cache.Get(idKey), "A file's NodeData is not cached after loading");
+
+                file.Index++;
+                file.Save();
+
+                Assert.IsNull((NodeData)DistributedApplication.Cache.Get(idKey), "A file's NodeData is cached after updating");
+
+                newFile.ForceDelete();
+            }
+
+            /////////////////////////////////////////////////////////////
+            // test all
+            using (new CacheContentAfterSaveModeHacker(RepositoryConfiguration.CacheContentAfterSaveOption.All))
+            {
+                var newFile = new File(TestRoot);
+                newFile.Name = Guid.NewGuid().ToString();
+                newFile.Save();
+                var id = newFile.Id;
+                var versionId = newFile.VersionId;
+                var idKey = DataBackingStore.GenerateNodeDataVersionIdCacheKey(versionId);
+
+                Assert.IsNotNull((NodeData)DistributedApplication.Cache.Get(idKey), "A file's NodeData is not cached after creation");
+
+                var file = Node.LoadNode(id);
+
+                Assert.IsNotNull((NodeData)DistributedApplication.Cache.Get(idKey), "A file's NodeData is not cached after loading");
+
+                file.Index++;
+                file.Save();
+
+                Assert.IsNotNull((NodeData)DistributedApplication.Cache.Get(idKey), "A file's NodeData is not cached after updating");
+
+                newFile.ForceDelete();
+            }
+        }
+        [TestMethod]
+        public void Cache_NodeHead_TestMustCache()
+        {
+            var dataBackingStoreAcc = new PrivateType(typeof(DataBackingStore));
+
+            using (new CacheContentAfterSaveModeHacker(RepositoryConfiguration.CacheContentAfterSaveOption.None))
+                TestMustCache(dataBackingStoreAcc);
+            using (new CacheContentAfterSaveModeHacker(RepositoryConfiguration.CacheContentAfterSaveOption.All))
+                TestMustCache(dataBackingStoreAcc);
+            using (new CacheContentAfterSaveModeHacker(RepositoryConfiguration.CacheContentAfterSaveOption.Containers))
+                TestMustCache(dataBackingStoreAcc);
+        }
+        private void TestMustCache(PrivateType dataBackingStoreAcc)
+        {
+            foreach (var contentType in ContentType.GetContentTypes())
+            {
+                var type = TypeHandler.GetType(contentType.HandlerName);
+                var isFolder = typeof(IFolder).IsAssignableFrom(type);
+                var nodeType = NodeType.GetByName(contentType.Name);
+                if (nodeType == null)
+                {
+                    Debug.WriteLine(String.Format("###> ERROR: NodeType {0} is null", contentType.Name));
+                    continue;
+                }
+                var mustCache = (bool)dataBackingStoreAcc.InvokeStatic("MustCache", nodeType);
+                switch (RepositoryConfiguration.CacheContentAfterSaveMode)
+                {
+                    case RepositoryConfiguration.CacheContentAfterSaveOption.None:
+                        Assert.IsTrue(mustCache == false, String.Format("mustCache is true, expected false. NodeType: {0}, config: CacheContentAfterSaveOption.None", contentType.Name));
+                        break;
+                    case RepositoryConfiguration.CacheContentAfterSaveOption.Containers:
+                        //if(isFolder != mustCache)
+                        //    Debug.WriteLine(String.Format("###> >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> {0}, {1}, {2}", contentType.Name, isFolder, mustCache));
+                        Assert.IsTrue(mustCache == isFolder, String.Format("mustCache is {0}, expected {1}. NodeType: {2}, config: CacheContentAfterSaveOption.Containers", mustCache, isFolder, contentType.Name));
+                        break;
+                    case RepositoryConfiguration.CacheContentAfterSaveOption.All:
+                        Assert.IsTrue(mustCache == true, String.Format("mustCache is false, expected true. NodeType: {0}, config: CacheContentAfterSaveOption.All", contentType.Name));
+                        break;
+                    default:
+                        throw new NotImplementedException("Unknown CacheContentAfterSaveOption: " + RepositoryConfiguration.CacheContentAfterSaveMode);
+                }
+            }
+        }
 
         [TestMethod]
         public void Node_Load_Bug5527()
@@ -1765,6 +2281,189 @@ namespace SenseNet.ContentRepository.Tests
             Assert.IsTrue(countForAdmin2 == 2, String.Concat("countForAdmin2 is", countForAdmin2, ". Expected: 2."));
         }
 
+        [TestMethod]
+        public void NodeData_DataIsSharedAfterLoad()
+        {
+            var id = TestRoot.Id;
+            var node = Node.LoadNode(id);
+            Assert.IsTrue(node.Data.IsShared, "NodeData is not shared after node is loaded.");
+            Assert.IsNull(node.Data.SharedData, "NodeData.SharedData is not null after node is loaded.");
+        }
+        [TestMethod]
+        public void NodeData_CreatingPrivateData()
+        {
+            var id = TestRoot.Id;
+            var node = Node.LoadNode(id);
+            node.Index++;
+            Assert.IsTrue(!node.Data.IsShared, "NodeData is shared after setting a property.");
+            Assert.IsNotNull(node.Data.SharedData, "NodeData.SharedData is null after node is loaded.");
+        }
+        [TestMethod]
+        public void NodeData_EmptyPrivateDynamicData()
+        {
+            var id = TestRoot.Id;
+            var node = Node.LoadNode(id);
+            node.Index++;
+            var dataAcc = new PrivateObject(node.Data);
+            var dynamicData = (Dictionary<int, object>)dataAcc.GetField("dynamicData");
+            Assert.IsTrue(dynamicData.Count == 0, "Private dynamc data is not empty after creation");
+        }
+
+        [TestMethod]
+        public void NodeData_LoadTextProperty()
+        {
+            //---- prepare
+            var sb = new StringBuilder("Description 123");
+            while (sb.Length < SqlProvider.TextAlternationSizeLimit)
+                sb.Append(" Description");
+            sb.Append(" (now certain that longer than enough)");
+
+            var expectedDescription = sb.ToString();
+            var content = Content.CreateNew("Car", TestRoot, null);
+            var gc = (GenericContent)content.ContentHandler;
+            gc.Description = expectedDescription;
+            content.Save();
+            var id = content.Id;
+
+            //---- reload content and delete a dynamic longtext (Description) from the shared data
+            gc = (GenericContent)Node.LoadNode(id);
+            RemoveDescriptionFromNodeDate(gc);
+
+            var description = gc.Description;
+            Assert.IsNotNull(description, "The description is null");
+            Assert.IsTrue(description == expectedDescription, String.Format("The description is '{0}', expected: '{1}'", description, expectedDescription));
+
+            //---- test with short-longtext :)
+            gc.Description = "Shorter description";
+            gc.Save();
+            gc = (GenericContent)Node.LoadNode(id);
+            RemoveDescriptionFromNodeDate(gc);
+
+            description = gc.Description;
+            //---- text property will be loaded back only from TextPropertiesNText table
+            Assert.IsNull(description, "Short description is not null");
+        }
+        private void RemoveDescriptionFromNodeDate(Node node)
+        {
+            var data = node.Data;
+            if (!data.IsShared)
+                Assert.Inconclusive();
+            var dataAcc = new PrivateObject(data);
+            var dynamicData = (Dictionary<int, object>)dataAcc.GetField("dynamicData");
+            var propertyType = PropertyType.GetByName("Description");
+            var propertyTypeId = propertyType.Id;
+            if (dynamicData.ContainsKey(propertyTypeId))
+                dynamicData.Remove(propertyTypeId);
+        }
+
+        [TestMethod]
+        public void NodeData_RemoveStreamsAndLongTexts_CalledOnce()
+        {
+            using (var loggedDataProvider = new LoggedDataProvider())
+            {
+                var content = Content.CreateNew("Car", TestRoot, null);
+                content["Description"] = "desc";
+                content.Save();
+                var id = content.Id;
+
+                var log1 = loggedDataProvider._GetLogAndClear();
+                Assert.IsTrue(log1.Contains("IsCacheableText("), "IsCacheableText method is not called.");
+
+                content = Content.Load(id);
+
+                var log2 = loggedDataProvider._GetLogAndClear();
+                Assert.IsTrue(!log2.Contains("IsCacheableText("), "IsCacheableText method is called.");
+            }
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NotSupportedException))]
+        public void NodeData_BinarySlotAccepsOnlyBinaryDataValue()
+        {
+            //---- a NodeData dynamicProperty-jében miért lehet BinaryDataValue-tól eltérö érték? 
+            var file = new File(TestRoot);
+            file.Name = Guid.NewGuid().ToString();
+            var data = file.Data;
+            data.SetDynamicRawData(PropertyType.GetByName("Binary"), new int[0]);
+        }
+
+        #region Version flags tests
+
+        [TestMethod]
+        public void Node_Flags_Approving()
+        {
+            var folder = new Folder(TestRoot)
+                             {
+                                 Name = "Node_Flags",
+                                 InheritableVersioningMode = InheritableVersioningType.MajorAndMinor,
+                                 InheritableApprovingMode = ApprovingType.True
+                             };
+            folder.Save();
+
+            //initial version
+            var car = Content.CreateNew("Car", folder, "Car_None");
+            var gcar = (GenericContent)car.ContentHandler;
+            gcar.Description = "1_Create";
+
+            //flags are false before save
+            CheckFlags(gcar, false, false, 1);
+
+            gcar.Save();
+            CheckFlags(gcar, false, true, 2);
+
+            //store version id for later use
+            var prevVersionId = gcar.VersionId;
+
+            gcar.CheckOut();
+            CheckFlags(gcar, false, true, 3);
+
+            var prevCar = Node.LoadNodeByVersionId(prevVersionId);
+            CheckFlags(prevCar, false, false, 4);
+
+            gcar.CheckIn();
+            CheckFlags(gcar, false, true, 5);
+
+            //create a major but pending version
+            gcar.Publish();
+            CheckFlags(gcar, false, true, 6);
+
+            //create a major approved version
+            gcar.Approve();
+            CheckFlags(gcar, true, true, 7);
+
+            prevVersionId = gcar.VersionId;
+
+            //raise version number manually
+            gcar.Version = new VersionNumber(2, 4, VersionStatus.Draft);
+            gcar.Index = 99;
+            gcar.Save();
+
+            //set version number to a major but pending version
+            gcar.Version = new VersionNumber(3, 0, VersionStatus.Pending);
+            gcar.Index = 999;
+            gcar.Save(SavingMode.KeepVersion);
+
+            CheckFlags(gcar, false, true, 8);
+
+            gcar.CheckOut();
+            CheckFlags(gcar, false, true, 9);
+
+            //create a draft minor version
+            gcar.CheckIn();
+            CheckFlags(gcar, false, true, 10);
+
+            //load the previous major approved version
+            prevCar = Node.LoadNodeByVersionId(prevVersionId);
+            CheckFlags(prevCar, true, false, 11);
+
+            //publish and approve the latest version
+            gcar.Publish();
+            gcar.Approve();
+            CheckFlags(gcar, true, true, 12);
+        }
+
+        #endregion
+
         //===================================================================================== Tools
 
 		private void CheckRootNode(Node node)
@@ -1819,5 +2518,19 @@ namespace SenseNet.ContentRepository.Tests
 
 			return rtn;
 		}
+
+        private static void CheckTimestampAndStuff(Node node, long oldNodeTs, long oldVersionTs, DateTime oldNodeModDate, DateTime oldModDate, int assertNum)
+        {
+            Assert.IsTrue(node.NodeTimestamp > oldNodeTs, "Node timestamp has not changed #" + assertNum);
+            Assert.IsTrue(node.VersionTimestamp > oldVersionTs, "Version timestamp has not changed #" + assertNum);
+            Assert.IsTrue(node.NodeModificationDate > oldNodeModDate, "Node modification date has not changed #" + assertNum);
+            Assert.IsTrue(node.ModificationDate > oldModDate, "Version modification date has not changed #" + assertNum);
+        }
+
+        private static void CheckFlags(Node node, bool lastPublicExpected, bool latestVersionExpected, int iteration)
+        {
+            Assert.IsTrue(node.IsLastPublicVersion == lastPublicExpected, "Last public flag is incorrect #" + iteration);
+            Assert.IsTrue(node.IsLatestVersion == latestVersionExpected, "Latest version flag is incorrect #" + iteration);
+        }
 	}
 }

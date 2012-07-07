@@ -65,7 +65,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\References\Ionic.Zip.dll</HintPath>
     </Reference>
-    <Reference Include="itextsharp, Version=5.0.2.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+    <Reference Include="itextsharp, Version=5.2.1.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\References\itextsharp.dll</HintPath>
     </Reference>
@@ -164,22 +164,22 @@
     <Compile Include="Search\Indexing\Activities\RemoveDocumentActivity.cs" />
     <Compile Include="Search\Indexing\Activities\RemoveTreeActivity.cs" />
     <Compile Include="Search\Indexing\Activities\UpdateDocumentActivity.cs" />
-    <Compile Include="Search\Indexing\ActivityQueue.cs" />
     <Compile Include="Search\Indexing\BackupTools.cs" />
     <Compile Include="Search\Indexing\Configuration\RepositoryIndexBehaviorSection.cs" />
     <Compile Include="Search\Indexing\DocumentPopulator.cs" />
     <Compile Include="Search\Indexing\FieldIndexHandler.cs" />
-    <Compile Include="Search\Indexing\DocumentBuilder.cs" />
-    <Compile Include="Search\Indexing\IndexBuilder.cs" />
     <Compile Include="Search\Indexing\IndexDocumentInfo.cs" />
+    <Compile Include="Search\Indexing\IndexHealthMonitor.cs" />
+    <Compile Include="Search\Indexing\IndexingHistory.cs" />
     <Compile Include="Search\Indexing\IndexReaderFrame.cs" />
+    <Compile Include="Search\Indexing\IndexWriterFrame.cs" />
     <Compile Include="Search\Indexing\IntegrityChecker.cs" />
-    <Compile Include="Search\Indexing\QueuedActivity.cs" />
+    <Compile Include="Search\Indexing\MissingActivityHandler.cs" />
+    <Compile Include="Search\Indexing\LuceneActivity.cs" />
     <Compile Include="Search\IndexManager.cs" />
     <Compile Include="Search\Indexing\Activities\DistributedLuceneActivity.cs" />
     <Compile Include="Search\Indexing\IndexingActivity.cs" />
-    <Compile Include="Search\Indexing\IndexingTask.cs" />
-    <Compile Include="Search\Indexing\IndexingTaskManager.cs" />
+    <Compile Include="Search\Indexing\IndexingActivityManager.cs" />
     <Compile Include="Search\Indexing\IndexingTasks.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -313,9 +313,7 @@
     <Compile Include="Security\UserAccessProvider.cs" />
     <Compile Include="Group.cs" />
     <Compile Include="IFile.cs" />
-    <Compile Include="IFolder.cs" />
     <Compile Include="OrganizationalUnit.cs" />
-    <Compile Include="Portal.cs" />
     <Compile Include="File.cs" />
     <Compile Include="Folder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -389,8 +387,8 @@
       <Project>{7558CCA6-164B-4520-B926-CADDDC3700EA}</Project>
       <Name>Eclipse.IndexingService</Name>
     </ProjectReference>
-    <ProjectReference Include="..\LuceneNet_2_9_2\Lucene.Net.csproj">
-      <Project>{01262AA3-7163-40DA-90F9-BC0B67CEFB34}</Project>
+    <ProjectReference Include="..\LuceneNet_2_9_4g\Lucene.Net.csproj">
+      <Project>{5D4AD9BE-1FFB-41AB-9943-25737971BF57}</Project>
       <Name>Lucene.Net</Name>
     </ProjectReference>
     <ProjectReference Include="..\Storage\Storage.csproj">

@@ -4,14 +4,14 @@
   <ContentName>tokiosalesworkspace</ContentName>
   <Fields>
     <Manager>
-      <Path>/Root/IMS/Demo/ProjectManagers/albamonday</Path>
+      <Path>/Root/IMS/Demo/ProjectManagers/alba</Path>
     </Manager>
     <Customer><![CDATA[]]></Customer>
     <Description><![CDATA[<p>This workspace emcompasses all sales details and related items associated with the Tokio Sales project.</p>]]></Description>
     <ExpectedRevenue>80000000.0000</ExpectedRevenue>
     <ChanceOfWinning>40.0000</ChanceOfWinning>
     <StartDate>2010-04-10T00:00:00</StartDate>
-    <Deadline>2011-03-15T00:00:00</Deadline>
+    <Deadline>2012-06-30T00:00:00</Deadline>
     <Contacts><![CDATA[]]></Contacts>
     <Notes><![CDATA[]]></Notes>
     <Completion>25</Completion>

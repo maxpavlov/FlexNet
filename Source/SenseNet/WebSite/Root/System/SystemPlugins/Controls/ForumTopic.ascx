@@ -7,7 +7,7 @@
 <div class="sn-forum-topic">
 
     <p style="float:right;">
-       <sn:ActionLinkButton runat="server" ID="ReplyLink" Text="Add comment" ActionName="Add" ContextInfoID="ViewContext" />
+       <sn:ActionLinkButton runat="server" ID="ReplyLink" Text="Add comment" ActionName="Add" ContextInfoID="ViewContext" ParameterString="ContentTypeName=ForumEntry" />
     </p>
     <div class="sn-content">
        <%= ContextElement.Description %>
@@ -17,7 +17,7 @@
         <div class="sn-entries">
         </HeaderTemplate>
         <ItemTemplate>
-            <div id="sn-entry-<%# Eval("SerialNo") %>" class="sn-entry sn-entry-row<%#Container.ItemIndex % 2 %> ui-helper-clearfix">
+            <div id="<%# Eval("SerialNo") %>" class="sn-entry sn-entry-row<%#Container.ItemIndex % 2 %> ui-helper-clearfix">
                 <div class="sn-entry-container">
                     <div class="sn-entry-number"><%# Eval("SerialNo") %></div>
                     <div class="sn-entry-content">
@@ -30,7 +30,7 @@
                     <%# Eval("PostedBy.FullName") %> <span class="sn-separator">|</span>
                     <%# Eval("CreationDate") %> <span class="sn-separator">|</span> 
                     <%# (int)Eval("ReplyToNo") >= 0 ? "Previous in thread: <a href='#" + Eval("ReplyToNo") + "'>#" + Eval("ReplyToNo") + "</a> <span class='sn-separator'>|</span> " : ""%>
-                    <sn:ActionLinkButton runat="server" ID="ReplyLink" Text="Reply" IconName="add"/>
+                    <sn:ActionLinkButton runat="server" ID="ReplyLink" Text="Reply" IconName="reply"/>
                 </div>
             </div>
         </ItemTemplate>

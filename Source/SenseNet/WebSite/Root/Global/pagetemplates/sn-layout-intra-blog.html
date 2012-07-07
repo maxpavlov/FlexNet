@@ -24,12 +24,18 @@
         <h1><%= (SenseNet.Portal.Virtualization.PortalContext.Current.Workspace != null) ? SenseNet.Portal.Virtualization.PortalContext.Current.Workspace.DisplayName : "Sense/Net" %></h1>
       </div>
       <div class="sn-layout-head-right">
+      <div class="sn-logo">
+        <a href="http://www.sensenet.com" title="Sense/Net 6.1 Site" class="snPortalengine"></a>
+      </div>
+      <div class="sn-searchandlogin">
         <snpe:ContextSearch Renderer="/Root/System/SystemPlugins/Portlets/ContextSearch/QuickView.ascx" ID="QuickSearch1" runat="server" QuickSearchMode="True" 
             ContextInfoID="workspaceContext" />
+        <snpe:advancedloginportlet title="Login" id="login" runat="server" loginviewpath="/Root/System/SystemPlugins/Portlets/AdvancedLogin/AdvancedLoginView.ascx"
+                    cssclass="sn-advancedLogin" />
       </div>
-      <div class="sn-logo">
-        <a href="http://www.sensenet.com" title="Sense/Net 6.0 Site" class="snPortalengine"></a>
       </div>
+      
+      
     </div>
 
     <div class="sn-headertools">
@@ -48,7 +54,6 @@
       <div class="sn-column sn-column1">
         <snpe-zone name="LeftCol" HeaderText="Left Column" PartChromeType="TitleAndBorder">
           <snpe:ContentPortlet Title="Main Menu" ChromeType="BorderOnly" BindTarget="CurrentWorkspace" ViewPath="/Root/Global/renderers/BlogMenu.ascx" ID="WikiMenu" runat="server" />
-          <snpe:AdvancedLoginPortlet Title="Profile" ID="login" runat="server" LoginViewPath="/Root/System/SystemPlugins/Portlets/AdvancedLogin/LoginView.ascx" />
         </snpe-zone>
       </div>
 
@@ -82,22 +87,10 @@
         </div>
       </div>
     </div>
-    <div class="sn-layout-foot">
-      <div class="sn-layout-foot-top"><div class="sn-layout-foot-tl"></div><div class="sn-layout-foot-tc"></div><div class="sn-layout-foot-tr"></div></div>
-      <div class="sn-layout-foot-center ui-helper-clearfix">
-        <a href="http://www.sensenet.com" title="Sense/Net 6.0 Site" class="snPortalengine">
-          <span>Sense/Net 6.0 Site</span>
-        </a>
-        <snpe-zone name="Footer" HeaderText="Footer" PartChromeType="None">
-          <snpe:SingleContentPortlet UsedContentTypeName="HTMLContent" ContentPath="/Root/YourContents/FooterContent" ID="FooterContent1" runat="server" />
-        </snpe-zone>
-      </div>
-      <div class="sn-layout-foot-bottom"><div class="sn-layout-foot-bl"></div><div class="sn-layout-foot-bc"></div><div class="sn-layout-foot-br"></div></div>
       <div class="sn-copyright">
-        <a href="/legal/">Legal</a><span class="sn-separator"> &bull; </span>
-          Powered by <a href="http://www.sensenet.com" title="www.sensenet.com" >Sense/Net CMS Community Edition 6.0.8 (V6.0.8.3195)</a>
+        <a href="/legal/">Legal</a><span class="sn-separator"> - </span>
+          Powered by <a href="http://www.sensenet.com" title="www.sensenet.com" >Sense/Net CMS Community Edition 6.1 (V6.1.0.3723)</a>
       </div>
-    </div>
   </div>
 <!-- prc -->
 <snpe:PortalRemoteControl ID="RemoteControl" runat="server" TagContainer="PRCEcms" Groups="/Root/IMS/Demo/Developers;/Root/IMS/BuiltIn/Portal/Administrators" />

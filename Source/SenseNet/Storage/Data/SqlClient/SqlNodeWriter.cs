@@ -23,7 +23,143 @@ namespace SenseNet.ContentRepository.Storage.Data.SqlClient
                 _flatWriter.Execute();
         }
 
-        //============================================================================ Node Insert/Update
+        private const string INSERT_NODE_AND_VERSION_ROWS = @"
+-- for result
+DECLARE @NodeId int, @VersionId int
+DECLARE @NodeTimestamp timestamp, @VersionTimestamp timestamp
+
+INSERT INTO Nodes
+	(NodeTypeId, ContentListTypeId, ContentListId, IsDeleted, IsInherited, ParentNodeId, [Name], DisplayName, Path, [Index], Locked, LockedById, ETag, LockType, LockTimeout, LockDate, LockToken, LastLockUpdate, CreationDate, CreatedById, ModificationDate, ModifiedById) VALUES
+	(@NodeTypeId, @ContentListTypeId, @ContentListId, @IsDeleted, @IsInherited, @ParentNodeId, @Name, @DisplayName, @Path, @Index, @Locked, @LockedById, @ETag, @LockType, @LockTimeout, @LockDate, @LockToken, @LastLockUpdate, @NodeCreationDate, @NodeCreatedById, @NodeModificationDate, @NodeModifiedById)
+
+SELECT @NodeId = @@IDENTITY
+
+INSERT INTO Versions 
+	( NodeId,  MajorNumber,  MinorNumber,  CreationDate,  CreatedById,  ModificationDate,  ModifiedById, Status ) VALUES
+	(@NodeId, @MajorNumber, @MinorNumber, @CreationDate, @CreatedById, @ModificationDate, @ModifiedById, @Status)
+
+SELECT @VersionId = @@IDENTITY
+SELECT @VersionTimestamp = [Timestamp] FROM Versions WHERE VersionId = @VersionId
+
+IF @Status = 1
+	UPDATE Nodes SET LastMinorVersionId = @VersionId, LastMajorVersionId = @VersionId WHERE NodeId = @NodeId
+ELSE
+	UPDATE Nodes SET LastMinorVersionId = @VersionId WHERE NodeId = @NodeId
+SELECT @NodeTimestamp = [Timestamp] FROM Nodes WHERE NodeId = @NodeId
+
+SELECT @NodeId, @VersionId, @NodeTimestamp, @VersionTimestamp, LastMajorVersionId, LastMinorVersionId FROM Nodes WHERE NodeId = @NodeId
+";
+
+        private const string DELETE_AND_INSERT_BINARY_PROPERTY =
+            @"
+    DELETE
+		BinaryProperties
+	WHERE
+		VersionId = @VersionId
+		AND
+		PropertyTypeId = @PropertyTypeId
+
+" + INSERT_BINARY_PROPERTY;
+
+        private const string INSERT_BINARY_PROPERTY = @"
+		
+	IF(@Size <= 0)
+		BEGIN
+		  INSERT INTO BinaryProperties(
+						  VersionId,
+						  PropertyTypeId,
+						  ContentType,
+						  FileNameWithoutExtension,
+						  Extension,
+						  [Size],
+						  [Checksum],
+						  Stream)
+		   VALUES (		  @VersionId,
+						  @PropertyTypeId,
+						  @ContentType,
+						  @FileNameWithoutExtension,
+						  @Extension,
+						  @Size,
+						  NULL,
+						  NULL)
+		END
+	ELSE
+		BEGIN
+		  INSERT INTO BinaryProperties(
+						  VersionId,
+						  PropertyTypeId,
+						  ContentType,
+						  FileNameWithoutExtension,
+						  Extension,
+						  [Size],
+						  [Checksum],
+						  Stream)
+		   VALUES (		  @VersionId,
+						  @PropertyTypeId,
+						  @ContentType,
+						  @FileNameWithoutExtension,
+						  @Extension,
+						  @Size,
+  						  @Checksum,
+						  @Value)
+
+		END
+
+	SELECT @@IDENTITY
+";
+
+        //============================================================================ "less roundtrip methods"
+
+        public void InsertNodeAndVersionRows(NodeData nodeData, out int lastMajorVersionId, out int lastMinorVersionId)
+        {
+            using (var cmd = new SqlProcedure { CommandText = INSERT_NODE_AND_VERSION_ROWS, CommandType = CommandType.Text })
+            {
+                cmd.Parameters.Add("@NodeTypeId", SqlDbType.Int).Value = nodeData.NodeTypeId;
+                cmd.Parameters.Add("@ContentListTypeId", SqlDbType.Int).Value = (nodeData.ContentListTypeId != 0) ? (object)nodeData.ContentListTypeId : DBNull.Value;
+                cmd.Parameters.Add("@ContentListId", SqlDbType.Int).Value = (nodeData.ContentListId != 0) ? (object)nodeData.ContentListId : DBNull.Value;
+                cmd.Parameters.Add("@IsDeleted", SqlDbType.TinyInt).Value = nodeData.IsDeleted ? 1 : 0;
+                cmd.Parameters.Add("@IsInherited", SqlDbType.TinyInt).Value = nodeData.IsInherited ? 1 : 0;
+                cmd.Parameters.Add("@ParentNodeId", SqlDbType.Int).Value = (nodeData.ParentId > 0) ? (object)nodeData.ParentId : DBNull.Value;
+                cmd.Parameters.Add("@Name", SqlDbType.NVarChar, 450).Value = nodeData.Name;
+                cmd.Parameters.Add("@DisplayName", SqlDbType.NVarChar, 450).Value = (object)nodeData.DisplayName ?? DBNull.Value;
+                cmd.Parameters.Add("@Path", SqlDbType.NVarChar, 450).Value = nodeData.Path;
+                cmd.Parameters.Add("@Index", SqlDbType.Int).Value = nodeData.Index;
+                cmd.Parameters.Add("@Locked", SqlDbType.TinyInt).Value = nodeData.Locked ? 1 : 0;
+                cmd.Parameters.Add("@LockedById", SqlDbType.Int).Value = (nodeData.LockedById > 0) ? (object)nodeData.LockedById : DBNull.Value;
+                cmd.Parameters.Add("@ETag", SqlDbType.VarChar, 50).Value = nodeData.ETag ?? String.Empty;
+                cmd.Parameters.Add("@LockType", SqlDbType.Int).Value = nodeData.LockType;
+                cmd.Parameters.Add("@LockTimeout", SqlDbType.Int).Value = nodeData.LockTimeout;
+                cmd.Parameters.Add("@LockDate", SqlDbType.DateTime).Value = nodeData.LockDate;
+                cmd.Parameters.Add("@LockToken", SqlDbType.VarChar, 50).Value = nodeData.LockToken ?? String.Empty;
+                cmd.Parameters.Add("@LastLockUpdate", SqlDbType.DateTime).Value = nodeData.LastLockUpdate;
+                cmd.Parameters.Add("@NodeCreationDate", SqlDbType.DateTime).Value = nodeData.NodeCreationDate;
+                cmd.Parameters.Add("@NodeCreatedById", SqlDbType.Int).Value = nodeData.NodeCreatedById;
+                cmd.Parameters.Add("@NodeModificationDate", SqlDbType.DateTime).Value = nodeData.NodeModificationDate;
+                cmd.Parameters.Add("@NodeModifiedById", SqlDbType.Int).Value = nodeData.NodeModifiedById;
+
+                cmd.Parameters.Add("@MajorNumber", SqlDbType.SmallInt).Value = nodeData.Version.Major;
+                cmd.Parameters.Add("@MinorNumber", SqlDbType.SmallInt).Value = nodeData.Version.Minor;
+                cmd.Parameters.Add("@Status", SqlDbType.SmallInt).Value = nodeData.Version.Status;
+                cmd.Parameters.Add("@CreationDate", SqlDbType.DateTime).Value = nodeData.CreationDate;
+                cmd.Parameters.Add("@CreatedById", SqlDbType.Int).Value = nodeData.CreatedById;
+                cmd.Parameters.Add("@ModificationDate", SqlDbType.DateTime).Value = nodeData.ModificationDate;
+                cmd.Parameters.Add("@ModifiedById", SqlDbType.Int).Value = nodeData.ModifiedById;
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    reader.Read();
+                    nodeData.Id = Convert.ToInt32(reader[0]);
+                    nodeData.VersionId = Convert.ToInt32(reader[1]);
+                    nodeData.NodeTimestamp = SqlProvider.GetLongFromBytes((byte[])reader[2]);
+                    nodeData.VersionTimestamp = SqlProvider.GetLongFromBytes((byte[])reader[3]);
+
+                    lastMajorVersionId = reader.GetSafeInt32(4);
+                    lastMinorVersionId = reader.GetSafeInt32(5);
+                }
+            }
+        }
+
+        /*============================================================================ Node Insert/Update */
 
         public void UpdateSubTreePath(string oldPath, string newPath)
         {
@@ -50,57 +186,57 @@ namespace SenseNet.ContentRepository.Storage.Data.SqlClient
                 cmd.Dispose();
             }
         }
-        public int InsertNodeRow(NodeData nodeData)
-        {
-            SqlProcedure cmd = null;
-            SqlDataReader reader = null;
-            var result = 0;
-            try
-            {
-                cmd = new SqlProcedure { CommandText = "proc_Node_Insert" };
-                cmd.Parameters.Add("@NodeTypeId", SqlDbType.Int).Value = nodeData.NodeTypeId;
-                cmd.Parameters.Add("@ContentListTypeId", SqlDbType.Int).Value = (nodeData.ContentListTypeId != 0) ? (object)nodeData.ContentListTypeId : DBNull.Value;
-                cmd.Parameters.Add("@ContentListId", SqlDbType.Int).Value = (nodeData.ContentListId != 0) ? (object)nodeData.ContentListId : DBNull.Value;
-                cmd.Parameters.Add("@IsDeleted", SqlDbType.TinyInt).Value = nodeData.IsDeleted ? 1 : 0;
-                cmd.Parameters.Add("@IsInherited", SqlDbType.TinyInt).Value = nodeData.IsInherited ? 1 : 0;
-                cmd.Parameters.Add("@ParentNodeId", SqlDbType.Int).Value = (nodeData.ParentId > 0) ? (object)nodeData.ParentId : DBNull.Value;
-                cmd.Parameters.Add("@Name", SqlDbType.NVarChar, 450).Value = nodeData.Name;
-                cmd.Parameters.Add("@DisplayName", SqlDbType.NVarChar, 450).Value = (object)nodeData.DisplayName ?? DBNull.Value;
-                cmd.Parameters.Add("@Path", SqlDbType.NVarChar, 450).Value = nodeData.Path;
-                cmd.Parameters.Add("@Index", SqlDbType.Int).Value = nodeData.Index;
-                cmd.Parameters.Add("@Locked", SqlDbType.TinyInt).Value = nodeData.Locked ? 1 : 0;
-                cmd.Parameters.Add("@LockedById", SqlDbType.Int).Value = (nodeData.LockedById > 0) ? (object)nodeData.LockedById : DBNull.Value;
-                cmd.Parameters.Add("@ETag", SqlDbType.VarChar, 50).Value = nodeData.ETag ?? String.Empty;
-                cmd.Parameters.Add("@LockType", SqlDbType.Int).Value = nodeData.LockType;
-                cmd.Parameters.Add("@LockTimeout", SqlDbType.Int).Value = nodeData.LockTimeout;
-                cmd.Parameters.Add("@LockDate", SqlDbType.DateTime).Value = nodeData.LockDate;
-                cmd.Parameters.Add("@LockToken", SqlDbType.VarChar, 50).Value = nodeData.LockToken ?? String.Empty;
-                cmd.Parameters.Add("@LastLockUpdate", SqlDbType.DateTime).Value = nodeData.LastLockUpdate;
-                cmd.Parameters.Add("@CreationDate", SqlDbType.DateTime).Value = nodeData.NodeCreationDate;
-                cmd.Parameters.Add("@CreatedById", SqlDbType.Int).Value = nodeData.NodeCreatedById;
-                cmd.Parameters.Add("@ModificationDate", SqlDbType.DateTime).Value = nodeData.NodeModificationDate;
-                cmd.Parameters.Add("@ModifiedById", SqlDbType.Int).Value = nodeData.NodeModifiedById;
+        //public int InsertNodeRow(NodeData nodeData)
+        //{
+        //    SqlProcedure cmd = null;
+        //    SqlDataReader reader = null;
+        //    var result = 0;
+        //    try
+        //    {
+        //        cmd = new SqlProcedure { CommandText = "proc_Node_Insert" };
+        //        cmd.Parameters.Add("@NodeTypeId", SqlDbType.Int).Value = nodeData.NodeTypeId;
+        //        cmd.Parameters.Add("@ContentListTypeId", SqlDbType.Int).Value = (nodeData.ContentListTypeId != 0) ? (object)nodeData.ContentListTypeId : DBNull.Value;
+        //        cmd.Parameters.Add("@ContentListId", SqlDbType.Int).Value = (nodeData.ContentListId != 0) ? (object)nodeData.ContentListId : DBNull.Value;
+        //        cmd.Parameters.Add("@IsDeleted", SqlDbType.TinyInt).Value = nodeData.IsDeleted ? 1 : 0;
+        //        cmd.Parameters.Add("@IsInherited", SqlDbType.TinyInt).Value = nodeData.IsInherited ? 1 : 0;
+        //        cmd.Parameters.Add("@ParentNodeId", SqlDbType.Int).Value = (nodeData.ParentId > 0) ? (object)nodeData.ParentId : DBNull.Value;
+        //        cmd.Parameters.Add("@Name", SqlDbType.NVarChar, 450).Value = nodeData.Name;
+        //        cmd.Parameters.Add("@DisplayName", SqlDbType.NVarChar, 450).Value = (object)nodeData.DisplayName ?? DBNull.Value;
+        //        cmd.Parameters.Add("@Path", SqlDbType.NVarChar, 450).Value = nodeData.Path;
+        //        cmd.Parameters.Add("@Index", SqlDbType.Int).Value = nodeData.Index;
+        //        cmd.Parameters.Add("@Locked", SqlDbType.TinyInt).Value = nodeData.Locked ? 1 : 0;
+        //        cmd.Parameters.Add("@LockedById", SqlDbType.Int).Value = (nodeData.LockedById > 0) ? (object)nodeData.LockedById : DBNull.Value;
+        //        cmd.Parameters.Add("@ETag", SqlDbType.VarChar, 50).Value = nodeData.ETag ?? String.Empty;
+        //        cmd.Parameters.Add("@LockType", SqlDbType.Int).Value = nodeData.LockType;
+        //        cmd.Parameters.Add("@LockTimeout", SqlDbType.Int).Value = nodeData.LockTimeout;
+        //        cmd.Parameters.Add("@LockDate", SqlDbType.DateTime).Value = nodeData.LockDate;
+        //        cmd.Parameters.Add("@LockToken", SqlDbType.VarChar, 50).Value = nodeData.LockToken ?? String.Empty;
+        //        cmd.Parameters.Add("@LastLockUpdate", SqlDbType.DateTime).Value = nodeData.LastLockUpdate;
+        //        cmd.Parameters.Add("@CreationDate", SqlDbType.DateTime).Value = nodeData.NodeCreationDate;
+        //        cmd.Parameters.Add("@CreatedById", SqlDbType.Int).Value = nodeData.NodeCreatedById;
+        //        cmd.Parameters.Add("@ModificationDate", SqlDbType.DateTime).Value = nodeData.NodeModificationDate;
+        //        cmd.Parameters.Add("@ModifiedById", SqlDbType.Int).Value = nodeData.NodeModifiedById;
 
-                reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    // SELECT [NodeId], [Timestamp] FROM Nodes WHERE NodeId = @@IDENTITY
-                    result = Convert.ToInt32(reader[0]);
-                    nodeData.NodeTimestamp = SqlProvider.GetLongFromBytes((byte[])reader[1]);
-                }
-            }
-            catch (SqlException e) //rethrow
-            {
-                throw new DataException(e.Message, e);
-            }
-            finally
-            {
-                if (reader != null && !reader.IsClosed)
-                    reader.Close();
-                cmd.Dispose();
-            }
-            return result;
-        }
+        //        reader = cmd.ExecuteReader();
+        //        while (reader.Read())
+        //        {
+        //            // SELECT [NodeId], [Timestamp] FROM Nodes WHERE NodeId = @@IDENTITY
+        //            result = Convert.ToInt32(reader[0]);
+        //            nodeData.NodeTimestamp = SqlProvider.GetLongFromBytes((byte[])reader[1]);
+        //        }
+        //    }
+        //    catch (SqlException e) //rethrow
+        //    {
+        //        throw new DataException(e.Message, e);
+        //    }
+        //    finally
+        //    {
+        //        if (reader != null && !reader.IsClosed)
+        //            reader.Close();
+        //        cmd.Dispose();
+        //    }
+        //    return result;
+        //}
         public void UpdateNodeRow(NodeData nodeData)
         {
             SqlProcedure cmd = null;
@@ -154,53 +290,60 @@ namespace SenseNet.ContentRepository.Storage.Data.SqlClient
             }
         }
 
-        //============================================================================ Version Insert/Update
+        /*============================================================================ Version Insert/Update */
 
-        public int InsertVersionRow(NodeData nodeData)
+        //public int InsertVersionRow(NodeData nodeData)
+        //{
+        //    SqlProcedure cmd = null;
+        //    SqlDataReader reader = null;
+        //    int result = 0;
+        //    try
+        //    {
+        //        cmd = new SqlProcedure { CommandText = "proc_Version_Insert" };
+        //        cmd.Parameters.Add("@NodeId", SqlDbType.Int).Value = nodeData.Id;
+        //        cmd.Parameters.Add("@MajorNumber", SqlDbType.SmallInt).Value = nodeData.Version.Major;
+        //        cmd.Parameters.Add("@MinorNumber", SqlDbType.SmallInt).Value = nodeData.Version.Minor;
+        //        cmd.Parameters.Add("@Status", SqlDbType.SmallInt).Value = nodeData.Version.Status;
+        //        cmd.Parameters.Add("@CreationDate", SqlDbType.DateTime).Value = nodeData.CreationDate;
+        //        cmd.Parameters.Add("@CreatedById", SqlDbType.Int).Value = nodeData.CreatedById;
+        //        cmd.Parameters.Add("@ModificationDate", SqlDbType.DateTime).Value = nodeData.ModificationDate;
+        //        cmd.Parameters.Add("@ModifiedById", SqlDbType.Int).Value = nodeData.ModifiedById;
+
+        //        reader = cmd.ExecuteReader();
+        //        while (reader.Read())
+        //        {
+        //            // SELECT VersionId, [Timestamp] FROM Versions WHERE VersionId = @@IDENTITY
+        //            result = Convert.ToInt32(reader[0]);
+        //            nodeData.VersionTimestamp = SqlProvider.GetLongFromBytes((byte[])reader[1]);
+        //        }
+        //    }
+        //    finally
+        //    {
+        //        if (reader != null && !reader.IsClosed)
+        //            reader.Close();
+        //        cmd.Dispose();
+        //    }
+        //    return result;
+        //}
+        public void UpdateVersionRow(NodeData nodeData, out int lastMajorVersionId, out int lastMinorVersionId)
         {
             SqlProcedure cmd = null;
             SqlDataReader reader = null;
-            int result = 0;
-            try
-            {
-                cmd = new SqlProcedure { CommandText = "proc_Version_Insert" };
-                cmd.Parameters.Add("@NodeId", SqlDbType.Int).Value = nodeData.Id;
-                cmd.Parameters.Add("@MajorNumber", SqlDbType.SmallInt).Value = nodeData.Version.Major;
-                cmd.Parameters.Add("@MinorNumber", SqlDbType.SmallInt).Value = nodeData.Version.Minor;
-                cmd.Parameters.Add("@Status", SqlDbType.SmallInt).Value = nodeData.Version.Status;
-                cmd.Parameters.Add("@CreationDate", SqlDbType.DateTime).Value = nodeData.CreationDate;
-                cmd.Parameters.Add("@CreatedById", SqlDbType.Int).Value = nodeData.CreatedById;
-                cmd.Parameters.Add("@ModificationDate", SqlDbType.DateTime).Value = nodeData.ModificationDate;
-                cmd.Parameters.Add("@ModifiedById", SqlDbType.Int).Value = nodeData.ModifiedById;
 
-                reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    // SELECT VersionId, [Timestamp] FROM Versions WHERE VersionId = @@IDENTITY
-                    result = Convert.ToInt32(reader[0]);
-                    nodeData.VersionTimestamp = SqlProvider.GetLongFromBytes((byte[])reader[1]);
-                }
-            }
-            finally
-            {
-                if (reader != null && !reader.IsClosed)
-                    reader.Close();
-                cmd.Dispose();
-            }
-            return result;
-        }
-        public void UpdateVersionRow(NodeData nodeData)
-        {
-            SqlProcedure cmd = null;
-            SqlDataReader reader = null;
+            lastMajorVersionId = 0;
+            lastMinorVersionId = 0;
+
             try
             {
                 cmd = new SqlProcedure { CommandText = "proc_Version_Update" };
                 cmd.Parameters.Add("@VersionId", SqlDbType.Int).Value = nodeData.VersionId;
                 cmd.Parameters.Add("@NodeId", SqlDbType.Int).Value = nodeData.Id;
-                cmd.Parameters.Add("@MajorNumber", SqlDbType.SmallInt).Value = nodeData.Version.Major;
-                cmd.Parameters.Add("@MinorNumber", SqlDbType.SmallInt).Value = nodeData.Version.Minor;
-                cmd.Parameters.Add("@Status", SqlDbType.SmallInt).Value = nodeData.Version.Status;
+                if (nodeData.IsPropertyChanged("Version"))
+                {
+                    cmd.Parameters.Add("@MajorNumber", SqlDbType.SmallInt).Value = nodeData.Version.Major;
+                    cmd.Parameters.Add("@MinorNumber", SqlDbType.SmallInt).Value = nodeData.Version.Minor;
+                    cmd.Parameters.Add("@Status", SqlDbType.SmallInt).Value = nodeData.Version.Status;
+                }
                 cmd.Parameters.Add("@CreationDate", SqlDbType.DateTime).Value = nodeData.CreationDate;
                 cmd.Parameters.Add("@CreatedById", SqlDbType.Int).Value = nodeData.CreatedById;
                 cmd.Parameters.Add("@ModificationDate", SqlDbType.DateTime).Value = nodeData.ModificationDate;
@@ -210,7 +353,11 @@ namespace SenseNet.ContentRepository.Storage.Data.SqlClient
                 while (reader.Read())
                 {
                     // SELECT [Timestamp] FROM Versions WHERE VersionId = @VersionId
-                    nodeData.VersionTimestamp = SqlProvider.GetLongFromBytes((byte[])reader[0]);
+                    nodeData.NodeTimestamp = SqlProvider.GetLongFromBytes((byte[])reader[0]);
+                    nodeData.VersionTimestamp = SqlProvider.GetLongFromBytes((byte[])reader[1]);
+
+                    lastMajorVersionId = reader.GetSafeInt32(2);
+                    lastMinorVersionId = reader.GetSafeInt32(3);
                 }
             }
             finally
@@ -220,14 +367,17 @@ namespace SenseNet.ContentRepository.Storage.Data.SqlClient
                 cmd.Dispose();
             }
         }
-        public void CopyAndUpdateVersion(NodeData nodeData, int previousVersionId)
+        public void CopyAndUpdateVersion(NodeData nodeData, int previousVersionId, out int lastMajorVersionId, out int lastMinorVersionId)
         {
-            CopyAndUpdateVersion(nodeData, previousVersionId, 0);
+            CopyAndUpdateVersion(nodeData, previousVersionId, 0, out lastMajorVersionId, out lastMinorVersionId);
         }
-        public void CopyAndUpdateVersion(NodeData nodeData, int previousVersionId, int destinationVersionId)
+        public void CopyAndUpdateVersion(NodeData nodeData, int previousVersionId, int destinationVersionId, out int lastMajorVersionId, out int lastMinorVersionId)
         {
             SqlProcedure cmd = null;
             SqlDataReader reader = null;
+            lastMajorVersionId = 0;
+            lastMinorVersionId = 0;
+
             try
             {
                 cmd = new SqlProcedure { CommandText = "proc_Version_CopyAndUpdate" };
@@ -247,7 +397,11 @@ namespace SenseNet.ContentRepository.Storage.Data.SqlClient
                 {
                     // SELECT VersionId, [Timestamp] FROM Versions WHERE VersionId = @NewVersionId
                     nodeData.VersionId = Convert.ToInt32(reader[0]);
-                    nodeData.VersionTimestamp = SqlProvider.GetLongFromBytes((byte[])reader[1]);
+                    nodeData.NodeTimestamp = SqlProvider.GetLongFromBytes((byte[])reader[1]);
+                    nodeData.VersionTimestamp = SqlProvider.GetLongFromBytes((byte[])reader[2]);
+
+                    lastMajorVersionId = reader.GetSafeInt32(3);
+                    lastMinorVersionId = reader.GetSafeInt32(4);
                 }
                 if (reader.NextResult())
                 {
@@ -384,7 +538,7 @@ namespace SenseNet.ContentRepository.Storage.Data.SqlClient
                 cmd.Dispose();
             }
         }
-        public int InsertBinaryProperty(int versionId, int propertyTypeId, BinaryDataValue value)
+        public int InsertBinaryPropertyOld(int versionId, int propertyTypeId, BinaryDataValue value)
         {
             if (value.Stream != null && value.Stream.Length > Int32.MaxValue)
                 throw new NotSupportedException(); // MS-SQL does not support stream size over [Int32.MaxValue]
@@ -422,6 +576,51 @@ namespace SenseNet.ContentRepository.Storage.Data.SqlClient
 
             return id;
         }
+
+        public int InsertBinaryProperty(int versionId, int propertyTypeId, BinaryDataValue value, bool isNewNode)
+        {
+            if (value.Stream != null && value.Stream.Length > Int32.MaxValue)
+                throw new NotSupportedException(); // MS-SQL does not support stream size over [Int32.MaxValue]
+
+            SqlProcedure cmd = null;
+            int id;
+
+            try
+            {
+                cmd = new SqlProcedure { CommandText = (isNewNode ? INSERT_BINARY_PROPERTY : DELETE_AND_INSERT_BINARY_PROPERTY), CommandType = CommandType.Text };
+                cmd.Parameters.Add("@VersionId", SqlDbType.Int).Value = (versionId != 0) ? (object)versionId : DBNull.Value;
+                cmd.Parameters.Add("@PropertyTypeId", SqlDbType.Int).Value = (propertyTypeId != 0) ? (object)propertyTypeId : DBNull.Value;
+                cmd.Parameters.Add("@ContentType", SqlDbType.VarChar, 50).Value = value.ContentType;
+                cmd.Parameters.Add("@FileNameWithoutExtension", SqlDbType.VarChar, 450).Value = value.FileName.FileNameWithoutExtension == null ? DBNull.Value : (object)value.FileName.FileNameWithoutExtension;
+                cmd.Parameters.Add("@Extension", SqlDbType.VarChar, 50).Value = ValidateExtension(value.FileName.Extension);
+                cmd.Parameters.Add("@Size", SqlDbType.BigInt).Value = value.Size;
+                cmd.Parameters.Add("@Checksum", SqlDbType.VarChar, 200).Value = (value.Checksum != null) ? (object)value.Checksum : DBNull.Value;
+
+                if (value.Stream != null && value.Stream.Length > 0)
+                {
+                    var streamSize = Convert.ToInt32(value.Stream.Length);
+                    var buffer = new byte[streamSize];
+                    value.Stream.Seek(0, SeekOrigin.Begin);
+                    value.Stream.Read(buffer, 0, streamSize);
+
+                    cmd.Parameters.Add(new SqlParameter("@Value", SqlDbType.VarBinary)).Value = buffer;
+                }
+                else
+                {
+                    cmd.Parameters.Add(new SqlParameter("@Value", SqlDbType.VarBinary)).Value = DBNull.Value;
+                }
+
+                id = Convert.ToInt32(cmd.ExecuteScalar(), CultureInfo.CurrentCulture);
+            }
+            finally
+            {
+                if (cmd != null)
+                    cmd.Dispose();
+            }
+
+            return id;
+        }
+
         public void UpdateBinaryProperty(int binaryDataId, BinaryDataValue value)
         {
             if (value.Stream != null && value.Stream.Length > Int32.MaxValue)

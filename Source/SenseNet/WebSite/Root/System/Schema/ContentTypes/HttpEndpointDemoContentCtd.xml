@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ContentType name="HttpEndpointDemoContent" parentType="Application" handler="SenseNet.ContentRepository.HttpEndpointDemoContent" xmlns="http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition">
   <DisplayName>Http Endpoint Demo Content</DisplayName>
-	<Description>Http Endpoint Demo Content is a content type to demonstrate the HTTP endpoint content handler feature of Sense/Net 6.0.</Description>
+	<Description>Http Endpoint Demo Content is a content type to demonstrate the HTTP endpoint content handler feature of Sense/Net 6.1.</Description>
 	<Icon>Page</Icon>
 	<Fields>
 		<Field name='A' type='Integer'>

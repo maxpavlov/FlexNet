@@ -9,6 +9,7 @@ using System.IO;
 using System.Xml;
 using System.Web;
 using SenseNet.ContentRepository.Storage;
+using SenseNet.Portal.Virtualization;
 
 namespace SenseNet.Portal.Dws
 {
@@ -111,8 +112,11 @@ namespace SenseNet.Portal.Dws
         {
             if (!SenseNet.ContentRepository.User.Current.IsAuthenticated)
             {
-                HttpContext.Current.Response.StatusCode = 401;
-                HttpContext.Current.Response.End();
+                HttpContext.Current.Response.TrySkipIisCustomErrors = true;
+                if (PortalContext.Current.AuthenticationMode == "Windows")
+                    AuthenticationHelper.DenyAccess(HttpContext.Current.ApplicationInstance);
+                else
+                    AuthenticationHelper.ForceBasicAuthentication(HttpContext.Current);
                 return true;
             }
             return false;

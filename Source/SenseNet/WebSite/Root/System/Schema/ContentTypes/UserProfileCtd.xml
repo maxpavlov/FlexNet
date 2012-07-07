@@ -4,7 +4,7 @@
 	<Description>Workspace for handling all information and data for a user</Description>
 	<Icon>UserProfile</Icon>
   <AllowedChildTypes>
-    Blog,DocumentLibrary,EventList,MemoList,LinkList,TaskList,ImageGalleryLight,Posts
+    Blog,DocumentLibrary,EventList,MemoList,LinkList,TaskList,ImageLibrary,Posts
   </AllowedChildTypes>
   <Fields>
     <Field name="IsWallContainer" type="Boolean">

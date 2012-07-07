@@ -74,7 +74,6 @@ namespace SenseNet.ContentRepository.Tests.Data
         #region Playground
         private static string __testRootName = "_DataRowTimestampTest";
         private static string _testRootPath = String.Concat("/Root/", __testRootName);
-        private static string _fakeIndexingTaskComment = "Test:Indexing_ActivitesWithMissingVersion";
         private static int _fakeId = 987654321;
         private Node _testRoot;
         public Node TestRoot
@@ -190,6 +189,7 @@ namespace SenseNet.ContentRepository.Tests.Data
                 doc.RemoveField(LucObject.FieldName.IsLastDraft);
                 doc.Add(new LucField(LucObject.FieldName.IsLastDraft, BooleanIndexHandler.YES, LucField.Store.YES, LucField.Index.NOT_ANALYZED, LucField.TermVector.NO));
                 LuceneManager._writer.AddDocument(doc);
+                // LuceneManager._isDirtyReader = true; //??/
             }
             LuceneManager._writer.Commit();
             LuceneManager._reader = LuceneManager._writer.GetReader();
@@ -209,50 +209,7 @@ namespace SenseNet.ContentRepository.Tests.Data
         }
 
         [TestMethod]
-        [Description("There is no task that is contains more than one activity with same VersionId")]
-        public void Indexing_DuplicatedActivites()
-        {
-            var content = Content.CreateNew("Car", TestRoot, "Car_Indexing_SavingRepairsDuplicatedNodes");
-            var handler = (GenericContent)content.ContentHandler;
-            handler.VersioningMode = VersioningType.None;
-            content.Save();
-            var id = content.Id;
-
-            content = Content.Load(id);
-            content.CheckOut();
-            Assert.IsTrue(CheckActivityCountWithSameVersionAndNodeId(id), "#1 There are duplicated activities after CheckOut");
-
-            content = Content.Load(id);
-            content.Save();
-            Assert.IsTrue(CheckActivityCountWithSameVersionAndNodeId(id), "#2 There are duplicated activities after Save");
-
-            content = Content.Load(id);
-            content.CheckIn();
-            Assert.IsTrue(CheckActivityCountWithSameVersionAndNodeId(id), "#3 There are duplicated activities after CheckIn");
-
-            content = Content.Load(id);
-            content.CheckOut();
-            Assert.IsTrue(CheckActivityCountWithSameVersionAndNodeId(id), "#4 There are duplicated activities after CheckOut");
-
-            content = Content.Load(id);
-            content.UndoCheckOut();
-            Assert.IsTrue(CheckActivityCountWithSameVersionAndNodeId(id), "#5 There are duplicated activities after UndoCheckOut");
-        }
-        bool CheckActivityCountWithSameVersionAndNodeId(int nodeId)
-        {
-            using (var context = new IndexingDataContext())
-            {
-                var y = from task in context.IndexingTasks
-                        join activity in context.IndexingActivities on task.IndexingTaskId equals activity.IndexingTaskId
-                        group activity by new { TId = activity.IndexingTaskId, VId = activity.VersionId, NId = activity.NodeId } into x
-                        where x.Count() > 1
-                        select x;
-                return y.Count() == 0;
-            }
-        }
-
-        [TestMethod]
-        [Description("A task execution with update activity after delete activity not throws any exception.")]
+        [Description("An activity execution with update activity after delete activity not throws any exception.")] // ??
         public void Indexing_ActivitesWithMissingVersion()
         {
             var content = Content.CreateNew("Car", TestRoot, "Car_Indexing_ActivitesWithMissingVersion");
@@ -261,71 +218,67 @@ namespace SenseNet.ContentRepository.Tests.Data
             content.Save();
             var id = content.Id;
 
-            LuceneManager.CommitChanges();
-            LuceneManager.RefreshReader();
-
-            var task = new IndexingTask { Comment = _fakeIndexingTaskComment };
-            task.IndexingActivities.Add(new IndexingActivity
+            LuceneManager.ApplyChanges();
+            IndexingActivity[] act = new IndexingActivity[3];
+            act[0] = new IndexingActivity
             {
                 ActivityType = IndexingActivityType.RemoveDocument,
                 NodeId = _fakeId,
                 VersionId = _fakeId
-            });
-            task.IndexingActivities.Add(new IndexingActivity
+            };
+            act[1] = new IndexingActivity
             {
                 ActivityType = IndexingActivityType.UpdateDocument,
                 NodeId = _fakeId,
                 VersionId = _fakeId
-            });
-            task.IndexingActivities.Add(new IndexingActivity
+            };
+            act[2] = new IndexingActivity
             {
                 ActivityType = IndexingActivityType.AddDocument,
                 NodeId = _fakeId,
                 VersionId = _fakeId
-            });
+            };
 
             try
             {
                 using (var context = new IndexingDataContext())
                 {
-                    context.IndexingTasks.InsertOnSubmit(task);
-                    context.SubmitChanges();
-
+                    foreach (var a in act)
+                    {
+                        context.IndexingActivities.InsertOnSubmit(a);
+                        context.SubmitChanges();
+                    }
                 }
 
-                var tasks = IndexingTaskManager.GetUnprocessedTasks(task.IndexingTaskId - 1, new int[0]);
-                foreach (var t in tasks)
-                    IndexingTaskManager.ExecuteTaskDirect(t);
+                var max = 0;
+                var activities = IndexingActivityManager.GetUnprocessedActivities(act[2].IndexingActivityId - 1, out max);
+                foreach (var a in activities)
+                    IndexingActivityManager.ExecuteActivityDirect(a);
             }
             finally
             {
-                RemoveFakeTestTask();
+                RemoveFakeTestActivity();
             }
 
         }
-        private static void RemoveFakeTestTask()
+        private static void RemoveFakeTestActivity()
         {
             using (var context = new IndexingDataContext())
             {
-                var sql =
-                    @"DECLARE @FakeTaskId INT
-                    SELECT @FakeTaskId = IndexingTaskId FROM IndexingTask WHERE Comment = @FakeComment
-
-                    DELETE FROM IndexingActivity WHERE IndexingTaskId = @FakeTaskId
-                    DELETE FROM IndexingTask WHERE IndexingTaskId = @FakeTaskId";
+                var sql = @"DELETE FROM IndexingActivity WHERE VersionId = @FakeId";
                 var proc = DataProvider.CreateDataProcedure(sql);
                 proc.CommandType = System.Data.CommandType.Text;
-                proc.Parameters.Add(new System.Data.SqlClient.SqlParameter("@FakeComment", SqlDbType.NVarChar));
-                proc.Parameters["@FakeComment"].Value = _fakeIndexingTaskComment;
+                proc.Parameters.Add(new System.Data.SqlClient.SqlParameter("@FakeId", SqlDbType.Int));
+                proc.Parameters["@FakeId"].Value = _fakeId;
                 proc.ExecuteNonQuery();
             }
         }
 
         [TestMethod]
-        [Description("A task execution with update activity after delete activity not throws any exception.")]
-        public void Indexing_WritingGapAndGettingUnprocessedTasksWithGap()
+        [Description("An activity execution with update activity after delete activity not throws any exception.")] // ??
+        public void Indexing_WritingGapAndGettingUnprocessedActivitiesWithGap()
         {
-            var content = Content.CreateNew("Car", TestRoot, "Car_Indexing_WritingGapAndGettingUnprocessedTasksWithGap");
+            var content = Content.CreateNew("Car", TestRoot, "Indexing_WritingGapAndGettingUnprocessedActivitiesWithGap");
             var handler = (GenericContent)content.ContentHandler;
             content.Save();
             var id = content.Id;
@@ -335,49 +288,408 @@ namespace SenseNet.ContentRepository.Tests.Data
                 handler.Save();
             }
 
-            var maxTaskIdSave = LuceneManager._maxTaskId;
-            var savedGap = MissingTaskHandler.GetGap();
+            var maxActivityIdSave = MissingActivityHandler.MaxActivityId;
+            var savedGap = MissingActivityHandler.GetGap();
             try
             {
-                LuceneManager._maxTaskId -= 2;
-                MissingTaskHandler.SetGap(new List<int>(new[] { maxTaskIdSave - 4, maxTaskIdSave - 5, maxTaskIdSave - 7 }));
+                MissingActivityHandler.MaxActivityId -= 2;
+                MissingActivityHandler.SetGap(new List<int>(new[] { maxActivityIdSave - 4, maxActivityIdSave - 5, maxActivityIdSave - 7 }));
                 EnsureWriterHasChanges();
-                LuceneManager.CommitChanges();
-                LuceneManager.RefreshReader();
 
-                var cud = LuceneManager._reader.GetCommitUserData();
-                var lastIdStr = cud[IndexManager.LastTaskIdKey];
-                var missingStr = cud[IndexManager.MissingTasksKey];
+                //LuceneManager.ApplyChanges();
+                var luceneManagerAcc = new PrivateType(typeof(LuceneManager));
+                luceneManagerAcc.InvokeStatic("Commit", BindingFlags.Static | BindingFlags.NonPublic, new object[] { true });
 
-                // [0]: {[LastTaskId, 10]}
-                // [1]: {[MissingTasks, 8,7,5]}
-                Assert.IsTrue(cud[IndexManager.LastTaskIdKey] == LuceneManager._maxTaskId.ToString(), "#1");
-                Assert.IsTrue(cud[IndexManager.MissingTasksKey] == String.Join(",", new[] { maxTaskIdSave - 4, maxTaskIdSave - 5, maxTaskIdSave - 7 }), "#1");
+                IDictionary<string, string> cud;
+                using (var readerFrame = LuceneManager.GetIndexReaderFrame())
+                {
+                    cud = readerFrame.IndexReader.GetCommitUserData();
+                }
 
-                var mid = LuceneManager._maxTaskId;
-                var tasks = IndexingTaskManager.GetUnprocessedTasks(mid, new[] { mid - 2, mid - 3, mid - 5 });
-                var exp = String.Join(",", new[] { mid - 5, mid - 3, mid - 2, mid + 1, mid + 2 });
-                var cur = String.Join(",", tasks.Select(t => t.IndexingTaskId));
+                var lastIdStr = cud[IndexManager.LastActivityIdKey];
+                var missingStr = cud[IndexManager.MissingActivitiesKey];
+
+                // [0]: {[LastActivityId, 10]}
+                // [1]: {[MissingActivities, 8,7,5]}
+                Assert.IsTrue(cud[IndexManager.LastActivityIdKey] == MissingActivityHandler.MaxActivityId.ToString(), "#1");
+                Assert.IsTrue(cud[IndexManager.MissingActivitiesKey] == String.Join(",", new[] { maxActivityIdSave - 4, maxActivityIdSave - 5, maxActivityIdSave - 7 }), "#2");
+
+                var mid = MissingActivityHandler.MaxActivityId;
+                var activities = IndexingActivityManager.GetUnprocessedActivities(new[] { mid - 2, mid - 3, mid - 5 });
+                var exp = String.Join(",", new[] { mid - 5, mid - 3, mid - 2 });
+                var cur = String.Join(",", activities.Select(t => t.IndexingActivityId));
+                Assert.AreEqual(exp, cur);
+
+                var max = 0;
+                activities = IndexingActivityManager.GetUnprocessedActivities(mid, out max);
+                exp = String.Join(",", new[] { mid + 1, mid + 2 });
+                cur = String.Join(",", activities.Select(t => t.IndexingActivityId));
                 Assert.AreEqual(exp, cur);
             }
             finally
             {
-                MissingTaskHandler.SetGap(savedGap);
-                LuceneManager._maxTaskId = maxTaskIdSave;
+                MissingActivityHandler.SetGap(savedGap);
+                MissingActivityHandler.MaxActivityId = maxActivityIdSave;
             }
         }
         private void EnsureWriterHasChanges()
         {
             var doc = new Lucene.Net.Documents.Document();
-            var field = new Lucene.Net.Documents.Field("Path", "/root/indexing_writinggapandgettingunprocessedtaskswithgap/fake", LucField.Store.YES, LucField.Index.NOT_ANALYZED, LucField.TermVector.NO);
+            var field = new Lucene.Net.Documents.Field("Path", "/root/indexing_writinggapandgettingunprocessedactivitiesswithgap/fake", LucField.Store.YES, LucField.Index.NOT_ANALYZED, LucField.TermVector.NO);
             doc.Add(field);
             LuceneManager._writer.AddDocument(doc);
         }
 
         [TestMethod]
-        [Description("This test works well but DO NOT RUN IT WITH ANOTHER TEST.")]
-        public void Indexing_HealthMonitor()
+        public void Indexing_PlayMissingactivitiesTwoTimes()
         {
+            var content = Content.CreateNew("Car", TestRoot, "Indexing_PlayMissingactivitiesTwoTimes");
+            var handler = (GenericContent)content.ContentHandler;
+            content.Save();
+            var id = content.Id;
+            for (int i = 0; i < 10; i++)
+            {
+                handler.Index++;
+                handler.Save();
+            }
+            var maxActivityIdSave = MissingActivityHandler.MaxActivityId;
+
+            try
+            {
+                MissingActivityHandler.MaxActivityId -= 3;
+                MissingActivityHandler.SetGap(new List<int>(new[] { maxActivityIdSave - 4, maxActivityIdSave - 5, maxActivityIdSave - 6, maxActivityIdSave - 7 }));
+                LuceneManager.ExecuteUnprocessedIndexingActivities(null);
+
+                MissingActivityHandler.MaxActivityId -= 3;
+                MissingActivityHandler.SetGap(new List<int>(new[] { maxActivityIdSave - 4, maxActivityIdSave - 5, maxActivityIdSave - 6, maxActivityIdSave - 7 }));
+                LuceneManager.ExecuteUnprocessedIndexingActivities(null);
+
+                Assert.IsTrue(maxActivityIdSave == MissingActivityHandler.MaxActivityId, string.Format("MissingActivityHandler.MaxActivityId is {0}, expected {1}", maxActivityIdSave, MissingActivityHandler.MaxActivityId));
+                var gap = MissingActivityHandler.GetGap();
+                var gapString = string.Join(", ", gap);
+                Assert.IsTrue(gap.Count == 0, string.Format("The gap is {0}, expected: empty", gapString));
+            }
+            finally
+            {
+                MissingActivityHandler.MaxActivityId = maxActivityIdSave;
+            }
+
+            var result = ContentQuery.Query("Name:Indexing_PlayMissingactivitiesTwoTimes .AUTOFILTERS:OFF");
+            Assert.IsTrue(result.Count == 1, string.Format("The result count is {0}, expected: 1", result.Count));
+        }
+
+        [TestMethod]
+        public void Indexing_ExecuteUnprocessedIndexingActivities()
+        {
+            lock (LuceneManager._executingUnprocessedIndexingActivitiesLock)    // make sure indexhealthmonitor will not overlap
+            {
+                var initInfo = InitCarsForUnprocessedTests();
+                var carlist = initInfo.Item1;
+                var lastActivityId = initInfo.Item2;
+                var expectedLastActivityId = initInfo.Item3;
+
+                // generate a gap and delete corresponding documents from index
+                var activities = GetCarActivities(lastActivityId);
+                var activitiesToDelete = new IndexingActivity[] { activities[0], activities[2], activities[5], activities[7], activities[8], activities[9] };
+
+                MissingActivityHandler.SetGap(activitiesToDelete.Take(3).Select(a => a.IndexingActivityId).ToList());   // 0,2,5 will be missing
+                MissingActivityHandler.MaxActivityId = activities[6].IndexingActivityId;                                // 7,8,9 will be missing
+                
+                // commit gap and maxactivityid to the index
+                EnsureWriterHasChanges();
+                LuceneManager.Commit(true);
+
+                foreach (var activity in activitiesToDelete)
+                {
+                    DeleteVersionFromIndex(activity.VersionId);
+                    DeleteVersionIdFromIndexingHistory(activity.VersionId);
+                }
+
+
+                // check: cars deleted can NOT be found in the index
+                for (var i = 0; i < carlist.Count; i++)
+                {
+                    var id = carlist[i].Id;
+                    if (activitiesToDelete.Select(a => a.NodeId).Contains(id))
+                        Assert.IsFalse(CheckCarInIndex(id), "Deleted car can still be found in the index.");    // deleted car should not be in index
+                    else
+                        Assert.IsTrue(CheckCarInIndex(id), "Untouched car can not be found in the index.");     // untouched car should still be in index
+                }
+
+
+                // execute unprocessed indexing tasks
+                LuceneManager.ExecuteUnprocessedIndexingActivities(null);
+
+
+                // check: all cars can be found in the index again
+                for (var i = 0; i < carlist.Count; i++)
+                {
+                    Assert.IsTrue(CheckCarInIndex(carlist[i].Id), "ExecuteUnprocessedIndexingActivities did not repair lost document.");
+                }
+
+                Assert.AreEqual(expectedLastActivityId, MissingActivityHandler.MaxActivityId, "Maxtaskid was not updated correctly.");
+                Assert.AreEqual(0, MissingActivityHandler.GetGap().Count, "Gap size is not 0.");
+            }
+        }
+
+        [TestMethod]
+        public void Indexing_ExecuteLostIndexingActivities()
+        {
+            lock (LuceneManager._executingUnprocessedIndexingActivitiesLock)    // make sure indexhealthmonitor will not overlap
+            {
+                var initInfo = InitCarsForUnprocessedTests();
+                var carlist = initInfo.Item1;
+                var lastActivityId = initInfo.Item2;
+                var expectedLastActivityId = initInfo.Item3;
+
+                // generate a gap and delete corresponding documents from index
+                var activities = GetCarActivities(lastActivityId);
+                var activitiesToDelete = new IndexingActivity[] { activities[0], activities[2], activities[5], activities[7], activities[8] };
+
+                MissingActivityHandler.SetGap(activitiesToDelete.Select(a => a.IndexingActivityId).ToList());   // 0,2,5,7,8 will be missing
+
+                // commit gap and maxactivityid to the index
+                EnsureWriterHasChanges();
+                LuceneManager.Commit(true);
+
+                foreach (var activity in activitiesToDelete)
+                {
+                    DeleteVersionFromIndex(activity.VersionId);
+                    DeleteVersionIdFromIndexingHistory(activity.VersionId);
+                }
+
+
+                // check: cars deleted can NOT be found in the index
+                for (var i = 0; i < carlist.Count; i++)
+                {
+                    var id = carlist[i].Id;
+                    if (activitiesToDelete.Select(a => a.NodeId).Contains(id))
+                        Assert.IsFalse(CheckCarInIndex(id), "Deleted car can still be found in the index.");    // deleted car should not be in index
+                    else
+                        Assert.IsTrue(CheckCarInIndex(id), "Untouched car can not be found in the index.");     // untouched car should still be in index
+                }
+
+
+                // make sure to move current gap to oldest gap, since always the oldest gap will get processed
+                for (var i = 0; i < MissingActivityHandler.GapSegments - 1; i++)
+                    MissingActivityHandler.GetOldestGapAndMoveToNext();
+
+                // execute unprocessed indexing tasks
+                LuceneManager.ExecuteLostIndexingActivities();
+
+
+                // check: all cars can be found in the index again
+                for (var i = 0; i < carlist.Count; i++)
+                {
+                    Assert.IsTrue(CheckCarInIndex(carlist[i].Id), "ExecuteLostIndexingActivities did not repair lost document.");
+                }
+
+                Assert.AreEqual(expectedLastActivityId, MissingActivityHandler.MaxActivityId, "Maxtaskid is not what is expected.");
+                Assert.AreEqual(0, MissingActivityHandler.GetGap().Count, "Gap size is not 0.");
+            }
+        }
+        private IndexingActivity[] GetCarActivities(int lastActivityId)
+        {
+            using (var context = new IndexingDataContext())
+            {
+                context.CommandTimeout = RepositoryConfiguration.SqlCommandTimeout;
+                return context.IndexingActivities.Where(a => a.IndexingActivityId > lastActivityId).OrderBy(b => b.IndexingActivityId).ToArray();
+            }
+        }
+        private Tuple<List<GenericContent>, int, int> InitCarsForUnprocessedTests()
+        {
+            // init: create some cars
+            var container = new Folder(TestRoot);
+            container.Name = "unprocessedtest-" + Guid.NewGuid().ToString();
+            container.Save();
+
+            var lastActivityId = IndexingActivityManager.GetLastActivityId();
+
+            var carlist = new List<GenericContent>();
+            for (var i = 0; i < 10; i++)
+            {
+                var car = new GenericContent(container, "Car");
+                car.Name = "testcar" + i.ToString();
+                car.Save();
+                carlist.Add(car);
+            }
+
+            var expectedLastActivityId = IndexingActivityManager.GetLastActivityId();
+
+            // check1: cars can be found in the index
+            for (var i = 0; i < carlist.Count; i++)
+            {
+                Assert.IsTrue(CheckCarInIndex(carlist[i].Id), "Car cannot be found in index after init.");
+            }
+
+            return new Tuple<List<GenericContent>, int, int>(carlist, lastActivityId, expectedLastActivityId);
+        }
+        private bool CheckCarInIndex(int versionid)
+        {
+            return ContentQuery.Query("Id:" + versionid, new QuerySettings { EnableAutofilters = false }).Count == 1;
+        }
+        internal static void DeleteVersionFromIndex(int versionid)
+        {
+            var delTerm = new Term(LuceneManager.KeyFieldName, NumericUtils.IntToPrefixCoded(versionid));
+            LuceneManager.DeleteDocuments(new[] { delTerm }, false);
+        }
+        internal static void DeleteVersionIdFromIndexingHistory(int versionId)
+        {
+            var history = LuceneManager._history;
+            var historyAcc = new PrivateObject(history);
+            var storage = (Dictionary<int, long>)historyAcc.GetField("_storage");
+            storage.Remove(versionId);
+        }
+
+        [TestMethod]
+        public void Indexing_ExecutingUnprocessedDoesNotDuplicate()
+        {
+            var contentName = "Indexing_ExecutingUnprocessedDoesNotDuplicate";
+            var query = ContentQuery.CreateQuery(".COUNTONLY Name:" + contentName, new QuerySettings { EnableAutofilters = false, EnableLifespanFilter = false });
+
+            var count = query.Execute().Count;
+            if (count > 0)
+                Assert.Inconclusive();
+
+            var lastActivityId = MissingActivityHandler.MaxActivityId;
+
+            var content = Content.CreateNew("Car", TestRoot, contentName);
+            content.Save();
+
+            content.ContentHandler.Index++;
+            content.Save();
+
+            content.ContentHandler.Index++;
+            content.Save();
+
+            count = query.Execute().Count;
+            Assert.IsTrue(count == 1, String.Format("Before executing unprocessed activities found {0}, expected: 1.", count));
+
+            MissingActivityHandler.MaxActivityId -= 3;
+            LuceneManager.ExecuteUnprocessedIndexingActivities(null);
+
+            count = query.Execute().Count;
+            Assert.IsTrue(count == 1, String.Format("After executing unprocessed activities #1 found {0}, expected: 1.", count));
+
+            count = ContentQuery.Query(".COUNTONLY +Index:2 +Name:" + contentName, new QuerySettings { EnableAutofilters = false, EnableLifespanFilter = false }).Count;
+            Assert.IsTrue(count == 1, String.Format("After executing unprocessed activities #2 found {0}, expected: 1.", count));
+        }
+
+        [TestMethod]
+        public void Indexing_HandlingGap()
+        {
+            //if (MissingActivityHandler.GetGap().Count != 0)
+            //    Assert.Inconclusive("This test cannot run correctly with any gap.");
+
+            MissingActivityHandler.SetGap(new List<int>());
+            var savedMaxActivityId = MissingActivityHandler.MaxActivityId;
+            MissingActivityHandler.MaxActivityId = 0;
+
+            try
+            {
+                for (int i = 1; i <= MissingActivityHandler.GapSegments * 2; i++)
+                {
+                    var currentActivityId = i * 3;
+                    MissingActivityHandler.RemoveActivityAndAddGap(currentActivityId);
+                    Assert.IsTrue(MissingActivityHandler.MaxActivityId == currentActivityId, String.Format("MaxActivityId is {0}, expected: {1}", MissingActivityHandler.MaxActivityId, currentActivityId));
+
+                    if (i % 2 == 0)
+                        MissingActivityHandler.GetOldestGapAndMoveToNext();
+                }
+
+                var expectedGapSize = MissingActivityHandler.GetGap().Count;
+                for (int i = 1; i <= MissingActivityHandler.MaxActivityId; i += 3)
+                {
+                    MissingActivityHandler.RemoveActivityAndAddGap(i);
+                    var gapSize =  MissingActivityHandler.GetGap().Count;
+                    --expectedGapSize;
+                    Assert.IsTrue(gapSize == expectedGapSize, String.Format("Gap size is {0}, expected: {1}", gapSize, expectedGapSize));
+                }
+
+                var gap = MissingActivityHandler.GetGap();
+                Assert.IsTrue(gap.Count == MissingActivityHandler.GapSegments*2, "");
+                gap.Sort();
+                var expectedGap = "2,5,8,11,14,17,20,23,26,29,32,35,38,41,44,47,50,53,56,59";
+                var gapstring = String.Join(",", gap);
+                Assert.IsTrue(gapstring == expectedGap, String.Format("Gap size is {0}, expected: {1}", gapstring, expectedGap));
+
+            }
+            finally
+            {
+                MissingActivityHandler.SetGap(new List<int>());
+                MissingActivityHandler.MaxActivityId = savedMaxActivityId;
+            }
+        }
+
+        [TestMethod]
+        public void Indexing_RareCommitRareReopen()
+        {
+            //rare commit: 1 adddoc, aztán vársz, új readered kell legyen. több addoc, aztán vársz, nem kell új reader, csak később.
+            //rare reopen: több adddoc után nincs új reader. több addoc és 1 olvasás után van új reader. commit közben ne történjen, mert az bekavar.
+
+            var delay1 = Convert.ToInt32(RepositoryConfiguration.CommitDelayInSeconds * 1000.0);
+            var delay4 = delay1 * 4;
+            var delay033 = delay1 / 3;
+
+            var writerInstance = LuceneManager._writer;
+            var readerInstance = LuceneManager._reader;
+
+            //-- one import (means: one activity in "delay1" period).
+            var content = Content.CreateNew("Car", TestRoot, null);
+            content.Save();
+            if (!object.ReferenceEquals(readerInstance, LuceneManager._reader)) // ha a határon volt és épp most volt commit
+            {
+                readerInstance = LuceneManager._reader;
+                content = Content.CreateNew("Car", TestRoot, null);
+                content.Save();
+            }
+            Assert.IsTrue(object.ReferenceEquals(readerInstance, LuceneManager._reader), "Reader is changed after first save.");
+
+            Thread.Sleep(delay4);
+            Assert.IsFalse(object.ReferenceEquals(readerInstance, LuceneManager._reader), "Reader isn't changed after first save and a 2 sec delay.");
+
+            //-- batch import (means: more activity in "delay1" period).
+            content = Content.CreateNew("Car", TestRoot, null);
+            content.Save();
+            Thread.Sleep(delay033);
+            readerInstance = LuceneManager._reader;
+            var expectedMaxChanges = 2;
+            var changes = 0;
+            for (int i = 0; i < 10; i++)
+            {
+                content = Content.CreateNew("Car", TestRoot, null);
+                content.Save();
+                Debug.WriteLine("##> Batch save #" + i);
+                if (!object.ReferenceEquals(readerInstance, LuceneManager._reader))
+                    changes++;
+
+                if (i == 5)
+                {
+                    Debug.WriteLine("##> **** GetIndexReaderFrame");
+                    LuceneManager.GetIndexReaderFrame(); //-- ensure reopen
+                    Assert.IsFalse(object.ReferenceEquals(readerInstance, LuceneManager._reader), "Reader isn't changed after calling GetIndexReaderFrame.");
+                    readerInstance = LuceneManager._reader;
+                }
+                else
+                {
+                    Thread.Sleep(delay033);
+                }
+            }
+            Assert.IsTrue(changes <= expectedMaxChanges, String.Format("Reader is changed {0} times, allowed max: {1}", changes, expectedMaxChanges));
+
+            //-- release and overrun last batch
+            Thread.Sleep(delay1 * 2);
+            Debug.WriteLine("##> *********** Last check");
+            Assert.IsFalse(object.ReferenceEquals(readerInstance, LuceneManager._reader), "Reader isn't changed after last delay.");
+        }
+
+
+        [TestMethod]
+        [Description("This test works well but DO NOT RUN IT WITH ANOTHER TEST.")]
+        public void __Indexing_HealthMonitor()
+        {
+            Assert.Inconclusive();
+            /*
             var content = Content.CreateNew("Car", TestRoot, "Car_Indexing_HealthMonitor");
             var handler = (GenericContent)content.ContentHandler;
             content.Save();
@@ -388,26 +700,26 @@ namespace SenseNet.ContentRepository.Tests.Data
                 handler.Save();
             }
             //Thread.Sleep(2000);
-            var maxTaskIdSave = LuceneManager._maxTaskId;
-            var savedGap = MissingTaskHandler.GetGap();
-            var missingTaskHandlerAcc = new PrivateType(typeof(MissingTaskHandler));
+            var maxActivityIdSave = MissingActivityHandler.MaxActivityId;
+            var savedGap = MissingActivityHandler.GetGap();
+            var MissingActivityHandlerAcc = new PrivateType(typeof(MissingActivityHandler));
             var activityQueueAcc = new PrivateObject(ActivityQueue.Instance);
             var activityQueue_checkGapDivider = (int)activityQueueAcc.GetField("_checkGapDivider", BindingFlags.NonPublic | BindingFlags.Instance);
             try
             {
-                LuceneManager._maxTaskId -= 2;
-                var mid = LuceneManager._maxTaskId;
-                MissingTaskHandler.SetGap(new List<int>(new[] { mid - 2, mid - 3, mid - 4 }));
+                MissingActivityHandler.MaxActivityId -= 2;
+                var mid = MissingActivityHandler.MaxActivityId;
+                MissingActivityHandler.SetGap(new List<int>(new[] { mid - 2, mid - 3, mid - 4 }));
 
                 activityQueueAcc.SetField("_checkGapDivider", BindingFlags.NonPublic | BindingFlags.Instance, 400);
                 var y = (int)activityQueueAcc.GetField("_checkGapDivider", BindingFlags.NonPublic | BindingFlags.Instance);
                 Assert.IsTrue(y == 400, String.Format("_checkGapDivider is [{0}]. Expected: 400", y));
 
-                var gapAfter = MissingTaskHandler.GetGap();
+                var gapAfter = MissingActivityHandler.GetGap();
                 for (int i = 0; i < 20; i++) // 10 seconds timeout
                 {
                     Thread.Sleep(500);
-                    gapAfter = MissingTaskHandler.GetGap();
+                    gapAfter = MissingActivityHandler.GetGap();
                     if (gapAfter.Count == 0)
                         break;
                 }
@@ -415,14 +727,15 @@ namespace SenseNet.ContentRepository.Tests.Data
                 var exp = String.Join(",", new[] { mid - 2, mid - 3 });
                 var cur = String.Join(",", gapAfter);
                 Assert.IsTrue(gapAfter.Count == 0, String.Format("GapAfter is [{0}]. Expected: empty", cur));
-                Assert.IsTrue(LuceneManager._maxTaskId == maxTaskIdSave, String.Format("maxTaskId is {0}. Expected: {1}", LuceneManager._maxTaskId, maxTaskIdSave));
+                Assert.IsTrue(MissingActivityHandler.MaxActivityId == maxActivityIdSave, String.Format("maxActivityId is {0}. Expected: {1}", MissingActivityHandler.MaxActivityId, maxActivityIdSave));
             }
             finally
             {
-                MissingTaskHandler.SetGap(savedGap);
-                LuceneManager._maxTaskId = maxTaskIdSave;
+                MissingActivityHandler.SetGap(savedGap);
+                MissingActivityHandler.MaxActivityId = maxActivityIdSave;
                 activityQueueAcc.SetField("_checkGapDivider", BindingFlags.NonPublic | BindingFlags.Instance, activityQueue_checkGapDivider);
             }
+            */
         }
 
         [TestMethod]
@@ -618,15 +931,13 @@ namespace SenseNet.ContentRepository.Tests.Data
             doc.Add(new LucField(LucObject.FieldName.Path, "/root/fakedocument", LucField.Store.YES, LucField.Index.NOT_ANALYZED, LucField.TermVector.NO));
 
             LuceneManager.AddCompleteDocument(doc);
-            LuceneManager.CommitChanges();
-            LuceneManager.RefreshReader();
+            LuceneManager.ApplyChanges();
         }
         private void DeleteDocument(int versionId)
         {
             var term = new Term(LucObject.FieldName.VersionId, Lucene.Net.Util.NumericUtils.IntToPrefixCoded(versionId));
             LuceneManager._writer.DeleteDocuments(term);
-            LuceneManager.CommitChanges();
-            LuceneManager.RefreshReader();
+            LuceneManager.ApplyChanges();
         }
         private void Exec(string sql)
         {

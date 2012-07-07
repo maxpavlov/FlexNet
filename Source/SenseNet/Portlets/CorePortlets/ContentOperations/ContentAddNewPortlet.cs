@@ -55,11 +55,11 @@ namespace SenseNet.Portal.Portlets
 
         [WebBrowsable(true)]
         [Personalizable(true)]
-        [WebDisplayName("Contentview path")]
-        [WebDescription("Path of the contentview which renders the selected content. Leave it empty for automatic resolution by type")]
+        [LocalizedWebDisplayName(PORTLETFRAMEWORK_CLASSNAME, RENDERER_DISPLAYNAME)]
+        [LocalizedWebDescription(PORTLETFRAMEWORK_CLASSNAME, RENDERER_DESCRIPTION)]
         [WebCategory(EditorCategory.UI, EditorCategory.UI_Order)]
         [WebOrder(100)]
-        [Editor(typeof(ContentPickerEditorPartField), typeof(IEditorPartField))]
+        [Editor(typeof(ViewPickerEditorPartField), typeof(IEditorPartField))]
         [ContentPickerEditorPartOptions(ContentPickerCommonType.ContentView)]
         public string ContentViewPath { get; set; }
 

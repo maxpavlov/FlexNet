@@ -43,12 +43,7 @@ namespace SenseNet.ContentRepository
         private Content _content;
         public Content Content
         {
-            get
-            {
-                if (_content == null)
-                    _content = Content.Create(this);
-                return _content;
-            }
+            get { return _content ?? (_content = Content.Create(this)); }
         }
 
         protected virtual void Initialize()
@@ -64,6 +59,8 @@ namespace SenseNet.ContentRepository
         {
             get { return ContentType.GetByName(this.NodeType.Name); }
         }
+
+        public override bool IsContentType { get { return false; } }
 
         public override string DisplayName
         {
@@ -310,37 +307,6 @@ namespace SenseNet.ContentRepository
             }
         }
 
-        private bool? _workflowsRunning;
-
-        public bool WorkflowsRunning
-        {
-            get
-            {
-                if (_workflowsRunning.HasValue)
-                    return _workflowsRunning.Value;
-
-                if (!StorageContext.Search.IsOuterEngineEnabled)
-                {
-                    _workflowsRunning = false;
-                    return false;
-                }
-
-                var cl = ContentList.GetContentListForNode(this);
-                if (cl == null)
-                {
-                    _workflowsRunning = false;
-                    return false;
-                }
-
-                var query = string.Format("+InTree:\"{0}\" +TypeIs:Workflow +WorkflowStatus:1 +RelatedContent:{1} .AUTOFILTERS:OFF .LIFESPAN:OFF .COUNTONLY",
-                                          cl.Path + "/Workflows", this.Id);
-
-                _workflowsRunning = ContentQuery.Query(query).Count > 0;
-
-                return _workflowsRunning.Value;
-            }
-        }
-
         private GenericContent _workspace;
         public GenericContent Workspace
         {
@@ -448,8 +414,6 @@ namespace SenseNet.ContentRepository
                     return this.Publishable;
                 case "Versions":
                     return this.Versions;
-                case "WorkflowsRunning":
-                    return this.WorkflowsRunning;
                 case "CheckedOutTo":
                     return this.CheckedOutTo;
                 default:
@@ -492,7 +456,6 @@ namespace SenseNet.ContentRepository
                 case "Approvable":
                 case "Publishable":
                 case "Versions":
-                case "WorkflowsRunning":
                 case "CheckedOutTo":
                     //do nothing, these props are readonly
                     break;
@@ -669,7 +632,7 @@ namespace SenseNet.ContentRepository
             var contentTypeName = node.NodeType.Name;
             var nodePath = String.Concat(node.Parent.Path, "/", node.Name);
 
-            return new InvalidOperationException(String.Format("Cannot save the content '{0}' because its ancestor not allows the type '{1}'. Ancestor: {2} ({3}). Allowed types: {4}"
+            return new InvalidOperationException(String.Format("Cannot save the content '{0}' because its ancestor does not allow the type '{1}'. Ancestor: {2} ({3}). Allowed types: {4}"
                 , nodePath, contentTypeName, ancestor.Path, ancestor.NodeType.Name, String.Join(", ", parent.GetAllowedChildTypeNames())));
         }
         private Exception GetNotAllowedContentTypeExceptionOnMove(Node node, GenericContent target)
@@ -685,7 +648,7 @@ namespace SenseNet.ContentRepository
 
             var contentTypeName = node.NodeType.Name;
 
-            return new InvalidOperationException(String.Format("Cannot move the content '{0}' to '{1}' because target's ancestor not allows the type '{2}'. Ancestor: {3} ({4}). Allowed types: {5}"
+            return new InvalidOperationException(String.Format("Cannot move the content '{0}' to '{1}' because target's ancestor does not allow the type '{2}'. Ancestor: {3} ({4}). Allowed types: {5}"
                 , node.Path, target.Path, contentTypeName, ancestor.Path, ancestor.NodeType.Name, String.Join(", ", target.GetAllowedChildTypeNames())));
         }
         public void AllowChildType(string contentTypeName, bool setOnAncestorIfInherits = false, bool throwOnError = true, bool save = false)
@@ -930,6 +893,10 @@ namespace SenseNet.ContentRepository
             {
                 return GetContentType().Icon;
             }
+            set
+            {
+                throw new NotImplementedException("Please implement Icon setter in your derived class");
+            }
         }
 
         public virtual NodeHead GetApplication(string actionName)
@@ -1014,10 +981,16 @@ namespace SenseNet.ContentRepository
         }
         public virtual void UndoCheckOut()
         {
+            UndoCheckOut(true);
+        }
+
+        public void UndoCheckOut(bool forceRefresh = true)
+        {
             var action = SavingAction.Create(this);
-            action.UndoCheckOut();
+            action.UndoCheckOut(forceRefresh);
             action.Execute();
         }
+
         public virtual void Publish()
         {
             var action = SavingAction.Create(this);

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Web.UI;
@@ -19,17 +20,19 @@ namespace SenseNet.Portal.Portlets
             Name = "Application list presenter";
             Description = "This portlet shows the relevant applications for a content (context bound)";
             this.Category = new PortletCategory(PortletCategoryType.Content);
+
+            this.HiddenProperties.Add("Renderer");
         }
 
         private string _controlPath = "/Root/System/SystemPlugins/Portlets/ApplicationList/ApplicationList.ascx";
         private bool _isHidden = true;
 
         [WebBrowsable(true), Personalizable(true)]
-        [WebDisplayName("View path")]
-        [WebDescription("Path of the .ascx user control which provides the elements of the portlet")]
+        [LocalizedWebDisplayName(PORTLETFRAMEWORK_CLASSNAME, RENDERER_DISPLAYNAME)]
+        [LocalizedWebDescription(PORTLETFRAMEWORK_CLASSNAME, RENDERER_DESCRIPTION)]
         [WebCategory(EditorCategory.UI, EditorCategory.UI_Order)]
         [WebOrder(100)]
-        [Editor(typeof(ContentPickerEditorPartField), typeof(IEditorPartField))]
+        [Editor(typeof(ViewPickerEditorPartField), typeof(IEditorPartField))]
         [ContentPickerEditorPartOptions(ContentPickerCommonType.Ascx)]
         public string ControlPath
         {

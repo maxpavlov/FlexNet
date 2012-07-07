@@ -13,7 +13,7 @@ namespace SenseNet.Communication.Messaging
         }
         protected override void InternalSend(System.IO.Stream messageBody)
         {
-            this.OnMessageRecieved(messageBody);
+            this.OnMessageReceived(messageBody);
         }
     }
 
@@ -58,7 +58,7 @@ namespace SenseNet.Communication.Messaging
                 message = "[an exception has been thrown: " + ex.Message + "]";
             }
 
-            System.Diagnostics.Trace.WriteLine(string.Concat("ClusterMessage in TraceChannel: ", message));
+            //System.Diagnostics.Trace.WriteLine(string.Concat("ClusterMessage in TraceChannel: ", message));
         }
     }
 

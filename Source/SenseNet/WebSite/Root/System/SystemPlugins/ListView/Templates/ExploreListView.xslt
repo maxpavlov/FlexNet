@@ -83,7 +83,7 @@
       <xsl:choose>
         <xsl:when test="contains(@modifiers,'main')">
           <![CDATA[<asp:TableCell runat="server" class="sn-lg-col-]]><xsl:value-of select="position()"/><xsl:choose><xsl:when test="@wrap='Wrap'"><xsl:text> sn-wrap</xsl:text></xsl:when><xsl:when test="@wrap='NoWrap'"><xsl:text> sn-nowrap</xsl:text></xsl:when></xsl:choose><![CDATA[" ]]><xsl:if test="string-length(@hAlign) > 0"><![CDATA[HorizontalAlign="]]><xsl:value-of select="@hAlign"/><![CDATA["]]></xsl:if><![CDATA[ >]]>
-          <![CDATA[ <sn:ActionMenu NodePath='<%# Eval("Path") %>' runat="server" Scenario="ListItem" IconName="<%# ((SenseNet.ContentRepository.Content)Container.DataItem).Icon %>" >]]>
+          <![CDATA[ <sn:ActionMenu NodePath='<%# Eval("Path") %>' runat="server" Scenario="ListItem" IconName="<%# ((SenseNet.ContentRepository.Content)Container.DataItem).Icon %>" OverlayVisible="true" >]]>
           <![CDATA[  <sn:ActionLinkButton runat='server' NodePath='<%# Eval("Path") %>' ActionName='Explore' IconVisible="false" >]]>
           <xsl:call-template name="ColumnValue"/>
           <![CDATA[  </sn:ActionLinkButton>

@@ -1,7 +1,9 @@
-<%@ Language="C#" AutoEventWireup="true" Inherits="SenseNet.Portal.UI.SingleContentView" %>
+﻿<%@ Language="C#" AutoEventWireup="true" Inherits="SenseNet.Portal.UI.SingleContentView" %>
 <%@ Import Namespace="System.Collections.Generic"%>
 <%@ Import namespace="SenseNet.ContentRepository.Storage" %>
 <%@ Import Namespace="System.Web.UI.WebControls" %>
+<% string user = (SenseNet.ContentRepository.User.Current).ToString(); %>
+
 
 <div class="sn-content">
     <%= this.Content.Fields["Description"].GetData() %>

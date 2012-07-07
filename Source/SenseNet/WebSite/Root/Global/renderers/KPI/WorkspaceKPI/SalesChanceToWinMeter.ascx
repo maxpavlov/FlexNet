@@ -22,5 +22,17 @@
         chancePic = "90";
 %>
 
+<% string user = (SenseNet.ContentRepository.User.Current).ToString(); %>
+<%if (user == "Visitor")
+  {%>
+   <div class="sn-pt-body-border ui-widget-content ui-corner-all">
+	<div class="sn-pt-body ui-corner-all">
+		<%=GetGlobalResourceObject("Portal", "WSContentList_Visitor")%>
+	</div>
+</div>
+<% }%>
+<%else
+  {%>
 <div class="sn-kpi-chance2win sn-kpi-chance-<%= chancePic %>"><%= chancePic %>%</div>
 
+<%} %>

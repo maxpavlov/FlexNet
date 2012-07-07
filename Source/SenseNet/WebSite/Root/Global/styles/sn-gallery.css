@@ -1,0 +1,24 @@
+﻿.sn-gallery-table {padding: 10px 0px 0px;}
+.galleryContainer .sn-listgrid-container {margin-bottom: 0;}
+.sn-gallery-cell {width: 120px;text-align: left;padding: 10px 20px 10px 21px;border: 1px solid #eee;color: #999;font-size: 11px;}
+.sn-gallery-cell .sn-image {text-align: center;}
+.sn-gallery-cell img {border: solid 2px #eee;cursor:pointer;}
+.sn-gallery-cell .sn-title {font-weight: bold;text-align: center;color: #333;}
+.sn-modifiedby {text-align: left;margin-top: 5px;font-size: 11px;}
+.sn-modifiedby span {display: block;margin-top: 5px;}
+.sn-modifiedby .sn-actionlinkbutton {padding: 2px 0px;color: #999;}
+.sn-modifiedby .sn-actionlinkbutton:hover {color: #007DC2;}
+.sn-gallery-toolbar {border: none}
+.sn-gallery-toolbar .sn-toolbar-inner {background: none;border: none;}
+.sn-gallery-toolbar .sn-toolbar-btngroup {border: solid 1px #ccc;border-radius:3px;}
+.sn-gallery-toolbar .sn-toolbar-btngroup div {float:left;padding: 5px;}
+.sn-gallery-hover {background: #eee;}
+.sn-gallery-toolbar .sn-disabled {
+    color: #333 !important;
+    cursor: default !important;
+    text-shadow: 1px 1px #FFFFFF !important;
+}
+.sn-gallery-toolbar .sn-disabled img {
+    opacity: 1;
+}
+.sn-listgrid-container {overflow-x:hidden;}

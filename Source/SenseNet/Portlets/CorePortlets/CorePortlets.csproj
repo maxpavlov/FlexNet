@@ -127,6 +127,9 @@
     </Compile>
     <Compile Include="ContextSearch.cs" />
     <Compile Include="Controls\ExportFormItems.cs" />
+    <Compile Include="Controls\LoginDemo.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Controls\LoginView.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -153,7 +156,6 @@
     <Compile Include="KPI\WorkspaceKPIPortlet.cs" />
     <Compile Include="KPI\WorkspaceSummaryPortlet.cs" />
     <Compile Include="ListImporterPortlet.cs" />
-    <Compile Include="LoginDemoPortlet.cs" />
     <Compile Include="Notification\NotificationDeletePortlet.cs" />
     <Compile Include="Notification\NotificationEditorPortlet.cs" />
     <Compile Include="Notification\NotificationListPortlet.cs" />
@@ -200,8 +202,8 @@
       <Project>{71BBF82C-84D2-409F-8BC0-A9F401B016FB}</Project>
       <Name>DirectoryServices</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\LuceneNet_2_9_2\Lucene.Net.csproj">
-      <Project>{01262AA3-7163-40DA-90F9-BC0B67CEFB34}</Project>
+    <ProjectReference Include="..\..\LuceneNet_2_9_4g\Lucene.Net.csproj">
+      <Project>{5D4AD9BE-1FFB-41AB-9943-25737971BF57}</Project>
       <Name>Lucene.Net</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Messaging\Messaging.csproj">

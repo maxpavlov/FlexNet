@@ -1,17 +1,20 @@
 using System;
 using System.Configuration;
+using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls.WebParts;
 using SenseNet.ContentRepository;
+using SenseNet.ContentRepository.i18n;
+using SenseNet.ContentRepository.Storage;
 using SenseNet.ContentRepository.Versioning;
 using SenseNet.Diagnostics;
+using SenseNet.Portal.UI.Bundling;
 using SenseNet.Portal.UI.Controls;
-using SenseNet.ContentRepository.Storage;
-using System.Collections.Generic;
 using SenseNet.Portal.UI.PortletFramework;
+using SenseNet.Portal.Virtualization;
 
 namespace SenseNet.Portal.UI
 {
@@ -139,7 +142,7 @@ namespace SenseNet.Portal.UI
         /// <param name="header">Page header</param>
         /// <param name="cssPath">Path of CSS file</param>
         /// <param name="order">Desired order of CSS link</param>
-        public static void AddStyleSheetToHeader(Control header, string cssPath, int order, string rel, string type, string media, string title)
+        public static void AddStyleSheetToHeader(Control header, string cssPath, int order, string rel, string type, string media, string title, bool allowBundlingIfEnabled = true)
         {
             if (header == null)
                 return;
@@ -149,51 +152,83 @@ namespace SenseNet.Portal.UI
 
             var resolvedPath = SkinManager.Resolve(cssPath);
 
-            var cssLink = new HtmlLink();
-            cssLink.ID = "cssLink_" + resolvedPath.GetHashCode().ToString();
-
-            // link already added to header
-            if (header.FindControl(cssLink.ID) != null)
-                return;
-
-            cssLink.Href = resolvedPath;
-            cssLink.Attributes["rel"] = rel;
-            cssLink.Attributes["type"] = type;
-            cssLink.Attributes["media"] = media;
-            cssLink.Attributes["title"] = title;
-            cssLink.Attributes["cssorder"] = order.ToString();
-
-            // find next control with higher order
-            var index = -1;
-            bool found = false;
-            foreach (Control control in header.Controls)
+            if (allowBundlingIfEnabled && rel == "stylesheet" && type == "text/css" && PortalContext.Current.BundleOptions.AllowCssBundling)
             {
-                index++;
+                if (!string.IsNullOrEmpty(title))
+                    throw new Exception("The title attribute on link tags is not supported when CSS bundling is enabled.");
 
-                var link = control as HtmlLink;
-                if (link == null)
-                    continue;
+                PortalContext.Current.BundleOptions.EnableCssBundling(header);
 
-                var orderStr = link.Attributes["cssorder"];
-                if (string.IsNullOrEmpty(orderStr))
-                    continue;
+                // If this is CSS stylesheet and bundling is enabled, add it to the bundle
 
-                int linkOrder = Int32.MinValue;
-                if (Int32.TryParse(orderStr, out linkOrder) && linkOrder > order)
+                // Find the bundle object for the current media
+                var bundle = PortalContext.Current.BundleOptions.CssBundles.SingleOrDefault(x => x.Media == media);
+
+                if (bundle == null)
                 {
-                    found = true;
-                    break;
+                    bundle = new CssBundle()
+                    {
+                        Media = media,
+                    };
+                    PortalContext.Current.BundleOptions.CssBundles.Add(bundle);
                 }
-            }
-            if (found)
-            {
-                // add link right before higher order link
-                header.Controls.AddAt(index, cssLink);
+
+                // Add the current resolved path to the bundle
+                if (PortalBundleOptions.CssIsBlacklisted(resolvedPath))
+                    bundle.AddPostponedPath(resolvedPath);
+                else
+                    bundle.AddPath(resolvedPath, order);
             }
             else
             {
-                // add link at end of header's controlcollection
-                header.Controls.Add(cssLink);
+                // If bundling is disabled, fallback to the old behaviour
+
+                var cssLink = new HtmlLink();
+                cssLink.ID = "cssLink_" + resolvedPath.GetHashCode().ToString();
+
+                // link already added to header
+                if (header.FindControl(cssLink.ID) != null)
+                    return;
+
+                cssLink.Href = resolvedPath;
+                cssLink.Attributes["rel"] = rel;
+                cssLink.Attributes["type"] = type;
+                cssLink.Attributes["media"] = media;
+                cssLink.Attributes["title"] = title;
+                cssLink.Attributes["cssorder"] = order.ToString();
+
+                // find next control with higher order
+                var index = -1;
+                bool found = false;
+                foreach (Control control in header.Controls)
+                {
+                    index++;
+
+                    var link = control as HtmlLink;
+                    if (link == null)
+                        continue;
+
+                    var orderStr = link.Attributes["cssorder"];
+                    if (string.IsNullOrEmpty(orderStr))
+                        continue;
+
+                    int linkOrder = Int32.MinValue;
+                    if (Int32.TryParse(orderStr, out linkOrder) && linkOrder > order)
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+                if (found)
+                {
+                    // add link right before higher order link
+                    header.Controls.AddAt(index, cssLink);
+                }
+                else
+                {
+                    // add link at end of header's controlcollection
+                    header.Controls.Add(cssLink);
+                }
             }
         }
 
@@ -297,6 +332,7 @@ namespace SenseNet.Portal.UI
             public static string TinyMCEPath = GetScriptSetting("TinyMCEPath");
             public static string jQueryPath = GetScriptSetting("jQueryPath");
             public static string JQueryUIPath = GetScriptSetting("jQueryUIPath");
+            public static string JQueryUIFolderPath = RepositoryPath.GetParentPath(JQueryUIPath);
             public static string jQueryTreePath = GetScriptSetting("jQueryTreePath");
             public static string jQueryGridPath = GetScriptSetting("jQueryGridPath");
             public static string jQueryTreeCheckboxPluginPath = GetScriptSetting("jQueryTreeCheckboxPluginPath");
@@ -402,6 +438,71 @@ namespace SenseNet.Portal.UI
             var modeString = HttpContext.GetGlobalResourceObject("Portal", node.VersioningMode.ToString()) as string;
             
             return string.IsNullOrEmpty(modeString) ? node.VersioningMode.ToString() : modeString;
+        }
+
+        /// <summary>
+        /// Gets the user friendly string representation of a date relative to the current time
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public static string GetFriendlyDate(DateTime date)
+        {
+            //- 53 seconds ago
+            //- 15 minutes ago
+            //- 21 hours ago
+            //- Yesterday at 3:43pm
+            //- Sunday at 2:12pm
+            //- May 25 at 1:23pm
+            //- December 27, 2010 at 5:41pm
+
+            var shortTime = date.ToShortTimeString();   // 5:41 PM
+
+            string secondText = SenseNetResourceManager.Current.GetString("Portal", "SecondMessage");
+            string minuteText = SenseNetResourceManager.Current.GetString("Portal", "MinutesMessage");
+            string hoursext = SenseNetResourceManager.Current.GetString("Portal", "HoursMessage");
+            string yesterdayAt = SenseNetResourceManager.Current.GetString("Portal", "YesterdayAt");
+            string atString = SenseNetResourceManager.Current.GetString("Portal", "At");
+
+            var ago = DateTime.Now - date;
+            if (ago < new TimeSpan(0, 1, 0))
+                return ago.Seconds == 1 ?
+                    "1 " + secondText :
+                    string.Format("{0} " + secondText, ago.Seconds);
+            if (ago < new TimeSpan(1, 0, 0))
+                return ago.Minutes == 1 ?
+                    "1 " + minuteText :
+                    string.Format("{0} " + minuteText, ago.Minutes);
+            if (ago < new TimeSpan(1, 0, 0, 0))
+                return ago.Hours == 1 ?
+                    "1 " + hoursext :
+                    string.Format("{0} " + hoursext, ago.Hours);
+            if (ago < new TimeSpan(2, 0, 0, 0))
+                return string.Format(yesterdayAt + " {0}", shortTime);
+            if (ago < new TimeSpan(7, 0, 0, 0))
+                return string.Format("{0}" + atString + " {1}", date.DayOfWeek.ToString(), shortTime);
+            if (date.Year == DateTime.Now.Year)
+                return string.Format("{0} {1}" + atString + " {2}", date.ToString("MMMM"), date.Day, shortTime);
+
+            return string.Format("{0} {1}, {2}" + atString + " {3}", date.ToString("MMMM"), date.Day, date.Year, shortTime);
+        }
+
+        public static string GetFriendlyDate(Content content, string fieldName)
+        {
+            if (content == null || string.IsNullOrEmpty(fieldName))
+                return string.Empty;
+
+            var dt = string.Empty;
+
+            try
+            {
+                return UITools.GetFriendlyDate(Convert.ToDateTime(content[fieldName]));
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteException(ex);
+            }
+
+            return dt;
         }
     }
 }

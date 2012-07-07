@@ -35,7 +35,7 @@ namespace SenseNet.Portal.Portlets
             this.Description = "A portlet for presenting a KPI value with a selected KPI View";
             this.Category = new PortletCategory(PortletCategoryType.KPI);
 
-            this.HiddenProperties = new List<string>() {"SkinPreFix", "Renderer"};
+            this.HiddenProperties.AddRange(new[] { "SkinPreFix", "Renderer" });
         }
 
 

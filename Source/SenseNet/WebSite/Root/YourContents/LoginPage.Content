@@ -4,7 +4,7 @@
   <ContentName>LoginPage</ContentName>
   <Fields>
     <DisplayName>Welcome!</DisplayName>
-    <Subtitle>You are using Sense/Net 6.0</Subtitle>
+    <Subtitle>You are using Sense/Net 6.1</Subtitle>
     <Header></Header>
     <Body>&lt;p&gt;You can start testing the system.&lt;/p&gt;
 &lt;p&gt;Administrator login name is: &lt;strong class="snBigText"&gt;admin&lt;/strong&gt;, password is also: &lt;strong class="snBigText"&gt;admin&lt;/strong&gt;.&lt;/p&gt;</Body>

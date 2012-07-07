@@ -122,6 +122,16 @@ namespace SenseNet.Portal.Portlets.Controls
             if (userNameTextBox != null)
             {
                 userName = userNameTextBox.Text;
+                if (!userName.Contains("\\"))
+                {
+                    //add default domain for logging reasons
+                    var domain = (String.IsNullOrEmpty(this.DefaultDomain) ?
+                        System.Web.Configuration.WebConfigurationManager.AppSettings["DefaultDomain"] :
+                        this.DefaultDomain) ?? string.Empty;
+
+                    userName = string.Concat(domain, "\\", userName);
+                }
+
                 Logger.WriteAudit(AuditEvent.LoginUnsuccessful, new Dictionary<string, object> { { "UserName", userName }, { "ClientAddress", Request.ServerVariables["REMOTE_ADDR"] } });
             }
 

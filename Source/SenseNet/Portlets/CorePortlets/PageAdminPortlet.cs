@@ -150,6 +150,8 @@ namespace SenseNet.Portal.Portlets
             this.Name = "Page administration";
             this.Description = "This portlet manages Portlets on a Page other than the current one (context bound)";
             this.Category = new PortletCategory(PortletCategoryType.Portal);
+
+            this.HiddenProperties.Add("Renderer");
         }
 
         protected override void OnInit(EventArgs e)

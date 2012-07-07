@@ -96,8 +96,8 @@
       <Project>{786E6165-CA02-45A9-BF58-207A45D7D6DF}</Project>
       <Name>ContentRepository</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\LuceneNet_2_9_2\Lucene.Net.csproj">
-      <Project>{01262AA3-7163-40DA-90F9-BC0B67CEFB34}</Project>
+    <ProjectReference Include="..\..\LuceneNet_2_9_4g\Lucene.Net.csproj">
+      <Project>{5D4AD9BE-1FFB-41AB-9943-25737971BF57}</Project>
       <Name>Lucene.Net</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Portal\Portal.csproj">

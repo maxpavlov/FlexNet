@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Web.Security;
 using SenseNet.ContentRepository.Storage;
+using SenseNet.ContentRepository.Storage.Data;
 using SenseNet.ContentRepository.Storage.Search;
 using SenseNet.ContentRepository.Storage.Security;
 using SenseNet.Diagnostics;
@@ -234,13 +235,12 @@ namespace SenseNet.ContentRepository.Security
             throw new Exception("The method or operation is not implemented.");
         }
 
-
+        [Obsolete("Use RepositoryConfiguration.DefaultDomain instead.", true)]
         protected string DefaultDomain
         {
             get
             {
-                string defaultDomain = System.Web.Configuration.WebConfigurationManager.AppSettings["DefaultDomain"];
-                return string.IsNullOrEmpty(defaultDomain) ? "BuiltIn" : defaultDomain;
+                return RepositoryConfiguration.DefaultDomain;
             }
         }
 
@@ -251,7 +251,7 @@ namespace SenseNet.ContentRepository.Security
 
             int indexBackSlash = username.IndexOf("\\");
             string domain =
-                indexBackSlash > 0 ? username.Substring(0, indexBackSlash) : DefaultDomain;
+                indexBackSlash > 0 ? username.Substring(0, indexBackSlash) : RepositoryConfiguration.DefaultDomain;
 
             username = username.Substring(username.IndexOf("\\") + 1);
 

@@ -76,7 +76,7 @@ namespace SenseNet.Services.WebDav
                 context.Response.AddHeader("Content-Length", ret.Length.ToString());
                 context.Response.Write(ret);
 
-                System.Diagnostics.Trace.Write(string.Concat("RESPONSE: ", ret));
+                //System.Diagnostics.Trace.Write(string.Concat("RESPONSE: ", ret));
             }
 
             context.Response.Flush();

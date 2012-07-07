@@ -8,30 +8,30 @@
     </PageTemplateNode>
     <Hidden>false</Hidden>
     <Index>0</Index>
-    <SmartUrl></SmartUrl>
+    <SmartUrl><![CDATA[]]></SmartUrl>
     <IsExternal>false</IsExternal>
-    <OuterUrl></OuterUrl>
-    <MetaTitle></MetaTitle>
+    <OuterUrl><![CDATA[]]></OuterUrl>
+    <MetaTitle><![CDATA[]]></MetaTitle>
     <Keywords><![CDATA[]]></Keywords>
     <MetaDescription><![CDATA[]]></MetaDescription>
-    <MetaAuthors></MetaAuthors>
+    <MetaAuthors><![CDATA[]]></MetaAuthors>
     <CustomMeta><![CDATA[]]></CustomMeta>
     <Binary attachment="Browse.aspx" />
     <PersonalizationSettings attachment="Browse.PersonalizationSettings" />
-    <DisplayName>Browse</DisplayName>
-    <Scenario>ListItem;ExploreToolbar</Scenario>
+    <DisplayName><![CDATA[Browse]]></DisplayName>
+    <Scenario><![CDATA[ListItem;ExploreToolbar]]></Scenario>
     <IsModal>false</IsModal>
     <Disabled>false</Disabled>
     <Clear>false</Clear>
-    <Icon>browse</Icon>
+    <Icon><![CDATA[browse]]></Icon>
     <RequiredPermissions>2</RequiredPermissions>
     <DeepPermissionCheck>false</DeepPermissionCheck>
     <IncludeBackUrl>0</IncludeBackUrl>
-    <CacheControl></CacheControl>
+    <CacheControl>Nondefined</CacheControl>
     <EnableLifespan>false</EnableLifespan>
     <ValidFrom>0001-01-01T00:00:00</ValidFrom>
     <ValidTill>0001-01-01T00:00:00</ValidTill>
-        <CreatedBy>
+    <CreatedBy>
       <Path>/Root/IMS/BuiltIn/Portal/Administrator</Path>
     </CreatedBy>
     <CreationDate>2011-12-15T15:59:33.863</CreationDate>

@@ -3,7 +3,8 @@
   <DisplayName>Approval Workflow</DisplayName>
 	<Description>Approval workflow can be used to launch an approval process on a list item. If you assign this workflow to a content list, users will be able to start the approval process on the Start workflow page of list items. During the assign process you will have to set the approver users and approve time frame for that content list.</Description>
 	<Icon>workflow</Icon>
-	<Fields>
+  <AllowIncrementalNaming>true</AllowIncrementalNaming>
+  <Fields>
     <Field name="RelatedContent" type="Reference">
       <DisplayName>Content to approve</DisplayName>
       <Description>The content that the approvers have to approve</Description>

@@ -252,12 +252,12 @@ namespace SenseNet.Portal.Portlets
 
         [WebBrowsable(true)]
         [Personalizable(true)]
-        [WebDisplayName("Browse contentview path")]
-        [WebDescription("Path of presented content's browse contentview. Leave empty to use default contentview resolution logic")]
+        [LocalizedWebDisplayName(PORTLETFRAMEWORK_CLASSNAME, RENDERER_DISPLAYNAME)]
+        [LocalizedWebDescription(PORTLETFRAMEWORK_CLASSNAME, RENDERER_DESCRIPTION)]
         [WebCategory(EditorCategory.SingleContentPortlet, EditorCategory.SingleContentPortlet_Order)]
         [WebOrder(30)]
-        [Editor(typeof(ContentPickerEditorPartField), typeof(IEditorPartField))]
-        [ContentPickerEditorPartOptions(ContentPickerCommonType.ContentView)]
+        [Editor(typeof(ViewPickerEditorPartField), typeof(IEditorPartField))]
+        [ContentPickerEditorPartOptions(ContentPickerCommonType.ContentView, PortletViewType.Ascx)]
         public string ContentViewPath { get; set; }
 
         [WebBrowsable(true)] 
@@ -366,6 +366,8 @@ namespace SenseNet.Portal.Portlets
             this._recreateNewContentView = false;
             this._recreateEditContentView = false;
             this._displayMode = GetViewModeName(ViewMode.Browse);
+
+            this.HiddenProperties.Add("Renderer");
         }
 
         // Events /////////////////////////////////////////////////////////////////
@@ -377,16 +379,25 @@ namespace SenseNet.Portal.Portlets
         }
         protected override object SaveControlState()
         {
+            if (ShowExecutionTime)
+                Timer.Start();
+
             object[] state = new object[4];
             state[0] = base.SaveControlState();
             state[1] = this._recreateNewContentView;
             state[2] = this._recreateEditContentView;
             state[3] = this._displayMode;
 
+            if (ShowExecutionTime)
+                Timer.Stop();
+
             return state;
         }
         protected override void LoadControlState(object savedState)
         {
+            if (ShowExecutionTime)
+                Timer.Start();
+
             if (savedState != null)
             {
                 var state = savedState as object[];
@@ -405,6 +416,9 @@ namespace SenseNet.Portal.Portlets
                 }
             } else
                 base.LoadControlState(savedState);
+
+            if (ShowExecutionTime)
+                Timer.Stop();
         }
 
         //public override void NotifyCheckin()
@@ -433,6 +447,9 @@ namespace SenseNet.Portal.Portlets
         {
             if (Cacheable && CanCache && IsInCache)
                 return;
+
+            if (ShowExecutionTime)
+                Timer.Start();
 
             using (var traceOperation = Logger.TraceOperation("SingleContentPortlet.CreateChildControls", this.Name))
             {
@@ -479,6 +496,9 @@ namespace SenseNet.Portal.Portlets
                 ChildControlsCreated = true;
                 traceOperation.IsSuccessful = true;
             }
+
+            if (ShowExecutionTime)
+                Timer.Stop();
         }
         
         public void _contentView_UserAction(object sender, UserActionEventArgs e)

@@ -6,51 +6,49 @@ using Lucene.Net.Store;
 using SenseNet.Search.Indexing;
 using Lucene.Net.Documents;
 using Lucene.Net.Index;
+using SenseNet.ContentRepository.Storage.Data;
 
 namespace SenseNet.Search.Indexing.Activities
 {
     [Serializable]
-    public abstract class LuceneIndexingActivity : DistributedLuceneActivity
+    internal abstract class LuceneIndexingActivity : DistributedLuceneActivity
     {
-        public int TaskId { get; set; }
         public int ActivityId { get; set; }
-        public bool LastActivity { get; set; }
 
         public int NodeId { get; set; }
         public int VersionId { get; set; }
 
         public IndexingActivityType IndexingActivityType { get; set; }
 
-        public Nullable<bool> IsPublicValue { get; set; }
-        public Nullable<bool> IsLastPublicValue { get; set; }
-        public Nullable<bool> IsLastDraftValue { get; set; }
+        public Nullable<bool> SingleVersion { get; set; }
+        public bool MoveOrRename { get; set; }
+
         public string Path { get; set; }
 
-        public static T CreateFromTaskActivity<T>(IndexingActivity taskActivity) where T : LuceneIndexingActivity, new()
+        public static T CreateFromIndexingActivity<T>(IndexingActivity activity) where T : LuceneIndexingActivity, new()
         {
             T result = new T();
-            result.TaskId = taskActivity.IndexingTaskId;
-            result.ActivityId = taskActivity.IndexingActivityId;
-            result.IndexingActivityType = taskActivity.ActivityType;
-            result.IsLastPublicValue = taskActivity.IsLastPublicValue;
-            result.IsPublicValue = taskActivity.IsPublicValue;
-            result.IsLastDraftValue = taskActivity.IsLastDraftValue;
-            result.Path = taskActivity.Path;
-            result.VersionId = taskActivity.VersionId;
-            result.NodeId = taskActivity.NodeId;
+            result.ActivityId = activity.IndexingActivityId;
+            result.IndexingActivityType = activity.ActivityType;
+            result.SingleVersion = activity.SingleVersion;
+            result.MoveOrRename = activity.MoveOrRename.HasValue ? activity.MoveOrRename.Value : false;
+            result.Path = activity.Path;
+            result.VersionId = activity.VersionId;
+            result.NodeId = activity.NodeId;
+
+            if (activity.IndexDocumentData != null)
+            {
+                var lucDocAct = result as LuceneDocumentActivity;
+                if (lucDocAct != null)
+                    lucDocAct.IndexDocumentData = activity.IndexDocumentData;
+            }
+
             return result;
         }
 
-        public virtual void Prepare()
+        internal override void Execute()
         {
-
-        }
-
-
-        public override void Execute()
-        {
-            LuceneManager.ApplyChanges(this.TaskId, this.LastActivity);
+            LuceneManager.ApplyChanges(this.ActivityId);
         }
     }
-
 }

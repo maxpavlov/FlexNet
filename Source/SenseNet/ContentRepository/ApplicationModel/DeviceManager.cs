@@ -89,15 +89,16 @@ namespace SenseNet.ApplicationModel
 
             if (RepositoryInstance.ContentQueryIsAllowed)
             {
-                var result = ContentQuery.Query("+InTree:/Root/System/Devices +TypeIs:Device .SORT:Index .AUTOFILTERS:OFF");
+                var result = ContentQuery.Query("+InTree:/Root/System/Devices +TypeIs:Device .AUTOFILTERS:OFF");
                 devices = result.Nodes.Cast<Device>().ToList();
             }
             else
             {
                 //query devices and sort them by Index
                 devices = NodeQuery.QueryNodesByTypeAndPath(ActiveSchema.NodeTypes["Device"], false, "/Root/System/Devices", false).Nodes.Cast<Device>().ToList();
-                devices.Sort(new NodeComparer<Node>());
             }
+
+            devices.Sort(new NodeComparer<Node>());
 
             //TODO: Device is renamed to lowercase but only in memory. Mustn't save it.
             foreach (var device in devices)

@@ -95,7 +95,6 @@
     </Compile>
     <Compile Include="WorkflowDefinitionHandler.cs" />
     <Compile Include="WorkflowHandlerBase.cs" />
-    <Compile Include="WorkflowInstanceManagerController.cs" />
     <Compile Include="WorkflowNotificationObserver.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -14,6 +14,18 @@
     var max = actualMax > goalMax ? actualMax : goalMax;
 %>
 
+<% string user = (SenseNet.ContentRepository.User.Current).ToString(); %>
+<%if (user == "Visitor")
+  {%>
+   <div class="sn-pt-body-border ui-widget-content ui-corner-all">
+	<div class="sn-pt-body ui-corner-all">
+		<%=GetGlobalResourceObject("Portal", "WSContentList_Visitor")%>
+	</div>
+</div>
+<% }%>
+<%else
+  {%>
+
 <table class="sn-kpi-states">
     <tbody>
         <tr>
@@ -41,3 +53,4 @@
         </tr>
     </tfoot>
 </table>
+<%} %>

@@ -8,6 +8,8 @@ namespace SenseNet.ApplicationModel
 {
     public class NewScenario : GenericScenario
     {
+        public bool DisplaySystemFolders { get; set; }
+
         public override string Name
         {
             get
@@ -30,15 +32,17 @@ namespace SenseNet.ApplicationModel
 
             var app = ApplicationStorage.Instance.GetApplication("Add", context, PortalContext.Current.DeviceName);
             var gc = context.ContentHandler as GenericContent;
-            var cl = gc != null ? gc.MostRelevantContext : null;
 
-            if (cl != null && app != null)
+            if (gc != null && app != null)
             {
-                foreach (var node in GetNewItemNodes(cl))
-                {
-                    var ctype = node as ContentType; 
+                foreach (var node in GetNewItemNodes(gc))
+                {                    
+                    var ctype = node as ContentType;
                     if (ctype != null)
                     {
+                        if (!DisplaySystemFolders && ctype.IsInstaceOfOrDerivedFrom("SystemFolder"))
+                            continue;
+
                         //skip Add action if the user tries to add a list without having a manage container permission
                         if (!SavingAction.CheckManageListPermission(ctype.NodeType, context.ContentHandler))
                             continue;
@@ -48,12 +52,15 @@ namespace SenseNet.ApplicationModel
                             continue;
                         act.Text = ctype.DisplayName;
                         act.Icon = ctype.Icon;
-                        actList.Add(act);                        
+                        actList.Add(act);
                     }
                     else
                     {
                         var ctd = node as GenericContent;
                         if (ctd == null)
+                            continue;
+
+                        if (!DisplaySystemFolders && ctd.NodeType.IsInstaceOfOrDerivedFrom("SystemFolder"))
                             continue;
 
                         //skip Add action if the user tries to add a list without having a manage container permission
@@ -69,6 +76,25 @@ namespace SenseNet.ApplicationModel
             }
 
             return actList;
+        }
+
+        public override void Initialize(Dictionary<string, object> parameters)
+        {
+            base.Initialize(parameters);
+
+            if (parameters == null)
+                return;
+
+            if (!parameters.ContainsKey("DisplaySystemFolders")) 
+                return;
+
+            var dsfVal = parameters["DisplaySystemFolders"];
+            if (dsfVal == null)
+                return;
+
+            bool dsf;
+            if (bool.TryParse(dsfVal.ToString().ToLower(), out dsf))
+                DisplaySystemFolders = dsf;
         }
     }
 }

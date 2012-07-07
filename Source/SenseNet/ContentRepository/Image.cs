@@ -147,14 +147,18 @@ namespace SenseNet.ContentRepository
             }
         }
 
-        private void SetDimension(Image imgNode)
+        private static void SetDimension(Image imgNode)
         {
             try
             {
-                using (var img = System.Drawing.Image.FromStream(imgNode.Binary.GetStream()))
+                var imgStream = imgNode.Binary.GetStream();
+                if (imgStream != null && imgStream.Length > 0)
                 {
-                    imgNode["Width"] = img.Width;
-                    imgNode["Height"] = img.Height;
+                    using (var img = System.Drawing.Image.FromStream(imgStream))
+                    {
+                        imgNode["Width"] = img.Width;
+                        imgNode["Height"] = img.Height;
+                    }
                 }
             }
             catch(Exception ex)

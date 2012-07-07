@@ -84,13 +84,25 @@ namespace SenseNet.Search
 
         private void NotifyIndexingInfoChanged()
         {
-            if (ActivityQueue.Instance == null)
+            if (!LuceneManager.Running)
                 return;
             var act = new WriterRestartActivity();
             act.Distribute();
-            ActivityQueue.AddActivity(act);
+            act.InternalExecute();
             //act.WaitForComplete();
         }
 
+        public object DeserializeIndexDocumentInfo(byte[] indexDocumentInfoBytes)
+        {
+            if (indexDocumentInfoBytes == null)
+                return null;
+            if (indexDocumentInfoBytes.Length == 0)
+                return null;
+
+            var docStream = new System.IO.MemoryStream(indexDocumentInfoBytes);
+            var formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+            var info = (IndexDocumentInfo)formatter.Deserialize(docStream);
+            return info;
+        }
     }
 }

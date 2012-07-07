@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Reflection;
@@ -12,21 +13,27 @@ namespace SenseNet.ContentRepository
 {
 
 	[ScriptTagName("jScript")]
-	internal class JscriptEvaluator : IEvaluator
+	public class JscriptEvaluator : IEvaluator
 	{
 		public static readonly string TagName = "jScript";
 		private static Type _jsEvaluatorType;
+	    private static Type JsEvaluatorType
+	    {
+	        get
+	        {
+                if (_jsEvaluatorType == null)
+                    CreateJsEvaluatorAndType();
 
-		static JscriptEvaluator()
-		{
-			//CreateJsEvaluatorAndType();
-		}
+	            return _jsEvaluatorType;
+	        }
+	    }
+
 		private static void CreateJsEvaluatorAndType()
 		{
 			string codeBase = Path.GetDirectoryName(typeof(JscriptEvaluator).Assembly.CodeBase).Remove(0, 6);
 
-			Microsoft.JScript.JScriptCodeProvider jsCodeProvider = new Microsoft.JScript.JScriptCodeProvider();
-			CompilerParameters compilerParam = new CompilerParameters();
+			var jsCodeProvider = new Microsoft.JScript.JScriptCodeProvider();
+			var compilerParam = new CompilerParameters();
 			compilerParam.ReferencedAssemblies.Add("System.dll");
 			compilerParam.ReferencedAssemblies.Add("System.Data.dll");
 			compilerParam.ReferencedAssemblies.Add("System.Xml.dll");
@@ -69,14 +76,19 @@ namespace SenseNet.ContentRepository
             
 			Assembly assembly = compilerResult.CompiledAssembly;
 			_jsEvaluatorType = assembly.GetType("Evaluator.JsEvaluator");
+
+            //Trace.WriteLine("Js evaluator type created");
 		}
+
+        public static void Init()
+        {
+            var jset = JsEvaluatorType;
+        }
 
 		public string Evaluate(string source)
 		{
-			if (_jsEvaluatorType == null)
-				CreateJsEvaluatorAndType();
-            var jsEvaluator = Activator.CreateInstance(_jsEvaluatorType);
-			var result = _jsEvaluatorType.InvokeMember("Eval", System.Reflection.BindingFlags.InvokeMethod, null, jsEvaluator, new object[] { source }).ToString();
+            var jsEvaluator = Activator.CreateInstance(JsEvaluatorType);
+            var result = JsEvaluatorType.InvokeMember("Eval", BindingFlags.InvokeMethod, null, jsEvaluator, new object[] { source }).ToString();
 			return result;
 		}
 	}

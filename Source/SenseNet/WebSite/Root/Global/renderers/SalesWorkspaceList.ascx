@@ -8,7 +8,9 @@
 
     <sn:Toolbar runat="server">
         <sn:ToolbarItemGroup Align="left" runat="server">
-            <sn:ActionLinkButton runat="server" ActionName="Add" NodePath="/Root/Sites/Default_Site/workspaces/Sales" ParameterString="ContentTypeName=/Root/ContentTemplates/SalesWorkspace/Sales_Workspace" Text="Sales Workspace" />
+            <sn:ActionMenu ID="ActionMenu1" runat="server" Scenario="New" ContextInfoID="myContext" RequiredPermissions="AddNew" CheckActionCount="True">
+                <sn:ActionLinkButton ID="ActionLinkButton1" runat="server" ActionName="Add" IconUrl="/Root/Global/images/icons/16/newfile.png" ContextInfoID="newWS" Text="New" CheckActionCount="True" NodePath="/Root/Sites/Default_Site/workspaces/Sales" ParameterString="ContentTypeName=/Root/ContentTemplates/SalesWorkspace/Sales_Workspace"/>
+            </sn:ActionMenu>     
         </sn:ToolbarItemGroup>
     </sn:Toolbar>
 

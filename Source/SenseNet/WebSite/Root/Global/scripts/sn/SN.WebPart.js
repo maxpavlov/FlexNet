@@ -1,7 +1,7 @@
-﻿/// <depends path="$skin/scripts/sn/SN.js" />
-/// <depends path="$skin/scripts/sn/SN.Picker.js" />
-/// <depends path="/Root/Global/scripts/jquery/jquery.js" />
-/// <depends path="/Root/Global/scripts/jqueryui/minified/jquery-ui.min.js" />
+﻿// using $skin/scripts/sn/SN.js
+// using $skin/scripts/sn/SN.Picker.js
+// using /Root/Global/scripts/jquery/jquery.js
+// using /Root/Global/scripts/jqueryui/minified/jquery-ui.min.js
 
 SN.WebPart = {
     originalZone: null,

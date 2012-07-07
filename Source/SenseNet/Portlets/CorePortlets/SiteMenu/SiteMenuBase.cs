@@ -136,6 +136,25 @@ namespace SenseNet.Portal.Portlets
         [WebOrder(100)]
         public string QueryFilter { get; set; }
 
+        [WebBrowsable(true), Personalizable(true)]
+        [LocalizedWebDisplayName(PORTLETFRAMEWORK_CLASSNAME, RENDERER_DISPLAYNAME)]
+        [LocalizedWebDescription(PORTLETFRAMEWORK_CLASSNAME, RENDERER_DESCRIPTION)]
+        [WebCategory(EditorCategory.UI, EditorCategory.UI_Order)]
+        [WebOrder(1000)]
+        [Editor(typeof(ViewPickerEditorPartField), typeof(IEditorPartField))]
+        [ContentPickerEditorPartOptions(PortletViewType.Xslt)]
+        public override string Renderer
+        {
+            get
+            {
+                return base.Renderer;
+            }
+            set
+            {
+                base.Renderer = value;
+            }
+        }
+
         protected NavigableNodeFeed Feed { get; set; }
 
         #endregion

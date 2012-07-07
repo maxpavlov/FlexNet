@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Threading;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using SenseNet.ContentRepository.Storage;
 using System.Diagnostics;
 using SenseNet.ContentRepository.Storage.Schema;
 using SenseNet.ContentRepository.Storage.Security;
+using SenseNet.ContentRepository.Versioning;
 using SenseNet.Search;
 using SenseNet.ContentRepository.Storage.Data;
 
@@ -525,6 +527,68 @@ namespace SenseNet.ContentRepository.Tests.Search
             }
         }
 
+        [TestMethod]
+        public void QueryResult_SortOrder_ModifyContent()
+        {
+            //create parent
+            var parent = new Folder(TestRoot)
+                             {
+                                 Name = Guid.NewGuid().ToString(),
+                                 InheritableVersioningMode = InheritableVersioningType.MajorAndMinor
+                             };
+            parent.Save();
+
+            //create sample content
+            Content car = null;
+            var expIdList = new List<int>();
+            var centerId = 0;
+
+            for (var i = 0; i < 9; i++)
+            {
+                car = Content.CreateNew("Car", parent, "car-" + i.ToString().PadLeft(3, '0'));
+                car.Save();
+
+                expIdList.Add(car.Id);
+
+                if (i == 4)
+                    centerId = car.Id;
+            }
+
+            var query = ContentQuery.CreateQuery(string.Format("+InTree:\"{0}\" +TypeIs:Car .AUTOFILTERS:OFF", parent.Path),
+                                            new QuerySettings { Sort = new[] {new SortInfo { FieldName = "Path" }}});
+
+            var result = query.Execute();
+
+            var actualIdList1 = result.Identifiers.ToList();
+            var actualIdList2 = result.Nodes.Select(n => n.Id).ToList();
+
+            var expString = string.Join(",", expIdList);
+            var actualString1 = string.Join(",", actualIdList1);
+            var actualString2 = string.Join(",", actualIdList2);
+
+            Assert.AreEqual(expString, actualString1, "Result.Identifiers list is different than expected #1");
+            Assert.AreEqual(expString, actualString2, "Result.Nodes list is different than expected #1");
+
+            //change version of one of the cars
+            car = Content.Load(centerId);
+            car.CheckOut();
+
+            //execute the query again
+            result = query.Execute();
+
+            actualIdList1 = result.Identifiers.ToList();
+            actualIdList2 = result.Nodes.Select(n => n.Id).ToList();
+
+            expString = string.Join(",", expIdList);
+            actualString1 = string.Join(",", actualIdList1);
+            actualString2 = string.Join(",", actualIdList2);
+
+            Assert.AreEqual(expString, actualString1, "Result.Identifiers list is different than expected #2");
+            Assert.AreEqual(expString, actualString2, "Result.Nodes list is different than expected #2");
+
+            parent.ForceDelete();
+        }
+
         //==========================================================================================
 
         private class StorageContextAccessor : Accessor
@@ -562,8 +626,10 @@ namespace SenseNet.ContentRepository.Tests.Search
             foreach (var node in page)
                 currentSet.Add(node.Id);
             var currentStr = String.Join(", ", currentSet);
-
+            
             Assert.AreEqual(expectedStr, currentStr);
+            //Assert.IsTrue(currentSet.Except(expectedSet).Count() == 0, "Returned list contains unexpected ids.");
+            //Assert.IsTrue(expectedSet.Except(currentSet).Count() == 0, "Expected list contains ids that were not returned.");
         }
         [TestMethod]
         public void QueryExecutor_ForceTopByConfig_CheckUsage()

@@ -17,7 +17,7 @@
     <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation />
     <TargetFrameworkProfile />
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -115,8 +115,8 @@
       <Project>{C7580CC7-3590-43C6-B67E-DDDF9AE50FCD}</Project>
       <Name>HcExplore</Name>
     </ProjectReference>
-    <ProjectReference Include="..\LuceneNet_2_9_2\Lucene.Net.csproj">
-      <Project>{01262AA3-7163-40DA-90F9-BC0B67CEFB34}</Project>
+    <ProjectReference Include="..\LuceneNet_2_9_4g\Lucene.Net.csproj">
+      <Project>{5D4AD9BE-1FFB-41AB-9943-25737971BF57}</Project>
       <Name>Lucene.Net</Name>
     </ProjectReference>
     <ProjectReference Include="..\Portal\Portal.csproj">
@@ -173,9 +173,10 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>2444</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:2444/</IISUrl>
+          <IISUrl>
+          </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
+          <UseCustomServer>True</UseCustomServer>
           <CustomServerUrl>http://localhost</CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>

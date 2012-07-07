@@ -2,7 +2,7 @@
 <div id="sn-rating-search">
     <asp:TextBox ID="tbRatingSearchFrom" runat="server"></asp:TextBox>-tól &nbsp
     <asp:TextBox ID="tbRatingSearchTo" runat="server"></asp:TextBox>-ig
-    <asp:Button ID="sn-rating-search-btn" runat="server" onclick="btnSearch_Click" Text="Search" />
+    <asp:Button ID="btnRatingSearch" runat="server" onclick="btnSearch_Click" Text="Search" />
 </div>
 
 <asp:ListView ID="RatingSearchListView" runat="server">

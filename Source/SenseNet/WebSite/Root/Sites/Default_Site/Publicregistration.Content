@@ -3,35 +3,45 @@
   <ContentType>Page</ContentType>
   <ContentName>Publicregistration</ContentName>
   <Fields>
-    <DisplayName>Public registration</DisplayName>
     <PageTemplateNode>
       <Path>/Root/Global/pagetemplates/sn-layout-inter.html</Path>
     </PageTemplateNode>
     <Hidden>false</Hidden>
     <Index>0</Index>
-    <SmartUrl></SmartUrl>
+    <SmartUrl><![CDATA[]]></SmartUrl>
     <IsExternal>false</IsExternal>
-    <OuterUrl></OuterUrl>
-    <MetaTitle></MetaTitle>
+    <OuterUrl><![CDATA[]]></OuterUrl>
+    <MetaTitle><![CDATA[]]></MetaTitle>
     <Keywords><![CDATA[]]></Keywords>
     <MetaDescription><![CDATA[]]></MetaDescription>
-    <MetaAuthors></MetaAuthors>
+    <MetaAuthors><![CDATA[]]></MetaAuthors>
     <CustomMeta><![CDATA[]]></CustomMeta>
     <Binary attachment="Publicregistration.aspx" />
     <PersonalizationSettings attachment="Publicregistration.PersonalizationSettings" />
+    <DisplayName><![CDATA[Public registration]]></DisplayName>
     <Description><![CDATA[]]></Description>
-    <Scenario></Scenario>
-    <ActionTypeName></ActionTypeName>
+    <Scenario><![CDATA[]]></Scenario>
+    <ActionTypeName><![CDATA[]]></ActionTypeName>
     <IsModal>false</IsModal>
     <Disabled>false</Disabled>
     <Clear>false</Clear>
-    <Icon></Icon>
-    <StyleHint></StyleHint>
+    <Icon><![CDATA[]]></Icon>
+    <StyleHint><![CDATA[]]></StyleHint>
     <RequiredPermissions></RequiredPermissions>
     <DeepPermissionCheck>false</DeepPermissionCheck>
+    <IncludeBackUrl>0</IncludeBackUrl>
+    <CacheControl>Nondefined</CacheControl>
     <EnableLifespan>false</EnableLifespan>
     <ValidFrom>0001-01-01T00:00:00</ValidFrom>
     <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <CreatedBy>
+      <Path>/Root/IMS/BuiltIn/Portal/Administrator</Path>
+    </CreatedBy>
+    <CreationDate>2012-05-21T10:32:09.027</CreationDate>
+    <ModifiedBy>
+      <Path>/Root/IMS/BuiltIn/Portal/Admin</Path>
+    </ModifiedBy>
+    <ModificationDate>2012-05-22T13:34:42.66</ModificationDate>
     <TrashDisabled>false</TrashDisabled>
     <IsTaggable>false</IsTaggable>
     <IsRateable>false</IsRateable>

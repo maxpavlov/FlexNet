@@ -28,36 +28,47 @@ namespace SenseNet.ApplicationModel
 
             var act1 = app.CreateAction(context, backUrl, new {ContentTypeName = "ShortTextFieldSetting"});
             var act2 = app.CreateAction(context, backUrl, new { ContentTypeName = "LongTextFieldSetting" });
-            var act3 = app.CreateAction(context, backUrl, new { ContentTypeName = "NumberFieldSetting" });
-            var act4 = app.CreateAction(context, backUrl, new { ContentTypeName = "IntegerFieldSetting" });
-            var act5 = app.CreateAction(context, backUrl, new { ContentTypeName = "CurrencyFieldSetting" });
-            var act6 = app.CreateAction(context, backUrl, new { ContentTypeName = "YesNoFieldSetting" });
+            var act3 = app.CreateAction(context, backUrl, new { ContentTypeName = "ChoiceFieldSetting" });
+            var act4 = app.CreateAction(context, backUrl, new { ContentTypeName = "NumberFieldSetting" });
+            var act5 = app.CreateAction(context, backUrl, new { ContentTypeName = "IntegerFieldSetting" });
+            var act6 = app.CreateAction(context, backUrl, new { ContentTypeName = "CurrencyFieldSetting" });
             var act7 = app.CreateAction(context, backUrl, new { ContentTypeName = "DateTimeFieldSetting" });
-            var act8 = app.CreateAction(context, backUrl, new { ContentTypeName = "HyperLinkFieldSetting" });
-            var act9 = app.CreateAction(context, backUrl, new { ContentTypeName = "ChoiceFieldSetting" });
-            var act10 = app.CreateAction(context, backUrl, new { ContentTypeName = "ReferenceFieldSetting" });
+            var act8 = app.CreateAction(context, backUrl, new { ContentTypeName = "ReferenceFieldSetting" });
+            var act9 = app.CreateAction(context, backUrl, new { ContentTypeName = "YesNoFieldSetting" });
+            var act10 = app.CreateAction(context, backUrl, new { ContentTypeName = "HyperLinkFieldSetting" });
 
-            act1.Text = "Shorttext field";
-            act2.Text = "Longtext field";
-            act3.Text = "Number field";
-            act4.Text = "Integer field";
-            act5.Text = "Currency field";
-            act6.Text = "Yes/No field";
-            act7.Text = "DateTime field";
-            act8.Text = "Hyperlink field";
-            act9.Text = "Choice field";
-            act10.Text = "Reference field";
+            act1.Index = 0;
+            act2.Index = 1;
+            act3.Index = 2;
+            act4.Index = 3;
+            act5.Index = 4;
+            act6.Index = 5;
+            act7.Index = 6;
+            act8.Index = 7;
+            act9.Index = 8;
+            act10.Index = 9;
+
+            act1.Text = "Single line of text";
+            act2.Text = "Multiple line of text";
+            act3.Text = "Choice";
+            act4.Text = "Number";
+            act5.Text = "Integer";
+            act6.Text = "Currency";
+            act7.Text = "Date and Time";
+            act8.Text = "Reference";
+            act9.Text = "Yes/No";
+            act10.Text = "Hyperlink or Picture field";
 
             act1.Icon = "addshorttextfield";
             act2.Icon = "addlongtextfield";
-            act3.Icon = "addnumberfield";
+            act3.Icon = "addchoicefield";
             act4.Icon = "addnumberfield";
-            act5.Icon = "addcurrencyfield";
-            act6.Icon = "addyesnofield";
+            act5.Icon = "addnumberfield";
+            act6.Icon = "addcurrencyfield";
             act7.Icon = "adddatetimefield";
-            act8.Icon = "addhyperlinkfield";
-            act9.Icon = "addchoicefield";
-            act10.Icon = "addreferencefield";
+            act8.Icon = "addreferencefield";
+            act9.Icon = "addyesnofield";
+            act10.Icon = "addhyperlinkfield";
             
             actList.Add(act1);
             actList.Add(act2);
@@ -71,6 +82,11 @@ namespace SenseNet.ApplicationModel
             actList.Add(act10);
 
             return actList;
+        }
+
+        public override IComparer<ActionBase> GetActionComparer()
+        {
+            return null;
         }
     }
 }

@@ -86,10 +86,9 @@ namespace SenseNet.ContentRepository.Fields
                             {
                                 if (!path.StartsWith(RepositoryPath.PathSeparator))
                                     path = RepositoryPath.Combine(this.Content.ContentHandler.Path, path);
-                                RepositoryPath.CheckValidPath(path);
                                 node = Node.LoadNode(path);
                                 if (node == null)
-                                    throw new ReferenceNotFoundException("", String.Concat("Id: ", path));
+                                    throw new ReferenceNotFoundException("", String.Concat("Path: ", path));
                                 list.Add(node);
                             }
                             break;
@@ -143,10 +142,9 @@ namespace SenseNet.ContentRepository.Fields
                         {
                             if (!path.StartsWith(RepositoryPath.PathSeparator))
                                 path = RepositoryPath.Combine(this.Content.ContentHandler.Path, path);
-                            RepositoryPath.CheckValidPath(path);
                             node = Node.LoadNode(path);
                             if (node == null)
-                                throw new ReferenceNotFoundException("", String.Concat("Id: ", path));
+                                throw new ReferenceNotFoundException("", String.Concat("Path: ", path));
                             list.Add(node);
                         }
                         break;

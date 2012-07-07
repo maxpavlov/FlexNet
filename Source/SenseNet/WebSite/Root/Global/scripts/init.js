@@ -1,5 +1,5 @@
-﻿/// <depends path="$skin/scripts/sn/SN.Util.js" />
-/// <depends path="$skin/scripts/jquery/plugins/themeswitchertool.js" />
+﻿// using $skin/scripts/sn/SN.Util.js
+// using $skin/scripts/jquery/plugins/themeswitchertool.js
 
 $(function() {
 

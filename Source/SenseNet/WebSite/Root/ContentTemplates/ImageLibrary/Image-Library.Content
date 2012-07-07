@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>ImageLibrary</ContentType>
+  <ContentName>Image-Library</ContentName>
+  <Fields>
+    <DisplayName><![CDATA[Image Library]]></DisplayName>
+    <ContentListDefinition><![CDATA[<ContentListDefinition xmlns='http://schemas.sensenet.com/SenseNet/ContentRepository/ContentListDefinition'><Fields /></ContentListDefinition>]]></ContentListDefinition>
+    <DefaultView><![CDATA[ThumbnailView.ascx]]></DefaultView>
+    <AvailableViews />
+    <OverwriteFiles>false</OverwriteFiles>
+    <GroupAttachments></GroupAttachments>
+    <SaveOriginalEmail>false</SaveOriginalEmail>
+    <IncomingEmailWorkflow>
+      <Path>/Root/System/Schema/ContentTypes/GenericContent/Workflow/MailProcessorWorkflow</Path>
+    </IncomingEmailWorkflow>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <CreationDate>2012-06-11T16:04:07.193</CreationDate>
+    <ModificationDate>2012-06-11T16:06:54.253</ModificationDate>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

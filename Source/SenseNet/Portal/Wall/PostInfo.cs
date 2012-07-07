@@ -22,6 +22,7 @@ namespace SenseNet.Portal.Wall
     {
         // =============================================================================== Properties
         public int Id { get; private set; }
+        public string Path { get; private set; }
         public string ClientId { get; private set; }
         public int JournalId { get; private set; }
         public DateTime CreationDate { get; private set; }
@@ -32,6 +33,7 @@ namespace SenseNet.Portal.Wall
         public string Action { get; private set; }
         public string Details { get; private set; }
         public string LastPath { get; private set; }
+        public bool IsJournal { get; private set; }
 
 
         // =============================================================================== Static methods
@@ -62,6 +64,7 @@ namespace SenseNet.Portal.Wall
             postInfo.CreatedBy = commentOrLike.CreatedBy as User;
             postInfo.Action = commentOrLike.NodeType.Name == "Comment" ? "commented on a Content" : "likes a Content";
             postInfo.Id = targetContent.Id;
+            postInfo.Path = targetContent.Path; 
             postInfo.ClientId = postInfo.Id.ToString();
             postInfo.Type = PostType.BigPost;
             postInfo.SharedContent = targetContent;
@@ -78,6 +81,7 @@ namespace SenseNet.Portal.Wall
             Details = node.GetProperty<string>("PostDetails"); 
             JournalId = node.GetProperty<int>("JournalId"); // journal's id to leave out item from wall if post already exists
             Id = node.Id;
+            Path = node.Path; 
             ClientId = Id.ToString();
             Type = (PostType)node.GetProperty<int>("PostType");
             SharedContent = node.GetReference<Node>("SharedContent");
@@ -90,6 +94,7 @@ namespace SenseNet.Portal.Wall
         }
         public PostInfo(JournalItem journalItem, string lastPath)
         {
+            IsJournal = true;
             LastPath = lastPath;
             CreationDate = journalItem.When;
             var backspIndex = journalItem.Who.IndexOf('\\');
@@ -134,8 +139,9 @@ namespace SenseNet.Portal.Wall
                 string.Format("{0} <a href='{1}'>{2}</a>", what, "{{path}}", journalItem.DisplayName);
 
             JournalId = journalItem.Id; // journal's id to leave out item from wall if post already exists
-            Id = journalItem.Id;   // negative id differentiates journal post from Post Contents on client side
+            Id = journalItem.Id;
             ClientId = "J" + Id.ToString();
+            Path = lastPath;
 
             // details
             switch (Type)
@@ -144,10 +150,10 @@ namespace SenseNet.Portal.Wall
                     Details = journalItem.Details;
                     break;
                 case PostType.JournalMoved:
-                    Details = string.Format("Source: <a href='{0}'>{0}</a><br/>Target: <a href='{1}'>{1}</a>", RepositoryPath.GetParentPathSafe(journalItem.SourcePath), journalItem.TargetPath);
+                    Details = string.Format("Source: <a href='{0}'>{0}</a><br/>Target: <a href='{1}'>{1}</a>", RepositoryPath.GetParentPath(journalItem.SourcePath), journalItem.TargetPath);
                     break;
                 case PostType.JournalCopied:
-                    Details = string.Format("Source: <a href='{0}'>{0}</a><br/>Target: <a href='{1}'>{1}</a>", RepositoryPath.GetParentPathSafe(journalItem.Wherewith), journalItem.TargetPath);
+                    Details = string.Format("Source: <a href='{0}'>{0}</a><br/>Target: <a href='{1}'>{1}</a>", RepositoryPath.GetParentPath(journalItem.Wherewith), journalItem.TargetPath);
                     break;
                 default:
                     break;

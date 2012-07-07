@@ -11,6 +11,8 @@ namespace SenseNet.ContentRepository.Tests.ContentHandlers
 		public DataTypeCollisionTestHandler(Node parent, string nodeTypeName) : base(parent, nodeTypeName) { }
 		protected DataTypeCollisionTestHandler(NodeToken token) : base(token) { }
 
+        public override bool IsContentType { get { return false; } }
+
 		[RepositoryProperty]
 		public string TestString
 		{

@@ -5,6 +5,8 @@ using System.Text;
 using System.ComponentModel;
 using Lucene.Net.Documents;
 using SenseNet.ContentRepository.Storage;
+using SenseNet.ContentRepository.Storage.Data;
+using SenseNet.Search.Indexing.Activities;
 
 namespace SenseNet.Search.Indexing
 {
@@ -19,7 +21,18 @@ namespace SenseNet.Search.Indexing
 
     public partial class IndexingActivity : INotifyPropertyChanging, INotifyPropertyChanged
     {
+        public bool FromHealthMonitor { get; internal set; }
 
+        public IndexDocumentData IndexDocumentData;
+
+        internal LuceneIndexingActivity CreateLuceneActivity()
+        {
+            return IndexingActivityManager.CreateLucActivity(this);
+        }
+        partial void OnCreated()
+        {
+            this.CreationDate = DateTime.Now;
+        }
     }
     
 }

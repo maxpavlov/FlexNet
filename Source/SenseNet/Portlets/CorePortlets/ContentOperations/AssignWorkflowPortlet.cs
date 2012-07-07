@@ -50,6 +50,13 @@ namespace SenseNet.Portal.Portlets
 
             var content = this.ContentView.Content;
 
+            // check if user tries to create types other than workflow, that would be a security issue, since AllowCreationForEmptyAllowedContentTypes is skipped
+            if (!content.ContentHandler.NodeType.IsInstaceOfOrDerivedFrom("Workflow"))
+            {
+                this.ContentView.ContentException = new SenseNetSecurityException("Only content of Workflow content type can be created with this portlet.");
+                return;
+            }
+
             if (this.ContentView.IsUserInputValid && content.IsValid)
             {
                 try
@@ -69,6 +76,13 @@ namespace SenseNet.Portal.Portlets
                     this.ContentView.ContentException = ex;
                 }
             }
+        }
+
+        protected override bool AllowCreationForEmptyAllowedContentTypes(string parentPath)
+        {
+            // only workflows are allowed to be created (AssignWorkflowButton_Click), so we do not rely upon allowed content types list
+            // skip this check
+            return true;
         }
 
         //========================================================================================= Helper methods

@@ -84,17 +84,7 @@ namespace SenseNet.Portal.Helpers
 
         public static string BrowseAction(Content c, bool? includeBackUrl)
         {
-            if (c == null)
-                return string.Empty;
-
-            var ba = c.Actions.FirstOrDefault(a => a.Name == "Browse");
-            if (ba == null) return string.Empty;
-
-            if (includeBackUrl.HasValue)
-                ba.IncludeBackUrl = includeBackUrl.Value;
-
-            return "<a href='" + ba.Uri + "'>" + c.DisplayName + "</a>";
-
+            return Action(c, "Browse", includeBackUrl);
         }
 
         public static string BrowseAction(Content c, string referenceFieldName)
@@ -153,7 +143,9 @@ namespace SenseNet.Portal.Helpers
             if (includeBackUrl.HasValue)
                 action.IncludeBackUrl = includeBackUrl.Value;
 
-            return "<a href='" + action.Uri + "'>" + content.DisplayName + "</a>";
+            return "<a href='" + action.Uri + "'" +
+                (string.IsNullOrEmpty(action.CssClass) ? string.Empty : " class='" + action.CssClass + "'") + 
+                ">" + content.DisplayName + "</a>";
 
         }
 

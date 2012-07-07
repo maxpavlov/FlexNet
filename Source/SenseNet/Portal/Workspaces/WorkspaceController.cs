@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Web;
 using System.Web.Mvc;
 using SenseNet.ContentRepository.Storage;
 using SenseNet.ContentRepository.Storage.Schema;
@@ -76,6 +77,36 @@ namespace SenseNet.Portal.Workspaces
             return null;
         }
 
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult BrowseProfile(string path, string back)
+        {
+            path = HttpUtility.UrlDecode(path);
+            back = HttpUtility.UrlDecode(back);
+            var url = path;
+            var user = Node.Load<User>(path);
+
+            if (user != null)
+            {
+                if (Repository.UserProfilesEnabled)
+                {
+                    if (!user.IsProfileExist())
+                    {
+                        user.CreateProfile();
+                    }
+
+                    url = user.GetProfilePath();
+                }
+
+                if (!string.IsNullOrEmpty(back))
+                    url = string.Format("{0}?{1}={2}", url, PortalContext.BackUrlParamName, back);
+            }
+            else
+            {
+                url = back;
+            }
+
+            return RedirectPermanent(url);
+        }
 
         //===================================================================== Helper methods
         private static readonly string PlaceholderPath = "/Root/System/PermissionPlaceholders/Workspace-mvc";

@@ -17,21 +17,21 @@
       <Open>Allow</Open>
       <RunApplication>Allow</RunApplication>
     </Identity>
-  </Permissions>
-  <Identity path="/Root/IMS/Demo/Developers">
-    <See>Allow</See>
-    <Open>Allow</Open>
-    <OpenMinor>Allow</OpenMinor>
-    <Save>Allow</Save>
-    <Publish>Allow</Publish>
-    <ForceCheckin>Allow</ForceCheckin>
-    <AddNew>Allow</AddNew>
-    <Approve>Allow</Approve>
-    <Delete>Allow</Delete>
-    <RecallOldVersion>Allow</RecallOldVersion>
-    <DeleteOldVersion>Allow</DeleteOldVersion>
-    <SeePermissions>Allow</SeePermissions>
-    <SetPermissions>Allow</SetPermissions>
-    <RunApplication>Allow</RunApplication>
-  </Identity>
+    <Identity path="/Root/IMS/Demo/Developers">
+      <See>Allow</See>
+      <Open>Allow</Open>
+      <OpenMinor>Allow</OpenMinor>
+      <Save>Allow</Save>
+      <Publish>Allow</Publish>
+      <ForceCheckin>Allow</ForceCheckin>
+      <AddNew>Allow</AddNew>
+      <Approve>Allow</Approve>
+      <Delete>Allow</Delete>
+      <RecallOldVersion>Allow</RecallOldVersion>
+      <DeleteOldVersion>Allow</DeleteOldVersion>
+      <SeePermissions>Allow</SeePermissions>
+      <SetPermissions>Allow</SetPermissions>
+      <RunApplication>Allow</RunApplication>
+    </Identity>
+  </Permissions>  
 </ContentMetaData>

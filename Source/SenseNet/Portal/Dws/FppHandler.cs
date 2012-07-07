@@ -32,7 +32,7 @@ TPScriptUrl=""_vti_bin/owssvr.dll""
 
         private const string VERSIONSTR = @"<html><head><title>vermeer RPC packet</title></head>
 <body>
-<p>method=server version:12.0.0.6415
+<p>method=server version:14.0.0.6009
 <p>server version=
 <ul>
 <li>major ver=14
@@ -46,7 +46,7 @@ TPScriptUrl=""_vti_bin/owssvr.dll""
 
         private const string URLTOWEBURLSTR = @"<html><head><title>vermeer RPC packet</title></head>
 <body>
-<p>method=url to web url:12.0.0.6415
+<p>method=url to web url:14.0.0.6009
 <p>webUrl={0}
 <p>fileUrl={1}
 </body>
@@ -54,7 +54,7 @@ TPScriptUrl=""_vti_bin/owssvr.dll""
 
         private const string OPENSERVICESTR = @"<html><head><title>vermeer RPC packet</title></head>
 <body>
-<p>method=open service:12.0.0.6415
+<p>method=open service:14.0.0.6009
 <p>service=
 <ul>
 <li>service_name={0}
@@ -85,7 +85,7 @@ TPScriptUrl=""_vti_bin/owssvr.dll""
 
         private const string GETDOCSMETAINFOSTR = @"<html><head><title>vermeer RPC packet</title></head>
 <body>
-<p>method=getDocsMetaInfo:12.0.0.6415
+<p>method=getDocsMetaInfo:14.0.0.6009
 <p>document_list=
 <ul>
 {0}
@@ -160,9 +160,15 @@ TPScriptUrl=""_vti_bin/owssvr.dll""
 </ul>
 </ul>";
 
+//<li>vti_listname
+//<li>SR|{0}
+//<li>vti_listtitle
+//<li>SR|{0}
+
+
         private const string PUTDOCUMENTSTR = @"<html><head><title>vermeer RPC packet</title></head>
 <body>
-<p>method=put document:12.0.0.6415
+<p>method=put document:14.0.0.6009
 <p>message=successfully put document
 <p>document=
 {0}
@@ -171,7 +177,7 @@ TPScriptUrl=""_vti_bin/owssvr.dll""
 
         private const string CHECKOUTDOCUMENTSTR = @"<html><head><title>vermeer RPC packet</title></head>
 <body>
-<p>method=checkout document:12.0.0.6415
+<p>method=checkout document:14.0.0.6009
 <p>meta_info=
 {0}
 </body>
@@ -229,7 +235,13 @@ TPScriptUrl=""_vti_bin/owssvr.dll""
         }
         private static string GetDocInfo(Node doc)
         {
-            var name = doc.Name; //documentLibrary/x.docx
+            var doclib = Node.GetAncestorOfNodeType(doc, "DocumentLibrary");
+            var name = doc.Name;
+
+            // name should be documentLibrary/x.docx
+            if (doclib != null)
+                name = doc.Path.Substring(doclib.Parent.Path.Length + 1);
+
             var metainfo = GetDocMetaInfo(doc);
             var dinfo = string.Format(GETDOCSMETAINFODOCUMENTSTR, name, metainfo);
             return dinfo;
@@ -244,17 +256,17 @@ TPScriptUrl=""_vti_bin/owssvr.dll""
         public void ProcessRequest(HttpContext context)
         {
             #region Trace
-            string traceMessage = string.Concat("===== FPP ===== Path: '", context.Request.Path, "'", Environment.NewLine);
-            traceMessage = string.Concat(traceMessage, "   Authenticated: ", HttpContext.Current.User.Identity.IsAuthenticated.ToString(), ", ", "UserName: ", HttpContext.Current.User.Identity.Name, Environment.NewLine);
-            traceMessage = string.Concat(traceMessage, "   HEADERS: ", Environment.NewLine);
+            //string traceMessage = string.Concat("===== FPP ===== Path: '", context.Request.Path, "'", Environment.NewLine);
+            //traceMessage = string.Concat(traceMessage, "   Authenticated: ", HttpContext.Current.User.Identity.IsAuthenticated.ToString(), ", ", "UserName: ", HttpContext.Current.User.Identity.Name, Environment.NewLine);
+            //traceMessage = string.Concat(traceMessage, "   HEADERS: ", Environment.NewLine);
 
-            foreach (var x in context.Request.Headers.AllKeys)
-            {
-                traceMessage = string.Concat(traceMessage, string.Format("      {0}={1}", x, context.Request.Headers[x]));
-                traceMessage = string.Concat(traceMessage, Environment.NewLine);
-            }
+            //foreach (var x in context.Request.Headers.AllKeys)
+            //{
+            //    traceMessage = string.Concat(traceMessage, string.Format("      {0}={1}", x, context.Request.Headers[x]));
+            //    traceMessage = string.Concat(traceMessage, Environment.NewLine);
+            //}
 
-            System.Diagnostics.Trace.Write(traceMessage);
+            //System.Diagnostics.Trace.Write(traceMessage);
             #endregion
 
             context.Response.TrySkipIisCustomErrors = true;
@@ -263,7 +275,7 @@ TPScriptUrl=""_vti_bin/owssvr.dll""
                 return;
 
             var requestPath = PortalContext.Current.RequestedUri.AbsolutePath.ToLower();
-            System.Diagnostics.Trace.Write("   REQUESTPATH: " + requestPath);
+            //System.Diagnostics.Trace.Write("   REQUESTPATH: " + requestPath);
             
             // mock workflow.asmx -> we don't implement, simply return HTTP 200
             if (requestPath.EndsWith("_vti_bin/workflow.asmx"))
@@ -281,7 +293,7 @@ TPScriptUrl=""_vti_bin/owssvr.dll""
 
             var method = context.Request.Form["method"];
 
-            System.Diagnostics.Trace.Write("   FPP METHOD: " + method);
+            //System.Diagnostics.Trace.Write("   FPP METHOD: " + method);
 
             if (method == null)
             {
@@ -292,7 +304,7 @@ TPScriptUrl=""_vti_bin/owssvr.dll""
                     if (!string.IsNullOrEmpty(firstLine))
                     {
                         var decodedFirstLine = HttpUtility.UrlDecode(firstLine);
-                        System.Diagnostics.Trace.Write("   FPP CONTENT 1st line: " + decodedFirstLine);
+                        //System.Diagnostics.Trace.Write("   FPP CONTENT 1st line: " + decodedFirstLine);
 
                         if (decodedFirstLine.StartsWith("method=put document"))
                         {
@@ -466,16 +478,15 @@ TPScriptUrl=""_vti_bin/owssvr.dll""
         }
         private void HandleAuthorGetDocsMetaInfo(HttpContext context)
         {
-            //method=getDocsMetaInfo:12.0.0.6415&url_list=[http://snbppc070/Root/Sites/Default_Site/workspaces/Document/losangelesdocumentworkspace/Document_Library/Doc4.docx;http://snbppc070/Root/Sites/Default_Site/workspaces/Document/losangelesdocumentworkspace/Document_Library]&listHiddenDocs=false&listLinkInfo=false
+            //method=getDocsMetaInfo:14.0.0.6009&url_list=[http://snbppc070/Root/Sites/Default_Site/workspaces/Document/losangelesdocumentworkspace/Document_Library/Doc4.docx;http://snbppc070/Root/Sites/Default_Site/workspaces/Document/losangelesdocumentworkspace/Document_Library]&listHiddenDocs=false&listLinkInfo=false
 
             var urllist = context.Request.Form["url_list"];
-            System.Diagnostics.Trace.Write("   URLLIST: " + urllist);
+            //System.Diagnostics.Trace.Write("   URLLIST: " + urllist);
 
             IEnumerable<Node> docList = null;
             IEnumerable<Node> dirList = null;
             if (urllist.Contains(';'))
             {
-
                 var pathList = urllist.Substring(1, urllist.Length - 2).Split(';').ToList();
                 var nodeList = pathList.Select(path => Node.LoadNode(DwsHelper.GetPathFromUrl(path)));
 
@@ -484,24 +495,30 @@ TPScriptUrl=""_vti_bin/owssvr.dll""
             }
             else
             {
-                var requestPath = PortalContext.Current.RequestedUri.AbsolutePath.ToLower();
-                // 
+                var path = urllist.Substring(1, urllist.Length - 2);
+                var node = Node.LoadNode(DwsHelper.GetPathFromUrl(path));
 
-                if (requestPath.EndsWith("/_vti_bin/_vti_aut/author.dll"))
-                    requestPath = requestPath.Substring(0, requestPath.Length - "/_vti_bin/_vti_aut/author.dll".Length);
+                docList = Enumerable.Empty<Node>();
+                dirList = new[] { node };
 
-                var node = Node.LoadNode(requestPath);
 
-                if (node is IFolder)
-                {
-                    docList = Enumerable.Empty<Node>();
-                    dirList = new[] { node };
-                }
-                else
-                {
-                    docList = new[] { node };
-                    dirList = new[] { node.Parent };
-                }
+                //var requestPath = PortalContext.Current.RequestedUri.AbsolutePath.ToLower();
+
+                //if (requestPath.EndsWith("/_vti_bin/_vti_aut/author.dll"))
+                //    requestPath = requestPath.Substring(0, requestPath.Length - "/_vti_bin/_vti_aut/author.dll".Length);
+
+                //var node = Node.LoadNode(requestPath);
+
+                //if (node is IFolder)
+                //{
+                //    docList = Enumerable.Empty<Node>();
+                //    dirList = new[] { node };
+                //}
+                //else
+                //{
+                //    docList = new[] { node };
+                //    dirList = new[] { node.Parent };
+                //}
             }
 
             var docinfo = string.Empty;
@@ -548,7 +565,7 @@ TPScriptUrl=""_vti_bin/owssvr.dll""
         }
         private void HandleAuthorPutDocument(HttpContext context, string firstLine, System.IO.Stream resultStream)
         {
-            // firstline: method=put document:12.0.0.6415&service_name=/Root/Sites/Default_Site/workspaces/Project/budapestprojectworkspace/&document=[document_name=Document_Library/Aenean semper.doc;meta_info=[]]&put_option=edit&comment=&keep_checked_out=false
+            // firstline: method=put document:14.0.0.6009&service_name=/Root/Sites/Default_Site/workspaces/Project/budapestprojectworkspace/&document=[document_name=Document_Library/Aenean semper.doc;meta_info=[]]&put_option=edit&comment=&keep_checked_out=false
             var serviceNameIdx = firstLine.IndexOf("&service_name=");
             var workspacePathIdx = serviceNameIdx + "&service_name=".Length;
             var documentIdx = firstLine.IndexOf("&document=[document_name=");
@@ -557,8 +574,8 @@ TPScriptUrl=""_vti_bin/owssvr.dll""
             var workspacePath = firstLine.Substring(workspacePathIdx, documentIdx - workspacePathIdx);
             var documentPath = firstLine.Substring(documentPathIdx, firstLine.IndexOf(';') - documentPathIdx);
 
-            System.Diagnostics.Trace.Write("   FPP put document workspace: " + workspacePath);
-            System.Diagnostics.Trace.Write("   FPP put document doc path: " + documentPath);
+            //System.Diagnostics.Trace.Write("   FPP put document workspace: " + workspacePath);
+            //System.Diagnostics.Trace.Write("   FPP put document doc path: " + documentPath);
 
             var nodePath = RepositoryPath.Combine(workspacePath, documentPath);
 

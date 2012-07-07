@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" Inherits="SenseNet.Portal.Portlets.ContentCollectionView" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" Inherits="SenseNet.Portal.Portlets.ContentCollectionView" EnableViewState="false" %>
 <%@ Import Namespace="System.Linq" %>
 <%@ Import Namespace="SenseNet.Portal.Helpers" %>
     

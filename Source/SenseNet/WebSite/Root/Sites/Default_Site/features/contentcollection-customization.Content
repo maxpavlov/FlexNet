@@ -3,28 +3,53 @@
   <ContentType>Page</ContentType>
   <ContentName>contentcollection-customization</ContentName>
   <Fields>
-    <DisplayName>Content collection customization</DisplayName>
     <PageTemplateNode>
       <Path>/Root/Global/pagetemplates/sn-layout-inter.html</Path>
     </PageTemplateNode>
     <Hidden>false</Hidden>
-    <Index>40</Index>
-    <SmartUrl></SmartUrl>
+    <Index>63</Index>
+    <SmartUrl><![CDATA[]]></SmartUrl>
     <IsExternal>false</IsExternal>
+    <OuterUrl><![CDATA[]]></OuterUrl>
+    <MetaTitle><![CDATA[]]></MetaTitle>
+    <Keywords><![CDATA[]]></Keywords>
+    <MetaDescription><![CDATA[]]></MetaDescription>
+    <MetaAuthors><![CDATA[]]></MetaAuthors>
+    <CustomMeta><![CDATA[]]></CustomMeta>
     <Binary attachment="contentcollection-customization.aspx" />
     <PersonalizationSettings attachment="contentcollection-customization.PersonalizationSettings" />
+    <DisplayName><![CDATA[Content collection customization]]></DisplayName>
+    <Description><![CDATA[]]></Description>
+    <Scenario><![CDATA[]]></Scenario>
+    <ActionTypeName><![CDATA[]]></ActionTypeName>
     <IsModal>false</IsModal>
     <Disabled>false</Disabled>
     <Clear>false</Clear>
+    <Icon><![CDATA[application]]></Icon>
+    <StyleHint><![CDATA[]]></StyleHint>
     <RequiredPermissions></RequiredPermissions>
     <DeepPermissionCheck>false</DeepPermissionCheck>
+    <IncludeBackUrl>0</IncludeBackUrl>
+    <CacheControl>Nondefined</CacheControl>
+    <MaxAge><![CDATA[]]></MaxAge>
+    <CustomUrlParameters><![CDATA[]]></CustomUrlParameters>
     <EnableLifespan>false</EnableLifespan>
     <ValidFrom>0001-01-01T00:00:00</ValidFrom>
     <ValidTill>0001-01-01T00:00:00</ValidTill>
-        <TrashDisabled>false</TrashDisabled>
+    <CreatedBy>
+      <Path>/Root/IMS/BuiltIn/Portal/Administrator</Path>
+    </CreatedBy>
+    <CreationDate>2012-05-21T10:31:57.877</CreationDate>
+    <ModifiedBy>
+      <Path>/Root/IMS/BuiltIn/Portal/Admin</Path>
+    </ModifiedBy>
+    <ModificationDate>2012-06-15T18:31:02</ModificationDate>
+    <TrashDisabled>false</TrashDisabled>
     <IsTaggable>false</IsTaggable>
     <IsRateable>false</IsRateable>
-    <Rate></Rate>
+    <RateStr><![CDATA[0|1|0|0|0|0|0]]></RateStr>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
   </Fields>
   <Permissions>
     <Clear />

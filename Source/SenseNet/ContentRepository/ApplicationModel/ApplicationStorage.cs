@@ -561,7 +561,7 @@ namespace SenseNet.ApplicationModel
                 .Append(", appName: ").Append(appName)
                 .Append(", scenario: ").Append(scenario)
                 .Append(". Context: ").Append(contextPath);
-            Trace.WriteLine(sb.ToString());
+            //Trace.WriteLine(sb.ToString());
             throw new Exception(sb.ToString());
         }
 
@@ -805,7 +805,7 @@ try
 }
 catch (Exception e)
 {
-    Trace.WriteLine("#> RESOLUTION EXCEPTION: " + e.Message);
+    //Trace.WriteLine("#> RESOLUTION EXCEPTION: " + e.Message);
     Logger.WriteException(e);
     ex = e;
 }
@@ -867,7 +867,7 @@ timer = Stopwatch.StartNew();
 
 timer.Stop();
 var q = Convert.ToDouble(timer.ElapsedTicks) / Convert.ToDouble(ticks1);
-Trace.WriteLine(string.Format("#> old: {0}, new: {1}, {2}, appCount: {3},  app|scen|dev|ctx: {4} | {5} | {6} | {7}", timer.Elapsed, time1, q, result2.Count, appName ?? String.Empty, scenarioName, device == null ? "[null]" : device, head.Path));
+//Trace.WriteLine(string.Format("#> old: {0}, new: {1}, {2}, appCount: {3},  app|scen|dev|ctx: {4} | {5} | {6} | {7}", timer.Elapsed, time1, q, result2.Count, appName ?? String.Empty, scenarioName, device == null ? "[null]" : device, head.Path));
 if (!(ex is NotImplementedException))
     CheckResults(result, result2, appName, scenarioName, head.Path);
 
@@ -1340,14 +1340,17 @@ if (!(ex is NotImplementedException))
             var nt = ActiveSchema.NodeTypes["Application"];
             var nq = new NodeQuery();
             nq.Add(new TypeExpression(nt));
-            //nq.Add(new StringExpression(StringAttribute.Path, StringOperator.Contains, string.Format("/{0}/", AppFolderName)));
-            nq.Orders.Add(new SearchOrder(StringAttribute.Path, OrderDirection.Asc));
+
+            //we sort the list in memory
+            //nq.Orders.Add(new SearchOrder(StringAttribute.Path, OrderDirection.Asc));
 
             using (new SystemAccount())
             {
                 var result = nq.Execute();
                 appList = result.Nodes.Cast<Application>().ToList();
+                appList.Sort((xa, ya) => xa.Path.CompareTo(ya.Path));
             }
+
             PathSegments = new List<string>();
             PathSegments.Add("root");
             PathSegments.Add("this");

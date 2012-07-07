@@ -8,40 +8,42 @@
     </PageTemplateNode>
     <Hidden>false</Hidden>
     <Index>5300</Index>
-    <SmartUrl></SmartUrl>
+    <SmartUrl><![CDATA[]]></SmartUrl>
     <IsExternal>false</IsExternal>
-    <OuterUrl></OuterUrl>
-    <MetaTitle></MetaTitle>
+    <OuterUrl><![CDATA[]]></OuterUrl>
+    <MetaTitle><![CDATA[]]></MetaTitle>
     <Keywords><![CDATA[]]></Keywords>
     <MetaDescription><![CDATA[]]></MetaDescription>
-    <MetaAuthors></MetaAuthors>
+    <MetaAuthors><![CDATA[]]></MetaAuthors>
     <CustomMeta><![CDATA[]]></CustomMeta>
     <Binary attachment="Notifications.aspx" />
     <PersonalizationSettings attachment="Notifications.PersonalizationSettings" />
-    <DisplayName>Manage notifications</DisplayName>
+    <DisplayName><![CDATA[Manage notifications]]></DisplayName>
     <Description><![CDATA[]]></Description>
-    <Scenario></Scenario>
-    <ActionTypeName></ActionTypeName>
+    <Scenario><![CDATA[UserActions]]></Scenario>
+    <ActionTypeName><![CDATA[]]></ActionTypeName>
     <IsModal>false</IsModal>
     <Disabled>false</Disabled>
     <Clear>false</Clear>
-    <Icon>notifications</Icon>
-    <StyleHint></StyleHint>
+    <Icon><![CDATA[notifications]]></Icon>
+    <StyleHint><![CDATA[]]></StyleHint>
     <RequiredPermissions></RequiredPermissions>
     <DeepPermissionCheck>false</DeepPermissionCheck>
     <IncludeBackUrl>0</IncludeBackUrl>
-    <CacheControl></CacheControl>
+    <CacheControl>Nondefined</CacheControl>
+    <MaxAge><![CDATA[]]></MaxAge>
+    <CustomUrlParameters><![CDATA[]]></CustomUrlParameters>
     <EnableLifespan>false</EnableLifespan>
     <ValidFrom>0001-01-01T00:00:00</ValidFrom>
     <ValidTill>0001-01-01T00:00:00</ValidTill>
-        <CreatedBy>
+    <CreatedBy>
       <Path>/Root/IMS/BuiltIn/Portal/Administrator</Path>
     </CreatedBy>
     <CreationDate>2011-06-23T11:28:07.253</CreationDate>
     <ModifiedBy>
       <Path>/Root/IMS/BuiltIn/Portal/Admin</Path>
     </ModifiedBy>
-    <ModificationDate>2011-06-24T09:38:10.46</ModificationDate>
+    <ModificationDate>2012-05-21T10:47:59.533</ModificationDate>
     <TrashDisabled>false</TrashDisabled>
     <IsTaggable>false</IsTaggable>
     <IsRateable>false</IsRateable>

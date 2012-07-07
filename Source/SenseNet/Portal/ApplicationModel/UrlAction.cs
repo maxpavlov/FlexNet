@@ -38,15 +38,5 @@ namespace SenseNet.ApplicationModel
                 return uri;
             }
         }
-
-        protected static string ContinueUri(string uri)
-        {
-            if (uri.Contains("?"))
-                uri += "&";
-            else
-                uri += "?";
-
-            return uri;
-        }
     }
 }

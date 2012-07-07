@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Web;
 using System.Web.UI.WebControls;
@@ -48,15 +49,23 @@ namespace SenseNet.Portal.Portlets
             this.Name = "Quick search";
             this.Description = "A simple search field and button for executing quick searches from each page.";
             this.Category = new PortletCategory(PortletCategoryType.Search);
+
+            this.HiddenProperties.Add("Renderer");
         }
         //-- Initialize --------------------------------------------------
         protected override void CreateChildControls()
         {
+            if (ShowExecutionTime)
+                Timer.Start();
+
             this.Controls.Clear();
             CreateSearchModeControls();
             AddSearchModeControls();
 
             ChildControlsCreated = true;
+
+            if (ShowExecutionTime)
+                Timer.Stop();
         }
 
 

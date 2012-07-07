@@ -34,9 +34,6 @@ namespace SenseNet.Portal.Portlets
             this.Description = "This portlet clears items from the proxy cache that are related to a content";
             this.Category = new PortletCategory(PortletCategoryType.System);
 
-            if (this.HiddenProperties == null)
-                this.HiddenProperties = new List<string>();
-
             this.HiddenPropertyCategories = new List<string> { EditorCategory.Cache };
         }
 

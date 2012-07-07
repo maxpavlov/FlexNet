@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" Inherits="SenseNet.Portal.UI.SingleContentView" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" Inherits="SenseNet.Portal.UI.SingleContentView" EnableViewState="false" %>
 <%@ Import Namespace="SenseNet.Portal.Helpers" %>
 
 <sn:ContextInfo runat="server" Selector="CurrentContext" UsePortletContext="true" ID="myContext" />
@@ -25,17 +25,17 @@
     <div class="sn-article-img">
         <sn:Image ID="Image" runat="server" FieldName="Image" RenderMode="Browse" Width="510" Height="290">
             <BrowseTemplate>
-                <asp:Image ImageUrl="/Root/Global/images/missingphoto.png" ID="ImageControl" runat="server" alt="" />
+                <asp:Image ImageUrl="/Root/Global/images/missingphoto.png" ID="ImageControl" runat="server" alt=""/>
             </BrowseTemplate>
         </sn:Image>
     </div>
     <% } %>
     
     <div class="sn-article-lead sn-richtext">
-        <sn:RichText ID="RichText1" FieldName="Lead" runat="server" />
+        <sn:RichText ID="RichText1" FieldName="Lead" runat="server"/>
     </div>
     <div class="sn-article-body sn-richtext">
-        <sn:RichText ID="RichText2" FieldName="Body" runat="server" />
+        <sn:RichText ID="RichText2" FieldName="Body" runat="server"/>
     </div>
 
 </div>

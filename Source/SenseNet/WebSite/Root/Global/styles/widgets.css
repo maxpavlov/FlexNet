@@ -9,11 +9,11 @@
 	filter:alpha(opacity=70);-moz-opacity:.7;opacity:.7;
 	font-size: 10px !important;
 	font-family: Verdana, Arial, sans;
-	padding: 2px;
+	padding: 2px 5px;
 	position: absolute; left: 0; top: -1.5em;
 	z-index: 100;
 }
-.sn-zone-head a { color:#007DC2; }
+.sn-zone-head a { background: url(/Root/Global/images/icons/16/add_portlet.png) 0px 1px no-repeat;color:#F15A24;margin-left: 10px;padding-left: 12px; }
 .sn-zone-body {	position: relative; }
 .sn-zone-empty .sn-zone-body { padding:10px; border: 1px dashed #000; }
 .sn-zone-hide { display: none; }
@@ -38,7 +38,7 @@
     display: none; 
     overflow: hidden;
     z-index: 999;
-    width: 100px;
+    width: auto;
 }
 .sn-verbs-panel .ui-widget-content { background: transparent; border: 0; }
 .sn-verbs-openbtn { cursor: pointer; }
@@ -487,7 +487,8 @@ div.sn-prc { padding-top: 0!important; font: 12px/1.2em Arial, Helvetica, sans-s
 /* .sn-wysiwyg-text:hover, .sn-content-inlineview .sn-richtext:hover { outline: 1px dashed grey; } */
 
 /* ORGANIZATION CHART */
-.sn-orgc { overflow: scroll; padding: 20px 20px 25px 20px; }
+.sn-orgc { overflow: auto; padding: 20px 20px 25px 20px; }
+.sn-orgc h1 {line-height: 20px;font-size: 150%;}
 .sn-orgc-parent { list-style: none; float: left; clear: right; }
 .sn-orgc-border-vertical {
 	margin: 0;
@@ -508,8 +509,9 @@ div.sn-prc { padding-top: 0!important; font: 12px/1.2em Arial, Helvetica, sans-s
 .sn-orgc table tr td span { vertical-align: bottom; }
 .sn-orgc-card {
 	background: url("/Root/Global/images/orgc-bg-card.png") repeat-x scroll 0 100% transparent;
-	padding: 10px 10px 20px 10px;
-	width: 230px;
+	padding: 10px;
+	min-width: 150px;
+	max-width: 230px;
 	min-height: 65px;
 	border: 1px solid #e4e4e4;
 	-webkit-border-radius: 5px;
@@ -523,7 +525,7 @@ div.sn-prc { padding-top: 0!important; font: 12px/1.2em Arial, Helvetica, sans-s
 .sn-orgc-position {
     padding: 0 10px;
 	color: #8E8E8E;
-	text-align: right;
+	text-align: left;
 }
 
 .sn-pic-left { margin: 0 15px 0 0; }
@@ -561,13 +563,18 @@ div.sn-prc { padding-top: 0!important; font: 12px/1.2em Arial, Helvetica, sans-s
 .sn-dialog-editportlet .sn-iu-label {
 	float: left; display: inline;
 	clear:left;
-	margin:0; padding: 0 20px 0 0;
-    width: 220px;
+	margin:0; padding: 0 30px 0 0;
+    width: 30%;
 }
 .sn-dialog-editportlet .sn-iu-title { font-size: 90%; font-weight: bold; }
 .sn-dialog-editportlet .sn-iu-desc { font-size: 90%; }
-.sn-dialog-editportlet .sn-iu-control { float: none; margin: 0 0 0 240px; padding-bottom: 1.5em; }
+.sn-dialog-editportlet .sn-iu-control { float: right; padding-bottom: 1.5em; width: 60%;margin-left: 0; }
 .sn-dialog-editportlet-warning { padding-top: 0.5em; padding-bottom: 0.5em; }
+.sn-dialog-editportlet .sn-iu-control input, .sn-dialog-editportlet .sn-iu-control textarea {width: 100%}
+.sn-dialog-editportlet input.textBox {width: 90%;}
+.sn-dialog-editportlet input.pickerButton {width: 25px;margin-left: 10px;}
+.sn-dialog-editportlet .checkbox input {width: 15px;margin-left: 0;}
+.sn-dialog-editportlet .sn-iu-control .viewtypes {font-size: 11px; color: #777;}
 
 /*** UPLOAD DIALOG ***/
 .sn-dialog-upload .swfupload { position: absolute; z-index: 1; }

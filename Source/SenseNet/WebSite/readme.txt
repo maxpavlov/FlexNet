@@ -1,4 +1,4 @@
-Thank you for downloading Sense/Net CMS Community Edition 6.0.8 (V6.0.8.3195).
+Thank you for downloading Sense/Net CMS Community Edition 6.1 (V6.1.0.3723).
 
 Sense/Net 6.0 is an enterprise grade Open Source application suite for building integrated Enterprise Content Management (ECM, ECMS) and Enterprise Portal (EPS) solutions running on the .NET and later the Mono platform. Sense/Net 6.0 is an Open Source alternative of Microsoft SharePoint. Modules include Enterprise Portal, Enterprise Content Management, Enterprise Infrastructure, Application Framework and Workflow.
 

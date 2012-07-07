@@ -523,7 +523,24 @@
         <data name="ContentList_ManageViewsGlobal">
           <value>This is a global view.</value>
         </data>
-        
+        <data name="WSContentList_Visitor">
+          <value>Please login to collaborate in Sense/Net workspaces!</value>
+        </data>
+        <data name="SecondMessage">
+          <value> seconds ago</value>
+        </data>
+        <data name="MinutesMessage">
+          <value> minutes ago</value>
+        </data>
+        <data name="HoursMessage">
+          <value> hours ago</value>
+        </data>
+        <data name="YesterdayAt">
+          <value>Yesterday at</value>
+        </data>
+        <data name="At">
+          <value> at</value>
+        </data>
       </Language>
       <Language cultureName="hu">
         <data name="Approve" xml:space="preserve">
@@ -1041,6 +1058,24 @@
         <data name="ContentList_ManageViewsGlobal">
           <value>Ez egy globális megjelenítő</value>
         </data>
+        <data name="WSContentList_Visitor">
+          <value>Kérjük, Sense/Net workspace-ek teljeskörű használatához lépjen be!</value>
+        </data>
+        <data name="SecondMessage">
+          <value> másodperce</value>
+        </data>
+        <data name="MinutesMessage">
+          <value> perce</value>
+        </data>
+        <data name="HoursMessage">
+          <value> órája</value>
+        </data>
+        <data name="YesterdayAt">
+          <value>Tegnap</value>
+        </data>
+        <data name="At">
+          <value>.</value>
+        </data>
       </Language>
     </Languages>
   </ResourceClass>
@@ -1227,10 +1262,31 @@
           <value>RenderMode of the portlet</value>
         </data>
         <data name="RendererDisplayName" xml:space="preserve">
-          <value>Xslt renderer</value>
+          <value>View</value>
         </data>
         <data name="RendererDescription" xml:space="preserve">
-          <value>Repository path of the renderer</value>
+          <value>Please choose a view to render the portlet.</value>
+        </data>
+        <data name="FieldsDisplayName" xml:space="preserve">
+          <value>Fields</value>
+        </data>
+        <data name="FieldsDescription" xml:space="preserve">
+          <value>Please choose whether you want to include all of the fields in the generated content xml, none of them, or specify a custom list of fields used by the xslt view. This option may affect page rendering speed.</value>
+        </data>
+        <data name="FieldListDisplayName" xml:space="preserve">
+          <value>Field list</value>
+        </data>
+        <data name="FieldListDescription" xml:space="preserve">
+          <value>Specify fields as a comma separated list that will appear in the content xml.</value>
+        </data>
+        <data name="ActionsDisplayName" xml:space="preserve">
+          <value>Actions</value>
+        </data>
+        <data name="ActionsDescription" xml:space="preserve">
+          <value>Specify whether the portal should generate action links into the content xml. Set to 'All' only if you display actions in the xslt view as this option may affect page rendering speed.</value>
+        </data>
+        <data name="AvailableViewType" xml:space="preserve">
+          <value>Available view types: </value>
         </data>
         <data name="DebugDisplayName" xml:space="preserve">
           <value>Debug</value>
@@ -1298,10 +1354,31 @@
           <value>Portlet render módja</value>
         </data>
         <data name="RendererDisplayName" xml:space="preserve">
-          <value>Xslt renderer</value>
+          <value>Megjelenítő</value>
         </data>
         <data name="RendererDescription" xml:space="preserve">
-          <value>Renderer helye a Repository-ban</value>
+          <value>Válasszon egy megjelenítőt a portlethez.</value>
+        </data>
+        <data name="FieldsDisplayName" xml:space="preserve">
+          <value>Mezők</value>
+        </data>
+        <data name="FieldsDescription" xml:space="preserve">
+          <value>Kérem válasszon, hogy az összes mezőre szüksége van a tartalom xml-ben, egyikre sem, vagy adja meg a szükséges mezők listáját. Ez a beállítás befolyásolhatja az oldal sebességét.</value>
+        </data>
+        <data name="FieldListDisplayName" xml:space="preserve">
+          <value>Mező lista</value>
+        </data>
+        <data name="FieldListDescription" xml:space="preserve">
+          <value>Adja meg egy vesszővel elválasztott listában, hogy mely mezőkre van szükség a tartalom xml-ben.</value>
+        </data>
+        <data name="ActionsDisplayName" xml:space="preserve">
+          <value>Action lista</value>
+        </data>
+        <data name="ActionsDescription" xml:space="preserve">
+          <value>Kérem adja meg, hogy a generált tartalom xml-ben szükség van-e az action URL-ekre. Mivel ez a beállítás befolyásolhatja az oldal sebességét, csak akkor legyen 'All', ha valóban szükség van linkek megjelenítésére.</value>
+        </data>
+        <data name="AvailableViewType" xml:space="preserve">
+          <value>Választható renderer típusok: </value>
         </data>
         <data name="DebugDisplayName" xml:space="preserve">
           <value>Debug</value>

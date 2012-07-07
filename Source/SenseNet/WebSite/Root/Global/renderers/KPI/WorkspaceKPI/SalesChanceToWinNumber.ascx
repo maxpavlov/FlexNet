@@ -17,8 +17,21 @@
 
 %>
 
+
+<% string user = (SenseNet.ContentRepository.User.Current).ToString(); %>
+<%if (user == "Visitor")
+  {%>
+   <div class="sn-pt-body-border ui-widget-content ui-corner-all">
+	<div class="sn-pt-body ui-corner-all">
+		<%=GetGlobalResourceObject("Portal", "WSContentList_Visitor")%>
+	</div>
+</div>
+<% }%>
+<%else
+  {%>
 <div class="sn-kpi-chance2winnum">
     <big><%= chanceToWin.HasValue ? chanceToWin.Value.ToString() : "0"%>%</big>
     <small>Expected revenue: <strong><%= expectedRevenue.HasValue ? expectedRevenue.Value.ToString("N0") : "?"%>&curren;</strong></small>
 </div>
 
+<%} %>

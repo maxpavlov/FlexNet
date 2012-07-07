@@ -8,6 +8,9 @@ using SenseNet.ContentRepository.Storage;
 using SenseNet.ContentRepository.Storage.Security;
 using SenseNet.Diagnostics;
 using SenseNet.Search;
+using System.Globalization;
+using SenseNet.Portal.Properties;
+using SenseNet.ContentRepository.i18n;
 
 namespace SenseNet.Portal.UI.ContentListViews
 {
@@ -202,6 +205,28 @@ namespace SenseNet.Portal.UI.ContentListViews
             pathList.Add(RepositoryPath.Combine(Repository.CellTemplatesPath, "Generic.ascx"));
 
             return pathList;
+        }
+
+        //====================================================================================== Help r methods
+
+        public static User GetModifierSafely(object dataitem)
+        {
+            var content = dataitem as Content;
+            if (content == null)
+                return null;
+
+            User modifier = null;
+
+            try
+            {
+                modifier = content.ContentHandler.ModifiedBy as User;
+            }
+            catch(Exception ex)
+            {
+                Logger.WriteException(ex);
+            }
+
+            return modifier;
         }
     }
 }

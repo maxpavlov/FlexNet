@@ -16,6 +16,8 @@ namespace SenseNet.ContentRepository.Tests.ContentHandlers
 		public TestNode(Node parent) : base(parent, "RepositoryTest_TestNode") { }
 		protected TestNode(NodeToken token) : base(token) { }
 
+        public override bool IsContentType { get { return false; } }
+
 		[RepositoryProperty("TestInt1")]
 		public int TestInt
 		{

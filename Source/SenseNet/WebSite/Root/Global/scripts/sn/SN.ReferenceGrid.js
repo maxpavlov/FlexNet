@@ -1,4 +1,4 @@
-﻿/// <depends path="$skin/scripts/sn/SN.Picker.js" />
+﻿// using $skin/scripts/sn/SN.Picker.js
 
 SN.ReferenceGrid = {
     init: function (displayAreaId, outputTextareaId, addButtonId, changeButtonId, initialSelection, readOnly, isMultiSelect, pagerdivid, rownum) {
@@ -45,7 +45,6 @@ SN.ReferenceGrid = {
             SN.ReferenceGrid.getAddButton(displayAreaId).show();
             SN.ReferenceGrid.getChangeButton(displayAreaId).hide();
         }
-
         var $grid = $("#" + displayAreaId);
         $grid.jqGrid({
             datatype: 'local',
@@ -57,8 +56,8 @@ SN.ReferenceGrid = {
             colModel: colModel,
             sortname: 'DisplayName',
             gridview: true,
-            rowNum: rownum == 0 ? 1000000 : rownum,
-            pager: isMultiSelect ? (rownum == 0 ? null : '#' + pagerdivid) : null
+            rowNum: rownum == 0 ? 5 : rownum,
+            pager: isMultiSelect ? (rownum >= initialSelection.length ? null : '#' + pagerdivid) : null
         });
     },
     IconFormatter: function (index, cellvalue, dataItem) {

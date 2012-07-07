@@ -5,6 +5,7 @@ using SenseNet.Portal.Virtualization;
 using SenseNet.ContentRepository.Storage;
 using SenseNet.ContentRepository;
 using SenseNet.ContentRepository.Storage.Schema;
+using SenseNet.Portal.Dws;
 
 namespace SenseNet.Services.WebDav
 {
@@ -98,21 +99,16 @@ namespace SenseNet.Services.WebDav
                 traceMessage = string.Concat(traceMessage, Environment.NewLine);
             }
 
-            System.Diagnostics.Trace.Write(traceMessage);
+            System.Diagnostics.Debug.Write(traceMessage);
             
             #endregion
 
             context.Response.TrySkipIisCustomErrors = true;
             context.Response.Headers.Add("MicrosoftSharePointTeamServices", "14.0.0.5128");
 
-            // check authentication. 
-            // only in WINDOWS mode, otherwise IE would throw up authentication dialog even in FORMS auth when opening a document simply using 'browse' action
-            // this is because office tries to pull off workspace information from the server even though you did not open it for edit and not in windows mode.
-            if (PortalContext.Current.AuthenticationMode == "Windows")
-            {
-                if (!HttpContext.Current.User.Identity.IsAuthenticated)
-                    AuthenticationHelper.DenyAccess(context.ApplicationInstance);
-            }
+            // check authentication
+            if (DwsHelper.CheckVisitor())
+                return;
 
             Path = context.Request.Path;
 
@@ -251,14 +247,14 @@ namespace SenseNet.Services.WebDav
             }
 			catch (Exception ex)
 			{
-                traceMessage = string.Concat(ex.Message, Environment.NewLine);
-                traceMessage = string.Concat(traceMessage, ex.StackTrace, Environment.NewLine);
-                while (ex.InnerException != null)
-                {
-                    traceMessage = string.Concat(traceMessage, "    innerexception: ", ex.InnerException.Message, Environment.NewLine);
-                    ex = ex.InnerException;
-                }
-                System.Diagnostics.Trace.Write(traceMessage);
+                //traceMessage = string.Concat(ex.Message, Environment.NewLine);
+                //traceMessage = string.Concat(traceMessage, ex.StackTrace, Environment.NewLine);
+                //while (ex.InnerException != null)
+                //{
+                //    traceMessage = string.Concat(traceMessage, "    innerexception: ", ex.InnerException.Message, Environment.NewLine);
+                //    ex = ex.InnerException;
+                //}
+                //System.Diagnostics.Trace.Write(traceMessage);
 
 				try 
 				{

@@ -40,9 +40,9 @@ namespace SenseNet.Portal.Portlets
         // Properties /////////////////////////////////////////////////////////
         #region Properties
 
-        [WebDisplayName("Custom portlet URL key"), WebDescription("Give a cutom key to refer to this portlet from the URL.")]
+        [WebDisplayName("Custom portlet URL key"), WebDescription("Give a custom key to refer to this portlet from the URL.")]
         [WebBrowsable(true), Personalizable(true)]
-        [WebCategory(EditorCategory.UI, EditorCategory.UI_Order), WebOrder(80)]
+        [WebCategory(EditorCategory.UI, EditorCategory.UI_Order), WebOrder(1200)]
         public string CustomPortletKey { get; set; }
 
         [WebBrowsable(true), Personalizable(true)]
@@ -127,6 +127,26 @@ namespace SenseNet.Portal.Portlets
         [Editor(typeof(TextEditorPartField), typeof(IEditorPartField))]
         [TextEditorPartOptions(TextEditorCommonType.MiddleSize)]
         public string VisibleFields { get; set; }
+
+        [WebBrowsable(true), Personalizable(true)]
+        [LocalizedWebDisplayName(PORTLETFRAMEWORK_CLASSNAME, RENDERER_DISPLAYNAME)]
+        [LocalizedWebDescription(PORTLETFRAMEWORK_CLASSNAME, RENDERER_DESCRIPTION)]
+        [WebCategory(EditorCategory.UI, EditorCategory.UI_Order)]
+        [WebOrder(1000)]
+        [Editor(typeof(ViewPickerEditorPartField), typeof(IEditorPartField))]
+        [ContentPickerEditorPartOptions(PortletViewType.All)]
+        public override string Renderer
+        {
+            get
+            {
+                return base.Renderer;
+            }
+            set
+            {
+                base.Renderer = value;
+            }
+        }
+
         #endregion
 
 
@@ -198,6 +218,9 @@ namespace SenseNet.Portal.Portlets
             Description = "An all-purpose portlet for interacting with collections (context bound)";
             Category = new PortletCategory(PortletCategoryType.Collection);
 
+            //remove the xml/xslt fields from the hidden collection
+            this.HiddenProperties.RemoveAll(s => XmlFields.Contains(s));
+
             Cacheable = true;       // by default, any contentcollection portlet is cached (for visitors)
             CacheByParams = true;   // by default, params are also included -> this is useful for collections with paging
         }
@@ -242,7 +265,7 @@ namespace SenseNet.Portal.Portlets
                 case CollectionAxisMode.Children:
                 case CollectionAxisMode.VersionHistory:
                     if (c != null)
-                        return c.GetXml(c.ChildrenQueryFilter, c.ChildrenQuerySettings);
+                        return c.GetXml(c.ChildrenQueryFilter, c.ChildrenQuerySettings, this.GetContentSerializationOptions());
                     else
                         return fc.GetXml();
                 case CollectionAxisMode.ReferenceProperty:
@@ -358,6 +381,9 @@ namespace SenseNet.Portal.Portlets
             if (Cacheable && CanCache && IsInCache)
                 return;
 
+            if (ShowExecutionTime)
+                Timer.Start();
+
             Content modelData;
             try
             {
@@ -368,6 +394,10 @@ namespace SenseNet.Portal.Portlets
                 Logger.WriteException(ex);
                 Controls.Clear();
                 Controls.Add(new LiteralControl("ContentView error: " + ex.Message));
+
+                if (ShowExecutionTime)
+                    Timer.Stop();
+
                 return;
             }
 
@@ -449,6 +479,9 @@ namespace SenseNet.Portal.Portlets
                 Controls.Add(errorText);
             }
             ChildControlsCreated = true;
+
+            if (ShowExecutionTime)
+                Timer.Stop();
         }
 
         protected virtual PagerModel GetPagerModel(int totalCount, ContentCollectionPortletState state, string pageUrl)

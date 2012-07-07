@@ -30,11 +30,11 @@ namespace SenseNet.Portal.Portlets
         private string _errorViewPath = "/Root/System/SystemPlugins/Portlets/ContentRestore/RestoreError.ascx";
         private string _infoViewPath = "/Root/System/SystemPlugins/Portlets/ContentRestore/RestoreInfo.ascx";
 
-        [WebDisplayName("View path")]
-        [WebDescription("Path of the .ascx user control which provides the UI elements for the dialog")]
+        [LocalizedWebDisplayName(PORTLETFRAMEWORK_CLASSNAME, RENDERER_DISPLAYNAME)]
+        [LocalizedWebDescription(PORTLETFRAMEWORK_CLASSNAME, RENDERER_DESCRIPTION)]
         [WebBrowsable(true), Personalizable(true)]
         [WebCategory(EditorCategory.UI, EditorCategory.UI_Order)]
-        [Editor(typeof(ContentPickerEditorPartField), typeof(IEditorPartField))]
+        [Editor(typeof(ViewPickerEditorPartField), typeof(IEditorPartField))]
         [ContentPickerEditorPartOptions(ContentPickerCommonType.Ascx)]
         [WebOrder(100)]
         public string ViewPath
@@ -292,7 +292,7 @@ namespace SenseNet.Portal.Portlets
             {
                 //build UI info from the exception
                 var folderName = string.IsNullOrEmpty(rex.ContentPath) ?
-                    "{folder}" : RepositoryPath.GetFileNameSafe(RepositoryPath.GetParentPathSafe(rex.ContentPath));
+                    "{folder}" : RepositoryPath.GetFileNameSafe(RepositoryPath.GetParentPath(rex.ContentPath));
                 var contentName = string.IsNullOrEmpty(rex.ContentPath) ?
                     "{content}" : RepositoryPath.GetFileNameSafe(rex.ContentPath);
 
@@ -449,7 +449,7 @@ namespace SenseNet.Portal.Portlets
             {
                 //collect data from the exception to serialize it later
                 this.RestoreResult = rex.ResultType;
-                this.RestoreTarget = RepositoryPath.GetParentPathSafe(rex.ContentPath);
+                this.RestoreTarget = RepositoryPath.GetParentPath(rex.ContentPath);
 
                 BuildResultScreen(rex);
             }

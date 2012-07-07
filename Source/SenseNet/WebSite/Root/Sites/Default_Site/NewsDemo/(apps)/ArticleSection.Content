@@ -3,16 +3,24 @@
   <ContentType>Folder</ContentType>
   <ContentName>ArticleSection</ContentName>
   <Fields>
-    <DisplayName>ArticleSection</DisplayName>
+    <DisplayName><![CDATA[ArticleSection]]></DisplayName>
     <Hidden>false</Hidden>
     <Index>0</Index>
     <EnableLifespan>false</EnableLifespan>
     <ValidFrom>0001-01-01T00:00:00</ValidFrom>
     <ValidTill>0001-01-01T00:00:00</ValidTill>
-        <TrashDisabled>false</TrashDisabled>
+    <CreatedBy>
+      <Path>/Root/IMS/BuiltIn/Portal/Administrator</Path>
+    </CreatedBy>
+    <CreationDate>2012-05-21T10:32:07.487</CreationDate>
+    <ModifiedBy>
+      <Path>/Root/IMS/BuiltIn/Portal/Administrator</Path>
+    </ModifiedBy>
+    <ModificationDate>2012-05-21T10:32:07.493</ModificationDate>
+    <TrashDisabled>false</TrashDisabled>
     <IsTaggable>false</IsTaggable>
     <IsRateable>false</IsRateable>
-    <RateStr>0|1|0|0|0|0|0</RateStr>
+    <RateStr><![CDATA[0|1|0|0|0|0|0]]></RateStr>
     <RateAvg>0.0000</RateAvg>
     <RateCount>0</RateCount>
   </Fields>

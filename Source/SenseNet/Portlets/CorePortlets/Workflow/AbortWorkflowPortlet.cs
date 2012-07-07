@@ -29,12 +29,12 @@ namespace SenseNet.Portal.Portlets
 
         private string _viewPath = "/Root/System/SystemPlugins/Portlets/WorkflowAbort/WorkflowAbort.ascx";
 
-        [WebDisplayName("View path")]
-        [WebDescription("Path of the .ascx user control which provides the UI elements of the abort workflow dialog")]
+        [LocalizedWebDisplayName(PORTLETFRAMEWORK_CLASSNAME, RENDERER_DISPLAYNAME)]
+        [LocalizedWebDescription(PORTLETFRAMEWORK_CLASSNAME, RENDERER_DESCRIPTION)]
         [WebBrowsable(true), Personalizable(true)]
         [WebCategory(EditorCategory.UI, EditorCategory.UI_Order)]
         [WebOrder(100)]
-        [Editor(typeof(ContentPickerEditorPartField), typeof(IEditorPartField))]
+        [Editor(typeof(ViewPickerEditorPartField), typeof(IEditorPartField))]
         [ContentPickerEditorPartOptions(ContentPickerCommonType.Ascx)]
         public string ViewPath
         {

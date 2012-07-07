@@ -42,7 +42,7 @@ namespace SenseNet.ContentRepository.Tests
             ////else
             ////    Trace.WriteLine("@#$Test> TEST START: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.ffff"), "T:" + Thread.CurrentThread.ManagedThreadId.ToString());
 
-            //Trace.WriteLine("@#$Test> TEST START: " + TestContext.TestName + ": " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.ffff"), "T:" + Thread.CurrentThread.ManagedThreadId.ToString());
+            Trace.WriteLine("@#$Test> TEST START: " + TestContext.TestName + ": " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.ffff"), "T:" + Thread.CurrentThread.ManagedThreadId.ToString());
         }
         [TestCleanup]
         public void CheckAfterTest()
@@ -52,26 +52,28 @@ namespace SenseNet.ContentRepository.Tests
             ////else
             ////    Trace.WriteLine("@#$Test> TEST END: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.ffff"), "T:" + Thread.CurrentThread.ManagedThreadId.ToString());
 
-            //Trace.WriteLine("@#$Test> TEST END: " + TestContext.TestName + ": " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.ffff"), "T:" + Thread.CurrentThread.ManagedThreadId.ToString());
+            Trace.WriteLine("@#$Test> TEST END: " + TestContext.TestName + ": " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.ffff"), "T:" + Thread.CurrentThread.ManagedThreadId.ToString());
 
             //var user = AccessProvider.Current.GetCurrentUser();
             //Assert.IsNotNull(user);
             //Assert.IsTrue(user.Id == 1, String.Concat("user.Id is ", user.Id, ". Expected: 1."));
 
-            CheckIndexConsistency();
+
+
+            //CheckIndexConsistency();
         }
 
         private void CheckIndexConsistency()
         {
             if (TestContext != null)
-                Trace.WriteLine("&> TEST END: " + TestContext.TestName + ": " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.ffff"));
+                Trace.WriteLine("@#$Test> TEST END: " + TestContext.TestName + ": " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.ffff"));
             else
-                Trace.WriteLine("&> TEST END: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.ffff"));
+                Trace.WriteLine("@#$Test> TEST END: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.ffff"));
 
             var diff = SenseNet.Search.Indexing.IntegrityChecker.Check();
-            Trace.WriteLine("&> Index integrity check. Count of differences: " + diff.Count());
+            Trace.WriteLine("@#$Test> Index integrity check. Count of differences: " + diff.Count());
             foreach (var d in diff)
-                Trace.WriteLine("&> DIFF " + d);
+                Trace.WriteLine("@#$Test> DIFF " + d);
 
             //var q = new NodeQuery(
             //    new IntExpression(IntAttribute.Id, ValueOperator.GreaterThanOrEqual, (int)1));

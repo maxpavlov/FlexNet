@@ -81,11 +81,11 @@ namespace SenseNet.ContentRepository
 
                             regForm["EmailTemplateSubmitter"] = !String.IsNullOrEmpty(this["EmailTemplateSubmitter"].ToString()) ? this["EmailTemplateSubmitter"] : "{0}";
 
-                            regForm["EmailFrom"] = !String.IsNullOrEmpty(this["EmailFrom"].ToString()) ? this["EmailFrom"] : "mailerservice@portalengine.org";
+                            regForm["EmailFrom"] = !String.IsNullOrEmpty(this["EmailFrom"].ToString()) ? this["EmailFrom"] : "mailerservice@example.com";
 
-                            regForm["EmailFromSubmitter"] = !String.IsNullOrEmpty(this["EmailFromSubmitter"].ToString()) ? this["EmailFromSubmitter"] : "mailerservice@portalengine.org";
+                            regForm["EmailFromSubmitter"] = !String.IsNullOrEmpty(this["EmailFromSubmitter"].ToString()) ? this["EmailFromSubmitter"] : "mailerservice@example.com";
 
-                            regForm["EmailField"] = !String.IsNullOrEmpty(this["EmailField"].ToString()) ? this["EmailField"] : "mailerservice@portalengine.org";
+                            regForm["EmailField"] = !String.IsNullOrEmpty(this["EmailField"].ToString()) ? this["EmailField"] : "mailerservice@example.com";
 
                             regForm.Save();
 

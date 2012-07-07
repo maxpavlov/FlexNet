@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Specialized;
 using System.Configuration;
+using System.Diagnostics;
+using System.Linq;
 using SenseNet.ContentRepository.Storage;
 using SenseNet.ContentRepository.Storage.Security;
 using System.Web.Configuration;
@@ -257,7 +259,30 @@ namespace SenseNet.ContentRepository
                 return _downloadCounterEnabled.Value;
             }
         }
+        
+        private static bool? _warmupEnabled;
+        public static bool WarmupEnabled
+        {
+            get
+            {
+                if (!_warmupEnabled.HasValue)
+                    _warmupEnabled = GetBooleanConfigValue("WarmupEnabled", true);
 
+                return _warmupEnabled.Value;
+            }
+        }
+
+        public static string WarmupControlQueryFilter
+        {
+            get
+            {
+                var settings = ConfigurationManager.GetSection(PORTALSECTIONKEY) as NameValueCollection;
+                if (settings != null)
+                    return settings["WarmupControlQueryFilter"] ?? string.Empty;
+
+                return string.Empty;
+            }
+        }
         public static CheckInCommentsMode CheckInCommentsMode
         {
             get
@@ -400,6 +425,42 @@ namespace SenseNet.ContentRepository
             }
         }
 
+        private const string DefaultEmailSenderAppsettingKey = "DefaultEmailSender";
+        private static string _senderEmailAddress;
+        public static string EmailSenderAddress
+        {
+            get
+            {
+                if (_senderEmailAddress == null)
+                {
+                    var dsea = WebConfigurationManager.AppSettings[DefaultEmailSenderAppsettingKey];
+                    _senderEmailAddress = string.IsNullOrEmpty(dsea) ? "mailservice@example.com" : dsea;
+                }
+
+                return _senderEmailAddress;
+            }
+        }
+
+        private const string TextExtractTimeoutAppsettingKey = "TextExtractTimeout";
+        private static int? _textExtractTimeout;
+        public static int TextExtractTimeout
+        {
+            get
+            {
+                if (!_textExtractTimeout.HasValue)
+                {
+                    var confText = WebConfigurationManager.AppSettings[TextExtractTimeoutAppsettingKey];
+                    int confVal;
+                    if (string.IsNullOrEmpty(confText) || !int.TryParse(confText, out confVal))
+                        confVal = 5;
+
+                    _textExtractTimeout = confVal;
+                }
+
+                return _textExtractTimeout.Value;
+            }
+        }
+
         private static PortalRoot _root;
 
         private static bool GetBooleanConfigValue(string key, bool defaultValue)
@@ -418,6 +479,21 @@ namespace SenseNet.ContentRepository
             }
 
             return result;
+        }
+
+        private static string[] GetStringArrayConfigValue(string key)
+        {
+            var settings = ConfigurationManager.GetSection(PORTALSECTIONKEY) as NameValueCollection;
+            if (settings != null)
+            {
+                var configString = settings[key];
+                if (!string.IsNullOrEmpty(configString))
+                {
+                    return configString.Split(new[] { ';', ',' }, StringSplitOptions.RemoveEmptyEntries);
+                }
+            }
+
+            return new string[0];
         }
     }
 }

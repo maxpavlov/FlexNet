@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SenseNet.ContentRepository.Fields;
+using SenseNet.ContentRepository.Storage;
 using SenseNet.Portal.UI;
 
 using SenseNet.ContentRepository;
@@ -134,7 +135,8 @@ namespace SenseNet.Portal.UI.Controls
 
         private string _dateTimeText;
         private string _timeText;
-        private string _configuration = "{format:'Y.m.d',allowBlank:true}"; // Default configuration
+        private string _configuration = "{format:'Y.m.d',allowBlank:true,firstDay:" + GetCurrentFirstDay() + "}"; // Default configuration
+
         //private string _serverDateFormat = "yyyy.MM.dd"; // Default server date format
         private string _serverDateFormat = string.Empty;
         
@@ -469,6 +471,15 @@ namespace SenseNet.Portal.UI.Controls
             UITools.AddScript(UITools.ClientScriptConfigurations.JQueryUIPath);
             UITools.AddStyleSheetToHeader(Page.Header,UITools.ClientScriptConfigurations.jQueryCustomUICssPath);
 
+            //add culture-specific calendar scripts only if the current culture is different than en-US
+            var cc = CultureInfo.CurrentUICulture;
+            if (cc.Name != "en" && cc.Name != "en-US")
+            {
+                var folderPath = SkinManager.Resolve(UITools.ClientScriptConfigurations.JQueryUIFolderPath);
+                var minPostFix = folderPath.EndsWith("minified") ? ".min" : string.Empty;
+                UITools.AddScript(RepositoryPath.Combine(folderPath, string.Format("i18n/jquery.ui.datepicker-{0}{1}.js", cc.Name, minPostFix)));
+            }
+
             var datePickerScript = GetDatePickerScript();
             var ic = GetInnerControl() as TextBox;
             UITools.RegisterStartupScript("datepickerex_" + (ic != null ? ic.ClientID :_dateTextBox.ClientID), datePickerScript, Page);
@@ -611,6 +622,11 @@ namespace SenseNet.Portal.UI.Controls
             }
 
             _dateTextBox.Text = Convert.ToString(_dateTimeText);
+        }
+
+        private static int GetCurrentFirstDay()
+        {
+            return (int) CultureInfo.CurrentUICulture.DateTimeFormat.FirstDayOfWeek;
         }
     }
 }

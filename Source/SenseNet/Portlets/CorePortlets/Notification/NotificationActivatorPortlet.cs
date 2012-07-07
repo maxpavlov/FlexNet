@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using SenseNet.ContentRepository.Storage;
 using SenseNet.Messaging;
 using SNCR = SenseNet.ContentRepository;
@@ -17,6 +18,8 @@ namespace SenseNet.Portal.Portlets
             this.Name = "Notification activator";
             this.Description = "This portlet allows you to set your subscription to active or inactive";
             this.Category = new PortletCategory("Notification", "Portlets for handling notifications");
+
+            this.HiddenProperties.Add("Renderer");
         }
 
         protected override void OnInit(EventArgs e)

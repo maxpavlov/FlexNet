@@ -87,7 +87,6 @@
     <Compile Include="Jobs\NodeRejectJob.cs" />
     <Compile Include="Jobs\NodeSaveJob.cs" />
     <Compile Include="Jobs\NodeUndoCheckoutJob.cs" />
-    <Compile Include="Jobs\NotifyNodeChangeJob.cs" />
     <Compile Include="Jobs\NotifyPortletChangeJob.cs" />
     <Compile Include="Jobs\PagePublishJob.cs" />
     <Compile Include="StressTest.cs" />

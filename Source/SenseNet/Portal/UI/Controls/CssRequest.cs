@@ -1,19 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Web.UI;
 
 namespace SenseNet.Portal.UI.Controls
 {
-    public class CssRequest : UserControl
+    public class CssRequest : Control
     {
         /* ========================================================================= Properties */
-        private string _cssPath;
+        private string _path;
+        public string Path
+        {
+            get { return _path; }
+            set { _path = value; }
+        }
+
+        [Obsolete("Use Path instead.")]
         public string CSSPath
         {
-            get { return _cssPath; }
-            set { _cssPath = value; }
+            get { return Path; }
+            set { Path = value; }
         }
 
         private int _order;
@@ -51,15 +55,28 @@ namespace SenseNet.Portal.UI.Controls
             set { _title = value; }
         }
 
+        private bool _allowBundling = true;
+        public bool AllowBundling
+        {
+            get { return _allowBundling; }
+            set { _allowBundling = value; }
+        }
+
         /* ========================================================================= Methods */
+
         protected override void OnInit(EventArgs e)
         {
             base.OnInit(e);
 
-            if (string.IsNullOrEmpty(this.CSSPath))
+            if (string.IsNullOrEmpty(this.Path))
                 return;
 
-            UITools.AddStyleSheetToHeader(UITools.GetHeader(), this.CSSPath, this.Order, this.Rel, this.Type, this.Media, this.Title);
+            UITools.AddStyleSheetToHeader(UITools.GetHeader(), this.Path, this.Order, this.Rel, this.Type, this.Media, this.Title, this.AllowBundling);
+        }
+
+        protected override void Render(HtmlTextWriter writer)
+        {
+            return;
         }
     }
 }

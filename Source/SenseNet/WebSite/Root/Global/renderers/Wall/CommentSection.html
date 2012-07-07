@@ -12,11 +12,6 @@
 		{{comments}}
 	</div>
 	<div class='sn-commentboxdiv sn-unfocused-commentbox' style="display:{{commentboxdisplay}};">
-		<!-- div class='sn-commentbox-avatardiv'>
-			<a href="{{currentuserlink}}">
-				<img src="{{currentuseravatar}}" class="sn-commentbox-avatar" />
-			</a>
-		</div -->
 		<input type="text" class="sn-commentbox sn-unfocused-postbox" onkeydown="if (SN.Wall.createComment(event, $(this))) return false;" onfocus="SN.Wall.onfocusCommentBox($(this));" onblur="SN.Wall.onblurCommentBox($(this));" value="Write something..." />
 		<div class="sn-wall-clear">
 		</div>

@@ -27,10 +27,10 @@ namespace SenseNet.Portal.Portlets
         private string _contentViewPath = "/Root/System/SystemPlugins/Notifications/NotificationList.ascx";
 
         [WebBrowsable(true), Personalizable(true)]
-        [WebDisplayName("View path")]
-        [WebDescription("Path of the .ascx user control which provides the elements of the portlet")]
+        [LocalizedWebDisplayName(PORTLETFRAMEWORK_CLASSNAME, RENDERER_DISPLAYNAME)]
+        [LocalizedWebDescription(PORTLETFRAMEWORK_CLASSNAME, RENDERER_DESCRIPTION)]
         [WebCategory(EditorCategory.UI, EditorCategory.UI_Order)]
-        [Editor(typeof(ContentPickerEditorPartField), typeof(IEditorPartField))]
+        [Editor(typeof(ViewPickerEditorPartField), typeof(IEditorPartField))]
         [ContentPickerEditorPartOptions(ContentPickerCommonType.Ascx)]
         [WebOrder(100)]
         public string ContentViewPath
@@ -59,6 +59,8 @@ namespace SenseNet.Portal.Portlets
             Name = "Notification list";
             Description = "A portlet for displaying the notifications subscribed by the current user";
             this.Category = new PortletCategory("Notification", "Portlets for handling notifications");
+
+            this.HiddenProperties.Add("Renderer");
         }
 
         protected override object GetModel()

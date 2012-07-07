@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>HTMLContent</ContentType>
+  <ContentName>index-info</ContentName>
+  <Fields>
+    <HTMLFragment><![CDATA[<div class="sn-index-info">
+<ul class="sn-whatisit">
+    <li>
+        <h1>What is it?</h1>
+        An open source SharePoint alternative with document management, collaboration, workflow and web content manegement.
+    </li>
+    <li>
+        <h1>Who is it for?</h1>
+        Progressive thinkers who want to increase the efficiency of their business with one integrated system that users dream of.
+    </li>
+    <li class="last">
+        <h1>Why use it?</h1>
+        You get an open source platform to build enterprise content management systems at a fraction of the cost of other systems.
+    </li>
+    <div class="clear">&nbsp;</div>
+  </ul>
+</div>]]></HTMLFragment>
+    <ReviewDate>0001-01-01T00:00:00</ReviewDate>
+    <ArchiveDate>0001-01-01T00:00:00</ArchiveDate>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <DisplayName><![CDATA[index-info]]></DisplayName>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+    <CreatedBy>
+      <Path>/Root/IMS/BuiltIn/Portal/Admin</Path>
+    </CreatedBy>
+    <CreationDate>2012-05-21T10:00:08.737</CreationDate>
+    <ModifiedBy>
+      <Path>/Root/IMS/BuiltIn/Portal/Admin</Path>
+    </ModifiedBy>
+    <ModificationDate>2012-05-21T10:00:08.743</ModificationDate>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

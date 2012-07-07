@@ -13,6 +13,7 @@ using System.Web.Script.Serialization;
 using SenseNet.Search;
 using System.Xml;
 using SenseNet.Portal.UI;
+using SenseNet.Diagnostics;
 
 namespace SenseNet.Portal
 {
@@ -34,9 +35,17 @@ namespace SenseNet.Portal
             var langs = Site.GetAllLanguages();
             var resources = new Dictionary<string,string>();
             foreach (var lang in langs) {
-                var cultureInfo = new CultureInfo(lang.Value);
-                var s = SenseNetResourceManager.Current.GetObjectOrNull(classname, name, cultureInfo, false) as string;
-                resources.Add(lang.Value, s);
+                try
+                {
+                    var cultureInfo = new CultureInfo(lang.Value);
+                    var s = SenseNetResourceManager.Current.GetObjectOrNull(classname, name, cultureInfo, false) as string;
+                    resources.Add(lang.Value, s);
+                }
+                catch (Exception ex)
+                {
+                    Logger.WriteException(ex);
+                    resources.Add(lang.Value, "ERROR: " + ex.Message);
+                }
             }
 
             return Json(resources.ToArray(), JsonRequestBehavior.AllowGet);
@@ -56,7 +65,10 @@ namespace SenseNet.Portal
             {
                 // parse xml
                 var xml = new XmlDocument();
-                xml.Load(res.Binary.GetStream());
+                using (var stream = res.Binary.GetStream())
+                {
+                    xml.Load(stream);
+                }
 
                 foreach (var resourceData in resourcesData)
                 {
@@ -177,7 +189,7 @@ namespace SenseNet.Portal
         }
         private Resource GetResourceForClassName(string classname)
         {
-            var res = Node.LoadNode("/Root/Localization" + classname + "Resources.xml") as Resource;
+            var res = Node.LoadNode("/Root/Localization/" + classname + "Resources.xml") as Resource;
             if (res != null)
                 return res;
 

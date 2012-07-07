@@ -5,7 +5,6 @@ using System.Text;
 using System.Collections;
 using System.Web.Caching;
 using System.Web;
-using SenseNet.ContentRepository.Storage.Caching.Populators;
 
 namespace SenseNet.ContentRepository.Storage.Caching
 {
@@ -29,8 +28,6 @@ namespace SenseNet.ContentRepository.Storage.Caching
             CacheItemRemovedCallback onRemoveCallback);
         void Remove(string key);
 
-        T Get<T>(object initParam);
-        void AddPopulator(CacheItemPopulator populator);
         void Reset();
         HttpContext CurrentHttpContext { get; set; }
     }

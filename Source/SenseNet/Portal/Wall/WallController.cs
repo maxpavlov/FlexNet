@@ -14,6 +14,13 @@ namespace SenseNet.Portal.Wall
     public class WallController : Controller
     {
         //===================================================================== Public methods
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult GetPosts(string contextPath, int skip, int pageSize, string rnd)
+        {
+            var posts = DataLayer.GetPostsForWorkspace(contextPath).Skip(skip).Take(pageSize).ToList();
+            var postsMarkup = WallHelper.GetWallPostsMarkup(contextPath, posts);
+            return Json(postsMarkup, JsonRequestBehavior.AllowGet);
+        }
         /// <summary>
         /// Creates a manually written Post in the Content Repository and returns Post markup.
         /// </summary>
@@ -105,7 +112,7 @@ namespace SenseNet.Portal.Wall
             // create like markup
             var likeInfo = new LikeInfo(id);
             var likelist = new StringBuilder();
-            foreach (var likeitem in likeInfo.Nodes)
+            foreach (var likeitem in likeInfo.LikeUsers)
             {
                 var likeuser = likeitem as User;
                 likelist.Append(WallHelper.GetLikeListItemMarkup(likeuser));

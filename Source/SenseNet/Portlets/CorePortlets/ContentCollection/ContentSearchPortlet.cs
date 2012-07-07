@@ -70,8 +70,9 @@ namespace SenseNet.Portal.Portlets.ContentCollection
         [WebBrowsable(true), Personalizable(true)]
         [LocalizedWebDisplayName(ResourceCalssName, "SearchFormRendererTitle"),
          LocalizedWebDescription(ResourceCalssName, "SearchFormRendererDescription")]
-        [WebCategory(EditorCategory.Search, EditorCategory.Search_Order), WebOrder(2000)]
-        [Editor(typeof (ContentPickerEditorPartField), typeof (IEditorPartField)),
+        [WebCategory(EditorCategory.UI, EditorCategory.UI_Order)]
+        [WebOrder(1100)]
+        [Editor(typeof (ViewPickerEditorPartField), typeof (IEditorPartField)),
          ContentPickerEditorPartOptions(ContentPickerCommonType.Ascx)]
         public virtual string SearchFormRenderer { get; set; }
 
@@ -198,6 +199,9 @@ namespace SenseNet.Portal.Portlets.ContentCollection
         protected override string GetQueryFilter()
         {
             var originalQueryFilter = base.GetQueryFilter();
+            if (SearchForm == null)
+                return originalQueryFilter;
+
             SearchForm.UpdateContent();
 
             DefaultQueryBuilder qBuilder;

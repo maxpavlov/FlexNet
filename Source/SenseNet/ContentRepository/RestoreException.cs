@@ -77,16 +77,16 @@ namespace SenseNet.ContentRepository
             return RepositoryPath.GetFileNameSafe(ContentPath);
         }
 
-        [Obsolete("Use RepositoryPath.GetParentPathSafe(string) instead", true)]
+        [Obsolete("Use RepositoryPath.GetParentPath(string) instead", true)]
         public string GetParentPathSafe()
         {
-            return RepositoryPath.GetParentPathSafe(ContentPath);
+            return RepositoryPath.GetParentPath(ContentPath);
         }
 
-        [Obsolete("Use  RepositoryPath.GetFileNameSafe(RepositoryPath.GetParentPathSafe(string) snippet instead", true)]
+        [Obsolete("Use  RepositoryPath.GetFileNameSafe(RepositoryPath.GetParentPath(string) snippet instead", true)]
         public string GetParentNameSafe()
         {
-            return RepositoryPath.GetFileNameSafe(RepositoryPath.GetParentPathSafe(ContentPath));
+            return RepositoryPath.GetFileNameSafe(RepositoryPath.GetParentPath(ContentPath));
         }
     }
 }

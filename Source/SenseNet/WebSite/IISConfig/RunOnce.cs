@@ -697,12 +697,12 @@ namespace SenseNet.Portal.Setup
             }
             foreach (object value in values)
             {
-                Trace.Write(value);
+                //Trace.Write(value);
                 writer.Write(value);
             }
             if (newLine)
             {
-                Trace.WriteLine(String.Empty);
+                //Trace.WriteLine(String.Empty);
                 writer.WriteLine();
             }
         }

@@ -1,7 +1,9 @@
 using System;
+using System.Diagnostics;
 using System.Linq;
 using SenseNet.ContentRepository.Schema;
 using SenseNet.ContentRepository.Storage;
+using SenseNet.ContentRepository.Storage.Caching.Dependency;
 using SenseNet.ContentRepository.Storage.Data;
 using SenseNet.ContentRepository.Storage.Search;
 using SenseNet.ContentRepository.Storage.Security;
@@ -217,8 +219,7 @@ namespace SenseNet.ContentRepository
                 }
                 else
                 {
-                    domain = 
-                        System.Web.Configuration.WebConfigurationManager.AppSettings["DefaultDomain"] ?? "BuiltIn";
+                    domain = RepositoryConfiguration.DefaultDomain;
                 }
 
                 return String.Concat(domain, @"\", Name);
@@ -261,6 +262,22 @@ namespace SenseNet.ContentRepository
 			if (name == null)
 				throw new ArgumentNullException("name");
 
+            //look for the user ID in the cache by the doman-username key
+		    var ck = GetUserCacheKey(domain, name);
+		    var userIdobject = DistributedApplication.Cache.Get(ck);
+            if (userIdobject != null)
+            {
+                var userId = Convert.ToInt32(userIdobject);
+                var cachedUser = Node.Load<User>(userId);
+                if (cachedUser != null)
+                {
+                    //Trace.WriteLine("##UCACHE#>> User ID found in cache: " + ck);
+                    return cachedUser;
+                }
+            }
+
+            //Trace.WriteLine("##UCACHE#>> User ID NOT found in cache: " + ck);
+
             var path = String.Concat(Repository.ImsFolderPath, RepositoryPath.PathSeparator, domain);
             var type = ActiveSchema.NodeTypes[typeof(User).Name];
 
@@ -290,7 +307,16 @@ namespace SenseNet.ContentRepository
             if (count > 1)
                 throw new ApplicationException(string.Format("The Username (='Domain\\Name', in this case '{0}\\{1}') should be unique. {2} matching users have been found.", domain, name, count));
 
-            return users.First() as User;
+            var user = users.First() as User;
+
+            //insert id into cache
+            if (user != null && DistributedApplication.Cache.Get(ck) == null)
+            {
+                DistributedApplication.Cache.Insert(ck, user.Id, CacheDependencyFactory.CreateNodeDependency(user));
+                //Trace.WriteLine("##UCACHE#>> User ID inserted into cache: " + ck);
+            }
+
+		    return user;
 		}
 
         private static IEnumerable<User> SearchInLucene(string path, string typeName, string name)
@@ -377,11 +403,21 @@ namespace SenseNet.ContentRepository
             return user;
         }
 
+        public static string GetUserCacheKey(string domain, string name)
+        {
+            if (domain == null)
+                throw new ArgumentNullException("domain");
+            if (name == null)
+                throw new ArgumentNullException("name");
+
+            return string.Format("user-{0}-{1}", domain.Trim('\\').ToLower(), name.Trim('\\').ToLower());
+        }
+
         //=================================================================================== Profile
 
         private string GetProfileParentPath()
         {
-            return RepositoryPath.Combine(Repository.UserProfilePath, this.Domain ??  ContentRepository.Domain.BuiltInDomainName);
+            return RepositoryPath.Combine(Repository.UserProfilePath, this.Domain ?? RepositoryConfiguration.BuiltInDomainName);
         }
 
         private string GetProfileName()
@@ -423,7 +459,7 @@ namespace SenseNet.ContentRepository
                 if (profileDomain == null)
                 {
                     //create domain if not present
-                    var domName = this.Domain ?? ContentRepository.Domain.BuiltInDomainName;
+                    var domName = this.Domain ?? RepositoryConfiguration.BuiltInDomainName;
                     var dom = Content.CreateNew("ProfileDomain", profiles, domName);
 
                     dom.DisplayName = domName;

@@ -14,8 +14,8 @@
       </Indexing>
       <Configuration>
         <VisibleBrowse>Hide</VisibleBrowse>
-        <VisibleEdit>Advanced</VisibleEdit>
-        <VisibleNew>Advanced</VisibleNew>
+        <VisibleEdit>Hide</VisibleEdit>
+        <VisibleNew>Hide</VisibleNew>
       </Configuration>
     </Field>
     <Field name="DefaultView" type="ShortText">
@@ -23,7 +23,7 @@
       <Description>The default View to use</Description>
       <Configuration>
         <VisibleBrowse>Hide</VisibleBrowse>
-        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleEdit>Hide</VisibleEdit>
         <VisibleNew>Hide</VisibleNew>
       </Configuration>
     </Field>
@@ -32,7 +32,7 @@
       <Description>Select global content list views here that you want to offer users to choose from</Description>
       <Configuration>
         <VisibleBrowse>Hide</VisibleBrowse>
-        <VisibleEdit>Advanced</VisibleEdit>
+        <VisibleEdit>Hide</VisibleEdit>
         <VisibleNew>Hide</VisibleNew>
         <AllowMultiple>true</AllowMultiple>
         <AllowedTypes>

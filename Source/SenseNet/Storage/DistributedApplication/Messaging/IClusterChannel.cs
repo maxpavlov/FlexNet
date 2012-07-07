@@ -6,20 +6,19 @@ using System.Timers;
 
 namespace SenseNet.Communication.Messaging
 {
-
-
-
     public interface IClusterChannel
     {
         ClusterMemberInfo ClusterMemberInfo { get; }
         void Send(ClusterMessage message);
-        Receiver<T> GetReceiver<T>() where T : ClusterMessage;
         event MessageReceivedEventHandler MessageReceived;
         event ReceiveExceptionEventHandler ReceiveException;
         event SendExceptionEventHandler SendException;
         void Start();
         void ShutDown();
         void Purge();
+
+        bool AllowMessageProcessing { get; set; }
+        int IncomingMessageCount { get; }
     }
 
 
@@ -54,7 +53,4 @@ namespace SenseNet.Communication.Messaging
         ClusterMessage Deserialize(Stream data);
         Stream Serialize(ClusterMessage message);
     }
-
-
-
 }

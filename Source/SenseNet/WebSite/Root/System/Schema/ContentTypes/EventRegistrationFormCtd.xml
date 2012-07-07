@@ -33,7 +33,7 @@
     </Field>
     <Field name="EmailFromSubmitter" type="ShortText">
       <DisplayName>Subbmitter EmailFrom</DisplayName>
-      <Description>This address is displayed in the "From" field of the user notification email. Default is "mailerservice@portalengine.org"</Description>
+      <Description>This address is displayed in the "From" field of the user notification email. Default is "mailerservice@example.com"</Description>
     </Field>
     <Field name="EmailField" type="ShortText">
       <DisplayName>EmailField</DisplayName>

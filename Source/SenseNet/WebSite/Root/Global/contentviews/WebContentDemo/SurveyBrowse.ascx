@@ -1,5 +1,5 @@
 <%@ Import Namespace="System.Collections.Generic"%>
-<%@ Language="C#" AutoEventWireup="true" Inherits="SenseNet.Portal.UI.SingleContentView" %>
+<%@ Language="C#" AutoEventWireup="true" Inherits="SenseNet.Portal.UI.SingleContentView" EnableViewState="false" %>
 <%@ Import namespace="SenseNet.ContentRepository.Storage" %>
 <%@ Import Namespace="System.Web.UI.WebControls" %>
 

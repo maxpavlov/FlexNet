@@ -1,3 +1,6 @@
+// using $skin/scripts/sn/SN.js
+// using $skin/scripts/jquery/jquery.js
+
 SN.ACT = {
 	createOtherDefaultText: 'Start typing...',
 	onfocusPostBox: function ($box) {

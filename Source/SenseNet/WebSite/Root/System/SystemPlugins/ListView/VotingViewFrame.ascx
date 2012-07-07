@@ -7,7 +7,7 @@
 <div class="sn-listview">
     <sn:Toolbar runat="server">
         <sn:ToolbarItemGroup Align="Left" runat="server">
-            <sn:ActionMenu runat="server" Scenario="New" ContextInfoID="myContext" RequiredPermissions="AddNew">
+            <sn:ActionMenu runat="server" Scenario="New" ContextInfoID="myContext" ScenarioParameters="DisplaySystemFolders=true" RequiredPermissions="AddNew">
                 <sn:ActionLinkButton runat="server" ActionName="Add" IconUrl="/Root/Global/images/icons/16/newfile.png" ContextInfoID="myContext" Text="New" />
                 <%-- a href="<% =ResolveAction(MostRelevantContext.Path, "Add") %>">New</a --%>
             </sn:ActionMenu>

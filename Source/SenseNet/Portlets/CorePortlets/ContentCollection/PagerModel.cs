@@ -46,7 +46,7 @@ namespace SenseNet.Portal.Portlets
             get
             {
                 if (_top == 0) return 0;
-                return (int)Math.Ceiling(((TotalCount - PortletState.SkipFirst) / (double)_top));
+                return (int)Math.Ceiling(TotalCount / (double)_top);
             }
             set
             {

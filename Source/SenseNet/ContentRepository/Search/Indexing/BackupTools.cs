@@ -199,7 +199,7 @@ Debug.WriteLine(String.Format("@> {0} =========== Executing Restore action is fi
 
         static void Progress_Changed(object sender, EventArgs e)
         {
-            Trace.WriteLine(String.Format("# BackupProgress: {0}: {1}/{2}", Progress.Message, Progress.Value, Progress.MaxValue));
+            //Trace.WriteLine(String.Format("# BackupProgress: {0}: {1}/{2}", Progress.Message, Progress.Value, Progress.MaxValue));
             if (DistributedNotifyProgress)
                 new IndexBackupProgressMessage(Progress.Type, Progress.Message, Progress.Value, Progress.MaxValue).Send();
         }
@@ -213,7 +213,7 @@ Debug.WriteLine(String.Format("@> {0} =========== Executing Restore action is fi
 
             var activity = new SenseNet.Search.Indexing.Activities.BackupActivity(Environment.MachineName, AppDomain.CurrentDomain.FriendlyName);
             activity.Distribute();
-            SenseNet.Search.Indexing.ActivityQueue.AddActivity(activity);
+            activity.InternalExecute();
         }
         /// <summary>
         /// Synchronous backup method for console applications. 
@@ -225,7 +225,7 @@ Debug.WriteLine(String.Format("@> {0} =========== Executing Restore action is fi
                 EnsureEmptyDirctory(_backupDirectoryPath);
                 LuceneManager.PauseIndexing();
 
-                while (!LuceneManager.IndexingPaused)
+                while (!LuceneManager.Paused)
                 {
                     Thread.Sleep(100);
                 }

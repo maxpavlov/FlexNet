@@ -75,6 +75,12 @@ namespace SenseNet.ContentRepository.i18n
             }
         }
 
+        private static string _fallbackCulture;
+        public static string FallbackCulture
+        {
+            get { return _fallbackCulture ?? (_fallbackCulture = (System.Configuration.ConfigurationManager.AppSettings["FallbackCulture"] ?? string.Empty).ToLower()); }
+        }
+
         private SenseNetResourceManager() { }
 
         //================================================================ Instance part
@@ -121,23 +127,30 @@ namespace SenseNet.ContentRepository.i18n
             {
                 foreach (Resource res in nodes)
                 {
-                    XmlDocument xml = new XmlDocument();
-                    xml.Load(res.Binary.GetStream());
-                    foreach (XmlElement classElement in xml.SelectNodes("/Resources/ResourceClass"))
+                    try
                     {
-                        var className = classElement.Attributes["name"].Value;
-                        foreach (XmlElement languageElement in classElement.SelectNodes("Languages/Language"))
+                        var xml = new XmlDocument();
+                        xml.Load(res.Binary.GetStream());
+                        foreach (XmlElement classElement in xml.SelectNodes("/Resources/ResourceClass"))
                         {
-                            var cultureName = languageElement.Attributes["cultureName"].Value;
-                            var cultureInfo = CultureInfo.GetCultureInfo(cultureName);
-                            foreach (XmlElement dataElement in languageElement.SelectNodes("data"))
+                            var className = classElement.Attributes["name"].Value;
+                            foreach (XmlElement languageElement in classElement.SelectNodes("Languages/Language"))
                             {
-                                var key = dataElement.Attributes["name"].Value;
-                                var value = dataElement.SelectSingleNode("value").InnerXml;
+                                var cultureName = languageElement.Attributes["cultureName"].Value;
+                                var cultureInfo = CultureInfo.GetCultureInfo(cultureName);
+                                foreach (XmlElement dataElement in languageElement.SelectNodes("data"))
+                                {
+                                    var key = dataElement.Attributes["name"].Value;
+                                    var value = dataElement.SelectSingleNode("value").InnerXml;
 
-                                AddItem(cultureInfo, className, key, value);
+                                    AddItem(cultureInfo, className, key, value);
+                                }
                             }
                         }
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.WriteException(new Exception("Invalid resource: " + res.Path, ex));
                     }
                 }
             }
@@ -213,7 +226,28 @@ namespace SenseNet.ContentRepository.i18n
         /// <returns>The value of the resource, If a match is not possible, a generated resourcekey is returned.</returns>
         public object GetObject(string className, string name, CultureInfo cultureInfo)
         {
-            var s = GetObjectInternal(cultureInfo, className, name) ?? String.Concat(className, cultureInfo.Name, name);
+            var s = GetObjectInternal(cultureInfo, className, name);
+            if (s == null)
+            {
+                if (!string.IsNullOrEmpty(FallbackCulture))
+                {
+                    try
+                    {
+                        //look for resource value using the fallback culture
+                        var enCultureInfo = CultureInfo.GetCultureInfo(FallbackCulture);
+                        s = GetObjectInternal(enCultureInfo, className, name);
+                    }
+                    catch (CultureNotFoundException ex)
+                    {
+                        Logger.WriteException(new Exception(string.Format("Invalid fallback culture: {0} ({1}, {2})", FallbackCulture, className, name), ex));
+                    }
+                }
+                
+                //no fallback resource, display the class and key instead
+                if (s == null)
+                    s = String.Concat(className, cultureInfo.Name, name);
+            }
+
             if (!IsResourceEditorAllowed)
                 return s;
 

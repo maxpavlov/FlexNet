@@ -3,7 +3,8 @@
   <DisplayName>Registration Workflow</DisplayName>
 	<Description>A Content representation of an Approval Workflow instance</Description>
 	<Icon>workflow</Icon>
-	<Fields>
+  <AllowIncrementalNaming>true</AllowIncrementalNaming>
+  <Fields>
     <Field name="FullName" type="ShortText">
       <DisplayName>Full name</DisplayName>
       <Description>Please enter your full name here</Description>

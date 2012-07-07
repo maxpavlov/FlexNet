@@ -2,7 +2,7 @@
 
 <div class="sn-content sn-content-inlineview">
     <sn:ErrorView ID="ErrorView1" runat="server" />
-    <sn:Reference ID="RefMembers" runat="server" FieldName="Members" RenderMode="Edit" />
+    <sn:ReferenceGrid ID="RefMembers" runat="server" FieldName="Members" RenderMode="Edit" />
 </div>
 
 <div class="sn-panel sn-buttons">

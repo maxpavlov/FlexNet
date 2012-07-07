@@ -2,43 +2,91 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Configuration;
+using SenseNet.ContentRepository;
 using SenseNet.Diagnostics;
+using System.Threading;
+using System.Diagnostics;
+using SenseNet.ContentRepository.Storage;
+using SenseNet.ContentRepository.Storage.Data;
 
 namespace SenseNet.Communication.Messaging
 {
     
     public abstract class ClusterChannel : IClusterChannel
     {
-        private IClusterMessageFormatter m_formatter;
-        private ClusterMemberInfo m_clusterMemberInfo;
+        /* ============================================================================== Members */
+        private static List<ClusterMessage> _incomingMessages;
+        private static volatile int _messagesCount;
+        //private static AutoResetEvent _incomingMessageSignal;
+        protected static bool _shutdown;
+        private static object _messageListSwitchSync = new object();
+        protected IClusterMessageFormatter m_formatter;
+        protected ClusterMemberInfo m_clusterMemberInfo;
+        public static List<Type> ProcessedMessageTypes;
 
-        public delegate void Msg<T>(T t);
+        public bool AllowMessageProcessing { get; set; }
 
+        /* ============================================================================== Properties */
+        public ClusterMemberInfo ClusterMemberInfo
+        {
+            get { return m_clusterMemberInfo; }
+        }
+        private int _incomingMessageCount;
+        public int IncomingMessageCount
+        {
+            get
+            {
+                return _incomingMessageCount;
+            }
+        }
+
+        /* ============================================================================== Events */
         public event MessageReceivedEventHandler MessageReceived;
         public event ReceiveExceptionEventHandler ReceiveException;
         public event SendExceptionEventHandler SendException;
 
-        public static List<Type> ProcessedMessageTypes;
-
-        public Dictionary<Type, MulticastDelegate> delegs = new Dictionary<Type, MulticastDelegate>();
-        public void DoIt(ClusterMessage msg)
-        {
-            delegs[msg.GetType()].DynamicInvoke(msg);
-        }
-        public Receiver<T> GetReceiver<T>() where T: ClusterMessage
-        {
-           
-            return new Receiver<T>();
-        }
-
+        /* ============================================================================== Init */
         public ClusterChannel(IClusterMessageFormatter formatter, ClusterMemberInfo clusterMemberInfo)
         {
+            _incomingMessages = new List<ClusterMessage>();
+            CounterManager.Reset("IncomingMessages");
+            CounterManager.Reset("TotalMessagesToProcess");
+
+            //_incomingMessageSignal = new AutoResetEvent(false);
             m_formatter = formatter;
             m_clusterMemberInfo = clusterMemberInfo;
+
+            // initiate processing threads
+            for (var i = 0; i < RepositoryConfiguration.MessageProcessorThreadCount; i++)
+            {
+                var thstart = new ParameterizedThreadStart(CheckProcessableMessages);
+                var thread = new Thread(thstart);
+                //thread.Priority = ThreadPriority.Highest;
+                thread.Name = i.ToString();
+                thread.Start();
+            }
+        }
+        protected virtual void StartMessagePump()
+        {
+
+        }
+        protected virtual void StopMessagePump()
+        {
+            _shutdown = true;
+        }
+        public virtual void Start()
+        {
+            StartMessagePump();
+        }
+        public virtual void ShutDown()
+        {
+            StopMessagePump();
         }
 
+        /* ============================================================================== Send */
         public virtual void Send(ClusterMessage message)
         {
             try
@@ -55,14 +103,82 @@ namespace SenseNet.Communication.Messaging
         }
         protected abstract void InternalSend(Stream messageBody);
 
-        protected virtual void OnMessageRecieved(Stream messageBody)
+        /* ============================================================================== Receive */
+        private void CheckProcessableMessages(object parameter)
         {
-            ClusterMessage message = m_formatter.Deserialize(messageBody);
+            List<ClusterMessage> messagesToProcess;
+            while (true)
+            {
+                try
+                {
+                    if (AllowMessageProcessing)
+                    {
+                        while ((messagesToProcess = GetProcessableMessages()) != null)
+                        {
+                            var count = messagesToProcess.Count;
+                            Interlocked.Add(ref _messagesCount, count);
+
+                            // process all messages in the queue
+                            for (var i = 0; i < count; i++)
+                            {
+                                ProcessSingleMessage(messagesToProcess[i]);
+                                messagesToProcess[i] = null;
+                            }
+
+                            Interlocked.Add(ref _messagesCount, -count);
+
+                            if (_shutdown)
+                                return;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Logger.WriteException(ex);
+                }
+
+                // no messages to process, wait some time and continue checking incoming messages
+                Thread.Sleep(100);
+                //_incomingMessageSignal.WaitOne(1000);
+
+                if (_shutdown)
+                    return;
+            }
+        }
+        private List<ClusterMessage> GetProcessableMessages()
+        {
+            List<ClusterMessage> messagesToProcess = null;
+            lock (_messageListSwitchSync)
+            {
+                _incomingMessageCount = _incomingMessages.Count;
+
+                if (_incomingMessageCount == 0)
+                    return null;
+
+                if (_incomingMessageCount <= RepositoryConfiguration.MessageProcessorThreadMaxMessages)
+                {
+                    // if total message count is smaller than the maximum allowed, process all of them and empty incoming queue
+                    messagesToProcess = _incomingMessages;
+                    _incomingMessages = new List<ClusterMessage>();
+                }
+                else
+                {
+                    // process the maximum allowed number of messages, leave the rest in the incoming queue
+                    messagesToProcess = _incomingMessages.Take(RepositoryConfiguration.MessageProcessorThreadMaxMessages).ToList();
+                    _incomingMessages = _incomingMessages.Skip(RepositoryConfiguration.MessageProcessorThreadMaxMessages).ToList();
+                }
+            }
+
+            return messagesToProcess;
+        }
+        private void ProcessSingleMessage(object parameter)
+        {
+            var message = parameter as ClusterMessage;
             var msg = message as DistributedAction;
             if (msg != null)
             {
                 if (ProcessedMessageTypes == null || ProcessedMessageTypes.Contains(msg.GetType()))
-                { 
+                {
                     msg.DoAction(true, msg.SenderInfo.IsMe);
                 }
             }
@@ -73,7 +189,27 @@ namespace SenseNet.Communication.Messaging
             if (MessageReceived != null)
                 MessageReceived(this, new MessageReceivedEventArgs(message));
         }
+        internal virtual void OnMessageReceived(Stream messageBody)
+        {
+            ClusterMessage message = m_formatter.Deserialize(messageBody);
 
+            lock (_messageListSwitchSync)
+            {
+                _incomingMessages.Add(message);
+                CounterManager.SetRawValue("IncomingMessages", Convert.ToInt64(_incomingMessages.Count));
+                var totalMessages = _incomingMessages.Count + _messagesCount;
+                CounterManager.SetRawValue("TotalMessagesToProcess", Convert.ToInt64(totalMessages));
+                //_incomingMessageSignal.Set();
+            }
+        }
+
+        /* ============================================================================== Purge */
+        public virtual void Purge()
+        {
+            //throw new NotImplementedException();
+        }
+
+        /* ============================================================================== Error handling */
         protected virtual void OnSendException(ClusterMessage message, Exception exception)
         {
             if (SendException != null)
@@ -84,60 +220,5 @@ namespace SenseNet.Communication.Messaging
             if (ReceiveException != null)
                 ReceiveException(this, new ExceptionEventArgs(exception, null));
         }
-        
-        public ClusterMemberInfo ClusterMemberInfo
-        {
-            get { return m_clusterMemberInfo; }
-        }
-
-        protected virtual void StartMessagePump()
-        {
-            //good old noop
-        }
-        protected virtual void StopMessagePump()
-        {
-            //good old noop
-        }
-
-        public virtual void Start()
-        {
-            StartMessagePump();
-        }
-        public virtual void ShutDown()
-        {
-            StopMessagePump();
-        }
-        public virtual void Purge()
-        {
-            //throw new NotImplementedException();
-        }
-
     }
-
-    public delegate void MessageReceived<T>(T message);
-
-    public class Receiver<T> where T : ClusterMessage
-    {
-        public void MsgRece(T msg)
-        {
-        }
-        public event MessageReceived<T> Received
-        {
-            add
-            {
-                //((ClusterChannel)DistributedApplication.ClusterChannel).delegs[typeof(T)]
-                //    = MulticastDelegate.CreateDelegate(
-                //    this.GetType(), this.GetType().GetMethod("MsgRece"));
-                ////Receiver<T>.Received(
-                //((ClusterChannel)DistributedApplication.ClusterChannel).delegs.Add(
-                //    typeof(T), value);
-            }
-
-            remove
-            {
-
-            }
-        }
-    }
-
 }

@@ -87,8 +87,11 @@ namespace SenseNet.Portal.ApplicationModel
         {
             get
             {
-                if (!String.IsNullOrEmpty(resizedImageExtension)) return resizedImageExtension;
-                switch (this.GetProperty<string>("OutputFormat").ToLower())
+                if (!string.IsNullOrEmpty(resizedImageExtension)) 
+                    return resizedImageExtension;
+
+                var of = this.GetProperty<string>("OutputFormat") ?? string.Empty; 
+                switch (of.ToLower())
                 {
                     case "jpeg": resizedImageExtension = ".jpg"; break;
                     case "png": resizedImageExtension = ".png"; break;

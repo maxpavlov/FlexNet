@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using SenseNet.ContentRepository;
 using SenseNet.ContentRepository.Storage.Search;
 using SenseNet.ContentRepository.Storage.Security;
@@ -33,7 +34,7 @@ namespace SenseNet.Portal.Portlets
             this.Category = new PortletCategory(PortletCategoryType.Search);
 
             this.HiddenPropertyCategories = new List<string>() { EditorCategory.Cache };
-            this.HiddenProperties = new List<string> { "AllChildren", "UriParameterName", "ReferenceAxisName", "CollectionAxis", "VisibleFields" };
+            this.HiddenProperties.AddRange(new [] { "AllChildren", "UriParameterName", "ReferenceAxisName", "CollectionAxis", "VisibleFields" });
             Cacheable = false;   // by default, caching is switched off
         }
 
@@ -80,6 +81,26 @@ namespace SenseNet.Portal.Portlets
                 //this.Renderer = value;
             }
         }
+
+        [WebBrowsable(true), Personalizable(true)]
+        [LocalizedWebDisplayName(PORTLETFRAMEWORK_CLASSNAME, RENDERER_DISPLAYNAME)]
+        [LocalizedWebDescription(PORTLETFRAMEWORK_CLASSNAME, RENDERER_DESCRIPTION)]
+        [WebCategory(EditorCategory.UI, EditorCategory.UI_Order)]
+        [WebOrder(1000)]
+        [Editor(typeof(ViewPickerEditorPartField), typeof(IEditorPartField))]
+        [ContentPickerEditorPartOptions(PortletViewType.Ascx)]
+        public override string Renderer
+        {
+            get
+            {
+                return base.Renderer;
+            }
+            set
+            {
+                base.Renderer = value;
+            }
+        }
+
 
         [WebBrowsable(true), Personalizable(true)]
         [WebDisplayName("Search result page path")]

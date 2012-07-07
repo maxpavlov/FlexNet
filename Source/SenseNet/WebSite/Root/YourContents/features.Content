@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>HTMLContent</ContentType>
+  <ContentName>features</ContentName>
+  <Fields>
+    <HTMLFragment>
+      <![CDATA[<ul class="sn-demo-features">
+<li id="wall">
+  <a href="/workspaces/Project/budapestprojectworkspace">
+    <img src="/Root/YourContents/Images/features/collaboration.jpg">
+    <div class="desc">
+With Sense/Net you can build your company’s own private social network. You can share information and work with others inside and outside of your organization. Update your profile, share, comment, like what others do, just like in your private life.</div>
+    <h1>Collaborate with peers</h1>
+  </a>
+Experience enterprise 2.0 collaboration with project walls, comments and like, just like in your favorite social media apps.<div>
+    <a class="sn-link" href="/workspaces/Project/budapestprojectworkspace"><span>»</span> Demo project workspace</a>
+  </div>
+</li>
+<li id="drive">
+  <a href="http://wiki.sensenet.com/index.php?title=Webdav" target="_blank">
+    <img src="/Root/YourContents/Images/features/shareddrive.jpg">
+    <div class="desc">
+What is more convenient than accessing your documents just like before, like a shared drive? You can use Windows Explorer or any file browser to manage your documents, but as an extra you get version control, notification, extremely fast search and many other features.</div>
+    <h1>Use a better shared drive</h1>
+  </a>
+You can manage documents without opening a browser, just like accessing a shared drive. Drag and drop your files to the repository.
+<div><a class="sn-link" target="_blank" href="http://wiki.sensenet.com/index.php?title=Webdav"><span>»</span> Wiki on how to install it</a></div>
+</li>
+<li id="office" class="last">
+  <a href="/workspaces/Document/londondocumentworkspace/Document_Library">
+    <img src="/Root/YourContents/Images/features/office.jpeg">
+    <div class="desc">
+Enterprise users work in Microsoft Office and they love using it. Why make them leave what they love? You can use Sense/Net from Office without desktop installation. You can open documents, check-out, modify, check-in and add version comment right from Office.</div>
+    <h1>Work with Office</h1>
+  </a>
+Open and edit documents with Microsoft Office from a browser or from Windows Explorer. Sense/Net behaves as SharePoint to Office.
+<div><a class="sn-link" href="/workspaces/Document/londondocumentworkspace/Document_Library"><span>»</span> Demo document library</a></div>
+</li>
+  <div class="clear"></div>
+<li id="crowd">
+  <a href="/workspaces/Project/budapestprojectworkspace">
+    <img src="/Root/YourContents/Images/features/crowd.jpg">
+    <div class="desc">
+Have you ever tried to ask for a user account for someone outside of your organization? In Sense/Net you can add partners and customers to workspaces in seconds in a secure way. You can create virtual teams with some clicks to collaborate on documents or projects</div>
+    <h1>Invite them all</h1>
+  </a>
+Share information securely with anyone inside and outside of your company, without ever waiting for IT.  <div><a class="sn-link" href="/workspaces/Project/budapestprojectworkspace"><span>»</span> Demo project workspace</a></div>
+</li>
+<li id="search">
+  <a href="/features/Search">
+    <img src="/Root/YourContents/Images/features/search.jpg">
+    <div class="desc">
+Users love to find what they need when they need it. With the Sense/Net query language, we give the power of lightning fast search and query to the hands of developers, builders and even end users.</div>
+    <h1>Find your stuff</h1>
+  </a>
+Sense/Net puts the power of lightning fast search and query in the hands of end users and developers.
+<div><a class="sn-link" href="/features/Search"><span>»</span> Try search</a></div>
+</li>
+<li id="server" class="last">
+  <a href="http://wiki.sensenet.com/index.php?title=Benchmark_Tool" target="_blank">
+    <img src="/Root/YourContents/Images/features/blade.jpg">
+    <div class="desc">
+You just write your apps against our simple API, and we handle all the hassle of indexing, versioning, locking, permissions, cache invalidation, index synchronization, scalability and high availability instead of you.</div>
+    <h1>Enterprise Content Repository</h1>
+  </a>
+You can store tens of millions of documents in the fastest content repository for the Windows platform.<div><a class="sn-link" href="http://wiki.sensenet.com/index.php?title=Benchmark_Tool" target="_blank"><span>»</span> Benchmark with 100 million docs</a></div>
+</li>
+    <div class="clear"></div>
+<li id="spanner">
+  <a href="/workspaces/Document/londondocumentworkspace/Document_Library">
+    <img src="/Root/YourContents/Images/features/customize.jpg">
+    <div class="desc">
+End users can customize fields and create custom views for lists and libraries with some clicks. They get the power to compose simple web applications to store information without programming.</div>
+    <h1>Customize with clicks</h1>
+  </a>
+Let your end users feel the power of development without having to learn to write code.
+<div><a class="sn-link" href="/workspaces/Document/londondocumentworkspace/Document_Library"><span>»</span> Customize a Document Library</a></div>
+</li>
+<li id="customize">
+  <a href="http://wiki.sensenet.com/index.php?title=The_Skin_System" target="_blank">
+    <img src="/Root/YourContents/Images/features/design.jpg">
+    <div class="desc">
+     Skin System allows designer to implement that dream design with industry standard tools. Let everyone edit content with WYSIWYG, with total control over design guidelines, if needed.
+    </div>
+    <h1>Design without limits</h1>
+  </a>
+ Implement that dream design for any browser on any device with complete control over html output.   
+  <div><a class="sn-link" href="http://wiki.sensenet.com/index.php?title=The_Skin_System" target="_blank"><span>»</span> Wiki on design customization</a></div>
+</li>
+<li id="workflow" class="last">
+  <a href="/workspaces/Other/expenseclaimworkspace/Expense-Claims">
+    <img src="/Root/YourContents/Images/features/workflow.jpg">
+    <div class="desc">
+     Sense/Net Workflow integrates Windows Workflow Foundation 4 as a painkiller. Develop asynchronous applications to model business processes with point and click and use very few lines of code.
+    </div>
+    <h1>Add business processes</h1>
+  </a>
+ Automate your business processes spanning organizational boundaries with ease.   
+  <div><a class="sn-link" href="/workspaces/Other/expenseclaimworkspace/Expense-Claims"><span>»</span> Document library with workflow</a></div>
+</li>
+    <div class="clear"></div>
+<li id="integrate">
+  <a href="http://wiki.sensenet.com/index.php?title=Active_Directory_Synchronization" target="_blank">
+    <img src="/Root/YourContents/Images/features/integrate.jpg">
+    <div class="desc">
+     In our vision, we envision the ideal company of the future, where there is only one web application handling all the information users need. Sense/Net Enterprise Integration Services solve most of the integration issues developers face in most companies. 
+    </div>
+    <h1>Integrate with anything</h1>
+  </a>
+ Integrate with directory services (e.g. Active Directory) or with any software on the market.   
+  <div><a class="sn-link" href="http://wiki.sensenet.com/index.php?title=Active_Directory_Synchronization" target="_blank"><span>»</span> Wiki on integration</a></div>
+</li>
+<li id="itpro">
+  <a href="http://wiki.sensenet.com/index.php?title=Backup_Tool" target="_blank">
+    <img src="/Root/YourContents/Images/features/operator.jpg">
+    <div class="desc">
+     Sense/Net is very easy to operate. It is a standard ASP.NET application, connected to an SQL database. Once set up, it practically does not need any maintenance, other than monitoring, patching and regular backup of the database.
+    </div>
+    <h1>Hassle free maintenance</h1>
+  </a>
+ Sense/Net requires very little attention from system operators; a regular backup is all you need.   
+  <div><a class="sn-link" href="http://wiki.sensenet.com/index.php?title=Backup_Tool" target="_blank"><span>»</span> Wiki on operation</a></div>
+</li>
+<li id="opensource" class="last">
+  <a href="http://www.sensenet.com/sensenet-ecm/licencing" target="_blank">
+    <img src="/Root/YourContents/Images/features/opensource.jpg">
+    <div class="desc">
+     Having the source code is like having the ultimate documentation. Having the right to change the source code is like insurance against hitting walls and risking project success.
+    </div>
+    <h1>Free and Open</h1>
+  </a>
+ Avoid hitting walls with the ultimate documentation, the complete source code.   
+  <div><a class="sn-link" href="http://www.sensenet.com/sensenet-ecm/licencing" target="_blank"><span>»</span> Licencing</a></div>
+</li>
+</ul>​​​​​]]></HTMLFragment>
+    <ReviewDate>0001-01-01T00:00:00</ReviewDate>
+    <ArchiveDate>0001-01-01T00:00:00</ArchiveDate>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <DisplayName><![CDATA[features]]></DisplayName>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+    <CreatedBy>
+      <Path>/Root/IMS/BuiltIn/Portal/Admin</Path>
+    </CreatedBy>
+    <CreationDate>2012-05-21T10:01:00.263</CreationDate>
+    <ModifiedBy>
+      <Path>/Root/IMS/BuiltIn/Portal/Admin</Path>
+    </ModifiedBy>
+    <ModificationDate>2012-05-21T16:01:10.497</ModificationDate>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

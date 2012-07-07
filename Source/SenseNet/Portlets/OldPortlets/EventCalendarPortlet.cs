@@ -16,11 +16,11 @@ namespace SenseNet.Portal.Portlets
         private string _contentViewPath = "/Root/System/SystemPlugins/Portlets/EventCalendar/EventCalendar.ascx";
 
         [WebBrowsable(true), Personalizable(true)]
-        [WebDisplayName("View path")]
-        [WebDescription("Path of the .ascx user control which provides the elements of the portlet")]
+        [LocalizedWebDisplayName(PORTLETFRAMEWORK_CLASSNAME, RENDERER_DISPLAYNAME)]
+        [LocalizedWebDescription(PORTLETFRAMEWORK_CLASSNAME, RENDERER_DESCRIPTION)]
         [WebCategory(EditorCategory.UI, EditorCategory.UI_Order)]
-        [Editor(typeof(ContentPickerEditorPartField), typeof(IEditorPartField))]
-        [ContentPickerEditorPartOptions(ContentPickerCommonType.Ascx)]
+        [Editor(typeof(ViewPickerEditorPartField), typeof(IEditorPartField))]
+        [ContentPickerEditorPartOptions(PortletViewType.Ascx)]
         [WebOrder(100)]
         public virtual string ContentViewPath
         {
@@ -40,6 +40,8 @@ namespace SenseNet.Portal.Portlets
             Name = "Event calendar";
             Description = "Portlet for handling events in calendar view (context bound)";
             Category = new PortletCategory(PortletCategoryType.Application);
+
+            this.HiddenProperties.Add("Renderer");
         }
 
         private void CreateControls()

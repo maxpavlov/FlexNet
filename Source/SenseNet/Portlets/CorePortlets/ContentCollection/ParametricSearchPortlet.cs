@@ -44,11 +44,11 @@ namespace SenseNet.Portal.Portlets.ContentCollection
         /// </summary>
         /// <value>The input renderer. It must be an ascx containing search boxes and a search button.</value>
         [WebBrowsable(true), Personalizable(true)]
-        [WebDisplayName("Input Renderer")]
-        [WebDescription("The form to be rendered for user input")]
+        [WebDisplayName("Search form view")]
+        [WebDescription("Select an .ascx view for rendering the search form")]
         [WebCategory(EditorCategory.UI, EditorCategory.UI_Order)]
         [WebOrder(1005)]
-        [Editor(typeof(ContentPickerEditorPartField), typeof(IEditorPartField)), ContentPickerEditorPartOptions(ContentPickerCommonType.Ascx)]
+        [Editor(typeof(ViewPickerEditorPartField), typeof(IEditorPartField)), ContentPickerEditorPartOptions(ContentPickerCommonType.Ascx)]
         public string InputRenderer
         {
             get { return string.IsNullOrEmpty(inputRendererPath) ? DefaultInputRenderer : inputRendererPath; }

@@ -8,7 +8,7 @@ using System.Threading;
 namespace SenseNet.Search.Indexing.Activities
 {
     [Serializable]
-    public class BackupActivity : DistributedLuceneActivity
+    internal class BackupActivity : DistributedLuceneActivity
     {
         private string _machine;
         public string _appDomain;
@@ -19,7 +19,7 @@ namespace SenseNet.Search.Indexing.Activities
             _appDomain = appDomain;
         }
 
-        public override void Execute()
+        internal override void Execute()
         {
             if (Environment.MachineName == _machine && AppDomain.CurrentDomain.FriendlyName == _appDomain)
             {

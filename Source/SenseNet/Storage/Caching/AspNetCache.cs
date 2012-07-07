@@ -23,65 +23,38 @@ namespace SenseNet.ContentRepository.Storage.Caching
 
         public enum TraceVerbosity { Silent, Basic, Verbose };
 
-        //public TraceVerbosity Verbosity { get; set; }
-
         private System.Web.Caching.Cache _cache;
 
-        public AspNetCache()// : this(TraceVerbosity.Silent)
+        public AspNetCache()
         {
             _cache = HttpRuntime.Cache;
-            if (ConfigurationManager.AppSettings["DisableCache"] == "true")
-                Logger.WriteInformation("Cache Disabled.");
         }
-
-        //public AspNetCache(TraceVerbosity verbosity)
-        //{
-        //    _cache = HttpRuntime.Cache;
-        //    Verbosity = verbosity;
-        //}
-
 
         public override object Get(string key)
         {
-            if (ConfigurationManager.AppSettings["DisableCache"] == "true")
-                return null;
             return _cache.Get(key);
         }
 
         public override void Insert(string key, object value)
         {
-            //Logger.WriteVerbose("Cache Insert", new Dictionary<string, object>() { { "Key", key }, { "Value", value } });
             _cache.Insert(key, value);
         }
-
-        public override void Remove(string key)
-        {
-            //Logger.WriteVerbose("Cache Remove", new Dictionary<string, object>() { { "Key", key } });
-            _cache.Remove(key);
-        }
-
 
         public override void Insert(string key, object value, CacheDependency dependencies,
             DateTime absoluteExpiration, TimeSpan slidingExpiration, CacheItemPriority priority,
             CacheItemRemovedCallback onRemoveCallback)
         {
-            //Logger.WriteVerbose("Cache Insert", CollectInsertedEntryProperties, new object[] { key, absoluteExpiration, slidingExpiration, priority, value });
             _cache.Insert(key, value, dependencies, absoluteExpiration, slidingExpiration, priority, onRemoveCallback);
         }
-        //private static IDictionary<string, object> CollectInsertedEntryProperties(object[] values)
-        //{
-        //    return new Dictionary<string, object>() { 
-        //        { "Key", values[0] }, 
-        //        { "AbsoluteExpiration", values[1] },
-        //        { "SlidingExpiration", values[2] },
-        //        { "Priority", values[3] },
-        //        { "Value", values[4] }
-        //    };
-        //}
+
+        public override void Remove(string key)
+        {
+            _cache.Remove(key);
+        }
 
         public override void Reset()
         {
-            Logger.WriteInformation("Cache Reset.");
+            Logger.WriteInformation("Cache Reset. StackTrace: " + System.Environment.StackTrace);
 
             List<string> keys = new List<string>();
             lock (_lockObject)
@@ -119,15 +92,20 @@ namespace SenseNet.ContentRepository.Storage.Caching
         {
             get
             {
-                Logger.WriteVerbose("Cache indexed Get.", new Dictionary<string, object> { { "Key", key } });
                 return _cache[key];
             }
             set
             {
-                Logger.WriteVerbose("Cache indexed Set.", new Dictionary<string, object> { { "Key", key } });
                 _cache[key] = value;
             }
         }
-    }
 
+        public string WhatIsInTheCache() //-- for tests
+        {
+            var sb = new StringBuilder();
+            foreach (DictionaryEntry x in _cache)
+                sb.AppendLine(x.Key.ToString());
+            return sb.ToString();
+        }
+    }
 }

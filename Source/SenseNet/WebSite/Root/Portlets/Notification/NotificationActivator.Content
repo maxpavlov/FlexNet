@@ -8,7 +8,7 @@
     <ImageRef />
     <ImageData attachment="NotificationActivator.ImageData" />
     <Hidden>false</Hidden>
-    <DisplayName>NotificationActivator</DisplayName>
+    <DisplayName>Notification activator</DisplayName>
     <Index>0</Index>
     <EnableLifespan>false</EnableLifespan>
     <ValidFrom>0001-01-01T00:00:00</ValidFrom>

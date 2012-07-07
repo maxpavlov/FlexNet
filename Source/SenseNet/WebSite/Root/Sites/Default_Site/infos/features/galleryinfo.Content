@@ -9,7 +9,7 @@
     <Header><![CDATA[]]></Header>
     <Body>
       <![CDATA[<div class="sn-infobox"><h1 class="sn-content-title sn-article-title"><img src="/Root/Global/images/icons/32/info.png" class="sn-icon sn-icon_32" alt="" />Gallery</h1>
-      <p>This page is an example of a gallery based on a special content type (<em>ImageGalleryLight</em>), presented with a content collection portlet using a custom renderer.</p>
+      <p>This page is an example of a gallery based on a special content type (<em>ImageLibrary</em>), presented with a Content list portlet using a custom renderer.</p>
       <ul>
       <li><strong>You need to be logged in as Administrator to see or modify portlet properties, or edit the files below.</strong></li>
       <li>This is a custom portlet page: <em><a href="/Explore.html#/Root/Sites/Default_Site/features/gallery">/Root/Sites/Default_Site/features/gallery</a></em></li>

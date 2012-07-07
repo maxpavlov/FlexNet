@@ -1,22 +1,27 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="false" Inherits="System.Web.UI.UserControl" %>
 <%@ Import Namespace="SenseNet.Portal.Virtualization" %>
+<%@ Import Namespace="SenseNet.ContentRepository" %>
 <%@ Import Namespace="SenseNet.ContentRepository.Storage" %>
 
 <sn:ContextInfo runat="server" ID="ContextInfoContent" Selector="CurrentContent" />
 
+<%
+    var currentList = PortalContext.Current.ContextNode as ContentList;
+     %>
+
 <div class="sn-content sn-content-inlineview">
         <div class="sn-inputunit ui-helper-clearfix">
             <div class="sn-iu-label">
-                <div class="sn-iu-title">Document Library name</div>                    
+                <div class="sn-iu-title"><%= currentList.ContentType.DisplayName %> name</div>                    
             </div>
             <div class="sn-iu-control">
                 <%= PortalContext.Current.ContextNode.Name %>
             </div>
             <div class="sn-iu-label">
-                <div class="sn-iu-title">Document Library title</div>
+                <div class="sn-iu-title"><%= currentList.ContentType.DisplayName %> title</div>
             </div>
             <div class="sn-iu-control">
-                <%= ((SenseNet.ContentRepository.GenericContent)PortalContext.Current.ContextNode).DisplayName %>
+                <%= currentList.DisplayName%>
             </div>
             <div class="sn-iu-label">
                 <div class="sn-iu-title">Path</div>

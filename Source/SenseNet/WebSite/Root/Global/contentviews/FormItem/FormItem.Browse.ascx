@@ -1,4 +1,4 @@
-<%@  Language="C#" AutoEventWireup="true" Inherits="SenseNet.Portal.UI.SingleContentView" %>
+<%@  Language="C#" AutoEventWireup="true" Inherits="SenseNet.Portal.UI.SingleContentView" EnableViewState="false" %>
 <div class="sn-form ui-helper-clearfix">
      
     <h2 class="sn-form-title">

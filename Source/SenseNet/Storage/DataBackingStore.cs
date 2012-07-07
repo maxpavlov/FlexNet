@@ -17,8 +17,8 @@ using SenseNet.ContentRepository.Storage.Search;
 
 namespace SenseNet.ContentRepository.Storage
 {
-	public static class DataBackingStore
-	{
+    public static class DataBackingStore
+    {
         private static object _indexDocumentProvider_Sync = new object();
         private static IIndexDocumentProvider __indexDocumentProvider;
         private static IIndexDocumentProvider IndexDocumentProvider
@@ -44,60 +44,35 @@ namespace SenseNet.ContentRepository.Storage
 
         //====================================================================== Get NodeHead
 
-		internal static NodeHead GetNodeHead(int nodeId)
-		{
+        internal static NodeHead GetNodeHead(int nodeId)
+        {
             string idKey = CreateNodeHeadIdCacheKey(nodeId);
-            NodeHead item = (NodeHead) DistributedApplication.Cache.Get(idKey);
+            NodeHead item = (NodeHead)DistributedApplication.Cache.Get(idKey);
 
-			if (item == null)
-			{
-				item = DataProvider.Current.LoadNodeHead(nodeId);
-				if (item != null)
-				{
-					string pathKey = CreateNodeHeadPathCacheKey(item.Path);
-					var dependencyForPathKey = CacheDependencyFactory.CreateNodeHeadDependency(item);
-					var dependencyForIdKey = CacheDependencyFactory.CreateNodeHeadDependency(item);
-					DistributedApplication.Cache.Insert(idKey, item, dependencyForIdKey);
-					DistributedApplication.Cache.Insert(pathKey, item, dependencyForPathKey);
-				}
-			}
+            if (item == null)
+            {
+                item = DataProvider.Current.LoadNodeHead(nodeId);
+                if (item != null)
+                    CacheNodeHead(item, idKey, CreateNodeHeadPathCacheKey(item.Path));
+            }
 
             return item;
-		}
-
-        private class NullNodeHead : NodeHead
-        {
         }
-
-		internal static NodeHead GetNodeHead(string path)
-		{
+        internal static NodeHead GetNodeHead(string path)
+        {
             string pathKey = CreateNodeHeadPathCacheKey(path);
             NodeHead item = (NodeHead)DistributedApplication.Cache.Get(pathKey);
 
-			if (item == null)
-			{
-				item = DataProvider.Current.LoadNodeHead(path);
+            if (item == null)
+            {
+                item = DataProvider.Current.LoadNodeHead(path);
                 if (item != null)
-                {
-                    string idKey = CreateNodeHeadIdCacheKey(item.Id);
-                    var dependencyForPathKey = CacheDependencyFactory.CreateNodeHeadDependency(item);
-                    var dependencyForIdKey = CacheDependencyFactory.CreateNodeHeadDependency(item);
-                    DistributedApplication.Cache.Insert(idKey, item, dependencyForIdKey);
-                    DistributedApplication.Cache.Insert(pathKey, item, dependencyForPathKey);
-                }
-                //TODO, TASK: circumvent null entry caching issues
-                //else
-                //{
-                //    DistributedApplication.Cache.Insert(pathKey, new NullNodeHead(), new PathDependency(path));
-                //}
-			}
-            //if (item is NullNodeHead)
-            //    item = null;
+                    CacheNodeHead(item, CreateNodeHeadIdCacheKey(item.Id), pathKey);
+            }
             return item;
-		}
-
-		internal static IEnumerable<NodeHead> GetNodeHeads(IEnumerable<int> idArray)
-		{
+        }
+        internal static IEnumerable<NodeHead> GetNodeHeads(IEnumerable<int> idArray)
+        {
             var nodeHeads = new List<NodeHead>();
             var unloadHeads = new List<int>();
             foreach (var id in idArray)
@@ -111,170 +86,209 @@ namespace SenseNet.ContentRepository.Storage
             }
 
             if (unloadHeads.Count > 0)
+            {
+                var needsSorting = nodeHeads.Count > 0;
+
                 foreach (var head in DataProvider.Current.LoadNodeHeads(unloadHeads))
                 {
                     if (head != null)
-                    {
-                        string idKey = CreateNodeHeadIdCacheKey(head.Id);
-                        string pathKey = CreateNodeHeadPathCacheKey(head.Path);
-                        var dependencyForPathKey = CacheDependencyFactory.CreateNodeHeadDependency(head);
-                        var dependencyForIdKey = CacheDependencyFactory.CreateNodeHeadDependency(head);
-                        DistributedApplication.Cache.Insert(idKey, head, dependencyForIdKey);
-                        DistributedApplication.Cache.Insert(pathKey, head, dependencyForPathKey);
-                    }
+                        CacheNodeHead(head, CreateNodeHeadIdCacheKey(head.Id), CreateNodeHeadPathCacheKey(head.Path));
                     nodeHeads.Add(head);
                 }
-            return nodeHeads;
-		}
 
+                //we need to sort the final list only if we have 
+                //node heads from the cache AND the database too 
+                if (needsSorting)
+                {
+                    //sort the node heads aligned with the original list
+                    nodeHeads = (from id in idArray
+                                 join head in nodeHeads.Where(h => h != null)
+                                     on id equals head.Id
+                                 where head != null
+                                 select head).ToList();
+                }
+            }
+            return nodeHeads;
+        }
         internal static NodeHead GetNodeHeadByVersionId(int versionId)
         {
             return DataProvider.Current.LoadNodeHeadByVersionId(versionId);
         }
 
-		//====================================================================== Get Versions
+        internal static void CacheNodeHead(NodeHead nodeHead)
+        {
+            if (nodeHead == null)
+                throw new ArgumentNullException("nodeHead");
+
+            var idKey = CreateNodeHeadIdCacheKey(nodeHead.Id);
+            var item = (NodeHead)DistributedApplication.Cache.Get(idKey);
+
+            if (item != null)
+                return;
+
+            CacheNodeHead(nodeHead, idKey, CreateNodeHeadPathCacheKey(nodeHead.Path));
+        }
+        internal static void CacheNodeHead(NodeHead head, string idKey, string pathKey)
+        {
+            var dependencyForPathKey = CacheDependencyFactory.CreateNodeHeadDependency(head);
+            var dependencyForIdKey = CacheDependencyFactory.CreateNodeHeadDependency(head);
+            DistributedApplication.Cache.Insert(idKey, head, dependencyForIdKey);
+            DistributedApplication.Cache.Insert(pathKey, head, dependencyForPathKey);
+        }
+
+        //====================================================================== Get Versions
 
         internal static NodeHead.NodeVersion[] GetNodeVersions(int nodeId)
         {
             return DataProvider.Current.GetNodeVersions(nodeId);
         }
 
-		//====================================================================== Get NodeData
+        //====================================================================== Get NodeData
 
-		internal static NodeToken GetNodeData(NodeHead head, int versionId)
-		{
-			int listId = head.ContentListId;
-			int listTypeId = head.ContentListTypeId;
+        internal static NodeToken GetNodeData(NodeHead head, int versionId)
+        {
+            int listId = head.ContentListId;
+            int listTypeId = head.ContentListTypeId;
 
             var cacheKey = GenerateNodeDataVersionIdCacheKey(versionId);
-			var nodeData = DistributedApplication.Cache.Get(cacheKey) as NodeData;
+            var nodeData = DistributedApplication.Cache.Get(cacheKey) as NodeData;
 
-			NodeToken token = new NodeToken(head.Id, head.NodeTypeId, listId, listTypeId, versionId, null);
-			token.NodeHead = head;
+            NodeToken token = new NodeToken(head.Id, head.NodeTypeId, listId, listTypeId, versionId, null);
+            token.NodeHead = head;
             if (nodeData == null)
             {
                 DataProvider.Current.LoadNodeData(new NodeToken[] { token });
                 nodeData = token.NodeData;
                 if (nodeData != null) //-- lost version
-                {
-                    var dependency = CacheDependencyFactory.CreateNodeDataDependency(nodeData);
-                    DistributedApplication.Cache.Insert(cacheKey, nodeData, dependency);
-                }
+                    CacheNodeData(nodeData, cacheKey);
             }
             else
             {
                 token.NodeData = nodeData;
             }
-			return token;
-		}
-		internal static NodeToken[] GetNodeData(NodeHead[] headArray, int[] versionIdArray)
+            return token;
+        }
+        internal static NodeToken[] GetNodeData(NodeHead[] headArray, int[] versionIdArray)
         {
             var tokens = new List<NodeToken>();
-			var tokensToLoad = new List<NodeToken>();
-			for (var i = 0; i < headArray.Length; i++)
-			{
-				var head = headArray[i];
-				var versionId = versionIdArray[i];
+            var tokensToLoad = new List<NodeToken>();
+            for (var i = 0; i < headArray.Length; i++)
+            {
+                var head = headArray[i];
+                var versionId = versionIdArray[i];
 
-				int listId = head.ContentListId;
-				int listTypeId = head.ContentListTypeId;
+                int listId = head.ContentListId;
+                int listTypeId = head.ContentListTypeId;
 
-				NodeToken token = new NodeToken(head.Id, head.NodeTypeId, listId, listTypeId, versionId, null);
-				token.NodeHead = head;
-				tokens.Add(token);
+                NodeToken token = new NodeToken(head.Id, head.NodeTypeId, listId, listTypeId, versionId, null);
+                token.NodeHead = head;
+                tokens.Add(token);
 
-				//--
+                //--
 
                 var cacheKey = GenerateNodeDataVersionIdCacheKey(versionId);
-				var nodeData = DistributedApplication.Cache.Get(cacheKey) as NodeData;
+                var nodeData = DistributedApplication.Cache.Get(cacheKey) as NodeData;
 
-				if (nodeData == null)
+                if (nodeData == null)
                     tokensToLoad.Add(token);
-				else
+                else
                     token.NodeData = nodeData;
-			}
-			if (tokensToLoad.Count > 0)
-			{
-				DataProvider.Current.LoadNodeData(tokensToLoad);
-				foreach (var token in tokensToLoad)
-				{
+            }
+            if (tokensToLoad.Count > 0)
+            {
+                DataProvider.Current.LoadNodeData(tokensToLoad);
+                foreach (var token in tokensToLoad)
+                {
                     var nodeData = token.NodeData;
                     if (nodeData != null) //-- lost version
-                    {
-                        var cacheKey = GenerateNodeDataVersionIdCacheKey(token.VersionId);
-                        var dependency = CacheDependencyFactory.CreateNodeDataDependency(nodeData);
-                        DistributedApplication.Cache.Insert(cacheKey, nodeData, dependency);
-                    }
-				}
-			}
+                        CacheNodeData(nodeData);
+                }
+            }
             return tokens.ToArray();
-		}
-		//---- when create new
-		internal static NodeData CreateNewNodeData(Node parent, NodeType nodeType, ContentListType listType, int listId)
-		{
-			var listTypeId = listType == null ? 0 : listType.Id;
-			var parentId = parent == null ? 0 : parent.Id;
+        }
+        //---- when create new
+        internal static NodeData CreateNewNodeData(Node parent, NodeType nodeType, ContentListType listType, int listId)
+        {
+            var listTypeId = listType == null ? 0 : listType.Id;
+            var parentId = parent == null ? 0 : parent.Id;
             var userId = AccessProvider.Current.GetOriginalUser().Id;
             var name = String.Concat(nodeType.Name, "-", DateTime.Now.ToString("yyyyMMddHHmmss")); //Guid.NewGuid().ToString();
-			var path = (parent == null) ? "/" + name : RepositoryPath.Combine(parent.Path, name);
-			var now = DateTime.Now;
-			var versionNumber = new VersionNumber(1, 0, VersionStatus.Approved);
-			//---- when create new
-			var privateData = new NodeData(nodeType, listType)
-			{
-				IsShared = false,
-				SharedData = null,
+            var path = (parent == null) ? "/" + name : RepositoryPath.Combine(parent.Path, name);
+            var now = DateTime.Now;
+            var versionNumber = new VersionNumber(1, 0, VersionStatus.Approved);
+            //---- when create new
+            var privateData = new NodeData(nodeType, listType)
+            {
+                IsShared = false,
+                SharedData = null,
 
-				Id = 0,
-				NodeTypeId = nodeType.Id,
-				ContentListTypeId = listTypeId,
-				ContentListId = listId,
+                Id = 0,
+                NodeTypeId = nodeType.Id,
+                ContentListTypeId = listTypeId,
+                ContentListId = listId,
 
-				ParentId = parentId,
-				Name = name,
-				Path = path,
-				Index = 0,
+                ParentId = parentId,
+                Name = name,
+                Path = path,
+                Index = 0,
                 IsDeleted = false,
                 IsInherited = true,
 
-				NodeCreationDate = now,
-				NodeModificationDate = now,
-				NodeCreatedById = userId,
-				NodeModifiedById = userId,
+                NodeCreationDate = now,
+                NodeModificationDate = now,
+                NodeCreatedById = userId,
+                NodeModifiedById = userId,
 
-				VersionId = 0,
-				Version = versionNumber,
-				CreationDate = now,
-				ModificationDate = now,
-				CreatedById = userId,
-				ModifiedById = userId,
+                VersionId = 0,
+                Version = versionNumber,
+                CreationDate = now,
+                ModificationDate = now,
+                CreatedById = userId,
+                ModifiedById = userId,
 
-				Locked = false,
-				LockedById = 0,
-				ETag = null,
-				LockType = 0,
-				LockTimeout = 0,
-				LockDate = DataProvider.Current.DateTimeMinValue,
-				LockToken = null,
-				LastLockUpdate = DataProvider.Current.DateTimeMinValue,
-			};
+                Locked = false,
+                LockedById = 0,
+                ETag = null,
+                LockType = 0,
+                LockTimeout = 0,
+                LockDate = DataProvider.Current.DateTimeMinValue,
+                LockToken = null,
+                LastLockUpdate = DataProvider.Current.DateTimeMinValue,
+            };
             privateData.ModificationDateChanged = false;
             privateData.ModifiedByIdChanged = false;
             privateData.NodeModificationDateChanged = false;
             privateData.NodeModifiedByIdChanged = false;
-			return privateData;
-		}
+            return privateData;
+        }
 
-		//====================================================================== 
+        internal static void CacheNodeData(NodeData nodeData, string cacheKey = null)
+        {
+            if (nodeData == null)
+                throw new ArgumentNullException("nodeData");
+            if (cacheKey == null)
+                cacheKey = GenerateNodeDataVersionIdCacheKey(nodeData.VersionId);
+            var dependency = CacheDependencyFactory.CreateNodeDataDependency(nodeData);
+            DistributedApplication.Cache.Insert(cacheKey, nodeData, dependency);
+        }
+        public static bool IsInCache(NodeData nodeData) //for tests
+        {
+            if (nodeData == null)
+                throw new ArgumentNullException("nodeData");
+            var cacheKey = GenerateNodeDataVersionIdCacheKey(nodeData.VersionId);
+            return DistributedApplication.Cache.Get(cacheKey) as NodeData != null;
+        }
 
-		internal static object LoadProperty(int versionId, PropertyType propertyType)
-		{
-			if (propertyType.DataType == DataType.Text)
-				return DataProvider.Current.LoadTextPropertyValue(versionId, propertyType.Id);
-			if(propertyType.DataType == DataType.Binary)
-				return DataProvider.Current.LoadBinaryPropertyValue(versionId, propertyType.Id);
-			return propertyType.DefaultValue;
-		}
+        //====================================================================== 
+
+        internal static object LoadProperty(int versionId, PropertyType propertyType)
+        {
+            if (propertyType.DataType == DataType.Text)
+                return DataProvider.Current.LoadTextPropertyValue(versionId, propertyType.Id);
+            if (propertyType.DataType == DataType.Binary)
+                return DataProvider.Current.LoadBinaryPropertyValue(versionId, propertyType.Id);
+            return propertyType.DefaultValue;
+        }
         internal static RepositoryStream GetBinaryStream2(int nodeId, int versionId, int propertyTypeId)
         {
             if (TransactionScope.IsActive)
@@ -290,7 +304,7 @@ namespace SenseNet.ContentRepository.Storage
             // Nézzük meg a cache-ben ezt az adatot először...
             string cacheKey = string.Concat("RawBinary.", versionId, ".", propertyTypeId);
 
-            var binaryCacheEntity = (BinaryCacheEntity) DistributedApplication.Cache.Get(cacheKey);
+            var binaryCacheEntity = (BinaryCacheEntity)DistributedApplication.Cache.Get(cacheKey);
 
             if (binaryCacheEntity == null)
             {
@@ -322,10 +336,15 @@ namespace SenseNet.ContentRepository.Storage
             return stream;
         }
 
-		//====================================================================== Transaction callback
+        //====================================================================== Transaction callback
 
         internal static void OnNodeDataCommit(NodeDataParticipant participant)
-		{
+        {
+            //Do not fire any events if the node is new: 
+            //it cannot effect any other content
+            if (participant.IsNewNode)
+                return;
+
             var data = participant.Data;
 
             //var setting = participant.Settings;
@@ -336,28 +355,28 @@ namespace SenseNet.ContentRepository.Storage
             ////foreach (var nodeId in setting.InvalidatingVersionIds)
             ////    ??();
 
-			// Remove items from Cache by the OriginalPath, before getting an update
-			// of a - occassionally differring - path from the database
-			if (data.PathChanged)
-			{
-				PathDependency.FireChanged(data.OriginalPath);
-			}
-
-			if (data.ContentListTypeId != 0 && data.ContentListId == 0)
-			{
-                // If list, invalidate full subtree
-				PathDependency.FireChanged(data.Path);
+            // Remove items from Cache by the OriginalPath, before getting an update
+            // of a - occassionally differring - path from the database
+            if (data.PathChanged)
+            {
+                PathDependency.FireChanged(data.OriginalPath);
             }
-			else
-			{
+
+            if (data.ContentListTypeId != 0 && data.ContentListId == 0)
+            {
+                // If list, invalidate full subtree
+                PathDependency.FireChanged(data.Path);
+            }
+            else
+            {
                 // If not a list, invalidate item
-				NodeIdDependency.FireChanged(data.Id);
-			}
-		}
+                NodeIdDependency.FireChanged(data.Id);
+            }
+        }
         internal static void OnNodeDataRollback(NodeDataParticipant participant)
-		{
-			participant.Data.Rollback();
-		}
+        {
+            participant.Data.Rollback();
+        }
 
         //====================================================================== Break permission inheritance
 
@@ -374,7 +393,7 @@ namespace SenseNet.ContentRepository.Storage
             PathDependency.FireChanged(node.Path);
         }
 
-		//====================================================================== Cache Key factory
+        //====================================================================== Cache Key factory
 
         private static readonly string NODE_HEAD_PREFIX = "NodeHeadCache.";
         private static readonly string NODE_DATA_PREFIX = "NodeData.";
@@ -404,18 +423,20 @@ namespace SenseNet.ContentRepository.Storage
         private const int maxDeadlockIterations = 3;
         private const int sleepIfDeadlock = 1000;
 
-        internal static void SaveNodeData(Node node, NodeSaveSettings settings)
+        internal static void SaveNodeData(Node node, NodeSaveSettings settings, out IndexDocumentData indexDocument)
         {
+            indexDocument = null;
+
             var isNewNode = node.Id == 0;
             var data = node.Data;
             var deadlockCount = 0;
             var isDeadlock = false;
             while (deadlockCount++ < maxDeadlockIterations)
             {
-                isDeadlock = !SaveNodeDataTransactional(node, settings);
+                isDeadlock = !SaveNodeDataTransactional(node, settings, out indexDocument);
                 if (!isDeadlock)
                     break;
-                Logger.WriteVerbose("Deadlock detected in SaveNodeData", 
+                Logger.WriteWarning("Deadlock detected in SaveNodeData",
                     new Dictionary<string, object> { { "Id: ", node.Id }, { "Path: ", node.Path }, { "Version: ", node.Version } });
                 System.Threading.Thread.Sleep(sleepIfDeadlock);
             }
@@ -425,8 +446,10 @@ namespace SenseNet.ContentRepository.Storage
             else
                 Logger.WriteVerbose("Node updated.", CollectLoggerProperties, data);
         }
-        private static bool SaveNodeDataTransactional(Node node, NodeSaveSettings settings)
+        private static bool SaveNodeDataTransactional(Node node, NodeSaveSettings settings, out IndexDocumentData indexDocument)
         {
+            indexDocument = null;
+
             var data = node.Data;
             var isNewNode = data.Id == 0;
             var isLocalTransaction = !TransactionScope.IsActive;
@@ -435,12 +458,34 @@ namespace SenseNet.ContentRepository.Storage
             try
             {
                 data.CreateSnapshotData();
-                var participant = new NodeDataParticipant { Data = data, Settings = settings };
+                var participant = new NodeDataParticipant { Data = data, Settings = settings, IsNewNode = isNewNode };
                 TransactionScope.Participate(participant);
 
-                DataProvider.Current.SaveNodeData(data, settings);
-                if(!settings.DeletableVersionIds.Contains(node.VersionId))
-                    SaveIndexDocument(node);
+                int lastMajorVersionId, lastMinorVersionId;
+                DataProvider.Current.SaveNodeData(data, settings, out lastMajorVersionId, out lastMinorVersionId);
+
+                //-- here we re-create the node head to insert it into the cache and refresh the version info
+                if (lastMajorVersionId > 0 || lastMinorVersionId > 0)
+                {
+                    var head = NodeHead.CreateFromNode(node, lastMinorVersionId, lastMajorVersionId);
+                    if (MustCache(node.NodeType))
+                    {
+                        //-- participate cache items
+                        var idKey = CreateNodeHeadIdCacheKey(head.Id);
+                        var participant2 = new InsertCacheParticipant { CacheKey = idKey };
+                        TransactionScope.Participate(participant2);
+                        var pathKey = CreateNodeHeadPathCacheKey(head.Path);
+                        var participant3 = new InsertCacheParticipant { CacheKey = pathKey };
+                        TransactionScope.Participate(participant3);
+
+                        CacheNodeHead(head, idKey, pathKey);
+                    }
+
+                    node.RefreshVersionInfo(head);
+
+                    if (!settings.DeletableVersionIds.Contains(node.VersionId))
+                        indexDocument = SaveIndexDocument(node);
+                }
 
                 if (isLocalTransaction)
                     TransactionScope.Commit();
@@ -466,6 +511,14 @@ namespace SenseNet.ContentRepository.Storage
             }
             return true;
         }
+        private static bool MustCache(NodeType nodeType)
+        {
+            if (RepositoryConfiguration.CacheContentAfterSaveMode != RepositoryConfiguration.CacheContentAfterSaveOption.Containers)
+                return RepositoryConfiguration.CacheContentAfterSaveMode == RepositoryConfiguration.CacheContentAfterSaveOption.All ? true : false;
+            //return nodeType.IsInstaceOfOrDerivedFrom("Folder");
+            var type = TypeHandler.GetType(nodeType.ClassName);
+            return typeof(IFolder).IsAssignableFrom(type);
+        }
         private static bool IsDeadlockException(System.Data.Common.DbException e)
         {
             // Avoid [SqlException (0x80131904): Transaction (Process ID ??) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction.
@@ -487,7 +540,7 @@ namespace SenseNet.ContentRepository.Storage
             var isMessageDeadlock = !messageParts.Where(msgPart => !currentMessage.Contains(msgPart)).Any();
 
             if (sqlEx != null && isMessageDeadlock != isDeadLock)
-                throw new Exception(String.Concat("Incorrect deadlock analisys",
+                throw new Exception(String.Concat("Incorrect deadlock analysis",
                     ". Number: ", sqlExNumber,
                     ". ErrorCode: ", sqlExErrorCode,
                     ". Errors.Count: ", sqlEx.Errors.Count,
@@ -509,7 +562,7 @@ namespace SenseNet.ContentRepository.Storage
                     appExc.Data.Add("OriginalPath", data.OriginalPath);
 
                     //if (catchedEx.Message.StartsWith("Cannot insert duplicate key"))
-                        appExc.Data.Add("ErrorCode", "ExistingNode");
+                    appExc.Data.Add("ErrorCode", "ExistingNode");
                     return appExc;
                 }
                 return catchedEx;
@@ -529,17 +582,68 @@ namespace SenseNet.ContentRepository.Storage
 
         //====================================================================== Index document save / load operations
 
-        public static void SaveIndexDocument(Node node)
+        public static IndexDocumentData SaveIndexDocument(Node node)
         {
             if (node.Id == 0)
                 throw new NotSupportedException("Cannot save the indexing information before node is not saved.");
+
+            node.MakePrivateData(); // this is important because version timestamp will be changed.
+
             var doc = IndexDocumentProvider.GetIndexDocumentInfo(node);
+            long? docSize = null;
+            byte[] bytes;
             if (doc != null)
-                SaveIndexDocument(node, doc);
+            {
+                using (var docStream = new MemoryStream())
+                {
+                    var formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                    formatter.Serialize(docStream, doc);
+                    docStream.Flush();
+                    docStream.Position = 0;
+                    docSize = docStream.Length;
+                    bytes = docStream.GetBuffer();
+                    DataProvider.SaveIndexDocument(node.Data, bytes);
+                }
+            }
+            else
+            {
+                bytes = new byte[0];
+            }
+            return CreateIndexDocumentData(node, bytes, docSize);
         }
-        private static void SaveIndexDocument(Node node, object document)
+        internal static IndexDocumentData CreateIndexDocumentData(Node node, object indexDocumentInfo, long? indexDocumentInfoSize)
         {
-            DataProvider.SaveIndexDocument(node.Data, document);
+            return new IndexDocumentData
+            {
+                NodeTypeId = node.NodeTypeId,
+                VersionId = node.VersionId,
+                NodeId = node.Id,
+                ParentId = node.ParentId,
+                Path = node.Path,
+                IsLastDraft = node.IsLatestVersion,
+                IsLastPublic = node.IsLastPublicVersion,
+                IndexDocumentInfo = indexDocumentInfo,
+                IndexDocumentInfoSize = indexDocumentInfoSize,
+                NodeTimestamp = node.NodeTimestamp,
+                VersionTimestamp = node.VersionTimestamp
+            };
+        }
+        internal static IndexDocumentData CreateIndexDocumentData(Node node, byte[] bytes, long? indexDocumentInfoSize)
+        {
+            return new IndexDocumentData
+            {
+                NodeTypeId = node.NodeTypeId,
+                VersionId = node.VersionId,
+                NodeId = node.Id,
+                ParentId = node.ParentId,
+                Path = node.Path,
+                IsLastDraft = node.IsLatestVersion,
+                IsLastPublic = node.IsLastPublicVersion,
+                IndexDocumentInfoBytes = bytes,
+                IndexDocumentInfoSize = indexDocumentInfoSize,
+                NodeTimestamp = node.NodeTimestamp,
+                VersionTimestamp = node.VersionTimestamp
+            };
         }
 
         //====================================================================== Index backup / restore operations

@@ -25,10 +25,10 @@ namespace SenseNet.Portal.Portlets
         /// Gets or sets the user interface path of the LoginView state of the portlet.
         /// </summary>
         [WebBrowsable(true), Personalizable(true)]
-        [WebDisplayName("Login view path")]
-        [WebDescription("Path of the .ascx user control which provides the UI elements of the portlet")]
+        [LocalizedWebDisplayName(PORTLETFRAMEWORK_CLASSNAME, RENDERER_DISPLAYNAME)]
+        [LocalizedWebDescription(PORTLETFRAMEWORK_CLASSNAME, RENDERER_DESCRIPTION)]
         [WebCategory(EditorCategory.Login, EditorCategory.Login_Order)]
-        [Editor(typeof(ContentPickerEditorPartField), typeof(IEditorPartField))]
+        [Editor(typeof(ViewPickerEditorPartField), typeof(IEditorPartField))]
         [ContentPickerEditorPartOptions(ContentPickerCommonType.Ascx)]
         public string LoginViewPath
         {
@@ -72,6 +72,8 @@ namespace SenseNet.Portal.Portlets
             this.Name = "Login";
             this.Description = "Users can log in and out using this portlet";
             this.Category = new PortletCategory(PortletCategoryType.Portal);
+
+            this.HiddenProperties.Add("Renderer");
         }
 
 
@@ -79,6 +81,9 @@ namespace SenseNet.Portal.Portlets
 
         protected override void CreateChildControls()
         {
+            if (ShowExecutionTime)
+                Timer.Start();
+
             Controls.Clear();
             bool redirecting = HandleSSOSignOffCommand();
             if (!redirecting)
@@ -86,6 +91,9 @@ namespace SenseNet.Portal.Portlets
                 CreateLoginView();
             }
             ChildControlsCreated = true;
+
+            if (ShowExecutionTime)
+                Timer.Stop();
         }
 
         #region SSOSignOff
@@ -189,93 +197,5 @@ namespace SenseNet.Portal.Portlets
             throw new NotImplementedException();
         }
 
-    }
-
-    public class LoginInfo
-    {
-        public string UserName { get; set; }
-        public string Message { get; set; }
-    }
-    public class CancellableLoginInfo : LoginInfo
-    {
-        private bool _cancel;
-        public bool Cancel
-        {
-            get { return _cancel; }
-            set { _cancel |= value; }
-        }
-    }
-    public abstract class LoginExtender
-    {
-        public virtual void LoggingIn(CancellableLoginInfo info)
-        {
-            // do nothing
-        }
-        public virtual void LoggedIn(LoginInfo info)
-        {
-            // do nothing
-        }
-        public virtual void LoggingOut(CancellableLoginInfo info)
-        {
-            // do nothing
-        }
-        public virtual void LoggedOut(LoginInfo info)
-        {
-            // do nothing
-        }
-        public virtual void LoginError(LoginInfo info)
-        {
-            // do nothing
-        }
-
-        //==========================================================
-
-        private static object _sync = new object();
-        private static Type[] __extenderTypes;
-        private static Type[] ExtenderTypes
-        {
-            get
-            {
-                if (__extenderTypes == null)
-                    lock (_sync)
-                        if (__extenderTypes == null)
-                            __extenderTypes = TypeHandler.GetTypesByBaseType(typeof(LoginExtender));
-                return __extenderTypes;
-            }
-        }
-
-        internal static void OnLoggingIn(CancellableLoginInfo info)
-        {
-            foreach (var extender in GetLoginExtenders())
-                extender.LoggingIn(info);
-        }
-        internal static void OnLoggedIn(LoginInfo info)
-        {
-            foreach (var extender in GetLoginExtenders())
-                extender.LoggedIn(info);
-        }
-        internal static void OnLoggingOut(CancellableLoginInfo info)
-        {
-            foreach (var extender in GetLoginExtenders())
-                extender.LoggingOut(info);
-        }
-        internal static void OnLoggedOut(LoginInfo info)
-        {
-            foreach (var extender in GetLoginExtenders())
-                extender.LoggedOut(info);
-        }
-        internal static void OnLoginError(LoginInfo info)
-        {
-            foreach (var extender in GetLoginExtenders())
-                extender.LoginError(info);
-        }
-        private static IEnumerable<LoginExtender> GetLoginExtenders()
-        {
-            foreach (var extenderType in ExtenderTypes)
-            {
-                var extender = (LoginExtender)Activator.CreateInstance(extenderType);
-                yield return extender;
-            }
-        }
     }
 }

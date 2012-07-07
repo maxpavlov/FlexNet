@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Web.UI.WebControls.WebParts;
 using SenseNet.Portal.UI.PortletFramework;
@@ -51,6 +52,9 @@ namespace SenseNet.Portal.Portlets
             Name = "Status Code";
             Description = "Portlet for setting status code on page after rendering.";
             Category = new PortletCategory(PortletCategoryType.Application);
+
+            this.HiddenPropertyCategories = new List<string>() { "Content XML" };
+            this.HiddenProperties.AddRange(new [] { "PortletChromeType", "Renderer", "SkinPreFix" });
         }
 
         /// <summary>

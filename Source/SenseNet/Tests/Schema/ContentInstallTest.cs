@@ -926,7 +926,6 @@ namespace SenseNet.ContentRepository.Tests.Schema
         {
             //TestTools.RemoveNodesAndType("Automobile");
 
-            Node automobileNode;
             string nodeName = "Automobile12";
 
             //-- Tipusregisztracio
@@ -934,16 +933,16 @@ namespace SenseNet.ContentRepository.Tests.Schema
 				<ContentType name='Automobile' parentType='GenericContent' handler='SenseNet.ContentRepository.Tests.ContentHandlers.AutomobileHandler' xmlns='http://schemas.sensenet.com/SenseNet/ContentRepository/ContentTypeDefinition'>
 					<Fields>
 						<Field name='Manufacturer' type='ShortText'/>
-						<Field name='Driver' type='ShortText' />
+						<Field name='DriverTempField' type='ShortText' />
 					</Fields>
 				</ContentType>
 				";
             ContentTypeInstaller.InstallContentType(ctd);
 
-            automobileNode = new AutomobileHandler(_testRoot);
+            Node automobileNode = new AutomobileHandler(_testRoot);
             automobileNode.Name = nodeName;
             automobileNode["Manufacturer"] = "Honda";
-            automobileNode["Driver"] = "Gyeby";
+            automobileNode["DriverTempField"] = "Gyeby";
             automobileNode.Save();
 
             int propertyCount = automobileNode.PropertyTypes.Count;
@@ -965,7 +964,7 @@ namespace SenseNet.ContentRepository.Tests.Schema
 
             //-- Teszt
             Assert.IsTrue(ActiveSchema.NodeTypes["Automobile"].PropertyTypes.Count == propertyCount - 1, "PropertyType is not removed from NodeType");
-            Assert.IsNull(ActiveSchema.PropertyTypes["Driver"], "PropertyType is not removed from TypeSystem");
+            Assert.IsNull(ActiveSchema.PropertyTypes["DriverTempField"], "PropertyType is not removed from TypeSystem");
 
         }
         [TestMethod()]

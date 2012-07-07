@@ -107,9 +107,11 @@
   <ItemGroup>
     <Compile Include="ActiveSchema.cs" />
     <Compile Include="Caching\Dependency\EventServer.cs" />
+    <Compile Include="CounterManager.cs" />
     <Compile Include="Data\IndexBackup.cs" />
     <Compile Include="Data\IndexBackupProgress.cs" />
     <Compile Include="Data\PsStreamManager.cs" />
+    <Compile Include="IFolder.cs" />
     <Compile Include="ISnService.cs" />
     <Compile Include="AppModel\IApplicationCache.cs" />
     <Compile Include="AppModel\ApplicationResolver.cs" />
@@ -145,7 +147,6 @@
     <Compile Include="Data\INodeQueryCompiler.cs" />
     <Compile Include="Data\ITransactionProvider.cs" />
     <Compile Include="Data\NodeBuilder.cs" />
-    <Compile Include="Caching\Populators\CacheItemPopulator.cs" />
     <Compile Include="Caching\DistributedActions\CleanupNodeCacheAction.cs" />
     <Compile Include="Data\PropertyMapping.cs" />
     <Compile Include="Data\RepositoryStream.cs" />
@@ -157,11 +158,8 @@
     <Compile Include="Diagnostics\OperationTrace.cs" />
     <Compile Include="Diagnostics\Tracing.cs" />
     <Compile Include="Diagnostics\Utility.cs" />
-    <Compile Include="IQueryPageNavigable.cs" />
-    <Compile Include="IQueryPageNavigator.cs" />
     <Compile Include="NodeIsOutOfDateException.cs" />
     <Compile Include="NodeOperation.cs" />
-    <Compile Include="NodePager.cs" />
     <Compile Include="NodeSaveSettings.cs" />
     <Compile Include="QueryResult.cs" />
     <Compile Include="QuerySettings.cs" />
@@ -180,7 +178,6 @@
     <Compile Include="Data\DataProvider.cs" />
     <Compile Include="Data\SqlClient\FlatPropertyWriter.cs" />
     <Compile Include="Data\SqlClient\PropertyMap.cs" />
-    <Compile Include="Data\SqlClient\SqlCompiler.cs" />
     <Compile Include="Data\SqlClient\SqlNodeWriter.cs" />
     <Compile Include="Data\SqlClient\SqlProcedure.cs" />
     <Compile Include="Data\SqlClient\SqlProvider.cs" />
@@ -231,6 +228,7 @@
     <Compile Include="Security\SnIdentityKind.cs" />
     <Compile Include="Security\StartupUser.cs" />
     <Compile Include="Security\SystemAccount.cs" />
+    <Compile Include="SenseNetPerformanceCounter.cs" />
     <Compile Include="StorageContext.cs" />
     <Compile Include="TransactionParticipant.cs" />
     <Compile Include="TypeHandler.cs" />

@@ -1,2 +1,2 @@
-<%@  Language="C#" %>
-<asp:Literal ID="LiteralControl" runat="server" />
+<%@  Language="C#" EnableViewState="false" %>
+<asp:Label ID="InnerControl" runat="server" />

@@ -38,6 +38,6 @@
         </FooterTemplate>
     </asp:Repeater>
 
-    <p style="text-align:right;"><br /><b><sn:ActionLinkButton runat="server" ID="ReplyLink" IconName="add" Text="New topic" ActionName="Add" ContextInfoID="ViewContext" /></b></p>
+    <p style="text-align:right;"><br /><b><sn:ActionLinkButton runat="server" ID="ReplyLink" IconName="add" Text="New topic" ActionName="Add" ContextInfoID="ViewContext" ParameterString="ContentTypeName=/Root/ContentTemplates/ForumTopic/NewTopic" /></b></p>
     
 </div>

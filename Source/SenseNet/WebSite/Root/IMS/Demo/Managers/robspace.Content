@@ -14,5 +14,8 @@
       <Path>/Root/YourContents/Avatars/cio.jpg</Path>
     </ImageRef>
     <Phone>112121211</Phone>
+    <Manager>
+      <Path>/Root/IMS/Demo/Managers/alexschmidt</Path>
+    </Manager>
   </Fields>
 </ContentMetaData>

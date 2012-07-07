@@ -15,6 +15,10 @@ using Lucene.Net.Analysis.Tokenattributes;
 using System.Diagnostics;
 using Lucene.Net.Search;
 using System.Globalization;
+using SenseNet.Search.Indexing.Activities;
+using SenseNet.Communication.Messaging;
+using Lucene.Net.Documents;
+using System.Reflection;
 
 namespace SenseNet.ContentRepository.Tests.Search
 {
@@ -252,7 +256,7 @@ namespace SenseNet.ContentRepository.Tests.Search
 
             stopper = Stopwatch.StartNew();
             for (int i = 0; i < 1000; i++)
-                q = new Lucene.Net.QueryParsers.QueryParser(Lucene.Net.Util.Version.LUCENE_29, "_Text", IndexManager.GetAnalyzer()).Parse(qtext);
+                q = new Lucene.Net.QueryParsers.QueryParser(LuceneManager.LuceneVersion, "_Text", IndexManager.GetAnalyzer()).Parse(qtext);
             var t2 = stopper.ElapsedMilliseconds;
             stopper.Stop();
         }

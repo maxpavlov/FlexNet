@@ -178,8 +178,8 @@
       </Configuration>
     </Field>
     <Field name="EnableMoreFilling" type="Boolean">
-      <DisplayName>Enable more filling</DisplayName>
-      <Description>Enable the users to fill the survey more times</Description>
+      <DisplayName>Allow multiple responses</DisplayName>
+      <Description>Do You want to allow a user to submit this survey more than once?</Description>
     </Field>
   </Fields>
 </ContentType>

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentMetaData>
+  <ContentType>HTMLContent</ContentType>
+  <ContentName>footer-links</ContentName>
+  <Fields>
+    <HTMLFragment>
+    <![CDATA[<div class="column-title">Useful links</div>
+    <ul class="sn-footer-toplinks"> 
+      <li><a href="http://wiki.sensenet.com"  target="_blank">Wiki</a></li>
+        <li><a href="http://blog.sensenet.com"  target="_blank">Blog</a></li>
+        <li><a href="http://forum.sensenet.com" target="_blank">Forum</a></li>
+    </ul>
+    <ul class="sn-footer-supportlinks">
+        <li><a href="http://www.sensenet.com/sensenet-ecm/licencing" target="_blank">Get professional support</a></li>
+        <li><a href="http://www.sensenet.com/become-a-partner/become_a_partner" target="_blank">Become a solution partner</a></li>
+    </ul>
+    <ul class="sn-footer-social-links">
+        <li><a href="http://www.facebook.com/sensenetcms"><img border="0" src="/Root/Global/images/icons/32/facebook_ico.png"></a></li>
+        <li><a href="http://twitter.com/sensenet"><img border="0" src="/Root/Global/images/icons/32/twitter_ico.png"></a></li>
+        <li><a href="http://www.youtube.com/user/sensenetcms"><img border="0" src="/Root/Global/images/icons/32/youtube_ico.png"></a></li>
+</ul>
+<div class="sn-copyright">
+                <a href="/legal/" target="_blank">Legal</a><span class="sn-separator"> &bull; </span>Powered by
+                <a href="http://www.sensenet.com" title="www.sensenet.com" target="_blank">Sense/Net CMS Community Edition 6.1 (V6.1.0.3723)</a>
+            </div>
+​
+​]]></HTMLFragment>
+    <ReviewDate>0001-01-01T00:00:00</ReviewDate>
+    <ArchiveDate>0001-01-01T00:00:00</ArchiveDate>
+    <EnableLifespan>false</EnableLifespan>
+    <ValidFrom>0001-01-01T00:00:00</ValidFrom>
+    <ValidTill>0001-01-01T00:00:00</ValidTill>
+    <DisplayName><![CDATA[footer-links]]></DisplayName>
+    <Hidden>false</Hidden>
+    <Index>0</Index>
+    <CreatedBy>
+      <Path>/Root/IMS/BuiltIn/Portal/Admin</Path>
+    </CreatedBy>
+    <CreationDate>2012-05-21T10:04:38.47</CreationDate>
+    <ModifiedBy>
+      <Path>/Root/IMS/BuiltIn/Portal/Admin</Path>
+    </ModifiedBy>
+    <ModificationDate>2012-05-21T16:46:54.547</ModificationDate>
+    <TrashDisabled>false</TrashDisabled>
+    <IsTaggable>false</IsTaggable>
+    <IsRateable>false</IsRateable>
+    <RateAvg>0.0000</RateAvg>
+    <RateCount>0</RateCount>
+  </Fields>
+  <Permissions>
+    <Clear />
+  </Permissions>
+</ContentMetaData>

@@ -34,7 +34,7 @@ namespace SenseNet.Portal.Portlets
 
         [WebBrowsable(true)]
         [Personalizable(true)]
-        [WebDisplayName("View path for single delete")]
+        [WebDisplayName("View for single delete")]
         [WebDescription("Path of the .ascx user control which provides the elements of the delete dialog")]
         [WebCategory(EditorCategory.UI, EditorCategory.UI_Order)]
         [WebOrder(100)]
@@ -46,7 +46,7 @@ namespace SenseNet.Portal.Portlets
             set { _viewPathSingleDelete = value; }
         }
 
-        [WebDisplayName("View path for batch delete")]
+        [WebDisplayName("View for batch delete")]
         [WebDescription("Path of the .ascx user control which provides the UI elements for the 'batch delete' behavior of the portlet")]
         [WebBrowsable(true), Personalizable(true)]
         [WebCategory(EditorCategory.UI, EditorCategory.UI_Order)]
@@ -242,7 +242,7 @@ namespace SenseNet.Portal.Portlets
                         {
                             back = back.Replace(oldUrlName, string.Empty);
                             var p = Page as PageBase;
-                            if (p != null) p.Response.Redirect(back);
+                            if (p != null) p.Response.Redirect(back, false);
                         }
                         else
                             CallDone(false);

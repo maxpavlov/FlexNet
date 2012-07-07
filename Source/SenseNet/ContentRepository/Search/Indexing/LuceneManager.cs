@@ -23,85 +23,149 @@ namespace SenseNet.Search.Indexing
 {
     public enum CommitHint { AddNew, AddNewVersion, Update, Rename, Move, Delete } ;
 
-    public class MissingTaskHandler
-    {
-        private static object _gapSync = new object();
-        private static List<int> _gap = new List<int>();
-        public static bool HasChanges { get; private set; }
-
-        internal static bool RemoveTask(int taskId)
-        {
-            lock (_gapSync)
-            {
-                if (_gap.Remove(taskId))
-                {
-                    Debug.WriteLine(String.Format("@> {0} REMOVE FROM GAP: {1}, | {1}", AppDomain.CurrentDomain.FriendlyName, taskId));
-                    HasChanges = true;
-                    return true;
-                }
-                return false;
-            }
-        }
-        internal static void AddTasks(int lastTaskId, int currentTaskId)
-        {
-            lock (_gapSync)
-            {
-                for (var i = lastTaskId + 1; i < currentTaskId; i++)
-                    if (!_gap.Contains(i))
-                        _gap.Add(i);
-                if(lastTaskId + 1 < currentTaskId)
-                    HasChanges = true;
-            }
-            Debug.WriteLine(String.Format("@> {0} Add  : task: {1}, max: {2} | {3} | gap: [{4}]", AppDomain.CurrentDomain.FriendlyName, currentTaskId, lastTaskId, currentTaskId - 1 == lastTaskId ? "ok  " : "DIFF", GetGapString()));
-        }
-
-        internal static string GetGapString()
-        {
-            lock (_gapSync)
-                return String.Join(",", _gap);
-        }
-        internal static List<int> GetGap()
-        {
-            lock (_gapSync)
-            {
-Debug.WriteLine(String.Format("@> {0} GetGap. Count: {1}", AppDomain.CurrentDomain.FriendlyName, _gap.Count));
-                return new List<int>(_gap);
-            }
-        }
-        internal static void SetGap(List<int> gap)
-        {
-            lock (_gapSync)
-            {
-                _gap.Clear();
-                foreach (var taskId in gap)
-                {
-                    if (!_gap.Contains(taskId))
-                    {
-                        _gap.Add(taskId);
-                        HasChanges = true;
-                    }
-                }
-            }
-        }
-
-        internal static void Committed()
-        {
-            lock (_gapSync)
-                HasChanges = false;
-        }
-    }
-
     public static class LuceneManager
     {
+        public static readonly Lucene.Net.Util.Version LuceneVersion = Lucene.Net.Util.Version.LUCENE_29;
+
+        internal static IndexingHistory _history = new IndexingHistory();
+
+        /* =========================================================================== TEST COMMIT */
+        // This is a code for commit testing. 
+        // Put <add key="CommitLogPath" value="c:\\commitlog-1-{0}.csv"/> in the webconfig, name should reflect the actual web node (use "1" for 1st node, "2" for 2nd node, etc.)
+        private static bool? _commitLogEnabled;
+        private static object CommitLogEnabledSync = new object();
+        private static bool CommitLogEnabled
+        {
+            get
+            {
+                if (!_commitLogEnabled.HasValue)
+                {
+                    lock (CommitLogEnabledSync)
+                    {
+                        if (!_commitLogEnabled.HasValue)
+                        {
+                            _commitLogEnabled = StartCommitLog();
+                        }
+                    }
+                }
+                return _commitLogEnabled.Value;
+            }
+        }
+        private static object CommitLogSync = new object();
+        private static System.Timers.Timer CommitLogTimer;
+        private static Stopwatch _commitStopper;
+        private static string CommitLogPath;
+        private static string CommitLog;
+        private static void WriteCommitLog(string status, int? gapSize = null, int? gapSizePeak = null, int? activities = null, int? delaycycle = null, string gapString = null, int? maxActivityId = null)
+        {
+            if (!CommitLogEnabled)
+                return;
+
+            long elapsed = 0;
+            if (status == "Start" && _commitStopper != null)
+                _commitStopper.Restart();
+            if ((status == "Committed" || status == "Stop") && _commitStopper != null)
+            {
+                elapsed = _commitStopper.ElapsedMilliseconds;
+                _commitStopper.Restart();
+            }
+
+            var line = DateTime.Now.Ticks.ToString() + ";" + DateTime.Now.Hour.ToString() + ";" + DateTime.Now.Minute.ToString() + ";" + DateTime.Now.Second.ToString() + ";";
+            if (status == "Info")
+            {
+                line += status + ";0;" + gapSize.Value.ToString() + ";" + gapSizePeak.Value.ToString() + ";" + activities.Value.ToString() + ";" + delaycycle.Value.ToString() + ";;;" + Environment.NewLine;
+            }
+            else
+            {
+                line += status + ";" + elapsed + ";0;0;0;0;" + (maxActivityId.HasValue ? maxActivityId.Value.ToString() : string.Empty) + ";" + gapString + ";" + Environment.NewLine;
+            }
+            lock (CommitLogSync)
+            {
+                CommitLog += line;
+            }
+        }
+        private static bool StartCommitLog()
+        {
+            // eg  "c:\\commitlog-1-{0}.csv"
+            var appSettingsCommitLogPath = System.Configuration.ConfigurationManager.AppSettings["CommitLogPath"];
+            if (string.IsNullOrEmpty(appSettingsCommitLogPath))
+                return false;
+
+            CommitLogPath = string.Format(appSettingsCommitLogPath, DateTime.Now.ToString("yyyyMMddhhmmss"));
+            using (var fs = new System.IO.FileStream(CommitLogPath, System.IO.FileMode.Create))
+            {
+                using (var wr = new System.IO.StreamWriter(fs))
+                {
+                    wr.WriteLine("ticks;hour;minute;second;status;elapsed;gapsize;gapsizepeak;activities;delaycycle;maxActivityId;gapString");
+                }
+            }
+            _commitStopper = Stopwatch.StartNew();
+            CommitLog = string.Empty;
+            CommitLogTimer = new System.Timers.Timer(10000.0);
+            CommitLogTimer.Elapsed += new System.Timers.ElapsedEventHandler(CommitLogTimer_Elapsed);
+            CommitLogTimer.Start();
+            return true;
+        }
+        private static void CommitLogTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            lock (CommitLogSync)
+            {
+                using (var writer = new System.IO.StreamWriter(CommitLogPath, true))
+                {
+                    writer.Write(CommitLog);
+                }
+                CommitLog = string.Empty;
+            }
+        }
+        // =========================================================================== TEST COMMIT END
+
+
         public static readonly string KeyFieldName = "VersionId";
         internal static IndexWriter _writer;
         internal static IndexReader _reader;
-        internal static int _unCommitedChanges;
-        internal static int _maxTaskId;
 
         public static int IndexCount { get { return 1; } }
-        public static int IndexedDocumentCount { get { return IndexReader.NumDocs(); } }
-        public static IndexReader IndexReader { get { return _reader; } }
+        public static int IndexedDocumentCount
+        {
+            get
+            {
+                using (var readerFrame = LuceneManager.GetIndexReaderFrame())
+                {
+                    var idxReader = readerFrame.IndexReader;
+                    return idxReader.NumDocs();
+                }
+            }
+        }
+
+        //UNDONE: xxx delete this and all usage
+        internal static ReaderWriterLockSlim _writerRestartLock = new ReaderWriterLockSlim();    // protects against writer.close
+        private const int REOPENRETRYMAX = 2;
+        internal static IndexReader IndexReader
+        {
+            get
+            {
+                //_writerRestartLock.EnterReadLock();
+                //try
+                //{
+                //    if (!_reader.IsCurrent())
+                //        ReopenReader();
+                //}
+                //finally
+                //{
+                //    _writerRestartLock.ExitReadLock();
+                //}
+                using (var wrFrame = IndexWriterFrame.Get(false)) // // IndexReader getter
+                {
+                    if (!_reader.IsCurrent())
+                        ReopenReader();
+                }
+                return _reader;
+            }
+        }
+        public static IndexReaderFrame GetIndexReaderFrame()
+        {
+            return new IndexReaderFrame(IndexReader);
+        }
 
         private static object _startSync = new object();
         private static bool _running;
@@ -109,6 +173,24 @@ Debug.WriteLine(String.Format("@> {0} GetGap. Count: {1}", AppDomain.CurrentDoma
         {
             get { return _running; }
         }
+
+        private static bool _paused;
+        internal static bool Paused
+        {
+            get { return _paused; }
+        }
+
+        internal static void PauseIndexing()
+        {
+            if (!_running)
+                _paused = true;
+        }
+        internal static void ContinueIndexing()
+        {
+            if (!_running)
+                _paused = false;
+        }
+
 
         [Obsolete("Use Start(System.IO.TextWriter) instead.")]
         public static void Start()
@@ -133,18 +215,15 @@ Debug.WriteLine(String.Format("@> {0} GetGap. Count: {1}", AppDomain.CurrentDoma
         {
             try
             {
-                ActivityQueue.Instance = new ActivityQueue();
                 //We can't handle cache invalidation as it would call into LuceneManager
                 //we only process lucene messages
                 var safeMessageTypes = new List<Type>();
                 safeMessageTypes.Add(typeof(DistributedLuceneActivity.LuceneActivityDistributor));
                 ClusterChannel.ProcessedMessageTypes = safeMessageTypes;
 
-                //we positively start the message cluser
+                //we positively start the message cluster
                 int dummy = SenseNet.ContentRepository.DistributedApplication.Cache.Count;
                 var dummy2 = SenseNet.ContentRepository.DistributedApplication.ClusterChannel;
-
-                AppDomain.CurrentDomain.DomainUnload += new EventHandler(CurrentDomain_DomainUnload);
 
                 if (SenseNet.ContentRepository.RepositoryInstance.RestoreIndexOnStartup())
                     BackupTools.RestoreIndex(false, consoleOut);
@@ -152,51 +231,96 @@ Debug.WriteLine(String.Format("@> {0} GetGap. Count: {1}", AppDomain.CurrentDoma
                 CreateWriterAndReader();
 
                 using (new SystemAccount())
-                {
-                    ExecuteUnprocessedIndexTasks(consoleOut);
-                }
+                    ExecuteUnprocessedIndexingActivities(consoleOut);
 
-                ActivityQueue.Instance.Start();
+                Warmup();
+
+                var commitStart = new ThreadStart(CommitWorker);
+                new Thread(commitStart).Start();
             }
             finally
             {
                 ClusterChannel.ProcessedMessageTypes = null;
             }
-            //ScheduleMerger();            
         }
 
-        private static void CurrentDomain_DomainUnload(object sender, EventArgs e)
-        {
-            ShutDown(false);
-        }
         private static void CreateWriterAndReader()
         {
-            //var directory = FSDirectory.GetDirectory(StorageContext.Search.IndexDirectoryPath, false);
-            var directory = FSDirectory.GetDirectory(IndexDirectory.CurrentDirectory, false);
-            _writer = new IndexWriter(directory, IndexManager.GetAnalyzer(), false);
+            var directory = FSDirectory.Open(new System.IO.DirectoryInfo(IndexDirectory.CurrentDirectory));
+
+            _writer = new IndexWriter(directory, IndexManager.GetAnalyzer(), false);//UNDONE: xx: ez obsolete, a következő sor kellene, de akkor elpattan ez a teszt: Msmq_SendLargeIndexDocument: "Assert.IsTrue failed. Lucene activity was not processed within 3 seconds"
+            //_writer = new IndexWriter(directory, IndexManager.GetAnalyzer(), false, IndexWriter.MaxFieldLength.UNLIMITED);
+
+            _writer.SetMaxMergeDocs(RepositoryConfiguration.LuceneMaxMergeDocs);
+            _writer.SetMergeFactor(RepositoryConfiguration.LuceneMergeFactor);
+            _writer.SetRAMBufferSizeMB(RepositoryConfiguration.LuceneRAMBufferSizeMB);
             _reader = _writer.GetReader();
         }
+
+        //========================================================================================== Start, Restart, Shutdown, Warmup
+
         internal static void Restart()
         {
-            _writer.Close();
-            CreateWriterAndReader();
+            Debug.WriteLine("##> LUCENEMANAGER RESTART");
+
+            //_writerRestartLock.EnterWriteLock();
+            //try
+            //{
+            //    _writer.Close();
+            //    CreateWriterAndReader();
+            //}
+            //finally
+            //{
+            //    _writerRestartLock.ExitWriteLock();
+            //}
+            using (var wrFrame = IndexWriterFrame.Get(true)) // // Restart
+            {
+                _writer.Close();
+                CreateWriterAndReader();
+            }
         }
-        // Flushes and shuts down the distributed Lucene manager and disconnect index from the cluster
         public static void ShutDown()
         {
             ShutDown(true);
         }
         private static void ShutDown(bool log)
         {
-            if (_reader != null)
-                _reader.Close();
+            if (!_running)
+                return;
+
+            Debug.WriteLine("##> LUCENEMANAGER SHUTDOWN");
+
             if (_writer != null)
-                _writer.Close();
-            if(ActivityQueue.Instance != null)
-                ActivityQueue.Instance.Stop();
+            {
+                _stopCommitWorker = true;
+                lock (_commitLock)
+                    Commit(false);
+
+                //_writerRestartLock.EnterWriteLock();
+                //try
+                //{
+                //    if(_reader != null)
+                //        _reader.Close();
+                //    if (_writer != null)
+                //        _writer.Close();
+                //}
+                //finally
+                //{
+                //    _running = false;
+                //    _writerRestartLock.ExitWriteLock();
+                //}
+                using (var wrFrame = IndexWriterFrame.Get(true)) // // ShutDown
+                {
+                    if (_reader != null)
+                        _reader.Close();
+                    if (_writer != null)
+                        _writer.Close();
+                    _running = false;
+                }
+            }
+
             if (log)
-                SenseNet.Diagnostics.Logger.WriteInformation("LuceneManager has stopped.");
-            _running = false;
+                Logger.WriteInformation("LuceneManager has stopped. Max task id: " + MissingActivityHandler.MaxActivityId);
         }
         public static void Backup()
         {
@@ -208,54 +332,108 @@ Debug.WriteLine(String.Format("@> {0} GetGap. Count: {1}", AppDomain.CurrentDoma
             BackupTools.BackupIndexImmediatelly();
         }
 
-        internal static bool _executingUnprocessedIndexTasks = false;
+        private static readonly int ACTIVITIESFRAGMENTSIZE = 100;
+        internal static object _executingUnprocessedIndexingActivitiesLock = new object();
+        private static bool _executingUnprocessedIndexingActivities;
         //---- Caller: Startup, ForceRestore
-        private static void ExecuteUnprocessedIndexTasks(System.IO.TextWriter consoleOut)
+        internal static void ExecuteUnprocessedIndexingActivities(System.IO.TextWriter consoleOut)
         {
-            Debug.WriteLine(String.Format("#> {0} -------- Executing unprocessed tasks.", AppDomain.CurrentDomain.FriendlyName));
-            var cud = IndexManager.ReadCommitUserData(_reader);
-
-            _maxTaskId = cud.LastTaskId;
-            MissingTaskHandler.SetGap(cud.Gap);
-
-            var tasks = IndexingTaskManager.GetUnprocessedTasks(cud.LastTaskId, cud.Gap);
-            var logProps = new Dictionary<string, object> { { "LastTaskID", cud.LastTaskId }, { "Count of tasks", tasks.Count() } };
-            Logger.WriteInformation("Executing unprocessed indexing tasks from the stored commit point.", Logger.EmptyCategoryList, logProps);
-            if (consoleOut != null)
-                consoleOut.Write("    Executing {0} unprocessed tasks ...", tasks.Count());
-
-            if (tasks.Count() > 0)
+            lock (_executingUnprocessedIndexingActivitiesLock)
             {
-                _executingUnprocessedIndexTasks = true;
-                foreach (var task in tasks)
-                    IndexingTaskManager.ExecuteTaskDirect(task);
-                CommitChanges();
-                RefreshReader();
-                _executingUnprocessedIndexTasks = false;
-            }
+                try
+                {
+                    _executingUnprocessedIndexingActivities = true;
 
-            if (consoleOut != null)
-                consoleOut.WriteLine("ok.");
-            Logger.WriteInformation("Executing unprocessed tasks is finished.", Logger.EmptyCategoryList, logProps);
-            Debug.WriteLine(String.Format("#> {0} -------- Executing unprocessed tasks is finished.", AppDomain.CurrentDomain.FriendlyName));
+                    CommitUserData cud;
+                    using (var readerFrame = LuceneManager.GetIndexReaderFrame())
+                    {
+                        cud = IndexManager.ReadCommitUserData(readerFrame.IndexReader);
+                    }
+                    MissingActivityHandler.MaxActivityId = cud.LastActivityId;
+                    MissingActivityHandler.SetGap(cud.Gap);
+
+                    var logProps = new Dictionary<string, object> { { "LastActivityID", cud.LastActivityId }, { "Size of gap", cud.Gap.Count } };
+                    Logger.WriteInformation("Executing unprocessed indexing activities from the stored commit point.",
+                                            Logger.EmptyCategoryList, logProps);
+
+                    var i = 0;
+                    var sumCount = 0;
+
+                    // This loop was created to avoid loading too many activities at once that are present in the gap.
+                    while (i * ACTIVITIESFRAGMENTSIZE <= cud.Gap.Count)
+                    {
+                        // get activities from the DB that are in the current gap fragment
+                        var gapSegment = cud.Gap.Skip(i * ACTIVITIESFRAGMENTSIZE).Take(ACTIVITIESFRAGMENTSIZE).ToArray();
+                        var activities = IndexingActivityManager.GetUnprocessedActivities(gapSegment);
+                        ProcessTasks(activities, consoleOut);
+                        sumCount += activities.Length;
+                        i++;
+                    }
+
+                    // Execute activities where activity id is bigger than than our last (activity) task id
+                    var maxIdInDb = 0;
+                    var newtasks = IndexingActivityManager.GetUnprocessedActivities(MissingActivityHandler.MaxActivityId, out maxIdInDb, ACTIVITIESFRAGMENTSIZE);
+                    while (newtasks.Length > 0)
+                    {
+                        ProcessTasks(newtasks, consoleOut);
+                        sumCount += newtasks.Length;
+
+                        //load the remaining activities, but only if they were created before this operation started
+                        var tempMax = 0;
+                        newtasks = IndexingActivityManager.GetUnprocessedActivities(MissingActivityHandler.MaxActivityId, out tempMax, ACTIVITIESFRAGMENTSIZE, maxIdInDb);
+                    }
+
+                    if (consoleOut != null)
+                        consoleOut.WriteLine("ok.");
+
+                    logProps.Add("Processed tasks", sumCount);
+
+                    //write the latest max activity id and gap size to log
+                    logProps["LastActivityID"] = MissingActivityHandler.MaxActivityId;
+                    logProps["Size of gap"] = MissingActivityHandler.GetGap().Count;
+
+                    Logger.WriteInformation("Executing unprocessed tasks is finished.", Logger.EmptyCategoryList, logProps);
+                }
+                finally
+                {
+                    _executingUnprocessedIndexingActivities = false;
+                }
+            }
         }
-        internal static void ExecuteLostIndexTasks()
+        private static void ProcessTasks(IndexingActivity[] activities, System.IO.TextWriter consoleOut)
         {
-            Debug.WriteLine(String.Format("#> {0} -------- Executing lost tasks.", AppDomain.CurrentDomain.FriendlyName));
-            var oldMaxTaskId = _maxTaskId;
-            var tasks = IndexingTaskManager.GetUnprocessedTasks(_maxTaskId, MissingTaskHandler.GetGap());
-            if (tasks.Count() > 0)
+            if (consoleOut != null && activities.Length != 0)
+                consoleOut.Write("    Executing {0} unprocessed tasks ...", activities.Length);
+
+            foreach (var activity in activities)
             {
-                if (_executingUnprocessedIndexTasks) // ??
-                    return;
-                _executingUnprocessedIndexTasks = true;
-                foreach (var task in tasks)
-                    IndexingTaskManager.ExecuteTask(task, false, false);
-                _executingUnprocessedIndexTasks = false;
+                activity.FromHealthMonitor = true;  // make sure adddocument will delete first
+                IndexingActivityManager.ExecuteActivity(activity, false, false);
             }
-            Debug.WriteLine(String.Format("#> {0} -------- Executing lost tasks is finished. LastTaskID: {1}, LastTaskID: {2}, Count of tasks: {3}", AppDomain.CurrentDomain.FriendlyName, oldMaxTaskId, _maxTaskId, tasks.Count()));
-            var logProps = new Dictionary<string, object> { { "OldLastTaskID", oldMaxTaskId }, { "LastTaskID", _maxTaskId }, { "Count of tasks", tasks.Count() } };
-            Logger.WriteInformation("Executing expired indexing tasks.", Logger.EmptyCategoryList, logProps);
+        }
+        internal static void ExecuteLostIndexingActivities()
+        {
+            lock (_executingUnprocessedIndexingActivitiesLock)
+            {
+                var gap = MissingActivityHandler.GetOldestGapAndMoveToNext();
+
+                var i = 0;
+                while (i * ACTIVITIESFRAGMENTSIZE < gap.Length)
+                {
+                    var gapSegment = gap.Skip(i * ACTIVITIESFRAGMENTSIZE).Take(ACTIVITIESFRAGMENTSIZE).ToArray();
+
+                    var activities = IndexingActivityManager.GetUnprocessedActivities(gapSegment);
+                    if (activities.Length > 0)
+                    {
+                        foreach (var act in activities)
+                        {
+                            act.FromHealthMonitor = true;
+                            IndexingActivityManager.ExecuteActivity(act, false, false);
+                        }
+                    }
+                    i++;
+                }
+            }
         }
 
         internal static void ForceRestore()
@@ -263,19 +441,27 @@ Debug.WriteLine(String.Format("@> {0} GetGap. Count: {1}", AppDomain.CurrentDoma
             try
             {
                 PauseIndexing();
-                CommitChanges();
-                //TODO: xx readert hasznalo szalakat kezelni kell!
-                //if(_reader != null)
-                //    _reader.Close();
-                //TODO: xx writert hasznalo szalakat kezelni kell!
-                //if (_writer != null)
-                //    _writer.Close();
+                ApplyChanges();
                 BackupTools.RestoreIndex(true, null);
-                //var directory = FSDirectory.GetDirectory(StorageContext.Search.IndexDirectoryPath, false);
-                var directory = FSDirectory.GetDirectory(IndexDirectory.CurrentDirectory, false);
-                _writer = new IndexWriter(directory, IndexManager.GetAnalyzer(), false);
-                _reader = _writer.GetReader();
-                ExecuteUnprocessedIndexTasks(null);
+
+                var directory = FSDirectory.Open(new System.IO.DirectoryInfo(IndexDirectory.CurrentDirectory));
+                //_writerRestartLock.EnterWriteLock();
+                //try
+                //{
+                //    _writer = new IndexWriter(directory, IndexManager.GetAnalyzer(), false);
+                //    _reader = _writer.GetReader();
+                //}
+                //finally
+                //{
+                //    _writerRestartLock.ExitWriteLock();
+                //}
+                using (var wrFrame = IndexWriterFrame.Get(true)) // // ForceRestore
+                {
+                    _writer = new IndexWriter(directory, IndexManager.GetAnalyzer(), false);
+                    _reader = _writer.GetReader();
+                }
+
+                ExecuteUnprocessedIndexingActivities(null);
             }
             finally
             {
@@ -283,128 +469,325 @@ Debug.WriteLine(String.Format("@> {0} GetGap. Count: {1}", AppDomain.CurrentDoma
             }
         }
 
-        internal static bool IndexingPaused
+        internal static void Warmup()
         {
-            get { return ActivityQueue.Instance.Paused; }
-        }
-        internal static void PauseIndexing()
-        {
-            ActivityQueue.Instance.Pause();
-        }
-        internal static void ContinueIndexing()
-        {
-            ActivityQueue.Instance.Continue();
+            var idList = ((LuceneSearchEngine) StorageContext.Search.SearchEngine).Execute("+Id:1");
         }
 
-        internal static void ApplyChanges(int taskId, bool lastActivity)
-        {
-            if (lastActivity)
-                _maxTaskId = Math.Max(_maxTaskId, taskId);
+        /*========================================================================================== Commit */
 
-            if (MissingTaskHandler.RemoveTask(taskId))
-                _unCommitedChanges++;
-            if (_unCommitedChanges > 0)
+        internal static void ApplyChanges(int activityId)
+        {
+            MissingActivityHandler.RemoveActivityAndAddGap(activityId);
+            ApplyChanges();
+        }
+
+        internal static void ApplyChanges()
+        {
+            //compiler warning here is not a problem, Interlocked 
+            //class can work with a volatile variable
+            Interlocked.Increment(ref _activities);
+        }
+        internal static void CommitOrDelay()
+        {
+            // set gapsize perfcounters
+            MissingActivityHandler.SetGapSizeCounter();
+
+            var act = _activities;
+            if (act == 0 && _delayCycle == 0)
+                return;
+
+            if (act < 2)
             {
-                CommitChanges();
-                RefreshReader();
+                WriteCommitLog("Start");
+                Commit();
+                WriteCommitLog("Stop");
+            }
+            else
+            {
+                _delayCycle++;
+                if (_delayCycle > RepositoryConfiguration.DelayedCommitCycleMaxCount)
+                {
+                    WriteCommitLog("Start");
+                    Commit();
+                    WriteCommitLog("Stop");
+                }
             }
 
-            if (lastActivity)
-                Debug.WriteLine(String.Format("#> {0} Apply: task: {1}, max: {2} | {3} | gap: [{4}]", AppDomain.CurrentDomain.FriendlyName, taskId, _maxTaskId, taskId == _maxTaskId ? "ok  " : "DIFF", MissingTaskHandler.GetGapString()));
-        }
-        internal static void CommitChanges()
-        {
-            using (var optrace = new OperationTrace("Commit index writer"))
-            {
-                if (_unCommitedChanges == 0 && MissingTaskHandler.HasChanges)
-                    EnsureWriterChanged();
-                _writer.Commit(IndexManager.CreateCommitUserData(_maxTaskId, MissingTaskHandler.GetGapString()));
-                _unCommitedChanges = 0;
-                MissingTaskHandler.Committed();
-                optrace.IsSuccessful = true;
-            }
-        }
-        private const string COMMITFIELDNAME = "$#COMMIT";
-        private const string COMMITDATEFIELDNAME = "$#DATE";
-        private static void EnsureWriterChanged()
-        {
-            var value = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.ffff");
-            var doc = new Lucene.Net.Documents.Document();
-            doc.Add(new Lucene.Net.Documents.Field(COMMITFIELDNAME, COMMITFIELDNAME, Field.Store.YES, Field.Index.NOT_ANALYZED, Field.TermVector.NO));
-            doc.Add(new Lucene.Net.Documents.Field(COMMITDATEFIELDNAME, value, Field.Store.YES, Field.Index.NOT_ANALYZED, Field.TermVector.NO));
-            LuceneManager._writer.UpdateDocument(new Term(COMMITFIELDNAME, COMMITFIELDNAME), doc);
+            Interlocked.Exchange(ref _activities, 0);
         }
 
-        internal static void RefreshReader()
+        internal static void Commit(bool reopenReader = true)
         {
-            using (var optrace = new OperationTrace("Refresh reader"))
+            var gapData = MissingActivityHandler.GetGapString();
+            var gapString = gapData.Item1;
+            var maxActivityId = gapData.Item2;
+
+            //_writerRestartLock.EnterReadLock();
+            //try
+            //{
+            //    _writer.Commit(IndexManager.CreateCommitUserData(maxActivityId, gapString));
+            //    if (reopenReader)
+            //        ReopenReader();
+            //}
+            //finally
+            //{
+            //    _writerRestartLock.ExitReadLock();
+            //}
+            using (var wrFrame = IndexWriterFrame.Get(false)) // // Commit
             {
-                //var reader = _reader;
-                _reader = _writer.GetReader();
-                //if(reader != null)
-                //    reader.Close();
-                optrace.IsSuccessful = true;
+                _writer.Commit(IndexManager.CreateCommitUserData(maxActivityId, gapString));
+                if (reopenReader)
+                    ReopenReader();
             }
+
+            //in case of shutdown, reopen is not needed
+            WriteCommitLog("Committed", null, null, null, null, gapString, maxActivityId);
+
+            Interlocked.Exchange(ref _activities, 0);
+            _delayCycle = 0;
         }
-        public static void Flush(bool distributed, bool waitForComplete)
+        internal static void ReopenReader()
         {
-            var commitNow = new CommitNowActivity();
-            if (distributed)
-                commitNow.Distribute();
-            ActivityQueue.AddActivity(commitNow);
-            if (waitForComplete)
-                commitNow.WaitForComplete();
+            var retry = 0;
+            Exception e = null;
+            while (retry++ < REOPENRETRYMAX)
+            {
+                try
+                {
+                    Debug.WriteLine("##> REOPEN " + (retry > 1 ? retry.ToString() : ""));
+
+                    _reader = _writer.GetReader();
+                    return;
+                }
+                catch (AlreadyClosedException ace)
+                {
+                    e = ace;
+                    Thread.Sleep(100);
+                }
+            }
+            if (e != null)
+                throw new ApplicationException(String.Concat("Indexwriter is closed after ", retry, " attempt."), e);
+        }
+
+        private static volatile int _activities;          //committer thread sets 0 other threads increment
+        private static volatile int _delayCycle;          //committer thread uses
+
+        private static bool _stopCommitWorker;
+        private static object _commitLock = new object();
+        private static void CommitWorker()
+        {
+            int wait = (int)(RepositoryConfiguration.CommitDelayInSeconds * 1000.0);
+            for (; ; )
+            {
+                // check if commit worker instructed to stop
+                if (_stopCommitWorker)
+                {
+                    _stopCommitWorker = false;
+                    return;
+                }
+
+                try
+                {
+                    lock (_commitLock)
+                    {
+                        CommitOrDelay();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Logger.WriteError(ex);
+                }
+                Thread.Sleep(wait);
+            }
         }
 
         /*==================================================================== Document operations */
 
+        internal static void RefreshDocument(int versionId)
+        {
+            // the optimistic overlapping detection algorithm here is tested in IndexingHistory_Fix**Overlap tests. change tests if this algorithm is changed.
+
+            var node = Node.LoadNodeByVersionId(versionId);
+            
+            // if node exists, refresh index from db
+            // if node does not exist, remove from index
+            if (node != null)
+            {
+                // delete from indexhistory first, because we are trying to refresh to the last timestamp
+                // also check if there is a more fresh indexing pending which would surely correct the index, and we don't need this here
+                if (!_history.RemoveIfLast(versionId, node.NodeTimestamp))
+                    return;
+
+                StorageContext.Search.SearchEngine.GetPopulator().RefreshIndex(node, false);
+            }
+            else
+            {
+                var delTerm = new Term(LuceneManager.KeyFieldName, NumericUtils.IntToPrefixCoded(versionId));
+                LuceneManager.DeleteDocuments(new[] { delTerm }, false);
+            }
+        }
+
+        /*-----------------------------------------------------------------------------------------*/
+
         internal static void AddCompleteDocument(Document document)
         {
-            //SetFlagsForAdd(document);
-            _writer.DeleteDocuments(GetVersionIdTerm(document));
-            _writer.AddDocument(document);
-            _unCommitedChanges++;
+            // the optimistic overlapping detection algorithm here is tested in IndexingHistory_Fix**Overlap tests. change tests if this algorithm is changed.
+
+            var versionId = _history.GetVersionId(document);
+            var timestamp = _history.GetTimestamp(document);
+
+            if (!_history.CheckForAdd(versionId, timestamp))
+                return;
+            //_writerRestartLock.EnterReadLock();
+            //try
+            //{
+            //    //in case the system was shut down in the meantime
+            //    if (!LuceneManager.Running)
+            //        return;
+            //    if (_executingUnprocessedIndexingActivities)
+            //        _writer.DeleteDocuments(GetVersionIdTerm(versionId));
+            //    _writer.AddDocument(document);
+            //}
+            //finally
+            //{
+            //    _writerRestartLock.ExitReadLock();
+            //}
+            using (var wrFrame = IndexWriterFrame.Get(false)) // // AddCompleteDocument
+            {
+                if (!LuceneManager.Running)
+                    return;
+                if (_executingUnprocessedIndexingActivities)
+                    wrFrame.IndexWriter.DeleteDocuments(GetVersionIdTerm(versionId));
+                wrFrame.IndexWriter.AddDocument(document);
+            }
+
+            // check if indexing has interfered with other indexing activity for the same versionid
+            if (_history.CheckHistoryChange(versionId, timestamp))
+                RefreshDocument(versionId);
         }
         internal static void AddDocument(Document document)
         {
+            // the optimistic overlapping detection algorithm here is tested in IndexingHistory_Fix**Overlap tests. change tests if this algorithm is changed.
+
+            var versionId = _history.GetVersionId(document);
+            var timestamp = _history.GetTimestamp(document);
+
+            if (!_history.CheckForAdd(versionId, timestamp))
+                return;
+
             SetFlagsForAdd(document);
-            _writer.DeleteDocuments(GetVersionIdTerm(document));
-            _writer.AddDocument(document);
-            _unCommitedChanges++;
+            //_writerRestartLock.EnterReadLock();
+            //try
+            //{
+            //    //in case the system was shut down in the meantime
+            //    if (!LuceneManager.Running)
+            //        return;
+            //    if (_executingUnprocessedIndexingActivities)
+            //        _writer.DeleteDocuments(GetVersionIdTerm(versionId));
+            //    _writer.AddDocument(document);
+            //}
+            //finally
+            //{
+            //    _writerRestartLock.ExitReadLock();
+            //}
+            using (var wrFrame = IndexWriterFrame.Get(false)) // // AddDocument
+            {
+                if (!LuceneManager.Running)
+                    return;
+                if (_executingUnprocessedIndexingActivities)
+                    _writer.DeleteDocuments(GetVersionIdTerm(versionId));
+                _writer.AddDocument(document);
+            }
+
+            // check if indexing has interfered with other indexing activity for the same versionid
+            if (_history.CheckHistoryChange(versionId, timestamp))
+                RefreshDocument(versionId);
         }
         internal static void UpdateDocument(Term updateTerm, Document document)
         {
-            // check if document has already been deleted (by another appdomain)
-            //  - NOTE: UpdateDocumentActivity will never be executed after a RemoveDocumentActivity, since Document will be null (check Indexing_ActivitesWithMissingVersion.cs/Indexing_ActivitesWithMissingVersion)
-            //  - NOTE: after uncommenting: check UpdateDocument-Commit-Refreshreader-UpdateDocument sequence, and check if second UpdateDocument works well
-            //var termdocs = _reader.TermDocs(updateTerm);
-            //var docexists = termdocs.Next();
-            //if (!docexists)
-            //    return;
-            //else
-            //    if (_reader.IsDeleted(termdocs.Doc()))
-            //        return;
+            // the optimistic overlapping detection algorithm here is tested in IndexingHistory_Fix**Overlap tests. change tests if this algorithm is changed.
+
+            var versionId = _history.GetVersionId(document);
+            var timestamp = _history.GetTimestamp(document);
+
+            if (!_history.CheckForUpdate(versionId, timestamp))
+                return;
 
             SetFlagsForUpdate(document);
-            _writer.UpdateDocument(updateTerm, document);
-            _unCommitedChanges++;
+            //_writerRestartLock.EnterReadLock();
+            //try
+            //{
+            //    //in case the system was shut down in the meantime
+            //    if (!LuceneManager.Running)
+            //        return;
+
+            //    _writer.UpdateDocument(updateTerm, document);
+            //}
+            //finally
+            //{
+            //    _writerRestartLock.ExitReadLock();
+            //}
+            using (var wrFrame = IndexWriterFrame.Get(false)) // // UpdateDocument
+            {
+                //in case the system was shut down in the meantime
+                if (!LuceneManager.Running)
+                    return;
+                _writer.UpdateDocument(updateTerm, document);
+            }
+
+            // check if indexing has interfered with other indexing activity for the same versionid
+            if (_history.CheckHistoryChange(versionId, timestamp))
+                RefreshDocument(versionId);
         }
-        internal static void DeleteDocuments(Term[] deleteTerms)
+        internal static void DeleteDocuments(Term[] deleteTerms, bool moveOrRename)
         {
+            // the optimistic overlapping detection algorithm here is tested in IndexingHistory_Fix**Overlap tests. change tests if this algorithm is changed.
+
+            if (moveOrRename)
+                _history.Remove(deleteTerms);
+            else
+                _history.ProcessDelete(deleteTerms);
+
             SetFlagsForDelete(deleteTerms);
-            _writer.DeleteDocuments(deleteTerms);
-            _unCommitedChanges++;
+            //_writerRestartLock.EnterReadLock();
+            //try
+            //{
+            //    //in case the system was shut down in the meantime
+            //    if (!LuceneManager.Running)
+            //        return;
+
+            //    _writer.DeleteDocuments(deleteTerms);
+            //}
+            //finally
+            //{
+            //    _writerRestartLock.ExitReadLock();
+            //}
+            using (var wrFrame = IndexWriterFrame.Get(false)) // // DeleteDocuments
+            {
+                //in case the system was shut down in the meantime
+                if (!LuceneManager.Running)
+                    return;
+
+                _writer.DeleteDocuments(deleteTerms);
+            }
+
+            // don't need to check if indexing interfered here. If it did, change is detected in overlapped adddocument/updatedocument, and refresh (re-delete) is called there.
+            // deletedocuments will never detect change in index, since it sets timestamp in indexhistory to maxvalue.
         }
 
         private static Term GetVersionIdTerm(Document doc)
         {
-            var versionId = Int32.Parse(doc.Get(LucObject.FieldName.VersionId));
+            return GetVersionIdTerm(Int32.Parse(doc.Get(LucObject.FieldName.VersionId)));
+        }
+        private static Term GetVersionIdTerm(int versionId)
+        {
             return new Term(LucObject.FieldName.VersionId, Lucene.Net.Util.NumericUtils.IntToPrefixCoded(versionId));
         }
 
         //-------------------------------------------------------------------- flag setting
 
-        internal class DocumentVersionComparer : IComparer<Document>
+        private class DocumentVersionComparer : IComparer<Document>
         {
             public int Compare(Document x, Document y)
             {
@@ -450,7 +833,7 @@ Debug.WriteLine(String.Format("@> {0} GetGap. Count: {1}", AppDomain.CurrentDoma
             UpdateDirtyDocuments(infoList);
             SetDocumentFlags(currentInfo);
         }
-        private static void SetFlagsForUpdate(Document document)
+        internal static void SetFlagsForUpdate(Document document)
         {
             VersionInfo currentInfo;
             var infoList = GetAllVersionInfo(document, out currentInfo);
@@ -462,7 +845,7 @@ Debug.WriteLine(String.Format("@> {0} GetGap. Count: {1}", AppDomain.CurrentDoma
             foreach (var deleteTerm in deleteTerms)
                 SetFlagsForDelete(deleteTerm);
         }
-        private static void SetFlagsForDelete(Term deleteTerm)
+        internal static void SetFlagsForDelete(Term deleteTerm)
         {
             if(deleteTerm.Field() != LucObject.FieldName.VersionId)
                 return;
@@ -642,8 +1025,29 @@ Debug.WriteLine(String.Format("@> {0} GetGap. Count: {1}", AppDomain.CurrentDoma
                         dirtyVersion.Document = doc;
                         SetDocumentFlags(dirtyVersion);
                         var delTerm = new Term(KeyFieldName, Lucene.Net.Util.NumericUtils.IntToPrefixCoded(dirtyVersion.VersionId));
-                        _writer.UpdateDocument(delTerm, dirtyVersion.Document);
-                        _unCommitedChanges++;
+
+                        //_writerRestartLock.EnterReadLock();
+                        //try
+                        //{
+                        //    //in case the system was shut down in the meantime
+                        //    if (!LuceneManager.Running)
+                        //        return;
+
+                        //    _writer.UpdateDocument(delTerm, dirtyVersion.Document);
+                        //}
+                        //finally
+                        //{
+                        //    _writerRestartLock.ExitReadLock();
+                        //}
+                        using (var wrFrame = IndexWriterFrame.Get(false)) // // UpdateDirtyDocuments
+                        {
+                            //in case the system was shut down in the meantime
+                            if (!LuceneManager.Running)
+                                return;
+
+                            _writer.UpdateDocument(delTerm, dirtyVersion.Document);
+                        }
+
                         break;
                     }
                 }
@@ -652,25 +1056,33 @@ Debug.WriteLine(String.Format("@> {0} GetGap. Count: {1}", AppDomain.CurrentDoma
 
         public static List<Document> GetDocumentsByNodeId(int nodeId)
         {
-            var termDocs = IndexReader.TermDocs(new Term(LucObject.FieldName.NodeId, Lucene.Net.Util.NumericUtils.IntToPrefixCoded(nodeId)));
-            return GetDocumentsFromTermDocs(termDocs);
+            using (var readerFrame = LuceneManager.GetIndexReaderFrame())
+            {
+                var termDocs = readerFrame.IndexReader.TermDocs(new Term(LucObject.FieldName.NodeId, Lucene.Net.Util.NumericUtils.IntToPrefixCoded(nodeId)));
+                return GetDocumentsFromTermDocs(termDocs, readerFrame);
+            }
         }
         private static List<Document> GetDocumentsByNodeId(string nodeId)
         {
-            var termDocs = IndexReader.TermDocs(new Term(LucObject.FieldName.NodeId, Lucene.Net.Util.NumericUtils.IntToPrefixCoded(Int32.Parse(nodeId))));
-            return GetDocumentsFromTermDocs(termDocs);
+            using (var readerFrame = LuceneManager.GetIndexReaderFrame())
+            {
+                var termDocs = readerFrame.IndexReader.TermDocs(new Term(LucObject.FieldName.NodeId, Lucene.Net.Util.NumericUtils.IntToPrefixCoded(Int32.Parse(nodeId))));
+                return GetDocumentsFromTermDocs(termDocs, readerFrame);
+            }
         }
         internal static List<Document> GetDocumentByVersionId(int versionId)
         {
-            var termDocs = IndexReader.TermDocs(new Term(LucObject.FieldName.VersionId, Lucene.Net.Util.NumericUtils.IntToPrefixCoded(versionId)));
-            return GetDocumentsFromTermDocs(termDocs);
+            using (var readerFrame = LuceneManager.GetIndexReaderFrame())
+            {
+                var termDocs = readerFrame.IndexReader.TermDocs(new Term(LucObject.FieldName.VersionId, Lucene.Net.Util.NumericUtils.IntToPrefixCoded(versionId)));
+                return GetDocumentsFromTermDocs(termDocs, readerFrame);
+            }
         }
-        private static List<Document> GetDocumentsFromTermDocs(TermDocs termDocs)
+        private static List<Document> GetDocumentsFromTermDocs(TermDocs termDocs, IndexReaderFrame readerFrame)
         {
             var docs = new List<Document>();
-            var reader = IndexReader;
             while (termDocs.Next())
-                docs.Add(reader.Document(termDocs.Doc()));
+                docs.Add(readerFrame.IndexReader.Document(termDocs.Doc()));
             docs.Sort(new DocumentVersionComparer());
             return docs;
         }
@@ -685,27 +1097,6 @@ Debug.WriteLine(String.Format("@> {0} GetGap. Count: {1}", AppDomain.CurrentDoma
                 doc.Get(LucObject.FieldName.IsLastPublic) ?? "[null]",
                 doc.Get(LucObject.FieldName.IsMajor) ?? "[null]",
                 doc.Get(LucObject.FieldName.IsPublic) ?? "[null]");
-        }
-        private static void TraceInfoList(List<VersionInfo> infoList)
-        {
-            Trace.WriteLine("@#$>InfoList. Count: " + infoList.Count);
-            Trace.WriteLine("@#$>   Actual\tVer\tVid\t|\tLD\tLP\tM\tP\t|\tLD\tLP\tM\tP");
-            Trace.WriteLine("@#$>   -----------------");
-            foreach (var info in infoList)
-            {
-                Trace.WriteLine(String.Format("@#$>   {0}\t{1}\t{2}\t|\t{3}\t{4}\t{5}\t{6}\t|\t{7}\t{8}\t{9}\t{10}",
-                    info.IsActualDocument,
-                    info.Version,
-                    info.VersionId,
-                    info.OriginalIsLastDraft,
-                    info.OriginalIsLastPublic,
-                    info.OriginalIsMajor,
-                    info.OriginalIsPublic,
-                    info.ExpectedIsLastDraft,
-                    info.ExpectedIsLastPublic,
-                    info.ExpectedIsMajor,
-                    info.ExpectedIsPublic));
-            }
         }
     }
 }

@@ -11,6 +11,7 @@ using SenseNet.Portal.UI;
 using SenseNet.ContentRepository.Workspaces;
 using SenseNet.ApplicationModel;
 using SenseNet.Portal.Helpers;
+using SenseNet.ContentRepository.Storage.Schema;
 
 namespace SenseNet.Portal.Wall
 {
@@ -49,6 +50,27 @@ namespace SenseNet.Portal.Wall
             }
             return markupStr;
         }
+        public static string GetBigPostMarkupStr()
+        {
+            return GetMarkupString("/Root/Global/renderers/Wall/Post.html");
+        }
+        public static string GetSmallPostMarkupStr()
+        {
+            return GetMarkupString("/Root/Global/renderers/Wall/SmallPost.html");
+        }
+        public static string GetContentWallMarkupStr()
+        {
+            return GetMarkupString("/Root/Global/renderers/Wall/ContentWall.html");
+        }
+        public static string GetCommentMarkupStr()
+        {
+            return GetMarkupString("/Root/Global/renderers/Wall/Comment.html");
+        }
+        public static string GetCommentSectionMarkupStr()
+        {
+            return GetMarkupString("/Root/Global/renderers/Wall/CommentSection.html");
+        }
+
         /// <summary>
         /// Gets markup for a new post, when there are no comments and likes yet.
         /// </summary>
@@ -63,11 +85,15 @@ namespace SenseNet.Portal.Wall
         /// <returns></returns>
         public static string GetPostMarkup(PostInfo postInfo, string contextPath, string hiddenCommentsMarkup, string commentsMarkup, int commentCount, LikeInfo likeInfo, bool drawBoundary)
         {
-            var markupStr = GetMarkupString(postInfo.Type == PostType.BigPost ? "/Root/Global/renderers/Wall/Post.html" : "/Root/Global/renderers/Wall/SmallPost.html");
+            var markupStr = postInfo.Type == PostType.BigPost ? GetBigPostMarkupStr() : GetSmallPostMarkupStr();
+            var commentSectionStr = GetCommentSectionMarkupStr();
+            return GetPostMarkup(markupStr, commentSectionStr, postInfo, contextPath, hiddenCommentsMarkup, commentsMarkup, commentCount, likeInfo, drawBoundary);
+        }
+        public static string GetPostMarkup(string markupStr, string commentSectionStr, PostInfo postInfo, string contextPath, string hiddenCommentsMarkup, string commentsMarkup, int commentCount, LikeInfo likeInfo, bool drawBoundary)
+        {
             if (markupStr == null)
                 return null;
 
-            var commentSectionStr = GetMarkupString("/Root/Global/renderers/Wall/CommentSection.html");
             if (commentSectionStr == null)
                 return null;
 
@@ -85,7 +111,7 @@ namespace SenseNet.Portal.Wall
 
             markupStr = markupStr.Replace("{{text}}", text);
             markupStr = markupStr.Replace("{{date}}", postInfo.CreationDate.ToString());
-            markupStr = markupStr.Replace("{{friendlydate}}", GetFriendlyDate(postInfo.CreationDate));
+            markupStr = markupStr.Replace("{{friendlydate}}", UITools.GetFriendlyDate(postInfo.CreationDate));
             markupStr = markupStr.Replace("{{hiddencomments}}", hiddenCommentsMarkup);
             markupStr = markupStr.Replace("{{comments}}", commentsMarkup);
             markupStr = markupStr.Replace("{{commentboxdisplay}}", (commentCount > 0) && haspermission ? "block" : "none");
@@ -95,9 +121,6 @@ namespace SenseNet.Portal.Wall
             markupStr = markupStr.Replace("{{likes}}", likeInfo.GetLongMarkup());
             markupStr = markupStr.Replace("{{ilikedisplay}}", !likeInfo.iLike ? "inline" : "none");
             markupStr = markupStr.Replace("{{iunlikedisplay}}", likeInfo.iLike ? "inline" : "none");
-            var currentUser = User.Current as User;
-            markupStr = markupStr.Replace("{{currentuserlink}}", Actions.ActionUrl(Content.Create(currentUser), "Profile"));
-            markupStr = markupStr.Replace("{{currentuseravatar}}", UITools.GetAvatarUrl(currentUser));
 
             // content card - only manualposts count here, journals don't have this markup
             if (postInfo.Type == PostType.BigPost && postInfo.SharedContent != null)
@@ -130,6 +153,90 @@ namespace SenseNet.Portal.Wall
 
             return markupStr;
         }
+        public static string GetWallPostsMarkup(string contextPath, List<PostInfo> posts)
+        {
+            if (posts.Count == 0)
+                return string.Empty;
+
+            // create query for comments and likes
+            var csb = new StringBuilder();
+            foreach (var postInfo in posts)
+            {
+                if (postInfo.IsJournal)
+                    continue;
+
+                csb.Append("\"" + postInfo.Path + "\" ");
+            }
+
+            var paths = csb.ToString().Trim();
+
+            List<Node> allComments;
+            List<Node> allLikes;
+
+            if (string.IsNullOrEmpty(paths))    // only non-persisted journal posts are there to show (no comments or likes)
+            {
+                allComments = new List<Node>();
+                allLikes = new List<Node>();
+            } 
+            else 
+            {
+                var commentsAndLikesQuery = "+TypeIs:(Comment Like) +InTree:(" + paths + ")";
+                var settings = new QuerySettings() { EnableAutofilters = false };
+                var allCommentsAndLikes = ContentQuery.Query(commentsAndLikesQuery, settings).Nodes.ToList();
+
+                var commentNodeTypeId = NodeType.GetByName("Comment").Id;
+                var likeTypeId = NodeType.GetByName("Like").Id;
+
+                allComments = allCommentsAndLikes.Where(c => c.NodeTypeId == commentNodeTypeId).ToList();
+                allLikes = allCommentsAndLikes.Where(l => l.NodeTypeId == likeTypeId).ToList();
+            }
+
+            var bigPostMarkupStr = GetBigPostMarkupStr();
+            var smallPostMarkupStr = GetSmallPostMarkupStr();
+            var commentMarkupStr = GetCommentMarkupStr();
+            var commentSectionStr = GetCommentSectionMarkupStr();
+
+            PostInfo prevPost = null;
+            var sb = new StringBuilder();
+            foreach (var postInfo in posts)
+            {
+                // get comments and likes for post
+                CommentInfo commentInfo;
+                LikeInfo likeInfo;
+
+                if (postInfo.IsJournal)
+                {
+                    commentInfo = new CommentInfo();
+                    likeInfo = new LikeInfo();
+                }
+                else
+                {
+                    var commentsForPost = allComments.Where(c => RepositoryPath.GetParentPath(RepositoryPath.GetParentPath(c.Path)) == postInfo.Path).ToList();
+                    var likesForPostAndComments = allLikes.Where(l => l.Path.StartsWith(postInfo.Path)).ToList();
+                    var likesForPost = likesForPostAndComments.Where(l => RepositoryPath.GetParentPath(RepositoryPath.GetParentPath(l.Path)) == postInfo.Path).ToList();
+
+                    commentInfo = new CommentInfo(commentsForPost, likesForPostAndComments, commentMarkupStr);
+                    likeInfo = new LikeInfo(likesForPost, postInfo.Id);
+                }
+
+                var drawBoundary = (prevPost != null) && (prevPost.Type != PostType.BigPost) && (postInfo.Type == PostType.BigPost);
+
+                var markup = WallHelper.GetPostMarkup(
+                    postInfo.Type == PostType.BigPost ? bigPostMarkupStr : smallPostMarkupStr,
+                    commentSectionStr,
+                    postInfo,
+                    contextPath,
+                    commentInfo.HiddenCommentsMarkup,
+                    commentInfo.CommentsMarkup,
+                    commentInfo.CommentCount,
+                    likeInfo, drawBoundary);
+
+                prevPost = postInfo;
+
+                sb.Append(markup);
+            }
+            return sb.ToString();
+        }
         public static string GetContentCardMarkup(Node sharedContent, string contextPath)
         {
             var markupStr = WallHelper.GetMarkupString("/Root/Global/renderers/Wall/ContentCard.html");
@@ -154,9 +261,6 @@ namespace SenseNet.Portal.Wall
             }
             else
             {
-                //var path = sharedGc.Path;
-                //var action = ActionFramework.GetAction("Profile", Content.Create(user), null);
-                //path = action.Uri;
                 var path = Actions.ActionUrl(Content.Create(user), "Profile");
 
                 markupStr = markupStr.Replace("{{sharepath}}", path);
@@ -184,9 +288,6 @@ namespace SenseNet.Portal.Wall
             markupStr = markupStr.Replace("{{likes}}", likeInfo.GetLongMarkup());
             markupStr = markupStr.Replace("{{ilikedisplay}}", !likeInfo.iLike ? "inline" : "none");
             markupStr = markupStr.Replace("{{iunlikedisplay}}", likeInfo.iLike ? "inline" : "none");
-            var currentUser = User.Current as User;
-            markupStr = markupStr.Replace("{{currentuserlink}}", Actions.ActionUrl(Content.Create(currentUser), "Profile"));
-            markupStr = markupStr.Replace("{{currentuseravatar}}", UITools.GetAvatarUrl(currentUser));
 
             // user interaction allowed
             markupStr = markupStr.Replace("{{interactdisplay}}", WallHelper.HasWallPermission(contextNode.Path, contextNode) ? "block" : "none");
@@ -227,7 +328,11 @@ namespace SenseNet.Portal.Wall
         /// <returns></returns>
         public static string GetContentWallMarkup(Node contextNode, string hiddenCommentsMarkup, string commentsMarkup, int commentCount, LikeInfo likeInfo, string postsMarkup)
         {
-            var markupStr = WallHelper.GetMarkupString("/Root/Global/renderers/Wall/ContentWall.html");
+            var markupStr = GetContentWallMarkupStr();
+            return GetContentWallMarkup(markupStr, contextNode, hiddenCommentsMarkup, commentsMarkup, commentCount, likeInfo, postsMarkup);
+        }
+        public static string GetContentWallMarkup(string markupStr, Node contextNode, string hiddenCommentsMarkup, string commentsMarkup, int commentCount, LikeInfo likeInfo, string postsMarkup)
+        {
             if (markupStr == null)
                 return null;
 
@@ -240,9 +345,6 @@ namespace SenseNet.Portal.Wall
             markupStr = markupStr.Replace("{{likes}}", likeInfo.GetLongMarkup());
             markupStr = markupStr.Replace("{{ilikedisplay}}", !likeInfo.iLike ? "inline" : "none");
             markupStr = markupStr.Replace("{{iunlikedisplay}}", likeInfo.iLike ? "inline" : "none");
-            var currentUser = User.Current as User;
-            markupStr = markupStr.Replace("{{currentuserlink}}", Actions.ActionUrl(Content.Create(currentUser), "Profile"));
-            markupStr = markupStr.Replace("{{currentuseravatar}}", UITools.GetAvatarUrl(currentUser));
 
             var contextGc = contextNode as GenericContent;
             markupStr = markupStr.Replace("{{shareicon}}", IconHelper.ResolveIconPath(contextGc.Icon, 32));
@@ -268,6 +370,7 @@ namespace SenseNet.Portal.Wall
             }
 
             // always include profile link - it will be created if not yet exists
+            var currentUser = User.Current as User;
             markupStr = markupStr.Replace("{{mywallpath}}", Actions.ActionUrl(Content.Create(currentUser), "Profile"));
             markupStr = markupStr.Replace("{{mywallname}}", "My wall");
             markupStr = markupStr.Replace("{{mywalldisplay}}", "inline");
@@ -290,7 +393,11 @@ namespace SenseNet.Portal.Wall
         /// <returns></returns>
         public static string GetCommentMarkup(DateTime creationDate, User user, string text, int commentId, LikeInfo likeInfo, Node commentNode)
         {
-            var markupStr = GetMarkupString("/Root/Global/renderers/Wall/Comment.html");
+            var markupStr = GetCommentMarkupStr();
+            return GetCommentMarkup(markupStr, creationDate, user, text, commentId, likeInfo, commentNode);
+        }
+        public static string GetCommentMarkup(string markupStr, DateTime creationDate, User user, string text, int commentId, LikeInfo likeInfo, Node commentNode)
+        {
             if (markupStr == null)
                 return null;
 
@@ -300,7 +407,7 @@ namespace SenseNet.Portal.Wall
             markupStr = markupStr.Replace("{{userlink}}", Actions.ActionUrl(Content.Create(user), "Profile"));
             markupStr = markupStr.Replace("{{text}}", text);
             markupStr = markupStr.Replace("{{date}}", creationDate.ToString());
-            markupStr = markupStr.Replace("{{friendlydate}}", GetFriendlyDate(creationDate));
+            markupStr = markupStr.Replace("{{friendlydate}}", UITools.GetFriendlyDate(creationDate));
             markupStr = markupStr.Replace("{{likeboxdisplay}}", likeInfo.Count > 0 ? "inline" : "none");
             markupStr = markupStr.Replace("{{likes}}", likeInfo.GetShortMarkup());
             markupStr = markupStr.Replace("{{ilikedisplay}}", !likeInfo.iLike ? "inline" : "none");
@@ -311,7 +418,6 @@ namespace SenseNet.Portal.Wall
             markupStr = markupStr.Replace("{{interactdisplay}}", haspermission ? "inline" : "none");
             // show 'like' icon for comment likes if user does not have permission -> in this case like icon would not appear since like link is hidden
             markupStr = markupStr.Replace("{{interactclass}}", haspermission ? string.Empty : "sn-commentlike");
-
             return markupStr;
         }
         /// <summary>
@@ -331,45 +437,7 @@ namespace SenseNet.Portal.Wall
 
             return markupStr;
         }
-        /// <summary>
-        /// Gets the user friendly string representation of a date relative to the current time
-        /// </summary>
-        /// <param name="date"></param>
-        /// <returns></returns>
-        public static string GetFriendlyDate(DateTime date)
-        {
-            //- 53 seconds ago
-            //- 15 minutes ago
-            //- 21 hours ago
-            //- Yesterday at 3:43pm
-            //- Sunday at 2:12pm
-            //- May 25 at 1:23pm
-            //- December 27, 2010 at 5:41pm
 
-            var shortTime = date.ToShortTimeString();   // 5:41 PM
-
-            var ago = DateTime.Now - date;
-            if (ago < new TimeSpan(0, 1, 0))
-                return ago.Seconds == 1 ? 
-                    "1 second ago" :
-                    string.Format("{0} seconds ago", ago.Seconds);
-            if (ago < new TimeSpan(1, 0, 0))
-                return ago.Minutes == 1 ? 
-                    "1 minute ago" :
-                    string.Format("{0} minutes ago", ago.Minutes);
-            if (ago < new TimeSpan(1, 0, 0, 0))
-                return ago.Hours == 1 ?
-                    "1 hour ago" : 
-                    string.Format("{0} hours ago", ago.Hours);
-            if (ago < new TimeSpan(2, 0, 0, 0))
-                return string.Format("Yesterday at {0}", shortTime);
-            if (ago < new TimeSpan(7, 0, 0, 0))
-                return string.Format("{0} at {1}", date.DayOfWeek.ToString(), shortTime);
-            if (date.Year == DateTime.Now.Year)
-                return string.Format("{0} {1} at {2}", date.ToString("MMMM"), date.Day, shortTime);
-
-            return string.Format("{0} {1}, {2} at {3}", date.ToString("MMMM"), date.Day, date.Year, shortTime);
-        }
         /// <summary>
         /// Checks if current user can interact with wall. Parameter workspace is optional - if omitted, it will be loaded if Posts folder does not exist.
         /// </summary>
@@ -392,6 +460,11 @@ namespace SenseNet.Portal.Wall
         public static bool HasLikePermission(Node commentNode)
         {
             return commentNode.Security.HasPermission(SenseNet.ContentRepository.Storage.Schema.PermissionType.AddNew) && SenseNet.Portal.Wall.WallController.HasPermission();
+        }
+        [Obsolete("Use UITools.GetFriendlyDate instead")]
+        public static string GetFriendlyDate(DateTime date)
+        {
+            return UITools.GetFriendlyDate(date);
         }
     }
 }

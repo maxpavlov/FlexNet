@@ -13,12 +13,23 @@ using System.Xml.Xsl;
 using SenseNet.Diagnostics;
 using System.ComponentModel;
 using SenseNet.ContentRepository.Storage;
+using SenseNet.ContentRepository;
+using System.Linq;
 
 namespace SenseNet.Portal.UI.PortletFramework
 {
     public abstract class PortletBase : WebPart, IWebEditable
     {
-        private static readonly string TimerStringFormat = "Execution time of the {0} portlet was {1:F10}.<br />";
+        public enum PortletViewType
+        {
+            All = 1,
+            Ascx = 2,
+            Xslt = 3
+        }
+
+        public static readonly string[] XmlFields = new [] { "FieldSerializationOption", "FieldNamesSerializationOption", "ActionSerializationOption" };
+
+        private static readonly string TimerStringFormat = "Execution time of the {0} portlet was <b>{1:F10}</b>.<br />";
 
         [WebDisplayName("Portlet title")]
         [WebDescription("Sets the visible title of the current portlet. Title header visibility is controlled with Appearance property")]
@@ -47,7 +58,7 @@ namespace SenseNet.Portal.UI.PortletFramework
 
 
         // Properties /////////////////////////////////////////////////////////////
-        internal static bool ShowExecutionTime
+        protected static bool ShowExecutionTime
         {
             get
             {
@@ -96,14 +107,26 @@ namespace SenseNet.Portal.UI.PortletFramework
 
         public virtual RenderMode RenderingMode { get; set; }
 
+        protected const string RENDERER_DISPLAYNAME = "RendererDisplayName";
+        protected const string RENDERER_DESCRIPTION = "RendererDescription";
+
+        protected const string FIELDS_DISPLAYNAME = "FieldsDisplayName";
+        protected const string FIELDS_DESCRIPTION = "FieldsDescription";
+        protected const string FIELDLIST_DISPLAYNAME = "FieldListDisplayName";
+        protected const string FIELDLIST_DESCRIPTION = "FieldListDescription";
+        protected const string ACTIONS_DISPLAYNAME = "ActionsDisplayName";
+        protected const string ACTIONS_DESCRIPTION = "ActionsDescription";
+
+        protected const string PORTLETFRAMEWORK_CLASSNAME = "PortletFramework";
+
         private string _renderer;
         [WebBrowsable(true), Personalizable(true)]
-        [WebDisplayName("Renderer")]
-        [WebDescription("Select an ASCX or XSLT renderer for rendering portlet output")]
+        [LocalizedWebDisplayName(PORTLETFRAMEWORK_CLASSNAME, RENDERER_DISPLAYNAME)]
+        [LocalizedWebDescription(PORTLETFRAMEWORK_CLASSNAME, RENDERER_DESCRIPTION)]
         [WebCategory(EditorCategory.UI, EditorCategory.UI_Order)]
         [WebOrder(1000)]
-        [Editor(typeof(ContentPickerEditorPartField), typeof(IEditorPartField))]
-        [ContentPickerEditorPartOptions(ContentPickerCommonType.Renderer)]
+        [Editor(typeof(ViewPickerEditorPartField), typeof(IEditorPartField))]
+        [ContentPickerEditorPartOptions(PortletViewType.Ascx)]
         public virtual string Renderer 
         {
             get
@@ -122,6 +145,29 @@ namespace SenseNet.Portal.UI.PortletFramework
             }
         }
 
+        [WebBrowsable(true), Personalizable(true)]
+        [LocalizedWebDisplayName(PORTLETFRAMEWORK_CLASSNAME, FIELDS_DISPLAYNAME)]
+        [LocalizedWebDescription(PORTLETFRAMEWORK_CLASSNAME, FIELDS_DESCRIPTION)]
+        [WebCategory(EditorCategory.UI, EditorCategory.UI_Order)]
+        [WebOrder(1010)]
+        public virtual FieldSerializationOptions FieldSerializationOption { get; set; }
+
+        [WebBrowsable(true), Personalizable(true)]
+        [LocalizedWebDisplayName(PORTLETFRAMEWORK_CLASSNAME, FIELDLIST_DISPLAYNAME)]
+        [LocalizedWebDescription(PORTLETFRAMEWORK_CLASSNAME, FIELDLIST_DESCRIPTION)]
+        [WebCategory(EditorCategory.UI, EditorCategory.UI_Order)]
+        [WebOrder(1020)]
+        [Editor(typeof(TextEditorPartField), typeof(IEditorPartField))]
+        [TextEditorPartOptions(TextEditorCommonType.MiddleSize)]
+        public virtual string FieldNamesSerializationOption { get; set; }
+
+        [WebBrowsable(true), Personalizable(true)]
+        [LocalizedWebDisplayName(PORTLETFRAMEWORK_CLASSNAME, ACTIONS_DISPLAYNAME)]
+        [LocalizedWebDescription(PORTLETFRAMEWORK_CLASSNAME, ACTIONS_DESCRIPTION)]
+        [WebCategory(EditorCategory.UI, EditorCategory.UI_Order)]
+        [WebOrder(1030)]
+        public virtual ActionSerializationOptions ActionSerializationOption { get; set; }
+
         private PortletCategory _category = new PortletCategory(PortletCategoryType.Other);
         public PortletCategory Category
         {
@@ -137,6 +183,8 @@ namespace SenseNet.Portal.UI.PortletFramework
         {
             if (ShowExecutionTime)
                 Timer = new Stopwatch();
+
+            this.HiddenProperties = new List<string>(XmlFields);
         }
 
         protected SenseNet.Portal.UI.PortletFramework.Xslt.XslTransformExecutionContext PinnedXsltContext;
@@ -321,12 +369,26 @@ namespace SenseNet.Portal.UI.PortletFramework
                 return new XPathDocument(smodel);
             return null;
         }
+        protected SerializationOptions GetContentSerializationOptions()
+        {
+            var fieldNames = string.IsNullOrEmpty(this.FieldNamesSerializationOption)
+                                 ? new string[0]
+                                 : this.FieldNamesSerializationOption.Split(new[] {','}, 
+                                    StringSplitOptions.RemoveEmptyEntries).Select(s => s.Trim()).ToArray();
+
+            return new SerializationOptions
+            {
+                Fields = this.FieldSerializationOption,
+                FieldNames = fieldNames,
+                Actions = this.ActionSerializationOption
+            };
+        }
 
         protected virtual void RenderTimerValue(HtmlTextWriter writer, string message)
         {
 
             var sb = new StringBuilder();
-            sb.Append(@"<div style=""color:#fff;background:#f00;font-weight:bold,padding:2px"">");
+            sb.Append(@"<div style=""color:#fff;background:#c00;font-weight:bold,padding:2px"">");
             var msg = String.Format(TimerStringFormat, ID, Timer.Elapsed.TotalSeconds);
             if (!string.IsNullOrEmpty(message))
                 msg = String.Concat(msg, "-", message);

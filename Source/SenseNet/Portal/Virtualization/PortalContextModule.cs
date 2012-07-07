@@ -28,7 +28,7 @@ namespace SenseNet.Portal.Virtualization
             get { return _clientCacheConfig; }
         }
         private static int? _binaryHandlerClientCacheMaxAge;
-
+        private static volatile bool _delayRequests;
 
         // ============================================================================================ Properties
         private static readonly string DENYCROSSSITEACCESSENABLEDKEY = "DenyCrossSiteAccessEnabled";
@@ -62,10 +62,14 @@ namespace SenseNet.Portal.Virtualization
         public void Init(HttpApplication context)
         {
             InitCacheHeaderConfig();
+            CounterManager.Reset("DelayingRequests");
             context.BeginRequest += new EventHandler(OnEnter);
         }
         void OnEnter(object sender, EventArgs e)
         {
+            // check if messages to process from msmq exceeds configured limit: delay current thread until it goes back to normal levels
+            DelayCurrentRequestIfNecessary();
+
             HttpContext httpContext = (sender as HttpApplication).Context;
             var request = httpContext.Request;
 
@@ -129,21 +133,52 @@ namespace SenseNet.Portal.Virtualization
         private static void SetThreadCulture(PortalContext portalContext)
         {
             // Set the CurrentCulture and the CurrentUICulture of the current thread based on the site language.
-            // If the site language was set to "UserDefined", or was set to an empty value, the thread culture
+            // If the site language was set to "FallbackToDefault", or was set to an empty value, the thread culture
             // remain unmodified and will contain its default value (based on Web- and machine.config).
-            if (portalContext.Site != null)
+            var site = portalContext.Site;
+            if (site != null)
             {
-                string language = portalContext.Site.Language;
-                // If the language was set to a non-empty value, and was not set to fallback, set the thread locale
-                // Otherwise do nothing (the ASP.NET engine already set the locale).
-                if (!string.IsNullOrEmpty(language) && string.Compare(language, "FallbackToDefault", true) != 0)
+                bool cultureSet = false;
+                if (site.EnableClientBasedCulture)
                 {
-                    var specificCulture = System.Globalization.CultureInfo.CreateSpecificCulture(language);
-                    var currentThread = System.Threading.Thread.CurrentThread;
-                    currentThread.CurrentCulture = specificCulture;
-                    currentThread.CurrentUICulture = specificCulture;
+                    // Set language to user's browser settings
+                    var languages = HttpContext.Current.Request.UserLanguages;
+
+                    string language = null;
+                    if (languages != null && languages.Length > 0)
+                        language = languages[0];
+
+                    if (language != null)
+                        language = language.ToLowerInvariant().Trim();
+
+                    cultureSet = TrySetThreadCulture(language);
                 }
+
+                // culture is not yet resolved or resolution from client failed: use site language
+                if (!cultureSet)
+                    TrySetThreadCulture(site.Language);
             }
+        }
+        private static bool TrySetThreadCulture(string language)
+        {
+            // If the language was set to a non-empty value, and was not set to fallback, set the thread locale
+            // Otherwise do nothing (the ASP.NET engine already set the locale).
+            if (string.IsNullOrEmpty(language) || string.Compare(language, "FallbackToDefault", true) == 0)
+                return false;
+
+            CultureInfo specificCulture = null;
+            try
+            {
+                specificCulture = CultureInfo.CreateSpecificCulture(language);
+            }
+            catch (CultureNotFoundException)
+            {
+                return false;
+            }
+
+            Thread.CurrentThread.CurrentCulture = specificCulture;
+            Thread.CurrentThread.CurrentUICulture = specificCulture;
+            return true;
         }
         private static IDictionary<string, object> CollectLoggedProperties(IHttpActionContext context)
         {
@@ -270,6 +305,37 @@ namespace SenseNet.Portal.Virtualization
                     return;
                 }
             }
+        }
+        private void DelayCurrentRequestIfNecessary()
+        {
+            // check if messages to process from msmq exceeds configured limit: delay current thread until it goes back to normal levels
+            _delayRequests = IsDelayingRequestsNecessary(_delayRequests);
+            while (_delayRequests)
+            {
+                Thread.Sleep(100);
+                _delayRequests = IsDelayingRequestsNecessary(_delayRequests);
+            }
+        }
+        private static bool IsDelayingRequestsNecessary(bool requestsCurrentlyDelayed)
+        {
+            // by default we keep current working mode
+            var delayingRequestsNecessary = requestsCurrentlyDelayed;
+
+            // check if we need to switch off/on delaying
+            var incomingMessageCount = DistributedApplication.ClusterChannel.IncomingMessageCount;
+            if (!requestsCurrentlyDelayed && incomingMessageCount > RepositoryConfiguration.DelayRequestsOnHighMessageCountUpperLimit)
+            {
+                delayingRequestsNecessary = true;
+                //Logger.WriteInformation("Requests are now being delayed (IncomingMessageCount reached configured upper limit: " + incomingMessageCount.ToString() + ")");
+            }
+            if (requestsCurrentlyDelayed && incomingMessageCount < RepositoryConfiguration.DelayRequestsOnHighMessageCountLowerLimit)
+            {
+                delayingRequestsNecessary = false;
+                //Logger.WriteInformation("Request delaying is now switched off (IncomingMessageCount reached configured lower limit: " + incomingMessageCount.ToString() + ")");
+            }
+
+            CounterManager.SetRawValue("DelayingRequests", delayingRequestsNecessary ? 1 : 0);
+            return delayingRequestsNecessary;
         }
      }
 }

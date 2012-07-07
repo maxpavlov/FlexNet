@@ -90,19 +90,19 @@ namespace SenseNet.Portal.Dws
         }
         private static void WriteDebug(string functionName, string requestPath, string requestUrl)
         {
-            var context = HttpContext.Current;
-            string traceMessage = string.Concat(" =========== DWS: ", functionName, " ===========  Path: '", context.Request.Path, "'", Environment.NewLine);
-            traceMessage = string.Concat(traceMessage, "   RequestPath: ", requestPath, ", ", "RequestUrl: ", requestUrl, Environment.NewLine);
-            traceMessage = string.Concat(traceMessage, "   Authenticated: ", HttpContext.Current.User.Identity.IsAuthenticated.ToString(), ", ", "UserName: ", HttpContext.Current.User.Identity.Name, Environment.NewLine);
-            traceMessage = string.Concat(traceMessage, "   HEADERS: ", Environment.NewLine);
+            //var context = HttpContext.Current;
+            //string traceMessage = string.Concat(" =========== DWS: ", functionName, " ===========  Path: '", context.Request.Path, "'", Environment.NewLine);
+            //traceMessage = string.Concat(traceMessage, "   RequestPath: ", requestPath, ", ", "RequestUrl: ", requestUrl, Environment.NewLine);
+            //traceMessage = string.Concat(traceMessage, "   Authenticated: ", HttpContext.Current.User.Identity.IsAuthenticated.ToString(), ", ", "UserName: ", HttpContext.Current.User.Identity.Name, Environment.NewLine);
+            //traceMessage = string.Concat(traceMessage, "   HEADERS: ", Environment.NewLine);
 
-            foreach (var x in context.Request.Headers.AllKeys)
-            {
-                traceMessage = string.Concat(traceMessage, string.Format("      {0}={1}", x, context.Request.Headers[x]));
-                traceMessage = string.Concat(traceMessage, Environment.NewLine);
-            }
+            //foreach (var x in context.Request.Headers.AllKeys)
+            //{
+            //    traceMessage = string.Concat(traceMessage, string.Format("      {0}={1}", x, context.Request.Headers[x]));
+            //    traceMessage = string.Concat(traceMessage, Environment.NewLine);
+            //}
 
-            System.Diagnostics.Trace.Write(traceMessage);
+            //System.Diagnostics.Trace.Write(traceMessage);
         }
 
         public static string GetRequestPath(string suffixPath)
@@ -312,7 +312,7 @@ namespace SenseNet.Portal.Dws
                 return "<Error>FolderNotFound</Error>";
 
             var folderPath = RepositoryPath.Combine(this.RequestPath, url);
-            var parentPath = RepositoryPath.GetParentPathSafe(folderPath);
+            var parentPath = RepositoryPath.GetParentPath(folderPath);
 
             if (!Node.Exists(parentPath))
                 return "<Error>FolderNotFound</Error>";

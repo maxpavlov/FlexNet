@@ -22,7 +22,7 @@
             <sn:ActionMenu runat="server" IconUrl="/Root/Global/images/icons/16/settings.png" Scenario="SurveySettings" ContextInfoID="myList" CheckActionCount="True">Settings</sn:ActionMenu>
             <span class="sn-actionlabel">View:</span>
             <sn:ActionMenu runat="server" IconUrl="/Root/Global/images/icons/16/views.png" Scenario="Views" ContextInfoID="myList" CheckActionCount="True" ScenarioParameters="{PortletID}" >
-              <% =SenseNet.Portal.UI.ContentListViews.ViewManager.LoadViewInContext(ContextNode, LoadedViewName).Title %>
+              <% =SenseNet.Portal.UI.ContentListViews.ViewManager.LoadViewInContext(ContextNode, LoadedViewName).DisplayName%>
             </sn:ActionMenu>
          </sn:ToolbarItemGroup>   
     </sn:Toolbar>

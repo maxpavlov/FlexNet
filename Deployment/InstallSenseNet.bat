@@ -14,8 +14,8 @@ ECHO ===========================================================================
 ECHO                                Install Database
 ECHO ===============================================================================
 
-SET DATASOURCE=MySenseNetContentRepositoryDatasource			
-SET INITIALCATALOG=SenseNetContentRepository
+SET DATASOURCE=SQL			
+SET INITIALCATALOG=FlexNetDataStore
 
 ECHO Creating database...
 

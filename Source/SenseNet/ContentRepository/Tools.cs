@@ -8,6 +8,7 @@ using SenseNet.ContentRepository.Versioning;
 using System.Globalization;
 using System.Linq;
 using SenseNet.Diagnostics;
+using System.Security.Cryptography;
 
 namespace SenseNet.ContentRepository
 {
@@ -77,15 +78,43 @@ namespace SenseNet.ContentRepository
         {
             return ContentNamingHelper.EnsureContentName(nameBase, container);
         }
-        [Obsolete("Use RepositoryPath.GetParentPathSafe(string) instead", true)]
+        [Obsolete("Use RepositoryPath.GetParentPath(string) instead", true)]
         public static string GetParentPathSafe(string path)
         {
-            return RepositoryPath.GetParentPathSafe(path);
+            return RepositoryPath.GetParentPath(path);
         }
         [Obsolete("Use RepositoryPath.GetFileNameSafe(string) instead", true)]
         public static string GetFileNameSafe(string path)
         {
             return RepositoryPath.GetFileNameSafe(path);
+        }
+
+        public static string CalculateMD5(string s)
+        {
+            byte[] bytes = Encoding.UTF8.GetBytes(s);
+
+            using (var stream = new MemoryStream(bytes))
+            {
+                return CalculateMD5(stream, 64 * 1024);
+            }
+        }
+
+        public static string CalculateMD5(Stream stream, int bufferSize)
+        {
+            MD5 md5Hasher = MD5.Create();
+
+            byte[] buffer = new byte[bufferSize];
+            int readBytes;
+
+            while ((readBytes = stream.Read(buffer, 0, bufferSize)) > 0)
+            {
+                md5Hasher.TransformBlock(buffer, 0, readBytes, buffer, 0);
+            }
+
+            md5Hasher.TransformFinalBlock(new byte[0], 0, 0);
+
+            var result = md5Hasher.Hash.Aggregate(string.Empty, (full, next) => full + next.ToString("x2"));
+            return result;
         }
 
         // Structure building ==================================================================
@@ -138,6 +167,20 @@ namespace SenseNet.ContentRepository
             content.Save();
             
             return content;
+        }
+
+        // Diagnostics =========================================================================
+
+        public static string CollectExceptionMessages(Exception ex)
+        {
+            var sb = new StringBuilder();
+            var e = ex;
+            while (e != null)
+            {
+                sb.AppendLine(e.Message).AppendLine(e.StackTrace).AppendLine("-----------------");
+                e = e.InnerException;
+            }
+            return sb.ToString();
         }
 	}
 }

@@ -27,6 +27,8 @@ namespace SenseNet.Portal.Portlets
             this.Name = SenseNetResourceManager.Current.GetString(ResourceClassName, "PortletTitle");
             this.Description = SenseNetResourceManager.Current.GetString(ResourceClassName, "PortletDescription");
             this.Category = new PortletCategory(PortletCategoryType.Collection);
+
+            this.HiddenProperties.Add("Renderer");
         }
 
         [WebBrowsable(true)]
@@ -45,8 +47,8 @@ namespace SenseNet.Portal.Portlets
         [LocalizedWebDisplayName(ResourceClassName, "DefaultViewDisplayName"),
          LocalizedWebDescription(ResourceClassName, "DefaultViewDescription")]        
         [WebOrder(20)]
-        [Editor(typeof(ContentPickerEditorPartField), typeof(IEditorPartField))]
-        [ContentPickerEditorPartOptions(ContentPickerCommonType.Ascx)]
+        [Editor(typeof(ViewPickerEditorPartField), typeof(IEditorPartField))]
+        [ContentPickerEditorPartOptions(PortletViewType.Ascx)]
         public string DefaultView { get; set; }
 
         // portlet uses custom ascx, hide renderer property
@@ -56,6 +58,9 @@ namespace SenseNet.Portal.Portlets
 
         protected override void CreateChildControls()
         {
+            if (ShowExecutionTime)
+                Timer.Start();
+
             Node ctx = null;
 
             try
@@ -75,11 +80,20 @@ namespace SenseNet.Portal.Portlets
                 else
                     l.Text = string.Format(SenseNetResourceManager.Current.GetString(ResourceClassName, "ContentListDoesNotExist"), RelativeContentPath);
                 Controls.Add(l);
+
+                if (ShowExecutionTime)
+                    Timer.Stop();
+
                 return;
             }
 
             if (Cacheable && CanCache && IsInCache)
+            {
+                if (ShowExecutionTime)
+                    Timer.Stop();
+
                 return;
+            }
 
             if (RenderingMode == RenderMode.Native)
             {
@@ -102,6 +116,9 @@ namespace SenseNet.Portal.Portlets
             }
 
             ChildControlsCreated = true;
+
+            if (ShowExecutionTime)
+                Timer.Stop();
         }
 
         private Control CreateViewControl(string path)

@@ -17,6 +17,8 @@ namespace SenseNet.Portal.Portlets
             this.Name = "User control";
             this.Description = "A portlet for rendering an ASP.NET User Control";
             this.Category = new PortletCategory(PortletCategoryType.Application);
+
+            this.HiddenProperties.Add("Renderer");
         }
 
         [WebBrowsable(true)]

@@ -63,7 +63,7 @@ namespace SenseNet.Services.WebDav
 
             #region Debug
 
-            System.Diagnostics.Trace.Write(string.Concat("RESPONSE: ", ret));
+            System.Diagnostics.Debug.Write(string.Concat("RESPONSE: ", ret));
 
             #endregion
 
@@ -76,7 +76,7 @@ namespace SenseNet.Services.WebDav
 		{
             #region Debug
 
-            System.Diagnostics.Trace.Write(string.Concat("** PROCESSChildren '", _handler.Path, "'"));
+            //System.Diagnostics.Trace.Write(string.Concat("** PROCESSChildren '", _handler.Path, "'"));
 
             #endregion
             
@@ -376,14 +376,7 @@ namespace SenseNet.Services.WebDav
             }
             else if (wdType != WebdavType.Folder)
             {
-                if (binaryPropertyName == "Binary")
-                {
-                    nodeName = RepositoryPath.GetFileName(System.IO.Path.GetFileName(((BinaryData)node[binaryPropertyName]).FileName));
-
-                    if (string.IsNullOrEmpty(nodeName) || nodeName.StartsWith("."))
-                        nodeName = node.Name + nodeName;
-                }
-                else
+                if (binaryPropertyName != "Binary")
                     nodeName = string.Concat(node.Name, ".", binaryPropertyName);
 
                 nodePath = RepositoryPath.Combine(node.ParentPath, nodeName);                   

@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Diagnostics;
+using System.Web;
 
 namespace SenseNet.Diagnostics
 {
@@ -15,6 +12,8 @@ namespace SenseNet.Diagnostics
         public bool Aborted { get { return _aborted; } }
         public object InArgument;
         public object OutArgument;
+
+        public HttpContext Context;
 
         public AutoResetEvent WaitHandle = new AutoResetEvent(false);
 
@@ -45,6 +44,12 @@ namespace SenseNet.Diagnostics
         {
             try
             {
+                //we need the http context here mainly to
+                //have the sql transaction object if it is
+                //needed by the action
+                if (HttpContext.Current == null && Context != null)
+                    HttpContext.Current = Context;
+
                 Activity(this);
             }
             catch (ThreadAbortException)

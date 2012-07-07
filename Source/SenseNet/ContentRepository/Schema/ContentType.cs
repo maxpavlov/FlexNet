@@ -70,6 +70,8 @@ namespace  SenseNet.ContentRepository.Schema
 
 		//====================================================================== Properties
 
+        public override bool IsContentType { get { return true; } }
+
         /// <summary>
         /// Fully qualified type name of the content handler class. This value comes from the 'handler' attribute of ContentTypeDefinition's root element.
         /// </summary>
@@ -555,10 +557,10 @@ namespace  SenseNet.ContentRepository.Schema
 
 		internal void Save(bool withInstall)
 		{
-			if (withInstall)
-				Save();
-			else
-				base.Save();
+            if (withInstall)
+                Save();
+            else
+                base.Save();
 		}
         public override void Save()
         {
@@ -592,6 +594,10 @@ namespace  SenseNet.ContentRepository.Schema
             ContentTypeManager.ApplyChanges(this);
             base.Save();
             ContentTypeManager.Current.AddContentType(this);
+        }
+        public override void Save(NodeSaveSettings settings)
+        {
+            base.Save(settings);
         }
 		public override void Delete()
 		{

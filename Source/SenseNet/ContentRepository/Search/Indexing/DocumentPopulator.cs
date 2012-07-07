@@ -14,6 +14,9 @@ using Lucene.Net.Search;
 using Lucene.Net.Util;
 using SenseNet.Search.Indexing.Activities;
 using SenseNet.ContentRepository;
+using SenseNet.Communication.Messaging;
+using System.Diagnostics;
+using SenseNet.ContentRepository.Storage.Data;
 
 namespace SenseNet.Search.Indexing
 {
@@ -39,8 +42,8 @@ namespace SenseNet.Search.Indexing
         // caller: IndexPopulator.Populator, Import.Importer, Tests.Initializer, RunOnce
         public void ClearAndPopulateAll()
         {
-            var lastTaskId = IndexingTaskManager.GetLastTaskId();
-            var commitData = IndexManager.CreateCommitUserData(lastTaskId);
+            var lastActivityId = IndexingActivityManager.GetLastActivityId();
+            var commitData = IndexManager.CreateCommitUserData(lastActivityId);
             using (var traceOperation = Logger.TraceOperation("IndexPopulator ClearAndPopulateAll"))
             {
                 //-- recreate
@@ -64,8 +67,8 @@ namespace SenseNet.Search.Indexing
                 {
                     writer.Close();
                 }
-                RepositoryInstance.Instance.ConsoleWrite("  Deleting indexing tasks ... ");
-                IndexingTaskManager.DeleteAllTasks();
+                RepositoryInstance.Instance.ConsoleWrite("  Deleting indexing activities ... ");
+                IndexingActivityManager.DeleteAllActivities();
                 RepositoryInstance.Instance.ConsoleWriteLine("ok");
                 RepositoryInstance.Instance.ConsoleWrite("  Making backup ... ");
                 BackupTools.BackupIndexImmediatelly();
@@ -103,12 +106,7 @@ namespace SenseNet.Search.Indexing
         public void PopulateTree(string path)
         {
             //-- add new tree
-            //var task = CreateTask("PopulateTree");
-            //AddActivity(task, IndexingActivityType.AddTree, path);
-            //IndexingTaskManager.RegisterTask(task);
-            //IndexingTaskManager.ExecuteTask(task, true, true);
-
-            CreateTaskAndExecute("PopulateTree", IndexingActivityType.AddTree, path);
+            CreateActivityAndExecute(IndexingActivityType.AddTree, path, false, null);
         }
 
         // caller: Node.Save, Node.SaveCopied
@@ -125,57 +123,46 @@ namespace SenseNet.Search.Indexing
             };
             return populatorData;
         }
-        public void CommitPopulateNode(object data)
+        public void CommitPopulateNode(object data, IndexDocumentData indexDocument = null)
         {
             var state = (DocumentPopulatorData)data;
             if (state.OriginalPath.ToLower() != state.NewPath.ToLower())
             {
-                DeleteTree(state.OriginalPath);
+                DeleteTree(state.OriginalPath, true);
                 PopulateTree(state.NewPath);
             }
             else if (state.IsNewNode)
             {
-                CreateBrandNewNode(state.Node);
+                CreateBrandNewNode(state.Node, indexDocument);
             }
             else if (state.Settings.IsNewVersion())
             {
-                AddNewVersion(state.Node);
+                AddNewVersion(state.Node, indexDocument);
             }
             else
             {
-                UpdateVersion(state);
+                UpdateVersion(state, indexDocument);
             }
             OnNodeIndexed(state.Node.Path);
         }
         // caller: CommitPopulateNode (rename), Node.MoveTo, Node.ForceDelete
-        public void DeleteTree(string path)
+        public void DeleteTree(string path, bool moveOrRename)
         {
             //-- add new tree
-            //var task = CreateTask("DeleteTree");
-            //AddActivity(task, IndexingActivityType.RemoveTree, path);
-            //IndexingTaskManager.RegisterTask(task);
-            //IndexingTaskManager.ExecuteTask(task, true, true);
-
-            CreateTaskAndExecute("DeleteTree", IndexingActivityType.RemoveTree, path);
+            CreateActivityAndExecute(IndexingActivityType.RemoveTree, path, moveOrRename, null);
         }
 
         // caller: Node.DeleteMoreInternal
-        public void DeleteForest(IEnumerable<Int32> idSet)
+        public void DeleteForest(IEnumerable<Int32> idSet, bool moveOrRename)
         {
-            var task = CreateTask("DeleteForest");
             foreach (var head in NodeHead.Get(idSet))
-                AddActivity(task, IndexingActivityType.RemoveTree, head.Path);
-            IndexingTaskManager.RegisterTask(task);
-            IndexingTaskManager.ExecuteTask(task, true, true);
+                DeleteTree(head.Path, moveOrRename);
         }
         // caller: Node.MoveMoreInternal
-        public void DeleteForest(IEnumerable<string> pathSet)
+        public void DeleteForest(IEnumerable<string> pathSet, bool moveOrRename)
         {
-            var task = CreateTask("DeleteForest");
             foreach (var path in pathSet)
-                AddActivity(task, IndexingActivityType.RemoveTree, path);
-            IndexingTaskManager.RegisterTask(task);
-            IndexingTaskManager.ExecuteTask(task, true, true);
+                DeleteTree(path, moveOrRename);
         }
 
         public void RefreshIndexDocumentInfo(IEnumerable<Node> nodes)
@@ -200,9 +187,7 @@ namespace SenseNet.Search.Indexing
             DataBackingStore.SaveIndexDocument(node);
             if(RepositoryInstance.ContentQueryIsAllowed)
             {
-                var task = CreateTask("UpdateVersion");
-                AddActivity(task, IndexingActivityType.UpdateDocument, node.Id, node.VersionId, node.VersionTimestamp);
-                ExecuteTask(task);
+                ExecuteActivity(CreateActivity(IndexingActivityType.UpdateDocument, node.Id, node.VersionId, node.VersionTimestamp, null, null));//UNDONE: SingleVersion
             }
         }
 
@@ -224,12 +209,12 @@ namespace SenseNet.Search.Indexing
         }
         private void RefreshIndexOneNode(Node node)
         {
+            // node index is refreshed only on this node and should not be distributed.
             var versionId = node.VersionId;
             if (RepositoryInstance.ContentQueryIsAllowed)
             {
-                var task = CreateTask("UpdateVersion");
-                AddActivity(task, IndexingActivityType.UpdateDocument, node.Id, node.VersionId, node.VersionTimestamp);
-                ExecuteTask(task);
+                var activity = CreateActivity(IndexingActivityType.UpdateDocument, node.Id, node.VersionId, node.VersionTimestamp, null, null);
+                IndexingActivityManager.ExecuteActivity(activity, true, false);
             }
         }
 
@@ -241,27 +226,26 @@ namespace SenseNet.Search.Indexing
             NodeIndexed(null, new NodeIndexedEvenArgs(path));
         }
 
+
         /*================================================================================================================================*/
 
         // caller: CommitPopulateNode
-        private static void CreateBrandNewNode(Node node)
+        private static void CreateBrandNewNode(Node node, IndexDocumentData indexDocumentData)
         {
-            CreateTaskAndExecute("CreateNode", IndexingActivityType.AddDocument, node.Id, node.VersionId, node.VersionTimestamp);
+            CreateActivityAndExecute(IndexingActivityType.AddDocument, node.Id, node.VersionId, node.VersionTimestamp, true, indexDocumentData);
         }
         // caller: CommitPopulateNode
-        private static void AddNewVersion(Node newVersion)
+        private static void AddNewVersion(Node newVersion, IndexDocumentData indexDocumentData)
         {
-            CreateTaskAndExecute("AddNewVersion", IndexingActivityType.AddDocument, newVersion.Id, newVersion.VersionId, newVersion.VersionTimestamp);
+            CreateActivityAndExecute(IndexingActivityType.AddDocument, newVersion.Id, newVersion.VersionId, newVersion.VersionTimestamp, null, indexDocumentData); //UNDONE: SingleVersion
         }
         // caller: CommitPopulateNode
-        private static void UpdateVersion(DocumentPopulatorData state)
+        private static void UpdateVersion(DocumentPopulatorData state, IndexDocumentData indexDocumentData)
         {
-            var task = CreateTask("UpdateVersion");
             foreach (var versionId in state.Settings.DeletableVersionIds)
-                AddActivity(task, IndexingActivityType.RemoveDocument, state.Node.Id, versionId, 0);
+                ExecuteActivity(CreateActivity(IndexingActivityType.RemoveDocument, state.Node.Id, versionId, 0, null, null));//UNDONE: SingleVersion
             if (!state.Settings.DeletableVersionIds.Contains(state.Node.VersionId))
-                AddActivity(task, IndexingActivityType.UpdateDocument, state.Node.Id, state.Node.VersionId, state.Node.VersionTimestamp);
-            ExecuteTask(task);
+                ExecuteActivity(CreateActivity(IndexingActivityType.UpdateDocument, state.Node.Id, state.Node.VersionId, state.Node.VersionTimestamp, null, indexDocumentData));//UNDONE: SingleVersion
         }
 
         // caller: ClearAndPopulateAll, RepopulateTree
@@ -273,39 +257,40 @@ namespace SenseNet.Search.Indexing
         }
         /*================================================================================================================================*/
 
-        private static IndexingTask CreateTask(string comment)
+        private static IndexingActivity CreateActivity(IndexingActivityType type, int nodeId, int versionId, long versionTimestamp, bool? singleVersion, IndexDocumentData indexDocumentData)
         {
-            return new IndexingTask() { Comment = comment };
+            return new IndexingActivity
+            {
+                ActivityType = type,
+                NodeId = nodeId,
+                VersionId = versionId,
+                VersionTimestamp = versionTimestamp,
+                SingleVersion = singleVersion,
+                IndexDocumentData = indexDocumentData
+            };
         }
-        private static void AddActivity(IndexingTask task, IndexingActivityType type, int nodeId, int versionId, long versionTimestamp)
+        private static IndexingActivity CreateActivity(IndexingActivityType type, string path, bool moveOrRename, IndexDocumentData indexDocumentData)
         {
-            task.IndexingActivities.Add(new IndexingActivity() { ActivityType = type, NodeId = nodeId, VersionId = versionId, VersionTimestamp = versionTimestamp });
+            return new IndexingActivity
+            {
+                ActivityType = type,
+                Path = path.ToLower(),
+                IndexDocumentData = indexDocumentData,
+                MoveOrRename = moveOrRename
+            };
         }
-        private static void AddActivity(IndexingTask task, IndexingActivityType type, string path)
+        private static void CreateActivityAndExecute(IndexingActivityType type, int nodeId, int versionId, long versionTimestamp, bool? singleVersion, IndexDocumentData indexDocumentData)
         {
-            task.IndexingActivities.Add(new IndexingActivity { ActivityType = type, Path = path.ToLower() });
+            ExecuteActivity(CreateActivity(type, nodeId, versionId, versionTimestamp, singleVersion, indexDocumentData));
         }
-        private static void AddActivityAndExecute(IndexingTask task, IndexingActivityType type, int nodeId, int versionId, long versionTimestamp)
+        private static void CreateActivityAndExecute(IndexingActivityType type, string path, bool moveOrRename, IndexDocumentData indexDocumentData)
         {
-            AddActivity(task, type, nodeId, versionId, versionTimestamp);
-            ExecuteTask(task);
+            ExecuteActivity(CreateActivity(type, path, moveOrRename, indexDocumentData));
         }
-        private static void CreateTaskAndExecute(string comment, IndexingActivityType type, int nodeId, int versionId, long versionTimestamp)
+        private static void ExecuteActivity(IndexingActivity activity)
         {
-            var task = CreateTask(comment);
-            AddActivity(task, type, nodeId, versionId, versionTimestamp);
-            ExecuteTask(task);
-        }
-        private static void CreateTaskAndExecute(string comment, IndexingActivityType type, string path)
-        {
-            var task = CreateTask(comment);
-            AddActivity(task, type, path);
-            ExecuteTask(task);
-        }
-        private static void ExecuteTask(IndexingTask task)
-        {
-            IndexingTaskManager.RegisterTask(task);
-            IndexingTaskManager.ExecuteTask(task, true, true);
+            IndexingActivityManager.RegisterActivity(activity);
+            IndexingActivityManager.ExecuteActivity(activity, true, true);
         }
     }
 }

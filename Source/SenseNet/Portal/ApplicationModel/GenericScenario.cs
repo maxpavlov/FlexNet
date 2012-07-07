@@ -4,13 +4,11 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
-using SenseNet.ApplicationModel;
 using SenseNet.ContentRepository;
 using SenseNet.ContentRepository.Schema;
 using SenseNet.ContentRepository.Storage;
-using SenseNet.ContentRepository.Versioning;
 using SenseNet.ContentRepository.Workspaces;
-using SenseNet.Portal.Virtualization;
+using SenseNet.Portal;
 using SenseNet.Search;
 
 namespace SenseNet.ApplicationModel
@@ -69,100 +67,101 @@ namespace SenseNet.ApplicationModel
 
         public static IEnumerable<Node> GetNewItemNodes(GenericContent content) 
         {
-            //  It would be fine to use a list of all available ContentTemplate folders.
-            //var result = content.AllowedChildTypes;
-            var result = content.GetAllowedChildTypes();
-            return GetNewItemsInternal(content, result);
+            if (content == null)
+                throw new ArgumentNullException("content");
+
+            return GetNewItemNodes(content, content.GetAllowedChildTypes().ToArray());
         }
 
-        public static IEnumerable<Node> GetNewItemNodes(GenericContent content, ContentType[] contentTypes) 
+        public static IEnumerable<Node> GetNewItemNodes(GenericContent content, ContentType[] contentTypes)
         {
-            var result = contentTypes;
-            return GetNewItemsInternal(content, result);
-        }
+            if (content == null)
+                throw new ArgumentNullException("content");
 
-        private static IEnumerable<Node> GetNewItemsInternal(GenericContent content, IEnumerable<Node> result) {
-            var items = new List<Node>();
+            var templatesAndTypes = new List<Node>();
 
-            // add available content types
-            items.AddRange(result);
-            
+            if (contentTypes != null && contentTypes.Length == 0)
+                return templatesAndTypes;
+
+            var notAllTypes = contentTypes != null && contentTypes.Length > 0 &&
+                              contentTypes.Length < ContentType.GetContentTypes().Length;
+
+            var site = Site.GetSiteByNode(content);
             var currentWorkspace = Workspace.GetWorkspaceForNode(content);
             var wsTemplatePath = currentWorkspace == null ? string.Empty : RepositoryPath.Combine(currentWorkspace.Path, Repository.ContentTemplatesFolderName);
-            var siteTemplatePath = RepositoryPath.Combine(PortalContext.Current.Site.Path, Repository.ContentTemplatesFolderName);
+            var siteTemplatePath = site == null ? string.Empty : RepositoryPath.Combine(site.Path, Repository.ContentTemplatesFolderName);
             var currentContentTemplatePath = RepositoryPath.Combine(content.Path, Repository.ContentTemplatesFolderName);
 
-            var queryText = new StringBuilder();
+            //the query is built on the assumption that all content
+            //templates are placed under a "TypeName" folder in a
+            //container called "ContentTemplates", meaning their
+            //depth equals the depth of the container +2.
+            var sbQueryText = new StringBuilder("+(");
+            
+            //add filter for workspace and site templates
+            if (!string.IsNullOrEmpty(wsTemplatePath) && wsTemplatePath.CompareTo(currentContentTemplatePath) != 0)
+                sbQueryText.AppendFormat("(InTree:\"{0}\" AND Depth:{1}) OR", wsTemplatePath, RepositoryPath.GetDepth(wsTemplatePath) + 2);
+            if (!string.IsNullOrEmpty(siteTemplatePath) && siteTemplatePath.CompareTo(currentContentTemplatePath) != 0)
+                sbQueryText.AppendFormat(" (InTree:\"{0}\" AND Depth:{1}) OR", siteTemplatePath, RepositoryPath.GetDepth(siteTemplatePath) + 2);
 
-            //add filter for workspace templates
-            if (!string.IsNullOrEmpty(wsTemplatePath))
-                queryText.AppendFormat(" Path:\"{0}\"", wsTemplatePath);
+            //add filter for local and global templates
+            sbQueryText.AppendFormat(" (InTree:\"{0}\" AND Depth:{1}) OR", currentContentTemplatePath, RepositoryPath.GetDepth(currentContentTemplatePath) + 2);
+            sbQueryText.AppendFormat(" (InTree:\"{0}\" AND Depth:{1}))", Repository.ContentTemplateFolderPath, RepositoryPath.GetDepth(Repository.ContentTemplateFolderPath) + 2);
 
-            //add filter for site, current content and global template folders
-            queryText.AppendFormat(" Path:\"{0}\" Path:\"{1}\" Path:\"{2}\"", siteTemplatePath, currentContentTemplatePath, Repository.ContentTemplateFolderPath);
+            //content type filter
+            if (notAllTypes)
+                sbQueryText.AppendFormat(" +Type:({0})", string.Join(" ", contentTypes.Select(ct => ct.Name)));
 
-            var templateResult = ContentQuery.Query(queryText.ToString(), new QuerySettings { EnableAutofilters =  false, EnableLifespanFilter = false});
-            var cloneItems = result.ToArray();
+            sbQueryText.Append(" .REVERSESORT:Depth");
 
-            //clone the list to avoid duplicated Node loads during multiple enumerations below
-            var templateFolders = templateResult.Nodes.ToArray();
+            var templateResult = ContentQuery.Query(sbQueryText.ToString(), new QuerySettings { EnableAutofilters = false, EnableLifespanFilter = false }).Nodes.ToList();
+            var templatesNonGlobal = templateResult.Where(ct => !ct.Path.StartsWith(Repository.ContentTemplateFolderPath)).ToList();
+            var templatesGlobal = templateResult.Where(ct => ct.Path.StartsWith(Repository.ContentTemplateFolderPath)).ToList();
 
-            // Add local and global content templates to items collection. 
-            // The order of the probing is important: bottom --> top          
-            ProcessContentTemplateFolder(items, templateFolders.FirstOrDefault(t => t.Path.Equals(currentContentTemplatePath)), cloneItems);
-            ProcessContentTemplateFolder(items, templateFolders.FirstOrDefault(t => t.Path.Equals(wsTemplatePath)), cloneItems);
-            ProcessContentTemplateFolder(items, templateFolders.FirstOrDefault(t => t.Path.Equals(siteTemplatePath)), cloneItems);
-            ProcessContentTemplateFolder(items, templateFolders.FirstOrDefault(t => t.Path.Equals(Repository.ContentTemplateFolderPath)), cloneItems);
+            var addedTemplates = new Dictionary<string, List<string>>();
 
-            //remove duplicated templates
-            foreach (var templateFolder in templateFolders)
+            //add all local and ws/site level templates
+            foreach (var localTemplate in templatesNonGlobal)
             {
-                foreach (var cloneItem in cloneItems)
-                {
-                    if (ContentTemplate.HasTemplate(cloneItem.Name, templateFolder.Path))
-                        items.Remove(cloneItem);
-                }
+                //query correction: if the query returned a type that we do not want, skip it
+                if (notAllTypes && !contentTypes.Any(ct => ct.Name.CompareTo(localTemplate.ParentName) == 0))
+                    continue;
+
+                AddTemplate(templatesAndTypes, localTemplate, addedTemplates);
             }
 
-            return items;
+            //add global templates
+            foreach (var globalTemplate in templatesGlobal)
+            {
+                //query correction: if the query returned a type that we do not want, skip it
+                if (notAllTypes && !contentTypes.Any(ct => ct.Name.CompareTo(globalTemplate.ParentName) == 0))
+                    continue;
+
+                AddTemplate(templatesAndTypes, globalTemplate, addedTemplates);
+            }
+
+            //add content types without a template
+            if (contentTypes != null)
+                templatesAndTypes.AddRange(contentTypes.Where(contentType => !addedTemplates.ContainsKey(contentType.Name)));
+
+            return templatesAndTypes;
         }
 
-        private static void ProcessContentTemplateFolder(List<Node> items, Node ctFolder, IEnumerable<Node> cloneItems)
+        private static void AddTemplate(ICollection<Node> templates, Node template, IDictionary<string, List<string>> addedTemplates)
         {
-            if (ctFolder == null)
-                return;
-
-            var folderQuery = new StringBuilder();
-
-            foreach (var item in cloneItems)
+            if (addedTemplates.ContainsKey(template.ParentName))
             {
-                folderQuery.AppendFormat(" InFolder:\"{0}\"", RepositoryPath.Combine(ctFolder.Path, item.Name));
+                if (addedTemplates[template.ParentName].Contains(template.Name))
+                    return;
+
+                addedTemplates[template.ParentName].Add(template.Name);
             }
-
-            var queryText = folderQuery.ToString();
-            if (queryText.Length <= 0)
-                return;
-
-            var itemNodes = ContentQuery.Query(queryText, new QuerySettings { EnableAutofilters = false, EnableLifespanFilter = false }).Nodes;
-            foreach (var templateItem in itemNodes)
-            {
-                AddItem(items, templateItem);
-            }
-        }
-
-        private static void AddItem(List<Node> items, Node child)
-        {
-            if (child == null)
-                throw new ArgumentNullException("child");
-
-
-            var hasItem = from t in items.AsEnumerable()
-                          where t.Name.Equals(child.Name) && !(t is ContentType)
-                          select t;
-            if (hasItem.Count() > 0)
-                items.Remove(child);
             else
-                items.Add(child);
+            {
+                addedTemplates.Add(template.ParentName, new List<string> { template.Name });
+            }
+
+            templates.Add(template);
         }
         
         private static void FilterWithRequiredPermissions(IEnumerable<ActionBase> actions, Content context)

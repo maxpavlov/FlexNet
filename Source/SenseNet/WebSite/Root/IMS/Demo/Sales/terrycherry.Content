@@ -14,5 +14,8 @@
       <Path>/Root/YourContents/Avatars/sales.jpg</Path>
     </ImageRef>
     <Phone>558558558</Phone>
+    <Manager>
+      <Path>/Root/IMS/Demo/Managers/robspace</Path>
+    </Manager>
   </Fields>
 </ContentMetaData>

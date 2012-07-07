@@ -122,42 +122,59 @@ namespace SenseNet.Portal.Virtualization
                             break;
                     }
                 }
-
             }
         }
 
         private bool DispatchBasicAuthentication(HttpApplication application, HttpRequest request)
         {
-            // basic authentication is not allowed
-            return false;
+            // basic authentication is only allowed for webdav / office protocol requests
+            if (!PortalContext.Current.IsWebdavRequest && !PortalContext.Current.IsOfficeProtocolRequest)
+                return false;
 
-            //string authHeader = request.Headers["Authorization"];
-            //if (authHeader != null && authHeader.StartsWith("Basic "))
-            //{
-            //    string base64Encoded = authHeader.Substring(6);  // 6: length of "Basic "
-            //    byte[] buff = Convert.FromBase64String(base64Encoded);
-            //    string[] userPass = System.Text.Encoding.UTF8.GetString(buff).Split(":".ToCharArray());
-            //    try
-            //    {
-            //        int slashIndex = userPass[0].IndexOf('\\');
-            //        string domain = userPass[0].Substring(0, slashIndex);
-            //        string username = userPass[0].Substring(slashIndex + 1);
-            //        User user = User.Load(domain, username);
+            var authHeader = PortalContext.Current.BasicAuthHeaders;
+            if (authHeader == null || !authHeader.StartsWith("Basic "))
+                return false;
 
-            //        if (user != null && user.Enabled)
-            //            application.Context.User = new PortalPrincipal(user);
-            //        else
-            //            application.Context.User = new PortalPrincipal(User.Visitor);
-            //    }
-            //    catch (Exception e) //logged
-            //    {
-            //        Logger.WriteException(e);
-            //        application.Context.User = new PortalPrincipal(User.Visitor);
-            //    }
+            string base64Encoded = authHeader.Substring(6);  // 6: length of "Basic "
+            byte[] buff = Convert.FromBase64String(base64Encoded);
+            string[] userPass = System.Text.Encoding.UTF8.GetString(buff).Split(":".ToCharArray());
+            if (userPass.Length != 2)
+            {
+                application.Context.User = new PortalPrincipal(User.Visitor);
+                return true;
+            }
+            try
+            {
+                int slashIndex = userPass[0].IndexOf('\\');
+                string domain;
+                string username;
+                if (slashIndex != -1)
+                {
+                    domain = userPass[0].Substring(0, slashIndex);
+                    username = userPass[0].Substring(slashIndex + 1);
+                }
+                else
+                {
+                    domain = RepositoryConfiguration.DefaultDomain;
+                    username = userPass[0];
+                }
+                var password = userPass[1];
 
-            //    return true;
-            //}
-            //return false;
+                var user = User.Load(domain, username);
+
+                var canLogin = user != null && user.Enabled && User.CheckPasswordMatch(password, user.PasswordHash);
+                if (canLogin)
+                    application.Context.User = new PortalPrincipal(user);
+                else
+                    application.Context.User = new PortalPrincipal(User.Visitor);
+            }
+            catch (Exception e) //logged
+            {
+                Logger.WriteException(e);
+                application.Context.User = new PortalPrincipal(User.Visitor);
+            }
+
+            return true;
         }
 
         private bool DispatchUploadRequest(HttpApplication application, HttpRequest request)

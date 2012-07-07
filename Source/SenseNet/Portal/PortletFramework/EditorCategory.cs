@@ -32,8 +32,8 @@ namespace SenseNet.Portal.UI.PortletFramework
         public const string Login = "Login";
         public const int Login_Order = 160;
 
-        public const string ImageGallery = "Image gallery";
-        public const int ImageGallery_Order = 170;
+        public const string ImageLibrary = "Image gallery";
+        public const int ImageLibrary_Order = 170;
 
         public const string ImportExport = "Import-export";
         public const int ImportExport_Order = 180;

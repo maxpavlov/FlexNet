@@ -47,6 +47,7 @@ namespace SenseNet.Services.WebDav
                     if (origName != destName)
                     {
                         origNode.Name = RepositoryPath.GetFileName(destPath);
+                        origNode.DisplayName = origNode.Name;   // also set displayname
                         origNode.Save();
                     }
 

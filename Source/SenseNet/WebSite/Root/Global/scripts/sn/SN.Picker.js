@@ -1,8 +1,8 @@
-﻿/// <depends path="$skin/scripts/sn/SN.js" />
-/// <depends path="$skin/scripts/sn/SN.Util.js" />
-/// <depends path="$skin/scripts/jquery/plugins/tree/jquery.tree.js" />
-/// <depends path="$skin/scripts/jquery/plugins/grid/i18n/grid.locale-en.js" />
-/// <depends path="$skin/scripts/jquery/plugins/grid/jquery.jqGrid.min.js" />
+﻿// using $skin/scripts/sn/SN.js
+// using $skin/scripts/sn/SN.Util.js
+// using $skin/scripts/jquery/plugins/tree/jquery.tree.js
+// using $skin/scripts/jquery/plugins/grid/i18n/grid.locale-en.js
+// using $skin/scripts/jquery/plugins/grid/jquery.jqGrid.min.js
 
 /// <reference path="jquery/jquery.vsdoc.js"/>
 var dialogIdCount = 0;
@@ -927,9 +927,11 @@ SN.PickerApplication = {
                 }
             },
             rowNum: SN.PickerApplication._currentConfig.RowNum == 0 ? 1000000 : SN.PickerApplication._currentConfig.RowNum,
-            pager: SN.PickerApplication._currentConfig.RowNum == 0 ? null : '#pgtoolbar1',
+            pager: SN.PickerApplication._currentConfig.RowNum > o2.length ? null : '#pgtoolbar1',
             gridview: true
         });
+
+
 
         // toggle system files
         SN.PickerApplication.ToggleGridHiddenNodes(SN.PickerApplication._currentConfig.showSystemFiles);
@@ -950,7 +952,7 @@ SN.PickerApplication = {
 
         $SearchGridContainer.css("top", newTop + "px");
         var bottomCorrection = SN.PickerApplication._currentConfig.RowNum == 0 ? 23 : 49; //todo: replace fix size with dynamic data
-        $Grid.jqGrid('setGridHeight', $SearchGridContainer.height() - bottomCorrection); 
+        $Grid.jqGrid('setGridHeight', $SearchGridContainer.height() - bottomCorrection);
         $Grid.jqGrid('setGridWidth', $SearchGridContainer.width()); //todo: replace fix size with dynamic data
     },
 
@@ -961,13 +963,13 @@ SN.PickerApplication = {
             { name: 'Id', index: 'Id', hidden: true },
             { name: 'DescriptionProp', index: 'DescriptionProp', hidden: true },
             { name: 'DisplayName', index: 'DisplayName', formatter: function (index, cellvalue, dataItem)
-            { return "<div class='sn-contentpicker-portletrow ui-helper-clearfix'><img class='sn-icon sn-icon32 sn-floatleft' onerror='SN.PickerApplication.PortletPickerImgError(this);' src=/binaryhandler.ashx?nodeid=" + dataItem.Id + '&propertyname=ImageData width=32px height=32px /><div style="padding-left:34;"><b>' + dataItem.DisplayName + '</b><br />' + dataItem.DescriptionProp + '</div></div>' }
+            { return "<div class='sn-contentpicker-portletrow ui-helper-clearfix'><img class='sn-icon sn-icon32 sn-floatleft' onerror='SN.PickerApplication.PortletPickerImgError(this);' src=/Root/Global/images/icons/32/portlet-" + dataItem.Name + '.png width=32px height=32px /><div style="padding-left:34;"><b>' + dataItem.DisplayName + '</b><br />' + dataItem.DescriptionProp + '</div></div>' }
             }
             ];
         this.open({ AdminDialog: 'true', AllowedContentTypes: ['Portlet'], MultiSelectMode: 'none', TreeRoots: ['/Root/Portlets'], ColNames: colNames, ColModel: colModel, callBack: config.callBack });
     },
     PortletPickerImgError: function (img) {
         img.onerror = null;
-        img.src = "/Root/Global/images/icons/32/contentview.png";
+        img.src = "/Root/Global/images/icons/32/portlet-Default.png";
     }
 }

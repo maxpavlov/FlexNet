@@ -6,11 +6,25 @@
 
 <sn:ContextInfo runat="server" ID="newWS" />
 
+<% string user = (SenseNet.ContentRepository.User.Current).ToString(); %>
+<%if (user == "Visitor")
+  {%>
+   <div class="sn-pt-body-border ui-widget-content ui-corner-all">
+	<div class="sn-pt-body ui-corner-all">
+		<%=GetGlobalResourceObject("Portal", "WSContentList_Visitor")%>
+	</div>
+</div>
+<% }%>
+<%else
+  {%>
+
 <div class="sn-workspace-list">
 
     <sn:Toolbar runat="server">
         <sn:ToolbarItemGroup Align="left" runat="server">
-            <sn:ActionLinkButton runat="server" ActionName="Add" ContextInfoID="newWS" Text="new Workspace" ParameterString="backtarget=newcontent" />
+            <sn:ActionMenu ID="ActionMenu1" runat="server" Scenario="New" ContextInfoID="myContext" RequiredPermissions="AddNew" CheckActionCount="True">
+                <sn:ActionLinkButton ID="ActionLinkButton1" runat="server" ActionName="Add" IconUrl="/Root/Global/images/icons/16/newfile.png" ContextInfoID="newWS" Text="New" CheckActionCount="True"  ParameterString="backtarget=newcontent"/>
+            </sn:ActionMenu>   
         </sn:ToolbarItemGroup>
     </sn:Toolbar>
 
@@ -91,3 +105,4 @@
     <%} %>
 </div>
 
+<%} %>

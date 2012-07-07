@@ -34,15 +34,7 @@
             
     <sn:ListHeaderCell  runat="server" ID="checkboxHeader" class="sn-lg-cbcol ui-state-default"><input type='checkbox' /></sn:ListHeaderCell>
     
-      <sn:ListHeaderCell runat="server" class="sn-lg-col-1 sn-nowrap ui-state-default" FieldName="GenericContent.Locked" Width="62">      
-        <asp:LinkButton runat="server" CommandName="Sort" CommandArgument="GenericContent.Locked" >
-          <span class="sn-sort">
-            <span class="sn-sort-asc ui-icon ui-icon-carat-1-n"></span>
-            <span class="sn-sort-desc ui-icon ui-icon-carat-1-s"></span>
-          </span>
-          <span>Locked</span>            
-        </asp:LinkButton>
-      </sn:ListHeaderCell>
+
     
       <sn:ListHeaderCell runat="server" class="sn-lg-col-2 sn-nowrap ui-state-default" FieldName="GenericContent.DisplayName" >      
         <asp:LinkButton runat="server" CommandName="Sort" CommandArgument="GenericContent.DisplayName" >
@@ -97,15 +89,7 @@
         <input type='checkbox' value='<%# Eval("Id") %>' />
       </asp:TableCell>
     
-          <asp:TableCell runat="server" class="sn-lg-col-1" HorizontalAlign="Center" >
-          <sn:ActionLinkButton ID="ActionLinkButton1" runat='server' NodePath='<%# Eval("Path") %>' ActionName='checkin' Tooltip='<%$ Resources: Portal, CheckIn %>' />    
-<sn:ActionLinkButton ID="ActionLinkButton2" runat='server' NodePath='<%# Eval("Path") %>' ActionName='checkout' Tooltip='<%$ Resources: Portal, CheckOut %>' />    
-<sn:ActionLinkButton ID="ActionLinkButton3" runat='server' NodePath='<%# Eval("Path") %>' ActionName='undocheckout' Tooltip='<%$ Resources: Portal, UndoCheckOut %>' />
-<sn:ActionLinkButton ID="ActionLinkButton4" runat='server' NodePath='<%# Eval("Path") %>' ActionName='forceundocheckout' Tooltip='<%# ((SNCR.Content)Container.DataItem).ContentHandler.Locked ? "Force undo changes. Locked by " + ((SNCR.Content)Container.DataItem).ContentHandler.LockedBy.Name : string.Empty %>' />
-<asp:PlaceHolder runat="server" id="plcLocked" Visible="<%# ((SNCR.Content)Container.DataItem).ContentHandler.Locked && !SNCR.SavingAction.HasUndoCheckOut(((SNCR.Content)Container.DataItem).ContentHandler as SNCR.GenericContent) && !SNCR.SavingAction.HasForceUndoCheckOutRight(((SNCR.Content)Container.DataItem).ContentHandler as SNCR.GenericContent) %>">
-<a disabled="disabled" class="sn-actionlinkbutton sn-disabled" href="#"><img class="sn-icon sn-icon16" title="<%# ((SNCR.Content)Container.DataItem).ContentHandler.Locked ? "Locked by " + ((SNCR.Content)Container.DataItem).ContentHandler.LockedBy.Name : string.Empty %>" alt="[locked]" src="/Root/Global/images/icons/16/checkin.png"></a>
-</asp:PlaceHolder>
-          </asp:TableCell>
+
         
           <asp:TableCell runat="server" class="sn-lg-col-2"  >
            <sn:ActionMenu NodePath='<%# Eval("Path") %>' runat="server" Scenario="ManageViewsListItem" IconName="<%# ((SenseNet.ContentRepository.Content)Container.DataItem).Icon %>" >
@@ -138,16 +122,7 @@
     <asp:TableCell class="sn-lg-cbcol" runat="server" Visible="<%# (this.ShowCheckboxes.HasValue && this.ShowCheckboxes.Value) ? true : false %>">
         <input type='checkbox' value='<%# Eval("Id") %>' />
       </asp:TableCell>
-    
-          <asp:TableCell runat="server" class="sn-lg-col-1" HorizontalAlign="Center" >
-          <sn:ActionLinkButton ID="ActionLinkButton1" runat='server' NodePath='<%# Eval("Path") %>' ActionName='checkin' Tooltip='<%$ Resources: Portal, CheckIn %>' />    
-<sn:ActionLinkButton ID="ActionLinkButton2" runat='server' NodePath='<%# Eval("Path") %>' ActionName='checkout' Tooltip='<%$ Resources: Portal, CheckOut %>' />    
-<sn:ActionLinkButton ID="ActionLinkButton3" runat='server' NodePath='<%# Eval("Path") %>' ActionName='undocheckout' Tooltip='<%$ Resources: Portal, UndoCheckOut %>' />
-<sn:ActionLinkButton ID="ActionLinkButton4" runat='server' NodePath='<%# Eval("Path") %>' ActionName='forceundocheckout' Tooltip='<%# ((SNCR.Content)Container.DataItem).ContentHandler.Locked ? "Force undo changes. Locked by " + ((SNCR.Content)Container.DataItem).ContentHandler.LockedBy.Name : string.Empty %>' />
-<asp:PlaceHolder runat="server" id="plcLocked" Visible="<%# ((SNCR.Content)Container.DataItem).ContentHandler.Locked && !SNCR.SavingAction.HasUndoCheckOut(((SNCR.Content)Container.DataItem).ContentHandler as SNCR.GenericContent) && !SNCR.SavingAction.HasForceUndoCheckOutRight(((SNCR.Content)Container.DataItem).ContentHandler as SNCR.GenericContent) %>">
-<a disabled="disabled" class="sn-actionlinkbutton sn-disabled" href="#"><img class="sn-icon sn-icon16" title="<%# ((SNCR.Content)Container.DataItem).ContentHandler.Locked ? "Locked by " + ((SNCR.Content)Container.DataItem).ContentHandler.LockedBy.Name : string.Empty %>" alt="[locked]" src="/Root/Global/images/icons/16/checkin.png"></a>
-</asp:PlaceHolder>
-          </asp:TableCell>
+
         
           <asp:TableCell runat="server" class="sn-lg-col-2"  >
            <sn:ActionMenu NodePath='<%# Eval("Path") %>' runat="server" Scenario="ManageViewsListItem" IconName="<%# ((SenseNet.ContentRepository.Content)Container.DataItem).Icon %>" >

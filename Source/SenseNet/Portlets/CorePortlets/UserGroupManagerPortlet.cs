@@ -24,6 +24,8 @@ namespace SenseNet.Portal.Portlets
             Name = "User Group Manager";
             Description = "This portlet is for managing group memeberships of users";
             Category = new PortletCategory(PortletCategoryType.Portal);
+
+            this.HiddenProperties.Add("Renderer");
         }
 
         /// <summary>

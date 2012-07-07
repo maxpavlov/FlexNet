@@ -27,6 +27,7 @@ namespace SenseNet.Portal.UI.PortletFramework
         }
         public void RenderDescription(HtmlTextWriter writer)
         {
+            
         }
 
 
@@ -61,24 +62,35 @@ namespace SenseNet.Portal.UI.PortletFramework
 
             OpenPickerButton.ID = String.Concat(ID, "ReferenceEditorButton");
             OpenPickerButton.Text = "...";
+            OpenPickerButton.CssClass = "pickerButton";
             base.OnInit(e);
         }
         protected override void Render(HtmlTextWriter writer)
         {
-            OpenPickerButton.OnClientClick = GetOpenContentPickler();
+            OpenPickerButton.OnClientClick = GetOpenContentPickerScript();
             
             var clientId = String.Concat(ClientID, "Div");
             string htmlPart = @"<div class=""{0}"" id=""{1}"">";
             writer.Write(String.Format(htmlPart, EditorPartCssClass, clientId));
             RenderTitle(writer);
             ToolTip = Description;
+            CssClass = "textBox";
 
+            writer.Write(String.Format(@"<div class=""{0}"">", ControlWrapperCssClass));
+
+            RenderHeader(writer);
             base.Render(writer);
             OpenPickerButton.RenderControl(writer);
+            RenderFooter(writer);
 
             writer.Write("</div>");
+            writer.Write("</div>");
         }
-        private string GetOpenContentPickler()
+
+        protected virtual void RenderHeader(HtmlTextWriter writer) { }
+        protected virtual void RenderFooter(HtmlTextWriter writer) { }
+
+        private string GetOpenContentPickerScript()
         {
             var script = string.Format(@"javascript: var selectedNodePaths = $('#{0}').val(); SN.PickerApplication.open({{ {1} }}); return false;", this.ClientID, GetPickerParameters());
             return script;
@@ -104,11 +116,16 @@ namespace SenseNet.Portal.UI.PortletFramework
 
             var callBack =
                 string.Format(
-                    "function(resultData) {{ if (!resultData) return; $('#{0}').val(resultData[0].Path); }}",
-                    ClientID);
+                    "function(resultData) {{ if (!resultData) return; $('#{0}').val(resultData[0].Path);{1}}}",
+                    ClientID,
+                    CustomCallback());
             var baseConfig = string.Format("MultiSelectMode: 'none', AdminDialog: 'true', SelectedNodePaths: [selectedNodePaths], callBack: {0}", callBack);
 
             return string.Concat(pars, baseConfig);
+        }
+        protected virtual string CustomCallback()
+        {
+            return string.Empty;
         }
         private static string GetArrayParams(string pars)
         {
