@@ -41,18 +41,18 @@
         </asp:LinkButton>
     </li>
     <li class="last">
-        <asp:LinkButton ID="link3" runat="server" CommandArgument="BuiltIn\\admin" CssClass="sn-logindemo-link">
-        <% var user1 = User.Load("Builtin", "admin");
-           var avatar1 = UITools.GetAvatarUrl(user1) + "?dynamicThumbnail=1&width=128&height=128";
+        <asp:LinkButton ID="link3" runat="server" CommandArgument="BuiltIn\\MaxPavlov" CssClass="sn-logindemo-link">
+        <% var user1 = User.Load("Builtin", "MaxPavlov");
+           var avatar1 = UITools.GetAvatarUrl(user1) + "?dynamicThumbnail=1&width=90&height=90";
         %>
         <div class="sn-logindemo-leftdiv">
                 <img src=<%=avatar1 %> width="36" height="36" />
         </div>
         <div class="sn-logindemo-userdatadiv">
-            <div class="sn-logindemo-username"><%= user1 == null ? string.Empty : user1.FullName%> (Admin)</div>
+            <div class="sn-logindemo-username"><%= user1 == null ? string.Empty : user1.FullName%> (Админ)</div>
             <div class="sn-logindemo-userdata">
-                <small>She has full control in the ECM system, she can also create sites and users.</small>
-                <small class="sn-link">username: <strong>admin</strong> / password: <strong>admin</strong></small>
+                <small>Имеет полный контроль над системой.</small>
+                <small class="sn-link">имя: <strong>maxpavlov</strong> / пароль: <strong>maximpavlov</strong></small>
             </div>
         </div>
         <div style="clear:both;"></div>
