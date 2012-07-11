@@ -1,3 +1,5 @@
 Source/SenseNet/_ReSharper.SenseNet/
 bin/
 obj/
+*.suo
+Source/SenseNet/SenseNet.sln.docstates.suo
