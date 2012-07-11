@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using SenseNet.ContentRepository.Storage;
@@ -92,7 +93,20 @@ namespace SenseNet.ContentRepository
                         {
                             instance.DoStart();
                         }
-                        catch(Exception)
+                        catch (SqlException) //Workaround for VPN connectivity problem in LR office
+                        {
+                            Thread.Sleep(5000);
+                            try
+                            {
+                                instance.DoStart();
+                            }
+                            catch (Exception)
+                            {
+                                _instance = null;
+                                throw;
+                            }
+                        }
+                        catch (Exception)
                         {
                             _instance = null;
                             throw;
