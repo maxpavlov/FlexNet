@@ -2,7 +2,7 @@
 <%@ Import Namespace="SenseNet.ContentRepository" %>
 <%@ Import Namespace="SenseNet.Portal.UI" %>
 
-<h1>Login as</h1>
+<h1><%= HttpContext.GetGlobalResourceObject("User","LoginAs") %></h1>
 <ul>
     <li>
         <asp:LinkButton ID="link1" runat="server" CommandArgument="BuiltIn\\prikazkina" CssClass="sn-logindemo-link">

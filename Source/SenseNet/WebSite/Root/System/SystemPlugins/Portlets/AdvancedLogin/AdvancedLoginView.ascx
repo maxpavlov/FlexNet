@@ -36,7 +36,7 @@
 
 <asp:LoginView ID="LoginViewControl" runat="server">
     <AnonymousTemplate>
-    <div class="sn-login-link">Login</div>
+    <div class="sn-login-link"><%= HttpContext.GetGlobalResourceObject("User","LoginText") %></div>
     <div class="sn-login-form-arrow" style="display: none;"></div>
     <div class="sn-login-form" style="display: none;">
          <asp:Login ID="LoginControl" Width="100%" runat="server" DisplayRememberMe="false" RememberMeSet="false" FailureText='<%$ Resources:LoginPortlet, FailureText %>'>
