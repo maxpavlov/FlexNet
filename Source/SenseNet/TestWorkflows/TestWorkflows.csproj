@@ -65,7 +65,7 @@
     </ProjectReference>
     <ProjectReference Include="..\Tests\Tests.csproj">
       <Project>{1FC5FCC7-C637-4EA3-A98A-23637E6F5ACF}</Project>
-      <Name>Tests</Name>
+      <Name>Tests %28Core\Tests%29</Name>
     </ProjectReference>
     <ProjectReference Include="..\WF\WF.csproj">
       <Project>{EAFB31F9-5C6C-4661-9068-4D13AD33EABE}</Project>
