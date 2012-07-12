@@ -4,5 +4,4 @@ obj/
 *.suo
 Source/SenseNet/SenseNet.sln.docstates.suo
 *.suo
-LuceneIndex/
 Source/SenseNet/TestResults/
