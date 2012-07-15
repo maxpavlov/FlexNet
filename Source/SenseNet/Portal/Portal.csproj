@@ -56,6 +56,9 @@
     <Reference Include="AjaxMin">
       <HintPath>..\..\..\References\AjaxMin.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.4.3.1\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.84.0.0, Culture=neutral, PublicKeyToken=1b03e6acf1164f73">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\References\ICSharpCode.SharpZipLib.dll</HintPath>
@@ -75,10 +78,12 @@
     <Reference Include="System" />
     <Reference Include="System.Activities" />
     <Reference Include="System.Activities.Presentation" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -599,6 +604,8 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="UI\Controls\WebParts_Zone_Patch.js" />
+    <None Include="App.config" />
+    <None Include="packages.config" />
     <None Include="Workspaces\WsJournal.dbml.layout">
       <DependentUpon>WsJournal.dbml</DependentUpon>
     </None>
@@ -615,6 +622,10 @@
     <ProjectReference Include="..\DirectoryServices\DirectoryServices.csproj">
       <Project>{71BBF82C-84D2-409F-8BC0-A9F401B016FB}</Project>
       <Name>DirectoryServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InDoc\RadaCode.InDoc.Data\RadaCode.InDoc.Data.csproj">
+      <Project>{DEC6BDF3-0DB6-4ED7-AB06-B26DDE5481D0}</Project>
+      <Name>RadaCode.InDoc.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\Services\Services.csproj">
       <Project>{B72529C8-FEB1-49F5-B08B-56055B58F296}</Project>

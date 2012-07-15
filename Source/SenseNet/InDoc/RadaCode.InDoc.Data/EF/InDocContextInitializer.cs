@@ -7,7 +7,7 @@ using RadaCode.InDoc.Data.DocumentNaming;
 
 namespace RadaCode.InDoc.Data.EF
 {
-    class InDocContextInitializer : DropCreateDatabaseIfModelChanges<InDocContext>
+    public class InDocContextInitializer : DropCreateDatabaseIfModelChanges<InDocContext>
     {
         protected override void Seed(InDocContext context)
         {
