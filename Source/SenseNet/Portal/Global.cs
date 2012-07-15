@@ -433,7 +433,9 @@ namespace SenseNet.Portal
                 "~/root/MvcViews/{1}/{0}.aspx",
                 "~/root/MvcViews/{1}/{0}.ascx",
                 "~/root/MvcViews/Shared/{0}.aspx",
-                "~/root/MvcViews/Shared/{0}.ascx"
+                "~/root/MvcViews/Shared/{0}.ascx",
+                "~/root/Views/{1}/{0}.cshtml",
+                "~/root/Views/Shared/{0}.cshtml"
             };
 
             engine.MasterLocationFormats = new[] {
