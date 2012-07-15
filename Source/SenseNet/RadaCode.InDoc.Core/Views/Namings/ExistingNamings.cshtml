@@ -1,3 +1,22 @@
 ﻿@model RadaCode.InDoc.Core.Models.ExistingNamingsModel
 
-<div><p>Hello from Razor!</p></div>
+<script type="text/javascript" src="/Content/scripts/InDocAdminInit.js"></script>
+
+<div>
+    <p>На данный момент в системе зарегистрированы следующие политики именования документов:</p>
+    <table>
+        <tbody>
+            <tr>
+                <th>Тип документа</th>
+                <th>Шаблон именования</th>
+            </tr>
+        </tbody>
+        @foreach (var naming in Model.ExistingNamings)
+        {
+            <tr>
+                <td><span>@naming.TypeName</span></td>
+                <td><span>@naming.Format</span></td>
+            </tr>
+        }
+    </table>
+</div>

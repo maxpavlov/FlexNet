@@ -8,11 +8,11 @@ namespace RadaCode.InDoc.Core.Models
 {
     public class ExistingNamingsModel
     {
-        private List<NamingApproach> _existingNamings;
+        public List<NamingApproach> ExistingNamings { get; set; }
 
         public ExistingNamingsModel(List<NamingApproach> namings)
         {
-            _existingNamings = namings;
+            ExistingNamings = namings;
         }
     }
 }

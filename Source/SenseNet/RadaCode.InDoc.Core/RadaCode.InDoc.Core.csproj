@@ -69,14 +69,19 @@
       <Name>Storage</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Content\Scripts\InDocAdminInit.js" />
+    <Content Include="Renderers\InDocAdmin\NamingsView.ascx" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Views\Namings\ExistingNamings.cshtml" />
     <None Include="Views\Web.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(ProjectDir)Views" "$(SolutionDir)WebSite\Views\" /e /y /i /r</PostBuildEvent>
+    <PostBuildEvent>xcopy "$(ProjectDir)Views" "$(SolutionDir)WebSite\Views\" /e /y /i /r
+xcopy "$(ProjectDir)Renderers" "$(SolutionDir)WebSite\Root\Global\renderers\" /e /y /i /r
+xcopy "$(ProjectDir)Content" "$(SolutionDir)WebSite\Content\" /e /y /i /r</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
