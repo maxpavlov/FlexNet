@@ -6,5 +6,10 @@ namespace RadaCode.InDoc.Data.EF
     public class InDocContext : DbContext
     {
         public DbSet<NamingApproach> NamingApproaches { get; set; }
+
+        static InDocContext()
+        {
+            Database.SetInitializer(new InDocContextInitializer());
+        }
     }
 }

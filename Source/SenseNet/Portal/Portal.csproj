@@ -623,10 +623,6 @@
       <Project>{71BBF82C-84D2-409F-8BC0-A9F401B016FB}</Project>
       <Name>DirectoryServices</Name>
     </ProjectReference>
-    <ProjectReference Include="..\InDoc\RadaCode.InDoc.Data\RadaCode.InDoc.Data.csproj">
-      <Project>{DEC6BDF3-0DB6-4ED7-AB06-B26DDE5481D0}</Project>
-      <Name>RadaCode.InDoc.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Services\Services.csproj">
       <Project>{B72529C8-FEB1-49F5-B08B-56055B58F296}</Project>
       <Name>Services</Name>

@@ -1,19 +1,21 @@
 ﻿@model RadaCode.InDoc.Core.Models.ExistingNamingsModel
 
+<script type='text/javascript' src='/Content/scripts/knockout-2.1.0.js'></script>
 <script type="text/javascript" src="/Content/scripts/InDocAdminInit.js"></script>
 
 <div>
     <p>На данный момент в системе зарегистрированы следующие политики именования документов:</p>
-    <table>
-        <tbody>
-            <tr>
-                <th>Тип документа</th>
-                <th>Шаблон именования</th>
-            </tr>
-        @foreach (var naming in Model.ExistingNamings)
-        {
-            Html.RenderPartial("NamingView", naming);
-        }
-        </tbody>
-    </table>
+    <div style="display: block; width: 100%">
+       
+        <div style="display: table-row">
+            <div style="display: table-cell">Тип документа</div>
+            <div style="display: table-cell">Шаблон именования</div>
+        </div>
+        <div data-bind="foreach: ExistingNamings">
+            @foreach (var naming in Model.ExistingNamings)
+            {
+                Html.RenderPartial("NamingView", naming);
+            }
+        </div>
+    </div>
 </div>

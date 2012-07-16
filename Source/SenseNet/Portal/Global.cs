@@ -5,7 +5,6 @@ using System.Data.Entity;
 using System.IO;
 using System.Text;
 using System.Web;
-using RadaCode.InDoc.Data.EF;
 using SenseNet.ContentRepository;
 using SenseNet.ContentRepository.Storage;
 using SenseNet.Diagnostics;
@@ -118,12 +117,12 @@ namespace SenseNet.Portal
             RegisterRoutes(RouteTable.Routes);
             RepositoryPathProvider.Register();
 
-            Database.SetInitializer(new InDocContextInitializer());
+            //Database.SetInitializer(new InDocContextInitializer());
 
-            using (var context = DependencyResolver.Current.GetService<InDocContext>())
-            {
-                context.Database.Initialize(false);
-            }
+            //using (var context = DependencyResolver.Current.GetService<InDocContext>())
+            //{
+            //    context.Database.Initialize(false);
+            //}
 
             //preload
             WarmUp.Preload();

@@ -71,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Scripts\InDocAdminInit.js" />
+    <Content Include="Content\Scripts\knockout-2.1.0.js" />
     <Content Include="Renderers\InDocAdmin\NamingsView.ascx" />
   </ItemGroup>
   <ItemGroup>

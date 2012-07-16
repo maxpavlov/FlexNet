@@ -21,6 +21,63 @@ namespace RadaCode.InDoc.Data.DocumentNaming
 
         public DateTime UpdateTime { get; set; }
 
+        public List<string> NameBlocks
+        {
+            get
+            {
+                var res = new List<string>();
+                var format = Format;
+
+                var moreToParse = true;
+
+                while (moreToParse)
+                {
+                    var braceStart = format.IndexOf("{");
+
+                    if (braceStart == -1)
+                    {
+                        var lastToAdd = format.Substring(0, format.Length);
+                        if(!String.IsNullOrEmpty(lastToAdd)) res.Add(lastToAdd);
+                        break;
+                    }
+                        
+                    var braceEnd = format.IndexOf("}", braceStart);
+
+                    var beforeToAdd = format.Substring(0, braceStart);
+                    if(!String.IsNullOrEmpty(beforeToAdd)) res.Add(beforeToAdd);
+
+                    var bracesWithContents = format.Substring(braceStart, braceEnd - braceStart + 1);
+                    if(!String.IsNullOrEmpty(bracesWithContents)) res.Add(bracesWithContents);
+
+
+                    if (braceEnd + 1 == format.Length) break;
+                    format = format.Substring(braceEnd + 1);
+                }
+
+                return res;
+            }
+        } 
+        public List<string> ParamBlocks
+        {
+            get
+            {
+                var res = new List<string>();
+                var sI = 0;
+                for (var i = 0; i < NameBlocks.Count; i++)
+                {
+                    while(NameBlocks[i][0] != '{')
+                    {
+                        res.Add(string.Empty);
+                        i++;
+                    }
+                    res.Add(GetCurrentValueByIndex(sI));
+                    sI++;
+                }
+
+                return res;
+            }
+        } 
+
         #region Behavior
 
         public string GetNextName()
@@ -98,7 +155,7 @@ namespace RadaCode.InDoc.Data.DocumentNaming
             var record =
                 paramsStruct.Descendants("ParamPair").FirstOrDefault(pair => pair.Element("Index").Value == codeIndex.ToString());
 
-            return record.Element("Value").Value;
+            return record != null ? record.Element("Value").Value : string.Empty;
         }
 
         public void SaveCurrentParams(List<KeyValuePair<int, string>> initialParams)

@@ -1,15 +1,25 @@
 ﻿@model RadaCode.InDoc.Data.DocumentNaming.NamingApproach
 
-<tr>
-    <td>@Model.TypeName</td>
-    <td>
+<div style="display: table-row">
+    <span style="display: table-cell" data-bind="text: typeName()">@Model.TypeName</span>
+    <div style="display: table-cell">
         <div style="display: block">
             <div style="display: table-row">
-                <div style="display: table-cell">@Model.Format</div>
+                <div style="display: table-cell" data-bind="foreach: formatBlocks()">
+                    @foreach (var block in Model.NameBlocks)
+                    {
+                        <input type="text" class="name-block" value="@block"/>
+                    }
+                </div>
             </div>
             <div style="display: table-row">
-                <div style="display: table-cell">@Model.CurrentParamsCounters</div>
+                <div style="display: table-cell" data-bind="foreach: paramBlocks()">
+                    @foreach (var block in Model.ParamBlocks)
+                    {
+                        <input type="text" class="param-block" value="@block"/>
+                    }
+                </div>
             </div>
         </div>
-    </td>
-</tr>
+    </div>
+</div>
