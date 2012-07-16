@@ -75,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Namings\ExistingNamings.cshtml" />
+    <None Include="Views\Namings\NamingView.cshtml" />
     <None Include="Views\Web.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

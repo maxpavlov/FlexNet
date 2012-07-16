@@ -10,13 +10,10 @@
                 <th>Тип документа</th>
                 <th>Шаблон именования</th>
             </tr>
-        </tbody>
         @foreach (var naming in Model.ExistingNamings)
         {
-            <tr>
-                <td><span>@naming.TypeName</span></td>
-                <td><span>@naming.Format</span></td>
-            </tr>
+            Html.RenderPartial("NamingView", naming);
         }
+        </tbody>
     </table>
 </div>
