@@ -1,26 +1,8 @@
 ﻿$(function () {
-
-    function ParamBlocks() {
-
-    }
-
-    function FormatBlocks() {
-
-    }
-
-    function ExistingNamingApproach(name, format, params) {
+    function existingNamingsViewModel() {
         var self = this;
-
-        self.typeName = ko.observable(name);
-        self.formatBlocks = ko.observable(format);
-        self.paramBlocks = ko.observable(params);
+        var initialData = 
+        self.ExistingNamings = ko.observableArray(initialData);
     }
-
-    function NamingApproachesViewModel() {
-        var self = this;
-
-        self.ExistingNamings = ko.observableArray([]);
-    }
-
-    ko.applyBindings(new NamingApproachesViewModel());
-})
+    ko.applyBindings(new existingNamingsViewModel(), document.getElementById("namings-control"));
+});

@@ -21,7 +21,7 @@ namespace RadaCode.InDoc.Core.Controllers
         {
             var namings = _context.NamingApproaches.ToList();
 
-            var viewModel = new ExistingNamingsModel(namings);
+            var viewModel = namings.Select(namingApproach => new NamingViewModel() {TypeName = namingApproach.TypeName, NameBlocks = namingApproach.NameBlocks, ParamBlocks = namingApproach.ParamBlocks}).ToList();
 
             return this.RenderRazorViewToString("ExistingNamings", viewModel);
         }

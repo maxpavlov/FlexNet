@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using RadaCode.InDoc.Data.DocumentNaming;
+﻿using System.Collections.Generic;
 
 namespace RadaCode.InDoc.Core.Models
 {
-    public class ExistingNamingsModel
+    public class NamingViewModel
     {
-        public List<NamingApproach> ExistingNamings { get; set; }
+        public string TypeName { get; set; }
 
-        public ExistingNamingsModel(List<NamingApproach> namings)
-        {
-            ExistingNamings = namings;
-        }
+        public List<string> NameBlocks { get; set; }
+
+        public List<string> ParamBlocks { get; set; } 
     }
 }

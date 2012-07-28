@@ -1,21 +1,41 @@
-﻿@model RadaCode.InDoc.Core.Models.ExistingNamingsModel
+﻿@using System.Web.Script.Serialization
 
 <script type='text/javascript' src='/Content/scripts/knockout-2.1.0.js'></script>
 <script type="text/javascript" src="/Content/scripts/InDocAdminInit.js"></script>
 
-<div>
+@{
+    var initValue = @Html.Raw(new JavaScriptSerializer().Serialize(Model));
+    @Html.Hidden("initial-namings-data", initValue.ToString());
+}
+<div id="namings-control">
     <p>На данный момент в системе зарегистрированы следующие политики именования документов:</p>
-    <div style="display: block; width: 100%">
-       
-        <div style="display: table-row">
-            <div style="display: table-cell">Тип документа</div>
-            <div style="display: table-cell">Шаблон именования</div>
-        </div>
-        <div data-bind="foreach: ExistingNamings">
-            @foreach (var naming in Model.ExistingNamings)
-            {
-                Html.RenderPartial("NamingView", naming);
-            }
-        </div>
-    </div>
-</div>
+    <br/>
+    <table>
+    <thead>
+        <tr>
+            <th>Тип документа</th><th>Шаблон именования</th>
+        </tr>
+    </thead>
+        <tbody data-bind="foreach: ExistingNamings">
+            <tr>
+                <td>
+                    <span data-bind="text: TypeName"></span>
+                </td>
+                <td>
+                    <div style="display: block">
+                        <div style="display: table-row">
+                            <div style="display: table-cell" data-bind="foreach: NameBlocks">
+                                <input type="text" class="name-block" data-bind="value: $data"/>                                    
+                            </div>
+                        </div>
+                        <div style="display: table-row">
+                            <div style="display: table-cell" data-bind="foreach: ParamBlocks">                                   
+                                <input type="text" class="param-block" data-bind="value: $data"/>                                    
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>​
