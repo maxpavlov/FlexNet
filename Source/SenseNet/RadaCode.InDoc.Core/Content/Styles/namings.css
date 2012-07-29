@@ -1,0 +1,25 @@
+﻿table {
+    border-color: rgb( 100, 100, 255); 
+    border-style: dashed; 
+    border-width: 1px;
+} 
+
+table th {
+    text-align: left;
+    padding-right: 3em;
+    border-bottom-color: rgb( 100, 100, 255); 
+    border-bottom-style: dashed; 
+    border-bottom-width: 1px;
+}
+
+.name-block {
+    text-align: center;
+}
+
+.param-block {
+    text-align: center;
+}
+
+.hidden {
+    visibility: hidden;
+}

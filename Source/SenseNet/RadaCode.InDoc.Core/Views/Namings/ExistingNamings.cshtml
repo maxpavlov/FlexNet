@@ -1,41 +1,59 @@
 ﻿@using System.Web.Script.Serialization
 
-<script type='text/javascript' src='/Content/scripts/knockout-2.1.0.js'></script>
+<link rel="stylesheet" href="/Content/Styles/namings.css" type="text/css" media="all"/>
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/start/jquery-ui.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js"></script>
+@*<script type='text/javascript' src='/Content/scripts/knockout-2.1.0.js'></script>*@
+<script type='text/javascript' src='/Content/scripts/knockout-2.1.0.debug.js'></script>
+<script type='text/javascript' src='/Content/scripts/knockout.mapping.js'></script>
 <script type="text/javascript" src="/Content/scripts/InDocAdminInit.js"></script>
 
+<div id="dialog" title="Basic dialog">
+	<p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+</div>
+
 @{
-    var initValue = @Html.Raw(new JavaScriptSerializer().Serialize(Model));
-    @Html.Hidden("initial-namings-data", initValue.ToString());
+	var initValue = @Html.Raw(new JavaScriptSerializer().Serialize(Model));
+	@Html.Hidden("initial-namings-data", (HtmlString)initValue);
 }
 <div id="namings-control">
-    <p>На данный момент в системе зарегистрированы следующие политики именования документов:</p>
-    <br/>
-    <table>
-    <thead>
-        <tr>
-            <th>Тип документа</th><th>Шаблон именования</th>
-        </tr>
-    </thead>
-        <tbody data-bind="foreach: ExistingNamings">
-            <tr>
-                <td>
-                    <span data-bind="text: TypeName"></span>
-                </td>
-                <td>
-                    <div style="display: block">
-                        <div style="display: table-row">
-                            <div style="display: table-cell" data-bind="foreach: NameBlocks">
-                                <input type="text" class="name-block" data-bind="value: $data"/>                                    
-                            </div>
-                        </div>
-                        <div style="display: table-row">
-                            <div style="display: table-cell" data-bind="foreach: ParamBlocks">                                   
-                                <input type="text" class="param-block" data-bind="value: $data"/>                                    
-                            </div>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+	<p>На данный момент в системе зарегистрированы следующие политики именования документов:</p>
+	<br/>
+	<table>
+	<thead>
+		<tr>
+			<th>Тип документа</th><th>Шаблон именования</th>
+		</tr>
+	</thead>
+		<tbody data-bind="foreach: ExistingNamings">
+			<tr>
+				<td>
+					<span data-bind="text: TypeName"></span>
+				</td>
+				<td>
+					<div style="display: block">
+						<div style="display: table-row">
+							<div style="display: table-cell" data-bind="foreach: NameBlocks">
+								<input type="text" class="name-block" data-bind="value: $data"/>                                    
+							</div>
+						</div>
+						<div style="display: table-row">
+							<div style="display: table-cell" data-bind="foreach: ParamBlocks">
+								<!-- ko if: $data !== '' -->
+								<input type="text" class="param-block" data-bind="value: $data"/> 
+								<!-- /ko -->       
+								<!-- ko if: $data === '' -->  
+								<input type="text" class="param-block hidden" data-bind="value: $data"/>
+								<!-- /ko -->                            
+							</div>
+						</div>
+					</div>
+				</td>
+				<td>
+					<button data-bind="jqButton: true, click: addBlock">Добавить блок</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
 </div>​

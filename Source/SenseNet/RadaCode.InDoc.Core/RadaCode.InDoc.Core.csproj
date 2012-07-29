@@ -53,6 +53,7 @@
     <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Controllers\NamingsController.cs" />
     <Compile Include="Models\ExistingNamingsModel.cs" />
+    <Compile Include="Models\NamingViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -72,7 +73,10 @@
   <ItemGroup>
     <Content Include="Content\Scripts\ExistingNamingsViewModel.js" />
     <Content Include="Content\Scripts\InDocAdminInit.js" />
+    <Content Include="Content\Scripts\knockout-2.1.0.debug.js" />
     <Content Include="Content\Scripts\knockout-2.1.0.js" />
+    <Content Include="Content\Scripts\knockout.mapping.js" />
+    <Content Include="Content\Styles\namings.css" />
     <Content Include="Renderers\InDocAdmin\NamingsView.ascx" />
   </ItemGroup>
   <ItemGroup>

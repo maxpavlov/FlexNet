@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web.Mvc;
+﻿using System.Linq;
 using RadaCode.InDoc.Core.Models;
 using RadaCode.InDoc.Data.EF;
 
@@ -21,7 +17,28 @@ namespace RadaCode.InDoc.Core.Controllers
         {
             var namings = _context.NamingApproaches.ToList();
 
-            var viewModel = namings.Select(namingApproach => new NamingViewModel() {TypeName = namingApproach.TypeName, NameBlocks = namingApproach.NameBlocks, ParamBlocks = namingApproach.ParamBlocks}).ToList();
+            //var viewModel = new ExistingNamingsModel()
+            //                    {
+            //                        ExistingNamings =
+            //                            namings.Select(
+            //                                namingApproach =>
+            //                                new NamingViewModel()
+            //                                    {
+            //                                        TypeName = namingApproach.TypeName,
+            //                                        NameBlocks = namingApproach.NameBlocks,
+            //                                        ParamBlocks = namingApproach.ParamBlocks
+            //                                    }).ToList()
+            //                    };
+
+            var viewModel =
+                namings.Select(
+                    namingApproach =>
+                    new NamingViewModel()
+                        {
+                            TypeName = namingApproach.TypeName,
+                            NameBlocks = namingApproach.NameBlocks,
+                            ParamBlocks = namingApproach.ParamBlocks
+                        }).ToList();
 
             return this.RenderRazorViewToString("ExistingNamings", viewModel);
         }
