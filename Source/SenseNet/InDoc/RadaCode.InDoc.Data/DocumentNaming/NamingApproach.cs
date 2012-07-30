@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Xml.Linq;
+using RadaCode.InDoc.Data.DocumentNaming.SpecialNamings;
 using RadaCode.InDoc.Data.Extensions;
 
 namespace RadaCode.InDoc.Data.DocumentNaming
@@ -10,8 +11,6 @@ namespace RadaCode.InDoc.Data.DocumentNaming
     [Table("NamingApproaches")]
     public class NamingApproach
     {
-        private static object _editSync = new Object();
-
         [Key]
         public string TypeName { get; set; }
 
@@ -94,35 +93,9 @@ namespace RadaCode.InDoc.Data.DocumentNaming
 
                 var specialAreaContents = res.Substring(braceStart, braceEnd - braceStart + 1);
 
-                switch (specialAreaContents)
-                {
-                    case "{intInc_G}":
-                        var currentG = GetCurrentValueByIndex(codeIndex);
-                        var curIntG = int.Parse(currentG);
-                        curIntG++;
-                        res = res.SmartReplace(specialAreaContents, curIntG.ToString(), braceStart, 1);
-                        SaveNewValueByIndex(codeIndex, curIntG.ToString());
-                        codeIndex++;
-                        break;
-                    case "{intInc_D}":
-                        var currentD = GetCurrentValueByIndex(codeIndex);
-                        var curIntD = int.Parse(currentD);
-                        if (DateTime.UtcNow.Date == UpdateTime.Date)
-                        {
-                            curIntD++;
-                        }
-                        else curIntD = 1;
-                        res = res.SmartReplace(specialAreaContents, curIntD.ToString(), braceStart, 1);
-                        SaveNewValueByIndex(codeIndex, curIntD.ToString());
-                        codeIndex++;
-                        break;
-                    case "{yy}":
-                        res = res.SmartReplace(specialAreaContents, DateTime.UtcNow.ToString("yy"), braceStart, 1);
-                        codeIndex++;
-                        break;
-                    default:
-                        throw new Exception(String.Format("Unknown naming format encountered: {0}", specialAreaContents));
-                }
+                var processor = SpecialNamingsFactory.GetNamingProcessor(this, specialAreaContents);
+                processor.ProcessGetNextForNaming(ref res, braceStart, braceEnd, codeIndex);
+                codeIndex++;
 
                 moreToParse = res.IndexOf("{") != -1;
 
@@ -130,22 +103,6 @@ namespace RadaCode.InDoc.Data.DocumentNaming
 
             UpdateTime = DateTime.UtcNow;
             return res;
-        }
-
-        private void SaveNewValueByIndex(int paramIndex, string value)
-        {
-            lock (_editSync)
-            {
-                var paramsStruct = XElement.Parse(CurrentParamsCounters);
-
-                var record =
-                    paramsStruct.Descendants("ParamPair").FirstOrDefault(
-                        pair => pair.Element("Index").Value == paramIndex.ToString());
-
-                record.Element("Value").Value = value;
-
-                CurrentParamsCounters = paramsStruct.ToString();
-            }
         }
 
         private string GetCurrentValueByIndex(int codeIndex)

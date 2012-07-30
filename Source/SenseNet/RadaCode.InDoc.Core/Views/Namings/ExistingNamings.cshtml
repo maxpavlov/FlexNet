@@ -9,23 +9,28 @@
 <script type='text/javascript' src='/Content/scripts/knockout.mapping.js'></script>
 <script type="text/javascript" src="/Content/scripts/InDocAdminInit.js"></script>
 
-<div id="dialog" title="Basic dialog">
-	<p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
-</div>
-
 @{
 	var initValue = @Html.Raw(new JavaScriptSerializer().Serialize(Model));
 	@Html.Hidden("initial-namings-data", (HtmlString)initValue);
 }
 <div id="namings-control">
+	<div id="add-block-dialog" title="Добавление блока в именование">
+		<fieldset>
+			<legend>Тип блока</legend>
+			<input type="radio" name="group1" id="custom-block" value="custom"/> 
+			<label for="custom-block">Спец поле</label> 
+			<input type="radio" name="group1" id="text-block" value="text" checked/>
+			<label for="text-block">Текст</label>  
+		</fieldset>   
+	</div>
 	<p>На данный момент в системе зарегистрированы следующие политики именования документов:</p>
 	<br/>
 	<table>
-	<thead>
-		<tr>
-			<th>Тип документа</th><th>Шаблон именования</th>
-		</tr>
-	</thead>
+		<thead>
+			<tr>
+				<th>Тип документа</th><th>Шаблон именования</th>
+			</tr>
+		</thead>
 		<tbody data-bind="foreach: ExistingNamings">
 			<tr>
 				<td>

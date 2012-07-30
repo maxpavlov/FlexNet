@@ -1,5 +1,19 @@
 ﻿$(function () {
 
+    $("#add-block-dialog").dialog({
+        autoOpen: false,
+        modal: true,
+        buttons: {
+            "Добавить": function () {
+                alert("adding block");
+            },
+            "Отменить": function () {
+                $(this).dialog("close");
+            }
+        },
+        close: function (event, ui) { $(this).dialog('destroy').remove();}
+    });
+
     function Naming(name, nameBlocks, paramBlocks) {
         var self = this;
         self.TypeName = name;
@@ -7,8 +21,7 @@
         self.ParamBlocks = ko.observableArray(paramBlocks);
 
         self.addBlock = function () {
-            $("#dialog").dialog();
-            alert("I am to add a block to this particular naming!");
+            $("#add-block-dialog").dialog("open");
         };
     };
 
@@ -20,7 +33,6 @@
         });
 
         self.ExistingNamings = ko.observableArray(namingModelsArray);
-
     };
 
 

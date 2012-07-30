@@ -11,13 +11,6 @@ namespace RadaCode.InDoc.Data.EF
     {
         protected override void Seed(InDocContext context)
         {
-            //new List<WebUserRole>
-            //{
-            //    new WebUserRole() { RoleName = "Thinker"
-            //             },
-            //    new WebUserRole() { RoleName = "ThoughtRouter"}
-            //}.ForEach(r => context.WebUserRoles.Add(r));
-
             var orderFormat = new NamingApproach()
                             {
                                 Format = "{intInc_G}/{intInc_D}/02/-{yy}",
