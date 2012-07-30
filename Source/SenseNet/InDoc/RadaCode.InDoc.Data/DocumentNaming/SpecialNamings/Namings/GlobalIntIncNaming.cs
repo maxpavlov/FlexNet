@@ -1,8 +1,8 @@
 using RadaCode.InDoc.Data.Extensions;
 
-namespace RadaCode.InDoc.Data.DocumentNaming.SpecialNamings
+namespace RadaCode.InDoc.Data.DocumentNaming.SpecialNamings.Namings
 {
-    public class GlobalIntIncNaming : SpecialNaming
+    public class GlobalIntIncNaming : SpecialNamingBase
     {
         protected const string _namingCode = "{intInc_G}";
 

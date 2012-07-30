@@ -52,11 +52,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DocumentNaming\NamingApproach.cs" />
-    <Compile Include="DocumentNaming\SpecialNamings\DailyIntIncNaming.cs" />
-    <Compile Include="DocumentNaming\SpecialNamings\GlobalIntIncNaming.cs" />
-    <Compile Include="DocumentNaming\SpecialNamings\SpecialNaming.cs" />
+    <Compile Include="DocumentNaming\SpecialNamings\Namings\DailyIntIncNaming.cs" />
+    <Compile Include="DocumentNaming\SpecialNamings\Namings\GlobalIntIncNaming.cs" />
+    <Compile Include="DocumentNaming\SpecialNamings\SpecialNamingBase.cs" />
     <Compile Include="DocumentNaming\SpecialNamings\SpecialNamingsFactory.cs" />
-    <Compile Include="DocumentNaming\SpecialNamings\YearNaming.cs" />
+    <Compile Include="DocumentNaming\SpecialNamings\Namings\YearNaming.cs" />
     <Compile Include="EF\InDocContext.cs" />
     <Compile Include="EF\InDocContextInitializer.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />

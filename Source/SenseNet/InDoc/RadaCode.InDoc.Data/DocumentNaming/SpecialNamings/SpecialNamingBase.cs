@@ -4,7 +4,7 @@ using System.Xml.Linq;
 
 namespace RadaCode.InDoc.Data.DocumentNaming.SpecialNamings
 {
-    public abstract class SpecialNaming
+    public abstract class SpecialNamingBase
     {
         protected NamingApproach Approach { get; set; }
 
@@ -14,7 +14,7 @@ namespace RadaCode.InDoc.Data.DocumentNaming.SpecialNamings
 
         public string SpecialCode { get { return _namingCode; } }
 
-        protected SpecialNaming(ref NamingApproach approach)
+        protected SpecialNamingBase(ref NamingApproach approach)
         {
             Approach = approach;
         }

@@ -1,11 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using RadaCode.InDoc.Data.DocumentNaming.SpecialNamings.Namings;
 
 namespace RadaCode.InDoc.Data.DocumentNaming.SpecialNamings
 {
     public static class SpecialNamingsFactory
     {
-        public static SpecialNaming GetNamingProcessor(NamingApproach approach, string namingCode)
+        public static SpecialNamingBase GetNamingProcessor(NamingApproach approach, string namingCode)
         {
+            var asm = Assembly.GetExecutingAssembly();
+
             switch (namingCode)
             {
                 case "{intInc_G}":
@@ -19,6 +25,15 @@ namespace RadaCode.InDoc.Data.DocumentNaming.SpecialNamings
             }
             
 
+        }
+
+        public static List<string> GetAllClasses(string nameSpace)
+        {
+            var asm = Assembly.GetExecutingAssembly();
+
+            var namespaceList = (from type in asm.GetTypes() where type.Namespace == nameSpace select type.Name).ToList();
+
+            return namespaceList.ToList();
         }
     }
 }

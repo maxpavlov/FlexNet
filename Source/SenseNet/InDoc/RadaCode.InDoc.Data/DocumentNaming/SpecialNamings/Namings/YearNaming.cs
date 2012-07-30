@@ -1,9 +1,9 @@
 using System;
 using RadaCode.InDoc.Data.Extensions;
 
-namespace RadaCode.InDoc.Data.DocumentNaming.SpecialNamings
+namespace RadaCode.InDoc.Data.DocumentNaming.SpecialNamings.Namings
 {
-    public class YearNaming : SpecialNaming
+    public class YearNaming : SpecialNamingBase
     {
         protected const string _namingCode = "{yy}";
 

@@ -1,9 +1,9 @@
 using System;
 using RadaCode.InDoc.Data.Extensions;
 
-namespace RadaCode.InDoc.Data.DocumentNaming.SpecialNamings
+namespace RadaCode.InDoc.Data.DocumentNaming.SpecialNamings.Namings
 {
-    public class DailyIntIncNaming : SpecialNaming
+    public class DailyIntIncNaming : SpecialNamingBase
     {
         protected const string _namingCode = "{intInc_D}";
 
