@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
 using NUnit.Framework;
 using RadaCode.InDoc.Data.DocumentNaming;
 using RadaCode.InDoc.Data.DocumentNaming.SpecialNamings;
@@ -25,6 +21,13 @@ namespace InDoc.Tests.Data
             var inst = Activator.CreateInstance(type, new NamingApproach()) as SpecialNamingBase;
 
             Assert.IsNotNull(inst);
+        }
+
+        [Test]
+        public void GetAllSubtypeInstances()
+        {
+            var codes = SpecialNamingsFactory.ListAllNamingProcessorCodes();
+            Assert.AreEqual(3, codes.Count);
         }
     }
 }

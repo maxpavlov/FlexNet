@@ -10,6 +10,11 @@ namespace RadaCode.InDoc.Data.DocumentNaming.SpecialNamings.Namings
         public DailyIntIncNaming(ref NamingApproach approach) : base(ref approach)
         {}
 
+        public override string SpecialCode
+        {
+            get { return _namingCode; }
+        }
+
         public override void ProcessGetNextForNaming(ref string res, int braceStart, int braceEnd, int codeIndex)
         {
             var currentD = GetCurrentValueByIndex(codeIndex);

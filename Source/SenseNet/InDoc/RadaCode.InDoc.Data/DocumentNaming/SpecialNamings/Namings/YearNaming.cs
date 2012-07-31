@@ -7,6 +7,11 @@ namespace RadaCode.InDoc.Data.DocumentNaming.SpecialNamings.Namings
     {
         protected const string _namingCode = "{yy}";
 
+        public override string SpecialCode
+        {
+            get { return _namingCode; }
+        }
+
         public YearNaming(ref NamingApproach approach)
             : base(ref approach){}
 

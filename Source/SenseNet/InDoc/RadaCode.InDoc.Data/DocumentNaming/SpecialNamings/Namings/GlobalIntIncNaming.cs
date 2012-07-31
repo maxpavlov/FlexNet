@@ -6,6 +6,11 @@ namespace RadaCode.InDoc.Data.DocumentNaming.SpecialNamings.Namings
     {
         protected const string _namingCode = "{intInc_G}";
 
+        public override string SpecialCode
+        {
+            get { return _namingCode; }
+        }
+
         public GlobalIntIncNaming(ref NamingApproach approach) : base(ref approach)
         {}
 

@@ -9,10 +9,8 @@ namespace RadaCode.InDoc.Data.DocumentNaming.SpecialNamings
         protected NamingApproach Approach { get; set; }
 
         protected static object _editSync = new Object();
-
-        protected static string _namingCode;
-
-        public string SpecialCode { get { return _namingCode; } }
+        
+        public abstract string SpecialCode { get; }
 
         protected SpecialNamingBase(ref NamingApproach approach)
         {
