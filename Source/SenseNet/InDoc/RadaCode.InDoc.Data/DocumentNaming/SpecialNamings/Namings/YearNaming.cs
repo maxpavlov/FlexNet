@@ -12,6 +12,11 @@ namespace RadaCode.InDoc.Data.DocumentNaming.SpecialNamings.Namings
             get { return _namingCode; }
         }
 
+        public override bool HasValue
+        {
+            get { return false; }
+        }
+
         public YearNaming(ref NamingApproach approach)
             : base(ref approach){}
 

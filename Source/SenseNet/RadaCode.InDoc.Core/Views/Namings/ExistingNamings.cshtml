@@ -14,19 +14,8 @@
 	@Html.Hidden("initial-namings-data", (HtmlString)initValue);
 }
 <div id="namings-control">
-	<div id="add-block-dialog" title="Добавление блока в именование">
-		<fieldset>
-			<legend>Тип блока</legend>
-			<input type="radio" name="group1" id="custom-block" value="custom"/> 
-			<label for="custom-block">Спец поле</label> 
-			<input type="radio" name="group1" id="text-block" value="text" checked/>
-			<label for="text-block">Текст</label>  
-		</fieldset>   
-		<fieldset>
-			<legend>Спец поле</legend>
-			
-		</fieldset> 
-	</div>
+	
+		
 	<p>На данный момент в системе зарегистрированы следующие политики именования документов:</p>
 	<br/>
 	<table>
@@ -60,6 +49,24 @@
 					</div>
 				</td>
 				<td>
+					<div id="add-block-dialog" title="Добавление блока в именование" data-bind="dialog : { autoOpen: false, modal: true, buttons: { 'Добавить': function () { alert('adding block'); }, 'Отменить': function () { $(this).dialog('close'); }}}, dialogVisible: isDialogOpen">
+						<fieldset>
+							<legend>Тип блока</legend>
+							<input type="radio" name="group1" id="custom-block" value="custom"  data-bind="checked: dialogRadioValue"/> 
+							<label for="custom-block">Спец поле</label> 
+							<input type="radio" name="group1" id="text-block" value="text" data-bind="checked: dialogRadioValue"/>
+							<label for="text-block">Текст</label>  
+						</fieldset>   
+						<fieldset id="custom-field" data-bind="visible: dialogRadioValue() == 'custom'">
+							<legend>Спец поле</legend>
+							<select data-bind="options: $root.NamingCodes, optionsText: 'Code', value: dialogSelectedCode, optionsCaption: 'Выбери тип блока...'"></select>
+							<input type="text" data-bind="visible: dialogSelectedCodeHasValue, value: dialogSelectedCodeValue"/>
+						</fieldset> 
+						<fieldset id="text-field" data-bind="visible: dialogRadioValue() == 'text'">
+							<legend>Текстовое поле</legend>
+							<input type="text" data-bind="value: dialogSelectedCodeValue"/>
+						</fieldset> 
+					</div>
 					<button data-bind="jqButton: true, click: addBlock">Добавить блок</button>
 				</td>
 			</tr>

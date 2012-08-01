@@ -15,6 +15,11 @@ namespace RadaCode.InDoc.Data.DocumentNaming.SpecialNamings.Namings
             get { return _namingCode; }
         }
 
+        public override bool HasValue
+        {
+            get { return true; }
+        }
+
         public override void ProcessGetNextForNaming(ref string res, int braceStart, int braceEnd, int codeIndex)
         {
             var currentD = GetCurrentValueByIndex(codeIndex);

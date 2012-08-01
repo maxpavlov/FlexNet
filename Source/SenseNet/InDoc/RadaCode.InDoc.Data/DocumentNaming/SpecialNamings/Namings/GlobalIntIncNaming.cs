@@ -11,6 +11,11 @@ namespace RadaCode.InDoc.Data.DocumentNaming.SpecialNamings.Namings
             get { return _namingCode; }
         }
 
+        public override bool HasValue
+        {
+            get { return true; }
+        }
+
         public GlobalIntIncNaming(ref NamingApproach approach) : base(ref approach)
         {}
 

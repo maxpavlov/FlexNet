@@ -11,6 +11,7 @@ namespace RadaCode.InDoc.Data.DocumentNaming.SpecialNamings
         protected static object _editSync = new Object();
         
         public abstract string SpecialCode { get; }
+        public abstract bool HasValue { get; }
 
         protected SpecialNamingBase(ref NamingApproach approach)
         {

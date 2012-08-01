@@ -52,8 +52,9 @@
   <ItemGroup>
     <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Controllers\NamingsController.cs" />
-    <Compile Include="Models\ExistingNamingsModel.cs" />
+    <Compile Include="Models\ExistingNamingsViewModel.cs" />
     <Compile Include="Models\NamingViewModel.cs" />
+    <Compile Include="Models\SpecialCodeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

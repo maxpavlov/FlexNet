@@ -13,7 +13,7 @@ namespace RadaCode.InDoc.Data.DocumentNaming.SpecialNamings
             const string ns = "RadaCode.InDoc.Data.DocumentNaming.SpecialNamings.Namings";
             var dataAssembly = typeof(RadaCode.InDoc.Data.DocumentNaming.SpecialNamings.SpecialNamingBase).Assembly;
 
-            var classes = SpecialNamingsFactory.GetAllClasses(ns);
+            var classes = SpecialNamingsFactory.GetAllClasses(ns, dataAssembly);
 
             var res = new List<string>();
             foreach (var inst in classes.Select(namingClass => string.Format("{0}.{1}", ns, namingClass)).Select(toCreate => dataAssembly.GetType(toCreate)).Select(type => Activator.CreateInstance(type, approach)).Where(inst => ((SpecialNamingBase)inst).SpecialCode == namingCode))
@@ -24,29 +24,27 @@ namespace RadaCode.InDoc.Data.DocumentNaming.SpecialNamings
             throw new Exception(string.Format("No class found that is able to process {0} code", namingCode));
         }
 
-        public static List<string> ListAllNamingProcessorCodes()
+        public static List<KeyValuePair<string, bool>> ListAllNamingProcessorCodes()
         {
             const string ns = "RadaCode.InDoc.Data.DocumentNaming.SpecialNamings.Namings";
             var dataAssembly = typeof(RadaCode.InDoc.Data.DocumentNaming.SpecialNamings.SpecialNamingBase).Assembly;
 
-            var classes = SpecialNamingsFactory.GetAllClasses(ns);
+            var classes = SpecialNamingsFactory.GetAllClasses(ns, dataAssembly);
 
-            var res = new List<string>();
+            var res = new List<KeyValuePair<string, bool>>();
             foreach (string namingClass in classes)
             {
                 string toCreate = string.Format("{0}.{1}", ns, namingClass);
                 Type type = dataAssembly.GetType(toCreate);
                 var inst = Activator.CreateInstance(type, new NamingApproach());
-                res.Add(((SpecialNamingBase)inst).SpecialCode);
+                res.Add(new KeyValuePair<string, bool> (((SpecialNamingBase)inst).SpecialCode, ((SpecialNamingBase)inst).HasValue));
             }
 
             return res;
         }
 
-        public static List<string> GetAllClasses(string nameSpace)
+        private static IEnumerable<string> GetAllClasses(string nameSpace, Assembly asm)
         {
-            var asm = Assembly.GetExecutingAssembly();
-
             var namespaceList = (from type in asm.GetTypes() where type.Namespace == nameSpace select type.Name).ToList();
 
             return namespaceList.ToList();

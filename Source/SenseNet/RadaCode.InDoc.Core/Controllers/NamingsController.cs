@@ -15,28 +15,38 @@ namespace RadaCode.InDoc.Core.Controllers
             _context = context;
         }
 
-        [HttpGet]
-        public JsonResult GetAllAvailableSpecialCodes()
-        {
-            var res = SpecialNamingsFactory.ListAllNamingProcessorCodes();
-            return Json(res, JsonRequestBehavior.AllowGet);
-        }
+        //[HttpGet]
+        //public JsonResult GetAllAvailableSpecialCodes()
+        //{
+        //    var res = SpecialNamingsFactory.ListAllNamingProcessorCodes();
+        //    return Json(res, JsonRequestBehavior.AllowGet);
+        //}
 
         public string RenderExistingNamings()
         {
             var namings = _context.NamingApproaches.ToList();
+            var codes = SpecialNamingsFactory.ListAllNamingProcessorCodes();
 
-            var viewModel =
-                namings.Select(
-                    namingApproach =>
-                    new NamingViewModel()
-                        {
-                            TypeName = namingApproach.TypeName,
-                            NameBlocks = namingApproach.NameBlocks,
-                            ParamBlocks = namingApproach.ParamBlocks
-                        }).ToList();
+            var viewModel = new ExistingNamingsViewModel
+                                {
+                                    Namings = namings.Select(
+                                        namingApproach =>
+                                        new NamingViewModel()
+                                            {
+                                                TypeName = namingApproach.TypeName,
+                                                NameBlocks = namingApproach.NameBlocks,
+                                                ParamBlocks = namingApproach.ParamBlocks
+                                            }).ToList(),
+                                    Codes = codes.Select( 
+                                        code => 
+                                        new SpecialCodeViewModel()
+                                            {
+                                                 Code = code.Key,
+                                                 HasValue = code.Value
+                                            }).ToList()
+                                };
 
-            return this.RenderRazorViewToString("ExistingNamings", viewModel);
+            return RenderRazorViewToString("ExistingNamings", viewModel);
         }
     }
 }

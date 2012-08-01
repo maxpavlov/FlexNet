@@ -155,9 +155,9 @@
         <data name="NoUrlsToPurge" xml:space="preserve">
           <value>No URLs to purge</value>
         </data>
-        
+
         <!-- Workspace Actions Scenario-->
-        
+
         <data name="AddNewActionPrefix" xml:space="preserve">
           <value>New </value>
         </data>
@@ -166,8 +166,8 @@
         </data>
         <data name="CreateOtherActionText" xml:space="preserve">
           <value>Create other...</value>
-        </data>    
-        
+        </data>
+
         <!-- Workspace create other page -->
 
         <data name="WorkspaceCreateOther_SelectAnItemText" xml:space="preserve">
@@ -176,28 +176,28 @@
         <data name="WorkspaceCreateOther_YouDontHavePermissionText" xml:space="preserve">
           <value>We're sorry, but you're not allowed to create any other content under this Workspace!</value>
         </data>
-        
+
         <data name="WorkspaceCreateOther_WorkspacesTitle" xml:space="preserve">
           <value>Workspaces</value>
         </data>
         <data name="WorkspaceCreateOther_WorkspacesDescription" xml:space="preserve">
           <value>Workspaces are mini portals dedicated to store and presenet information about a specific thing, such as a project. Workspaces are built up of lists, libraries and pages. Each workspace has a dashboard that collects relevant information to one page.</value>
         </data>
-        
+
         <data name="WorkspaceCreateOther_ListsTitle" xml:space="preserve">
           <value>Lists</value>
         </data>
         <data name="WorkspaceCreateOther_ListsDescription" xml:space="preserve">
           <value>Lists are collections of similar pieces of contents. Contents in the list are built up of Fields, that can be customized by the end user. The look and feel of each list depends on customizable Views.</value>
         </data>
-        
+
         <data name="WorkspaceCreateOther_LibrariesTitle" xml:space="preserve">
           <value>Libraries</value>
         </data>
         <data name="WorkspaceCreateOther_LibrariesDescription" xml:space="preserve">
           <value>Libraries are special lists that contain files, usually documents, images or multimedia. Files in libraries can be accessed using the portal user interface or with Windows Explorer using the WebDAV protocol.</value>
         </data>
-        
+
         <data name="WorkspaceCreateOther_PagesTitle" xml:space="preserve">
           <value>Pages</value>
         </data>
@@ -217,7 +217,7 @@
         <data name="WorkspaceCreateOther_CantCreatePageContent" xml:space="preserve">
           <value>You cannot create any content of Page type in <strong>{0}</strong>.</value>
         </data>
-        
+
         <!-- BLOG CONTENT TYPE -->
 
         <data name="SnBlog_BlogPostsPortlet_Title" xml:space="preserve">
@@ -303,7 +303,7 @@
         </data>
 
         <!-- ========== END OF 6.0.4 ========== -->
-        
+
         <!-- 6.0.4 -->
         <data name="AddNewActionPrefix" xml:space="preserve">
           <value>New </value>
@@ -346,7 +346,7 @@
         <data name="PathEndsWithDotMessage" xml:space="preserve">
           <value>Path cannot end with '.' character.</value>
         </data>
-        
+
         <!-- Permission editor -->
         <data name="PermissionLocalGroup" xml:space="preserve">
           <value>local group</value>
@@ -448,19 +448,21 @@
           <value>Add new security entry</value>
         </data>
         <data name="PermEditor_HasOwnPermission">
-            <value>{0} has custom permissions.</value>
+          <value>{0} has custom permissions.</value>
         </data>
         <data name="PermEditor_InheritPermissionBegin">
-            <value><strong>{0}</strong> inherits permissions from its parent: </value>
+          <value>
+            <strong>{0}</strong> inherits permissions from its parent:
+          </value>
         </data>
         <data name="PermEditor_InheritPermissionEnd">
-            <value></value>
+          <value></value>
         </data>
         <data name="PermEditor_HasExtended">
-            <value>This content has custom permissions.</value>
+          <value>This content has custom permissions.</value>
         </data>
         <data name="PermEditor_EditMembers">
-            <value>Edit members</value>
+          <value>Edit members</value>
         </data>
         <data name="PermEditor_BreakInheritance">
           <value>Break inheritance</value>
@@ -525,6 +527,548 @@
         </data>
         <data name="WSContentList_Visitor">
           <value>Please login to collaborate in Sense/Net workspaces!</value>
+        </data>
+        <data name="SecondMessage">
+          <value> seconds ago</value>
+        </data>
+        <data name="MinutesMessage">
+          <value> minutes ago</value>
+        </data>
+        <data name="HoursMessage">
+          <value> hours ago</value>
+        </data>
+        <data name="YesterdayAt">
+          <value>Yesterday at</value>
+        </data>
+        <data name="At">
+          <value> at</value>
+        </data>
+      </Language>
+      <Language cultureName="ru">
+        <data name="Approve" xml:space="preserve">
+          <value>Approve</value>
+        </data>
+        <data name="Approving" xml:space="preserve">
+          <value>Approving</value>
+        </data>
+        <data name="AuthenticationNotSupportedOnSite" xml:space="preserve">
+          <value>On the site '{0}' the authentication mode has been set to '{1}', which is not supported.</value>
+        </data>
+        <data name="Cancel" xml:space="preserve">
+          <value>Cancel</value>
+        </data>
+        <data name="CheckedOutBy" xml:space="preserve">
+          <value>Checked-out by</value>
+        </data>
+        <data name="CheckIn" xml:space="preserve">
+          <value>Check in</value>
+        </data>
+        <data name="CheckOut" xml:space="preserve">
+          <value>Check out</value>
+        </data>
+        <data name="CheckInPortletTitle" xml:space="preserve">
+          <value>Checking in</value>
+        </data>
+        <data name="CheckInCommentsTextBoxTitle" xml:space="preserve">
+          <value>Comments</value>
+        </data>
+        <data name="CheckInCommentsCompulsory" xml:space="preserve">
+          <value>Please add some comments</value>
+        </data>
+        <data name="DefaultAuthenticationNotSupported" xml:space="preserve">
+          <value>The default authentication mode has been set to '{0}', which is not supported.</value>
+        </data>
+        <data name="Draft" xml:space="preserve">
+          <value>Draft</value>
+        </data>
+        <data name="ForceUndoCheckOut" xml:space="preserve">
+          <value>Force undo check out</value>
+        </data>
+        <data name="Public" xml:space="preserve">
+          <value>Public</value>
+        </data>
+        <data name="ForceUndoCheckOut" xml:space="preserve">
+          <value>Force undo check out</value>
+        </data>
+        <data name="Publish" xml:space="preserve">
+          <value>Publish</value>
+        </data>
+        <data name="Reject" xml:space="preserve">
+          <value>Reject</value>
+        </data>
+        <data name="Save" xml:space="preserve">
+          <value>Save</value>
+        </data>
+        <data name="UndoCheckOut" xml:space="preserve">
+          <value>UndoCheckOut</value>
+        </data>
+        <data name="UpladFileButton" xml:space="preserve">
+          <value>Upload File (Select)</value>
+        </data>
+        <data name="UpladFileErrorNotUploaded" xml:space="preserve">
+          <value>Binary has not been uploaded.</value>
+        </data>
+        <data name="UpladFileStopUploadButton" xml:space="preserve">
+          <value>Stop upload</value>
+        </data>
+        <data name="UpladSpecificContentType" xml:space="preserve">
+          <value>Upload as </value>
+        </data>
+        <data name="ChoiceControlExtraOptionText" xml:space="preserve">
+          <value>Other</value>
+        </data>
+        <data name="ChromeEdit" xml:space="preserve">
+          <value>Edit</value>
+        </data>
+        <data name="ChromeDelete" xml:space="preserve">
+          <value>Delete</value>
+        </data>
+        <data name="WebPartEmptyZoneText" xml:space="preserve">
+          <value>Add a Portlet to this zone by dropping it here.</value>
+        </data>
+        <data name="AddNewContent" xml:space="preserve">
+          <value>Add new {0}</value>
+        </data>
+        <data name="AddNewContentUnder" xml:space="preserve">
+          <value>Add new Content under {0}</value>
+        </data>
+        <data name="EditContent" xml:space="preserve">
+          <value>Edit {0}</value>
+        </data>
+        <data name="DeleteContent" xml:space="preserve">
+          <value>Delete {0}</value>
+        </data>
+        <data name="DetailsContent" xml:space="preserve">
+          <value>View properties for {0}</value>
+        </data>
+        <data name="ListViewTitle" xml:space="preserve">
+          <value>List view for {0}</value>
+        </data>
+        <data name="ManageFieldsTitle" xml:space="preserve">
+          <value>Manage Fields for {0}</value>
+        </data>
+        <data name="AddNewFieldTitle" xml:space="preserve">
+          <value>Add new {0}</value>
+        </data>
+        <data name="EditFieldTitle" xml:space="preserve">
+          <value>Edit {0} field </value>
+        </data>
+        <data name="UploadPageTitle" xml:space="preserve">
+          <value>Upload documents: {0} </value>
+        </data>
+        <data name="VersioningMode" xml:space="preserve">
+          <value>Versioning mode</value>
+        </data>
+        <data name="None" xml:space="preserve">
+          <value>None</value>
+        </data>
+        <data name="MajorOnly" xml:space="preserve">
+          <value>Major only</value>
+        </data>
+        <data name="MajorAndMinor" xml:space="preserve">
+          <value>Major and minor</value>
+        </data>
+        <data name="Inherited" xml:space="preserve">
+          <value>Inherited</value>
+        </data>
+        <data name="Approved" xml:space="preserve">
+          <value>Approved</value>
+        </data>
+        <data name="Draft" xml:space="preserve">
+          <value>Draft</value>
+        </data>
+        <data name="Locked" xml:space="preserve">
+          <value>Locked</value>
+        </data>
+        <data name="Pending" xml:space="preserve">
+          <value>Pending for approval</value>
+        </data>
+        <data name="Rejected" xml:space="preserve">
+          <value>Rejected</value>
+        </data>
+        <!-- ========== START OF 6.0.4 ========== -->
+
+        <data name="ProxyPurgePortletTitle" xml:space="preserve">
+          <value>Purge from proxy cache: {0}</value>
+        </data>
+        <data name="NoProxyServers" xml:space="preserve">
+          <value>There are no proxy servers defined</value>
+        </data>
+        <data name="NoUrlsToPurge" xml:space="preserve">
+          <value>No URLs to purge</value>
+        </data>
+
+        <!-- Workspace Actions Scenario-->
+
+        <data name="AddNewActionPrefix" xml:space="preserve">
+          <value>New </value>
+        </data>
+        <data name="OpenInContentExplorerActionText" xml:space="preserve">
+          <value>Open in Content Explorer</value>
+        </data>
+        <data name="CreateOtherActionText" xml:space="preserve">
+          <value>Create other...</value>
+        </data>
+
+        <!-- Workspace create other page -->
+
+        <data name="WorkspaceCreateOther_SelectAnItemText" xml:space="preserve">
+          <value>Select an item to create a new library, list, form, page or workspace</value>
+        </data>
+        <data name="WorkspaceCreateOther_YouDontHavePermissionText" xml:space="preserve">
+          <value>We're sorry, but you're not allowed to create any other content under this Workspace!</value>
+        </data>
+
+        <data name="WorkspaceCreateOther_WorkspacesTitle" xml:space="preserve">
+          <value>Workspaces</value>
+        </data>
+        <data name="WorkspaceCreateOther_WorkspacesDescription" xml:space="preserve">
+          <value>Workspaces are mini portals dedicated to store and presenet information about a specific thing, such as a project. Workspaces are built up of lists, libraries and pages. Each workspace has a dashboard that collects relevant information to one page.</value>
+        </data>
+
+        <data name="WorkspaceCreateOther_ListsTitle" xml:space="preserve">
+          <value>Lists</value>
+        </data>
+        <data name="WorkspaceCreateOther_ListsDescription" xml:space="preserve">
+          <value>Lists are collections of similar pieces of contents. Contents in the list are built up of Fields, that can be customized by the end user. The look and feel of each list depends on customizable Views.</value>
+        </data>
+
+        <data name="WorkspaceCreateOther_LibrariesTitle" xml:space="preserve">
+          <value>Libraries</value>
+        </data>
+        <data name="WorkspaceCreateOther_LibrariesDescription" xml:space="preserve">
+          <value>Libraries are special lists that contain files, usually documents, images or multimedia. Files in libraries can be accessed using the portal user interface or with Windows Explorer using the WebDAV protocol.</value>
+        </data>
+
+        <data name="WorkspaceCreateOther_PagesTitle" xml:space="preserve">
+          <value>Pages</value>
+        </data>
+        <data name="WorkspaceCreateOther_PagesDescription" xml:space="preserve">
+          <value>Pages are the generic building blocks of portals, web pages or intranets.</value>
+        </data>
+
+        <data name="WorkspaceCreateOther_CantCreateWorkspaceContent" xml:space="preserve">
+          <value>You cannot create any content of Workspace type in <strong>{0}</strong>.</value>
+        </data>
+        <data name="WorkspaceCreateOther_CantCreateListContent" xml:space="preserve">
+          <value>You cannot create any content of ContentList type in <strong>{0}</strong>.</value>
+        </data>
+        <data name="WorkspaceCreateOther_CantCreateLibraryContent" xml:space="preserve">
+          <value>You cannot create any content of Library type in <strong>{0}</strong>.</value>
+        </data>
+        <data name="WorkspaceCreateOther_CantCreatePageContent" xml:space="preserve">
+          <value>You cannot create any content of Page type in <strong>{0}</strong>.</value>
+        </data>
+
+        <!-- BLOG CONTENT TYPE -->
+
+        <data name="SnBlog_BlogPostsPortlet_Title" xml:space="preserve">
+          <value>Blog posts</value>
+        </data>
+        <data name="SnBlog_BlogPostsPortlet_ArchiveTitle" xml:space="preserve">
+          <value>Blog posts in {0}</value>
+        </data>
+        <data name="SnBlog_BlogPostsPortlet_UnpublishedPost" xml:space="preserve">
+          <value>This post is not published yet!</value>
+        </data>
+        <data name="SnBlog_BlogPostsPortlet_EditPost" xml:space="preserve">
+          <value>Edit post</value>
+        </data>
+        <data name="SnBlog_BlogPostsPortlet_DeletePost" xml:space="preserve">
+          <value>Delete post</value>
+        </data>
+        <data name="SnBlog_BlogPostsPortlet_ReadMore" xml:space="preserve">
+          <value>Read more...</value>
+        </data>
+        <data name="SnBlog_BlogPostsPortlet_NoPosts" xml:space="preserve">
+          <value>There are no posts here...</value>
+        </data>
+        <data name="SnBlog_BlogPostsPortlet_Tags" xml:space="preserve">
+          <value>Tags:</value>
+        </data>
+        <data name="SnBlog_BlogPostsPortlet_Comments" xml:space="preserve">
+          <value>{0} comments</value>
+        </data>
+        <data name="SnBlog_BlogPostsPortlet_NoComments" xml:space="preserve">
+          <value>No comments</value>
+        </data>
+        <data name="SnBlog_BlogPostsPortlet_BackToMain" xml:space="preserve">
+          <value>Back to main</value>
+        </data>
+        <data name="SnBlog_CommentsPortlet_Title" xml:space="preserve">
+          <value>Comments</value>
+        </data>
+        <data name="SnBlog_TagCloudPortlet_Title" xml:space="preserve">
+          <value>Tag cloud</value>
+        </data>
+        <data name="SnBlog_TagCloudPortlet_NoTags" xml:space="preserve">
+          <value>No tags yet...</value>
+        </data>
+        <data name="SnBlog_ArchivePortlet_Title" xml:space="preserve">
+          <value>Archive</value>
+        </data>
+        <data name="SnBlog_ArchivePortlet_NoArchives" xml:space="preserve">
+          <value>There aren't any archives...</value>
+        </data>
+        <data name="SnBlog_SearchPortlet_Title" xml:space="preserve">
+          <value>Search posts</value>
+        </data>
+        <data name="SnBlog_SearchPortlet_SearchButtonTitle" xml:space="preserve">
+          <value>Search</value>
+        </data>
+        <data name="SnBlog_SearchPortlet_SearchResults" xml:space="preserve">
+          <value>{0} results found</value>
+        </data>
+        <data name="SnBlog_Menu_UnpublishedPostsPortlet_Title" xml:space="preserve">
+          <value>Unpublished posts</value>
+        </data>
+        <data name="SnBlog_NewEditBlogPost_LeadingText" xml:space="preserve">
+          <value>Leading text (required)</value>
+        </data>
+        <data name="SnBlog_NewEditBlogPost_BodyText" xml:space="preserve">
+          <value>Body text (optional)</value>
+        </data>
+        <data name="SnBlog_Menu_WorkspaceHome" xml:space="preserve">
+          <value>Workspace home</value>
+        </data>
+        <data name="SnBlog_Menu_BlogMainPage" xml:space="preserve">
+          <value>Blog main page</value>
+        </data>
+        <data name="SnBlog_Menu_NewPost" xml:space="preserve">
+          <value>New post</value>
+        </data>
+        <data name="SnBlog_Menu_UnpublishedPosts" xml:space="preserve">
+          <value>Unpublished posts</value>
+        </data>
+        <data name="SnBlog_Menu_Search" xml:space="preserve">
+          <value>Search</value>
+        </data>
+
+        <!-- ========== END OF 6.0.4 ========== -->
+
+        <!-- 6.0.4 -->
+        <data name="AddNewActionPrefix" xml:space="preserve">
+          <value>New </value>
+        </data>
+        <data name="OpenInContentExplorerActionText" xml:space="preserve">
+          <value>Open in Content Explorer</value>
+        </data>
+        <data name="CreateOtherActionText" xml:space="preserve">
+          <value>Create other...</value>
+        </data>
+        <data name="DateFieldDateTimeFormatDescription" xml:space="preserve">
+          <value>Valid Date format is:{0}. You can specify the time in {1} format.</value>
+        </data>
+        <data name="DateFieldDateFormatDescription" xml:space="preserve">
+          <value>Valid Date format is:{0}.</value>
+        </data>
+
+        <!-- Content naming -->
+        <data name="InvalidNameMessage" xml:space="preserve">
+          <value>Content name may only contain alphanumeric characters or '.', '(', ')', '[', ']', '-', '_', ' ' !</value>
+        </data>
+        <data name="InvalidPathMessage" xml:space="preserve">
+          <value>Content path may only contain alphanumeric characters or '.', '(', ')', '[', ']', '-', '_', ' ', '/' !</value>
+        </data>
+        <data name="PathTooLongMessage" xml:space="preserve">
+          <value>Path too long. Max length is {0}.</value>
+        </data>
+        <data name="EmptyNameMessage" xml:space="preserve">
+          <value>Name cannot be empty.</value>
+        </data>
+        <data name="NameStartsWithWhitespaceMessage" xml:space="preserve">
+          <value>Name cannot start with whitespace.</value>
+        </data>
+        <data name="NameEndsWithWhitespaceMessage" xml:space="preserve">
+          <value>Name cannot end with whitespace.</value>
+        </data>
+        <data name="PathFirstCharMessage" xml:space="preserve">
+          <value>Path must start with '/' character.</value>
+        </data>
+        <data name="PathEndsWithDotMessage" xml:space="preserve">
+          <value>Path cannot end with '.' character.</value>
+        </data>
+
+        <!-- Permission editor -->
+        <data name="PermissionLocalGroup" xml:space="preserve">
+          <value>local group</value>
+        </data>
+        <data name="EditPermissions" xml:space="preserve">
+          <value>Edit permissions</value>
+        </data>
+        <data name="Permission_See">
+          <value>See</value>
+        </data>
+        <data name="Permission_Open">
+          <value>Open</value>
+        </data>
+        <data name="Permission_OpenMinor">
+          <value>Open minor</value>
+        </data>
+        <data name="Permission_Save">
+          <value>Save</value>
+        </data>
+        <data name="Permission_Publish">
+          <value>Publish</value>
+        </data>
+        <data name="Permission_ForceCheckin">
+          <value>Force check-in</value>
+        </data>
+        <data name="Permission_AddNew">
+          <value>Add new</value>
+        </data>
+        <data name="Permission_Approve">
+          <value>Approve</value>
+        </data>
+        <data name="Permission_Delete">
+          <value>Delete</value>
+        </data>
+        <data name="Permission_RecallOldVersion">
+          <value>Recall old version</value>
+        </data>
+        <data name="Permission_DeleteOldVersion">
+          <value>Delete old version</value>
+        </data>
+        <data name="Permission_SeePermissions">
+          <value>See permissions</value>
+        </data>
+        <data name="Permission_SetPermissions">
+          <value>Set permissions</value>
+        </data>
+        <data name="Permission_RunApplication">
+          <value>Run application</value>
+        </data>
+        <data name="Permission_ManageListsAndWorkspaces">
+          <value>Manage lists and workspaces</value>
+        </data>
+        <data name="Permission_Desc_See">
+          <value>View content in lists and search results</value>
+        </data>
+        <data name="Permission_Desc_Open">
+          <value>View content and its fields</value>
+        </data>
+        <data name="Permission_Desc_OpenMinor">
+          <value>Open minor versions, e.g. 2.3 Draft</value>
+        </data>
+        <data name="Permission_Desc_Save">
+          <value>Save documents, articles or other content</value>
+        </data>
+        <data name="Permission_Desc_Publish">
+          <value>Mark content as published</value>
+        </data>
+        <data name="Permission_Desc_ForceCheckin">
+          <value>Unlock content that were checked out by other users</value>
+        </data>
+        <data name="Permission_Desc_AddNew">
+          <value>Add new content</value>
+        </data>
+        <data name="Permission_Desc_Approve">
+          <value>Approve files or any other content</value>
+        </data>
+        <data name="Permission_Desc_Delete">
+          <value>Delete content</value>
+        </data>
+        <data name="Permission_Desc_RecallOldVersion">
+          <value>View and open previous versions of content</value>
+        </data>
+        <data name="Permission_Desc_DeleteOldVersion">
+          <value>Delete old content versions</value>
+        </data>
+        <data name="Permission_Desc_SeePermissions">
+          <value>View the permission settings of a content</value>
+        </data>
+        <data name="Permission_Desc_SetPermissions">
+          <value>Modify the permission settings of a content</value>
+        </data>
+        <data name="Permission_Desc_RunApplication">
+          <value>Visualize content using an application</value>
+        </data>
+        <data name="Permission_Desc_ManageListsAndWorkspaces">
+          <value>Add, modify or delete lists or workspaces</value>
+        </data>
+        <data name="PermEditor_AddNewEntry">
+          <value>Add new security entry</value>
+        </data>
+        <data name="PermEditor_HasOwnPermission">
+          <value>{0} has custom permissions.</value>
+        </data>
+        <data name="PermEditor_InheritPermissionBegin">
+          <value>
+            <strong>{0}</strong> inherits permissions from its parent:
+          </value>
+        </data>
+        <data name="PermEditor_InheritPermissionEnd">
+          <value></value>
+        </data>
+        <data name="PermEditor_HasExtended">
+          <value>This content has custom permissions.</value>
+        </data>
+        <data name="PermEditor_EditMembers">
+          <value>Edit members</value>
+        </data>
+        <data name="PermEditor_BreakInheritance">
+          <value>Break inheritance</value>
+        </data>
+        <data name="PermEditor_RemoveBreak">
+          <value>Remove break inheritance</value>
+        </data>
+        <data name="PermEditor_Type">
+          <value>Identity type</value>
+        </data>
+        <data name="PermEditor_SearchName">
+          <value>Type in a name</value>
+        </data>
+        <data name="PermEditor_ChooseEntry">
+          <value>Choose an entry</value>
+        </data>
+        <data name="PermEditor_BtnSearch">
+          <value>Search</value>
+        </data>
+        <data name="PermEditor_BtnAdd">
+          <value>Add</value>
+        </data>
+        <data name="PermEditor_BtnCancel">
+          <value>Cancel</value>
+        </data>
+        <data name="PermEditor_BtnSave">
+          <value>Save</value>
+        </data>
+        <data name="PermEditor_PermSettings">
+          <value>Permission settings</value>
+        </data>
+        <data name="PermEditor_Permission">
+          <value>Permission</value>
+        </data>
+        <data name="PermEditor_Allow">
+          <value>Allow</value>
+        </data>
+        <data name="PermEditor_InheritsFrom">
+          <value>Inherits from</value>
+        </data>
+        <data name="PermEditor_Deny">
+          <value>Deny</value>
+        </data>
+        <data name="PermEditor_Effective">
+          <value>Effective permission</value>
+        </data>
+        <data name="PermEditor_ToggleAll">
+          <value>Toggle all</value>
+        </data>
+
+        <data name="ContentList_ManageViewsTitle">
+          <value>Manage views of {0}</value>
+        </data>
+        <data name="ContentList_ManageViewsDefaultLabel">
+          <value>Default content list view</value>
+        </data>
+        <data name="ContentList_ManageViewsNoDefault">
+          <value>no default view selected</value>
+        </data>
+        <data name="ContentList_ManageViewsGlobal">
+          <value>This is a global view.</value>
+        </data>
+        <data name="WSContentList_Visitor">
+          <value>Пожалуйста войдите в систему для продолжения работы.</value>
         </data>
         <data name="SecondMessage">
           <value> seconds ago</value>
@@ -692,7 +1236,7 @@
         <data name="NoUrlsToPurge" xml:space="preserve">
           <value>Nincs törlendő url</value>
         </data>
-        
+
         <!-- Workspace Actions Scenario -->
         <data name="AddNewActionPrefix" xml:space="preserve">
           <value>Új </value>
@@ -703,7 +1247,7 @@
         <data name="CreateOtherActionText" xml:space="preserve">
           <value>Új egyéb...</value>
         </data>
-        
+
         <!-- Workspace create other page -->
 
         <data name="WorkspaceCreateOther_SelectAnItemText" xml:space="preserve">
@@ -719,21 +1263,21 @@
         <data name="WorkspaceCreateOther_WorkspacesDescription" xml:space="preserve">
           <value>A Munkaterületek olyan mini-portálok amelyek arra hivatottak, hogy tárolják és megjelenítsék az összes információt egy dologról, mint amilyen egy projekt is. Egy Munkaterület tartalmazhat Könyvtárakat, Listákat vagy különböző Oldalakat is.</value>
         </data>
-        
+
         <data name="WorkspaceCreateOther_ListsTitle" xml:space="preserve">
           <value>Listák</value>
         </data>
         <data name="WorkspaceCreateOther_ListsDescription" xml:space="preserve">
           <value>A Listák olyan gyűjtemények amelyek azonos tartalmakat tárolnak. A gyűjteményben lévő tartalmak Mezőkből épülnek fel, amelyek a felhasználó által szabadon módosíthatóak. A Listák megjelenítése szabályozható a Nézetek megfelelő beállításával.</value>
         </data>
-        
+
         <data name="WorkspaceCreateOther_LibrariesTitle" xml:space="preserve">
           <value>Könyvtárak</value>
         </data>
         <data name="WorkspaceCreateOther_LibrariesDescription" xml:space="preserve">
           <value>A Könyvtárak olyan speciális listák amelyek fájlokat tárolnak. Ezek általában dokumentumok, képek vagy más multimédiás tartalmak. Ezek a fájlok elérhetőek a Portál felületén keresztül vagy a Windows Intéző segítségével WebDAV protokollon keresztül.</value>
         </data>
-        
+
         <data name="WorkspaceCreateOther_PagesTitle" xml:space="preserve">
           <value>Oldalak</value>
         </data>
@@ -833,7 +1377,7 @@
         </data>
         <data name="SnBlog_Menu_UnpublishedPosts" xml:space="preserve">
           <value>Nem publikáltak</value>
-        </data>        
+        </data>
         <data name="SnBlog_Menu_Search" xml:space="preserve">
           <value>Keresés</value>
         </data>
@@ -980,19 +1524,19 @@
           <value>Add, modify or delete lists or workspaces</value>
         </data>
         <data name="PermEditor_HasOwnPermission">
-            <value>{0} egyedi beállításokkal rendelkezik.</value>
+          <value>{0} egyedi beállításokkal rendelkezik.</value>
         </data>
         <data name="PermEditor_InheritPermissionBegin">
-            <value>{0} örökli a jogait a következő ősétől: </value>
+          <value>{0} örökli a jogait a következő ősétől: </value>
         </data>
         <data name="PermEditor_InheritPermissionEnd">
-            <value></value>
+          <value></value>
         </data>
         <data name="PermEditor_HasExtended">
-            <value>A tartalom egyedi beállításokkal rendelkezik.</value>
+          <value>A tartalom egyedi beállításokkal rendelkezik.</value>
         </data>
         <data name="PermEditor_EditMembers">
-            <value>Csoport szerkesztése</value>
+          <value>Csoport szerkesztése</value>
         </data>
         <data name="PermEditor_AddNewEntry">
           <value>Új jogosultság</value>
@@ -1426,3 +1970,4 @@
     </Languages>
   </ResourceClass>
 </Resources>
+​

@@ -5,8 +5,9 @@ using System.Text;
 
 namespace RadaCode.InDoc.Core.Models
 {
-    public class ExistingNamingsModel
+    public class SpecialCodeViewModel
     {
-        public List<NamingViewModel> ExistingNamings { get; set; } 
+        public string Code { get; set; }
+        public bool HasValue { get; set; }
     }
 }
