@@ -29,29 +29,91 @@
         }
     };
 
+    function CodeBlock(nameBlock, paramBlock, parent) {
+        var self = this;
+        self.Name = nameBlock;
+        self.Param = paramBlock;
+        self.CellWidth = ko.computed(function () {
+            return parent.CellWidth();
+        });
+    }
+
     function SpecialCode(code, hasValue) {
         var self = this;
         self.Code = code;
         self.HasValue = hasValue;
     };
 
-    function Naming(name, nameBlocks, paramBlocks) {
+    function Naming(name, codeBlocks) {
         var self = this;
         self.TypeName = name;
-        self.NameBlocks = ko.observableArray(nameBlocks);
-        self.ParamBlocks = ko.observableArray(paramBlocks);
+        self.BlocksCount = ko.observable(codeBlocks.length);
+
         self.isDialogOpen = ko.observable(false);
         self.dialogSelectedCode = ko.observable();
         self.dialogRadioValue = ko.observable('custom');
+        self.dialogSelectedCodeValue = ko.observable();
         self.dialogSelectedCodeHasValue = ko.computed(function () {
             var selectedCode = ko.utils.unwrapObservable(self.dialogSelectedCode);
             return selectedCode && selectedCode.HasValue;
         });
-        self.dialogSelectedCodeValue = ko.observable();
+        self.dialogDataToAdd = ko.computed(function () {
+            var radioValue = ko.utils.unwrapObservable(self.dialogRadioValue);
+            if (radioValue == 'custom') {
+                return {
+                    Type: 'Custom',
+                    Code: ko.utils.unwrapObservable(self.dialogSelectedCode),
+                    Value: ko.utils.unwrapObservable(self.dialogSelectedCodeValue)
+                };
+            } else {
+                return {
+                    Type: 'Text',
+                    Value: ko.utils.unwrapObservable(self.dialogSelectedCodeValue)
+                };
+            }
+        });
+
+        self.dialogOptions = {
+            autoOpen: false,
+            modal: true,
+            buttons: {
+                'Добавить': function () {
+                    alert('adding block ' + ko.toJSON(self.dialogDataToAdd));
+                    var toAdd = ko.utils.unwrapObservable(self.dialogDataToAdd);
+                    if (toAdd.Type == "Custom") {
+                        if (toAdd.Code.HasValue) {
+                            self.CodeBlocks.push(new CodeBlock(toAdd.Code.Code, toAdd.Value, self));
+                        } else {
+                            self.CodeBlocks.push(new CodeBlock(toAdd.Code.Code, '', self));
+                        }
+                    } else {
+                        self.CodeBlocks.push(new CodeBlock(toAdd.Value, '', self));
+                    }
+                    $(this).dialog('close');
+                },
+                'Отменить': function () { $(this).dialog('close'); }
+            }
+        };
 
         self.addBlock = function () {
             self.isDialogOpen(true);
         };
+
+        self.CodeBlocks = ko.observableArray();
+
+        self.CellWidth = ko.computed(function () {
+            return (95 / (self.BlocksCount()) | 0) + '%';
+        });
+
+        var codeBlockModelsArray = jQuery.map(codeBlocks, function (val, i) {
+            return (new CodeBlock(val.Code, val.Param, self));
+        });
+
+        self.CodeBlocks = ko.observableArray(codeBlockModelsArray);
+
+        self.CodeBlocks.subscribe(function (newValue) {
+            self.BlocksCount(newValue.length);
+        });
     };
 
     function ExistingNamingsViewModel(initialData) {
@@ -61,7 +123,7 @@
         var specialCodes = $.makeArray(initialData.Codes);
 
         var namingModelsArray = jQuery.map(namings, function (val, i) {
-            return (new Naming(val.TypeName, val.NameBlocks, val.ParamBlocks));
+            return (new Naming(val.TypeName, val.CodeBlocks));
         });
 
         var codesModelsArray = jQuery.map(specialCodes, function (val, i) {
@@ -72,6 +134,7 @@
         self.NamingCodes = ko.observableArray(codesModelsArray);
     };
 
-    var initialDataObject = $.parseJSON($('#initial-namings-data').val());
-    ko.applyBindings(new ExistingNamingsViewModel(initialDataObject), document.getElementById("namings-control"));
+    var pageVM = new ExistingNamingsViewModel($.parseJSON($('#initial-namings-data').val()));
+
+    ko.applyBindings(pageVM, document.getElementById("namings-control"));
 });

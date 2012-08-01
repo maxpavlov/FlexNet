@@ -18,7 +18,7 @@
 		
 	<p>На данный момент в системе зарегистрированы следующие политики именования документов:</p>
 	<br/>
-	<table>
+	<table style="width: 100%">
 		<thead>
 			<tr>
 				<th>Тип документа</th><th>Шаблон именования</th>
@@ -26,30 +26,34 @@
 		</thead>
 		<tbody data-bind="foreach: ExistingNamings">
 			<tr>
-				<td>
+				<td class="naming-type">
 					<span data-bind="text: TypeName"></span>
 				</td>
-				<td>
+				<td class="naming-blocks">
 					<div style="display: block">
-						<div style="display: table-row">
-							<div style="display: table-cell" data-bind="foreach: NameBlocks">
-								<input type="text" class="name-block" data-bind="value: $data"/>                                    
+						<div class="blocks-row">
+							<div style="display: table-cell" >
+								<!-- ko foreach: CodeBlocks -->
+								<input type="text" class="name-block" data-bind="value: Name, style: { width: CellWidth }"/>     
+								<!-- /ko -->                               
 							</div>
 						</div>
-						<div style="display: table-row">
-							<div style="display: table-cell" data-bind="foreach: ParamBlocks">
-								<!-- ko if: $data !== '' -->
-								<input type="text" class="param-block" data-bind="value: $data"/> 
+						<div class="blocks-row">
+							<div style="display: table-cell">
+								<!-- ko foreach: CodeBlocks -->
+								<!-- ko if: Param !== '' -->
+								<input type="text" class="param-block" data-bind="value: Param, style: { width: CellWidth }"/> 
 								<!-- /ko -->       
-								<!-- ko if: $data === '' -->  
-								<input type="text" class="param-block hidden" data-bind="value: $data"/>
+								<!-- ko if: Param === '' -->  
+								<input type="text" class="param-block hidden" data-bind="value: Param, style: { width: CellWidth }"/>
+								<!-- /ko -->  
 								<!-- /ko -->                            
 							</div>
 						</div>
 					</div>
 				</td>
-				<td>
-					<div id="add-block-dialog" title="Добавление блока в именование" data-bind="dialog : { autoOpen: false, modal: true, buttons: { 'Добавить': function () { alert('adding block'); }, 'Отменить': function () { $(this).dialog('close'); }}}, dialogVisible: isDialogOpen">
+				<td class="naming-add">
+					<div id="add-block-dialog" title="Добавление блока в именование" data-bind="dialog : dialogOptions, dialogVisible: isDialogOpen">
 						<fieldset>
 							<legend>Тип блока</legend>
 							<input type="radio" name="group1" id="custom-block" value="custom"  data-bind="checked: dialogRadioValue"/> 

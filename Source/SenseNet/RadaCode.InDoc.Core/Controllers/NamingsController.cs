@@ -31,12 +31,10 @@ namespace RadaCode.InDoc.Core.Controllers
                                 {
                                     Namings = namings.Select(
                                         namingApproach =>
-                                        new NamingViewModel()
-                                            {
-                                                TypeName = namingApproach.TypeName,
-                                                NameBlocks = namingApproach.NameBlocks,
-                                                ParamBlocks = namingApproach.ParamBlocks
-                                            }).ToList(),
+                                        new NamingViewModel(
+                                            namingApproach.TypeName, 
+                                            namingApproach.NameBlocks, 
+                                            namingApproach.ParamBlocks)).ToList(),
                                     Codes = codes.Select( 
                                         code => 
                                         new SpecialCodeViewModel()

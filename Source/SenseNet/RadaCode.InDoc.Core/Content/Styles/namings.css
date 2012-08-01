@@ -14,10 +14,31 @@ table th {
 
 .name-block {
     text-align: center;
+    display: inline-block;
+    width: auto;
 }
 
 .param-block {
     text-align: center;
+    display: inline-block;
+    width: auto;
+}
+
+.blocks-row {
+    display: table-row;
+}
+
+.naming-type {
+    width: 10%;
+    text-align: center;
+}
+
+.naming-blocks {
+    width: 75%;
+}
+
+.naming-add {
+    width: 15%;
 }
 
 .hidden {
